@@ -1,0 +1,10 @@
+.idea
+*.exp
+*.lib
+*.log
+*.reg
+reset_git.cmd
+cmake-build-debug
+
+
+todo
