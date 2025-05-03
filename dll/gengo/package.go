@@ -3,11 +3,6 @@ package gengo
 import (
 	"bytes"
 	"fmt"
-	"github.com/dave/dst"
-	"github.com/dave/dst/decorator"
-	"github.com/ddkwork/bindgen/dll/clang"
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
 	"go/ast"
 	"go/token"
 	"io"
@@ -15,6 +10,12 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+
+	"github.com/dave/dst"
+	"github.com/dave/dst/decorator"
+	"github.com/ddkwork/bindgen/dll/clang"
+	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/stream"
 )
 
 type Package struct {

@@ -2,13 +2,14 @@ package gengo
 
 import (
 	"fmt"
-	"github.com/dave/dst"
-	"github.com/ddkwork/bindgen/dll/clang"
-	"github.com/ddkwork/golibrary/mylog"
 	"go/token"
 	"maps"
 	"strconv"
 	"strings"
+
+	"github.com/dave/dst"
+	"github.com/ddkwork/bindgen/dll/clang"
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 type TypeRef struct {
