@@ -59,7 +59,7 @@ func LoadLibraryEmbed(data []byte) (LoadedLibrary, error) {
 	hash := sha1.Sum(data)
 	name := "." + hex.EncodeToString(hash[:4]) + ".gengo.so"
 	path := cache + name
-	if stat, e := mylog.Check2(os.Stat(path)); e != nil || stat.Size() != int64(len(data)) {
+	if stat, e := os.Stat(path); e != nil || stat.Size() != int64(len(data)) {
 		os.MkdirAll(cache, 0o755)
 		mylog.Check(os.WriteFile(path, data, 0o755))
 	}
