@@ -4,8 +4,8 @@ go 1.24.1
 
 require (
 	github.com/dave/dst v0.27.3
-	github.com/ddkwork/golibrary v0.1.2-0.20250505042507-fb65953b7361
-	github.com/ebitengine/purego v0.9.0-alpha.3
+	github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e
+	github.com/ebitengine/purego v0.9.0-alpha.4
 	github.com/valyala/fastjson v1.6.4
 	golang.org/x/sync v0.14.0
 	golang.org/x/sys v0.33.0
