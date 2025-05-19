@@ -1,6 +1,6 @@
 module github.com/ddkwork/bindgen
 
-go 1.24.1
+go 1.24.3
 
 require (
 	github.com/dave/dst v0.27.3
