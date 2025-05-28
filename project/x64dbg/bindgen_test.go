@@ -8,7 +8,7 @@ import (
 
 	"github.com/ddkwork/golibrary/stream"
 
-	"mcp/bindgen"
+	"github.com/ddkwork/bindgen"
 )
 
 const (
