@@ -135,7 +135,7 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 				api = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
 			}
 			//mylog.Trace(m.name, m.Comment.mangledName)
-			packet.Set(urlPath, api) //todo handle namespace
+			packet.Set(urlPath, api)
 			body := "response := safeGet(" +
 				strconv.Quote(urlPath) +
 				", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
