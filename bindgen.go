@@ -128,7 +128,7 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			}
 
 			urlPath := fmt.Sprintf("%s/%s", filepath.Base(path), m.Name)
-			packet.Set(urlPath, "todo") //todo
+			packet.Set(urlPath, m.name) //todo handle namespace
 			body := "response := safeGet(" +
 				strconv.Quote(urlPath) +
 				", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
