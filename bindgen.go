@@ -73,7 +73,7 @@ func Bind(targetDir string, cModelCallback ClangCModelCallback, paths ...string)
 
 func genGoFile(results Result, targetDir string, paths ...string) {
 	var methods []string
-	packet := new(safemap.M[string, string]) //urlPath api
+	packet := new(safemap.M[string, string]) // urlPath api
 	pkgName := filepath.Base(targetDir)
 	for _, path := range paths {
 		buffer := bytes.NewBufferString("")
@@ -130,11 +130,11 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			urlPath := fmt.Sprintf("%s/%s", filepath.Base(path), m.Name)
 			//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
 			api := m.Comment.mangledName
-			if strings.HasPrefix(api, "?") { //namespace
+			if strings.HasPrefix(api, "?") { // namespace
 				split := strings.Split(api, "@")
 				api = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
 			}
-			//mylog.Trace(m.name, m.Comment.mangledName)
+			// mylog.Trace(m.name, m.Comment.mangledName)
 			packet.Set(urlPath, api)
 			body := "response := safeGet(" +
 				strconv.Quote(urlPath) +
@@ -288,7 +288,7 @@ func safePost(endpoint string, data any) string {
 	buffer.WriteString(body)
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 
-	//mylog.Struct(packet.Map())
+	// mylog.Struct(packet.Map())
 	stream.MarshalJsonToFile(packet.Map(), filepath.Join(targetDir, "api.json"))
 }
 
@@ -550,7 +550,7 @@ func parseFunction(node gjson.Result) FunctionInfo {
 	node.Get("inner").ForEach(func(_, param gjson.Result) bool {
 		if param.Get("kind").String() == "ParmVarDecl" {
 			s := param.Get("name").String()
-			switch s { //todo more syntax check
+			switch s { // todo more syntax check
 			case "type":
 				s = "Type"
 			case "string":

@@ -1,14 +1,14 @@
 package mcp
 
 import (
-	"github.com/ddkwork/bindgen/project/x64dbg/sdk"
-	"github.com/ddkwork/golibrary/assert"
 	"io/fs"
 	"path/filepath"
 	"strings"
 	"testing"
 
 	"github.com/ddkwork/bindgen"
+	"github.com/ddkwork/bindgen/project/x64dbg/sdk"
+	"github.com/ddkwork/golibrary/assert"
 	"github.com/ddkwork/golibrary/stream"
 )
 
@@ -22,7 +22,7 @@ func TestDecodeNamespace(t *testing.T) {
 	split := strings.Split(s, "@")
 	api := split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
 	assert.Equal(t, "Script::Bookmark::GetList", api)
-	//mylog.Struct(split)
+	// mylog.Struct(split)
 }
 
 func TestNew(t *testing.T) {
