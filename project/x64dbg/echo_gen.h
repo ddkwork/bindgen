@@ -223,7 +223,7 @@ void dispatch(SOCKET clientSocket) {
         std::unordered_map<std::string, std::string> queryParams = parseQueryParams(query);
 
         static const std::unordered_map<std::string, std::function<void()>> handlers{
-                {"bridgemain.h/DbgModBaseFromName", [] {
+                {"bridgemain.h/DbgModBaseFromName", [&queryParams, &body, &clientSocket] {
                     std::string name = queryParams["name"];
                     if (name.empty() && !body.empty()) {
                         name = body;
