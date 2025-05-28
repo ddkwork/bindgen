@@ -537,10 +537,10 @@ func parseFunction(node gjson.Result) FunctionInfo {
 	node.Get("inner").ForEach(func(_, param gjson.Result) bool {
 		if param.Get("kind").String() == "ParmVarDecl" {
 			s := param.Get("name").String()
-			if s == "type" {
+			switch s { //todo more syntax check
+			case "type":
 				s = "Type"
-			}
-			if s == "string" {
+			case "string":
 				s = "s"
 			}
 			s = strings.NewReplacer(
