@@ -31,7 +31,7 @@ include_directories(
 )
 
 # Add source files
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "*.cpp")
 
 # Create shared library (plugin)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
