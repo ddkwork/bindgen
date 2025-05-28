@@ -344,7 +344,7 @@ func genMcpCppServerCode(m *safemap.M[string, string]) {
 #pragma comment(lib, "pluginsdk/lz4/lz4_x86.lib")
 #pragma comment(lib, "pluginsdk/TitanEngine/TitanEngine_x86.lib")
 #pragma comment(lib, "pluginsdk/XEDParse/XEDParse_x86.lib")
-#endif //_WIN64问题是为
+#endif //_WIN64
 #pragma comment(lib, "shlwapi.lib")
 
 
