@@ -1,4 +1,4 @@
-package mcp
+package main
 
 import (
 	"io/fs"
@@ -66,7 +66,7 @@ func TestWalk(t *testing.T) {
 	)
 }
 
-const pluginsdk = "todo/snapshot_2025-03-15_15-57/pluginsdk"
+const pluginsdk = "pluginsdk"
 
 func RepackSdk() { // 官方的sdk对于clang而言有瑕疵，需要patch
 	filepath.Walk(pluginsdk, func(path string, info fs.FileInfo, err error) error {
