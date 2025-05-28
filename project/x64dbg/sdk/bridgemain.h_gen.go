@@ -1065,8 +1065,7 @@ func (b *bridgemain) DbgGetBpxTypeAt(addr uint) {
 	}
 }
 
-func (b *bridgemain) DbgValFromString(string string) {
-	//response := safeGet("bridgemain.h/DbgValFromString", map[string]string{})
+func (b *bridgemain) DbgValFromString(s string) {
 	response := safeGet("bridgemain.h/DbgValFromString", map[string]string{})
 	if len(response) == 0 {
 		return
@@ -1080,7 +1079,7 @@ func (b *bridgemain) DbgGetRegDumpEx(regdump *REGDUMP, size uint) {
 	}
 }
 
-func (b *bridgemain) DbgValToString(string string, value uint) {
+func (b *bridgemain) DbgValToString(s string, value uint) {
 	response := safeGet("bridgemain.h/DbgValToString", map[string]string{})
 	if len(response) == 0 {
 		return

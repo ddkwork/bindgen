@@ -540,6 +540,9 @@ func parseFunction(node gjson.Result) FunctionInfo {
 			if s == "type" {
 				s = "Type"
 			}
+			if s == "string" {
+				s = "s"
+			}
 			s = strings.NewReplacer(
 				"type", "Type",
 				"const", "",
