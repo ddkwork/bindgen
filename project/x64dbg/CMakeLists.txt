@@ -31,7 +31,10 @@ include_directories(
 )
 
 # Add source files
-file(GLOB SOURCES "*.cpp")
+file(GLOB SOURCES
+        "*.cpp"
+        echo_gen.h
+)
 
 # Create shared library (plugin)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})

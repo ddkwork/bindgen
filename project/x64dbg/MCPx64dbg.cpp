@@ -6,10 +6,12 @@
 
 // Include Windows headers before socket headers
 #include <Windows.h>
+
 // Include x64dbg SDK
 #include "pluginsdk/bridgemain.h"
 #include "pluginsdk/_plugins.h"
 #include "pluginsdk/_scriptapi_module.h"
+#include "echo_gen.h"
 
 // Socket includes - after Windows.h
 #include <winsock2.h>
