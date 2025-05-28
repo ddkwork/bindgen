@@ -1,6 +1,7 @@
 package mcp
 
 import (
+	"github.com/ddkwork/bindgen/project/x64dbg/sdk"
 	"io/fs"
 	"path/filepath"
 	"strings"
@@ -15,6 +16,12 @@ const (
 	newSdk    = "include"
 	targetDir = "sdk"
 )
+
+func TestNew(t *testing.T) {
+	s := sdk.New()
+	s.Bridgemain.DbgIsRunning()
+	s.Debug.Wait()
+}
 
 func TestName(t *testing.T) {
 	//fakeError.Walk(".")

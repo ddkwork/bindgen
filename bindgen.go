@@ -73,6 +73,7 @@ func Bind(targetDir string, cModelCallback ClangCModelCallback, paths ...string)
 
 func genGoFile(results Result, targetDir string, paths ...string) {
 	var methods []string
+	var urlPaths []string
 	pkgName := filepath.Base(targetDir)
 	for _, path := range paths {
 		buffer := bytes.NewBufferString("")
@@ -126,8 +127,10 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 				params[i] = fmt.Sprintf("%s %s", p.Name, p.Type)
 			}
 
+			urlPath := fmt.Sprintf("%s/%s", filepath.Base(path), m.Name)
+			urlPaths = append(urlPaths, urlPath)
 			body := "response := safeGet(" +
-				strconv.Quote(strings.Join([]string{filepath.Base(path), m.Name}, "/")) +
+				strconv.Quote(urlPath) +
 				", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
 			buffer.WriteString(fmt.Sprintf("%s) %s {\n\t"+
 				body+
@@ -277,6 +280,8 @@ func safePost(endpoint string, data any) string {
 `
 	buffer.WriteString(body)
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
+
+	mylog.Struct(urlPaths)
 }
 
 func typedefsNameByID(root gjson.Result, result *Result) {
