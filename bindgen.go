@@ -128,7 +128,14 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			}
 
 			urlPath := fmt.Sprintf("%s/%s", filepath.Base(path), m.Name)
-			packet.Set(urlPath, m.name) //todo handle namespace
+			//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
+			api := m.Comment.mangledName
+			if strings.HasPrefix(api, "?") { //namespace
+				split := strings.Split(api, "@")
+				api = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
+			}
+			//mylog.Trace(m.name, m.Comment.mangledName)
+			packet.Set(urlPath, api) //todo handle namespace
 			body := "response := safeGet(" +
 				strconv.Quote(urlPath) +
 				", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
@@ -281,7 +288,8 @@ func safePost(endpoint string, data any) string {
 	buffer.WriteString(body)
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 
-	mylog.Struct(packet.Map())
+	//mylog.Struct(packet.Map())
+	stream.MarshalJsonToFile(packet.Map(), filepath.Join(targetDir, "api.json"))
 }
 
 func typedefsNameByID(root gjson.Result, result *Result) {
