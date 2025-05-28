@@ -19,7 +19,7 @@ import (
 )
 
 type (
-	ClangCModelCallback func(string) bool
+	ClangCModelCallback func(path string) bool
 	SkipFileCallback    ClangCModelCallback
 )
 
