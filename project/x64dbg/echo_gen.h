@@ -54,588 +54,501 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <WinSock2.h>
+#include <mutex>
+#include <ios>
+#include <sstream>
 
-void dispatch(const std::string &path) {
-    static const std::unordered_map<std::string, std::function<void()>> handlers{
-	{"_scriptapi_gui.h/ShowQWidgetTab",   [] { Script::Gui::ShowQWidgetTab(); }},
-	{"bridgemain.h/DbgGetModuleAt",   [] { DbgGetModuleAt(); }},
-	{"bridgemain.h/GuiAddInfoLine",   [] { GuiAddInfoLine(); }},
-	{"_scriptapi_register.h/GetBPL",   [] { Script::Register::GetBPL(); }},
-	{"bridgemain.h/DbgModBaseFromName",   [] { DbgModBaseFromName(); }},
-	{"_scriptapi_register.h/SetEDX",   [] { Script::Register::SetEDX(); }},
-	{"bridgemain.h/GuiReferenceAddCommand",   [] { GuiReferenceAddCommand(); }},
-	{"bridgemain.h/GuiAddRecentFile",   [] { GuiAddRecentFile(); }},
-	{"_scriptapi_register.h/SetSI",   [] { Script::Register::SetSI(); }},
-	{"bridgemain.h/GuiUpdateCallStack",   [] { GuiUpdateCallStack(); }},
-	{"bridgemain.h/GuiReferenceGetCellContent",   [] { GuiReferenceGetCellContent(); }},
-	{"_scriptapi_register.h/GetDH",   [] { Script::Register::GetDH(); }},
-	{"bridgemain.h/DbgGetBookmarkAt",   [] { DbgGetBookmarkAt(); }},
-	{"_scriptapi_register.h/SetESP",   [] { Script::Register::SetESP(); }},
-	{"bridgemain.h/GuiGetDisassembly",   [] { GuiGetDisassembly(); }},
-	{"_scriptapi_register.h/GetRBX",   [] { Script::Register::GetRBX(); }},
-	{"_scriptapi_memory.h/IsValidPtr",   [] { Script::Memory::IsValidPtr(); }},
-	{"_scriptapi_module.h/SectionFromName",   [] { Script::Module::SectionFromName(); }},
-	{"_scriptapi_flag.h/SetSF",   [] { Script::Flag::SetSF(); }},
-	{"_scriptapi_register.h/GetRCX",   [] { Script::Register::GetRCX(); }},
-	{"_scriptapi_register.h/GetDL",   [] { Script::Register::GetDL(); }},
-	{"_scriptapi_register.h/GetR11D",   [] { Script::Register::GetR11D(); }},
-	{"_scriptapi_argument.h/Delete",   [] { Script::Argument::Delete(); }},
-	{"_scriptapi_module.h/SizeFromName",   [] { Script::Module::SizeFromName(); }},
-	{"bridgemain.h/DbgXrefGet",   [] { DbgXrefGet(); }},
-	{"_scriptapi_register.h/SetBH",   [] { Script::Register::SetBH(); }},
-	{"_scriptapi_register.h/SetR8",   [] { Script::Register::SetR8(); }},
-	{"_scriptapi_memory.h/ReadPtr",   [] { Script::Memory::ReadPtr(); }},
-	{"bridgemain.h/GuiMenuSetEntryName",   [] { GuiMenuSetEntryName(); }},
-	{"_scriptapi_register.h/SetCH",   [] { Script::Register::SetCH(); }},
-	{"bridgemain.h/GuiMenuSetEntryIcon",   [] { GuiMenuSetEntryIcon(); }},
-	{"bridgemain.h/GuiDumpAt",   [] { GuiDumpAt(); }},
-	{"_scriptapi_register.h/GetR8",   [] { Script::Register::GetR8(); }},
-	{"bridgemain.h/DbgXrefAdd",   [] { DbgXrefAdd(); }},
-	{"bridgemain.h/GuiScriptClear",   [] { GuiScriptClear(); }},
-	{"_scriptapi_memory.h/Write",   [] { Script::Memory::Write(); }},
-	{"bridgemain.h/DbgIsValidExpression",   [] { DbgIsValidExpression(); }},
-	{"bridgemain.h/DbgValToString",   [] { DbgValToString(); }},
-	{"bridgemain.h/GuiAutoCompleteClearAll",   [] { GuiAutoCompleteClearAll(); }},
-	{"_scriptapi_register.h/GetR9B",   [] { Script::Register::GetR9B(); }},
-	{"bridgemain.h/DbgIsDebugging",   [] { DbgIsDebugging(); }},
-	{"bridgemain.h/DbgGetCommentAt",   [] { DbgGetCommentAt(); }},
-	{"bridgemain.h/DbgIsRunning",   [] { DbgIsRunning(); }},
-	{"_scriptapi_argument.h/GetList",   [] { Script::Argument::GetList(); }},
-	{"_scriptapi_misc.h/Free",   [] { Script::Misc::Free(); }},
-	{"bridgemain.h/DbgLoopAdd",   [] { DbgLoopAdd(); }},
-	{"bridgemain.h/GuiTypeClear",   [] { GuiTypeClear(); }},
-	{"bridgemain.h/DbgStackCommentGet",   [] { DbgStackCommentGet(); }},
-	{"bridgemain.h/BridgeUserDirectory",   [] { BridgeUserDirectory(); }},
-	{"_scriptapi_register.h/SetR8B",   [] { Script::Register::SetR8B(); }},
-	{"bridgemain.h/GuiSymbolSetProgress",   [] { GuiSymbolSetProgress(); }},
-	{"_scriptapi_comment.h/GetInfo",   [] { Script::Comment::GetInfo(); }},
-	{"_scriptapi_symbol.h/GetList",   [] { Script::Symbol::GetList(); }},
-	{"bridgemain.h/BridgeSettingGetUint",   [] { BridgeSettingGetUint(); }},
-	{"_scriptapi_register.h/GetRDX",   [] { Script::Register::GetRDX(); }},
-	{"_scriptapi_module.h/InfoFromName",   [] { Script::Module::InfoFromName(); }},
-	{"bridgemain.h/GuiUpdateRegisterView",   [] { GuiUpdateRegisterView(); }},
-	{"bridgemain.h/DbgClearAutoCommentRange",   [] { DbgClearAutoCommentRange(); }},
-	{"bridgemain.h/DbgScriptSetIp",   [] { DbgScriptSetIp(); }},
-	{"bridgemain.h/GuiFlushLog",   [] { GuiFlushLog(); }},
-	{"_scriptapi_function.h/Overlaps",   [] { Script::Function::Overlaps(); }},
-	{"bridgemain.h/GuiGetGlobalNotes",   [] { GuiGetGlobalNotes(); }},
-	{"_scriptapi_register.h/GetRSP",   [] { Script::Register::GetRSP(); }},
-	{"_scriptapi_stack.h/Peek",   [] { Script::Stack::Peek(); }},
-	{"bridgemain.h/GuiUpdateTraceBrowser",   [] { GuiUpdateTraceBrowser(); }},
-	{"bridgemain.h/GuiReferenceSetCellContent",   [] { GuiReferenceSetCellContent(); }},
-	{"_scriptapi_register.h/SetDX",   [] { Script::Register::SetDX(); }},
-	{"bridgemain.h/DbgScriptCmdExec",   [] { DbgScriptCmdExec(); }},
-	{"_scriptapi_register.h/SetR12W",   [] { Script::Register::SetR12W(); }},
-	{"_scriptapi_bookmark.h/Get",   [] { Script::Bookmark::Get(); }},
-	{"bridgemain.h/GuiAddQWidgetTab",   [] { GuiAddQWidgetTab(); }},
-	{"_scriptapi_register.h/GetEIP",   [] { Script::Register::GetEIP(); }},
-	{"bridgemain.h/GuiReferenceSearchGetRowCount",   [] { GuiReferenceSearchGetRowCount(); }},
-	{"_scriptapi_module.h/SizeFromAddr",   [] { Script::Module::SizeFromAddr(); }},
-	{"_scriptapi_module.h/GetMainModuleSize",   [] { Script::Module::GetMainModuleSize(); }},
-	{"_scriptapi_register.h/SetR14",   [] { Script::Register::SetR14(); }},
-	{"bridgemain.h/DbgClearAutoFunctionRange",   [] { DbgClearAutoFunctionRange(); }},
-	{"_scriptapi_register.h/SetBP",   [] { Script::Register::SetBP(); }},
-	{"_scriptapi_argument.h/GetInfo",   [] { Script::Argument::GetInfo(); }},
-	{"_scriptapi_register.h/GetR15B",   [] { Script::Register::GetR15B(); }},
-	{"_scriptapi_bookmark.h/DeleteRange",   [] { Script::Bookmark::DeleteRange(); }},
-	{"_scriptapi_register.h/GetCIP",   [] { Script::Register::GetCIP(); }},
-	{"bridgemain.h/DbgAnalyzeFunction",   [] { DbgAnalyzeFunction(); }},
-	{"bridgemain.h/BridgeInit",   [] { BridgeInit(); }},
-	{"_scriptapi_debug.h/StepOut",   [] { Script::Debug::StepOut(); }},
-	{"bridgemain.h/GuiSymbolLogClear",   [] { GuiSymbolLogClear(); }},
-	{"_scriptapi_register.h/GetR14",   [] { Script::Register::GetR14(); }},
-	{"_scriptapi_register.h/GetEBP",   [] { Script::Register::GetEBP(); }},
-	{"_scriptapi_module.h/GetExports",   [] { Script::Module::GetExports(); }},
-	{"_scriptapi_flag.h/GetOF",   [] { Script::Flag::GetOF(); }},
-	{"_scriptapi_label.h/Delete",   [] { Script::Label::Delete(); }},
-	{"bridgemain.h/GuiUpdateBreakpointsView",   [] { GuiUpdateBreakpointsView(); }},
-	{"bridgemain.h/GuiUpdateThreadView",   [] { GuiUpdateThreadView(); }},
-	{"bridgemain.h/GuiMenuSetEntryHotkey",   [] { GuiMenuSetEntryHotkey(); }},
-	{"bridgemain.h/GuiIsUpdateDisabled",   [] { GuiIsUpdateDisabled(); }},
-	{"_scriptapi_flag.h/SetIF",   [] { Script::Flag::SetIF(); }},
-	{"bridgemain.h/DbgClearCommentRange",   [] { DbgClearCommentRange(); }},
-	{"_scriptapi_register.h/GetCBP",   [] { Script::Register::GetCBP(); }},
-	{"_scriptapi_register.h/GetAX",   [] { Script::Register::GetAX(); }},
-	{"_scriptapi_debug.h/DeleteHardwareBreakpoint",   [] { Script::Debug::DeleteHardwareBreakpoint(); }},
-	{"_scriptapi_misc.h/ParseExpression",   [] { Script::Misc::ParseExpression(); }},
-	{"bridgemain.h/DbgGetTimeWastedCounter",   [] { DbgGetTimeWastedCounter(); }},
-	{"bridgemain.h/DbgSymbolEnum",   [] { DbgSymbolEnum(); }},
-	{"bridgemain.h/DbgFunctionOverlaps",   [] { DbgFunctionOverlaps(); }},
-	{"_scriptapi_register.h/SetR15D",   [] { Script::Register::SetR15D(); }},
-	{"_scriptapi_module.h/InfoFromAddr",   [] { Script::Module::InfoFromAddr(); }},
-	{"_scriptapi_register.h/GetESP",   [] { Script::Register::GetESP(); }},
-	{"_scriptapi_register.h/SetDR7",   [] { Script::Register::SetDR7(); }},
-	{"bridgemain.h/DbgSymbolEnumRange",   [] { DbgSymbolEnumRange(); }},
-	{"_scriptapi_register.h/GetSPL",   [] { Script::Register::GetSPL(); }},
-	{"bridgemain.h/GuiUpdateWatchView",   [] { GuiUpdateWatchView(); }},
-	{"bridgemain.h/GuiUpdatePatches",   [] { GuiUpdatePatches(); }},
-	{"_scriptapi_module.h/GetImports",   [] { Script::Module::GetImports(); }},
-	{"bridgemain.h/GuiScriptSetIp",   [] { GuiScriptSetIp(); }},
-	{"bridgemain.h/GuiLogRedirect",   [] { GuiLogRedirect(); }},
-	{"bridgemain.h/GuiReferenceDeleteAllColumns",   [] { GuiReferenceDeleteAllColumns(); }},
-	{"_scriptapi_gui.h/CloseQWidgetTab",   [] { Script::Gui::CloseQWidgetTab(); }},
-	{"bridgemain.h/GuiShowQWidgetTab",   [] { GuiShowQWidgetTab(); }},
-	{"_scriptapi_register.h/GetR14W",   [] { Script::Register::GetR14W(); }},
-	{"_scriptapi_debug.h/StepIn",   [] { Script::Debug::StepIn(); }},
-	{"_scriptapi_register.h/GetRAX",   [] { Script::Register::GetRAX(); }},
-	{"_scriptapi_register.h/Size",   [] { Script::Register::Size(); }},
-	{"bridgegraph.h/__debugbreak",   [] { __debugbreak(); }},
-	{"bridgemain.h/DbgMemIsValidReadPtr",   [] { DbgMemIsValidReadPtr(); }},
-	{"bridgemain.h/DbgClearBookmarkRange",   [] { DbgClearBookmarkRange(); }},
-	{"_scriptapi_stack.h/Pop",   [] { Script::Stack::Pop(); }},
-	{"_scriptapi_register.h/SetECX",   [] { Script::Register::SetECX(); }},
-	{"bridgemain.h/DbgExit",   [] { DbgExit(); }},
-	{"_scriptapi_pattern.h/Write",   [] { Script::Pattern::Write(); }},
-	{"_scriptapi_register.h/SetRBX",   [] { Script::Register::SetRBX(); }},
-	{"_scriptapi_register.h/SetR9",   [] { Script::Register::SetR9(); }},
-	{"bridgemain.h/GuiMenuSetIcon",   [] { GuiMenuSetIcon(); }},
-	{"bridgemain.h/DbgScriptGetLineType",   [] { DbgScriptGetLineType(); }},
-	{"bridgemain.h/DbgSetAutoFunctionAt",   [] { DbgSetAutoFunctionAt(); }},
-	{"_scriptapi_register.h/GetR11B",   [] { Script::Register::GetR11B(); }},
-	{"_scriptapi_memory.h/RemoteFree",   [] { Script::Memory::RemoteFree(); }},
-	{"bridgemain.h/GuiUpdateAllViews",   [] { GuiUpdateAllViews(); }},
-	{"_scriptapi_register.h/SetCBP",   [] { Script::Register::SetCBP(); }},
-	{"bridgemain.h/DbgFunctionDel",   [] { DbgFunctionDel(); }},
-	{"bridgemain.h/GuiUpdateGraphView",   [] { GuiUpdateGraphView(); }},
-	{"bridgemain.h/GuiScriptAdd",   [] { GuiScriptAdd(); }},
-	{"_scriptapi_register.h/SetESI",   [] { Script::Register::SetESI(); }},
-	{"bridgemain.h/GuiScriptMsgyn",   [] { GuiScriptMsgyn(); }},
-	{"bridgemain.h/GuiAddStatusBarMessage",   [] { GuiAddStatusBarMessage(); }},
-	{"bridgemain.h/GuiSetFavouriteToolShortcut",   [] { GuiSetFavouriteToolShortcut(); }},
-	{"bridgemain.h/DbgInit",   [] { DbgInit(); }},
-	{"bridgemain.h/GuiSetDebugState",   [] { GuiSetDebugState(); }},
-	{"_scriptapi_debug.h/Wait",   [] { Script::Debug::Wait(); }},
-	{"bridgemain.h/GuiTypeAddNode",   [] { GuiTypeAddNode(); }},
-	{"_scriptapi_register.h/GetR9",   [] { Script::Register::GetR9(); }},
-	{"bridgemain.h/DbgMemWrite",   [] { DbgMemWrite(); }},
-	{"_scriptapi_register.h/GetESI",   [] { Script::Register::GetESI(); }},
-	{"bridgemain.h/GuiLogSave",   [] { GuiLogSave(); }},
-	{"_scriptapi_register.h/SetR9D",   [] { Script::Register::SetR9D(); }},
-	{"bridgemain.h/GuiUpdateSideBar",   [] { GuiUpdateSideBar(); }},
-	{"_scriptapi_register.h/SetRDI",   [] { Script::Register::SetRDI(); }},
-	{"bridgemain.h/DbgSelChanged",   [] { DbgSelChanged(); }},
-	{"_scriptapi_register.h/GetR13W",   [] { Script::Register::GetR13W(); }},
-	{"_scriptapi_register.h/GetR8B",   [] { Script::Register::GetR8B(); }},
-	{"_scriptapi_register.h/GetR13B",   [] { Script::Register::GetR13B(); }},
-	{"_scriptapi_module.h/GetList",   [] { Script::Module::GetList(); }},
-	{"bridgemain.h/DbgScriptGetBranchInfo",   [] { DbgScriptGetBranchInfo(); }},
-	{"_scriptapi_memory.h/ReadWord",   [] { Script::Memory::ReadWord(); }},
-	{"_scriptapi_memory.h/WriteWord",   [] { Script::Memory::WriteWord(); }},
-	{"_scriptapi_flag.h/GetTF",   [] { Script::Flag::GetTF(); }},
-	{"_scriptapi_flag.h/Get",   [] { Script::Flag::Get(); }},
-	{"_scriptapi_register.h/SetSPL",   [] { Script::Register::SetSPL(); }},
-	{"_scriptapi_memory.h/ReadDword",   [] { Script::Memory::ReadDword(); }},
-	{"_scriptapi_module.h/GetMainModuleBase",   [] { Script::Module::GetMainModuleBase(); }},
-	{"bridgemain.h/GuiReferenceInitialize",   [] { GuiReferenceInitialize(); }},
-	{"_scriptapi_register.h/SetDR2",   [] { Script::Register::SetDR2(); }},
-	{"_scriptapi_register.h/SetDR6",   [] { Script::Register::SetDR6(); }},
-	{"_scriptapi_function.h/Get",   [] { Script::Function::Get(); }},
-	{"_scriptapi_register.h/SetAX",   [] { Script::Register::SetAX(); }},
-	{"bridgemain.h/GuiTranslateText",   [] { GuiTranslateText(); }},
-	{"_scriptapi_bookmark.h/GetList",   [] { Script::Bookmark::GetList(); }},
-	{"_scriptapi_assembler.h/Assemble",   [] { Script::Assembler::Assemble(); }},
-	{"bridgegraph.h/ToGraphList",   [] { ::BridgeCFGraph::ToGraphList(); }},
-	{"bridgemain.h/GuiAddFavouriteCommand",   [] { GuiAddFavouriteCommand(); }},
-	{"_scriptapi_register.h/GetR13D",   [] { Script::Register::GetR13D(); }},
-	{"bridgemain.h/DbgSetCommentAt",   [] { DbgSetCommentAt(); }},
-	{"_scriptapi_memory.h/GetBase",   [] { Script::Memory::GetBase(); }},
-	{"_scriptapi_function.h/GetList",   [] { Script::Function::GetList(); }},
-	{"bridgemain.h/BridgeAlloc",   [] { BridgeAlloc(); }},
-	{"bridgemain.h/BridgeSettingSet",   [] { BridgeSettingSet(); }},
-	{"_scriptapi_assembler.h/AssembleEx",   [] { Script::Assembler::AssembleEx(); }},
-	{"_scriptapi_register.h/GetCX",   [] { Script::Register::GetCX(); }},
-	{"bridgemain.h/GuiLogClear",   [] { GuiLogClear(); }},
-	{"bridgemain.h/GuiReferenceAddColumn",   [] { GuiReferenceAddColumn(); }},
-	{"_scriptapi_memory.h/Read",   [] { Script::Memory::Read(); }},
-	{"_scriptapi_register.h/GetR11",   [] { Script::Register::GetR11(); }},
-	{"bridgemain.h/GuiDumpAtN",   [] { GuiDumpAtN(); }},
-	{"_scriptapi_module.h/SectionCountFromAddr",   [] { Script::Module::SectionCountFromAddr(); }},
-	{"_scriptapi_memory.h/WriteDword",   [] { Script::Memory::WriteDword(); }},
-	{"bridgemain.h/DbgSetAutoLabelAt",   [] { DbgSetAutoLabelAt(); }},
-	{"bridgemain.h/GuiSelectInMemoryMap",   [] { GuiSelectInMemoryMap(); }},
-	{"_scriptapi_register.h/SetR8D",   [] { Script::Register::SetR8D(); }},
-	{"_scriptapi_memory.h/GetProtect",   [] { Script::Memory::GetProtect(); }},
-	{"_scriptapi_register.h/SetEBX",   [] { Script::Register::SetEBX(); }},
-	{"_scriptapi_flag.h/GetCF",   [] { Script::Flag::GetCF(); }},
-	{"bridgemain.h/DbgMemMap",   [] { DbgMemMap(); }},
-	{"_scriptapi_label.h/Get",   [] { Script::Label::Get(); }},
-	{"bridgemain.h/DbgGetDebugEngine",   [] { DbgGetDebugEngine(); }},
-	{"bridgemain.h/DbgScriptAbort",   [] { DbgScriptAbort(); }},
-	{"_scriptapi_register.h/SetR15",   [] { Script::Register::SetR15(); }},
-	{"bridgemain.h/GuiMenuAddEntry",   [] { GuiMenuAddEntry(); }},
-	{"bridgemain.h/DbgGetThreadHandle",   [] { DbgGetThreadHandle(); }},
-	{"_scriptapi_gui.h/InputValue",   [] { Script::Gui::InputValue(); }},
-	{"bridgemain.h/GuiReferenceSetRowCount",   [] { GuiReferenceSetRowCount(); }},
-	{"bridgemain.h/DbgArgumentDel",   [] { DbgArgumentDel(); }},
-	{"_scriptapi_gui.h/MessageYesNo",   [] { Script::Gui::MessageYesNo(); }},
-	{"_scriptapi_register.h/GetDR2",   [] { Script::Register::GetDR2(); }},
-	{"_scriptapi_register.h/SetCSI",   [] { Script::Register::SetCSI(); }},
-	{"_scriptapi_label.h/GetList",   [] { Script::Label::GetList(); }},
-	{"_scriptapi_register.h/GetCAX",   [] { Script::Register::GetCAX(); }},
-	{"_scriptapi_register.h/SetAH",   [] { Script::Register::SetAH(); }},
-	{"bridgemain.h/GuiFoldDisassembly",   [] { GuiFoldDisassembly(); }},
-	{"_scriptapi_register.h/GetBP",   [] { Script::Register::GetBP(); }},
-	{"bridgemain.h/DbgClearAutoLabelRange",   [] { DbgClearAutoLabelRange(); }},
-	{"bridgemain.h/GuiScriptMessage",   [] { GuiScriptMessage(); }},
-	{"bridgemain.h/BridgeIsProcessElevated",   [] { BridgeIsProcessElevated(); }},
-	{"bridgemain.h/DbgMemRead",   [] { DbgMemRead(); }},
-	{"bridgemain.h/DbgFunctionGet",   [] { DbgFunctionGet(); }},
-	{"_scriptapi_memory.h/ReadQword",   [] { Script::Memory::ReadQword(); }},
-	{"bridgemain.h/DbgArgumentAdd",   [] { DbgArgumentAdd(); }},
-	{"_scriptapi_module.h/PathFromName",   [] { Script::Module::PathFromName(); }},
-	{"_scriptapi_argument.h/Overlaps",   [] { Script::Argument::Overlaps(); }},
-	{"bridgemain.h/GuiUpdateTimeWastedCounter",   [] { GuiUpdateTimeWastedCounter(); }},
-	{"_scriptapi_module.h/GetMainModuleSectionList",   [] { Script::Module::GetMainModuleSectionList(); }},
-	{"_scriptapi_register.h/SetCDX",   [] { Script::Register::SetCDX(); }},
-	{"_scriptapi_flag.h/SetAF",   [] { Script::Flag::SetAF(); }},
-	{"bridgemain.h/GuiInvalidateSymbolSource",   [] { GuiInvalidateSymbolSource(); }},
-	{"bridgemain.h/DbgScriptBpGet",   [] { DbgScriptBpGet(); }},
-	{"bridgemain.h/BridgeGetNtBuildNumber",   [] { BridgeGetNtBuildNumber(); }},
-	{"_scriptapi_register.h/SetDIL",   [] { Script::Register::SetDIL(); }},
-	{"_scriptapi_register.h/SetBL",   [] { Script::Register::SetBL(); }},
-	{"bridgemain.h/GuiGetCurrentGraph",   [] { GuiGetCurrentGraph(); }},
-	{"_scriptapi_flag.h/SetOF",   [] { Script::Flag::SetOF(); }},
-	{"bridgemain.h/GuiLogRedirectStop",   [] { GuiLogRedirectStop(); }},
-	{"_scriptapi_memory.h/WritePtr",   [] { Script::Memory::WritePtr(); }},
-	{"bridgemain.h/DbgGetEncodeSizeAt",   [] { DbgGetEncodeSizeAt(); }},
-	{"bridgemain.h/DbgGetBpList",   [] { DbgGetBpList(); }},
-	{"_scriptapi_register.h/SetR13B",   [] { Script::Register::SetR13B(); }},
-	{"_scriptapi_register.h/GetR11W",   [] { Script::Register::GetR11W(); }},
-	{"_scriptapi_comment.h/Get",   [] { Script::Comment::Get(); }},
-	{"_scriptapi_register.h/GetR10B",   [] { Script::Register::GetR10B(); }},
-	{"_scriptapi_flag.h/SetZF",   [] { Script::Flag::SetZF(); }},
-	{"bridgemain.h/DbgDisasmFastAt",   [] { DbgDisasmFastAt(); }},
-	{"bridgemain.h/DbgScriptStep",   [] { DbgScriptStep(); }},
-	{"_scriptapi_memory.h/WriteByte",   [] { Script::Memory::WriteByte(); }},
-	{"bridgemain.h/DbgMemGetPageSize",   [] { DbgMemGetPageSize(); }},
-	{"_scriptapi_comment.h/DeleteRange",   [] { Script::Comment::DeleteRange(); }},
-	{"_scriptapi_register.h/SetRCX",   [] { Script::Register::SetRCX(); }},
-	{"bridgemain.h/GuiIsLogEnabled",   [] { GuiIsLogEnabled(); }},
-	{"_scriptapi_register.h/SetCIP",   [] { Script::Register::SetCIP(); }},
-	{"_scriptapi_register.h/SetR11D",   [] { Script::Register::SetR11D(); }},
-	{"_scriptapi_function.h/Delete",   [] { Script::Function::Delete(); }},
-	{"bridgemain.h/GuiRegisterScriptLanguage",   [] { GuiRegisterScriptLanguage(); }},
-	{"bridgemain.h/DbgSettingsUpdated",   [] { DbgSettingsUpdated(); }},
-	{"_scriptapi_module.h/PathFromAddr",   [] { Script::Module::PathFromAddr(); }},
-	{"_scriptapi_register.h/SetEDI",   [] { Script::Register::SetEDI(); }},
-	{"bridgemain.h/DbgCmdExecDirect",   [] { DbgCmdExecDirect(); }},
-	{"_scriptapi_register.h/SetCDI",   [] { Script::Register::SetCDI(); }},
-	{"bridgemain.h/DbgMenuPrepare",   [] { DbgMenuPrepare(); }},
-	{"bridgemain.h/GuiSymbolRefreshCurrent",   [] { GuiSymbolRefreshCurrent(); }},
-	{"bridgemain.h/GuiUpdateMemoryView",   [] { GuiUpdateMemoryView(); }},
-	{"bridgemain.h/GuiSelectionSet",   [] { GuiSelectionSet(); }},
-	{"bridgemain.h/GuiDisableLog",   [] { GuiDisableLog(); }},
-	{"_scriptapi_pattern.h/Find",   [] { Script::Pattern::Find(); }},
-	{"bridgemain.h/GuiShowThreads",   [] { GuiShowThreads(); }},
-	{"bridgemain.h/GuiExecuteOnGuiThreadEx",   [] { GuiExecuteOnGuiThreadEx(); }},
-	{"bridgemain.h/GuiSetGlobalNotes",   [] { GuiSetGlobalNotes(); }},
-	{"_scriptapi_module.h/EntryFromAddr",   [] { Script::Module::EntryFromAddr(); }},
-	{"bridgemain.h/DbgWinEvent",   [] { DbgWinEvent(); }},
-	{"bridgegraph.h/AddNode",   [] { ::BridgeCFGraph::AddNode(); }},
-	{"bridgemain.h/GuiGetMainThreadId",   [] { GuiGetMainThreadId(); }},
-	{"bridgemain.h/GuiGetActiveView",   [] { GuiGetActiveView(); }},
-	{"_scriptapi_gui.h/SelectionGetEnd",   [] { Script::Gui::SelectionGetEnd(); }},
-	{"_scriptapi_misc.h/Alloc",   [] { Script::Misc::Alloc(); }},
-	{"bridgemain.h/DbgGetArgTypeAt",   [] { DbgGetArgTypeAt(); }},
-	{"_scriptapi_register.h/GetAH",   [] { Script::Register::GetAH(); }},
-	{"bridgegraph.h/AddParent",   [] { ::BridgeCFGraph::AddParent(); }},
-	{"bridgemain.h/GuiEnableLog",   [] { GuiEnableLog(); }},
-	{"bridgemain.h/DbgSymbolEnumFromCache",   [] { DbgSymbolEnumFromCache(); }},
-	{"_scriptapi_flag.h/SetTF",   [] { Script::Flag::SetTF(); }},
-	{"bridgemain.h/GuiUpdateDisassemblyView",   [] { GuiUpdateDisassemblyView(); }},
-	{"_scriptapi_register.h/SetCL",   [] { Script::Register::SetCL(); }},
-	{"bridgemain.h/BridgeSettingFlush",   [] { BridgeSettingFlush(); }},
-	{"bridgemain.h/GuiUpdateSEHChain",   [] { GuiUpdateSEHChain(); }},
-	{"_scriptapi_comment.h/GetList",   [] { Script::Comment::GetList(); }},
-	{"_scriptapi_register.h/SetR11",   [] { Script::Register::SetR11(); }},
-	{"_scriptapi_flag.h/SetPF",   [] { Script::Flag::SetPF(); }},
-	{"_scriptapi_register.h/GetDX",   [] { Script::Register::GetDX(); }},
-	{"bridgemain.h/BridgeStart",   [] { BridgeStart(); }},
-	{"_scriptapi_register.h/GetDR1",   [] { Script::Register::GetDR1(); }},
-	{"_scriptapi_register.h/GetCCX",   [] { Script::Register::GetCCX(); }},
-	{"_scriptapi_register.h/GetR12B",   [] { Script::Register::GetR12B(); }},
-	{"_scriptapi_gui.h/SelectionSet",   [] { Script::Gui::SelectionSet(); }},
-	{"_scriptapi_register.h/GetR12",   [] { Script::Register::GetR12(); }},
-	{"bridgemain.h/GuiGetDebuggeeNotes",   [] { GuiGetDebuggeeNotes(); }},
-	{"bridgemain.h/DbgSetAutoCommentAt",   [] { DbgSetAutoCommentAt(); }},
-	{"_scriptapi_function.h/GetInfo",   [] { Script::Function::GetInfo(); }},
-	{"bridgemain.h/GuiAutoCompleteDelCmd",   [] { GuiAutoCompleteDelCmd(); }},
-	{"bridgemain.h/GuiUpdateDumpView",   [] { GuiUpdateDumpView(); }},
-	{"_scriptapi_module.h/SectionListFromAddr",   [] { Script::Module::SectionListFromAddr(); }},
-	{"_scriptapi_label.h/Set",   [] { Script::Label::Set(); }},
-	{"_scriptapi_register.h/GetR15",   [] { Script::Register::GetR15(); }},
-	{"_scriptapi_register.h/GetR8W",   [] { Script::Register::GetR8W(); }},
-	{"_scriptapi_register.h/SetR9B",   [] { Script::Register::SetR9B(); }},
-	{"bridgemain.h/GuiMenuAddSeparator",   [] { GuiMenuAddSeparator(); }},
-	{"bridgemain.h/GuiMenuAdd",   [] { GuiMenuAdd(); }},
-	{"_scriptapi_register.h/SetDR3",   [] { Script::Register::SetDR3(); }},
-	{"bridgemain.h/GuiFocusView",   [] { GuiFocusView(); }},
-	{"_scriptapi_gui.h/SelectionGetStart",   [] { Script::Gui::SelectionGetStart(); }},
-	{"_scriptapi_module.h/SectionCountFromName",   [] { Script::Module::SectionCountFromName(); }},
-	{"_scriptapi_flag.h/GetIF",   [] { Script::Flag::GetIF(); }},
-	{"_scriptapi_register.h/SetCAX",   [] { Script::Register::SetCAX(); }},
-	{"_scriptapi_argument.h/Get",   [] { Script::Argument::Get(); }},
-	{"bridgemain.h/BridgeSettingRead",   [] { BridgeSettingRead(); }},
-	{"bridgemain.h/GuiGetLineWindow",   [] { GuiGetLineWindow(); }},
-	{"bridgemain.h/GuiShowCpu",   [] { GuiShowCpu(); }},
-	{"_scriptapi_bookmark.h/Clear",   [] { Script::Bookmark::Clear(); }},
-	{"_scriptapi_register.h/SetRIP",   [] { Script::Register::SetRIP(); }},
-	{"bridgemain.h/DbgLoopDel",   [] { DbgLoopDel(); }},
-	{"_scriptapi_gui.h/SelectionGet",   [] { Script::Gui::SelectionGet(); }},
-	{"bridgemain.h/GuiReferenceSearchGetCellContent",   [] { GuiReferenceSearchGetCellContent(); }},
-	{"_scriptapi_debug.h/Run",   [] { Script::Debug::Run(); }},
-	{"bridgemain.h/GuiScriptError",   [] { GuiScriptError(); }},
-	{"_scriptapi_flag.h/Set",   [] { Script::Flag::Set(); }},
-	{"_scriptapi_gui.h/Message",   [] { Script::Gui::Message(); }},
-	{"_scriptapi_debug.h/DisableBreakpoint",   [] { Script::Debug::DisableBreakpoint(); }},
-	{"_scriptapi_argument.h/Add",   [] { Script::Argument::Add(); }},
-	{"_scriptapi_register.h/GetR14D",   [] { Script::Register::GetR14D(); }},
-	{"_scriptapi_module.h/EntryFromName",   [] { Script::Module::EntryFromName(); }},
-	{"bridgemain.h/DbgSetAutoBookmarkAt",   [] { DbgSetAutoBookmarkAt(); }},
-	{"_scriptapi_label.h/DeleteRange",   [] { Script::Label::DeleteRange(); }},
-	{"_scriptapi_register.h/SetDR1",   [] { Script::Register::SetDR1(); }},
-	{"_scriptapi_register.h/GetCFLAGS",   [] { Script::Register::GetCFLAGS(); }},
-	{"bridgemain.h/DbgSetEncodeType",   [] { DbgSetEncodeType(); }},
-	{"bridgemain.h/DbgGetThreadList",   [] { DbgGetThreadList(); }},
-	{"_scriptapi_register.h/GetSI",   [] { Script::Register::GetSI(); }},
-	{"bridgemain.h/DbgWinEventGlobal",   [] { DbgWinEventGlobal(); }},
-	{"_scriptapi_register.h/GetCL",   [] { Script::Register::GetCL(); }},
-	{"_scriptapi_register.h/SetR15W",   [] { Script::Register::SetR15W(); }},
-	{"_scriptapi_register.h/GetRIP",   [] { Script::Register::GetRIP(); }},
-	{"_scriptapi_register.h/SetR12D",   [] { Script::Register::SetR12D(); }},
-	{"_scriptapi_label.h/GetInfo",   [] { Script::Label::GetInfo(); }},
-	{"_scriptapi_register.h/GetRSI",   [] { Script::Register::GetRSI(); }},
-	{"_scriptapi_register.h/GetBX",   [] { Script::Register::GetBX(); }},
-	{"_scriptapi_register.h/GetBL",   [] { Script::Register::GetBL(); }},
-	{"bridgemain.h/GuiMenuClear",   [] { GuiMenuClear(); }},
-	{"_scriptapi_register.h/GetEBX",   [] { Script::Register::GetEBX(); }},
-	{"bridgemain.h/DbgArgumentOverlaps",   [] { DbgArgumentOverlaps(); }},
-	{"_scriptapi_register.h/SetCCX",   [] { Script::Register::SetCCX(); }},
-	{"bridgemain.h/DbgGetWatchList",   [] { DbgGetWatchList(); }},
-	{"bridgemain.h/DbgDisasmAt",   [] { DbgDisasmAt(); }},
-	{"bridgemain.h/GuiShowTrace",   [] { GuiShowTrace(); }},
-	{"_scriptapi_register.h/SetR10B",   [] { Script::Register::SetR10B(); }},
-	{"_scriptapi_flag.h/GetZF",   [] { Script::Flag::GetZF(); }},
-	{"bridgemain.h/DbgIsBpDisabled",   [] { DbgIsBpDisabled(); }},
-	{"bridgemain.h/DbgCmdExec",   [] { DbgCmdExec(); }},
-	{"bridgemain.h/DbgGetXrefTypeAt",   [] { DbgGetXrefTypeAt(); }},
-	{"_scriptapi_label.h/IsTemporary",   [] { Script::Label::IsTemporary(); }},
-	{"bridgemain.h/DbgGetStringAt",   [] { DbgGetStringAt(); }},
-	{"bridgemain.h/GuiReferenceSetProgress",   [] { GuiReferenceSetProgress(); }},
-	{"_scriptapi_register.h/GetRBP",   [] { Script::Register::GetRBP(); }},
-	{"_scriptapi_register.h/SetEBP",   [] { Script::Register::SetEBP(); }},
-	{"bridgemain.h/DbgGetTebAddress",   [] { DbgGetTebAddress(); }},
-	{"_scriptapi_register.h/SetRDX",   [] { Script::Register::SetRDX(); }},
-	{"_scriptapi_debug.h/Stop",   [] { Script::Debug::Stop(); }},
-	{"bridgemain.h/BridgeSettingGet",   [] { BridgeSettingGet(); }},
-	{"_scriptapi_register.h/SetEAX",   [] { Script::Register::SetEAX(); }},
-	{"_scriptapi_flag.h/GetPF",   [] { Script::Flag::GetPF(); }},
-	{"bridgemain.h/GuiUnregisterScriptLanguage",   [] { GuiUnregisterScriptLanguage(); }},
-	{"bridgemain.h/GuiAutoCompleteAddCmd",   [] { GuiAutoCompleteAddCmd(); }},
-	{"_scriptapi_assembler.h/AssembleMem",   [] { Script::Assembler::AssembleMem(); }},
-	{"_scriptapi_register.h/GetCBX",   [] { Script::Register::GetCBX(); }},
-	{"bridgemain.h/GuiUpdateTypeWidget",   [] { GuiUpdateTypeWidget(); }},
-	{"bridgemain.h/DbgGetBranchDestination",   [] { DbgGetBranchDestination(); }},
-	{"bridgemain.h/DbgXrefAddMulti",   [] { DbgXrefAddMulti(); }},
-	{"bridgemain.h/GuiScriptSetInfoLine",   [] { GuiScriptSetInfoLine(); }},
-	{"_scriptapi_flag.h/SetDF",   [] { Script::Flag::SetDF(); }},
-	{"_scriptapi_function.h/Add",   [] { Script::Function::Add(); }},
-	{"bridgemain.h/BridgeGetDbgVersion",   [] { BridgeGetDbgVersion(); }},
-	{"bridgemain.h/DbgValFromString",   [] { DbgValFromString(); }},
-	{"_scriptapi_register.h/SetSIL",   [] { Script::Register::SetSIL(); }},
-	{"bridgemain.h/DbgScriptRun",   [] { DbgScriptRun(); }},
-	{"bridgemain.h/DbgGetXrefCountAt",   [] { DbgGetXrefCountAt(); }},
-	{"_scriptapi_register.h/SetDI",   [] { Script::Register::SetDI(); }},
-	{"_scriptapi_register.h/SetAL",   [] { Script::Register::SetAL(); }},
-	{"_scriptapi_register.h/SetSP",   [] { Script::Register::SetSP(); }},
-	{"bridgemain.h/DbgMenuEntryClicked",   [] { DbgMenuEntryClicked(); }},
-	{"_scriptapi_comment.h/Delete",   [] { Script::Comment::Delete(); }},
-	{"bridgemain.h/DbgGetFunctionTypeAt",   [] { DbgGetFunctionTypeAt(); }},
-	{"bridgemain.h/GuiShowReferences",   [] { GuiShowReferences(); }},
-	{"_scriptapi_register.h/SetR9W",   [] { Script::Register::SetR9W(); }},
-	{"bridgemain.h/DbgGetSymbolInfo",   [] { DbgGetSymbolInfo(); }},
-	{"_scriptapi_register.h/SetR14W",   [] { Script::Register::SetR14W(); }},
-	{"_scriptapi_register.h/SetCSP",   [] { Script::Register::SetCSP(); }},
-	{"bridgemain.h/GuiSymbolUpdateModuleList",   [] { GuiSymbolUpdateModuleList(); }},
-	{"bridgemain.h/DbgArgumentGet",   [] { DbgArgumentGet(); }},
-	{"_scriptapi_register.h/SetR12",   [] { Script::Register::SetR12(); }},
-	{"bridgemain.h/DbgMemFindBaseAddr",   [] { DbgMemFindBaseAddr(); }},
-	{"bridgemain.h/BridgeIsARM64Emulated",   [] { BridgeIsARM64Emulated(); }},
-	{"_scriptapi_misc.h/RemoteGetProcAddress",   [] { Script::Misc::RemoteGetProcAddress(); }},
-	{"bridgemain.h/GuiCloseQWidgetTab",   [] { GuiCloseQWidgetTab(); }},
-	{"_scriptapi_memory.h/ReadByte",   [] { Script::Memory::ReadByte(); }},
-	{"bridgemain.h/DbgLoopGet",   [] { DbgLoopGet(); }},
-	{"bridgemain.h/GuiGetWindowHandle",   [] { GuiGetWindowHandle(); }},
-	{"_scriptapi_flag.h/GetSF",   [] { Script::Flag::GetSF(); }},
-	{"_scriptapi_register.h/GetR13",   [] { Script::Register::GetR13(); }},
-	{"_scriptapi_register.h/GetR10",   [] { Script::Register::GetR10(); }},
-	{"_scriptapi_module.h/GetMainModuleEntry",   [] { Script::Module::GetMainModuleEntry(); }},
-	{"_scriptapi_module.h/GetMainModuleInfo",   [] { Script::Module::GetMainModuleInfo(); }},
-	{"bridgemain.h/GuiReferenceGetRowCount",   [] { GuiReferenceGetRowCount(); }},
-	{"_scriptapi_register.h/SetBPL",   [] { Script::Register::SetBPL(); }},
-	{"_scriptapi_argument.h/Clear",   [] { Script::Argument::Clear(); }},
-	{"_scriptapi_flag.h/GetDF",   [] { Script::Flag::GetDF(); }},
-	{"_scriptapi_pattern.h/SearchAndReplace",   [] { Script::Pattern::SearchAndReplace(); }},
-	{"_scriptapi_register.h/GetEDX",   [] { Script::Register::GetEDX(); }},
-	{"_scriptapi_register.h/GetR8D",   [] { Script::Register::GetR8D(); }},
-	{"bridgemain.h/DbgDelEncodeTypeRange",   [] { DbgDelEncodeTypeRange(); }},
-	{"bridgemain.h/DbgClearAutoBookmarkRange",   [] { DbgClearAutoBookmarkRange(); }},
-	{"_scriptapi_debug.h/SetBreakpoint",   [] { Script::Debug::SetBreakpoint(); }},
-	{"_scriptapi_register.h/GetDIL",   [] { Script::Register::GetDIL(); }},
-	{"_scriptapi_comment.h/Set",   [] { Script::Comment::Set(); }},
-	{"bridgemain.h/GuiMenuSetName",   [] { GuiMenuSetName(); }},
-	{"bridgemain.h/GuiUpdateArgumentWidget",   [] { GuiUpdateArgumentWidget(); }},
-	{"bridgegraph.h/Free",   [] { ::BridgeCFGraph::Free(); }},
-	{"_scriptapi_register.h/GetR10D",   [] { Script::Register::GetR10D(); }},
-	{"bridgemain.h/GuiSetLastException",   [] { GuiSetLastException(); }},
-	{"_scriptapi_register.h/SetCBX",   [] { Script::Register::SetCBX(); }},
-	{"_scriptapi_memory.h/RemoteAlloc",   [] { Script::Memory::RemoteAlloc(); }},
-	{"_scriptapi_register.h/SetEIP",   [] { Script::Register::SetEIP(); }},
-	{"_scriptapi_bookmark.h/Set",   [] { Script::Bookmark::Set(); }},
-	{"_scriptapi_register.h/SetR11W",   [] { Script::Register::SetR11W(); }},
-	{"bridgemain.h/DbgGetSymbolInfoAt",   [] { DbgGetSymbolInfoAt(); }},
-	{"bridgemain.h/DbgClearLabelRange",   [] { DbgClearLabelRange(); }},
-	{"_scriptapi_register.h/SetR13D",   [] { Script::Register::SetR13D(); }},
-	{"_scriptapi_register.h/GetEAX",   [] { Script::Register::GetEAX(); }},
-	{"_scriptapi_memory.h/SetProtect",   [] { Script::Memory::SetProtect(); }},
-	{"_scriptapi_register.h/GetDR7",   [] { Script::Register::GetDR7(); }},
-	{"bridgemain.h/DbgReleaseEncodeTypeBuffer",   [] { DbgReleaseEncodeTypeBuffer(); }},
-	{"_scriptapi_register.h/SetDL",   [] { Script::Register::SetDL(); }},
-	{"bridgemain.h/GuiReferenceSetSearchStartCol",   [] { GuiReferenceSetSearchStartCol(); }},
-	{"bridgemain.h/DbgGetPebAddress",   [] { DbgGetPebAddress(); }},
-	{"bridgemain.h/DbgLoopOverlaps",   [] { DbgLoopOverlaps(); }},
-	{"bridgemain.h/GuiStackDumpAt",   [] { GuiStackDumpAt(); }},
-	{"bridgemain.h/DbgGetLoopTypeAt",   [] { DbgGetLoopTypeAt(); }},
-	{"_scriptapi_gui.h/InputLine",   [] { Script::Gui::InputLine(); }},
-	{"_scriptapi_register.h/GetSIL",   [] { Script::Register::GetSIL(); }},
-	{"_scriptapi_register.h/SetR10",   [] { Script::Register::SetR10(); }},
-	{"_scriptapi_register.h/SetRBP",   [] { Script::Register::SetRBP(); }},
-	{"_scriptapi_register.h/GetECX",   [] { Script::Register::GetECX(); }},
-	{"bridgemain.h/GuiDisasmAt",   [] { GuiDisasmAt(); }},
-	{"bridgemain.h/GuiSetDebugStateFast",   [] { GuiSetDebugStateFast(); }},
-	{"bridgemain.h/GuiCloseApplication",   [] { GuiCloseApplication(); }},
-	{"bridgemain.h/DbgIsRunLocked",   [] { DbgIsRunLocked(); }},
-	{"bridgegraph.h/ToNodeList",   [] { ::BridgeCFNode::ToNodeList(); }},
-	{"bridgemain.h/GuiReferenceReloadData",   [] { GuiReferenceReloadData(); }},
-	{"_scriptapi_label.h/FromString",   [] { Script::Label::FromString(); }},
-	{"bridgemain.h/DbgScriptUnload",   [] { DbgScriptUnload(); }},
-	{"bridgemain.h/GuiUpdateWindowTitle",   [] { GuiUpdateWindowTitle(); }},
-	{"_scriptapi_register.h/GetDR3",   [] { Script::Register::GetDR3(); }},
-	{"_scriptapi_register.h/SetR8W",   [] { Script::Register::SetR8W(); }},
-	{"bridgemain.h/GuiSymbolLogAdd",   [] { GuiSymbolLogAdd(); }},
-	{"_scriptapi_flag.h/SetCF",   [] { Script::Flag::SetCF(); }},
-	{"bridgemain.h/DbgGetProcessHandle",   [] { DbgGetProcessHandle(); }},
-	{"_scriptapi_register.h/Get",   [] { Script::Register::Get(); }},
-	{"_scriptapi_pattern.h/FindMem",   [] { Script::Pattern::FindMem(); }},
-	{"_scriptapi_debug.h/DeleteBreakpoint",   [] { Script::Debug::DeleteBreakpoint(); }},
-	{"bridgemain.h/DbgFunctions",   [] { DbgFunctions(); }},
-	{"_scriptapi_module.h/GetMainModuleName",   [] { Script::Module::GetMainModuleName(); }},
-	{"bridgemain.h/GuiExecuteOnGuiThread",   [] { GuiExecuteOnGuiThread(); }},
-	{"bridgemain.h/GuiScriptSetTitle",   [] { GuiScriptSetTitle(); }},
-	{"_scriptapi_register.h/GetR9D",   [] { Script::Register::GetR9D(); }},
-	{"_scriptapi_register.h/GetR12D",   [] { Script::Register::GetR12D(); }},
-	{"_scriptapi_register.h/SetR13",   [] { Script::Register::SetR13(); }},
-	{"bridgemain.h/GuiAddLogMessage",   [] { GuiAddLogMessage(); }},
-	{"_scriptapi_register.h/GetR14B",   [] { Script::Register::GetR14B(); }},
-	{"_scriptapi_module.h/SectionFromAddr",   [] { Script::Module::SectionFromAddr(); }},
-	{"_scriptapi_register.h/GetR9W",   [] { Script::Register::GetR9W(); }},
-	{"bridgemain.h/BridgeSettingSetUint",   [] { BridgeSettingSetUint(); }},
-	{"bridgemain.h/GuiProcessEvents",   [] { GuiProcessEvents(); }},
-	{"_scriptapi_module.h/SectionListFromName",   [] { Script::Module::SectionListFromName(); }},
-	{"_scriptapi_register.h/SetDR0",   [] { Script::Register::SetDR0(); }},
-	{"_scriptapi_module.h/BaseFromAddr",   [] { Script::Module::BaseFromAddr(); }},
-	{"_scriptapi_register.h/SetRAX",   [] { Script::Register::SetRAX(); }},
-	{"bridgemain.h/GuiLoadSourceFileEx",   [] { GuiLoadSourceFileEx(); }},
-	{"_scriptapi_argument.h/DeleteRange",   [] { Script::Argument::DeleteRange(); }},
-	{"_scriptapi_register.h/GetCDX",   [] { Script::Register::GetCDX(); }},
-	{"bridgemain.h/GuiLoadGraph",   [] { GuiLoadGraph(); }},
-	{"_scriptapi_register.h/SetBX",   [] { Script::Register::SetBX(); }},
-	{"bridgemain.h/DbgFunctionAdd",   [] { DbgFunctionAdd(); }},
-	{"_scriptapi_register.h/GetR12W",   [] { Script::Register::GetR12W(); }},
-	{"bridgemain.h/DbgGetLabelAt",   [] { DbgGetLabelAt(); }},
-	{"_scriptapi_register.h/GetBH",   [] { Script::Register::GetBH(); }},
-	{"bridgemain.h/DbgGetEncodeTypeBuffer",   [] { DbgGetEncodeTypeBuffer(); }},
-	{"_scriptapi_register.h/GetCDI",   [] { Script::Register::GetCDI(); }},
-	{"_scriptapi_register.h/GetCSI",   [] { Script::Register::GetCSI(); }},
-	{"bridgemain.h/DbgScriptBpToggle",   [] { DbgScriptBpToggle(); }},
-	{"_scriptapi_misc.h/ResolveLabel",   [] { Script::Misc::ResolveLabel(); }},
-	{"_scriptapi_pattern.h/WriteMem",   [] { Script::Pattern::WriteMem(); }},
-	{"bridgemain.h/DbgAssembleAt",   [] { DbgAssembleAt(); }},
-	{"_scriptapi_label.h/Clear",   [] { Script::Label::Clear(); }},
-	{"bridgemain.h/GuiAddFavouriteTool",   [] { GuiAddFavouriteTool(); }},
-	{"_scriptapi_register.h/SetDH",   [] { Script::Register::SetDH(); }},
-	{"bridgemain.h/DbgXrefDelAll",   [] { DbgXrefDelAll(); }},
-	{"_scriptapi_register.h/GetSP",   [] { Script::Register::GetSP(); }},
-	{"bridgemain.h/GuiSetDebuggeeNotes",   [] { GuiSetDebuggeeNotes(); }},
-	{"_scriptapi_gui.h/AddQWidgetTab",   [] { Script::Gui::AddQWidgetTab(); }},
-	{"_scriptapi_register.h/GetRDI",   [] { Script::Register::GetRDI(); }},
-	{"_scriptapi_pattern.h/SearchAndReplaceMem",   [] { Script::Pattern::SearchAndReplaceMem(); }},
-	{"bridgemain.h/GuiGraphAt",   [] { GuiGraphAt(); }},
-	{"_scriptapi_register.h/GetAL",   [] { Script::Register::GetAL(); }},
-	{"bridgemain.h/GuiSelectionGet",   [] { GuiSelectionGet(); }},
-	{"bridgemain.h/GuiUpdateDisable",   [] { GuiUpdateDisable(); }},
-	{"_scriptapi_register.h/SetCFLAGS",   [] { Script::Register::SetCFLAGS(); }},
-	{"_scriptapi_register.h/SetRSI",   [] { Script::Register::SetRSI(); }},
-	{"_scriptapi_register.h/GetR15D",   [] { Script::Register::GetR15D(); }},
-	{"_scriptapi_debug.h/Pause",   [] { Script::Debug::Pause(); }},
-	{"_scriptapi_memory.h/GetSize",   [] { Script::Memory::GetSize(); }},
-	{"_scriptapi_register.h/SetR12B",   [] { Script::Register::SetR12B(); }},
-	{"_scriptapi_bookmark.h/GetInfo",   [] { Script::Bookmark::GetInfo(); }},
-	{"_scriptapi_register.h/GetR15W",   [] { Script::Register::GetR15W(); }},
-	{"_scriptapi_register.h/GetEDI",   [] { Script::Register::GetEDI(); }},
-	{"_scriptapi_register.h/GetCH",   [] { Script::Register::GetCH(); }},
-	{"bridgemain.h/GuiMenuRemove",   [] { GuiMenuRemove(); }},
-	{"bridgemain.h/DbgSetLabelAt",   [] { DbgSetLabelAt(); }},
-	{"_scriptapi_flag.h/GetAF",   [] { Script::Flag::GetAF(); }},
-	{"bridgemain.h/GuiRepaintTableView",   [] { GuiRepaintTableView(); }},
-	{"_scriptapi_register.h/GetCSP",   [] { Script::Register::GetCSP(); }},
-	{"bridgemain.h/DbgGetBpxTypeAt",   [] { DbgGetBpxTypeAt(); }},
-	{"_scriptapi_register.h/SetR10W",   [] { Script::Register::SetR10W(); }},
-	{"_scriptapi_function.h/Clear",   [] { Script::Function::Clear(); }},
-	{"_scriptapi_register.h/SetR15B",   [] { Script::Register::SetR15B(); }},
-	{"_scriptapi_gui.h/Refresh",   [] { Script::Gui::Refresh(); }},
-	{"_scriptapi_debug.h/SetHardwareBreakpoint",   [] { Script::Debug::SetHardwareBreakpoint(); }},
-	{"_scriptapi_debug.h/StepOver",   [] { Script::Debug::StepOver(); }},
-	{"_scriptapi_module.h/NameFromAddr",   [] { Script::Module::NameFromAddr(); }},
-	{"_scriptapi_module.h/GetMainModulePath",   [] { Script::Module::GetMainModulePath(); }},
-	{"bridgemain.h/DbgScriptLoad",   [] { DbgScriptLoad(); }},
-	{"_scriptapi_bookmark.h/Delete",   [] { Script::Bookmark::Delete(); }},
-	{"_scriptapi_assembler.h/AssembleMemEx",   [] { Script::Assembler::AssembleMemEx(); }},
-	{"bridgemain.h/DbgIsJumpGoingToExecute",   [] { DbgIsJumpGoingToExecute(); }},
-	{"_scriptapi_register.h/SetR11B",   [] { Script::Register::SetR11B(); }},
-	{"_scriptapi_function.h/DeleteRange",   [] { Script::Function::DeleteRange(); }},
-	{"bridgemain.h/DbgGetEncodeTypeAt",   [] { DbgGetEncodeTypeAt(); }},
-	{"_scriptapi_module.h/GetMainModuleSectionCount",   [] { Script::Module::GetMainModuleSectionCount(); }},
-	{"bridgemain.h/BridgeFree",   [] { BridgeFree(); }},
-	{"_scriptapi_register.h/GetR10W",   [] { Script::Register::GetR10W(); }},
-	{"bridgemain.h/GuiOpenTraceFile",   [] { GuiOpenTraceFile(); }},
-	{"_scriptapi_register.h/SetRSP",   [] { Script::Register::SetRSP(); }},
-	{"_scriptapi_register.h/SetR14D",   [] { Script::Register::SetR14D(); }},
-	{"bridgemain.h/DbgDelEncodeTypeSegment",   [] { DbgDelEncodeTypeSegment(); }},
-	{"_scriptapi_stack.h/Push",   [] { Script::Stack::Push(); }},
-	{"_scriptapi_memory.h/WriteQword",   [] { Script::Memory::WriteQword(); }},
-	{"_scriptapi_module.h/BaseFromName",   [] { Script::Module::BaseFromName(); }},
-	{"bridgemain.h/DbgGetProcessId",   [] { DbgGetProcessId(); }},
-	{"_scriptapi_register.h/GetDR6",   [] { Script::Register::GetDR6(); }},
-	{"_scriptapi_register.h/GetDR0",   [] { Script::Register::GetDR0(); }},
-	{"_scriptapi_register.h/SetR14B",   [] { Script::Register::SetR14B(); }},
-	{"_scriptapi_comment.h/Clear",   [] { Script::Comment::Clear(); }},
-	{"bridgemain.h/GuiDisplayWarning",   [] { GuiDisplayWarning(); }},
-	{"_scriptapi_register.h/SetR10D",   [] { Script::Register::SetR10D(); }},
-	{"_scriptapi_register.h/SetR13W",   [] { Script::Register::SetR13W(); }},
-	{"bridgemain.h/GuiGotoTrace",   [] { GuiGotoTrace(); }},
-	{"bridgemain.h/GuiSelectInSymbolsTab",   [] { GuiSelectInSymbolsTab(); }},
-	{"bridgemain.h/DbgGetRegDumpEx",   [] { DbgGetRegDumpEx(); }},
-	{"bridgemain.h/GuiAddLogMessageHtml",   [] { GuiAddLogMessageHtml(); }},
-	{"_scriptapi_register.h/Set",   [] { Script::Register::Set(); }},
-	{"bridgemain.h/DbgGetThreadId",   [] { DbgGetThreadId(); }},
-	{"_scriptapi_register.h/SetCX",   [] { Script::Register::SetCX(); }},
-	{"bridgemain.h/GuiReferenceSetCurrentTaskProgress",   [] { GuiReferenceSetCurrentTaskProgress(); }},
-	{"_scriptapi_register.h/GetDI",   [] { Script::Register::GetDI(); }},
-};
-    if (auto it = handlers.find(path); it != handlers.end()) it->second();//todo: 这里的路径解析有问题，发包恢复客户端
+//=============================================================================
+// HTTP Server Implementation
+//=============================================================================
+
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#define WIN32_LEAN_AND_MEAN
+
+// Default settings
+#define DEFAULT_PORT 8888
+#define MAX_REQUEST_SIZE 8192
+
+// Global variables
+int g_pluginHandle;
+HANDLE g_httpServerThread = NULL;
+bool g_httpServerRunning = false;
+int g_httpPort = DEFAULT_PORT;
+std::mutex g_httpMutex;
+SOCKET g_serverSocket = INVALID_SOCKET;
+
+// Forward declarations
+bool startHttpServer();
+
+void stopHttpServer();
+
+void dispatch(SOCKET clientSocket);
+
+DWORD WINAPI HttpServerThread(LPVOID lpParam);
+
+std::string readHttpRequest(SOCKET clientSocket);
+
+void
+sendHttpResponse(SOCKET clientSocket, int statusCode, const std::string &contentType, const std::string &responseBody);
+
+void parseHttpRequest(const std::string &request, std::string &method, std::string &path, std::string &query,
+                      std::string &body);
+
+std::unordered_map<std::string, std::string> parseQueryParams(const std::string &query);
+
+// Command callback declarations
+bool cbEnableHttpServer(int argc, char *argv[]);
+
+bool cbSetHttpPort(int argc, char *argv[]);
+
+
+void dispatch(SOCKET clientSocket) {
+/*
+// Read the HTTP request
+        std::string requestData = readHttpRequest(clientSocket);
+
+        if (!requestData.empty()) {
+            // Parse the HTTP request
+            std::string method, path, query, body;
+            parseHttpRequest(requestData, method, path, query, body);
+
+            _plugin_logprintf("HTTP Request: %s %s\n", method.c_str(), path.c_str());
+
+            // Parse query parameters
+            std::unordered_map<std::string, std::string> queryParams = parseQueryParams(query);
+
+            // Handle different endpoints
+            try {
+                if (path == "/IsDebugActive") {
+                    bool active = DbgIsRunning();
+                    sendHttpResponse(clientSocket, 200, "text/plain", active ? "true" : "false");
+                } else if (path == "/ExeConsoleCmd") {
+                    std::string cmd = queryParams["Command"];
+                    if (cmd.empty() && !body.empty()) {
+                        cmd = body;
+                    }
+                    bool success = DbgCmdExec(cmd.c_str());
+                    sendHttpResponse(clientSocket, 200, "text/plain",
+                                     success ? "Command executed successfully" : "Command execution failed");
+                } else if (path == "/FindMemBase") {
+                    std::string addrStr = queryParams["addr"];
+                    if (addrStr.empty() && !body.empty()) {
+                        addrStr = body;
+                    }
+                    _plugin_logprintf("FindMemBase endpoint called with addr: %s\n", addrStr.c_str());
+                    // Convert string address to duint
+                    duint addr = 0;
+                    try {
+                        addr = std::stoull(addrStr, nullptr, 16); // Parse as hex
+                    }
+                    catch (const std::exception &e) {
+                        sendHttpResponse(clientSocket, 400, "text/plain", "Invalid address format");
+                        continue;
+                    }
+                    _plugin_logprintf("Converted address: 0x%llx\n", addr);
+
+                    // Get the base address and size
+                    duint size = 0;
+                    duint baseAddr = DbgMemFindBaseAddr(addr, &size);
+                    _plugin_logprintf("Base address found: 0x%llx, size: %llu\n", baseAddr, size);
+                    if (baseAddr == 0) {
+                        sendHttpResponse(clientSocket, 404, "text/plain", "No module found for this address");
+                    } else {
+                        // Format the response with base address and size
+                        std::stringstream ss;
+                        ss << std::hex << "0x" << baseAddr << "," << size;
+                        sendHttpResponse(clientSocket, 200, "text/plain", ss.str());
+                    }
+                } else if (path == "/GetModuleList") {
+                    // Create a list to store the module information
+                    ListInfo moduleList;
+
+                    // Get the list of modules
+                    bool success = Script::Module::GetList(&moduleList);
+
+                    if (!success) {
+                        sendHttpResponse(clientSocket, 500, "text/plain", "Failed to get module list");
+                    } else {
+                        // Create a JSON array to hold the module information
+                        std::stringstream jsonResponse;
+                        jsonResponse << "[";
+
+                        // Iterate through each module in the list
+                        size_t count = moduleList.count;
+                        Script::Module::ModuleInfo *modules = (Script::Module::ModuleInfo *) moduleList.data;
+
+                        for (size_t i = 0; i < count; i++) {
+                            if (i > 0) jsonResponse << ",";
+
+                            // Add module info as JSON object
+                            jsonResponse << "{";
+                            jsonResponse << "\"name\":\"" << modules[i].name << "\",";
+                            jsonResponse << "\"base\":\"0x" << std::hex << modules[i].base << "\",";
+                            jsonResponse << "\"size\":\"0x" << std::hex << modules[i].size << "\",";
+                            jsonResponse << "\"entry\":\"0x" << std::hex << modules[i].entry << "\",";
+                            jsonResponse << "\"sectionCount\":" << std::dec << modules[i].sectionCount << ",";
+                            jsonResponse << "\"path\":\"" << modules[i].path << "\"";
+                            jsonResponse << "}";
+                        }
+
+                        jsonResponse << "]";
+
+                        // Free the list
+                        BridgeFree(moduleList.data);
+
+                        // Send the response
+                        sendHttpResponse(clientSocket, 200, "application/json", jsonResponse.str());
+                    }
+                } else {
+                    // Unknown URL
+                    sendHttpResponse(clientSocket, 404, "text/plain", "Not Found");
+                }
+            }
+            catch (const std::exception &e) {
+                // Exception in handling request
+                sendHttpResponse(clientSocket, 500, "text/plain", std::string("Internal Server Error: ") + e.what());
+            }
+        }
+ * */
+
+    // Read the HTTP request
+    std::string requestData = readHttpRequest(clientSocket);
+    if (!requestData.empty()) {
+        // Parse the HTTP request
+        std::string method, path, query, body;
+        parseHttpRequest(requestData, method, path, query, body);
+        _plugin_logprintf("HTTP Request: %s %s\n", method.c_str(), path.c_str());
+        // Parse query parameters
+        std::unordered_map<std::string, std::string> queryParams = parseQueryParams(query);
+
+        static const std::unordered_map<std::string, std::function<void()>> handlers{
+                {"bridgemain.h/DbgModBaseFromName", [] {
+                    std::string name = queryParams["name"];
+                    if (name.empty() && !body.empty()) {
+                        name = body;
+                    }
+                    _plugin_logprintf("bridgemain.h/DbgModBaseFromName endpoint called with name: %s\n", name.c_str());
+
+                    auto base = DbgModBaseFromName(name.c_str());
+                    _plugin_logprintf("Base address found: 0x%llx\n", base);
+                    if (base == 0) {
+                        sendHttpResponse(clientSocket, 404, "text/plain", "No module found for this address");
+                    } else {
+                        // Format the response with base address and size
+                        std::stringstream ss;
+                        ss << std::hex << "0x" << base;
+                        sendHttpResponse(clientSocket, 200, "text/plain", ss.str());
+                    }
+                }},
+        };
+        if (auto it = handlers.find(path); it != handlers.end()) it->second();//todo: 这里的路径解析有问题，发包恢复客户端
+    };
 }
 
+// HTTP server thread function using standard Winsock
+DWORD WINAPI HttpServerThread(LPVOID lpParam) {
+    WSADATA wsaData;
+    int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
+    if (result != 0) {
+        _plugin_logprintf("WSAStartup failed with error: %d\n", result);
+        return 1;
+    }
+
+    // Create a socket for the server
+    g_serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (g_serverSocket == INVALID_SOCKET) {
+        _plugin_logprintf("Failed to create socket, error: %d\n", WSAGetLastError());
+        WSACleanup();
+        return 1;
+    }
+
+    // Setup the server address structure
+    sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = htonl(INADDR_LOOPBACK); // localhost only
+    serverAddr.sin_port = htons((u_short) g_httpPort);
+
+    // Bind the socket
+    if (bind(g_serverSocket, (sockaddr *) &serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
+        _plugin_logprintf("Bind failed with error: %d\n", WSAGetLastError());
+        closesocket(g_serverSocket);
+        WSACleanup();
+        return 1;
+    }
+
+    // Listen for incoming connections
+    if (listen(g_serverSocket, SOMAXCONN) == SOCKET_ERROR) {
+        _plugin_logprintf("Listen failed with error: %d\n", WSAGetLastError());
+        closesocket(g_serverSocket);
+        WSACleanup();
+        return 1;
+    }
+
+    _plugin_logprintf("HTTP server started at http://localhost:%d/\n", g_httpPort);
+
+    // Set socket to non-blocking mode
+    u_long mode = 1;
+    ioctlsocket(g_serverSocket, FIONBIO, &mode);
+
+    // Main server loop
+    while (g_httpServerRunning) {
+        // Accept a client connection
+        sockaddr_in clientAddr;
+        int clientAddrSize = sizeof(clientAddr);
+        SOCKET clientSocket = accept(g_serverSocket, (sockaddr *) &clientAddr, &clientAddrSize);
+        if (clientSocket == INVALID_SOCKET) {
+            // Check if we need to exit
+            if (!g_httpServerRunning) {
+                break;
+            }
+
+            // Non-blocking socket may return WOULD_BLOCK when no connections are pending
+            if (WSAGetLastError() != WSAEWOULDBLOCK) {
+                _plugin_logprintf("Accept failed with error: %d\n", WSAGetLastError());
+            }
+
+            Sleep(100); // Avoid tight loop
+            continue;
+        }
+        dispatch(clientSocket);
+        closesocket(clientSocket);  // Close the client socket
+    }
+
+    // Clean up
+    if (g_serverSocket != INVALID_SOCKET) {
+        closesocket(g_serverSocket);
+        g_serverSocket = INVALID_SOCKET;
+    }
+
+    WSACleanup();
+    return 0;
+}
+
+// Function to read the HTTP request
+std::string readHttpRequest(SOCKET clientSocket) {
+    std::string request;
+    char buffer[MAX_REQUEST_SIZE];
+    int bytesReceived;
+
+    // Set socket to blocking mode to receive full request
+    u_long mode = 0;
+    ioctlsocket(clientSocket, FIONBIO, &mode);
+
+    // Receive data
+    bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+
+    if (bytesReceived > 0) {
+        buffer[bytesReceived] = '\0';
+        request = buffer;
+    }
+
+    return request;
+}
+
+// Function to parse an HTTP request
+void parseHttpRequest(const std::string &request, std::string &method, std::string &path, std::string &query,
+                      std::string &body) {
+    // Parse the request line
+    size_t firstLineEnd = request.find("\r\n");
+    if (firstLineEnd == std::string::npos) {
+        return;
+    }
+
+    std::string requestLine = request.substr(0, firstLineEnd);
+
+    // Extract method and URL
+    size_t methodEnd = requestLine.find(' ');
+    if (methodEnd == std::string::npos) {
+        return;
+    }
+
+    method = requestLine.substr(0, methodEnd);
+
+    size_t urlEnd = requestLine.find(' ', methodEnd + 1);
+    if (urlEnd == std::string::npos) {
+        return;
+    }
+
+    std::string url = requestLine.substr(methodEnd + 1, urlEnd - methodEnd - 1);
+
+    // Split URL into path and query
+    size_t queryStart = url.find('?');
+    if (queryStart != std::string::npos) {
+        path = url.substr(0, queryStart);
+        query = url.substr(queryStart + 1);
+    } else {
+        path = url;
+        query = "";
+    }
+
+    // Find the end of headers and start of body
+    size_t headersEnd = request.find("\r\n\r\n");
+    if (headersEnd == std::string::npos) {
+        return;
+    }
+
+    // Extract body
+    body = request.substr(headersEnd + 4);
+}
+
+// Function to send HTTP response
+void
+sendHttpResponse(SOCKET clientSocket, int statusCode, const std::string &contentType, const std::string &responseBody) {
+    // Prepare status line
+    std::string statusText;
+    switch (statusCode) {
+        case 200:
+            statusText = "OK";
+            break;
+        case 404:
+            statusText = "Not Found";
+            break;
+        case 500:
+            statusText = "Internal Server Error";
+            break;
+        default:
+            statusText = "Unknown";
+    }
+
+    // Build the response
+    std::stringstream response;
+    response << "HTTP/1.1 " << statusCode << " " << statusText << "\r\n";
+    response << "Content-Type: " << contentType << "\r\n";
+    response << "Content-Length: " << responseBody.length() << "\r\n";
+    response << "Connection: close\r\n";
+    response << "\r\n";
+    response << responseBody;
+
+    // Send the response
+    std::string responseStr = response.str();
+    send(clientSocket, responseStr.c_str(), (int) responseStr.length(), 0);
+}
+
+// Parse query parameters from URL
+std::unordered_map<std::string, std::string> parseQueryParams(const std::string &query) {
+    std::unordered_map<std::string, std::string> params;
+
+    size_t pos = 0;
+    size_t nextPos;
+
+    while (pos < query.length()) {
+        nextPos = query.find('&', pos);
+        if (nextPos == std::string::npos) {
+            nextPos = query.length();
+        }
+
+        std::string pair = query.substr(pos, nextPos - pos);
+        size_t equalPos = pair.find('=');
+
+        if (equalPos != std::string::npos) {
+            std::string key = pair.substr(0, equalPos);
+            std::string value = pair.substr(equalPos + 1);
+            params[key] = value;
+        }
+
+        pos = nextPos + 1;
+    }
+
+    return params;
+}
+
+// Command callback for toggling HTTP server
+bool cbEnableHttpServer(int argc, char *argv[]) {
+    if (g_httpServerRunning) {
+        _plugin_logputs("Stopping HTTP server...");
+        stopHttpServer();
+        _plugin_logputs("HTTP server stopped");
+    } else {
+        _plugin_logputs("Starting HTTP server...");
+        if (startHttpServer()) {
+            _plugin_logprintf("HTTP server started on port %d\n", g_httpPort);
+        } else {
+            _plugin_logputs("Failed to start HTTP server");
+        }
+    }
+    return true;
+}
+
+// Command callback for changing HTTP server port
+bool cbSetHttpPort(int argc, char *argv[]) {
+    if (argc < 2) {
+        _plugin_logputs("Usage: httpport [port_number]");
+        return false;
+    }
+
+    int port;
+    try {
+        port = std::stoi(argv[1]);
+    }
+    catch (const std::exception &) {
+        _plugin_logputs("Invalid port number");
+        return false;
+    }
+
+    if (port <= 0 || port > 65535) {
+        _plugin_logputs("Port number must be between 1 and 65535");
+        return false;
+    }
+
+    g_httpPort = port;
+
+    if (g_httpServerRunning) {
+        _plugin_logputs("Restarting HTTP server with new port...");
+        stopHttpServer();
+        if (startHttpServer()) {
+            _plugin_logprintf("HTTP server restarted on port %d\n", g_httpPort);
+        } else {
+            _plugin_logputs("Failed to restart HTTP server");
+        }
+    } else {
+        _plugin_logprintf("HTTP port set to %d\n", g_httpPort);
+    }
+
+    return true;
+}
+
+// Start the HTTP server
+bool startHttpServer() {
+    std::lock_guard<std::mutex> lock(g_httpMutex);
+
+    // Stop existing server if running
+    if (g_httpServerRunning) {
+        stopHttpServer();
+    }
+
+    // Create and start the server thread
+    g_httpServerThread = CreateThread(NULL, 0, HttpServerThread, NULL, 0, NULL);
+    if (g_httpServerThread == NULL) {
+        _plugin_logputs("Failed to create HTTP server thread");
+        return false;
+    }
+
+    g_httpServerRunning = true;
+    return true;
+}
+
+// Stop the HTTP server
+void stopHttpServer() {
+    std::lock_guard<std::mutex> lock(g_httpMutex);
+
+    if (g_httpServerRunning) {
+        g_httpServerRunning = false;
+
+        // Close the server socket to unblock any accept calls
+        if (g_serverSocket != INVALID_SOCKET) {
+            closesocket(g_serverSocket);
+            g_serverSocket = INVALID_SOCKET;
+        }
+
+        // Wait for the thread to exit
+        if (g_httpServerThread != NULL) {
+            WaitForSingleObject(g_httpServerThread, 1000);
+            CloseHandle(g_httpServerThread);
+            g_httpServerThread = NULL;
+        }
+    }
+}
 
 /*
 void echo(const std::string path) {
