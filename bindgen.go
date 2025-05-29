@@ -449,11 +449,13 @@ func typedefsNameByID(root gjson.Result, result *Result) {
 	})
 }
 
-//        -DWIN32_LEAN_AND_MEAN
-//           -D_WINSOCKAPI_
+// -DWIN32_LEAN_AND_MEAN
+//
+//	-D_WINSOCKAPI_
 var Flags = `
 #define WIN32_LEAN_AND_MEAN
-#define _WINSOCKAPI_
+#define WINSOCK_DEPRECATED_NO_WARNINGS
+//#define _WINSOCKAPI_
 typedef char bool;
 `
 
@@ -461,12 +463,11 @@ func extractFlags() []string {
 	f := make([]string, 0)
 	for s := range strings.Lines(Flags) {
 		switch {
-		case !strings.HasPrefix(s, "//"):
+		case strings.HasPrefix(s, "//"):
 			s = strings.TrimSpace(s)
 		case strings.HasPrefix(s, "#define"):
 			s = strings.TrimSpace(strings.TrimPrefix(s, "#define")) // todo -D
-		case strings.HasPrefix(s, "#include"): // todo
-
+			f = append(f, "-D"+s)
 		default:
 			s = strings.TrimSpace(s)
 		}
@@ -480,7 +481,6 @@ func runClangASTDump(path string, cModelCallback ClangCModelCallback) []byte {
 	if stream.FileExists(jsonPath) {
 		return mylog.Check2(os.ReadFile(jsonPath))
 	}
-panic("WIN32_LEAN_AND_MEAN")
 	arg := []string{
 		"clang",
 		"-x", "c++", // bridgemain.h need c model，否则会找不解析很多函数，原因不明
@@ -489,12 +489,12 @@ panic("WIN32_LEAN_AND_MEAN")
 	if cModelCallback(path) {
 		arg = slices.Delete(arg, 1, 3)
 	}
+	arg = append(arg, extractFlags()...)
 	includes := vswhere.New().VisualStudio().Includes
 	for _, include := range includes {
 		arg = append(arg, "-I", include)
 	}
 	arg = append(arg, "-I", filepath.Dir(path))
-	// arg = append(arg, extractFlags()...)//todo test flags
 	arg = append(arg, path)
 	out := stream.RunCommandArgs(arg...)
 	stream.WriteTruncate(jsonPath, out.Output)

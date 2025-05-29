@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"fmt"
+	"github.com/ddkwork/golibrary/mylog"
 	"os"
 	"regexp"
 	"strconv"
@@ -121,3 +122,8 @@ func main() {
 //func TestJsonTree(t *testing.T) {
 //	ux.Run("jsonTree", jsontree.Layout(productInfo))
 //}
+
+func Test_extractFlags(t *testing.T) {
+	got := extractFlags()
+	mylog.Struct(got)
+}
