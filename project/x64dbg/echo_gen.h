@@ -38,12 +38,26 @@
 #include "httplib.h"
 #include "json.hpp"
 #pragma comment(lib, "ws2_32.lib")
-//=============================================================================
-// HTTP Server Implementation
-//=============================================================================
 
 using namespace httplib;
 using json = nlohmann::json;
+
+Server server;
+#define DEFAULT_PORT     8888
+#define MAX_REQUEST_SIZE 8192
+
+int        g_pluginHandle;
+HANDLE     g_httpServerThread = NULL;
+bool       g_httpServerRunning = false;
+int        httpPort = DEFAULT_PORT;
+std::mutex g_httpMutex;
+
+bool         startHttpServer();
+void         stopHttpServer();
+void         dispatch(SOCKET clientSocket);
+DWORD WINAPI HttpServerThread(LPVOID lpParam);
+bool         cbEnableHttpServer(int argc, char *argv[]);
+bool         cbSetHttpPort(int argc, char *argv[]);
 
 struct Param {
     std::string name;
@@ -70,147 +84,21 @@ struct ApiResponse {
 namespace nlohmann {
     template<>
     struct adl_serializer<Script::Module::ModuleInfo> {
-        static void to_json(json &j, const Script::Module::ModuleInfo &u) {
+        static void to_json(json &j, const Script::Module::ModuleInfo &info) {
             j = {
 
-                    {"base", u.base},
-                    {"size", u.size},
-                    {"entry", u.entry},
-                    {"sectionCount", u.sectionCount},
-                    {"name", u.name},
-                    {"path", u.path},
+                    {"base", info.base},
+                    {"size", info.size},
+                    {"entry", info.entry},
+                    {"sectionCount", info.sectionCount},
+                    {"name", info.name},
+                    {"path", info.path},
             };
         }
     };
 }// namespace nlohmann
 
-Server server;
-#define DEFAULT_PORT     8888
-#define MAX_REQUEST_SIZE 8192
-
-// Global variables
-int        g_pluginHandle;
-HANDLE     g_httpServerThread = NULL;
-bool       g_httpServerRunning = false;
-int        httpPort = DEFAULT_PORT;
-std::mutex g_httpMutex;
-
-bool         startHttpServer();
-void         stopHttpServer();
-void         dispatch(SOCKET clientSocket);
-DWORD WINAPI HttpServerThread(LPVOID lpParam);
-bool         cbEnableHttpServer(int argc, char *argv[]);
-bool         cbSetHttpPort(int argc, char *argv[]);
-
 void dispatch() {
-    /*
-// Read the HTTP request
-        std::string requestData = readHttpRequest(clientSocket);
-
-        if (!requestData.empty()) {
-            // Parse the HTTP request
-            std::string method, path, query, body;
-            parseHttpRequest(requestData, method, path, query, body);
-
-            _plugin_logprintf("HTTP Request: %s %s\n", method.c_str(), path.c_str());
-
-            // Parse query parameters
-            std::unordered_map<std::string, std::string> queryParams = parseQueryParams(query);
-
-            // Handle different endpoints
-            try {
-                if (path == "/IsDebugActive") {
-                    bool active = DbgIsRunning();
-                    sendHttpResponse(clientSocket, 200, "text/plain", active ? "true" : "false");
-                } else if (path == "/ExeConsoleCmd") {
-                    std::string cmd = queryParams["Command"];
-                    if (cmd.empty() && !body.empty()) {
-                        cmd = body;
-                    }
-                    bool success = DbgCmdExec(cmd.c_str());
-                    sendHttpResponse(clientSocket, 200, "text/plain",
-                                     success ? "Command executed successfully" : "Command execution failed");
-                } else if (path == "/FindMemBase") {
-                    std::string addrStr = queryParams["addr"];
-                    if (addrStr.empty() && !body.empty()) {
-                        addrStr = body;
-                    }
-                    _plugin_logprintf("FindMemBase endpoint called with addr: %s\n", addrStr.c_str());
-                    // Convert string address to duint
-                    duint addr = 0;
-                    try {
-                        addr = std::stoull(addrStr, nullptr, 16); // Parse as hex
-                    }
-                    catch (const std::exception &e) {
-                        sendHttpResponse(clientSocket, 400, "text/plain", "Invalid address format");
-                        continue;
-                    }
-                    _plugin_logprintf("Converted address: 0x%llx\n", addr);
-
-                    // Get the base address and size
-                    duint size = 0;
-                    duint baseAddr = DbgMemFindBaseAddr(addr, &size);
-                    _plugin_logprintf("Base address found: 0x%llx, size: %llu\n", baseAddr, size);
-                    if (baseAddr == 0) {
-                        sendHttpResponse(clientSocket, 404, "text/plain", "No module found for this address");
-                    } else {
-                        // Format the response with base address and size
-                        std::stringstream ss;
-                        ss << std::hex << "0x" << baseAddr << "," << size;
-                        sendHttpResponse(clientSocket, 200, "text/plain", ss.str());
-                    }
-                } else if (path == "/GetModuleList") {
-                    // Create a list to store the module information
-                    ListInfo moduleList;
-
-                    // Get the list of modules
-                    bool success = Script::Module::GetList(&moduleList);
-
-                    if (!success) {
-                        sendHttpResponse(clientSocket, 500, "text/plain", "Failed to get module list");
-                    } else {
-                        // Create a JSON array to hold the module information
-                        std::stringstream jsonResponse;
-                        jsonResponse << "[";
-
-                        // Iterate through each module in the list
-                        size_t count = moduleList.count;
-                        Script::Module::ModuleInfo *modules = (Script::Module::ModuleInfo *) moduleList.data;
-
-                        for (size_t i = 0; i < count; i++) {
-                            if (i > 0) jsonResponse << ",";
-
-                            // Add module info as JSON object
-                            jsonResponse << "{";
-                            jsonResponse << "\"name\":\"" << modules[i].name << "\",";
-                            jsonResponse << "\"base\":\"0x" << std::hex << modules[i].base << "\",";
-                            jsonResponse << "\"size\":\"0x" << std::hex << modules[i].size << "\",";
-                            jsonResponse << "\"entry\":\"0x" << std::hex << modules[i].entry << "\",";
-                            jsonResponse << "\"sectionCount\":" << std::dec << modules[i].sectionCount << ",";
-                            jsonResponse << "\"path\":\"" << modules[i].path << "\"";
-                            jsonResponse << "}";
-                        }
-
-                        jsonResponse << "]";
-
-                        // Free the list
-                        BridgeFree(moduleList.data);
-
-                        // Send the response
-                        sendHttpResponse(clientSocket, 200, "application/json", jsonResponse.str());
-                    }
-                } else {
-                    // Unknown URL
-                    sendHttpResponse(clientSocket, 404, "text/plain", "Not Found");
-                }
-            }
-            catch (const std::exception &e) {
-                // Exception in handling request
-                sendHttpResponse(clientSocket, 500, "text/plain", std::string("Internal Server Error: ") + e.what());
-            }
-        }
- * */
-
     server.Post("/bridgemain.h/DbgMemFindBaseAddr", [](const Request &req, Response &res) {
         try {
             auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
@@ -220,6 +108,16 @@ void dispatch() {
             ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
+    });
+    server.Post("/_scriptapi_module.h/GetList", [](const Request &req, Response &res) {
+        try {
+            BridgeList<Script::Module::ModuleInfo>  bridgeList;
+            bool                                    ok = Script::Module::GetList(&bridgeList);
+            std::vector<Script::Module::ModuleInfo> moduleVector;
+            if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
+            ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
+            res.set_content(json(resp).dump(), "application/json");
+        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}.dump(), "application/json"); }
     });
 }
 
