@@ -179,22 +179,27 @@ void dispatch(SOCKET clientSocket) {
         // Parse query parameters
         std::unordered_map<std::string, std::string>                        queryParams = parseQueryParams(query);
         static const std::unordered_map<std::string, std::function<void()>> handlers{
-                {"bridgemain.h/DbgModBaseFromName",
-                 [&queryParams, &body, &clientSocket] {
-                     std::string name = queryParams["name"];
-                     if (name.empty() && !body.empty()) { name = body; }
-                     _plugin_logprintf("bridgemain.h/DbgModBaseFromName endpoint called with name: %s\n", name.c_str());
-                     auto base = DbgModBaseFromName(name.c_str());
-                     _plugin_logprintf("Base address found: 0x%llx\n", base);
-                     if (base == 0) {
-                         sendHttpResponse(clientSocket, 404, "text/plain", "No module found for this address");
-                     } else {
-                         // Format the response with base address and size
-                         std::stringstream ss;
-                         ss << std::hex << "0x" << base;
-                         sendHttpResponse(clientSocket, 200, "text/plain", ss.str());
-                     }
-                 }},
+                {
+                        "bridgemain.h/DbgModBaseFromName",
+                        [&queryParams, &body, &clientSocket] {
+
+                            std::string name = queryParams["name"];
+                            if (name.empty() && !body.empty()) { name = body; }
+                            _plugin_logprintf("bridgemain.h/DbgModBaseFromName endpoint called with name: %s\n", name.c_str());
+                            auto base = DbgModBaseFromName(name.c_str());
+                            _plugin_logprintf("Base address found: 0x%llx\n", base);
+                            if (base == 0) {
+                                sendHttpResponse(clientSocket, 404, "text/plain", "No module found for this address");
+                            } else {
+                                // Format the response with base address and size
+                                std::stringstream ss;
+                                ss << std::hex << "0x" << base;
+                                sendHttpResponse(clientSocket, 200, "text/plain", ss.str());
+                            }
+
+
+                        },
+                },
         };
         if (auto it = handlers.find(path); it != handlers.end()) it->second();//todo: 这里的路径解析有问题，发包恢复客户端
     };
