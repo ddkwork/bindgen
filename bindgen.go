@@ -820,7 +820,6 @@ int main() {
 		//          sendHttpResponse(clientSocket, 200, "text/plain", ss.str());
 		//      }
 		g.P("\t\t\t },")
-		g.P("\t{", strconv.Quote(path), ",   [] { ", api, "()", "; }},") //todo 解析传入参数,处理返回值和回复客户端的代码生成
 		g.P("\t },")
 	}
 	g.P(end)
