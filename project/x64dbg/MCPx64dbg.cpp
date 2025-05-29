@@ -28,7 +28,7 @@ bool pluginInit(PLUG_INITSTRUCT *initStruct) {
 
     // Start the HTTP server
     if (startHttpServer()) {
-        _plugin_logprintf("x64dbg HTTP Server started on port %d\n", g_httpPort);
+        _plugin_logprintf("x64dbg HTTP Server started on port %d\n", httpPort);
     } else {
         _plugin_logputs("Failed to start HTTP server!");
     }
