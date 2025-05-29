@@ -507,32 +507,66 @@ namespace nlohmann {
 	g := stream.NewGeneratedFile()
 	g.P(start)
 	g.P(jsonMarshaler) //todo gen it from ast
+
+	g.P("void dispatch() {")
 	for path, api := range m.Map() {
+		g.P("    server.Post(", strconv.Quote(path), ", [](const Request &req, Response &res) {")
+		g.P("       try {")
+		list := false
+		switch path {
+		case "/_scriptapi_module.h/GetList": //或者根据参数类型或api名称
+			list = true
+		default:
+		}
+		if list {
+			template := `
+           BridgeList<Script::Module::ModuleInfo>  bridgeList;
+           bool                                    ok = Script::Module::GetList(&bridgeList);
+           std::vector<Script::Module::ModuleInfo> moduleVector;
+           if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
+           ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
+`
+			g.P(strings.ReplaceAll(template, "Script::Module::GetList", api))
+		} else {
+			g.P(`
+           auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
+           json params;
+           for (const auto &param: arg) { params[param.name] = param.value; }
+`)
+			g.P("todo call api with params")
+		}
+
+		g.P(`
+           res.set_content(json(resp).dump(), "application/json");
+       } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
+   });
+`)
 		/*
-		   		void dispatch() {
-		          server.Post("/bridgemain.h/DbgMemFindBaseAddr", [](const Request &req, Response &res) {
-		              try {
-		                  auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
-		                  json params;
-		                  for (const auto &param: arg) { params[param.name] = param.value; }
-		                  duint       size = 0;
-		                  ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
-		                  res.set_content(json(resp).dump(), "application/json");
-		              } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
-		          });
-		          server.Post("/_scriptapi_module.h/GetList", [](const Request &req, Response &res) {
-		              try {
-		                  BridgeList<Script::Module::ModuleInfo>  bridgeList;
-		                  bool                                    ok = Script::Module::GetList(&bridgeList);
-		                  std::vector<Script::Module::ModuleInfo> moduleVector;
-		                  if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
-		                  ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
-		                  res.set_content(json(resp).dump(), "application/json");
-		              } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}.dump(), "application/json"); }
-		          });
-		      }
+		   server.Post("/bridgemain.h/DbgMemFindBaseAddr", [](const Request &req, Response &res) {
+		       try {
+		           auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
+		           json params;
+		           for (const auto &param: arg) { params[param.name] = param.value; }
+		           duint       size = 0;
+		           ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
+		           res.set_content(json(resp).dump(), "application/json");
+		       } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
+		   });
+		   server.Post("/_scriptapi_module.h/GetList", [](const Request &req, Response &res) {
+		       try {
+		           BridgeList<Script::Module::ModuleInfo>  bridgeList;
+		           bool                                    ok = Script::Module::GetList(&bridgeList);
+		           std::vector<Script::Module::ModuleInfo> moduleVector;
+		           if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
+		           ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
+		           res.set_content(json(resp).dump(), "application/json");
+		       } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}.dump(), "application/json"); }
+		   });
+
 		*/
 	}
+	g.P("}")
+
 	g.P(end)
 	stream.WriteTruncate("echo_gen.h", g.String())
 }
