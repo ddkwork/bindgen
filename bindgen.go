@@ -136,14 +136,32 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			}
 			// mylog.Trace(m.name, m.Comment.mangledName)
 			packet.Set(urlPath, api)
-			body := "response := safeGet(" +
-				strconv.Quote(urlPath) +
-				", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
-			buffer.WriteString(fmt.Sprintf("%s) %s {\n\t"+
-				body+
-				"}\n\n",
-				strings.Join(params, ", "),
-				m.ReturnType))
+			g := stream.NewGeneratedFile()
+			g.P(" ", string(methodName[0]), ".Client.Post().Url(", strconv.Quote("http://localhost:8888/"+urlPath), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
+			g.P("\t\t[]Param{")
+			for _, p := range m.Params {
+				g.P("\t\t\tParam{")
+				g.P("\t\t\t\tName: ", strconv.Quote(p.Name), ",")
+				g.P("\t\t\t\tType: ", strconv.Quote(p.Type), ",")
+				g.P("\t\t\t\tValue: ", p.Name, ",") //todo test
+				g.P("\t\t\t},")
+			}
+			g.P("\t\t},")
+			g.P("\t))).Request()")
+			g.P("//todo handle response into result")
+			g.P("}")
+			buffer.WriteString(g.String())
+
+			//body := "response := safeGet(" +
+			//	strconv.Quote(urlPath) +
+			//	", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
+			//
+			//
+			//buffer.WriteString(fmt.Sprintf("%s) %s {\n\t"+
+			//	body+
+			//	"}\n\n",
+			//	strings.Join(params, ", "),
+			//	m.ReturnType))
 		}
 
 		mylog.Info(path, fileName+"_gen.go")
@@ -162,6 +180,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/ddkwork/golibrary/stream/net/httpClient"
 	"github.com/ddkwork/golibrary/mylog"
 )
 `)
@@ -169,120 +188,26 @@ import (
 	for _, m := range methods {
 		buffer.WriteString(fmt.Sprintf("\t%s *%s\n", stream.ToCamelUpper(m), m))
 	}
+	buffer.WriteString("\tClient      *httpClient.Client\n")
 	buffer.WriteString("}\n")
 	buffer.WriteString(fmt.Sprintf("func New() *Sdk {\n\treturn &Sdk{" + "\n"))
 	for _, m := range methods {
 		buffer.WriteString(fmt.Sprintf("\t\t%s: new(%s),\n", stream.ToCamelUpper(m), m))
 	}
+	buffer.WriteString("\t\tClient:      httpClient.New(),\n")
 	buffer.WriteString("}}\n")
 	// todo rename for any project
 	body := `
-const DefaultX64dbgServer = "http://127.0.0.1:8888"
-var x64dbgServerURL string
-
-func init() {
-	if len(os.Args) > 1 {
-		x64dbgServerURL = os.Args[1]
-	} else {
-		x64dbgServerURL = DefaultX64dbgServer
-	}
+type Param struct {
+	Name  string 
+	Type  string 
+	Value any    
 }
 
-func safeGet(endpoint string, params map[string]string) []string {
-	if params == nil {
-		params = make(map[string]string)
-	}
-
-	url := fmt.Sprintf("%s/%s", x64dbgServerURL, endpoint)
-	request, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return []string{fmt.Sprintf("Request failed: %s", err.Error())}
-	}
-
-	q := request.URL.Query()
-	for k, v := range params {
-		q.Add(k, v)
-	}
-	request.URL.RawQuery = q.Encode()
-	// mylog.Info("Sending request to", request.URL.String())
-	mylog.Request(request, true)
-
-	client := &http.Client{}
-	response, err := client.Do(request)
-	if err != nil {
-		return []string{fmt.Sprintf("Request failed: %s", err.Error())}
-	}
-	defer response.Body.Close()
-	mylog.Response(response, true)
-	log.Println()
-	log.Println()
-	log.Println()
-
-	if response.StatusCode == http.StatusOK {
-		var lines []string
-		bodyBytes, err := io.ReadAll(response.Body)
-		if err != nil {
-			return []string{fmt.Sprintf("Error reading response: %s", err.Error())}
-		}
-		s := string(bodyBytes)
-		buffer := new(bytes.Buffer)
-		err = json.Indent(buffer, []byte(s), "", " ")
-		if err != nil {
-			lines = strings.Split(s, "\n")
-		} else {
-			// todo GetModuleList 直接解码到结构体
-			lines = strings.Split(buffer.String(), "\n")
-		}
-		return lines
-	}
-	bodyBytes, err := io.ReadAll(response.Body)
-	if err != nil {
-		return []string{fmt.Sprintf("Error reading response: %s", err.Error())}
-	}
-	return []string{fmt.Sprintf("Error %d: %s", response.StatusCode, strings.TrimSpace(string(bodyBytes)))}
-}
-
-func safePost(endpoint string, data any) string {
-	var body []byte
-	var err error
-	if strData, ok := data.(string); ok {
-		body = []byte(strData)
-	} else if dataMap, ok := data.(map[string]string); ok {
-		body, err = json.Marshal(dataMap)
-		if err != nil {
-			return fmt.Sprintf("Request failed: %s", err.Error())
-		}
-	} else {
-		return "Request failed: unsupported data type"
-	}
-
-	url := fmt.Sprintf("%s/%s", x64dbgServerURL, endpoint)
-	request, err := http.NewRequest("POST", url, strings.NewReader(string(body)))
-	if err != nil {
-		return fmt.Sprintf("Request failed: %s", err.Error())
-	}
-	request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-	client := &http.Client{}
-	response, err := client.Do(request)
-	if err != nil {
-		return fmt.Sprintf("Request failed: %s", err.Error())
-	}
-	defer response.Body.Close()
-
-	if response.StatusCode == http.StatusOK {
-		bodyBytes, err := io.ReadAll(response.Body)
-		if err != nil {
-			return fmt.Sprintf("Error reading response: %s", err.Error())
-		}
-		return strings.TrimSpace(string(bodyBytes))
-	} else {
-		bodyBytes, err := io.ReadAll(response.Body)
-		if err != nil {
-			return fmt.Sprintf("Error reading response: %s", err.Error())
-		}
-		return fmt.Sprintf("Error %d: %s", response.StatusCode, strings.TrimSpace(string(bodyBytes)))
-	}
+type ApiResponse struct {
+	Success bool            
+	Type    string          
+	Result  json.RawMessage 
 }
 `
 	buffer.WriteString(body)

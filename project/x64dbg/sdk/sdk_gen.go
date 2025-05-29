@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/ddkwork/golibrary/stream/net/httpClient"
 	"io"
 	"log"
 	"net/http"
@@ -34,6 +35,7 @@ type Sdk struct {
 	Bridgegraph *bridgegraph
 	Bridgelist  *bridgelist
 	Bridgemain  *bridgemain
+	Client      *httpClient.Client
 }
 
 func New() *Sdk {
@@ -58,6 +60,7 @@ func New() *Sdk {
 		Bridgegraph: new(bridgegraph),
 		Bridgelist:  new(bridgelist),
 		Bridgemain:  new(bridgemain),
+		Client:      httpClient.New(),
 	}
 }
 
