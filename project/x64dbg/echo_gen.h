@@ -82,7 +82,7 @@ namespace nlohmann {
             };
         }
     };
-}
+}// namespace nlohmann
 
 Server server;
 #define DEFAULT_PORT     8888
