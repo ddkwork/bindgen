@@ -505,8 +505,8 @@ namespace nlohmann {
 `
 
 	g := stream.NewGeneratedFile()
-	g.P(jsonMarshaler) //todo gen it from ast
 	g.P(start)
+	g.P(jsonMarshaler) //todo gen it from ast
 	for path, api := range m.Map() {
 		/*
 		   		void dispatch() {
