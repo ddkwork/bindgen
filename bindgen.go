@@ -288,6 +288,24 @@ func safePost(endpoint string, data any) string {
 	buffer.WriteString(body)
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 
+	//todo
+	/*
+		APIS = [
+		    {
+		        "path": "/_scriptapi_memory.h/ReadByte",
+		        "func": "Script::Memory::ReadByte",
+		        "params": ["address"]//类型，名称，value的切片
+		        "return_type": "uint8"
+		    },
+		    {
+		        "path": "/_scriptapi_memory.h/ReadDword",
+		        "func": "Script::Memory::ReadDword",
+		        "params": ["address"],
+		        "return_type": "uint32"
+		    },
+		    # 添加更多API...
+		]
+	*/
 	// mylog.Struct(packet.Map())
 	stream.MarshalJsonToFile(packet.Map(), filepath.Join(targetDir, "api.json"))
 	genMcpCppServerCode(packet)
@@ -795,7 +813,7 @@ int main() {
 		g.P("\t{")
 		g.P("\t\t", strconv.Quote(path), ",")
 		g.P("\t\t\t", "[&queryParams, &body, &clientSocket] {")
-
+		api = api
 		//参数处理代码生成逻辑
 		//取出ast得到的函数参数和返回值，queryParams解码参数名称。如果没有参数则从body中取出参数
 		//处理返回值，cpp只有一个返回值应该好处理

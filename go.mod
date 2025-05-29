@@ -5,7 +5,7 @@ go 1.24.3
 require (
 	github.com/dave/dst v0.27.3
 	github.com/ddkwork/ddk v0.0.0-20250519211246-9fe08265bdbe
-	github.com/ddkwork/golibrary v0.1.2-0.20250528050040-b5d92e46eb84
+	github.com/ddkwork/golibrary v0.1.2-0.20250529124115-c6d5ecd6ba6b
 	github.com/ebitengine/purego v0.9.0-alpha.6
 	github.com/go-resty/resty/v2 v2.16.5
 	github.com/go-zeromq/zmq4 v0.17.0
@@ -33,7 +33,7 @@ require (
 	golang.org/x/mod v0.24.0 // indirect
 	golang.org/x/net v0.40.0 // indirect
 	golang.org/x/text v0.25.0 // indirect
-	golang.org/x/tools v0.33.0 // indirect
+	golang.org/x/tools v0.33.1-0.20250521210010-423c5afcceff // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/opt v0.1.4 // indirect
 	modernc.org/sortutil v1.2.1 // indirect

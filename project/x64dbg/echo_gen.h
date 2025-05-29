@@ -35,6 +35,7 @@
 #include <ios>
 #include <sstream>
 #include <algorithm>
+#pragma comment(lib, "ws2_32.lib")
 //=============================================================================
 // HTTP Server Implementation
 //=============================================================================

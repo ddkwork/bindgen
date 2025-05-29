@@ -4,8 +4,6 @@
 #include "echo_gen.h"
 #include <algorithm>
 
-#pragma comment(lib, "ws2_32.lib")
-
 // Plugin information
 #define PLUGIN_NAME    "x64dbg HTTP Server"
 #define PLUGIN_VERSION 1
