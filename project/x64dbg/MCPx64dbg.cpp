@@ -1,21 +1,13 @@
 //+build ignore
 
-// Include x64dbg SDK
 #include "pluginsdk/_plugins.h"
 #include "echo_gen.h"
-
-// Socket includes - after Windows.h
-#include <ws2tcpip.h>
-
-// Standard library includes
-#include <sstream>
 #include <algorithm>
 
-// Link with ws2_32.lib
 #pragma comment(lib, "ws2_32.lib")
 
 // Plugin information
-#define PLUGIN_NAME "x64dbg HTTP Server"
+#define PLUGIN_NAME    "x64dbg HTTP Server"
 #define PLUGIN_VERSION 1
 
 void registerCommands();
@@ -25,24 +17,24 @@ void registerCommands();
 //=============================================================================
 
 // Initialize the plugin
-bool pluginInit(PLUG_INITSTRUCT* initStruct) {
+bool pluginInit(PLUG_INITSTRUCT *initStruct) {
     initStruct->pluginVersion = PLUGIN_VERSION;
     initStruct->sdkVersion = PLUG_SDKVERSION;
     strncpy_s(initStruct->pluginName, PLUGIN_NAME, _TRUNCATE);
     g_pluginHandle = initStruct->pluginHandle;
-    
+
     _plugin_logputs("x64dbg HTTP Server plugin loading...");
-    
+
     // Register commands
     registerCommands();
-    
+
     // Start the HTTP server
     if (startHttpServer()) {
         _plugin_logprintf("x64dbg HTTP Server started on port %d\n", g_httpPort);
     } else {
         _plugin_logputs("Failed to start HTTP server!");
     }
-    
+
     _plugin_logputs("x64dbg HTTP Server plugin loaded!");
     return true;
 }
@@ -55,27 +47,17 @@ void pluginStop() {
 }
 
 // Plugin setup
-bool pluginSetup() {
-    return true;
-}
+bool pluginSetup() { return true; }
 
 // Plugin exports
-extern "C" __declspec(dllexport) bool pluginit(PLUG_INITSTRUCT* initStruct) {
-    return pluginInit(initStruct);
-}
+extern "C" __declspec(dllexport) bool pluginit(PLUG_INITSTRUCT *initStruct) { return pluginInit(initStruct); }
 
-extern "C" __declspec(dllexport) void plugstop() {
-    pluginStop();
-}
+extern "C" __declspec(dllexport) void plugstop() { pluginStop(); }
 
-extern "C" __declspec(dllexport) void plugsetup(PLUG_SETUPSTRUCT* setupStruct) {
-    pluginSetup();
-}
+extern "C" __declspec(dllexport) void plugsetup(PLUG_SETUPSTRUCT *setupStruct) { pluginSetup(); }
 
 // Register plugin commands
 void registerCommands() {
-    _plugin_registercommand(g_pluginHandle, "httpserver", cbEnableHttpServer,
-                            "Toggle HTTP server on/off");
-    _plugin_registercommand(g_pluginHandle, "httpport", cbSetHttpPort,
-                            "Set HTTP server port");
+    _plugin_registercommand(g_pluginHandle, "httpserver", cbEnableHttpServer, "Toggle HTTP server on/off");
+    _plugin_registercommand(g_pluginHandle, "httpport", cbSetHttpPort, "Set HTTP server port");
 }

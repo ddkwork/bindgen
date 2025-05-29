@@ -36,6 +36,11 @@ file(GLOB SOURCES
         echo_gen.h
 )
 
+add_definitions(
+        -DWIN32_LEAN_AND_MEAN
+#        -D_WINSOCKAPI_
+)
+
 # Create shared library (plugin)
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 

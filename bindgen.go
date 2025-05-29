@@ -428,8 +428,8 @@ int main() {
 	g := stream.NewGeneratedFile()
 	g.P(start)
 	for path, api := range m.Map() {
-		//{"_scriptapi_argument.h/Add",   [] { Script::Argument::Add(nullptr); }},//todo add more logic
-		g.P("\t{", strconv.Quote(path), ",   [] { ", api, "()", "; }},") //todo 传入参数,处理返回值和回复客户端的代码生成
+		//{"_scriptapi_argument.h/Add",   [] { Script::Argument::Add(nullptr); }},
+		g.P("\t{", strconv.Quote(path), ",   [] { ", api, "()", "; }},") //todo 解析传入参数,处理返回值和回复客户端的代码生成
 	}
 	g.P(end)
 	stream.WriteTruncate("echo_gen.h", g.String())
@@ -449,10 +449,12 @@ func typedefsNameByID(root gjson.Result, result *Result) {
 	})
 }
 
+//        -DWIN32_LEAN_AND_MEAN
+//           -D_WINSOCKAPI_
 var Flags = `
-#define _WIN32_WINNT 0x0601
+#define WIN32_LEAN_AND_MEAN
+#define _WINSOCKAPI_
 typedef char bool;
-
 `
 
 func extractFlags() []string {
@@ -478,6 +480,7 @@ func runClangASTDump(path string, cModelCallback ClangCModelCallback) []byte {
 	if stream.FileExists(jsonPath) {
 		return mylog.Check2(os.ReadFile(jsonPath))
 	}
+panic("WIN32_LEAN_AND_MEAN")
 	arg := []string{
 		"clang",
 		"-x", "c++", // bridgemain.h need c model，否则会找不解析很多函数，原因不明
