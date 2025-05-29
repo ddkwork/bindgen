@@ -38,6 +38,7 @@ file(GLOB SOURCES
 
 add_definitions(
         -DWIN32_LEAN_AND_MEAN
+        -DWINSOCK_DEPRECATED_NO_WARNINGS
 #        -D_WINSOCKAPI_
 )
 

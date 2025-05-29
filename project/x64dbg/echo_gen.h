@@ -38,7 +38,6 @@
 //=============================================================================
 // HTTP Server Implementation
 //=============================================================================
-#define WINSOCK_DEPRECATED_NO_WARNINGS
 // Default settings
 #define DEFAULT_PORT     8888
 #define MAX_REQUEST_SIZE 8192
