@@ -189,8 +189,8 @@ import (
 				path:       urlPath,
 				Fn:         apiName,
 				Do:         gResp.String(),
-				Params:     nil,
-				ReturnType: "",
+				Params:     m.Params,
+				ReturnType: m.ReturnType,
 			})
 		}
 
