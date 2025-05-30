@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type HardwareType int // :10
 const (
 	HardwareAccess  HardwareType = iota // 0

@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type DBGSTATE int // D:\workspace\workspace\mcp\x64dbg\include\bridgemain.h:113
 const (
 	initialized DBGSTATE = iota // 0

@@ -78,6 +78,12 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 	for _, path := range paths {
 		buffer := bytes.NewBufferString("")
 		buffer.WriteString("package " + pkgName + "\n")
+		buffer.WriteString(`
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+`)
 		for _, e := range results.Enums.Range() {
 			if e.Comment.currentFile != path {
 				continue
@@ -121,13 +127,17 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 				continue
 			}
 			m.Name = strings.TrimPrefix(m.Name, path)
+
+			g := stream.NewGeneratedFile()
+			//g.P("func (", string(methodName[0]), " *", methodName, ") ", m.Name, "(")
+
 			buffer.WriteString(fmt.Sprintf("func ("+string(methodName[0])+" *%s) %s(", methodName, m.Name))
 			params := make([]string, len(m.Params))
 			for i, p := range m.Params {
 				params[i] = fmt.Sprintf("%s %s", p.Name, p.Type)
 			}
 
-			urlPath := fmt.Sprintf("%s/%s", filepath.Base(path), m.Name)
+			urlPath := fmt.Sprintf("/%s/%s", filepath.Base(path), m.Name)
 			//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
 			api := m.Comment.mangledName
 			if strings.HasPrefix(api, "?") { // namespace
@@ -136,16 +146,9 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			}
 			// mylog.Trace(m.name, m.Comment.mangledName)
 			packet.Set(urlPath, api)
-			g := stream.NewGeneratedFile()
-			//buffer.WriteString(fmt.Sprintf("%s) %s {\n\t"+
-			//	body+
-			//	"}\n\n",
-			//	strings.Join(params, ", "),
-			//	m.ReturnType))
-			//g.P("func (", string(methodName[0]), " *", methodName, ") ", m.Name, "(")
-			g.P(strings.Join(params, ", "), "){")
+			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{")
 
-			g.P(" ", "Client.Post().Url(", strconv.Quote("http://localhost:8888/"+urlPath), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
+			g.P(" ", "Client.Post().Url(", strconv.Quote("http://localhost:8888"+urlPath), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
 			g.P("\t\t[]Param{")
 			for _, p := range m.Params {
 				g.P("\t\t\tParam{")
@@ -456,7 +459,7 @@ namespace nlohmann {
            json params;
            for (const auto &param: arg) { params[param.name] = param.value; }
 `)
-			g.P("todo call api with params")
+			g.P("              //todo call api with params")
 		}
 
 		g.P(`
@@ -464,6 +467,7 @@ namespace nlohmann {
        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
    });
 `)
+		g.P()
 		/*
 		   server.Post("/bridgemain.h/DbgMemFindBaseAddr", [](const Request &req, Response &res) {
 		       try {

@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type RegisterEnum int // :10
 const (
 	DR0    RegisterEnum = iota // 0

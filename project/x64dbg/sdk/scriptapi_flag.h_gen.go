@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type FlagEnum int // :10
 const (
 	ZF FlagEnum = iota // 0

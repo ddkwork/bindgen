@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 // LabelInfo (:10)
 type LabelInfo struct {
 	Mod    [256]int8 // C type: char[256]

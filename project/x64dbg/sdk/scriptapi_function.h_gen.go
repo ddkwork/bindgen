@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 // FunctionInfo (:10)
 type FunctionInfo struct {
 	Mod              [256]int8 // C type: char[256]

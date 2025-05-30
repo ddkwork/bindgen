@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type assembler struct{}
 
 func (a *assembler) Assemble(addr uint, dest *byte, size *int, instruction string) {

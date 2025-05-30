@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 // BridgeCFNodeList (:10)
 type BridgeCFNodeList struct {
 	ParentGraph  int      // C type: int

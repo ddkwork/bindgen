@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type memory struct{}
 
 func (m *memory) Read(addr uint, data *uintptr, size uint, sizeRead *uint) {

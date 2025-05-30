@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 type pattern struct{}
 
 func (p *pattern) Find(data *byte, datasize uint, pattern string) {

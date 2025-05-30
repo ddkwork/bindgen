@@ -1,5 +1,10 @@
 package sdk
 
+import (
+	"encoding/json"
+	"github.com/ddkwork/golibrary/mylog"
+)
+
 // ModuleInfo (:10)
 type ModuleInfo struct {
 	Base         uint      // C type: duint
