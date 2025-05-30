@@ -254,7 +254,7 @@ type ApiResponse struct {
 	gMarshal := stream.NewGeneratedFile()
 	for _, s := range results.Structs.Range() {
 		if s.CName == "" {
-			mylog.Todo("bug")
+			mylog.Todo("bug") //list and brigemain etc
 			continue
 		}
 		gMarshal.P("    template<>")
