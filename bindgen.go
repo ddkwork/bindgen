@@ -250,9 +250,9 @@ type ApiResponse struct {
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
 
+	gMarshal := stream.NewGeneratedFile()
 	var marshals = new(safemap.M[string, string])
 	for _, s := range results.Structs.Range() {
-		gMarshal := stream.NewGeneratedFile()
 		if s.CName == "" {
 			mylog.Todo("bug") //list and bridgemain etc
 			continue
@@ -269,6 +269,7 @@ type ApiResponse struct {
 		gMarshal.P("        }")
 		gMarshal.P("    };")
 		marshals.Update(s.CName, gMarshal.String())
+		gMarshal.Reset()
 	}
 	genMcpCppServerCode(api, marshals)
 }
