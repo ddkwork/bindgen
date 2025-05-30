@@ -10,64 +10,124 @@ type LabelInfo struct {
 type label struct{}
 
 func (l *label) Set(info *LabelInfo) {
-	response := safeGet("_scriptapi_label.h/Set", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "info",
+				Type:  "*LabelInfo ",
+				Value: info,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) FromString(label string, addr *uint) {
-	response := safeGet("_scriptapi_label.h/FromString", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/FromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "label",
+				Type:  "string",
+				Value: label,
+			},
+			Param{
+				Name:  "addr",
+				Type:  "*uint ",
+				Value: addr,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) Get(addr uint, text *int8) {
-	response := safeGet("_scriptapi_label.h/Get", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+			Param{
+				Name:  "text",
+				Type:  "*int8 ",
+				Value: text,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) IsTemporary(addr uint) {
-	response := safeGet("_scriptapi_label.h/IsTemporary", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/IsTemporary").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) GetInfo(addr uint, info *LabelInfo) {
-	response := safeGet("_scriptapi_label.h/GetInfo", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+			Param{
+				Name:  "info",
+				Type:  "*LabelInfo ",
+				Value: info,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) Delete(addr uint) {
-	response := safeGet("_scriptapi_label.h/Delete", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) DeleteRange(start uint, end uint) {
-	response := safeGet("_scriptapi_label.h/DeleteRange", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "start",
+				Type:  "uint",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "uint",
+				Value: end,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) Clear() {
-	response := safeGet("_scriptapi_label.h/Clear", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (l *label) GetList(list *ListInfo) {
-	response := safeGet("_scriptapi_label.h/GetList", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "list",
+				Type:  "*ListInfo ",
+				Value: list,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

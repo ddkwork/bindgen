@@ -9,50 +9,90 @@ type BookmarkInfo struct {
 type bookmark struct{}
 
 func (b *bookmark) Set(info *BookmarkInfo) {
-	response := safeGet("_scriptapi_bookmark.h/Set", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "info",
+				Type:  "*BookmarkInfo ",
+				Value: info,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bookmark) Get(addr uint) {
-	response := safeGet("_scriptapi_bookmark.h/Get", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
-	response := safeGet("_scriptapi_bookmark.h/GetInfo", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+			Param{
+				Name:  "info",
+				Type:  "*BookmarkInfo ",
+				Value: info,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bookmark) Delete(addr uint) {
-	response := safeGet("_scriptapi_bookmark.h/Delete", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bookmark) DeleteRange(start uint, end uint) {
-	response := safeGet("_scriptapi_bookmark.h/DeleteRange", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "start",
+				Type:  "uint",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "uint",
+				Value: end,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bookmark) Clear() {
-	response := safeGet("_scriptapi_bookmark.h/Clear", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bookmark) GetList(list *ListInfo) {
-	response := safeGet("_scriptapi_bookmark.h/GetList", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "list",
+				Type:  "*ListInfo ",
+				Value: list,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

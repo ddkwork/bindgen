@@ -13,85 +13,170 @@ const (
 type gui struct{}
 
 func (g *gui) SelectionGet(window Window, start *uint, end *uint) {
-	response := safeGet("_scriptapi_gui.h/SelectionGet", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "window",
+				Type:  "Window",
+				Value: window,
+			},
+			Param{
+				Name:  "start",
+				Type:  "*uint ",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "*uint ",
+				Value: end,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) SelectionSet(window Window, start uint, end uint) {
-	response := safeGet("_scriptapi_gui.h/SelectionSet", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "window",
+				Type:  "Window",
+				Value: window,
+			},
+			Param{
+				Name:  "start",
+				Type:  "uint",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "uint",
+				Value: end,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) SelectionGetStart(window Window) {
-	response := safeGet("_scriptapi_gui.h/SelectionGetStart", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "window",
+				Type:  "Window",
+				Value: window,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) SelectionGetEnd(window Window) {
-	response := safeGet("_scriptapi_gui.h/SelectionGetEnd", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetEnd").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "window",
+				Type:  "Window",
+				Value: window,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) Message(message string) {
-	response := safeGet("_scriptapi_gui.h/Message", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/Message").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "message",
+				Type:  "string",
+				Value: message,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) MessageYesNo(message string) {
-	response := safeGet("_scriptapi_gui.h/MessageYesNo", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/MessageYesNo").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "message",
+				Type:  "string",
+				Value: message,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) InputLine(title string, text *int8) {
-	response := safeGet("_scriptapi_gui.h/InputLine", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "title",
+				Type:  "string",
+				Value: title,
+			},
+			Param{
+				Name:  "text",
+				Type:  "*int8 ",
+				Value: text,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) InputValue(title string, value *uint) {
-	response := safeGet("_scriptapi_gui.h/InputValue", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputValue").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "title",
+				Type:  "string",
+				Value: title,
+			},
+			Param{
+				Name:  "value",
+				Type:  "*uint ",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) Refresh() {
-	response := safeGet("_scriptapi_gui.h/Refresh", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/Refresh").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) AddQWidgetTab(qWidget *uintptr) {
-	response := safeGet("_scriptapi_gui.h/AddQWidgetTab", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/AddQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "qWidget",
+				Type:  "*uintptr ",
+				Value: qWidget,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) ShowQWidgetTab(qWidget *uintptr) {
-	response := safeGet("_scriptapi_gui.h/ShowQWidgetTab", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/ShowQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "qWidget",
+				Type:  "*uintptr ",
+				Value: qWidget,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (g *gui) CloseQWidgetTab(qWidget *uintptr) {
-	response := safeGet("_scriptapi_gui.h/CloseQWidgetTab", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/CloseQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "qWidget",
+				Type:  "*uintptr ",
+				Value: qWidget,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

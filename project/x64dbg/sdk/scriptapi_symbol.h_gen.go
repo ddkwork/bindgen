@@ -18,8 +18,14 @@ type SymbolInfo struct {
 type symbol struct{}
 
 func (s *symbol) GetList(list *ListInfo) {
-	response := safeGet("_scriptapi_symbol.h/GetList", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_symbol.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "list",
+				Type:  "*ListInfo ",
+				Value: list,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

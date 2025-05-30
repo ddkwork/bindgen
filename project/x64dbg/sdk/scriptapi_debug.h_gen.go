@@ -10,85 +10,109 @@ const (
 type debug struct{}
 
 func (d *debug) Wait() {
-	response := safeGet("_scriptapi_debug.h/Wait", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/Wait").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) Run() {
-	response := safeGet("_scriptapi_debug.h/Run", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/Run").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) Pause() {
-	response := safeGet("_scriptapi_debug.h/Pause", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/Pause").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) Stop() {
-	response := safeGet("_scriptapi_debug.h/Stop", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/Stop").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) StepIn() {
-	response := safeGet("_scriptapi_debug.h/StepIn", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/StepIn").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) StepOver() {
-	response := safeGet("_scriptapi_debug.h/StepOver", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/StepOver").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) StepOut() {
-	response := safeGet("_scriptapi_debug.h/StepOut", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/StepOut").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) SetBreakpoint(address uint) {
-	response := safeGet("_scriptapi_debug.h/SetBreakpoint", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "address",
+				Type:  "uint",
+				Value: address,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) DeleteBreakpoint(address uint) {
-	response := safeGet("_scriptapi_debug.h/DeleteBreakpoint", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "address",
+				Type:  "uint",
+				Value: address,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) DisableBreakpoint(address uint) {
-	response := safeGet("_scriptapi_debug.h/DisableBreakpoint", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DisableBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "address",
+				Type:  "uint",
+				Value: address,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) SetHardwareBreakpoint(address uint, Type HardwareType) {
-	response := safeGet("_scriptapi_debug.h/SetHardwareBreakpoint", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "address",
+				Type:  "uint",
+				Value: address,
+			},
+			Param{
+				Name:  "Type",
+				Type:  "HardwareType",
+				Value: Type,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (d *debug) DeleteHardwareBreakpoint(address uint) {
-	response := safeGet("_scriptapi_debug.h/DeleteHardwareBreakpoint", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "address",
+				Type:  "uint",
+				Value: address,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

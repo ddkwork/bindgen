@@ -11,57 +11,122 @@ type FunctionInfo struct {
 type function struct{}
 
 func (f *function) Add(info *FunctionInfo) {
-	response := safeGet("_scriptapi_function.h/Add", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Add").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "info",
+				Type:  "*FunctionInfo ",
+				Value: info,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint) {
-	response := safeGet("_scriptapi_function.h/Get", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+			Param{
+				Name:  "start",
+				Type:  "*uint ",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "*uint ",
+				Value: end,
+			},
+			Param{
+				Name:  "instructionCount",
+				Type:  "*uint ",
+				Value: instructionCount,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) GetInfo(addr uint, info *FunctionInfo) {
-	response := safeGet("_scriptapi_function.h/GetInfo", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "addr",
+				Type:  "uint",
+				Value: addr,
+			},
+			Param{
+				Name:  "info",
+				Type:  "*FunctionInfo ",
+				Value: info,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) Overlaps(start uint, end uint) {
-	response := safeGet("_scriptapi_function.h/Overlaps", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Overlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "start",
+				Type:  "uint",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "uint",
+				Value: end,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) Delete(address uint) {
-	response := safeGet("_scriptapi_function.h/Delete", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "address",
+				Type:  "uint",
+				Value: address,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) DeleteRange(start uint, end uint) {
-	response := safeGet("_scriptapi_function.h/DeleteRange", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "start",
+				Type:  "uint",
+				Value: start,
+			},
+			Param{
+				Name:  "end",
+				Type:  "uint",
+				Value: end,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) Clear() {
-	response := safeGet("_scriptapi_function.h/Clear", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (f *function) GetList(list *ListInfo) {
-	response := safeGet("_scriptapi_function.h/GetList", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "list",
+				Type:  "*ListInfo ",
+				Value: list,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

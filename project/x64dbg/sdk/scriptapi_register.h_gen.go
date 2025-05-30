@@ -93,1226 +93,1585 @@ const (
 type register struct{}
 
 func (r *register) Get(reg RegisterEnum) {
-	response := safeGet("_scriptapi_register.h/Get", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "reg",
+				Type:  "RegisterEnum",
+				Value: reg,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) Set(reg RegisterEnum, value uint) {
-	response := safeGet("_scriptapi_register.h/Set", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "reg",
+				Type:  "RegisterEnum",
+				Value: reg,
+			},
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) Size() {
-	response := safeGet("_scriptapi_register.h/Size", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Size").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDR0() {
-	response := safeGet("_scriptapi_register.h/GetDR0", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR0").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDR0(value uint) {
-	response := safeGet("_scriptapi_register.h/SetDR0", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR0").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDR1() {
-	response := safeGet("_scriptapi_register.h/GetDR1", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR1").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDR1(value uint) {
-	response := safeGet("_scriptapi_register.h/SetDR1", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR1").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDR2() {
-	response := safeGet("_scriptapi_register.h/GetDR2", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR2").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDR2(value uint) {
-	response := safeGet("_scriptapi_register.h/SetDR2", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR2").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDR3() {
-	response := safeGet("_scriptapi_register.h/GetDR3", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR3").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDR3(value uint) {
-	response := safeGet("_scriptapi_register.h/SetDR3", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR3").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDR6() {
-	response := safeGet("_scriptapi_register.h/GetDR6", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR6").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDR6(value uint) {
-	response := safeGet("_scriptapi_register.h/SetDR6", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR6").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDR7() {
-	response := safeGet("_scriptapi_register.h/GetDR7", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR7").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDR7(value uint) {
-	response := safeGet("_scriptapi_register.h/SetDR7", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR7").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetEAX() {
-	response := safeGet("_scriptapi_register.h/GetEAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetEAX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetEAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetAX() {
-	response := safeGet("_scriptapi_register.h/GetAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetAX(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetAH() {
-	response := safeGet("_scriptapi_register.h/GetAH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetAH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetAH(value byte) {
-	response := safeGet("_scriptapi_register.h/SetAH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetAL() {
-	response := safeGet("_scriptapi_register.h/GetAL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetAL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetAL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetAL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetEBX() {
-	response := safeGet("_scriptapi_register.h/GetEBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetEBX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetEBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetBX() {
-	response := safeGet("_scriptapi_register.h/GetBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetBX(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetBH() {
-	response := safeGet("_scriptapi_register.h/GetBH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetBH(value byte) {
-	response := safeGet("_scriptapi_register.h/SetBH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetBL() {
-	response := safeGet("_scriptapi_register.h/GetBL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetBL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetBL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetECX() {
-	response := safeGet("_scriptapi_register.h/GetECX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetECX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetECX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetECX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetECX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCX() {
-	response := safeGet("_scriptapi_register.h/GetCX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCX(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetCX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCH() {
-	response := safeGet("_scriptapi_register.h/GetCH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCH(value byte) {
-	response := safeGet("_scriptapi_register.h/SetCH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCL() {
-	response := safeGet("_scriptapi_register.h/GetCL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetCL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetEDX() {
-	response := safeGet("_scriptapi_register.h/GetEDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetEDX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetEDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDX() {
-	response := safeGet("_scriptapi_register.h/GetDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDX(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDH() {
-	response := safeGet("_scriptapi_register.h/GetDH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDH(value byte) {
-	response := safeGet("_scriptapi_register.h/SetDH", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDH").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDL() {
-	response := safeGet("_scriptapi_register.h/GetDL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetDL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetEDI() {
-	response := safeGet("_scriptapi_register.h/GetEDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetEDI(value uint) {
-	response := safeGet("_scriptapi_register.h/SetEDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDI() {
-	response := safeGet("_scriptapi_register.h/GetDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDI(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetESI() {
-	response := safeGet("_scriptapi_register.h/GetESI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetESI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetESI(value uint) {
-	response := safeGet("_scriptapi_register.h/SetESI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetSI() {
-	response := safeGet("_scriptapi_register.h/GetSI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetSI(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetSI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetEBP() {
-	response := safeGet("_scriptapi_register.h/GetEBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetEBP(value uint) {
-	response := safeGet("_scriptapi_register.h/SetEBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetBP() {
-	response := safeGet("_scriptapi_register.h/GetBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetBP(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetESP() {
-	response := safeGet("_scriptapi_register.h/GetESP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetESP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetESP(value uint) {
-	response := safeGet("_scriptapi_register.h/SetESP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetSP() {
-	response := safeGet("_scriptapi_register.h/GetSP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetSP(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetSP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetEIP() {
-	response := safeGet("_scriptapi_register.h/GetEIP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetEIP(value uint) {
-	response := safeGet("_scriptapi_register.h/SetEIP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRAX() {
-	response := safeGet("_scriptapi_register.h/GetRAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRAX(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRBX() {
-	response := safeGet("_scriptapi_register.h/GetRBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRBX(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRCX() {
-	response := safeGet("_scriptapi_register.h/GetRCX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRCX(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRCX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRDX() {
-	response := safeGet("_scriptapi_register.h/GetRDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRDX(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRSI() {
-	response := safeGet("_scriptapi_register.h/GetRSI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRSI(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRSI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetSIL() {
-	response := safeGet("_scriptapi_register.h/GetSIL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetSIL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetSIL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRDI() {
-	response := safeGet("_scriptapi_register.h/GetRDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRDI(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetDIL() {
-	response := safeGet("_scriptapi_register.h/GetDIL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetDIL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetDIL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRBP() {
-	response := safeGet("_scriptapi_register.h/GetRBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRBP(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetBPL() {
-	response := safeGet("_scriptapi_register.h/GetBPL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetBPL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetBPL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRSP() {
-	response := safeGet("_scriptapi_register.h/GetRSP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRSP(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRSP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetSPL() {
-	response := safeGet("_scriptapi_register.h/GetSPL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetSPL(value byte) {
-	response := safeGet("_scriptapi_register.h/SetSPL", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetRIP() {
-	response := safeGet("_scriptapi_register.h/GetRIP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetRIP(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetRIP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR8() {
-	response := safeGet("_scriptapi_register.h/GetR8", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR8(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR8", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR8D() {
-	response := safeGet("_scriptapi_register.h/GetR8D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR8D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR8D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR8W() {
-	response := safeGet("_scriptapi_register.h/GetR8W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR8W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR8W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR8B() {
-	response := safeGet("_scriptapi_register.h/GetR8B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR8B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR8B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR9() {
-	response := safeGet("_scriptapi_register.h/GetR9", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR9(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR9", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR9D() {
-	response := safeGet("_scriptapi_register.h/GetR9D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR9D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR9D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR9W() {
-	response := safeGet("_scriptapi_register.h/GetR9W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR9W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR9W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR9B() {
-	response := safeGet("_scriptapi_register.h/GetR9B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR9B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR9B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR10() {
-	response := safeGet("_scriptapi_register.h/GetR10", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR10(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR10", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR10D() {
-	response := safeGet("_scriptapi_register.h/GetR10D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR10D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR10D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR10W() {
-	response := safeGet("_scriptapi_register.h/GetR10W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR10W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR10W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR10B() {
-	response := safeGet("_scriptapi_register.h/GetR10B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR10B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR10B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR11() {
-	response := safeGet("_scriptapi_register.h/GetR11", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR11(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR11", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR11D() {
-	response := safeGet("_scriptapi_register.h/GetR11D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR11D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR11D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR11W() {
-	response := safeGet("_scriptapi_register.h/GetR11W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR11W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR11W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR11B() {
-	response := safeGet("_scriptapi_register.h/GetR11B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR11B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR11B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR12() {
-	response := safeGet("_scriptapi_register.h/GetR12", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR12(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR12", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR12D() {
-	response := safeGet("_scriptapi_register.h/GetR12D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR12D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR12D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR12W() {
-	response := safeGet("_scriptapi_register.h/GetR12W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR12W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR12W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR12B() {
-	response := safeGet("_scriptapi_register.h/GetR12B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR12B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR12B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR13() {
-	response := safeGet("_scriptapi_register.h/GetR13", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR13(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR13", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR13D() {
-	response := safeGet("_scriptapi_register.h/GetR13D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR13D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR13D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR13W() {
-	response := safeGet("_scriptapi_register.h/GetR13W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR13W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR13W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR13B() {
-	response := safeGet("_scriptapi_register.h/GetR13B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR13B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR13B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR14() {
-	response := safeGet("_scriptapi_register.h/GetR14", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR14(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR14", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR14D() {
-	response := safeGet("_scriptapi_register.h/GetR14D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR14D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR14D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR14W() {
-	response := safeGet("_scriptapi_register.h/GetR14W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR14W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR14W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR14B() {
-	response := safeGet("_scriptapi_register.h/GetR14B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR14B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR14B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR15() {
-	response := safeGet("_scriptapi_register.h/GetR15", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR15(value uint64) {
-	response := safeGet("_scriptapi_register.h/SetR15", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint64",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR15D() {
-	response := safeGet("_scriptapi_register.h/GetR15D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR15D(value uint) {
-	response := safeGet("_scriptapi_register.h/SetR15D", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15D").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR15W() {
-	response := safeGet("_scriptapi_register.h/GetR15W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR15W(value uint16) {
-	response := safeGet("_scriptapi_register.h/SetR15W", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15W").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint16",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetR15B() {
-	response := safeGet("_scriptapi_register.h/GetR15B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetR15B(value byte) {
-	response := safeGet("_scriptapi_register.h/SetR15B", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15B").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "byte",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCAX() {
-	response := safeGet("_scriptapi_register.h/GetCAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCAX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCAX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCBX() {
-	response := safeGet("_scriptapi_register.h/GetCBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCBX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCBX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCCX() {
-	response := safeGet("_scriptapi_register.h/GetCCX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCCX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCCX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCDX() {
-	response := safeGet("_scriptapi_register.h/GetCDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCDX(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCDX", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCDI() {
-	response := safeGet("_scriptapi_register.h/GetCDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCDI(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCDI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCSI() {
-	response := safeGet("_scriptapi_register.h/GetCSI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCSI(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCSI", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCBP() {
-	response := safeGet("_scriptapi_register.h/GetCBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCBP(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCBP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCSP() {
-	response := safeGet("_scriptapi_register.h/GetCSP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCSP(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCSP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCIP() {
-	response := safeGet("_scriptapi_register.h/GetCIP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCIP(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCIP", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) GetCFLAGS() {
-	response := safeGet("_scriptapi_register.h/GetCFLAGS", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCFLAGS").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (r *register) SetCFLAGS(value uint) {
-	response := safeGet("_scriptapi_register.h/SetCFLAGS", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCFLAGS").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

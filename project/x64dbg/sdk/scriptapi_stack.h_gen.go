@@ -3,22 +3,32 @@ package sdk
 type stack struct{}
 
 func (s *stack) Pop() {
-	response := safeGet("_scriptapi_stack.h/Pop", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Pop").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (s *stack) Push(value uint) {
-	response := safeGet("_scriptapi_stack.h/Push", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Push").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "value",
+				Type:  "uint",
+				Value: value,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (s *stack) Peek(offset int) {
-	response := safeGet("_scriptapi_stack.h/Peek", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Peek").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "offset",
+				Type:  "int",
+				Value: offset,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }

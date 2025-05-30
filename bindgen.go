@@ -137,7 +137,15 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			// mylog.Trace(m.name, m.Comment.mangledName)
 			packet.Set(urlPath, api)
 			g := stream.NewGeneratedFile()
-			g.P(" ", string(methodName[0]), ".Client.Post().Url(", strconv.Quote("http://localhost:8888/"+urlPath), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
+			//buffer.WriteString(fmt.Sprintf("%s) %s {\n\t"+
+			//	body+
+			//	"}\n\n",
+			//	strings.Join(params, ", "),
+			//	m.ReturnType))
+			//g.P("func (", string(methodName[0]), " *", methodName, ") ", m.Name, "(")
+			g.P(strings.Join(params, ", "), "){")
+
+			g.P(" ", "Client.Post().Url(", strconv.Quote("http://localhost:8888/"+urlPath), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
 			g.P("\t\t[]Param{")
 			for _, p := range m.Params {
 				g.P("\t\t\tParam{")
@@ -152,16 +160,6 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 			g.P("}")
 			buffer.WriteString(g.String())
 
-			//body := "response := safeGet(" +
-			//	strconv.Quote(urlPath) +
-			//	", map[string]string{})\n\tif len(response) == 0 {\n\t\treturn \n\t}"
-			//
-			//
-			//buffer.WriteString(fmt.Sprintf("%s) %s {\n\t"+
-			//	body+
-			//	"}\n\n",
-			//	strings.Join(params, ", "),
-			//	m.ReturnType))
 		}
 
 		mylog.Info(path, fileName+"_gen.go")
@@ -188,15 +186,13 @@ import (
 	for _, m := range methods {
 		buffer.WriteString(fmt.Sprintf("\t%s *%s\n", stream.ToCamelUpper(m), m))
 	}
-	buffer.WriteString("\tClient      *httpClient.Client\n")
 	buffer.WriteString("}\n")
 	buffer.WriteString(fmt.Sprintf("func New() *Sdk {\n\treturn &Sdk{" + "\n"))
 	for _, m := range methods {
 		buffer.WriteString(fmt.Sprintf("\t\t%s: new(%s),\n", stream.ToCamelUpper(m), m))
 	}
-	buffer.WriteString("\t\tClient:      httpClient.New(),\n")
 	buffer.WriteString("}}\n")
-	// todo rename for any project
+
 	body := `
 type Param struct {
 	Name  string 
@@ -211,6 +207,8 @@ type ApiResponse struct {
 }
 `
 	buffer.WriteString(body)
+	buffer.WriteString("  var Client=     httpClient.New()\n")
+
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 
 	//todo

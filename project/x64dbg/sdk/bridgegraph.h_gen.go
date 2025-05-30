@@ -41,43 +41,61 @@ type BridgeCFGraph struct {
 type bridgegraph struct{}
 
 func (b *bridgegraph) Free(graphList *uintptr) {
-	response := safeGet("bridgegraph.h/Free", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/bridgegraph.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "graphList",
+				Type:  "*uintptr ",
+				Value: graphList,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bridgegraph) ToNodeList() {
-	response := safeGet("bridgegraph.h/ToNodeList", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/bridgegraph.h/ToNodeList").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bridgegraph) __debugbreak() {
-	response := safeGet("bridgegraph.h/__debugbreak", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/bridgegraph.h/__debugbreak").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bridgegraph) AddNode(node *BridgeCFNode) {
-	response := safeGet("bridgegraph.h/AddNode", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/bridgegraph.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "node",
+				Type:  "*BridgeCFNode ",
+				Value: node,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bridgegraph) AddParent(child int, parent int) {
-	response := safeGet("bridgegraph.h/AddParent", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/bridgegraph.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			Param{
+				Name:  "child",
+				Type:  "int",
+				Value: child,
+			},
+			Param{
+				Name:  "parent",
+				Type:  "int",
+				Value: parent,
+			},
+		},
+	))).Request()
+	// todo handle response into result
 }
-
 func (b *bridgegraph) ToGraphList() {
-	response := safeGet("bridgegraph.h/ToGraphList", map[string]string{})
-	if len(response) == 0 {
-		return
-	}
+	Client.Post().Url("http://localhost:8888/bridgegraph.h/ToGraphList").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{},
+	))).Request()
+	// todo handle response into result
 }

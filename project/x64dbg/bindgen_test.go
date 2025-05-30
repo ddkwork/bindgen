@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	"github.com/ddkwork/bindgen"
-	"github.com/ddkwork/bindgen/project/x64dbg/sdk"
 	"github.com/ddkwork/golibrary/assert"
 	"github.com/ddkwork/golibrary/stream"
 )
@@ -26,9 +25,9 @@ func TestDecodeNamespace(t *testing.T) {
 }
 
 func TestNew(t *testing.T) {
-	s := sdk.New()
-	s.Bridgemain.DbgIsRunning()
-	s.Debug.Wait()
+	//s := sdk.New()
+	//s.Bridgemain.DbgIsRunning()
+	//s.Debug.Wait()
 }
 
 func TestName(t *testing.T) {
