@@ -445,7 +445,7 @@ namespace nlohmann {
 	g.P(jsonMarshaler) //todo gen it from ast
 
 	g.P("void dispatch() {")
-	for path, api := range m.Map() {
+	for path, api := range m.Range() {
 		g.P("    server.Post(", strconv.Quote(path), ", [](const Request &req, Response &res) {")
 		g.P("       try {")
 		list := false
