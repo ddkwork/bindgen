@@ -253,6 +253,10 @@ type ApiResponse struct {
 	var marshals []string
 	gMarshal := stream.NewGeneratedFile()
 	for _, s := range results.Structs.Range() {
+		if s.CName == "" {
+			mylog.Todo("bug")
+			continue
+		}
 		gMarshal.P("    template<>")
 		gMarshal.P("    struct adl_serializer<", s.CName, "> {")
 		gMarshal.P("        static void to_json(json &j, const ", s.CName, " &self) {")
