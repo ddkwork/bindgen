@@ -90,13 +90,17 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 	for _, path := range paths {
 		buffer := bytes.NewBufferString("")
 		buffer.WriteString("package " + pkgName + "\n")
-		buffer.WriteString(`
+
+		if !results.Functions.Empty() {
+			buffer.WriteString(`
 import (
 	"fmt"
 	"encoding/json"
 	"github.com/ddkwork/golibrary/mylog"
 )
 `)
+		}
+
 		for _, e := range results.Enums.Range() {
 			if e.Comment.currentFile != path {
 				continue
@@ -250,15 +254,8 @@ type ApiResponse struct {
 	gMarshal := stream.NewGeneratedFile()
 	for _, s := range results.Structs.Range() {
 		gMarshal.P("    template<>")
-
-		objectName := s.Comment.mangledName
-		if strings.HasPrefix(objectName, "?") { // namespace
-			split := strings.Split(objectName, "@")
-			objectName = split[2] + "::" + split[1] + "::" + s.Name
-		}
-
-		gMarshal.P("    struct adl_serializer<", objectName, "> {")
-		gMarshal.P("        static void to_json(json &j, const ", objectName, " &self) {")
+		gMarshal.P("    struct adl_serializer<", s.CName, "> {")
+		gMarshal.P("        static void to_json(json &j, const ", s.CName, " &self) {")
 		gMarshal.P("            j = {")
 		gMarshal.P("")
 		for _, p := range s.Fields {
@@ -451,6 +448,7 @@ void stopHttpServer() {
  }
  */
 `)
+	g.P("namespace nlohmann {")
 	for _, marshal := range marshals {
 		g.P(marshal)
 		g.P()
@@ -588,9 +586,20 @@ func runClangASTDump(path string, cModelCallback ClangCModelCallback) []byte {
 	return out.Output.Bytes()
 }
 
+func needSkip(n gjson.Result) bool {
+	kind := n.Get("kind").String()
+	if kind == "BuiltinType" {
+		return true
+	}
+	if !strings.Contains(n.Raw, "TranslationUnitDecl") && strings.Contains(n.Raw, "Program Files") {
+		return true
+	}
+	return false
+}
+
 func traverseNode(node gjson.Result, result *Result, path string) {
-	var processNode func(gjson.Result)
-	processNode = func(n gjson.Result) {
+	var processNode func(gjson.Result, []string)
+	processNode = func(n gjson.Result, namespace []string) {
 		name := n.Get("name").String()
 		comment := Comment{
 			currentFile:  path,
@@ -600,13 +609,10 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 			includedFrom: n.Get("range.begin.includedFrom.file").String(),
 			expansionLoc: n.Get("range.begin.expansionLoc.file").String(),
 		}
+		if needSkip(n) {
+			return
+		}
 		kind := n.Get("kind").String()
-		if kind == "BuiltinType" {
-			return
-		}
-		if !strings.Contains(n.Raw, "TranslationUnitDecl") && strings.Contains(n.Raw, "Program Files") {
-			return
-		}
 		switch kind {
 		case "EnumDecl":
 			if name == "" {
@@ -627,6 +633,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 			}
 			enum.Comment = comment
 			result.Enums.Update(enum.Name, enum)
+
 		case "RecordDecl", "CXXRecordDecl":
 			if name == "" {
 				id := n.Get("id").String()
@@ -650,7 +657,12 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 					return
 				}
 			}
+
 			object := parseStruct(n)
+			object.CName = object.Name
+			if len(namespace) > 0 {
+				object.CName = strings.Join(namespace, "::") + "::" + object.Name
+			}
 			if object.Name == "" {
 				if name == "" {
 					return
@@ -700,12 +712,32 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 		}
 
 		n.Get("inner").ForEach(func(_, child gjson.Result) bool {
-			processNode(child)
+			processNode(child, namespace)
 			return true
 		})
 	}
 
-	processNode(node)
+	namespace := finedNamespace(node)
+	processNode(node, namespace)
+}
+
+func finedNamespace(node gjson.Result) []string {
+	var namespace []string
+	var traverseInner func(gjson.Result)
+	traverseInner = func(inner gjson.Result) {
+		inner.ForEach(func(_, child gjson.Result) bool {
+			if needSkip(child) {
+				return true
+			}
+			if child.Get("kind").String() == "NamespaceDecl" {
+				namespace = append(namespace, child.Get("name").String())
+			}
+			traverseInner(child.Get("inner"))
+			return true
+		})
+	}
+	traverseInner(node.Get("inner"))
+	return namespace
 }
 
 func parseEnum(node gjson.Result) EnumInfo {
@@ -740,9 +772,13 @@ func parseEnum(node gjson.Result) EnumInfo {
 
 func parseStruct(node gjson.Result) StructInfo {
 	info := StructInfo{
-		Name:   node.Get("name").String(),
-		Loc:    formatLoc(node.Get("loc")),
-		IsImpl: node.Get("isImplicit").Bool(),
+		Name:    node.Get("name").String(),
+		CName:   "",
+		Loc:     formatLoc(node.Get("loc")),
+		IsImpl:  node.Get("isImplicit").Bool(),
+		Fields:  nil,
+		Methods: nil,
+		Comment: Comment{},
 	}
 
 	node.Get("inner").ForEach(func(_, child gjson.Result) bool {
@@ -1003,6 +1039,7 @@ type (
 
 	StructInfo struct {
 		Name    string
+		CName   string
 		Loc     string
 		IsImpl  bool
 		Fields  []StructField

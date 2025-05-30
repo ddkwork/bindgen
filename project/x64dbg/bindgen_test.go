@@ -32,15 +32,15 @@ func TestNew(t *testing.T) {
 
 func TestName(t *testing.T) {
 	//fakeError.Walk(".")
-	//bind(targetDir, func(s string) bool {
-	//	return false
-	//},"2.h")
+	bindgen.Bind(targetDir, func(s string) bool {
+		return false
+	}, "../../bug.h")
 
 	// os.RemoveAll("cache")
-	RepackSdk()
-	bindgen.Bind(targetDir, func(s string) bool {
-		return filepath.Base(s) == "bridgemain.h"
-	}, filepath.Join(newSdk, "bridgemain.h"))
+	//RepackSdk()
+	//bindgen.Bind(targetDir, func(s string) bool {
+	//	return filepath.Base(s) == "bridgemain.h"
+	//}, filepath.Join(newSdk, "bridgemain.h"))
 }
 
 func TestWalk(t *testing.T) {
