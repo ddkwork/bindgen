@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -17,10 +18,10 @@ type comment struct{}
 func (c *comment) Set(info *CommentInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "info",
 				Type:  "*CommentInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -30,15 +31,15 @@ func (c *comment) Set(info *CommentInfo) {
 func (c *comment) Get(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -48,15 +49,15 @@ func (c *comment) Get(addr uint, text *int8) {
 func (c *comment) GetInfo(addr uint, info *CommentInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*CommentInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -66,10 +67,10 @@ func (c *comment) GetInfo(addr uint, info *CommentInfo) {
 func (c *comment) Delete(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -79,15 +80,15 @@ func (c *comment) Delete(addr uint) {
 func (c *comment) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -104,10 +105,10 @@ func (c *comment) Clear() {
 func (c *comment) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()

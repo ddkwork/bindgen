@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -828,10 +829,10 @@ func (b *bridgemain) BridgeStart() {
 func (b *bridgemain) BridgeAlloc(size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -841,10 +842,10 @@ func (b *bridgemain) BridgeAlloc(size uint) {
 func (b *bridgemain) BridgeFree(ptr *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "ptr",
 				Type:  "*uintptr ",
-				Value: ptr,
+				Value: fmt.Sprintf("%v", ptr),
 			},
 		},
 	))).Request()
@@ -854,20 +855,20 @@ func (b *bridgemain) BridgeFree(ptr *uintptr) {
 func (b *bridgemain) BridgeSettingGet(section string, key string, value *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "section",
 				Type:  "string",
-				Value: section,
+				Value: fmt.Sprintf("%v", section),
 			},
-			Param{
+			{
 				Name:  "key",
 				Type:  "string",
-				Value: key,
+				Value: fmt.Sprintf("%v", key),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "*int8 ",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -877,20 +878,20 @@ func (b *bridgemain) BridgeSettingGet(section string, key string, value *int8) {
 func (b *bridgemain) BridgeSettingGetUint(section string, key string, value *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "section",
 				Type:  "string",
-				Value: section,
+				Value: fmt.Sprintf("%v", section),
 			},
-			Param{
+			{
 				Name:  "key",
 				Type:  "string",
-				Value: key,
+				Value: fmt.Sprintf("%v", key),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "*uint ",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -900,20 +901,20 @@ func (b *bridgemain) BridgeSettingGetUint(section string, key string, value *uin
 func (b *bridgemain) BridgeSettingSet(section string, key string, value string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "section",
 				Type:  "string",
-				Value: section,
+				Value: fmt.Sprintf("%v", section),
 			},
-			Param{
+			{
 				Name:  "key",
 				Type:  "string",
-				Value: key,
+				Value: fmt.Sprintf("%v", key),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "string",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -923,20 +924,20 @@ func (b *bridgemain) BridgeSettingSet(section string, key string, value string) 
 func (b *bridgemain) BridgeSettingSetUint(section string, key string, value uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "section",
 				Type:  "string",
-				Value: section,
+				Value: fmt.Sprintf("%v", section),
 			},
-			Param{
+			{
 				Name:  "key",
 				Type:  "string",
-				Value: key,
+				Value: fmt.Sprintf("%v", key),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -953,10 +954,10 @@ func (b *bridgemain) BridgeSettingFlush() {
 func (b *bridgemain) BridgeSettingRead(errorLine *int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "errorLine",
 				Type:  "*int ",
-				Value: errorLine,
+				Value: fmt.Sprintf("%v", errorLine),
 			},
 		},
 	))).Request()
@@ -1015,20 +1016,20 @@ func (b *bridgemain) DbgExit() {
 func (b *bridgemain) DbgMemRead(va uint, dest *uintptr, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "va",
 				Type:  "uint",
-				Value: va,
+				Value: fmt.Sprintf("%v", va),
 			},
-			Param{
+			{
 				Name:  "dest",
 				Type:  "*uintptr ",
-				Value: dest,
+				Value: fmt.Sprintf("%v", dest),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -1038,20 +1039,20 @@ func (b *bridgemain) DbgMemRead(va uint, dest *uintptr, size uint) {
 func (b *bridgemain) DbgMemWrite(va uint, src *uintptr, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemWrite").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "va",
 				Type:  "uint",
-				Value: va,
+				Value: fmt.Sprintf("%v", va),
 			},
-			Param{
+			{
 				Name:  "src",
 				Type:  "*uintptr ",
-				Value: src,
+				Value: fmt.Sprintf("%v", src),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -1061,10 +1062,10 @@ func (b *bridgemain) DbgMemWrite(va uint, src *uintptr, size uint) {
 func (b *bridgemain) DbgMemGetPageSize(base uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemGetPageSize").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "base",
 				Type:  "uint",
-				Value: base,
+				Value: fmt.Sprintf("%v", base),
 			},
 		},
 	))).Request()
@@ -1074,15 +1075,15 @@ func (b *bridgemain) DbgMemGetPageSize(base uint) {
 func (b *bridgemain) DbgMemFindBaseAddr(addr uint, size *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemFindBaseAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "*uint ",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -1092,10 +1093,10 @@ func (b *bridgemain) DbgMemFindBaseAddr(addr uint, size *uint) {
 func (b *bridgemain) DbgCmdExec(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgCmdExec").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "cmd",
 				Type:  "string",
-				Value: cmd,
+				Value: fmt.Sprintf("%v", cmd),
 			},
 		},
 	))).Request()
@@ -1105,10 +1106,10 @@ func (b *bridgemain) DbgCmdExec(cmd string) {
 func (b *bridgemain) DbgCmdExecDirect(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgCmdExecDirect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "cmd",
 				Type:  "string",
-				Value: cmd,
+				Value: fmt.Sprintf("%v", cmd),
 			},
 		},
 	))).Request()
@@ -1118,10 +1119,10 @@ func (b *bridgemain) DbgCmdExecDirect(cmd string) {
 func (b *bridgemain) DbgMemMap(memmap *MEMMAP) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemMap").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "memmap",
 				Type:  "*MEMMAP ",
-				Value: memmap,
+				Value: fmt.Sprintf("%v", memmap),
 			},
 		},
 	))).Request()
@@ -1131,10 +1132,10 @@ func (b *bridgemain) DbgMemMap(memmap *MEMMAP) {
 func (b *bridgemain) DbgIsValidExpression(expression string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsValidExpression").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "expression",
 				Type:  "string",
-				Value: expression,
+				Value: fmt.Sprintf("%v", expression),
 			},
 		},
 	))).Request()
@@ -1151,10 +1152,10 @@ func (b *bridgemain) DbgIsDebugging() {
 func (b *bridgemain) DbgIsJumpGoingToExecute(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsJumpGoingToExecute").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1164,20 +1165,20 @@ func (b *bridgemain) DbgIsJumpGoingToExecute(addr uint) {
 func (b *bridgemain) DbgGetLabelAt(addr uint, segment SEGMENTREG, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetLabelAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "segment",
 				Type:  "SEGMENTREG",
-				Value: segment,
+				Value: fmt.Sprintf("%v", segment),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -1187,15 +1188,15 @@ func (b *bridgemain) DbgGetLabelAt(addr uint, segment SEGMENTREG, text *int8) {
 func (b *bridgemain) DbgSetLabelAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetLabelAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -1205,15 +1206,15 @@ func (b *bridgemain) DbgSetLabelAt(addr uint, text string) {
 func (b *bridgemain) DbgClearLabelRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearLabelRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1223,15 +1224,15 @@ func (b *bridgemain) DbgClearLabelRange(start uint, end uint) {
 func (b *bridgemain) DbgGetCommentAt(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetCommentAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -1241,15 +1242,15 @@ func (b *bridgemain) DbgGetCommentAt(addr uint, text *int8) {
 func (b *bridgemain) DbgSetCommentAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetCommentAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -1259,15 +1260,15 @@ func (b *bridgemain) DbgSetCommentAt(addr uint, text string) {
 func (b *bridgemain) DbgClearCommentRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearCommentRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1277,10 +1278,10 @@ func (b *bridgemain) DbgClearCommentRange(start uint, end uint) {
 func (b *bridgemain) DbgGetBookmarkAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBookmarkAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1290,15 +1291,15 @@ func (b *bridgemain) DbgGetBookmarkAt(addr uint) {
 func (b *bridgemain) DbgClearBookmarkRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearBookmarkRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1308,15 +1309,15 @@ func (b *bridgemain) DbgClearBookmarkRange(start uint, end uint) {
 func (b *bridgemain) DbgGetModuleAt(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetModuleAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -1326,10 +1327,10 @@ func (b *bridgemain) DbgGetModuleAt(addr uint, text *int8) {
 func (b *bridgemain) DbgGetBpxTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBpxTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1339,10 +1340,10 @@ func (b *bridgemain) DbgGetBpxTypeAt(addr uint) {
 func (b *bridgemain) DbgValFromString(s string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgValFromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "s",
 				Type:  "string",
-				Value: s,
+				Value: fmt.Sprintf("%v", s),
 			},
 		},
 	))).Request()
@@ -1352,15 +1353,15 @@ func (b *bridgemain) DbgValFromString(s string) {
 func (b *bridgemain) DbgGetRegDumpEx(regdump *REGDUMP, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetRegDumpEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "regdump",
 				Type:  "*REGDUMP ",
-				Value: regdump,
+				Value: fmt.Sprintf("%v", regdump),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -1370,15 +1371,15 @@ func (b *bridgemain) DbgGetRegDumpEx(regdump *REGDUMP, size uint) {
 func (b *bridgemain) DbgValToString(s string, value uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgValToString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "s",
 				Type:  "string",
-				Value: s,
+				Value: fmt.Sprintf("%v", s),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1388,10 +1389,10 @@ func (b *bridgemain) DbgValToString(s string, value uint) {
 func (b *bridgemain) DbgMemIsValidReadPtr(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemIsValidReadPtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1401,15 +1402,15 @@ func (b *bridgemain) DbgMemIsValidReadPtr(addr uint) {
 func (b *bridgemain) DbgGetBpList(Type BPXTYPE, list *BPMAP) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBpList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "Type",
 				Type:  "BPXTYPE",
-				Value: Type,
+				Value: fmt.Sprintf("%v", Type),
 			},
-			Param{
+			{
 				Name:  "list",
 				Type:  "*BPMAP ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -1419,10 +1420,10 @@ func (b *bridgemain) DbgGetBpList(Type BPXTYPE, list *BPMAP) {
 func (b *bridgemain) DbgGetFunctionTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetFunctionTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1432,15 +1433,15 @@ func (b *bridgemain) DbgGetFunctionTypeAt(addr uint) {
 func (b *bridgemain) DbgGetLoopTypeAt(addr uint, depth int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetLoopTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "depth",
 				Type:  "int",
-				Value: depth,
+				Value: fmt.Sprintf("%v", depth),
 			},
 		},
 	))).Request()
@@ -1450,10 +1451,10 @@ func (b *bridgemain) DbgGetLoopTypeAt(addr uint, depth int) {
 func (b *bridgemain) DbgGetBranchDestination(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBranchDestination").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1463,10 +1464,10 @@ func (b *bridgemain) DbgGetBranchDestination(addr uint) {
 func (b *bridgemain) DbgScriptLoad(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptLoad").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "filename",
 				Type:  "string",
-				Value: filename,
+				Value: fmt.Sprintf("%v", filename),
 			},
 		},
 	))).Request()
@@ -1483,10 +1484,10 @@ func (b *bridgemain) DbgScriptUnload() {
 func (b *bridgemain) DbgScriptRun(destline int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptRun").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "destline",
 				Type:  "int",
-				Value: destline,
+				Value: fmt.Sprintf("%v", destline),
 			},
 		},
 	))).Request()
@@ -1503,10 +1504,10 @@ func (b *bridgemain) DbgScriptStep() {
 func (b *bridgemain) DbgScriptBpToggle(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptBpToggle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
 		},
 	))).Request()
@@ -1516,10 +1517,10 @@ func (b *bridgemain) DbgScriptBpToggle(line int) {
 func (b *bridgemain) DbgScriptBpGet(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptBpGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
 		},
 	))).Request()
@@ -1529,10 +1530,10 @@ func (b *bridgemain) DbgScriptBpGet(line int) {
 func (b *bridgemain) DbgScriptCmdExec(command string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptCmdExec").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "command",
 				Type:  "string",
-				Value: command,
+				Value: fmt.Sprintf("%v", command),
 			},
 		},
 	))).Request()
@@ -1549,10 +1550,10 @@ func (b *bridgemain) DbgScriptAbort() {
 func (b *bridgemain) DbgScriptGetLineType(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptGetLineType").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
 		},
 	))).Request()
@@ -1562,10 +1563,10 @@ func (b *bridgemain) DbgScriptGetLineType(line int) {
 func (b *bridgemain) DbgScriptSetIp(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptSetIp").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
 		},
 	))).Request()
@@ -1575,15 +1576,15 @@ func (b *bridgemain) DbgScriptSetIp(line int) {
 func (b *bridgemain) DbgScriptGetBranchInfo(line int, info *SCRIPTBRANCH) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptGetBranchInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*SCRIPTBRANCH ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -1593,20 +1594,20 @@ func (b *bridgemain) DbgScriptGetBranchInfo(line int, info *SCRIPTBRANCH) {
 func (b *bridgemain) DbgSymbolEnum(base uint, cbSymbolEnum uintptr, user *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSymbolEnum").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "base",
 				Type:  "uint",
-				Value: base,
+				Value: fmt.Sprintf("%v", base),
 			},
-			Param{
+			{
 				Name:  "cbSymbolEnum",
 				Type:  "uintptr",
-				Value: cbSymbolEnum,
+				Value: fmt.Sprintf("%v", cbSymbolEnum),
 			},
-			Param{
+			{
 				Name:  "user",
 				Type:  "*uintptr ",
-				Value: user,
+				Value: fmt.Sprintf("%v", user),
 			},
 		},
 	))).Request()
@@ -1616,20 +1617,20 @@ func (b *bridgemain) DbgSymbolEnum(base uint, cbSymbolEnum uintptr, user *uintpt
 func (b *bridgemain) DbgSymbolEnumFromCache(base uint, cbSymbolEnum uintptr, user *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSymbolEnumFromCache").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "base",
 				Type:  "uint",
-				Value: base,
+				Value: fmt.Sprintf("%v", base),
 			},
-			Param{
+			{
 				Name:  "cbSymbolEnum",
 				Type:  "uintptr",
-				Value: cbSymbolEnum,
+				Value: fmt.Sprintf("%v", cbSymbolEnum),
 			},
-			Param{
+			{
 				Name:  "user",
 				Type:  "*uintptr ",
-				Value: user,
+				Value: fmt.Sprintf("%v", user),
 			},
 		},
 	))).Request()
@@ -1639,30 +1640,30 @@ func (b *bridgemain) DbgSymbolEnumFromCache(base uint, cbSymbolEnum uintptr, use
 func (b *bridgemain) DbgSymbolEnumRange(start uint, end uint, symbolMask uint, cbSymbolEnum uintptr, user *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSymbolEnumRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
-			Param{
+			{
 				Name:  "symbolMask",
 				Type:  "uint",
-				Value: symbolMask,
+				Value: fmt.Sprintf("%v", symbolMask),
 			},
-			Param{
+			{
 				Name:  "cbSymbolEnum",
 				Type:  "uintptr",
-				Value: cbSymbolEnum,
+				Value: fmt.Sprintf("%v", cbSymbolEnum),
 			},
-			Param{
+			{
 				Name:  "user",
 				Type:  "*uintptr ",
-				Value: user,
+				Value: fmt.Sprintf("%v", user),
 			},
 		},
 	))).Request()
@@ -1672,15 +1673,15 @@ func (b *bridgemain) DbgSymbolEnumRange(start uint, end uint, symbolMask uint, c
 func (b *bridgemain) DbgAssembleAt(addr uint, instruction string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgAssembleAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "instruction",
 				Type:  "string",
-				Value: instruction,
+				Value: fmt.Sprintf("%v", instruction),
 			},
 		},
 	))).Request()
@@ -1690,10 +1691,10 @@ func (b *bridgemain) DbgAssembleAt(addr uint, instruction string) {
 func (b *bridgemain) DbgModBaseFromName(name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgModBaseFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -1703,15 +1704,15 @@ func (b *bridgemain) DbgModBaseFromName(name string) {
 func (b *bridgemain) DbgDisasmAt(addr uint, instr *DISASM_INSTR) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDisasmAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "instr",
 				Type:  "*DISASM_INSTR ",
-				Value: instr,
+				Value: fmt.Sprintf("%v", instr),
 			},
 		},
 	))).Request()
@@ -1721,15 +1722,15 @@ func (b *bridgemain) DbgDisasmAt(addr uint, instr *DISASM_INSTR) {
 func (b *bridgemain) DbgStackCommentGet(addr uint, comment *STACK_COMMENT) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgStackCommentGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "comment",
 				Type:  "*STACK_COMMENT ",
-				Value: comment,
+				Value: fmt.Sprintf("%v", comment),
 			},
 		},
 	))).Request()
@@ -1739,10 +1740,10 @@ func (b *bridgemain) DbgStackCommentGet(addr uint, comment *STACK_COMMENT) {
 func (b *bridgemain) DbgGetThreadList(list *THREADLIST) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetThreadList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*THREADLIST ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -1759,15 +1760,15 @@ func (b *bridgemain) DbgSettingsUpdated() {
 func (b *bridgemain) DbgDisasmFastAt(addr uint, basicinfo *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDisasmFastAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "basicinfo",
 				Type:  "*uintptr ",
-				Value: basicinfo,
+				Value: fmt.Sprintf("%v", basicinfo),
 			},
 		},
 	))).Request()
@@ -1777,10 +1778,10 @@ func (b *bridgemain) DbgDisasmFastAt(addr uint, basicinfo *uintptr) {
 func (b *bridgemain) DbgMenuEntryClicked(hEntry int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMenuEntryClicked").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hEntry",
 				Type:  "int",
-				Value: hEntry,
+				Value: fmt.Sprintf("%v", hEntry),
 			},
 		},
 	))).Request()
@@ -1790,20 +1791,20 @@ func (b *bridgemain) DbgMenuEntryClicked(hEntry int) {
 func (b *bridgemain) DbgFunctionGet(addr uint, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "*uint ",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "*uint ",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1813,15 +1814,15 @@ func (b *bridgemain) DbgFunctionGet(addr uint, start *uint, end *uint) {
 func (b *bridgemain) DbgFunctionOverlaps(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionOverlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1831,15 +1832,15 @@ func (b *bridgemain) DbgFunctionOverlaps(start uint, end uint) {
 func (b *bridgemain) DbgFunctionAdd(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1849,10 +1850,10 @@ func (b *bridgemain) DbgFunctionAdd(start uint, end uint) {
 func (b *bridgemain) DbgFunctionDel(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionDel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1862,20 +1863,20 @@ func (b *bridgemain) DbgFunctionDel(addr uint) {
 func (b *bridgemain) DbgArgumentGet(addr uint, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "*uint ",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "*uint ",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1885,15 +1886,15 @@ func (b *bridgemain) DbgArgumentGet(addr uint, start *uint, end *uint) {
 func (b *bridgemain) DbgArgumentOverlaps(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentOverlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1903,15 +1904,15 @@ func (b *bridgemain) DbgArgumentOverlaps(start uint, end uint) {
 func (b *bridgemain) DbgArgumentAdd(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1921,10 +1922,10 @@ func (b *bridgemain) DbgArgumentAdd(start uint, end uint) {
 func (b *bridgemain) DbgArgumentDel(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentDel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -1934,25 +1935,25 @@ func (b *bridgemain) DbgArgumentDel(addr uint) {
 func (b *bridgemain) DbgLoopGet(depth int, addr uint, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "depth",
 				Type:  "int",
-				Value: depth,
+				Value: fmt.Sprintf("%v", depth),
 			},
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "*uint ",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "*uint ",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1962,20 +1963,20 @@ func (b *bridgemain) DbgLoopGet(depth int, addr uint, start *uint, end *uint) {
 func (b *bridgemain) DbgLoopOverlaps(depth int, start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopOverlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "depth",
 				Type:  "int",
-				Value: depth,
+				Value: fmt.Sprintf("%v", depth),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -1985,15 +1986,15 @@ func (b *bridgemain) DbgLoopOverlaps(depth int, start uint, end uint) {
 func (b *bridgemain) DbgLoopAdd(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2003,15 +2004,15 @@ func (b *bridgemain) DbgLoopAdd(start uint, end uint) {
 func (b *bridgemain) DbgLoopDel(depth int, addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopDel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "depth",
 				Type:  "int",
-				Value: depth,
+				Value: fmt.Sprintf("%v", depth),
 			},
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2021,15 +2022,15 @@ func (b *bridgemain) DbgLoopDel(depth int, addr uint) {
 func (b *bridgemain) DbgXrefAdd(addr uint, from uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "from",
 				Type:  "uint",
-				Value: from,
+				Value: fmt.Sprintf("%v", from),
 			},
 		},
 	))).Request()
@@ -2039,10 +2040,10 @@ func (b *bridgemain) DbgXrefAdd(addr uint, from uint) {
 func (b *bridgemain) DbgXrefDelAll(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefDelAll").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2052,15 +2053,15 @@ func (b *bridgemain) DbgXrefDelAll(addr uint) {
 func (b *bridgemain) DbgXrefGet(addr uint, info *XREF_INFO) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*XREF_INFO ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -2070,10 +2071,10 @@ func (b *bridgemain) DbgXrefGet(addr uint, info *XREF_INFO) {
 func (b *bridgemain) DbgGetXrefCountAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetXrefCountAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2083,10 +2084,10 @@ func (b *bridgemain) DbgGetXrefCountAt(addr uint) {
 func (b *bridgemain) DbgGetXrefTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetXrefTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2103,10 +2104,10 @@ func (b *bridgemain) DbgIsRunLocked() {
 func (b *bridgemain) DbgIsBpDisabled(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsBpDisabled").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2116,15 +2117,15 @@ func (b *bridgemain) DbgIsBpDisabled(addr uint) {
 func (b *bridgemain) DbgSetAutoCommentAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoCommentAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -2134,15 +2135,15 @@ func (b *bridgemain) DbgSetAutoCommentAt(addr uint, text string) {
 func (b *bridgemain) DbgClearAutoCommentRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoCommentRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2152,15 +2153,15 @@ func (b *bridgemain) DbgClearAutoCommentRange(start uint, end uint) {
 func (b *bridgemain) DbgSetAutoLabelAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoLabelAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -2170,15 +2171,15 @@ func (b *bridgemain) DbgSetAutoLabelAt(addr uint, text string) {
 func (b *bridgemain) DbgClearAutoLabelRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoLabelRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2188,10 +2189,10 @@ func (b *bridgemain) DbgClearAutoLabelRange(start uint, end uint) {
 func (b *bridgemain) DbgSetAutoBookmarkAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoBookmarkAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2201,15 +2202,15 @@ func (b *bridgemain) DbgSetAutoBookmarkAt(addr uint) {
 func (b *bridgemain) DbgClearAutoBookmarkRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoBookmarkRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2219,15 +2220,15 @@ func (b *bridgemain) DbgClearAutoBookmarkRange(start uint, end uint) {
 func (b *bridgemain) DbgSetAutoFunctionAt(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoFunctionAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2237,15 +2238,15 @@ func (b *bridgemain) DbgSetAutoFunctionAt(start uint, end uint) {
 func (b *bridgemain) DbgClearAutoFunctionRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoFunctionRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2255,15 +2256,15 @@ func (b *bridgemain) DbgClearAutoFunctionRange(start uint, end uint) {
 func (b *bridgemain) DbgGetStringAt(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetStringAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -2280,15 +2281,15 @@ func (b *bridgemain) DbgFunctions() {
 func (b *bridgemain) DbgWinEvent(message *uintptr, result *int32) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgWinEvent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "*uintptr ",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
-			Param{
+			{
 				Name:  "result",
 				Type:  "*int32 ",
-				Value: result,
+				Value: fmt.Sprintf("%v", result),
 			},
 		},
 	))).Request()
@@ -2298,10 +2299,10 @@ func (b *bridgemain) DbgWinEvent(message *uintptr, result *int32) {
 func (b *bridgemain) DbgWinEventGlobal(message *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgWinEventGlobal").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "*uintptr ",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -2325,10 +2326,10 @@ func (b *bridgemain) DbgGetTimeWastedCounter() {
 func (b *bridgemain) DbgGetArgTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetArgTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -2338,15 +2339,15 @@ func (b *bridgemain) DbgGetArgTypeAt(addr uint) {
 func (b *bridgemain) DbgGetEncodeTypeBuffer(addr uint, size *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetEncodeTypeBuffer").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "*uint ",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -2356,10 +2357,10 @@ func (b *bridgemain) DbgGetEncodeTypeBuffer(addr uint, size *uint) {
 func (b *bridgemain) DbgReleaseEncodeTypeBuffer(buffer *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgReleaseEncodeTypeBuffer").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "buffer",
 				Type:  "*uintptr ",
-				Value: buffer,
+				Value: fmt.Sprintf("%v", buffer),
 			},
 		},
 	))).Request()
@@ -2369,15 +2370,15 @@ func (b *bridgemain) DbgReleaseEncodeTypeBuffer(buffer *uintptr) {
 func (b *bridgemain) DbgGetEncodeTypeAt(addr uint, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetEncodeTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -2387,15 +2388,15 @@ func (b *bridgemain) DbgGetEncodeTypeAt(addr uint, size uint) {
 func (b *bridgemain) DbgGetEncodeSizeAt(addr uint, codesize uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetEncodeSizeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "codesize",
 				Type:  "uint",
-				Value: codesize,
+				Value: fmt.Sprintf("%v", codesize),
 			},
 		},
 	))).Request()
@@ -2405,20 +2406,20 @@ func (b *bridgemain) DbgGetEncodeSizeAt(addr uint, codesize uint) {
 func (b *bridgemain) DbgSetEncodeType(addr uint, size uint, Type ENCODETYPE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetEncodeType").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
-			Param{
+			{
 				Name:  "Type",
 				Type:  "ENCODETYPE",
-				Value: Type,
+				Value: fmt.Sprintf("%v", Type),
 			},
 		},
 	))).Request()
@@ -2428,15 +2429,15 @@ func (b *bridgemain) DbgSetEncodeType(addr uint, size uint, Type ENCODETYPE) {
 func (b *bridgemain) DbgDelEncodeTypeRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDelEncodeTypeRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -2446,10 +2447,10 @@ func (b *bridgemain) DbgDelEncodeTypeRange(start uint, end uint) {
 func (b *bridgemain) DbgDelEncodeTypeSegment(start uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDelEncodeTypeSegment").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
 		},
 	))).Request()
@@ -2459,10 +2460,10 @@ func (b *bridgemain) DbgDelEncodeTypeSegment(start uint) {
 func (b *bridgemain) DbgGetWatchList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetWatchList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -2472,15 +2473,15 @@ func (b *bridgemain) DbgGetWatchList(list *ListInfo) {
 func (b *bridgemain) DbgSelChanged(hWindow int, VA uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSelChanged").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hWindow",
 				Type:  "int",
-				Value: hWindow,
+				Value: fmt.Sprintf("%v", hWindow),
 			},
-			Param{
+			{
 				Name:  "VA",
 				Type:  "uint",
-				Value: VA,
+				Value: fmt.Sprintf("%v", VA),
 			},
 		},
 	))).Request()
@@ -2518,10 +2519,10 @@ func (b *bridgemain) DbgGetThreadId() {
 func (b *bridgemain) DbgGetPebAddress(ProcessId uint32) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetPebAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "ProcessId",
 				Type:  "uint32",
-				Value: ProcessId,
+				Value: fmt.Sprintf("%v", ProcessId),
 			},
 		},
 	))).Request()
@@ -2531,10 +2532,10 @@ func (b *bridgemain) DbgGetPebAddress(ProcessId uint32) {
 func (b *bridgemain) DbgGetTebAddress(ThreadId uint32) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetTebAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "ThreadId",
 				Type:  "uint32",
-				Value: ThreadId,
+				Value: fmt.Sprintf("%v", ThreadId),
 			},
 		},
 	))).Request()
@@ -2544,15 +2545,15 @@ func (b *bridgemain) DbgGetTebAddress(ThreadId uint32) {
 func (b *bridgemain) DbgAnalyzeFunction(entry uint, graph *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgAnalyzeFunction").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "entry",
 				Type:  "uint",
-				Value: entry,
+				Value: fmt.Sprintf("%v", entry),
 			},
-			Param{
+			{
 				Name:  "graph",
 				Type:  "*uintptr ",
-				Value: graph,
+				Value: fmt.Sprintf("%v", graph),
 			},
 		},
 	))).Request()
@@ -2562,15 +2563,15 @@ func (b *bridgemain) DbgAnalyzeFunction(entry uint, graph *uintptr) {
 func (b *bridgemain) DbgGetSymbolInfo(symbolptr *uintptr, info *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetSymbolInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "symbolptr",
 				Type:  "*uintptr ",
-				Value: symbolptr,
+				Value: fmt.Sprintf("%v", symbolptr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*uintptr ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -2587,15 +2588,15 @@ func (b *bridgemain) DbgGetDebugEngine() {
 func (b *bridgemain) DbgGetSymbolInfoAt(addr uint, info *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetSymbolInfoAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*uintptr ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -2605,15 +2606,15 @@ func (b *bridgemain) DbgGetSymbolInfoAt(addr uint, info *uintptr) {
 func (b *bridgemain) DbgXrefAddMulti(edges *XREF_EDGE, count uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefAddMulti").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "edges",
 				Type:  "*XREF_EDGE ",
-				Value: edges,
+				Value: fmt.Sprintf("%v", edges),
 			},
-			Param{
+			{
 				Name:  "count",
 				Type:  "uint",
-				Value: count,
+				Value: fmt.Sprintf("%v", count),
 			},
 		},
 	))).Request()
@@ -2623,10 +2624,10 @@ func (b *bridgemain) DbgXrefAddMulti(edges *XREF_EDGE, count uint) {
 func (b *bridgemain) DbgMenuPrepare(hMenu GUIMENUTYPE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMenuPrepare").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "GUIMENUTYPE",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
 		},
 	))).Request()
@@ -2636,10 +2637,10 @@ func (b *bridgemain) DbgMenuPrepare(hMenu GUIMENUTYPE) {
 func (b *bridgemain) GuiTranslateText(Source string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiTranslateText").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "Source",
 				Type:  "string",
-				Value: Source,
+				Value: fmt.Sprintf("%v", Source),
 			},
 		},
 	))).Request()
@@ -2649,15 +2650,15 @@ func (b *bridgemain) GuiTranslateText(Source string) {
 func (b *bridgemain) GuiDisasmAt(addr uint, cip uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDisasmAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "cip",
 				Type:  "uint",
-				Value: cip,
+				Value: fmt.Sprintf("%v", cip),
 			},
 		},
 	))).Request()
@@ -2667,10 +2668,10 @@ func (b *bridgemain) GuiDisasmAt(addr uint, cip uint) {
 func (b *bridgemain) GuiSetDebugState(state DBGSTATE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetDebugState").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "state",
 				Type:  "DBGSTATE",
-				Value: state,
+				Value: fmt.Sprintf("%v", state),
 			},
 		},
 	))).Request()
@@ -2680,10 +2681,10 @@ func (b *bridgemain) GuiSetDebugState(state DBGSTATE) {
 func (b *bridgemain) GuiSetDebugStateFast(state DBGSTATE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetDebugStateFast").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "state",
 				Type:  "DBGSTATE",
-				Value: state,
+				Value: fmt.Sprintf("%v", state),
 			},
 		},
 	))).Request()
@@ -2693,10 +2694,10 @@ func (b *bridgemain) GuiSetDebugStateFast(state DBGSTATE) {
 func (b *bridgemain) GuiAddLogMessage(msg string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddLogMessage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "msg",
 				Type:  "string",
-				Value: msg,
+				Value: fmt.Sprintf("%v", msg),
 			},
 		},
 	))).Request()
@@ -2706,10 +2707,10 @@ func (b *bridgemain) GuiAddLogMessage(msg string) {
 func (b *bridgemain) GuiAddLogMessageHtml(msg string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddLogMessageHtml").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "msg",
 				Type:  "string",
-				Value: msg,
+				Value: fmt.Sprintf("%v", msg),
 			},
 		},
 	))).Request()
@@ -2726,10 +2727,10 @@ func (b *bridgemain) GuiLogClear() {
 func (b *bridgemain) GuiLogSave(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLogSave").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "filename",
 				Type:  "string",
-				Value: filename,
+				Value: fmt.Sprintf("%v", filename),
 			},
 		},
 	))).Request()
@@ -2739,10 +2740,10 @@ func (b *bridgemain) GuiLogSave(filename string) {
 func (b *bridgemain) GuiLogRedirect(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLogRedirect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "filename",
 				Type:  "string",
-				Value: filename,
+				Value: fmt.Sprintf("%v", filename),
 			},
 		},
 	))).Request()
@@ -2787,10 +2788,10 @@ func (b *bridgemain) GuiUpdateBreakpointsView() {
 func (b *bridgemain) GuiUpdateWindowTitle(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateWindowTitle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "filename",
 				Type:  "string",
-				Value: filename,
+				Value: fmt.Sprintf("%v", filename),
 			},
 		},
 	))).Request()
@@ -2807,10 +2808,10 @@ func (b *bridgemain) GuiGetWindowHandle() {
 func (b *bridgemain) GuiDumpAt(va uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDumpAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "va",
 				Type:  "uint",
-				Value: va,
+				Value: fmt.Sprintf("%v", va),
 			},
 		},
 	))).Request()
@@ -2820,15 +2821,15 @@ func (b *bridgemain) GuiDumpAt(va uint) {
 func (b *bridgemain) GuiScriptAdd(count int, lines *string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "count",
 				Type:  "int",
-				Value: count,
+				Value: fmt.Sprintf("%v", count),
 			},
-			Param{
+			{
 				Name:  "lines",
 				Type:  "*string",
-				Value: lines,
+				Value: fmt.Sprintf("%v", lines),
 			},
 		},
 	))).Request()
@@ -2845,10 +2846,10 @@ func (b *bridgemain) GuiScriptClear() {
 func (b *bridgemain) GuiScriptSetIp(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptSetIp").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
 		},
 	))).Request()
@@ -2858,15 +2859,15 @@ func (b *bridgemain) GuiScriptSetIp(line int) {
 func (b *bridgemain) GuiScriptError(line int, message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptError").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
-			Param{
+			{
 				Name:  "message",
 				Type:  "string",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -2876,10 +2877,10 @@ func (b *bridgemain) GuiScriptError(line int, message string) {
 func (b *bridgemain) GuiScriptSetTitle(title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptSetTitle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
 		},
 	))).Request()
@@ -2889,15 +2890,15 @@ func (b *bridgemain) GuiScriptSetTitle(title string) {
 func (b *bridgemain) GuiScriptSetInfoLine(line int, info string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptSetInfoLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "line",
 				Type:  "int",
-				Value: line,
+				Value: fmt.Sprintf("%v", line),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "string",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -2907,10 +2908,10 @@ func (b *bridgemain) GuiScriptSetInfoLine(line int, info string) {
 func (b *bridgemain) GuiScriptMessage(message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptMessage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "string",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -2920,10 +2921,10 @@ func (b *bridgemain) GuiScriptMessage(message string) {
 func (b *bridgemain) GuiScriptMsgyn(message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptMsgyn").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "string",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -2933,10 +2934,10 @@ func (b *bridgemain) GuiScriptMsgyn(message string) {
 func (b *bridgemain) GuiSymbolLogAdd(message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolLogAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "string",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -2953,10 +2954,10 @@ func (b *bridgemain) GuiSymbolLogClear() {
 func (b *bridgemain) GuiSymbolSetProgress(percent int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolSetProgress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "percent",
 				Type:  "int",
-				Value: percent,
+				Value: fmt.Sprintf("%v", percent),
 			},
 		},
 	))).Request()
@@ -2966,15 +2967,15 @@ func (b *bridgemain) GuiSymbolSetProgress(percent int) {
 func (b *bridgemain) GuiSymbolUpdateModuleList(count int, modules *SYMBOLMODULEINFO) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolUpdateModuleList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "count",
 				Type:  "int",
-				Value: count,
+				Value: fmt.Sprintf("%v", count),
 			},
-			Param{
+			{
 				Name:  "modules",
 				Type:  "*SYMBOLMODULEINFO ",
-				Value: modules,
+				Value: fmt.Sprintf("%v", modules),
 			},
 		},
 	))).Request()
@@ -2991,15 +2992,15 @@ func (b *bridgemain) GuiSymbolRefreshCurrent() {
 func (b *bridgemain) GuiReferenceAddColumn(width int, title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceAddColumn").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "width",
 				Type:  "int",
-				Value: width,
+				Value: fmt.Sprintf("%v", width),
 			},
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
 		},
 	))).Request()
@@ -3009,10 +3010,10 @@ func (b *bridgemain) GuiReferenceAddColumn(width int, title string) {
 func (b *bridgemain) GuiReferenceSetRowCount(count int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetRowCount").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "count",
 				Type:  "int",
-				Value: count,
+				Value: fmt.Sprintf("%v", count),
 			},
 		},
 	))).Request()
@@ -3043,10 +3044,10 @@ func (b *bridgemain) GuiReferenceDeleteAllColumns() {
 func (b *bridgemain) GuiReferenceInitialize(name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceInitialize").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -3056,20 +3057,20 @@ func (b *bridgemain) GuiReferenceInitialize(name string) {
 func (b *bridgemain) GuiReferenceSetCellContent(row int, col int, str string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetCellContent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "row",
 				Type:  "int",
-				Value: row,
+				Value: fmt.Sprintf("%v", row),
 			},
-			Param{
+			{
 				Name:  "col",
 				Type:  "int",
-				Value: col,
+				Value: fmt.Sprintf("%v", col),
 			},
-			Param{
+			{
 				Name:  "str",
 				Type:  "string",
-				Value: str,
+				Value: fmt.Sprintf("%v", str),
 			},
 		},
 	))).Request()
@@ -3079,15 +3080,15 @@ func (b *bridgemain) GuiReferenceSetCellContent(row int, col int, str string) {
 func (b *bridgemain) GuiReferenceGetCellContent(row int, col int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceGetCellContent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "row",
 				Type:  "int",
-				Value: row,
+				Value: fmt.Sprintf("%v", row),
 			},
-			Param{
+			{
 				Name:  "col",
 				Type:  "int",
-				Value: col,
+				Value: fmt.Sprintf("%v", col),
 			},
 		},
 	))).Request()
@@ -3097,15 +3098,15 @@ func (b *bridgemain) GuiReferenceGetCellContent(row int, col int) {
 func (b *bridgemain) GuiReferenceSearchGetCellContent(row int, col int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSearchGetCellContent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "row",
 				Type:  "int",
-				Value: row,
+				Value: fmt.Sprintf("%v", row),
 			},
-			Param{
+			{
 				Name:  "col",
 				Type:  "int",
-				Value: col,
+				Value: fmt.Sprintf("%v", col),
 			},
 		},
 	))).Request()
@@ -3122,10 +3123,10 @@ func (b *bridgemain) GuiReferenceReloadData() {
 func (b *bridgemain) GuiReferenceSetProgress(progress int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetProgress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "progress",
 				Type:  "int",
-				Value: progress,
+				Value: fmt.Sprintf("%v", progress),
 			},
 		},
 	))).Request()
@@ -3135,15 +3136,15 @@ func (b *bridgemain) GuiReferenceSetProgress(progress int) {
 func (b *bridgemain) GuiReferenceSetCurrentTaskProgress(progress int, taskTitle string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetCurrentTaskProgress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "progress",
 				Type:  "int",
-				Value: progress,
+				Value: fmt.Sprintf("%v", progress),
 			},
-			Param{
+			{
 				Name:  "taskTitle",
 				Type:  "string",
-				Value: taskTitle,
+				Value: fmt.Sprintf("%v", taskTitle),
 			},
 		},
 	))).Request()
@@ -3153,10 +3154,10 @@ func (b *bridgemain) GuiReferenceSetCurrentTaskProgress(progress int, taskTitle 
 func (b *bridgemain) GuiReferenceSetSearchStartCol(col int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetSearchStartCol").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "col",
 				Type:  "int",
-				Value: col,
+				Value: fmt.Sprintf("%v", col),
 			},
 		},
 	))).Request()
@@ -3166,15 +3167,15 @@ func (b *bridgemain) GuiReferenceSetSearchStartCol(col int) {
 func (b *bridgemain) GuiStackDumpAt(addr uint, csp uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiStackDumpAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "csp",
 				Type:  "uint",
-				Value: csp,
+				Value: fmt.Sprintf("%v", csp),
 			},
 		},
 	))).Request()
@@ -3212,10 +3213,10 @@ func (b *bridgemain) GuiUpdateMemoryView() {
 func (b *bridgemain) GuiAddRecentFile(file string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddRecentFile").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "file",
 				Type:  "string",
-				Value: file,
+				Value: fmt.Sprintf("%v", file),
 			},
 		},
 	))).Request()
@@ -3225,10 +3226,10 @@ func (b *bridgemain) GuiAddRecentFile(file string) {
 func (b *bridgemain) GuiSetLastException(exception uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetLastException").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "exception",
 				Type:  "uint",
-				Value: exception,
+				Value: fmt.Sprintf("%v", exception),
 			},
 		},
 	))).Request()
@@ -3238,15 +3239,15 @@ func (b *bridgemain) GuiSetLastException(exception uint) {
 func (b *bridgemain) GuiGetDisassembly(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetDisassembly").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3256,15 +3257,15 @@ func (b *bridgemain) GuiGetDisassembly(addr uint, text *int8) {
 func (b *bridgemain) GuiMenuAdd(hMenu int, title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "int",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
 		},
 	))).Request()
@@ -3274,15 +3275,15 @@ func (b *bridgemain) GuiMenuAdd(hMenu int, title string) {
 func (b *bridgemain) GuiMenuAddEntry(hMenu int, title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuAddEntry").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "int",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
 		},
 	))).Request()
@@ -3292,10 +3293,10 @@ func (b *bridgemain) GuiMenuAddEntry(hMenu int, title string) {
 func (b *bridgemain) GuiMenuAddSeparator(hMenu int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuAddSeparator").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "int",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
 		},
 	))).Request()
@@ -3305,10 +3306,10 @@ func (b *bridgemain) GuiMenuAddSeparator(hMenu int) {
 func (b *bridgemain) GuiMenuClear(hMenu int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuClear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "int",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
 		},
 	))).Request()
@@ -3318,10 +3319,10 @@ func (b *bridgemain) GuiMenuClear(hMenu int) {
 func (b *bridgemain) GuiMenuRemove(hEntryMenu int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuRemove").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hEntryMenu",
 				Type:  "int",
-				Value: hEntryMenu,
+				Value: fmt.Sprintf("%v", hEntryMenu),
 			},
 		},
 	))).Request()
@@ -3331,15 +3332,15 @@ func (b *bridgemain) GuiMenuRemove(hEntryMenu int) {
 func (b *bridgemain) GuiSelectionGet(hWindow GUISELECTIONTYPE, selection *SELECTIONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hWindow",
 				Type:  "GUISELECTIONTYPE",
-				Value: hWindow,
+				Value: fmt.Sprintf("%v", hWindow),
 			},
-			Param{
+			{
 				Name:  "selection",
 				Type:  "*SELECTIONDATA ",
-				Value: selection,
+				Value: fmt.Sprintf("%v", selection),
 			},
 		},
 	))).Request()
@@ -3349,15 +3350,15 @@ func (b *bridgemain) GuiSelectionGet(hWindow GUISELECTIONTYPE, selection *SELECT
 func (b *bridgemain) GuiSelectionSet(hWindow GUISELECTIONTYPE, selection *SELECTIONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectionSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hWindow",
 				Type:  "GUISELECTIONTYPE",
-				Value: hWindow,
+				Value: fmt.Sprintf("%v", hWindow),
 			},
-			Param{
+			{
 				Name:  "selection",
 				Type:  "*SELECTIONDATA ",
-				Value: selection,
+				Value: fmt.Sprintf("%v", selection),
 			},
 		},
 	))).Request()
@@ -3367,15 +3368,15 @@ func (b *bridgemain) GuiSelectionSet(hWindow GUISELECTIONTYPE, selection *SELECT
 func (b *bridgemain) GuiGetLineWindow(title string, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetLineWindow").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3385,10 +3386,10 @@ func (b *bridgemain) GuiGetLineWindow(title string, text *int8) {
 func (b *bridgemain) GuiAutoCompleteAddCmd(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAutoCompleteAddCmd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "cmd",
 				Type:  "string",
-				Value: cmd,
+				Value: fmt.Sprintf("%v", cmd),
 			},
 		},
 	))).Request()
@@ -3398,10 +3399,10 @@ func (b *bridgemain) GuiAutoCompleteAddCmd(cmd string) {
 func (b *bridgemain) GuiAutoCompleteDelCmd(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAutoCompleteDelCmd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "cmd",
 				Type:  "string",
-				Value: cmd,
+				Value: fmt.Sprintf("%v", cmd),
 			},
 		},
 	))).Request()
@@ -3418,10 +3419,10 @@ func (b *bridgemain) GuiAutoCompleteClearAll() {
 func (b *bridgemain) GuiAddStatusBarMessage(msg string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddStatusBarMessage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "msg",
 				Type:  "string",
-				Value: msg,
+				Value: fmt.Sprintf("%v", msg),
 			},
 		},
 	))).Request()
@@ -3466,15 +3467,15 @@ func (b *bridgemain) GuiUpdateSEHChain() {
 func (b *bridgemain) GuiLoadSourceFileEx(path string, addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLoadSourceFileEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "path",
 				Type:  "string",
-				Value: path,
+				Value: fmt.Sprintf("%v", path),
 			},
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -3484,15 +3485,15 @@ func (b *bridgemain) GuiLoadSourceFileEx(path string, addr uint) {
 func (b *bridgemain) GuiMenuSetIcon(hMenu int, icon *ICONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetIcon").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "int",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
-			Param{
+			{
 				Name:  "icon",
 				Type:  "*ICONDATA ",
-				Value: icon,
+				Value: fmt.Sprintf("%v", icon),
 			},
 		},
 	))).Request()
@@ -3502,15 +3503,15 @@ func (b *bridgemain) GuiMenuSetIcon(hMenu int, icon *ICONDATA) {
 func (b *bridgemain) GuiMenuSetEntryIcon(hEntry int, icon *ICONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetEntryIcon").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hEntry",
 				Type:  "int",
-				Value: hEntry,
+				Value: fmt.Sprintf("%v", hEntry),
 			},
-			Param{
+			{
 				Name:  "icon",
 				Type:  "*ICONDATA ",
-				Value: icon,
+				Value: fmt.Sprintf("%v", icon),
 			},
 		},
 	))).Request()
@@ -3520,15 +3521,15 @@ func (b *bridgemain) GuiMenuSetEntryIcon(hEntry int, icon *ICONDATA) {
 func (b *bridgemain) GuiMenuSetName(hMenu int, name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hMenu",
 				Type:  "int",
-				Value: hMenu,
+				Value: fmt.Sprintf("%v", hMenu),
 			},
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -3538,15 +3539,15 @@ func (b *bridgemain) GuiMenuSetName(hMenu int, name string) {
 func (b *bridgemain) GuiMenuSetEntryName(hEntry int, name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetEntryName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hEntry",
 				Type:  "int",
-				Value: hEntry,
+				Value: fmt.Sprintf("%v", hEntry),
 			},
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -3556,15 +3557,15 @@ func (b *bridgemain) GuiMenuSetEntryName(hEntry int, name string) {
 func (b *bridgemain) GuiMenuSetEntryHotkey(hEntry int, hack string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetEntryHotkey").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hEntry",
 				Type:  "int",
-				Value: hEntry,
+				Value: fmt.Sprintf("%v", hEntry),
 			},
-			Param{
+			{
 				Name:  "hack",
 				Type:  "string",
-				Value: hack,
+				Value: fmt.Sprintf("%v", hack),
 			},
 		},
 	))).Request()
@@ -3588,10 +3589,10 @@ func (b *bridgemain) GuiShowThreads() {
 func (b *bridgemain) GuiAddQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "qWidget",
 				Type:  "*uintptr ",
-				Value: qWidget,
+				Value: fmt.Sprintf("%v", qWidget),
 			},
 		},
 	))).Request()
@@ -3601,10 +3602,10 @@ func (b *bridgemain) GuiAddQWidgetTab(qWidget *uintptr) {
 func (b *bridgemain) GuiShowQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiShowQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "qWidget",
 				Type:  "*uintptr ",
-				Value: qWidget,
+				Value: fmt.Sprintf("%v", qWidget),
 			},
 		},
 	))).Request()
@@ -3614,10 +3615,10 @@ func (b *bridgemain) GuiShowQWidgetTab(qWidget *uintptr) {
 func (b *bridgemain) GuiCloseQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiCloseQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "qWidget",
 				Type:  "*uintptr ",
-				Value: qWidget,
+				Value: fmt.Sprintf("%v", qWidget),
 			},
 		},
 	))).Request()
@@ -3627,10 +3628,10 @@ func (b *bridgemain) GuiCloseQWidgetTab(qWidget *uintptr) {
 func (b *bridgemain) GuiExecuteOnGuiThread(cbGuiThread uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiExecuteOnGuiThread").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "cbGuiThread",
 				Type:  "uintptr",
-				Value: cbGuiThread,
+				Value: fmt.Sprintf("%v", cbGuiThread),
 			},
 		},
 	))).Request()
@@ -3647,10 +3648,10 @@ func (b *bridgemain) GuiUpdateTimeWastedCounter() {
 func (b *bridgemain) GuiSetGlobalNotes(text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetGlobalNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3660,10 +3661,10 @@ func (b *bridgemain) GuiSetGlobalNotes(text string) {
 func (b *bridgemain) GuiGetGlobalNotes(text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetGlobalNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3673,10 +3674,10 @@ func (b *bridgemain) GuiGetGlobalNotes(text *int8) {
 func (b *bridgemain) GuiSetDebuggeeNotes(text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetDebuggeeNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3686,10 +3687,10 @@ func (b *bridgemain) GuiSetDebuggeeNotes(text string) {
 func (b *bridgemain) GuiGetDebuggeeNotes(text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetDebuggeeNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3699,15 +3700,15 @@ func (b *bridgemain) GuiGetDebuggeeNotes(text *int8) {
 func (b *bridgemain) GuiDumpAtN(va uint, index int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDumpAtN").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "va",
 				Type:  "uint",
-				Value: va,
+				Value: fmt.Sprintf("%v", va),
 			},
-			Param{
+			{
 				Name:  "index",
 				Type:  "int",
-				Value: index,
+				Value: fmt.Sprintf("%v", index),
 			},
 		},
 	))).Request()
@@ -3717,15 +3718,15 @@ func (b *bridgemain) GuiDumpAtN(va uint, index int) {
 func (b *bridgemain) GuiDisplayWarning(title string, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDisplayWarning").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "string",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -3735,10 +3736,10 @@ func (b *bridgemain) GuiDisplayWarning(title string, text string) {
 func (b *bridgemain) GuiRegisterScriptLanguage(info *SCRIPTTYPEINFO) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiRegisterScriptLanguage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "info",
 				Type:  "*SCRIPTTYPEINFO ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -3748,10 +3749,10 @@ func (b *bridgemain) GuiRegisterScriptLanguage(info *SCRIPTTYPEINFO) {
 func (b *bridgemain) GuiUnregisterScriptLanguage(id int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUnregisterScriptLanguage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "id",
 				Type:  "int",
-				Value: id,
+				Value: fmt.Sprintf("%v", id),
 			},
 		},
 	))).Request()
@@ -3768,10 +3769,10 @@ func (b *bridgemain) GuiUpdateArgumentWidget() {
 func (b *bridgemain) GuiFocusView(hWindow int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiFocusView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "hWindow",
 				Type:  "int",
-				Value: hWindow,
+				Value: fmt.Sprintf("%v", hWindow),
 			},
 		},
 	))).Request()
@@ -3795,15 +3796,15 @@ func (b *bridgemain) GuiUpdateDisable() {
 func (b *bridgemain) GuiLoadGraph(graph *uintptr, addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLoadGraph").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "graph",
 				Type:  "*uintptr ",
-				Value: graph,
+				Value: fmt.Sprintf("%v", graph),
 			},
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -3813,10 +3814,10 @@ func (b *bridgemain) GuiLoadGraph(graph *uintptr, addr uint) {
 func (b *bridgemain) GuiGraphAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGraphAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -3854,15 +3855,15 @@ func (b *bridgemain) GuiIsLogEnabled() {
 func (b *bridgemain) GuiAddFavouriteTool(name string, description string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddFavouriteTool").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "description",
 				Type:  "string",
-				Value: description,
+				Value: fmt.Sprintf("%v", description),
 			},
 		},
 	))).Request()
@@ -3872,15 +3873,15 @@ func (b *bridgemain) GuiAddFavouriteTool(name string, description string) {
 func (b *bridgemain) GuiAddFavouriteCommand(name string, shortcut string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddFavouriteCommand").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "shortcut",
 				Type:  "string",
-				Value: shortcut,
+				Value: fmt.Sprintf("%v", shortcut),
 			},
 		},
 	))).Request()
@@ -3890,15 +3891,15 @@ func (b *bridgemain) GuiAddFavouriteCommand(name string, shortcut string) {
 func (b *bridgemain) GuiSetFavouriteToolShortcut(name string, shortcut string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetFavouriteToolShortcut").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "shortcut",
 				Type:  "string",
-				Value: shortcut,
+				Value: fmt.Sprintf("%v", shortcut),
 			},
 		},
 	))).Request()
@@ -3908,15 +3909,15 @@ func (b *bridgemain) GuiSetFavouriteToolShortcut(name string, shortcut string) {
 func (b *bridgemain) GuiFoldDisassembly(startAddress uint, length uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiFoldDisassembly").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "startAddress",
 				Type:  "uint",
-				Value: startAddress,
+				Value: fmt.Sprintf("%v", startAddress),
 			},
-			Param{
+			{
 				Name:  "length",
 				Type:  "uint",
-				Value: length,
+				Value: fmt.Sprintf("%v", length),
 			},
 		},
 	))).Request()
@@ -3926,10 +3927,10 @@ func (b *bridgemain) GuiFoldDisassembly(startAddress uint, length uint) {
 func (b *bridgemain) GuiSelectInMemoryMap(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectInMemoryMap").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -3939,10 +3940,10 @@ func (b *bridgemain) GuiSelectInMemoryMap(addr uint) {
 func (b *bridgemain) GuiGetActiveView(activeView *ACTIVEVIEW) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetActiveView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "activeView",
 				Type:  "*ACTIVEVIEW ",
-				Value: activeView,
+				Value: fmt.Sprintf("%v", activeView),
 			},
 		},
 	))).Request()
@@ -3952,10 +3953,10 @@ func (b *bridgemain) GuiGetActiveView(activeView *ACTIVEVIEW) {
 func (b *bridgemain) GuiAddInfoLine(infoLine string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddInfoLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "infoLine",
 				Type:  "string",
-				Value: infoLine,
+				Value: fmt.Sprintf("%v", infoLine),
 			},
 		},
 	))).Request()
@@ -3972,15 +3973,15 @@ func (b *bridgemain) GuiProcessEvents() {
 func (b *bridgemain) GuiTypeAddNode(parent *uintptr, Type *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiTypeAddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "parent",
 				Type:  "*uintptr ",
-				Value: parent,
+				Value: fmt.Sprintf("%v", parent),
 			},
-			Param{
+			{
 				Name:  "Type",
 				Type:  "*uintptr ",
-				Value: Type,
+				Value: fmt.Sprintf("%v", Type),
 			},
 		},
 	))).Request()
@@ -4018,15 +4019,15 @@ func (b *bridgemain) GuiFlushLog() {
 func (b *bridgemain) GuiReferenceAddCommand(title string, command string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceAddCommand").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
-			Param{
+			{
 				Name:  "command",
 				Type:  "string",
-				Value: command,
+				Value: fmt.Sprintf("%v", command),
 			},
 		},
 	))).Request()
@@ -4043,10 +4044,10 @@ func (b *bridgemain) GuiUpdateTraceBrowser() {
 func (b *bridgemain) GuiOpenTraceFile(fileName string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiOpenTraceFile").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "fileName",
 				Type:  "string",
-				Value: fileName,
+				Value: fmt.Sprintf("%v", fileName),
 			},
 		},
 	))).Request()
@@ -4056,10 +4057,10 @@ func (b *bridgemain) GuiOpenTraceFile(fileName string) {
 func (b *bridgemain) GuiInvalidateSymbolSource(base uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiInvalidateSymbolSource").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "base",
 				Type:  "uint",
-				Value: base,
+				Value: fmt.Sprintf("%v", base),
 			},
 		},
 	))).Request()
@@ -4069,15 +4070,15 @@ func (b *bridgemain) GuiInvalidateSymbolSource(base uint) {
 func (b *bridgemain) GuiExecuteOnGuiThreadEx(cbGuiThread uintptr, userdata *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiExecuteOnGuiThreadEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "cbGuiThread",
 				Type:  "uintptr",
-				Value: cbGuiThread,
+				Value: fmt.Sprintf("%v", cbGuiThread),
 			},
-			Param{
+			{
 				Name:  "userdata",
 				Type:  "*uintptr ",
-				Value: userdata,
+				Value: fmt.Sprintf("%v", userdata),
 			},
 		},
 	))).Request()
@@ -4087,10 +4088,10 @@ func (b *bridgemain) GuiExecuteOnGuiThreadEx(cbGuiThread uintptr, userdata *uint
 func (b *bridgemain) GuiGetCurrentGraph(graphList *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetCurrentGraph").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "graphList",
 				Type:  "*uintptr ",
-				Value: graphList,
+				Value: fmt.Sprintf("%v", graphList),
 			},
 		},
 	))).Request()
@@ -4107,10 +4108,10 @@ func (b *bridgemain) GuiShowReferences() {
 func (b *bridgemain) GuiSelectInSymbolsTab(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectInSymbolsTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -4120,10 +4121,10 @@ func (b *bridgemain) GuiSelectInSymbolsTab(addr uint) {
 func (b *bridgemain) GuiGotoTrace(index uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGotoTrace").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "index",
 				Type:  "uint",
-				Value: index,
+				Value: fmt.Sprintf("%v", index),
 			},
 		},
 	))).Request()

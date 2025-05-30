@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -10,25 +11,25 @@ type assembler struct{}
 func (a *assembler) Assemble(addr uint, dest *byte, size *int, instruction string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/Assemble").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "dest",
 				Type:  "*byte ",
-				Value: dest,
+				Value: fmt.Sprintf("%v", dest),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "*int ",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
-			Param{
+			{
 				Name:  "instruction",
 				Type:  "string",
-				Value: instruction,
+				Value: fmt.Sprintf("%v", instruction),
 			},
 		},
 	))).Request()
@@ -38,30 +39,30 @@ func (a *assembler) Assemble(addr uint, dest *byte, size *int, instruction strin
 func (a *assembler) AssembleEx(addr uint, dest *byte, size *int, instruction string, error *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "dest",
 				Type:  "*byte ",
-				Value: dest,
+				Value: fmt.Sprintf("%v", dest),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "*int ",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
-			Param{
+			{
 				Name:  "instruction",
 				Type:  "string",
-				Value: instruction,
+				Value: fmt.Sprintf("%v", instruction),
 			},
-			Param{
+			{
 				Name:  "error",
 				Type:  "*int8 ",
-				Value: error,
+				Value: fmt.Sprintf("%v", error),
 			},
 		},
 	))).Request()
@@ -71,15 +72,15 @@ func (a *assembler) AssembleEx(addr uint, dest *byte, size *int, instruction str
 func (a *assembler) AssembleMem(addr uint, instruction string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleMem").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "instruction",
 				Type:  "string",
-				Value: instruction,
+				Value: fmt.Sprintf("%v", instruction),
 			},
 		},
 	))).Request()
@@ -89,30 +90,30 @@ func (a *assembler) AssembleMem(addr uint, instruction string) {
 func (a *assembler) AssembleMemEx(addr uint, instruction string, size *int, error *int8, fillnop bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleMemEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "instruction",
 				Type:  "string",
-				Value: instruction,
+				Value: fmt.Sprintf("%v", instruction),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "*int ",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
-			Param{
+			{
 				Name:  "error",
 				Type:  "*int8 ",
-				Value: error,
+				Value: fmt.Sprintf("%v", error),
 			},
-			Param{
+			{
 				Name:  "fillnop",
 				Type:  "bool",
-				Value: fillnop,
+				Value: fmt.Sprintf("%v", fillnop),
 			},
 		},
 	))).Request()

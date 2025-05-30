@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -100,10 +101,10 @@ type register struct{}
 func (r *register) Get(reg RegisterEnum) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "reg",
 				Type:  "RegisterEnum",
-				Value: reg,
+				Value: fmt.Sprintf("%v", reg),
 			},
 		},
 	))).Request()
@@ -113,15 +114,15 @@ func (r *register) Get(reg RegisterEnum) {
 func (r *register) Set(reg RegisterEnum, value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "reg",
 				Type:  "RegisterEnum",
-				Value: reg,
+				Value: fmt.Sprintf("%v", reg),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -145,10 +146,10 @@ func (r *register) GetDR0() {
 func (r *register) SetDR0(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR0").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -165,10 +166,10 @@ func (r *register) GetDR1() {
 func (r *register) SetDR1(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR1").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -185,10 +186,10 @@ func (r *register) GetDR2() {
 func (r *register) SetDR2(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR2").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -205,10 +206,10 @@ func (r *register) GetDR3() {
 func (r *register) SetDR3(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR3").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -225,10 +226,10 @@ func (r *register) GetDR6() {
 func (r *register) SetDR6(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR6").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -245,10 +246,10 @@ func (r *register) GetDR7() {
 func (r *register) SetDR7(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR7").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -265,10 +266,10 @@ func (r *register) GetEAX() {
 func (r *register) SetEAX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -285,10 +286,10 @@ func (r *register) GetAX() {
 func (r *register) SetAX(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -305,10 +306,10 @@ func (r *register) GetAH() {
 func (r *register) SetAH(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -325,10 +326,10 @@ func (r *register) GetAL() {
 func (r *register) SetAL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -345,10 +346,10 @@ func (r *register) GetEBX() {
 func (r *register) SetEBX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -365,10 +366,10 @@ func (r *register) GetBX() {
 func (r *register) SetBX(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -385,10 +386,10 @@ func (r *register) GetBH() {
 func (r *register) SetBH(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -405,10 +406,10 @@ func (r *register) GetBL() {
 func (r *register) SetBL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -425,10 +426,10 @@ func (r *register) GetECX() {
 func (r *register) SetECX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetECX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -445,10 +446,10 @@ func (r *register) GetCX() {
 func (r *register) SetCX(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -465,10 +466,10 @@ func (r *register) GetCH() {
 func (r *register) SetCH(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -485,10 +486,10 @@ func (r *register) GetCL() {
 func (r *register) SetCL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -505,10 +506,10 @@ func (r *register) GetEDX() {
 func (r *register) SetEDX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -525,10 +526,10 @@ func (r *register) GetDX() {
 func (r *register) SetDX(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -545,10 +546,10 @@ func (r *register) GetDH() {
 func (r *register) SetDH(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -565,10 +566,10 @@ func (r *register) GetDL() {
 func (r *register) SetDL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -585,10 +586,10 @@ func (r *register) GetEDI() {
 func (r *register) SetEDI(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -605,10 +606,10 @@ func (r *register) GetDI() {
 func (r *register) SetDI(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -625,10 +626,10 @@ func (r *register) GetESI() {
 func (r *register) SetESI(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -645,10 +646,10 @@ func (r *register) GetSI() {
 func (r *register) SetSI(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -665,10 +666,10 @@ func (r *register) GetEBP() {
 func (r *register) SetEBP(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -685,10 +686,10 @@ func (r *register) GetBP() {
 func (r *register) SetBP(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -705,10 +706,10 @@ func (r *register) GetESP() {
 func (r *register) SetESP(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -725,10 +726,10 @@ func (r *register) GetSP() {
 func (r *register) SetSP(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -745,10 +746,10 @@ func (r *register) GetEIP() {
 func (r *register) SetEIP(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -765,10 +766,10 @@ func (r *register) GetRAX() {
 func (r *register) SetRAX(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -785,10 +786,10 @@ func (r *register) GetRBX() {
 func (r *register) SetRBX(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -805,10 +806,10 @@ func (r *register) GetRCX() {
 func (r *register) SetRCX(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -825,10 +826,10 @@ func (r *register) GetRDX() {
 func (r *register) SetRDX(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -845,10 +846,10 @@ func (r *register) GetRSI() {
 func (r *register) SetRSI(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -865,10 +866,10 @@ func (r *register) GetSIL() {
 func (r *register) SetSIL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -885,10 +886,10 @@ func (r *register) GetRDI() {
 func (r *register) SetRDI(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -905,10 +906,10 @@ func (r *register) GetDIL() {
 func (r *register) SetDIL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -925,10 +926,10 @@ func (r *register) GetRBP() {
 func (r *register) SetRBP(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -945,10 +946,10 @@ func (r *register) GetBPL() {
 func (r *register) SetBPL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -965,10 +966,10 @@ func (r *register) GetRSP() {
 func (r *register) SetRSP(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -985,10 +986,10 @@ func (r *register) GetSPL() {
 func (r *register) SetSPL(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1005,10 +1006,10 @@ func (r *register) GetRIP() {
 func (r *register) SetRIP(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1025,10 +1026,10 @@ func (r *register) GetR8() {
 func (r *register) SetR8(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1045,10 +1046,10 @@ func (r *register) GetR8D() {
 func (r *register) SetR8D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1065,10 +1066,10 @@ func (r *register) GetR8W() {
 func (r *register) SetR8W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1085,10 +1086,10 @@ func (r *register) GetR8B() {
 func (r *register) SetR8B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1105,10 +1106,10 @@ func (r *register) GetR9() {
 func (r *register) SetR9(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1125,10 +1126,10 @@ func (r *register) GetR9D() {
 func (r *register) SetR9D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1145,10 +1146,10 @@ func (r *register) GetR9W() {
 func (r *register) SetR9W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1165,10 +1166,10 @@ func (r *register) GetR9B() {
 func (r *register) SetR9B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1185,10 +1186,10 @@ func (r *register) GetR10() {
 func (r *register) SetR10(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1205,10 +1206,10 @@ func (r *register) GetR10D() {
 func (r *register) SetR10D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1225,10 +1226,10 @@ func (r *register) GetR10W() {
 func (r *register) SetR10W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1245,10 +1246,10 @@ func (r *register) GetR10B() {
 func (r *register) SetR10B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1265,10 +1266,10 @@ func (r *register) GetR11() {
 func (r *register) SetR11(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1285,10 +1286,10 @@ func (r *register) GetR11D() {
 func (r *register) SetR11D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1305,10 +1306,10 @@ func (r *register) GetR11W() {
 func (r *register) SetR11W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1325,10 +1326,10 @@ func (r *register) GetR11B() {
 func (r *register) SetR11B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1345,10 +1346,10 @@ func (r *register) GetR12() {
 func (r *register) SetR12(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1365,10 +1366,10 @@ func (r *register) GetR12D() {
 func (r *register) SetR12D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1385,10 +1386,10 @@ func (r *register) GetR12W() {
 func (r *register) SetR12W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1405,10 +1406,10 @@ func (r *register) GetR12B() {
 func (r *register) SetR12B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1425,10 +1426,10 @@ func (r *register) GetR13() {
 func (r *register) SetR13(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1445,10 +1446,10 @@ func (r *register) GetR13D() {
 func (r *register) SetR13D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1465,10 +1466,10 @@ func (r *register) GetR13W() {
 func (r *register) SetR13W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1485,10 +1486,10 @@ func (r *register) GetR13B() {
 func (r *register) SetR13B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1505,10 +1506,10 @@ func (r *register) GetR14() {
 func (r *register) SetR14(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1525,10 +1526,10 @@ func (r *register) GetR14D() {
 func (r *register) SetR14D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1545,10 +1546,10 @@ func (r *register) GetR14W() {
 func (r *register) SetR14W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1565,10 +1566,10 @@ func (r *register) GetR14B() {
 func (r *register) SetR14B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1585,10 +1586,10 @@ func (r *register) GetR15() {
 func (r *register) SetR15(value uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint64",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1605,10 +1606,10 @@ func (r *register) GetR15D() {
 func (r *register) SetR15D(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1625,10 +1626,10 @@ func (r *register) GetR15W() {
 func (r *register) SetR15W(value uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint16",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1645,10 +1646,10 @@ func (r *register) GetR15B() {
 func (r *register) SetR15B(value byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "byte",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1665,10 +1666,10 @@ func (r *register) GetCAX() {
 func (r *register) SetCAX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1685,10 +1686,10 @@ func (r *register) GetCBX() {
 func (r *register) SetCBX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1705,10 +1706,10 @@ func (r *register) GetCCX() {
 func (r *register) SetCCX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1725,10 +1726,10 @@ func (r *register) GetCDX() {
 func (r *register) SetCDX(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1745,10 +1746,10 @@ func (r *register) GetCDI() {
 func (r *register) SetCDI(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1765,10 +1766,10 @@ func (r *register) GetCSI() {
 func (r *register) SetCSI(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1785,10 +1786,10 @@ func (r *register) GetCBP() {
 func (r *register) SetCBP(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1805,10 +1806,10 @@ func (r *register) GetCSP() {
 func (r *register) SetCSP(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1825,10 +1826,10 @@ func (r *register) GetCIP() {
 func (r *register) SetCIP(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -1845,10 +1846,10 @@ func (r *register) GetCFLAGS() {
 func (r *register) SetCFLAGS(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCFLAGS").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "uint",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()

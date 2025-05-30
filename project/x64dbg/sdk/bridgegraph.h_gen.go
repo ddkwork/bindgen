@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -48,10 +49,10 @@ type bridgegraph struct{}
 func (b *bridgegraph) Free(graphList *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "graphList",
 				Type:  "*uintptr ",
-				Value: graphList,
+				Value: fmt.Sprintf("%v", graphList),
 			},
 		},
 	))).Request()
@@ -75,10 +76,10 @@ func (b *bridgegraph) __debugbreak() {
 func (b *bridgegraph) AddNode(node *BridgeCFNode) {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "node",
 				Type:  "*BridgeCFNode ",
-				Value: node,
+				Value: fmt.Sprintf("%v", node),
 			},
 		},
 	))).Request()
@@ -88,15 +89,15 @@ func (b *bridgegraph) AddNode(node *BridgeCFNode) {
 func (b *bridgegraph) AddParent(child int, parent int) {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "child",
 				Type:  "int",
-				Value: child,
+				Value: fmt.Sprintf("%v", child),
 			},
-			Param{
+			{
 				Name:  "parent",
 				Type:  "int",
-				Value: parent,
+				Value: fmt.Sprintf("%v", parent),
 			},
 		},
 	))).Request()

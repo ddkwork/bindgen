@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -17,10 +18,10 @@ type label struct{}
 func (l *label) Set(info *LabelInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "info",
 				Type:  "*LabelInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -30,15 +31,15 @@ func (l *label) Set(info *LabelInfo) {
 func (l *label) FromString(label string, addr *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/FromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "label",
 				Type:  "string",
-				Value: label,
+				Value: fmt.Sprintf("%v", label),
 			},
-			Param{
+			{
 				Name:  "addr",
 				Type:  "*uint ",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -48,15 +49,15 @@ func (l *label) FromString(label string, addr *uint) {
 func (l *label) Get(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -66,10 +67,10 @@ func (l *label) Get(addr uint, text *int8) {
 func (l *label) IsTemporary(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/IsTemporary").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -79,15 +80,15 @@ func (l *label) IsTemporary(addr uint) {
 func (l *label) GetInfo(addr uint, info *LabelInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*LabelInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -97,10 +98,10 @@ func (l *label) GetInfo(addr uint, info *LabelInfo) {
 func (l *label) Delete(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -110,15 +111,15 @@ func (l *label) Delete(addr uint) {
 func (l *label) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -135,10 +136,10 @@ func (l *label) Clear() {
 func (l *label) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()

@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -10,25 +11,25 @@ type memory struct{}
 func (m *memory) Read(addr uint, data *uintptr, size uint, sizeRead *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/Read").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "*uintptr ",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
-			Param{
+			{
 				Name:  "sizeRead",
 				Type:  "*uint ",
-				Value: sizeRead,
+				Value: fmt.Sprintf("%v", sizeRead),
 			},
 		},
 	))).Request()
@@ -38,25 +39,25 @@ func (m *memory) Read(addr uint, data *uintptr, size uint, sizeRead *uint) {
 func (m *memory) Write(addr uint, data *uintptr, size uint, sizeWritten *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/Write").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "*uintptr ",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
-			Param{
+			{
 				Name:  "sizeWritten",
 				Type:  "*uint ",
-				Value: sizeWritten,
+				Value: fmt.Sprintf("%v", sizeWritten),
 			},
 		},
 	))).Request()
@@ -66,10 +67,10 @@ func (m *memory) Write(addr uint, data *uintptr, size uint, sizeWritten *uint) {
 func (m *memory) IsValidPtr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/IsValidPtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -79,15 +80,15 @@ func (m *memory) IsValidPtr(addr uint) {
 func (m *memory) RemoteAlloc(addr uint, size uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/RemoteAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -97,10 +98,10 @@ func (m *memory) RemoteAlloc(addr uint, size uint) {
 func (m *memory) RemoteFree(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/RemoteFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -110,20 +111,20 @@ func (m *memory) RemoteFree(addr uint) {
 func (m *memory) GetProtect(addr uint, reserved bool, cache bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/GetProtect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "reserved",
 				Type:  "bool",
-				Value: reserved,
+				Value: fmt.Sprintf("%v", reserved),
 			},
-			Param{
+			{
 				Name:  "cache",
 				Type:  "bool",
-				Value: cache,
+				Value: fmt.Sprintf("%v", cache),
 			},
 		},
 	))).Request()
@@ -133,20 +134,20 @@ func (m *memory) GetProtect(addr uint, reserved bool, cache bool) {
 func (m *memory) SetProtect(addr uint, protect uint, size uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/SetProtect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "protect",
 				Type:  "uint",
-				Value: protect,
+				Value: fmt.Sprintf("%v", protect),
 			},
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -156,20 +157,20 @@ func (m *memory) SetProtect(addr uint, protect uint, size uint) {
 func (m *memory) GetBase(addr uint, reserved bool, cache bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/GetBase").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "reserved",
 				Type:  "bool",
-				Value: reserved,
+				Value: fmt.Sprintf("%v", reserved),
 			},
-			Param{
+			{
 				Name:  "cache",
 				Type:  "bool",
-				Value: cache,
+				Value: fmt.Sprintf("%v", cache),
 			},
 		},
 	))).Request()
@@ -179,20 +180,20 @@ func (m *memory) GetBase(addr uint, reserved bool, cache bool) {
 func (m *memory) GetSize(addr uint, reserved bool, cache bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/GetSize").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "reserved",
 				Type:  "bool",
-				Value: reserved,
+				Value: fmt.Sprintf("%v", reserved),
 			},
-			Param{
+			{
 				Name:  "cache",
 				Type:  "bool",
-				Value: cache,
+				Value: fmt.Sprintf("%v", cache),
 			},
 		},
 	))).Request()
@@ -202,10 +203,10 @@ func (m *memory) GetSize(addr uint, reserved bool, cache bool) {
 func (m *memory) ReadByte(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadByte").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -215,15 +216,15 @@ func (m *memory) ReadByte(addr uint) {
 func (m *memory) WriteByte(addr uint, data byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteByte").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "byte",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
 		},
 	))).Request()
@@ -233,10 +234,10 @@ func (m *memory) WriteByte(addr uint, data byte) {
 func (m *memory) ReadWord(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadWord").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -246,15 +247,15 @@ func (m *memory) ReadWord(addr uint) {
 func (m *memory) WriteWord(addr uint, data uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteWord").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "uint16",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
 		},
 	))).Request()
@@ -264,10 +265,10 @@ func (m *memory) WriteWord(addr uint, data uint16) {
 func (m *memory) ReadDword(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadDword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -277,15 +278,15 @@ func (m *memory) ReadDword(addr uint) {
 func (m *memory) WriteDword(addr uint, data uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteDword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "uint",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
 		},
 	))).Request()
@@ -295,10 +296,10 @@ func (m *memory) WriteDword(addr uint, data uint) {
 func (m *memory) ReadQword(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadQword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -308,15 +309,15 @@ func (m *memory) ReadQword(addr uint) {
 func (m *memory) WriteQword(addr uint, data uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteQword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "uint64",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
 		},
 	))).Request()
@@ -326,10 +327,10 @@ func (m *memory) WriteQword(addr uint, data uint64) {
 func (m *memory) ReadPtr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadPtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -339,15 +340,15 @@ func (m *memory) ReadPtr(addr uint) {
 func (m *memory) WritePtr(addr uint, data uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WritePtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "data",
 				Type:  "uint",
-				Value: data,
+				Value: fmt.Sprintf("%v", data),
 			},
 		},
 	))).Request()

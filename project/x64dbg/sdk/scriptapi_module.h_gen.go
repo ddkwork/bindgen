@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -46,15 +47,15 @@ type module struct{}
 func (m *module) InfoFromAddr(addr uint, info *ModuleInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/InfoFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*ModuleInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -64,15 +65,15 @@ func (m *module) InfoFromAddr(addr uint, info *ModuleInfo) {
 func (m *module) InfoFromName(name string, info *ModuleInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/InfoFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*ModuleInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -82,10 +83,10 @@ func (m *module) InfoFromName(name string, info *ModuleInfo) {
 func (m *module) BaseFromAddr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/BaseFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -95,10 +96,10 @@ func (m *module) BaseFromAddr(addr uint) {
 func (m *module) BaseFromName(name string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/BaseFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -108,10 +109,10 @@ func (m *module) BaseFromName(name string) {
 func (m *module) SizeFromAddr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SizeFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -121,10 +122,10 @@ func (m *module) SizeFromAddr(addr uint) {
 func (m *module) SizeFromName(name string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SizeFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -134,15 +135,15 @@ func (m *module) SizeFromName(name string) {
 func (m *module) NameFromAddr(addr uint, name *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/NameFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "name",
 				Type:  "*int8 ",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -152,15 +153,15 @@ func (m *module) NameFromAddr(addr uint, name *int8) {
 func (m *module) PathFromAddr(addr uint, path *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/PathFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "path",
 				Type:  "*int8 ",
-				Value: path,
+				Value: fmt.Sprintf("%v", path),
 			},
 		},
 	))).Request()
@@ -170,15 +171,15 @@ func (m *module) PathFromAddr(addr uint, path *int8) {
 func (m *module) PathFromName(name string, path *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/PathFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "path",
 				Type:  "*int8 ",
-				Value: path,
+				Value: fmt.Sprintf("%v", path),
 			},
 		},
 	))).Request()
@@ -188,10 +189,10 @@ func (m *module) PathFromName(name string, path *int8) {
 func (m *module) EntryFromAddr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/EntryFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -201,10 +202,10 @@ func (m *module) EntryFromAddr(addr uint) {
 func (m *module) EntryFromName(name string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/EntryFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -214,10 +215,10 @@ func (m *module) EntryFromName(name string) {
 func (m *module) SectionCountFromAddr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionCountFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -227,10 +228,10 @@ func (m *module) SectionCountFromAddr(addr uint) {
 func (m *module) SectionCountFromName(name string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionCountFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -240,20 +241,20 @@ func (m *module) SectionCountFromName(name string) {
 func (m *module) SectionFromAddr(addr uint, number int, section *ModuleSectionInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "number",
 				Type:  "int",
-				Value: number,
+				Value: fmt.Sprintf("%v", number),
 			},
-			Param{
+			{
 				Name:  "section",
 				Type:  "*ModuleSectionInfo ",
-				Value: section,
+				Value: fmt.Sprintf("%v", section),
 			},
 		},
 	))).Request()
@@ -263,20 +264,20 @@ func (m *module) SectionFromAddr(addr uint, number int, section *ModuleSectionIn
 func (m *module) SectionFromName(name string, number int, section *ModuleSectionInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "number",
 				Type:  "int",
-				Value: number,
+				Value: fmt.Sprintf("%v", number),
 			},
-			Param{
+			{
 				Name:  "section",
 				Type:  "*ModuleSectionInfo ",
-				Value: section,
+				Value: fmt.Sprintf("%v", section),
 			},
 		},
 	))).Request()
@@ -286,15 +287,15 @@ func (m *module) SectionFromName(name string, number int, section *ModuleSection
 func (m *module) SectionListFromAddr(addr uint, list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionListFromAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -304,15 +305,15 @@ func (m *module) SectionListFromAddr(addr uint, list *ListInfo) {
 func (m *module) SectionListFromName(name string, list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionListFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "string",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -322,10 +323,10 @@ func (m *module) SectionListFromName(name string, list *ListInfo) {
 func (m *module) GetMainModuleInfo(info *ModuleInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetMainModuleInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "info",
 				Type:  "*ModuleInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -363,10 +364,10 @@ func (m *module) GetMainModuleSectionCount() {
 func (m *module) GetMainModuleName(name *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetMainModuleName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "name",
 				Type:  "*int8 ",
-				Value: name,
+				Value: fmt.Sprintf("%v", name),
 			},
 		},
 	))).Request()
@@ -376,10 +377,10 @@ func (m *module) GetMainModuleName(name *int8) {
 func (m *module) GetMainModulePath(path *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetMainModulePath").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "path",
 				Type:  "*int8 ",
-				Value: path,
+				Value: fmt.Sprintf("%v", path),
 			},
 		},
 	))).Request()
@@ -389,10 +390,10 @@ func (m *module) GetMainModulePath(path *int8) {
 func (m *module) GetMainModuleSectionList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetMainModuleSectionList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -402,10 +403,10 @@ func (m *module) GetMainModuleSectionList(list *ListInfo) {
 func (m *module) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -415,15 +416,15 @@ func (m *module) GetList(list *ListInfo) {
 func (m *module) GetExports(mod *ModuleInfo, list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetExports").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "mod",
 				Type:  "*ModuleInfo ",
-				Value: mod,
+				Value: fmt.Sprintf("%v", mod),
 			},
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()
@@ -433,15 +434,15 @@ func (m *module) GetExports(mod *ModuleInfo, list *ListInfo) {
 func (m *module) GetImports(mod *ModuleInfo, list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetImports").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "mod",
 				Type:  "*ModuleInfo ",
-				Value: mod,
+				Value: fmt.Sprintf("%v", mod),
 			},
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()

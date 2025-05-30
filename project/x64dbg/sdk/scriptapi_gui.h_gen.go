@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -20,20 +21,20 @@ type gui struct{}
 func (g *gui) SelectionGet(window Window, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "window",
 				Type:  "Window",
-				Value: window,
+				Value: fmt.Sprintf("%v", window),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "*uint ",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "*uint ",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -43,20 +44,20 @@ func (g *gui) SelectionGet(window Window, start *uint, end *uint) {
 func (g *gui) SelectionSet(window Window, start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "window",
 				Type:  "Window",
-				Value: window,
+				Value: fmt.Sprintf("%v", window),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -66,10 +67,10 @@ func (g *gui) SelectionSet(window Window, start uint, end uint) {
 func (g *gui) SelectionGetStart(window Window) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "window",
 				Type:  "Window",
-				Value: window,
+				Value: fmt.Sprintf("%v", window),
 			},
 		},
 	))).Request()
@@ -79,10 +80,10 @@ func (g *gui) SelectionGetStart(window Window) {
 func (g *gui) SelectionGetEnd(window Window) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetEnd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "window",
 				Type:  "Window",
-				Value: window,
+				Value: fmt.Sprintf("%v", window),
 			},
 		},
 	))).Request()
@@ -92,10 +93,10 @@ func (g *gui) SelectionGetEnd(window Window) {
 func (g *gui) Message(message string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/Message").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "string",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -105,10 +106,10 @@ func (g *gui) Message(message string) {
 func (g *gui) MessageYesNo(message string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/MessageYesNo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "message",
 				Type:  "string",
-				Value: message,
+				Value: fmt.Sprintf("%v", message),
 			},
 		},
 	))).Request()
@@ -118,15 +119,15 @@ func (g *gui) MessageYesNo(message string) {
 func (g *gui) InputLine(title string, text *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
-			Param{
+			{
 				Name:  "text",
 				Type:  "*int8 ",
-				Value: text,
+				Value: fmt.Sprintf("%v", text),
 			},
 		},
 	))).Request()
@@ -136,15 +137,15 @@ func (g *gui) InputLine(title string, text *int8) {
 func (g *gui) InputValue(title string, value *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputValue").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "title",
 				Type:  "string",
-				Value: title,
+				Value: fmt.Sprintf("%v", title),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "*uint ",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -161,10 +162,10 @@ func (g *gui) Refresh() {
 func (g *gui) AddQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/AddQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "qWidget",
 				Type:  "*uintptr ",
-				Value: qWidget,
+				Value: fmt.Sprintf("%v", qWidget),
 			},
 		},
 	))).Request()
@@ -174,10 +175,10 @@ func (g *gui) AddQWidgetTab(qWidget *uintptr) {
 func (g *gui) ShowQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/ShowQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "qWidget",
 				Type:  "*uintptr ",
-				Value: qWidget,
+				Value: fmt.Sprintf("%v", qWidget),
 			},
 		},
 	))).Request()
@@ -187,10 +188,10 @@ func (g *gui) ShowQWidgetTab(qWidget *uintptr) {
 func (g *gui) CloseQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/CloseQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "qWidget",
 				Type:  "*uintptr ",
-				Value: qWidget,
+				Value: fmt.Sprintf("%v", qWidget),
 			},
 		},
 	))).Request()

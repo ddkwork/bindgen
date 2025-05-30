@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -66,10 +67,10 @@ func (d *debug) StepOut() {
 func (d *debug) SetBreakpoint(address uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "address",
 				Type:  "uint",
-				Value: address,
+				Value: fmt.Sprintf("%v", address),
 			},
 		},
 	))).Request()
@@ -79,10 +80,10 @@ func (d *debug) SetBreakpoint(address uint) {
 func (d *debug) DeleteBreakpoint(address uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "address",
 				Type:  "uint",
-				Value: address,
+				Value: fmt.Sprintf("%v", address),
 			},
 		},
 	))).Request()
@@ -92,10 +93,10 @@ func (d *debug) DeleteBreakpoint(address uint) {
 func (d *debug) DisableBreakpoint(address uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DisableBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "address",
 				Type:  "uint",
-				Value: address,
+				Value: fmt.Sprintf("%v", address),
 			},
 		},
 	))).Request()
@@ -105,15 +106,15 @@ func (d *debug) DisableBreakpoint(address uint) {
 func (d *debug) SetHardwareBreakpoint(address uint, Type HardwareType) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "address",
 				Type:  "uint",
-				Value: address,
+				Value: fmt.Sprintf("%v", address),
 			},
-			Param{
+			{
 				Name:  "Type",
 				Type:  "HardwareType",
-				Value: Type,
+				Value: fmt.Sprintf("%v", Type),
 			},
 		},
 	))).Request()
@@ -123,10 +124,10 @@ func (d *debug) SetHardwareBreakpoint(address uint, Type HardwareType) {
 func (d *debug) DeleteHardwareBreakpoint(address uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "address",
 				Type:  "uint",
-				Value: address,
+				Value: fmt.Sprintf("%v", address),
 			},
 		},
 	))).Request()

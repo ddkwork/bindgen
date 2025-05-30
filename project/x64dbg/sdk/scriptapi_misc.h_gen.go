@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -10,15 +11,15 @@ type misc struct{}
 func (m *misc) ParseExpression(expression string, value *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ParseExpression").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "expression",
 				Type:  "string",
-				Value: expression,
+				Value: fmt.Sprintf("%v", expression),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "*uint ",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -28,15 +29,15 @@ func (m *misc) ParseExpression(expression string, value *uint) {
 func (m *misc) RemoteGetProcAddress(module string, api string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/RemoteGetProcAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "module",
 				Type:  "string",
-				Value: module,
+				Value: fmt.Sprintf("%v", module),
 			},
-			Param{
+			{
 				Name:  "api",
 				Type:  "string",
-				Value: api,
+				Value: fmt.Sprintf("%v", api),
 			},
 		},
 	))).Request()
@@ -46,10 +47,10 @@ func (m *misc) RemoteGetProcAddress(module string, api string) {
 func (m *misc) ResolveLabel(label string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ResolveLabel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "label",
 				Type:  "string",
-				Value: label,
+				Value: fmt.Sprintf("%v", label),
 			},
 		},
 	))).Request()
@@ -59,10 +60,10 @@ func (m *misc) ResolveLabel(label string) {
 func (m *misc) Alloc(size uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Alloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "size",
 				Type:  "uint",
-				Value: size,
+				Value: fmt.Sprintf("%v", size),
 			},
 		},
 	))).Request()
@@ -72,10 +73,10 @@ func (m *misc) Alloc(size uint) {
 func (m *misc) Free(ptr *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "ptr",
 				Type:  "*uintptr ",
-				Value: ptr,
+				Value: fmt.Sprintf("%v", ptr),
 			},
 		},
 	))).Request()

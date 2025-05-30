@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -16,10 +17,10 @@ type bookmark struct{}
 func (b *bookmark) Set(info *BookmarkInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "info",
 				Type:  "*BookmarkInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -29,10 +30,10 @@ func (b *bookmark) Set(info *BookmarkInfo) {
 func (b *bookmark) Get(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -42,15 +43,15 @@ func (b *bookmark) Get(addr uint) {
 func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*BookmarkInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -60,10 +61,10 @@ func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
 func (b *bookmark) Delete(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
 		},
 	))).Request()
@@ -73,15 +74,15 @@ func (b *bookmark) Delete(addr uint) {
 func (b *bookmark) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -98,10 +99,10 @@ func (b *bookmark) Clear() {
 func (b *bookmark) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()

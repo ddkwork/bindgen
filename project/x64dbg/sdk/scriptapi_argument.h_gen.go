@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -18,10 +19,10 @@ type argument struct{}
 func (a *argument) Add(info *ArgumentInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/Add").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "info",
 				Type:  "*ArgumentInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -31,25 +32,25 @@ func (a *argument) Add(info *ArgumentInfo) {
 func (a *argument) Get(addr uint, start *uint, end *uint, instructionCount *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "start",
 				Type:  "*uint ",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "*uint ",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
-			Param{
+			{
 				Name:  "instructionCount",
 				Type:  "*uint ",
-				Value: instructionCount,
+				Value: fmt.Sprintf("%v", instructionCount),
 			},
 		},
 	))).Request()
@@ -59,15 +60,15 @@ func (a *argument) Get(addr uint, start *uint, end *uint, instructionCount *uint
 func (a *argument) GetInfo(addr uint, info *ArgumentInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "addr",
 				Type:  "uint",
-				Value: addr,
+				Value: fmt.Sprintf("%v", addr),
 			},
-			Param{
+			{
 				Name:  "info",
 				Type:  "*ArgumentInfo ",
-				Value: info,
+				Value: fmt.Sprintf("%v", info),
 			},
 		},
 	))).Request()
@@ -77,15 +78,15 @@ func (a *argument) GetInfo(addr uint, info *ArgumentInfo) {
 func (a *argument) Overlaps(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/Overlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
 		},
 	))).Request()
@@ -95,10 +96,10 @@ func (a *argument) Overlaps(start uint, end uint) {
 func (a *argument) Delete(address uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "address",
 				Type:  "uint",
-				Value: address,
+				Value: fmt.Sprintf("%v", address),
 			},
 		},
 	))).Request()
@@ -108,20 +109,20 @@ func (a *argument) Delete(address uint) {
 func (a *argument) DeleteRange(start uint, end uint, deleteManual bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "start",
 				Type:  "uint",
-				Value: start,
+				Value: fmt.Sprintf("%v", start),
 			},
-			Param{
+			{
 				Name:  "end",
 				Type:  "uint",
-				Value: end,
+				Value: fmt.Sprintf("%v", end),
 			},
-			Param{
+			{
 				Name:  "deleteManual",
 				Type:  "bool",
-				Value: deleteManual,
+				Value: fmt.Sprintf("%v", deleteManual),
 			},
 		},
 	))).Request()
@@ -138,10 +139,10 @@ func (a *argument) Clear() {
 func (a *argument) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "list",
 				Type:  "*ListInfo ",
-				Value: list,
+				Value: fmt.Sprintf("%v", list),
 			},
 		},
 	))).Request()

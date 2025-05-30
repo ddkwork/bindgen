@@ -2,6 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/ddkwork/golibrary/mylog"
 )
 
@@ -23,10 +24,10 @@ type flag struct{}
 func (f *flag) Get(flag FlagEnum) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "flag",
 				Type:  "FlagEnum",
-				Value: flag,
+				Value: fmt.Sprintf("%v", flag),
 			},
 		},
 	))).Request()
@@ -36,15 +37,15 @@ func (f *flag) Get(flag FlagEnum) {
 func (f *flag) Set(flag FlagEnum, value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "flag",
 				Type:  "FlagEnum",
-				Value: flag,
+				Value: fmt.Sprintf("%v", flag),
 			},
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -61,10 +62,10 @@ func (f *flag) GetZF() {
 func (f *flag) SetZF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetZF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -81,10 +82,10 @@ func (f *flag) GetOF() {
 func (f *flag) SetOF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetOF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -101,10 +102,10 @@ func (f *flag) GetCF() {
 func (f *flag) SetCF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetCF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -121,10 +122,10 @@ func (f *flag) GetPF() {
 func (f *flag) SetPF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetPF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -141,10 +142,10 @@ func (f *flag) GetSF() {
 func (f *flag) SetSF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetSF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -161,10 +162,10 @@ func (f *flag) GetTF() {
 func (f *flag) SetTF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetTF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -181,10 +182,10 @@ func (f *flag) GetAF() {
 func (f *flag) SetAF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetAF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -201,10 +202,10 @@ func (f *flag) GetDF() {
 func (f *flag) SetDF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetDF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
@@ -221,10 +222,10 @@ func (f *flag) GetIF() {
 func (f *flag) SetIF(value bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetIF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
-			Param{
+			{
 				Name:  "value",
 				Type:  "bool",
-				Value: value,
+				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()

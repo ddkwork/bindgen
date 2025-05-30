@@ -81,6 +81,7 @@ func genGoFile(results Result, targetDir string, paths ...string) {
 		buffer.WriteString("package " + pkgName + "\n")
 		buffer.WriteString(`
 import (
+	"fmt"
 	"encoding/json"
 	"github.com/ddkwork/golibrary/mylog"
 )
@@ -147,15 +148,15 @@ import (
 			}
 			// mylog.Trace(m.name, m.Comment.mangledName)
 			packet.Set(urlPath, api)
-			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{")
+			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{") //todo bug ReturnType not get
 
 			g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
 			g.P("\t\t[]Param{")
 			for _, p := range m.Params {
-				g.P("\t\t\tParam{")
+				g.P("\t\t\t{")
 				g.P("\t\t\t\tName: ", strconv.Quote(p.Name), ",")
 				g.P("\t\t\t\tType: ", strconv.Quote(p.Type), ",")
-				g.P("\t\t\t\tValue: ", p.Name, ",") //todo test
+				g.P("\t\t\t\tValue: ", "fmt.Sprintf(", strconv.Quote("%v"), ",", p.Name, "),") //todo test
 				g.P("\t\t\t},")
 			}
 			g.P("\t\t},")
