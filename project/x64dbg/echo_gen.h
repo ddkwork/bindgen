@@ -80,22 +80,16444 @@ struct ApiResponse {
    json.Unmarshal --> from_json
  }
  */
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
 
-namespace nlohmann {
-    template<>
-    struct adl_serializer<Script::Module::ModuleInfo> {
-        static void to_json(json &j, const Script::Module::ModuleInfo &info) {
-            j = {
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
 
-                    {"base", info.base},
-                    {"size", info.size},
-                    {"entry", info.entry},
-                    {"sectionCount", info.sectionCount},
-                    {"name", info.name},
-                    {"path", info.path},
-            };
-        }
-    };
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"modbase", self.modbase},
+                {"symbol", self.symbol},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"modbase", self.modbase},
+                {"symbol", self.symbol},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"row", self.row},
+                {"col", self.col},
+                {"str", self.str},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"modbase", self.modbase},
+                {"symbol", self.symbol},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"row", self.row},
+                {"col", self.col},
+                {"str", self.str},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"modbase", self.modbase},
+                {"symbol", self.symbol},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"row", self.row},
+                {"col", self.col},
+                {"str", self.str},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"modbase", self.modbase},
+                {"symbol", self.symbol},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"row", self.row},
+                {"col", self.col},
+                {"str", self.str},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"name", self.name},
+                {"id", self.id},
+                {"execute", self.execute},
+                {"completeCommand", self.completeCommand},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"size", self.size},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rvaStart", self.rvaStart},
+                {"rvaEnd", self.rvaEnd},
+                {"manual", self.manual},
+                {"instructioncount", self.instructioncount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"text", self.text},
+                {"manual", self.manual},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"size", self.size},
+                {"entry", self.entry},
+                {"sectionCount", self.sectionCount},
+                {"name", self.name},
+                {"path", self.path},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"size", self.size},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ordinal", self.ordinal},
+                {"rva", self.rva},
+                {"va", self.va},
+                {"forwarded", self.forwarded},
+                {"forwardName", self.forwardName},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"iatRva", self.iatRva},
+                {"iatVa", self.iatVa},
+                {"ordinal", self.ordinal},
+                {"name", self.name},
+                {"undecoratedName", self.undecoratedName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mod", self.mod},
+                {"rva", self.rva},
+                {"name", self.name},
+                {"manual", self.manual},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"data", self.data},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"parentGraph", self.parentGraph},
+                {"start", self.start},
+                {"end", self.end},
+                {"brtrue", self.brtrue},
+                {"brfalse", self.brfalse},
+                {"icount", self.icount},
+                {"terminal", self.terminal},
+                {"split", self.split},
+                {"indirectcall", self.indirectcall},
+                {"userdata", self.userdata},
+                {"exits", self.exits},
+                {"instrs", self.instrs},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"entryPoint", self.entryPoint},
+                {"userdata", self.userdata},
+                {"nodes", self.nodes},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"mbi", self.mbi},
+                {"info", self.info},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"page", self.page},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"bp", self.bp},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"depth", self.depth},
+                {"start", self.start},
+                {"end", self.end},
+                {"instrcount", self.instrcount},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"base", self.base},
+                {"cbSymbolEnum", self.cbSymbolEnum},
+                {"user", self.user},
+                {"start", self.start},
+                {"end", self.end},
+                {"symbolMask", self.symbolMask},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"Low", self.Low},
+                {"High", self.High},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"st_value", self.st_value},
+                {"tag", self.tag},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ControlWord", self.ControlWord},
+                {"StatusWord", self.StatusWord},
+                {"TagWord", self.TagWord},
+                {"ErrorOffset", self.ErrorOffset},
+                {"ErrorSelector", self.ErrorSelector},
+                {"DataOffset", self.DataOffset},
+                {"DataSelector", self.DataSelector},
+                {"Cr0NpxState", self.Cr0NpxState},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"cax", self.cax},
+                {"ccx", self.ccx},
+                {"cdx", self.cdx},
+                {"cbx", self.cbx},
+                {"csp", self.csp},
+                {"cbp", self.cbp},
+                {"csi", self.csi},
+                {"cdi", self.cdi},
+                {"r8", self.r8},
+                {"r9", self.r9},
+                {"r10", self.r10},
+                {"r11", self.r11},
+                {"r12", self.r12},
+                {"r13", self.r13},
+                {"r14", self.r14},
+                {"r15", self.r15},
+                {"cip", self.cip},
+                {"eflags", self.eflags},
+                {"gs", self.gs},
+                {"fs", self.fs},
+                {"es", self.es},
+                {"ds", self.ds},
+                {"cs", self.cs},
+                {"ss", self.ss},
+                {"dr0", self.dr0},
+                {"dr1", self.dr1},
+                {"dr2", self.dr2},
+                {"dr3", self.dr3},
+                {"dr6", self.dr6},
+                {"dr7", self.dr7},
+                {"RegisterArea", self.RegisterArea},
+                {"x87fpu", self.x87fpu},
+                {"MxCsr", self.MxCsr},
+                {"XmmRegisters", self.XmmRegisters},
+                {"YmmRegisters", self.YmmRegisters},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"code", self.code},
+                {"name", self.name},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"regcontext", self.regcontext},
+                {"flags", self.flags},
+                {"x87FPURegisters", self.x87FPURegisters},
+                {"mmx", self.mmx},
+                {"MxCsrFields", self.MxCsrFields},
+                {"x87StatusWordFields", self.x87StatusWordFields},
+                {"x87ControlWordFields", self.x87ControlWordFields},
+                {"lastError", self.lastError},
+                {"lastStatus", self.lastStatus},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"segment", self.segment},
+                {"mnemonic", self.mnemonic},
+                {"constant", self.constant},
+                {"value", self.value},
+                {"memvalue", self.memvalue},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"instruction", self.instruction},
+                {"type", self.type},
+                {"argcount", self.argcount},
+                {"instr_size", self.instr_size},
+                {"arg", self.arg},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"color", self.color},
+                {"comment", self.comment},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"ThreadNumber", self.ThreadNumber},
+                {"Handle", self.Handle},
+                {"ThreadId", self.ThreadId},
+                {"ThreadStartAddress", self.ThreadStartAddress},
+                {"ThreadLocalBase", self.ThreadLocalBase},
+                {"threadName", self.threadName},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"BasicInfo", self.BasicInfo},
+                {"ThreadCip", self.ThreadCip},
+                {"SuspendCount", self.SuspendCount},
+                {"Priority", self.Priority},
+                {"WaitReason", self.WaitReason},
+                {"LastError", self.LastError},
+                {"UserTime", self.UserTime},
+                {"KernelTime", self.KernelTime},
+                {"CreationTime", self.CreationTime},
+                {"Cycles", self.Cycles},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"count", self.count},
+                {"list", self.list},
+                {"CurrentThread", self.CurrentThread},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+                {"mnemonic", self.mnemonic},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"value", self.value},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"type", self.type},
+                {"dest", self.dest},
+                {"branchlabel", self.branchlabel},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"addr", self.addr},
+                {"type", self.type},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"refcount", self.refcount},
+                {"references", self.references},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"address", self.address},
+                {"from", self.from},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"modbase", self.modbase},
+                {"symbol", self.symbol},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"row", self.row},
+                {"col", self.col},
+                {"str", self.str},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"start", self.start},
+                {"end", self.end},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"data", self.data},
+                {"size", self.size},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"name", self.name},
+                {"id", self.id},
+                {"execute", self.execute},
+                {"completeCommand", self.completeCommand},
+        };
+    }
+};
+
+template<>
+struct adl_serializer<> {
+    static void to_json(json &j, const &self) {
+        j = {
+
+                {"titleHwnd", self.titleHwnd},
+                {"classHwnd", self.classHwnd},
+                {"title", self.title},
+                {"className", self.className},
+        };
+    }
+};
+
 }// namespace nlohmann
 
 void dispatch() {

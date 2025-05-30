@@ -177,7 +177,6 @@ import (
 			buffer.WriteString(g.String())
 
 			var values []string
-			//ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
 			for _, p := range m.Params {
 				values = append(values, "params["+strconv.Quote(p.Name)+"].get<"+p.CType+">()")
 			}
@@ -186,6 +185,7 @@ import (
 			gResp.P("ApiResponse resp{.success = true, .type = ",
 				strconv.Quote(m.ReturnType), //todo CType:   param.Get("type.qualType").String(),
 				", .result = ", apiName, "(", strings.Join(values, ", "), "};")
+
 			api.Set(urlPath, cApi{
 				path:       urlPath,
 				Fn:         apiName,
@@ -193,6 +193,7 @@ import (
 				Params:     m.Params,
 				ReturnType: m.ReturnType,
 			})
+
 		}
 
 		mylog.Info(path, fileName+"_gen.go")
@@ -244,10 +245,34 @@ type ApiResponse struct {
 
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
-	genMcpCppServerCode(api)
+
+	var marshals []string
+	gMarshal := stream.NewGeneratedFile()
+	for _, s := range results.Structs.Range() {
+		gMarshal.P("    template<>")
+
+		objectName := s.Comment.mangledName
+		if strings.HasPrefix(objectName, "?") { // namespace
+			split := strings.Split(objectName, "@")
+			objectName = split[2] + "::" + split[1] + "::" + s.Name
+		}
+
+		gMarshal.P("    struct adl_serializer<", objectName, "> {")
+		gMarshal.P("        static void to_json(json &j, const ", objectName, " &self) {")
+		gMarshal.P("            j = {")
+		gMarshal.P("")
+		for _, p := range s.Fields {
+			gMarshal.P("                    {", strconv.Quote(p.Name), ", self.", p.Name, "},")
+		}
+		gMarshal.P("            };")
+		gMarshal.P("        }")
+		gMarshal.P("    };")
+		marshals = append(marshals, gMarshal.String())
+	}
+	genMcpCppServerCode(api, marshals)
 }
 
-func genMcpCppServerCode(m *safemap.M[string, cApi]) {
+func genMcpCppServerCode(m *safemap.M[string, cApi], marshals []string) {
 	start := `
 //
 // Created by Admin on 28/05/2025.
@@ -412,7 +437,12 @@ void stopHttpServer() {
 #endif//MCPX64DBG_ECHO_GEN_H
 
 `
-	jsonMarshaler := `
+
+	g := stream.NewGeneratedFile()
+	g.P(start)
+	g.P()
+
+	g.P(`
 /*
  {
    json.Marshaler --> adl_serializer
@@ -420,29 +450,12 @@ void stopHttpServer() {
    json.Unmarshal --> from_json
  }
  */
-
-namespace nlohmann {
-    template<>
-    struct adl_serializer<Script::Module::ModuleInfo> {
-        static void to_json(json &j, const Script::Module::ModuleInfo &info) {
-            j = {
-
-                    {"base", info.base},
-                    {"size", info.size},
-                    {"entry", info.entry},
-                    {"sectionCount", info.sectionCount},
-                    {"name", info.name},
-                    {"path", info.path},
-            };
-        }
-    };
-}// namespace nlohmann
-
-`
-
-	g := stream.NewGeneratedFile()
-	g.P(start)
-	g.P(jsonMarshaler) //todo gen it from ast
+`)
+	for _, marshal := range marshals {
+		g.P(marshal)
+		g.P()
+	}
+	g.P("}// namespace nlohmann")
 
 	g.P("void dispatch() {")
 	for path, api := range m.Range() {
