@@ -3,6 +3,7 @@ package bindgen
 import (
 	"bytes"
 	"fmt"
+	"github.com/ddkwork/golibrary/stream/clang"
 	"io/fs"
 	"net/url"
 	"os"
@@ -242,26 +243,6 @@ type ApiResponse struct {
 	buffer.WriteString("  var Client=     httpClient.New()\n")
 
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
-
-	//todo
-	/*
-		APIS = [
-		    {
-		        "path": "/_scriptapi_memory.h/ReadByte",
-		        "func": "Script::Memory::ReadByte",
-		        "params": ["address"]//类型，名称，value的切片
-		        "return_type": "uint8"
-		    },
-		    {
-		        "path": "/_scriptapi_memory.h/ReadDword",
-		        "func": "Script::Memory::ReadDword",
-		        "params": ["address"],
-		        "return_type": "uint32"
-		    },
-		    # 添加更多API...
-		]
-	*/
-	// mylog.Struct(api.Map())
 	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
 	genMcpCppServerCode(api)
 }
@@ -525,6 +506,7 @@ namespace nlohmann {
 
 	g.P(end)
 	stream.WriteTruncate("echo_gen.h", g.String())
+	clang.New().Format("echo_gen.h")
 }
 
 func typedefsNameByID(root gjson.Result, result *Result) {
