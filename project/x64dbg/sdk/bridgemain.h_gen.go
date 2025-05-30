@@ -817,12 +817,14 @@ func (b *bridgemain) BridgeInit() {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeStart() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeAlloc(size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -835,6 +837,7 @@ func (b *bridgemain) BridgeAlloc(size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeFree(ptr *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -847,6 +850,7 @@ func (b *bridgemain) BridgeFree(ptr *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeSettingGet(section string, key string, value *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -869,6 +873,7 @@ func (b *bridgemain) BridgeSettingGet(section string, key string, value *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeSettingGetUint(section string, key string, value *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -891,6 +896,7 @@ func (b *bridgemain) BridgeSettingGetUint(section string, key string, value *uin
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeSettingSet(section string, key string, value string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -913,6 +919,7 @@ func (b *bridgemain) BridgeSettingSet(section string, key string, value string) 
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeSettingSetUint(section string, key string, value uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -935,12 +942,14 @@ func (b *bridgemain) BridgeSettingSetUint(section string, key string, value uint
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeSettingFlush() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingFlush").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeSettingRead(errorLine *int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -953,48 +962,56 @@ func (b *bridgemain) BridgeSettingRead(errorLine *int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeGetDbgVersion() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeGetDbgVersion").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeIsProcessElevated() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeIsProcessElevated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeGetNtBuildNumber() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeGetNtBuildNumber").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeUserDirectory() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeUserDirectory").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) BridgeIsARM64Emulated() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeIsARM64Emulated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgInit() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgInit").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgExit() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgExit").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMemRead(va uint, dest *uintptr, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1017,6 +1034,7 @@ func (b *bridgemain) DbgMemRead(va uint, dest *uintptr, size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMemWrite(va uint, src *uintptr, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemWrite").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1039,6 +1057,7 @@ func (b *bridgemain) DbgMemWrite(va uint, src *uintptr, size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMemGetPageSize(base uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemGetPageSize").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1051,6 +1070,7 @@ func (b *bridgemain) DbgMemGetPageSize(base uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMemFindBaseAddr(addr uint, size *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemFindBaseAddr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1068,6 +1088,7 @@ func (b *bridgemain) DbgMemFindBaseAddr(addr uint, size *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgCmdExec(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgCmdExec").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1080,6 +1101,7 @@ func (b *bridgemain) DbgCmdExec(cmd string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgCmdExecDirect(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgCmdExecDirect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1092,6 +1114,7 @@ func (b *bridgemain) DbgCmdExecDirect(cmd string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMemMap(memmap *MEMMAP) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemMap").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1104,6 +1127,7 @@ func (b *bridgemain) DbgMemMap(memmap *MEMMAP) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgIsValidExpression(expression string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsValidExpression").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1116,12 +1140,14 @@ func (b *bridgemain) DbgIsValidExpression(expression string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgIsDebugging() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsDebugging").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgIsJumpGoingToExecute(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsJumpGoingToExecute").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1134,6 +1160,7 @@ func (b *bridgemain) DbgIsJumpGoingToExecute(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetLabelAt(addr uint, segment SEGMENTREG, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetLabelAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1156,6 +1183,7 @@ func (b *bridgemain) DbgGetLabelAt(addr uint, segment SEGMENTREG, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetLabelAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetLabelAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1173,6 +1201,7 @@ func (b *bridgemain) DbgSetLabelAt(addr uint, text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearLabelRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearLabelRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1190,6 +1219,7 @@ func (b *bridgemain) DbgClearLabelRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetCommentAt(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetCommentAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1207,6 +1237,7 @@ func (b *bridgemain) DbgGetCommentAt(addr uint, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetCommentAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetCommentAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1224,6 +1255,7 @@ func (b *bridgemain) DbgSetCommentAt(addr uint, text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearCommentRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearCommentRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1241,6 +1273,7 @@ func (b *bridgemain) DbgClearCommentRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetBookmarkAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBookmarkAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1253,6 +1286,7 @@ func (b *bridgemain) DbgGetBookmarkAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearBookmarkRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearBookmarkRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1270,6 +1304,7 @@ func (b *bridgemain) DbgClearBookmarkRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetModuleAt(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetModuleAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1287,6 +1322,7 @@ func (b *bridgemain) DbgGetModuleAt(addr uint, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetBpxTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBpxTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1299,6 +1335,7 @@ func (b *bridgemain) DbgGetBpxTypeAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgValFromString(s string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgValFromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1311,6 +1348,7 @@ func (b *bridgemain) DbgValFromString(s string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetRegDumpEx(regdump *REGDUMP, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetRegDumpEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1328,6 +1366,7 @@ func (b *bridgemain) DbgGetRegDumpEx(regdump *REGDUMP, size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgValToString(s string, value uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgValToString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1345,6 +1384,7 @@ func (b *bridgemain) DbgValToString(s string, value uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMemIsValidReadPtr(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMemIsValidReadPtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1357,6 +1397,7 @@ func (b *bridgemain) DbgMemIsValidReadPtr(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetBpList(Type BPXTYPE, list *BPMAP) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBpList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1374,6 +1415,7 @@ func (b *bridgemain) DbgGetBpList(Type BPXTYPE, list *BPMAP) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetFunctionTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetFunctionTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1386,6 +1428,7 @@ func (b *bridgemain) DbgGetFunctionTypeAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetLoopTypeAt(addr uint, depth int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetLoopTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1403,6 +1446,7 @@ func (b *bridgemain) DbgGetLoopTypeAt(addr uint, depth int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetBranchDestination(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetBranchDestination").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1415,6 +1459,7 @@ func (b *bridgemain) DbgGetBranchDestination(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptLoad(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptLoad").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1427,12 +1472,14 @@ func (b *bridgemain) DbgScriptLoad(filename string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptUnload() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptUnload").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptRun(destline int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptRun").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1445,12 +1492,14 @@ func (b *bridgemain) DbgScriptRun(destline int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptStep() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptStep").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptBpToggle(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptBpToggle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1463,6 +1512,7 @@ func (b *bridgemain) DbgScriptBpToggle(line int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptBpGet(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptBpGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1475,6 +1525,7 @@ func (b *bridgemain) DbgScriptBpGet(line int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptCmdExec(command string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptCmdExec").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1487,12 +1538,14 @@ func (b *bridgemain) DbgScriptCmdExec(command string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptAbort() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptAbort").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptGetLineType(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptGetLineType").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1505,6 +1558,7 @@ func (b *bridgemain) DbgScriptGetLineType(line int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptSetIp(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptSetIp").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1517,6 +1571,7 @@ func (b *bridgemain) DbgScriptSetIp(line int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgScriptGetBranchInfo(line int, info *SCRIPTBRANCH) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgScriptGetBranchInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1534,6 +1589,7 @@ func (b *bridgemain) DbgScriptGetBranchInfo(line int, info *SCRIPTBRANCH) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSymbolEnum(base uint, cbSymbolEnum uintptr, user *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSymbolEnum").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1556,6 +1612,7 @@ func (b *bridgemain) DbgSymbolEnum(base uint, cbSymbolEnum uintptr, user *uintpt
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSymbolEnumFromCache(base uint, cbSymbolEnum uintptr, user *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSymbolEnumFromCache").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1578,6 +1635,7 @@ func (b *bridgemain) DbgSymbolEnumFromCache(base uint, cbSymbolEnum uintptr, use
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSymbolEnumRange(start uint, end uint, symbolMask uint, cbSymbolEnum uintptr, user *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSymbolEnumRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1610,6 +1668,7 @@ func (b *bridgemain) DbgSymbolEnumRange(start uint, end uint, symbolMask uint, c
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgAssembleAt(addr uint, instruction string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgAssembleAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1627,6 +1686,7 @@ func (b *bridgemain) DbgAssembleAt(addr uint, instruction string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgModBaseFromName(name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgModBaseFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1639,6 +1699,7 @@ func (b *bridgemain) DbgModBaseFromName(name string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgDisasmAt(addr uint, instr *DISASM_INSTR) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDisasmAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1656,6 +1717,7 @@ func (b *bridgemain) DbgDisasmAt(addr uint, instr *DISASM_INSTR) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgStackCommentGet(addr uint, comment *STACK_COMMENT) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgStackCommentGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1673,6 +1735,7 @@ func (b *bridgemain) DbgStackCommentGet(addr uint, comment *STACK_COMMENT) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetThreadList(list *THREADLIST) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetThreadList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1685,12 +1748,14 @@ func (b *bridgemain) DbgGetThreadList(list *THREADLIST) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSettingsUpdated() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSettingsUpdated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgDisasmFastAt(addr uint, basicinfo *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDisasmFastAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1708,6 +1773,7 @@ func (b *bridgemain) DbgDisasmFastAt(addr uint, basicinfo *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMenuEntryClicked(hEntry int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMenuEntryClicked").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1720,6 +1786,7 @@ func (b *bridgemain) DbgMenuEntryClicked(hEntry int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgFunctionGet(addr uint, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1742,6 +1809,7 @@ func (b *bridgemain) DbgFunctionGet(addr uint, start *uint, end *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgFunctionOverlaps(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionOverlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1759,6 +1827,7 @@ func (b *bridgemain) DbgFunctionOverlaps(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgFunctionAdd(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1776,6 +1845,7 @@ func (b *bridgemain) DbgFunctionAdd(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgFunctionDel(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctionDel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1788,6 +1858,7 @@ func (b *bridgemain) DbgFunctionDel(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgArgumentGet(addr uint, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1810,6 +1881,7 @@ func (b *bridgemain) DbgArgumentGet(addr uint, start *uint, end *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgArgumentOverlaps(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentOverlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1827,6 +1899,7 @@ func (b *bridgemain) DbgArgumentOverlaps(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgArgumentAdd(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1844,6 +1917,7 @@ func (b *bridgemain) DbgArgumentAdd(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgArgumentDel(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgArgumentDel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1856,6 +1930,7 @@ func (b *bridgemain) DbgArgumentDel(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgLoopGet(depth int, addr uint, start *uint, end *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1883,6 +1958,7 @@ func (b *bridgemain) DbgLoopGet(depth int, addr uint, start *uint, end *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgLoopOverlaps(depth int, start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopOverlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1905,6 +1981,7 @@ func (b *bridgemain) DbgLoopOverlaps(depth int, start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgLoopAdd(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1922,6 +1999,7 @@ func (b *bridgemain) DbgLoopAdd(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgLoopDel(depth int, addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgLoopDel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1939,6 +2017,7 @@ func (b *bridgemain) DbgLoopDel(depth int, addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgXrefAdd(addr uint, from uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1956,6 +2035,7 @@ func (b *bridgemain) DbgXrefAdd(addr uint, from uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgXrefDelAll(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefDelAll").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1968,6 +2048,7 @@ func (b *bridgemain) DbgXrefDelAll(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgXrefGet(addr uint, info *XREF_INFO) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1985,6 +2066,7 @@ func (b *bridgemain) DbgXrefGet(addr uint, info *XREF_INFO) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetXrefCountAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetXrefCountAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1997,6 +2079,7 @@ func (b *bridgemain) DbgGetXrefCountAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetXrefTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetXrefTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2009,12 +2092,14 @@ func (b *bridgemain) DbgGetXrefTypeAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgIsRunLocked() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsRunLocked").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgIsBpDisabled(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsBpDisabled").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2027,6 +2112,7 @@ func (b *bridgemain) DbgIsBpDisabled(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetAutoCommentAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoCommentAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2044,6 +2130,7 @@ func (b *bridgemain) DbgSetAutoCommentAt(addr uint, text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearAutoCommentRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoCommentRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2061,6 +2148,7 @@ func (b *bridgemain) DbgClearAutoCommentRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetAutoLabelAt(addr uint, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoLabelAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2078,6 +2166,7 @@ func (b *bridgemain) DbgSetAutoLabelAt(addr uint, text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearAutoLabelRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoLabelRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2095,6 +2184,7 @@ func (b *bridgemain) DbgClearAutoLabelRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetAutoBookmarkAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoBookmarkAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2107,6 +2197,7 @@ func (b *bridgemain) DbgSetAutoBookmarkAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearAutoBookmarkRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoBookmarkRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2124,6 +2215,7 @@ func (b *bridgemain) DbgClearAutoBookmarkRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetAutoFunctionAt(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetAutoFunctionAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2141,6 +2233,7 @@ func (b *bridgemain) DbgSetAutoFunctionAt(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgClearAutoFunctionRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgClearAutoFunctionRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2158,6 +2251,7 @@ func (b *bridgemain) DbgClearAutoFunctionRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetStringAt(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetStringAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2175,12 +2269,14 @@ func (b *bridgemain) DbgGetStringAt(addr uint, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgFunctions() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgFunctions").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgWinEvent(message *uintptr, result *int32) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgWinEvent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2198,6 +2294,7 @@ func (b *bridgemain) DbgWinEvent(message *uintptr, result *int32) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgWinEventGlobal(message *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgWinEventGlobal").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2210,18 +2307,21 @@ func (b *bridgemain) DbgWinEventGlobal(message *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgIsRunning() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgIsRunning").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetTimeWastedCounter() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetTimeWastedCounter").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetArgTypeAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetArgTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2234,6 +2334,7 @@ func (b *bridgemain) DbgGetArgTypeAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetEncodeTypeBuffer(addr uint, size *uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetEncodeTypeBuffer").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2251,6 +2352,7 @@ func (b *bridgemain) DbgGetEncodeTypeBuffer(addr uint, size *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgReleaseEncodeTypeBuffer(buffer *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgReleaseEncodeTypeBuffer").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2263,6 +2365,7 @@ func (b *bridgemain) DbgReleaseEncodeTypeBuffer(buffer *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetEncodeTypeAt(addr uint, size uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetEncodeTypeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2280,6 +2383,7 @@ func (b *bridgemain) DbgGetEncodeTypeAt(addr uint, size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetEncodeSizeAt(addr uint, codesize uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetEncodeSizeAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2297,6 +2401,7 @@ func (b *bridgemain) DbgGetEncodeSizeAt(addr uint, codesize uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSetEncodeType(addr uint, size uint, Type ENCODETYPE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSetEncodeType").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2319,6 +2424,7 @@ func (b *bridgemain) DbgSetEncodeType(addr uint, size uint, Type ENCODETYPE) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgDelEncodeTypeRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDelEncodeTypeRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2336,6 +2442,7 @@ func (b *bridgemain) DbgDelEncodeTypeRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgDelEncodeTypeSegment(start uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgDelEncodeTypeSegment").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2348,6 +2455,7 @@ func (b *bridgemain) DbgDelEncodeTypeSegment(start uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetWatchList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetWatchList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2360,6 +2468,7 @@ func (b *bridgemain) DbgGetWatchList(list *ListInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgSelChanged(hWindow int, VA uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgSelChanged").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2377,30 +2486,35 @@ func (b *bridgemain) DbgSelChanged(hWindow int, VA uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetProcessHandle() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetProcessHandle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetThreadHandle() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetThreadHandle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetProcessId() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetProcessId").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetThreadId() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetThreadId").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetPebAddress(ProcessId uint32) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetPebAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2413,6 +2527,7 @@ func (b *bridgemain) DbgGetPebAddress(ProcessId uint32) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetTebAddress(ThreadId uint32) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetTebAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2425,6 +2540,7 @@ func (b *bridgemain) DbgGetTebAddress(ThreadId uint32) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgAnalyzeFunction(entry uint, graph *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgAnalyzeFunction").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2442,6 +2558,7 @@ func (b *bridgemain) DbgAnalyzeFunction(entry uint, graph *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetSymbolInfo(symbolptr *uintptr, info *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetSymbolInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2459,12 +2576,14 @@ func (b *bridgemain) DbgGetSymbolInfo(symbolptr *uintptr, info *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetDebugEngine() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetDebugEngine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgGetSymbolInfoAt(addr uint, info *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgGetSymbolInfoAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2482,6 +2601,7 @@ func (b *bridgemain) DbgGetSymbolInfoAt(addr uint, info *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgXrefAddMulti(edges *XREF_EDGE, count uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgXrefAddMulti").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2499,6 +2619,7 @@ func (b *bridgemain) DbgXrefAddMulti(edges *XREF_EDGE, count uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) DbgMenuPrepare(hMenu GUIMENUTYPE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/DbgMenuPrepare").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2511,6 +2632,7 @@ func (b *bridgemain) DbgMenuPrepare(hMenu GUIMENUTYPE) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiTranslateText(Source string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiTranslateText").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2523,6 +2645,7 @@ func (b *bridgemain) GuiTranslateText(Source string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiDisasmAt(addr uint, cip uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDisasmAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2540,6 +2663,7 @@ func (b *bridgemain) GuiDisasmAt(addr uint, cip uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSetDebugState(state DBGSTATE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetDebugState").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2552,6 +2676,7 @@ func (b *bridgemain) GuiSetDebugState(state DBGSTATE) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSetDebugStateFast(state DBGSTATE) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetDebugStateFast").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2564,6 +2689,7 @@ func (b *bridgemain) GuiSetDebugStateFast(state DBGSTATE) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddLogMessage(msg string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddLogMessage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2576,6 +2702,7 @@ func (b *bridgemain) GuiAddLogMessage(msg string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddLogMessageHtml(msg string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddLogMessageHtml").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2588,12 +2715,14 @@ func (b *bridgemain) GuiAddLogMessageHtml(msg string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiLogClear() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLogClear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiLogSave(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLogSave").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2606,6 +2735,7 @@ func (b *bridgemain) GuiLogSave(filename string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiLogRedirect(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLogRedirect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2618,36 +2748,42 @@ func (b *bridgemain) GuiLogRedirect(filename string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiLogRedirectStop() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLogRedirectStop").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateAllViews() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateAllViews").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateRegisterView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateRegisterView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateDisassemblyView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateDisassemblyView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateBreakpointsView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateBreakpointsView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateWindowTitle(filename string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateWindowTitle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2660,12 +2796,14 @@ func (b *bridgemain) GuiUpdateWindowTitle(filename string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetWindowHandle() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetWindowHandle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiDumpAt(va uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDumpAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2678,6 +2816,7 @@ func (b *bridgemain) GuiDumpAt(va uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptAdd(count int, lines *string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2695,12 +2834,14 @@ func (b *bridgemain) GuiScriptAdd(count int, lines *string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptClear() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptClear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptSetIp(line int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptSetIp").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2713,6 +2854,7 @@ func (b *bridgemain) GuiScriptSetIp(line int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptError(line int, message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptError").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2730,6 +2872,7 @@ func (b *bridgemain) GuiScriptError(line int, message string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptSetTitle(title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptSetTitle").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2742,6 +2885,7 @@ func (b *bridgemain) GuiScriptSetTitle(title string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptSetInfoLine(line int, info string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptSetInfoLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2759,6 +2903,7 @@ func (b *bridgemain) GuiScriptSetInfoLine(line int, info string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptMessage(message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptMessage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2771,6 +2916,7 @@ func (b *bridgemain) GuiScriptMessage(message string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiScriptMsgyn(message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiScriptMsgyn").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2783,6 +2929,7 @@ func (b *bridgemain) GuiScriptMsgyn(message string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSymbolLogAdd(message string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolLogAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2795,12 +2942,14 @@ func (b *bridgemain) GuiSymbolLogAdd(message string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSymbolLogClear() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolLogClear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSymbolSetProgress(percent int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolSetProgress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2813,6 +2962,7 @@ func (b *bridgemain) GuiSymbolSetProgress(percent int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSymbolUpdateModuleList(count int, modules *SYMBOLMODULEINFO) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolUpdateModuleList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2830,12 +2980,14 @@ func (b *bridgemain) GuiSymbolUpdateModuleList(count int, modules *SYMBOLMODULEI
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSymbolRefreshCurrent() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSymbolRefreshCurrent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceAddColumn(width int, title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceAddColumn").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2853,6 +3005,7 @@ func (b *bridgemain) GuiReferenceAddColumn(width int, title string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSetRowCount(count int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetRowCount").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2865,24 +3018,28 @@ func (b *bridgemain) GuiReferenceSetRowCount(count int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceGetRowCount() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceGetRowCount").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSearchGetRowCount() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSearchGetRowCount").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceDeleteAllColumns() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceDeleteAllColumns").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceInitialize(name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceInitialize").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2895,6 +3052,7 @@ func (b *bridgemain) GuiReferenceInitialize(name string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSetCellContent(row int, col int, str string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetCellContent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2917,6 +3075,7 @@ func (b *bridgemain) GuiReferenceSetCellContent(row int, col int, str string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceGetCellContent(row int, col int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceGetCellContent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2934,6 +3093,7 @@ func (b *bridgemain) GuiReferenceGetCellContent(row int, col int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSearchGetCellContent(row int, col int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSearchGetCellContent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2951,12 +3111,14 @@ func (b *bridgemain) GuiReferenceSearchGetCellContent(row int, col int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceReloadData() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceReloadData").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSetProgress(progress int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetProgress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2969,6 +3131,7 @@ func (b *bridgemain) GuiReferenceSetProgress(progress int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSetCurrentTaskProgress(progress int, taskTitle string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetCurrentTaskProgress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2986,6 +3149,7 @@ func (b *bridgemain) GuiReferenceSetCurrentTaskProgress(progress int, taskTitle 
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceSetSearchStartCol(col int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceSetSearchStartCol").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2998,6 +3162,7 @@ func (b *bridgemain) GuiReferenceSetSearchStartCol(col int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiStackDumpAt(addr uint, csp uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiStackDumpAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3015,30 +3180,35 @@ func (b *bridgemain) GuiStackDumpAt(addr uint, csp uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateDumpView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateDumpView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateWatchView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateWatchView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateThreadView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateThreadView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateMemoryView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateMemoryView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddRecentFile(file string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddRecentFile").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3051,6 +3221,7 @@ func (b *bridgemain) GuiAddRecentFile(file string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSetLastException(exception uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetLastException").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3063,6 +3234,7 @@ func (b *bridgemain) GuiSetLastException(exception uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetDisassembly(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetDisassembly").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3080,6 +3252,7 @@ func (b *bridgemain) GuiGetDisassembly(addr uint, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuAdd(hMenu int, title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuAdd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3097,6 +3270,7 @@ func (b *bridgemain) GuiMenuAdd(hMenu int, title string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuAddEntry(hMenu int, title string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuAddEntry").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3114,6 +3288,7 @@ func (b *bridgemain) GuiMenuAddEntry(hMenu int, title string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuAddSeparator(hMenu int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuAddSeparator").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3126,6 +3301,7 @@ func (b *bridgemain) GuiMenuAddSeparator(hMenu int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuClear(hMenu int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuClear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3138,6 +3314,7 @@ func (b *bridgemain) GuiMenuClear(hMenu int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuRemove(hEntryMenu int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuRemove").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3150,6 +3327,7 @@ func (b *bridgemain) GuiMenuRemove(hEntryMenu int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSelectionGet(hWindow GUISELECTIONTYPE, selection *SELECTIONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3167,6 +3345,7 @@ func (b *bridgemain) GuiSelectionGet(hWindow GUISELECTIONTYPE, selection *SELECT
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSelectionSet(hWindow GUISELECTIONTYPE, selection *SELECTIONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectionSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3184,6 +3363,7 @@ func (b *bridgemain) GuiSelectionSet(hWindow GUISELECTIONTYPE, selection *SELECT
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetLineWindow(title string, text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetLineWindow").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3201,6 +3381,7 @@ func (b *bridgemain) GuiGetLineWindow(title string, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAutoCompleteAddCmd(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAutoCompleteAddCmd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3213,6 +3394,7 @@ func (b *bridgemain) GuiAutoCompleteAddCmd(cmd string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAutoCompleteDelCmd(cmd string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAutoCompleteDelCmd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3225,12 +3407,14 @@ func (b *bridgemain) GuiAutoCompleteDelCmd(cmd string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAutoCompleteClearAll() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAutoCompleteClearAll").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddStatusBarMessage(msg string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddStatusBarMessage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3243,36 +3427,42 @@ func (b *bridgemain) GuiAddStatusBarMessage(msg string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateSideBar() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateSideBar").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiRepaintTableView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiRepaintTableView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdatePatches() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdatePatches").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateCallStack() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateCallStack").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateSEHChain() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateSEHChain").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiLoadSourceFileEx(path string, addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLoadSourceFileEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3290,6 +3480,7 @@ func (b *bridgemain) GuiLoadSourceFileEx(path string, addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuSetIcon(hMenu int, icon *ICONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetIcon").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3307,6 +3498,7 @@ func (b *bridgemain) GuiMenuSetIcon(hMenu int, icon *ICONDATA) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuSetEntryIcon(hEntry int, icon *ICONDATA) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetEntryIcon").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3324,6 +3516,7 @@ func (b *bridgemain) GuiMenuSetEntryIcon(hEntry int, icon *ICONDATA) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuSetName(hMenu int, name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3341,6 +3534,7 @@ func (b *bridgemain) GuiMenuSetName(hMenu int, name string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuSetEntryName(hEntry int, name string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetEntryName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3358,6 +3552,7 @@ func (b *bridgemain) GuiMenuSetEntryName(hEntry int, name string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiMenuSetEntryHotkey(hEntry int, hack string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiMenuSetEntryHotkey").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3375,18 +3570,21 @@ func (b *bridgemain) GuiMenuSetEntryHotkey(hEntry int, hack string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiShowCpu() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiShowCpu").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiShowThreads() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiShowThreads").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3399,6 +3597,7 @@ func (b *bridgemain) GuiAddQWidgetTab(qWidget *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiShowQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiShowQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3411,6 +3610,7 @@ func (b *bridgemain) GuiShowQWidgetTab(qWidget *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiCloseQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiCloseQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3423,6 +3623,7 @@ func (b *bridgemain) GuiCloseQWidgetTab(qWidget *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiExecuteOnGuiThread(cbGuiThread uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiExecuteOnGuiThread").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3435,12 +3636,14 @@ func (b *bridgemain) GuiExecuteOnGuiThread(cbGuiThread uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateTimeWastedCounter() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateTimeWastedCounter").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSetGlobalNotes(text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetGlobalNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3453,6 +3656,7 @@ func (b *bridgemain) GuiSetGlobalNotes(text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetGlobalNotes(text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetGlobalNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3465,6 +3669,7 @@ func (b *bridgemain) GuiGetGlobalNotes(text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSetDebuggeeNotes(text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetDebuggeeNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3477,6 +3682,7 @@ func (b *bridgemain) GuiSetDebuggeeNotes(text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetDebuggeeNotes(text *int8) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetDebuggeeNotes").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3489,6 +3695,7 @@ func (b *bridgemain) GuiGetDebuggeeNotes(text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiDumpAtN(va uint, index int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDumpAtN").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3506,6 +3713,7 @@ func (b *bridgemain) GuiDumpAtN(va uint, index int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiDisplayWarning(title string, text string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDisplayWarning").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3523,6 +3731,7 @@ func (b *bridgemain) GuiDisplayWarning(title string, text string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiRegisterScriptLanguage(info *SCRIPTTYPEINFO) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiRegisterScriptLanguage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3535,6 +3744,7 @@ func (b *bridgemain) GuiRegisterScriptLanguage(info *SCRIPTTYPEINFO) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUnregisterScriptLanguage(id int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUnregisterScriptLanguage").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3547,12 +3757,14 @@ func (b *bridgemain) GuiUnregisterScriptLanguage(id int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateArgumentWidget() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateArgumentWidget").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiFocusView(hWindow int) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiFocusView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3565,18 +3777,21 @@ func (b *bridgemain) GuiFocusView(hWindow int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiIsUpdateDisabled() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiIsUpdateDisabled").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateDisable() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateDisable").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiLoadGraph(graph *uintptr, addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiLoadGraph").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3594,6 +3809,7 @@ func (b *bridgemain) GuiLoadGraph(graph *uintptr, addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGraphAt(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGraphAt").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3606,30 +3822,35 @@ func (b *bridgemain) GuiGraphAt(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateGraphView() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateGraphView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiDisableLog() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiDisableLog").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiEnableLog() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiEnableLog").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiIsLogEnabled() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiIsLogEnabled").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddFavouriteTool(name string, description string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddFavouriteTool").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3647,6 +3868,7 @@ func (b *bridgemain) GuiAddFavouriteTool(name string, description string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddFavouriteCommand(name string, shortcut string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddFavouriteCommand").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3664,6 +3886,7 @@ func (b *bridgemain) GuiAddFavouriteCommand(name string, shortcut string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSetFavouriteToolShortcut(name string, shortcut string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSetFavouriteToolShortcut").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3681,6 +3904,7 @@ func (b *bridgemain) GuiSetFavouriteToolShortcut(name string, shortcut string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiFoldDisassembly(startAddress uint, length uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiFoldDisassembly").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3698,6 +3922,7 @@ func (b *bridgemain) GuiFoldDisassembly(startAddress uint, length uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSelectInMemoryMap(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectInMemoryMap").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3710,6 +3935,7 @@ func (b *bridgemain) GuiSelectInMemoryMap(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetActiveView(activeView *ACTIVEVIEW) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetActiveView").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3722,6 +3948,7 @@ func (b *bridgemain) GuiGetActiveView(activeView *ACTIVEVIEW) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiAddInfoLine(infoLine string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiAddInfoLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3734,12 +3961,14 @@ func (b *bridgemain) GuiAddInfoLine(infoLine string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiProcessEvents() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiProcessEvents").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiTypeAddNode(parent *uintptr, Type *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiTypeAddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3757,30 +3986,35 @@ func (b *bridgemain) GuiTypeAddNode(parent *uintptr, Type *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiTypeClear() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiTypeClear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateTypeWidget() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateTypeWidget").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiCloseApplication() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiCloseApplication").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiFlushLog() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiFlushLog").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiReferenceAddCommand(title string, command string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiReferenceAddCommand").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3798,12 +4032,14 @@ func (b *bridgemain) GuiReferenceAddCommand(title string, command string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiUpdateTraceBrowser() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiUpdateTraceBrowser").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiOpenTraceFile(fileName string) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiOpenTraceFile").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3816,6 +4052,7 @@ func (b *bridgemain) GuiOpenTraceFile(fileName string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiInvalidateSymbolSource(base uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiInvalidateSymbolSource").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3828,6 +4065,7 @@ func (b *bridgemain) GuiInvalidateSymbolSource(base uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiExecuteOnGuiThreadEx(cbGuiThread uintptr, userdata *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiExecuteOnGuiThreadEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3845,6 +4083,7 @@ func (b *bridgemain) GuiExecuteOnGuiThreadEx(cbGuiThread uintptr, userdata *uint
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetCurrentGraph(graphList *uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetCurrentGraph").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3857,12 +4096,14 @@ func (b *bridgemain) GuiGetCurrentGraph(graphList *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiShowReferences() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiShowReferences").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiSelectInSymbolsTab(addr uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiSelectInSymbolsTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3875,6 +4116,7 @@ func (b *bridgemain) GuiSelectInSymbolsTab(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGotoTrace(index uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGotoTrace").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3887,12 +4129,14 @@ func (b *bridgemain) GuiGotoTrace(index uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiShowTrace() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiShowTrace").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgemain) GuiGetMainThreadId() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/GuiGetMainThreadId").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},

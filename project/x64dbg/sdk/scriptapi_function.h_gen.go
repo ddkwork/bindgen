@@ -27,6 +27,7 @@ func (f *function) Add(info *FunctionInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -54,6 +55,7 @@ func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) GetInfo(addr uint, info *FunctionInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -71,6 +73,7 @@ func (f *function) GetInfo(addr uint, info *FunctionInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) Overlaps(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Overlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -88,6 +91,7 @@ func (f *function) Overlaps(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) Delete(address uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -100,6 +104,7 @@ func (f *function) Delete(address uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -117,12 +122,14 @@ func (f *function) DeleteRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (f *function) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

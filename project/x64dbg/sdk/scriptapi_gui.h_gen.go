@@ -39,6 +39,7 @@ func (g *gui) SelectionGet(window Window, start *uint, end *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) SelectionSet(window Window, start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -61,6 +62,7 @@ func (g *gui) SelectionSet(window Window, start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) SelectionGetStart(window Window) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -73,6 +75,7 @@ func (g *gui) SelectionGetStart(window Window) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) SelectionGetEnd(window Window) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetEnd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -85,6 +88,7 @@ func (g *gui) SelectionGetEnd(window Window) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) Message(message string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/Message").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -97,6 +101,7 @@ func (g *gui) Message(message string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) MessageYesNo(message string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/MessageYesNo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -109,6 +114,7 @@ func (g *gui) MessageYesNo(message string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) InputLine(title string, text *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -126,6 +132,7 @@ func (g *gui) InputLine(title string, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) InputValue(title string, value *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputValue").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -143,12 +150,14 @@ func (g *gui) InputValue(title string, value *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) Refresh() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/Refresh").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) AddQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/AddQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -161,6 +170,7 @@ func (g *gui) AddQWidgetTab(qWidget *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) ShowQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/ShowQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -173,6 +183,7 @@ func (g *gui) ShowQWidgetTab(qWidget *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (g *gui) CloseQWidgetTab(qWidget *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/CloseQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/fs"
+	"net/url"
 	"os"
 	"path/filepath"
 	"slices"
@@ -148,7 +149,7 @@ import (
 			packet.Set(urlPath, api)
 			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{")
 
-			g.P(" ", "Client.Post().Url(", strconv.Quote("http://localhost:8888"+urlPath), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
+			g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
 			g.P("\t\t[]Param{")
 			for _, p := range m.Params {
 				g.P("\t\t\tParam{")
@@ -161,6 +162,7 @@ import (
 			g.P("\t))).Request()")
 			g.P("//todo handle response into result")
 			g.P("}")
+			g.P()
 			buffer.WriteString(g.String())
 
 		}

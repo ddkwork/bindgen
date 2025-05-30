@@ -57,18 +57,21 @@ func (b *bridgegraph) Free(graphList *uintptr) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgegraph) ToNodeList() {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/ToNodeList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgegraph) __debugbreak() {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/__debugbreak").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgegraph) AddNode(node *BridgeCFNode) {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -81,6 +84,7 @@ func (b *bridgegraph) AddNode(node *BridgeCFNode) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgegraph) AddParent(child int, parent int) {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -98,6 +102,7 @@ func (b *bridgegraph) AddParent(child int, parent int) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bridgegraph) ToGraphList() {
 	Client.Post().Url("http://localhost:8888/bridgegraph.h/ToGraphList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},

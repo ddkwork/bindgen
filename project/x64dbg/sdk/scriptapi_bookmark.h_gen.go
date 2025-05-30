@@ -25,6 +25,7 @@ func (b *bookmark) Set(info *BookmarkInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bookmark) Get(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -37,6 +38,7 @@ func (b *bookmark) Get(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -54,6 +56,7 @@ func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bookmark) Delete(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -66,6 +69,7 @@ func (b *bookmark) Delete(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bookmark) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -83,12 +87,14 @@ func (b *bookmark) DeleteRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bookmark) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (b *bookmark) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

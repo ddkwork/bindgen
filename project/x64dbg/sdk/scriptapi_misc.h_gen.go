@@ -24,6 +24,7 @@ func (m *misc) ParseExpression(expression string, value *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *misc) RemoteGetProcAddress(module string, api string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/RemoteGetProcAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -41,6 +42,7 @@ func (m *misc) RemoteGetProcAddress(module string, api string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *misc) ResolveLabel(label string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ResolveLabel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -53,6 +55,7 @@ func (m *misc) ResolveLabel(label string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *misc) Alloc(size uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Alloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -65,6 +68,7 @@ func (m *misc) Alloc(size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *misc) Free(ptr *uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

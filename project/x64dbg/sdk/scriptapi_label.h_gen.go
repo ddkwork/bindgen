@@ -26,6 +26,7 @@ func (l *label) Set(info *LabelInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) FromString(label string, addr *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/FromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -43,6 +44,7 @@ func (l *label) FromString(label string, addr *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) Get(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -60,6 +62,7 @@ func (l *label) Get(addr uint, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) IsTemporary(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/IsTemporary").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -72,6 +75,7 @@ func (l *label) IsTemporary(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) GetInfo(addr uint, info *LabelInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -89,6 +93,7 @@ func (l *label) GetInfo(addr uint, info *LabelInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) Delete(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -101,6 +106,7 @@ func (l *label) Delete(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -118,12 +124,14 @@ func (l *label) DeleteRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (l *label) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

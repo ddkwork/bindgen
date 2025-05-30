@@ -34,6 +34,7 @@ func (m *memory) Read(addr uint, data *uintptr, size uint, sizeRead *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) Write(addr uint, data *uintptr, size uint, sizeWritten *uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/Write").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -61,6 +62,7 @@ func (m *memory) Write(addr uint, data *uintptr, size uint, sizeWritten *uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) IsValidPtr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/IsValidPtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -73,6 +75,7 @@ func (m *memory) IsValidPtr(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) RemoteAlloc(addr uint, size uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/RemoteAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -90,6 +93,7 @@ func (m *memory) RemoteAlloc(addr uint, size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) RemoteFree(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/RemoteFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -102,6 +106,7 @@ func (m *memory) RemoteFree(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) GetProtect(addr uint, reserved bool, cache bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/GetProtect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -124,6 +129,7 @@ func (m *memory) GetProtect(addr uint, reserved bool, cache bool) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) SetProtect(addr uint, protect uint, size uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/SetProtect").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -146,6 +152,7 @@ func (m *memory) SetProtect(addr uint, protect uint, size uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) GetBase(addr uint, reserved bool, cache bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/GetBase").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -168,6 +175,7 @@ func (m *memory) GetBase(addr uint, reserved bool, cache bool) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) GetSize(addr uint, reserved bool, cache bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/GetSize").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -190,6 +198,7 @@ func (m *memory) GetSize(addr uint, reserved bool, cache bool) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) ReadByte(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadByte").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -202,6 +211,7 @@ func (m *memory) ReadByte(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) WriteByte(addr uint, data byte) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteByte").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -219,6 +229,7 @@ func (m *memory) WriteByte(addr uint, data byte) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) ReadWord(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadWord").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -231,6 +242,7 @@ func (m *memory) ReadWord(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) WriteWord(addr uint, data uint16) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteWord").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -248,6 +260,7 @@ func (m *memory) WriteWord(addr uint, data uint16) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) ReadDword(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadDword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -260,6 +273,7 @@ func (m *memory) ReadDword(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) WriteDword(addr uint, data uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteDword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -277,6 +291,7 @@ func (m *memory) WriteDword(addr uint, data uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) ReadQword(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadQword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -289,6 +304,7 @@ func (m *memory) ReadQword(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) WriteQword(addr uint, data uint64) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WriteQword").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -306,6 +322,7 @@ func (m *memory) WriteQword(addr uint, data uint64) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) ReadPtr(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/ReadPtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -318,6 +335,7 @@ func (m *memory) ReadPtr(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (m *memory) WritePtr(addr uint, data uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/WritePtr").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -26,6 +26,7 @@ func (c *comment) Set(info *CommentInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (c *comment) Get(addr uint, text *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -43,6 +44,7 @@ func (c *comment) Get(addr uint, text *int8) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (c *comment) GetInfo(addr uint, info *CommentInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -60,6 +62,7 @@ func (c *comment) GetInfo(addr uint, info *CommentInfo) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (c *comment) Delete(addr uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -72,6 +75,7 @@ func (c *comment) Delete(addr uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (c *comment) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -89,12 +93,14 @@ func (c *comment) DeleteRange(start uint, end uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (c *comment) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
 	// todo handle response into result
 }
+
 func (c *comment) GetList(list *ListInfo) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

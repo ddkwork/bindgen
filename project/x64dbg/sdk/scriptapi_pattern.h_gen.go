@@ -29,6 +29,7 @@ func (p *pattern) Find(data *byte, datasize uint, pattern string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (p *pattern) FindMem(start uint, size uint, pattern string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_pattern.h/FindMem").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -51,6 +52,7 @@ func (p *pattern) FindMem(start uint, size uint, pattern string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (p *pattern) Write(data *byte, datasize uint, pattern string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_pattern.h/Write").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -73,6 +75,7 @@ func (p *pattern) Write(data *byte, datasize uint, pattern string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (p *pattern) WriteMem(start uint, size uint, pattern string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_pattern.h/WriteMem").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -95,6 +98,7 @@ func (p *pattern) WriteMem(start uint, size uint, pattern string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (p *pattern) SearchAndReplace(data *byte, datasize uint, searchpattern string, replacepattern string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_pattern.h/SearchAndReplace").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -122,6 +126,7 @@ func (p *pattern) SearchAndReplace(data *byte, datasize uint, searchpattern stri
 	))).Request()
 	// todo handle response into result
 }
+
 func (p *pattern) SearchAndReplaceMem(start uint, size uint, searchpattern string, replacepattern string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_pattern.h/SearchAndReplaceMem").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

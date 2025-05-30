@@ -13,6 +13,7 @@ func (s *stack) Pop() {
 	))).Request()
 	// todo handle response into result
 }
+
 func (s *stack) Push(value uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Push").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -25,6 +26,7 @@ func (s *stack) Push(value uint) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (s *stack) Peek(offset int) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Peek").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

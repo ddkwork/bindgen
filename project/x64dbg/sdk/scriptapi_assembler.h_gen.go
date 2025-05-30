@@ -34,6 +34,7 @@ func (a *assembler) Assemble(addr uint, dest *byte, size *int, instruction strin
 	))).Request()
 	// todo handle response into result
 }
+
 func (a *assembler) AssembleEx(addr uint, dest *byte, size *int, instruction string, error *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -66,6 +67,7 @@ func (a *assembler) AssembleEx(addr uint, dest *byte, size *int, instruction str
 	))).Request()
 	// todo handle response into result
 }
+
 func (a *assembler) AssembleMem(addr uint, instruction string) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleMem").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -83,6 +85,7 @@ func (a *assembler) AssembleMem(addr uint, instruction string) {
 	))).Request()
 	// todo handle response into result
 }
+
 func (a *assembler) AssembleMemEx(addr uint, instruction string, size *int, error *int8, fillnop bool) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleMemEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
