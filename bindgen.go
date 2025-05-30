@@ -257,6 +257,9 @@ type ApiResponse struct {
 			mylog.Todo("bug") //list and bridgemain etc
 			continue
 		}
+		if marshals.Has(s.CName) {
+			continue
+		}
 		gMarshal.P("    template<>")
 		gMarshal.P("    struct adl_serializer<", s.CName, "> {")
 		gMarshal.P("        static void to_json(json &j, const ", s.CName, " &self) {")
