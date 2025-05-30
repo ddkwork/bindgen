@@ -1,577 +1,3452 @@
 {
- "/_scriptapi_argument.h/Add": "Script::Argument::Add",
- "/_scriptapi_argument.h/Clear": "Script::Argument::Clear",
- "/_scriptapi_argument.h/Delete": "Script::Argument::Delete",
- "/_scriptapi_argument.h/DeleteRange": "Script::Argument::DeleteRange",
- "/_scriptapi_argument.h/Get": "Script::Argument::Get",
- "/_scriptapi_argument.h/GetInfo": "Script::Argument::GetInfo",
- "/_scriptapi_argument.h/GetList": "Script::Argument::GetList",
- "/_scriptapi_argument.h/Overlaps": "Script::Argument::Overlaps",
- "/_scriptapi_assembler.h/Assemble": "Script::Assembler::Assemble",
- "/_scriptapi_assembler.h/AssembleEx": "Script::Assembler::AssembleEx",
- "/_scriptapi_assembler.h/AssembleMem": "Script::Assembler::AssembleMem",
- "/_scriptapi_assembler.h/AssembleMemEx": "Script::Assembler::AssembleMemEx",
- "/_scriptapi_bookmark.h/Clear": "Script::Bookmark::Clear",
- "/_scriptapi_bookmark.h/Delete": "Script::Bookmark::Delete",
- "/_scriptapi_bookmark.h/DeleteRange": "Script::Bookmark::DeleteRange",
- "/_scriptapi_bookmark.h/Get": "Script::Bookmark::Get",
- "/_scriptapi_bookmark.h/GetInfo": "Script::Bookmark::GetInfo",
- "/_scriptapi_bookmark.h/GetList": "Script::Bookmark::GetList",
- "/_scriptapi_bookmark.h/Set": "Script::Bookmark::Set",
- "/_scriptapi_comment.h/Clear": "Script::Comment::Clear",
- "/_scriptapi_comment.h/Delete": "Script::Comment::Delete",
- "/_scriptapi_comment.h/DeleteRange": "Script::Comment::DeleteRange",
- "/_scriptapi_comment.h/Get": "Script::Comment::Get",
- "/_scriptapi_comment.h/GetInfo": "Script::Comment::GetInfo",
- "/_scriptapi_comment.h/GetList": "Script::Comment::GetList",
- "/_scriptapi_comment.h/Set": "Script::Comment::Set",
- "/_scriptapi_debug.h/DeleteBreakpoint": "Script::Debug::DeleteBreakpoint",
- "/_scriptapi_debug.h/DeleteHardwareBreakpoint": "Script::Debug::DeleteHardwareBreakpoint",
- "/_scriptapi_debug.h/DisableBreakpoint": "Script::Debug::DisableBreakpoint",
- "/_scriptapi_debug.h/Pause": "Script::Debug::Pause",
- "/_scriptapi_debug.h/Run": "Script::Debug::Run",
- "/_scriptapi_debug.h/SetBreakpoint": "Script::Debug::SetBreakpoint",
- "/_scriptapi_debug.h/SetHardwareBreakpoint": "Script::Debug::SetHardwareBreakpoint",
- "/_scriptapi_debug.h/StepIn": "Script::Debug::StepIn",
- "/_scriptapi_debug.h/StepOut": "Script::Debug::StepOut",
- "/_scriptapi_debug.h/StepOver": "Script::Debug::StepOver",
- "/_scriptapi_debug.h/Stop": "Script::Debug::Stop",
- "/_scriptapi_debug.h/Wait": "Script::Debug::Wait",
- "/_scriptapi_flag.h/Get": "Script::Flag::Get",
- "/_scriptapi_flag.h/GetAF": "Script::Flag::GetAF",
- "/_scriptapi_flag.h/GetCF": "Script::Flag::GetCF",
- "/_scriptapi_flag.h/GetDF": "Script::Flag::GetDF",
- "/_scriptapi_flag.h/GetIF": "Script::Flag::GetIF",
- "/_scriptapi_flag.h/GetOF": "Script::Flag::GetOF",
- "/_scriptapi_flag.h/GetPF": "Script::Flag::GetPF",
- "/_scriptapi_flag.h/GetSF": "Script::Flag::GetSF",
- "/_scriptapi_flag.h/GetTF": "Script::Flag::GetTF",
- "/_scriptapi_flag.h/GetZF": "Script::Flag::GetZF",
- "/_scriptapi_flag.h/Set": "Script::Flag::Set",
- "/_scriptapi_flag.h/SetAF": "Script::Flag::SetAF",
- "/_scriptapi_flag.h/SetCF": "Script::Flag::SetCF",
- "/_scriptapi_flag.h/SetDF": "Script::Flag::SetDF",
- "/_scriptapi_flag.h/SetIF": "Script::Flag::SetIF",
- "/_scriptapi_flag.h/SetOF": "Script::Flag::SetOF",
- "/_scriptapi_flag.h/SetPF": "Script::Flag::SetPF",
- "/_scriptapi_flag.h/SetSF": "Script::Flag::SetSF",
- "/_scriptapi_flag.h/SetTF": "Script::Flag::SetTF",
- "/_scriptapi_flag.h/SetZF": "Script::Flag::SetZF",
- "/_scriptapi_function.h/Add": "Script::Function::Add",
- "/_scriptapi_function.h/Clear": "Script::Function::Clear",
- "/_scriptapi_function.h/Delete": "Script::Function::Delete",
- "/_scriptapi_function.h/DeleteRange": "Script::Function::DeleteRange",
- "/_scriptapi_function.h/Get": "Script::Function::Get",
- "/_scriptapi_function.h/GetInfo": "Script::Function::GetInfo",
- "/_scriptapi_function.h/GetList": "Script::Function::GetList",
- "/_scriptapi_function.h/Overlaps": "Script::Function::Overlaps",
- "/_scriptapi_gui.h/AddQWidgetTab": "Script::Gui::AddQWidgetTab",
- "/_scriptapi_gui.h/CloseQWidgetTab": "Script::Gui::CloseQWidgetTab",
- "/_scriptapi_gui.h/InputLine": "Script::Gui::InputLine",
- "/_scriptapi_gui.h/InputValue": "Script::Gui::InputValue",
- "/_scriptapi_gui.h/Message": "Script::Gui::Message",
- "/_scriptapi_gui.h/MessageYesNo": "Script::Gui::MessageYesNo",
- "/_scriptapi_gui.h/Refresh": "Script::Gui::Refresh",
- "/_scriptapi_gui.h/SelectionGet": "Script::Gui::SelectionGet",
- "/_scriptapi_gui.h/SelectionGetEnd": "Script::Gui::SelectionGetEnd",
- "/_scriptapi_gui.h/SelectionGetStart": "Script::Gui::SelectionGetStart",
- "/_scriptapi_gui.h/SelectionSet": "Script::Gui::SelectionSet",
- "/_scriptapi_gui.h/ShowQWidgetTab": "Script::Gui::ShowQWidgetTab",
- "/_scriptapi_label.h/Clear": "Script::Label::Clear",
- "/_scriptapi_label.h/Delete": "Script::Label::Delete",
- "/_scriptapi_label.h/DeleteRange": "Script::Label::DeleteRange",
- "/_scriptapi_label.h/FromString": "Script::Label::FromString",
- "/_scriptapi_label.h/Get": "Script::Label::Get",
- "/_scriptapi_label.h/GetInfo": "Script::Label::GetInfo",
- "/_scriptapi_label.h/GetList": "Script::Label::GetList",
- "/_scriptapi_label.h/IsTemporary": "Script::Label::IsTemporary",
- "/_scriptapi_label.h/Set": "Script::Label::Set",
- "/_scriptapi_memory.h/GetBase": "Script::Memory::GetBase",
- "/_scriptapi_memory.h/GetProtect": "Script::Memory::GetProtect",
- "/_scriptapi_memory.h/GetSize": "Script::Memory::GetSize",
- "/_scriptapi_memory.h/IsValidPtr": "Script::Memory::IsValidPtr",
- "/_scriptapi_memory.h/Read": "Script::Memory::Read",
- "/_scriptapi_memory.h/ReadByte": "Script::Memory::ReadByte",
- "/_scriptapi_memory.h/ReadDword": "Script::Memory::ReadDword",
- "/_scriptapi_memory.h/ReadPtr": "Script::Memory::ReadPtr",
- "/_scriptapi_memory.h/ReadQword": "Script::Memory::ReadQword",
- "/_scriptapi_memory.h/ReadWord": "Script::Memory::ReadWord",
- "/_scriptapi_memory.h/RemoteAlloc": "Script::Memory::RemoteAlloc",
- "/_scriptapi_memory.h/RemoteFree": "Script::Memory::RemoteFree",
- "/_scriptapi_memory.h/SetProtect": "Script::Memory::SetProtect",
- "/_scriptapi_memory.h/Write": "Script::Memory::Write",
- "/_scriptapi_memory.h/WriteByte": "Script::Memory::WriteByte",
- "/_scriptapi_memory.h/WriteDword": "Script::Memory::WriteDword",
- "/_scriptapi_memory.h/WritePtr": "Script::Memory::WritePtr",
- "/_scriptapi_memory.h/WriteQword": "Script::Memory::WriteQword",
- "/_scriptapi_memory.h/WriteWord": "Script::Memory::WriteWord",
- "/_scriptapi_misc.h/Alloc": "Script::Misc::Alloc",
- "/_scriptapi_misc.h/Free": "Script::Misc::Free",
- "/_scriptapi_misc.h/ParseExpression": "Script::Misc::ParseExpression",
- "/_scriptapi_misc.h/RemoteGetProcAddress": "Script::Misc::RemoteGetProcAddress",
- "/_scriptapi_misc.h/ResolveLabel": "Script::Misc::ResolveLabel",
- "/_scriptapi_module.h/BaseFromAddr": "Script::Module::BaseFromAddr",
- "/_scriptapi_module.h/BaseFromName": "Script::Module::BaseFromName",
- "/_scriptapi_module.h/EntryFromAddr": "Script::Module::EntryFromAddr",
- "/_scriptapi_module.h/EntryFromName": "Script::Module::EntryFromName",
- "/_scriptapi_module.h/GetExports": "Script::Module::GetExports",
- "/_scriptapi_module.h/GetImports": "Script::Module::GetImports",
- "/_scriptapi_module.h/GetList": "Script::Module::GetList",
- "/_scriptapi_module.h/GetMainModuleBase": "Script::Module::GetMainModuleBase",
- "/_scriptapi_module.h/GetMainModuleEntry": "Script::Module::GetMainModuleEntry",
- "/_scriptapi_module.h/GetMainModuleInfo": "Script::Module::GetMainModuleInfo",
- "/_scriptapi_module.h/GetMainModuleName": "Script::Module::GetMainModuleName",
- "/_scriptapi_module.h/GetMainModulePath": "Script::Module::GetMainModulePath",
- "/_scriptapi_module.h/GetMainModuleSectionCount": "Script::Module::GetMainModuleSectionCount",
- "/_scriptapi_module.h/GetMainModuleSectionList": "Script::Module::GetMainModuleSectionList",
- "/_scriptapi_module.h/GetMainModuleSize": "Script::Module::GetMainModuleSize",
- "/_scriptapi_module.h/InfoFromAddr": "Script::Module::InfoFromAddr",
- "/_scriptapi_module.h/InfoFromName": "Script::Module::InfoFromName",
- "/_scriptapi_module.h/NameFromAddr": "Script::Module::NameFromAddr",
- "/_scriptapi_module.h/PathFromAddr": "Script::Module::PathFromAddr",
- "/_scriptapi_module.h/PathFromName": "Script::Module::PathFromName",
- "/_scriptapi_module.h/SectionCountFromAddr": "Script::Module::SectionCountFromAddr",
- "/_scriptapi_module.h/SectionCountFromName": "Script::Module::SectionCountFromName",
- "/_scriptapi_module.h/SectionFromAddr": "Script::Module::SectionFromAddr",
- "/_scriptapi_module.h/SectionFromName": "Script::Module::SectionFromName",
- "/_scriptapi_module.h/SectionListFromAddr": "Script::Module::SectionListFromAddr",
- "/_scriptapi_module.h/SectionListFromName": "Script::Module::SectionListFromName",
- "/_scriptapi_module.h/SizeFromAddr": "Script::Module::SizeFromAddr",
- "/_scriptapi_module.h/SizeFromName": "Script::Module::SizeFromName",
- "/_scriptapi_pattern.h/Find": "Script::Pattern::Find",
- "/_scriptapi_pattern.h/FindMem": "Script::Pattern::FindMem",
- "/_scriptapi_pattern.h/SearchAndReplace": "Script::Pattern::SearchAndReplace",
- "/_scriptapi_pattern.h/SearchAndReplaceMem": "Script::Pattern::SearchAndReplaceMem",
- "/_scriptapi_pattern.h/Write": "Script::Pattern::Write",
- "/_scriptapi_pattern.h/WriteMem": "Script::Pattern::WriteMem",
- "/_scriptapi_register.h/Get": "Script::Register::Get",
- "/_scriptapi_register.h/GetAH": "Script::Register::GetAH",
- "/_scriptapi_register.h/GetAL": "Script::Register::GetAL",
- "/_scriptapi_register.h/GetAX": "Script::Register::GetAX",
- "/_scriptapi_register.h/GetBH": "Script::Register::GetBH",
- "/_scriptapi_register.h/GetBL": "Script::Register::GetBL",
- "/_scriptapi_register.h/GetBP": "Script::Register::GetBP",
- "/_scriptapi_register.h/GetBPL": "Script::Register::GetBPL",
- "/_scriptapi_register.h/GetBX": "Script::Register::GetBX",
- "/_scriptapi_register.h/GetCAX": "Script::Register::GetCAX",
- "/_scriptapi_register.h/GetCBP": "Script::Register::GetCBP",
- "/_scriptapi_register.h/GetCBX": "Script::Register::GetCBX",
- "/_scriptapi_register.h/GetCCX": "Script::Register::GetCCX",
- "/_scriptapi_register.h/GetCDI": "Script::Register::GetCDI",
- "/_scriptapi_register.h/GetCDX": "Script::Register::GetCDX",
- "/_scriptapi_register.h/GetCFLAGS": "Script::Register::GetCFLAGS",
- "/_scriptapi_register.h/GetCH": "Script::Register::GetCH",
- "/_scriptapi_register.h/GetCIP": "Script::Register::GetCIP",
- "/_scriptapi_register.h/GetCL": "Script::Register::GetCL",
- "/_scriptapi_register.h/GetCSI": "Script::Register::GetCSI",
- "/_scriptapi_register.h/GetCSP": "Script::Register::GetCSP",
- "/_scriptapi_register.h/GetCX": "Script::Register::GetCX",
- "/_scriptapi_register.h/GetDH": "Script::Register::GetDH",
- "/_scriptapi_register.h/GetDI": "Script::Register::GetDI",
- "/_scriptapi_register.h/GetDIL": "Script::Register::GetDIL",
- "/_scriptapi_register.h/GetDL": "Script::Register::GetDL",
- "/_scriptapi_register.h/GetDR0": "Script::Register::GetDR0",
- "/_scriptapi_register.h/GetDR1": "Script::Register::GetDR1",
- "/_scriptapi_register.h/GetDR2": "Script::Register::GetDR2",
- "/_scriptapi_register.h/GetDR3": "Script::Register::GetDR3",
- "/_scriptapi_register.h/GetDR6": "Script::Register::GetDR6",
- "/_scriptapi_register.h/GetDR7": "Script::Register::GetDR7",
- "/_scriptapi_register.h/GetDX": "Script::Register::GetDX",
- "/_scriptapi_register.h/GetEAX": "Script::Register::GetEAX",
- "/_scriptapi_register.h/GetEBP": "Script::Register::GetEBP",
- "/_scriptapi_register.h/GetEBX": "Script::Register::GetEBX",
- "/_scriptapi_register.h/GetECX": "Script::Register::GetECX",
- "/_scriptapi_register.h/GetEDI": "Script::Register::GetEDI",
- "/_scriptapi_register.h/GetEDX": "Script::Register::GetEDX",
- "/_scriptapi_register.h/GetEIP": "Script::Register::GetEIP",
- "/_scriptapi_register.h/GetESI": "Script::Register::GetESI",
- "/_scriptapi_register.h/GetESP": "Script::Register::GetESP",
- "/_scriptapi_register.h/GetR10": "Script::Register::GetR10",
- "/_scriptapi_register.h/GetR10B": "Script::Register::GetR10B",
- "/_scriptapi_register.h/GetR10D": "Script::Register::GetR10D",
- "/_scriptapi_register.h/GetR10W": "Script::Register::GetR10W",
- "/_scriptapi_register.h/GetR11": "Script::Register::GetR11",
- "/_scriptapi_register.h/GetR11B": "Script::Register::GetR11B",
- "/_scriptapi_register.h/GetR11D": "Script::Register::GetR11D",
- "/_scriptapi_register.h/GetR11W": "Script::Register::GetR11W",
- "/_scriptapi_register.h/GetR12": "Script::Register::GetR12",
- "/_scriptapi_register.h/GetR12B": "Script::Register::GetR12B",
- "/_scriptapi_register.h/GetR12D": "Script::Register::GetR12D",
- "/_scriptapi_register.h/GetR12W": "Script::Register::GetR12W",
- "/_scriptapi_register.h/GetR13": "Script::Register::GetR13",
- "/_scriptapi_register.h/GetR13B": "Script::Register::GetR13B",
- "/_scriptapi_register.h/GetR13D": "Script::Register::GetR13D",
- "/_scriptapi_register.h/GetR13W": "Script::Register::GetR13W",
- "/_scriptapi_register.h/GetR14": "Script::Register::GetR14",
- "/_scriptapi_register.h/GetR14B": "Script::Register::GetR14B",
- "/_scriptapi_register.h/GetR14D": "Script::Register::GetR14D",
- "/_scriptapi_register.h/GetR14W": "Script::Register::GetR14W",
- "/_scriptapi_register.h/GetR15": "Script::Register::GetR15",
- "/_scriptapi_register.h/GetR15B": "Script::Register::GetR15B",
- "/_scriptapi_register.h/GetR15D": "Script::Register::GetR15D",
- "/_scriptapi_register.h/GetR15W": "Script::Register::GetR15W",
- "/_scriptapi_register.h/GetR8": "Script::Register::GetR8",
- "/_scriptapi_register.h/GetR8B": "Script::Register::GetR8B",
- "/_scriptapi_register.h/GetR8D": "Script::Register::GetR8D",
- "/_scriptapi_register.h/GetR8W": "Script::Register::GetR8W",
- "/_scriptapi_register.h/GetR9": "Script::Register::GetR9",
- "/_scriptapi_register.h/GetR9B": "Script::Register::GetR9B",
- "/_scriptapi_register.h/GetR9D": "Script::Register::GetR9D",
- "/_scriptapi_register.h/GetR9W": "Script::Register::GetR9W",
- "/_scriptapi_register.h/GetRAX": "Script::Register::GetRAX",
- "/_scriptapi_register.h/GetRBP": "Script::Register::GetRBP",
- "/_scriptapi_register.h/GetRBX": "Script::Register::GetRBX",
- "/_scriptapi_register.h/GetRCX": "Script::Register::GetRCX",
- "/_scriptapi_register.h/GetRDI": "Script::Register::GetRDI",
- "/_scriptapi_register.h/GetRDX": "Script::Register::GetRDX",
- "/_scriptapi_register.h/GetRIP": "Script::Register::GetRIP",
- "/_scriptapi_register.h/GetRSI": "Script::Register::GetRSI",
- "/_scriptapi_register.h/GetRSP": "Script::Register::GetRSP",
- "/_scriptapi_register.h/GetSI": "Script::Register::GetSI",
- "/_scriptapi_register.h/GetSIL": "Script::Register::GetSIL",
- "/_scriptapi_register.h/GetSP": "Script::Register::GetSP",
- "/_scriptapi_register.h/GetSPL": "Script::Register::GetSPL",
- "/_scriptapi_register.h/Set": "Script::Register::Set",
- "/_scriptapi_register.h/SetAH": "Script::Register::SetAH",
- "/_scriptapi_register.h/SetAL": "Script::Register::SetAL",
- "/_scriptapi_register.h/SetAX": "Script::Register::SetAX",
- "/_scriptapi_register.h/SetBH": "Script::Register::SetBH",
- "/_scriptapi_register.h/SetBL": "Script::Register::SetBL",
- "/_scriptapi_register.h/SetBP": "Script::Register::SetBP",
- "/_scriptapi_register.h/SetBPL": "Script::Register::SetBPL",
- "/_scriptapi_register.h/SetBX": "Script::Register::SetBX",
- "/_scriptapi_register.h/SetCAX": "Script::Register::SetCAX",
- "/_scriptapi_register.h/SetCBP": "Script::Register::SetCBP",
- "/_scriptapi_register.h/SetCBX": "Script::Register::SetCBX",
- "/_scriptapi_register.h/SetCCX": "Script::Register::SetCCX",
- "/_scriptapi_register.h/SetCDI": "Script::Register::SetCDI",
- "/_scriptapi_register.h/SetCDX": "Script::Register::SetCDX",
- "/_scriptapi_register.h/SetCFLAGS": "Script::Register::SetCFLAGS",
- "/_scriptapi_register.h/SetCH": "Script::Register::SetCH",
- "/_scriptapi_register.h/SetCIP": "Script::Register::SetCIP",
- "/_scriptapi_register.h/SetCL": "Script::Register::SetCL",
- "/_scriptapi_register.h/SetCSI": "Script::Register::SetCSI",
- "/_scriptapi_register.h/SetCSP": "Script::Register::SetCSP",
- "/_scriptapi_register.h/SetCX": "Script::Register::SetCX",
- "/_scriptapi_register.h/SetDH": "Script::Register::SetDH",
- "/_scriptapi_register.h/SetDI": "Script::Register::SetDI",
- "/_scriptapi_register.h/SetDIL": "Script::Register::SetDIL",
- "/_scriptapi_register.h/SetDL": "Script::Register::SetDL",
- "/_scriptapi_register.h/SetDR0": "Script::Register::SetDR0",
- "/_scriptapi_register.h/SetDR1": "Script::Register::SetDR1",
- "/_scriptapi_register.h/SetDR2": "Script::Register::SetDR2",
- "/_scriptapi_register.h/SetDR3": "Script::Register::SetDR3",
- "/_scriptapi_register.h/SetDR6": "Script::Register::SetDR6",
- "/_scriptapi_register.h/SetDR7": "Script::Register::SetDR7",
- "/_scriptapi_register.h/SetDX": "Script::Register::SetDX",
- "/_scriptapi_register.h/SetEAX": "Script::Register::SetEAX",
- "/_scriptapi_register.h/SetEBP": "Script::Register::SetEBP",
- "/_scriptapi_register.h/SetEBX": "Script::Register::SetEBX",
- "/_scriptapi_register.h/SetECX": "Script::Register::SetECX",
- "/_scriptapi_register.h/SetEDI": "Script::Register::SetEDI",
- "/_scriptapi_register.h/SetEDX": "Script::Register::SetEDX",
- "/_scriptapi_register.h/SetEIP": "Script::Register::SetEIP",
- "/_scriptapi_register.h/SetESI": "Script::Register::SetESI",
- "/_scriptapi_register.h/SetESP": "Script::Register::SetESP",
- "/_scriptapi_register.h/SetR10": "Script::Register::SetR10",
- "/_scriptapi_register.h/SetR10B": "Script::Register::SetR10B",
- "/_scriptapi_register.h/SetR10D": "Script::Register::SetR10D",
- "/_scriptapi_register.h/SetR10W": "Script::Register::SetR10W",
- "/_scriptapi_register.h/SetR11": "Script::Register::SetR11",
- "/_scriptapi_register.h/SetR11B": "Script::Register::SetR11B",
- "/_scriptapi_register.h/SetR11D": "Script::Register::SetR11D",
- "/_scriptapi_register.h/SetR11W": "Script::Register::SetR11W",
- "/_scriptapi_register.h/SetR12": "Script::Register::SetR12",
- "/_scriptapi_register.h/SetR12B": "Script::Register::SetR12B",
- "/_scriptapi_register.h/SetR12D": "Script::Register::SetR12D",
- "/_scriptapi_register.h/SetR12W": "Script::Register::SetR12W",
- "/_scriptapi_register.h/SetR13": "Script::Register::SetR13",
- "/_scriptapi_register.h/SetR13B": "Script::Register::SetR13B",
- "/_scriptapi_register.h/SetR13D": "Script::Register::SetR13D",
- "/_scriptapi_register.h/SetR13W": "Script::Register::SetR13W",
- "/_scriptapi_register.h/SetR14": "Script::Register::SetR14",
- "/_scriptapi_register.h/SetR14B": "Script::Register::SetR14B",
- "/_scriptapi_register.h/SetR14D": "Script::Register::SetR14D",
- "/_scriptapi_register.h/SetR14W": "Script::Register::SetR14W",
- "/_scriptapi_register.h/SetR15": "Script::Register::SetR15",
- "/_scriptapi_register.h/SetR15B": "Script::Register::SetR15B",
- "/_scriptapi_register.h/SetR15D": "Script::Register::SetR15D",
- "/_scriptapi_register.h/SetR15W": "Script::Register::SetR15W",
- "/_scriptapi_register.h/SetR8": "Script::Register::SetR8",
- "/_scriptapi_register.h/SetR8B": "Script::Register::SetR8B",
- "/_scriptapi_register.h/SetR8D": "Script::Register::SetR8D",
- "/_scriptapi_register.h/SetR8W": "Script::Register::SetR8W",
- "/_scriptapi_register.h/SetR9": "Script::Register::SetR9",
- "/_scriptapi_register.h/SetR9B": "Script::Register::SetR9B",
- "/_scriptapi_register.h/SetR9D": "Script::Register::SetR9D",
- "/_scriptapi_register.h/SetR9W": "Script::Register::SetR9W",
- "/_scriptapi_register.h/SetRAX": "Script::Register::SetRAX",
- "/_scriptapi_register.h/SetRBP": "Script::Register::SetRBP",
- "/_scriptapi_register.h/SetRBX": "Script::Register::SetRBX",
- "/_scriptapi_register.h/SetRCX": "Script::Register::SetRCX",
- "/_scriptapi_register.h/SetRDI": "Script::Register::SetRDI",
- "/_scriptapi_register.h/SetRDX": "Script::Register::SetRDX",
- "/_scriptapi_register.h/SetRIP": "Script::Register::SetRIP",
- "/_scriptapi_register.h/SetRSI": "Script::Register::SetRSI",
- "/_scriptapi_register.h/SetRSP": "Script::Register::SetRSP",
- "/_scriptapi_register.h/SetSI": "Script::Register::SetSI",
- "/_scriptapi_register.h/SetSIL": "Script::Register::SetSIL",
- "/_scriptapi_register.h/SetSP": "Script::Register::SetSP",
- "/_scriptapi_register.h/SetSPL": "Script::Register::SetSPL",
- "/_scriptapi_register.h/Size": "Script::Register::Size",
- "/_scriptapi_stack.h/Peek": "Script::Stack::Peek",
- "/_scriptapi_stack.h/Pop": "Script::Stack::Pop",
- "/_scriptapi_stack.h/Push": "Script::Stack::Push",
- "/_scriptapi_symbol.h/GetList": "Script::Symbol::GetList",
- "/bridgegraph.h/AddNode": "::BridgeCFGraph::AddNode",
- "/bridgegraph.h/AddParent": "::BridgeCFGraph::AddParent",
- "/bridgegraph.h/Free": "::BridgeCFGraph::Free",
- "/bridgegraph.h/ToGraphList": "::BridgeCFGraph::ToGraphList",
- "/bridgegraph.h/ToNodeList": "::BridgeCFNode::ToNodeList",
- "/bridgegraph.h/__debugbreak": "__debugbreak",
- "/bridgemain.h/BridgeAlloc": "BridgeAlloc",
- "/bridgemain.h/BridgeFree": "BridgeFree",
- "/bridgemain.h/BridgeGetDbgVersion": "BridgeGetDbgVersion",
- "/bridgemain.h/BridgeGetNtBuildNumber": "BridgeGetNtBuildNumber",
- "/bridgemain.h/BridgeInit": "BridgeInit",
- "/bridgemain.h/BridgeIsARM64Emulated": "BridgeIsARM64Emulated",
- "/bridgemain.h/BridgeIsProcessElevated": "BridgeIsProcessElevated",
- "/bridgemain.h/BridgeSettingFlush": "BridgeSettingFlush",
- "/bridgemain.h/BridgeSettingGet": "BridgeSettingGet",
- "/bridgemain.h/BridgeSettingGetUint": "BridgeSettingGetUint",
- "/bridgemain.h/BridgeSettingRead": "BridgeSettingRead",
- "/bridgemain.h/BridgeSettingSet": "BridgeSettingSet",
- "/bridgemain.h/BridgeSettingSetUint": "BridgeSettingSetUint",
- "/bridgemain.h/BridgeStart": "BridgeStart",
- "/bridgemain.h/BridgeUserDirectory": "BridgeUserDirectory",
- "/bridgemain.h/DbgAnalyzeFunction": "DbgAnalyzeFunction",
- "/bridgemain.h/DbgArgumentAdd": "DbgArgumentAdd",
- "/bridgemain.h/DbgArgumentDel": "DbgArgumentDel",
- "/bridgemain.h/DbgArgumentGet": "DbgArgumentGet",
- "/bridgemain.h/DbgArgumentOverlaps": "DbgArgumentOverlaps",
- "/bridgemain.h/DbgAssembleAt": "DbgAssembleAt",
- "/bridgemain.h/DbgClearAutoBookmarkRange": "DbgClearAutoBookmarkRange",
- "/bridgemain.h/DbgClearAutoCommentRange": "DbgClearAutoCommentRange",
- "/bridgemain.h/DbgClearAutoFunctionRange": "DbgClearAutoFunctionRange",
- "/bridgemain.h/DbgClearAutoLabelRange": "DbgClearAutoLabelRange",
- "/bridgemain.h/DbgClearBookmarkRange": "DbgClearBookmarkRange",
- "/bridgemain.h/DbgClearCommentRange": "DbgClearCommentRange",
- "/bridgemain.h/DbgClearLabelRange": "DbgClearLabelRange",
- "/bridgemain.h/DbgCmdExec": "DbgCmdExec",
- "/bridgemain.h/DbgCmdExecDirect": "DbgCmdExecDirect",
- "/bridgemain.h/DbgDelEncodeTypeRange": "DbgDelEncodeTypeRange",
- "/bridgemain.h/DbgDelEncodeTypeSegment": "DbgDelEncodeTypeSegment",
- "/bridgemain.h/DbgDisasmAt": "DbgDisasmAt",
- "/bridgemain.h/DbgDisasmFastAt": "DbgDisasmFastAt",
- "/bridgemain.h/DbgExit": "DbgExit",
- "/bridgemain.h/DbgFunctionAdd": "DbgFunctionAdd",
- "/bridgemain.h/DbgFunctionDel": "DbgFunctionDel",
- "/bridgemain.h/DbgFunctionGet": "DbgFunctionGet",
- "/bridgemain.h/DbgFunctionOverlaps": "DbgFunctionOverlaps",
- "/bridgemain.h/DbgFunctions": "DbgFunctions",
- "/bridgemain.h/DbgGetArgTypeAt": "DbgGetArgTypeAt",
- "/bridgemain.h/DbgGetBookmarkAt": "DbgGetBookmarkAt",
- "/bridgemain.h/DbgGetBpList": "DbgGetBpList",
- "/bridgemain.h/DbgGetBpxTypeAt": "DbgGetBpxTypeAt",
- "/bridgemain.h/DbgGetBranchDestination": "DbgGetBranchDestination",
- "/bridgemain.h/DbgGetCommentAt": "DbgGetCommentAt",
- "/bridgemain.h/DbgGetDebugEngine": "DbgGetDebugEngine",
- "/bridgemain.h/DbgGetEncodeSizeAt": "DbgGetEncodeSizeAt",
- "/bridgemain.h/DbgGetEncodeTypeAt": "DbgGetEncodeTypeAt",
- "/bridgemain.h/DbgGetEncodeTypeBuffer": "DbgGetEncodeTypeBuffer",
- "/bridgemain.h/DbgGetFunctionTypeAt": "DbgGetFunctionTypeAt",
- "/bridgemain.h/DbgGetLabelAt": "DbgGetLabelAt",
- "/bridgemain.h/DbgGetLoopTypeAt": "DbgGetLoopTypeAt",
- "/bridgemain.h/DbgGetModuleAt": "DbgGetModuleAt",
- "/bridgemain.h/DbgGetPebAddress": "DbgGetPebAddress",
- "/bridgemain.h/DbgGetProcessHandle": "DbgGetProcessHandle",
- "/bridgemain.h/DbgGetProcessId": "DbgGetProcessId",
- "/bridgemain.h/DbgGetRegDumpEx": "DbgGetRegDumpEx",
- "/bridgemain.h/DbgGetStringAt": "DbgGetStringAt",
- "/bridgemain.h/DbgGetSymbolInfo": "DbgGetSymbolInfo",
- "/bridgemain.h/DbgGetSymbolInfoAt": "DbgGetSymbolInfoAt",
- "/bridgemain.h/DbgGetTebAddress": "DbgGetTebAddress",
- "/bridgemain.h/DbgGetThreadHandle": "DbgGetThreadHandle",
- "/bridgemain.h/DbgGetThreadId": "DbgGetThreadId",
- "/bridgemain.h/DbgGetThreadList": "DbgGetThreadList",
- "/bridgemain.h/DbgGetTimeWastedCounter": "DbgGetTimeWastedCounter",
- "/bridgemain.h/DbgGetWatchList": "DbgGetWatchList",
- "/bridgemain.h/DbgGetXrefCountAt": "DbgGetXrefCountAt",
- "/bridgemain.h/DbgGetXrefTypeAt": "DbgGetXrefTypeAt",
- "/bridgemain.h/DbgInit": "DbgInit",
- "/bridgemain.h/DbgIsBpDisabled": "DbgIsBpDisabled",
- "/bridgemain.h/DbgIsDebugging": "DbgIsDebugging",
- "/bridgemain.h/DbgIsJumpGoingToExecute": "DbgIsJumpGoingToExecute",
- "/bridgemain.h/DbgIsRunLocked": "DbgIsRunLocked",
- "/bridgemain.h/DbgIsRunning": "DbgIsRunning",
- "/bridgemain.h/DbgIsValidExpression": "DbgIsValidExpression",
- "/bridgemain.h/DbgLoopAdd": "DbgLoopAdd",
- "/bridgemain.h/DbgLoopDel": "DbgLoopDel",
- "/bridgemain.h/DbgLoopGet": "DbgLoopGet",
- "/bridgemain.h/DbgLoopOverlaps": "DbgLoopOverlaps",
- "/bridgemain.h/DbgMemFindBaseAddr": "DbgMemFindBaseAddr",
- "/bridgemain.h/DbgMemGetPageSize": "DbgMemGetPageSize",
- "/bridgemain.h/DbgMemIsValidReadPtr": "DbgMemIsValidReadPtr",
- "/bridgemain.h/DbgMemMap": "DbgMemMap",
- "/bridgemain.h/DbgMemRead": "DbgMemRead",
- "/bridgemain.h/DbgMemWrite": "DbgMemWrite",
- "/bridgemain.h/DbgMenuEntryClicked": "DbgMenuEntryClicked",
- "/bridgemain.h/DbgMenuPrepare": "DbgMenuPrepare",
- "/bridgemain.h/DbgModBaseFromName": "DbgModBaseFromName",
- "/bridgemain.h/DbgReleaseEncodeTypeBuffer": "DbgReleaseEncodeTypeBuffer",
- "/bridgemain.h/DbgScriptAbort": "DbgScriptAbort",
- "/bridgemain.h/DbgScriptBpGet": "DbgScriptBpGet",
- "/bridgemain.h/DbgScriptBpToggle": "DbgScriptBpToggle",
- "/bridgemain.h/DbgScriptCmdExec": "DbgScriptCmdExec",
- "/bridgemain.h/DbgScriptGetBranchInfo": "DbgScriptGetBranchInfo",
- "/bridgemain.h/DbgScriptGetLineType": "DbgScriptGetLineType",
- "/bridgemain.h/DbgScriptLoad": "DbgScriptLoad",
- "/bridgemain.h/DbgScriptRun": "DbgScriptRun",
- "/bridgemain.h/DbgScriptSetIp": "DbgScriptSetIp",
- "/bridgemain.h/DbgScriptStep": "DbgScriptStep",
- "/bridgemain.h/DbgScriptUnload": "DbgScriptUnload",
- "/bridgemain.h/DbgSelChanged": "DbgSelChanged",
- "/bridgemain.h/DbgSetAutoBookmarkAt": "DbgSetAutoBookmarkAt",
- "/bridgemain.h/DbgSetAutoCommentAt": "DbgSetAutoCommentAt",
- "/bridgemain.h/DbgSetAutoFunctionAt": "DbgSetAutoFunctionAt",
- "/bridgemain.h/DbgSetAutoLabelAt": "DbgSetAutoLabelAt",
- "/bridgemain.h/DbgSetCommentAt": "DbgSetCommentAt",
- "/bridgemain.h/DbgSetEncodeType": "DbgSetEncodeType",
- "/bridgemain.h/DbgSetLabelAt": "DbgSetLabelAt",
- "/bridgemain.h/DbgSettingsUpdated": "DbgSettingsUpdated",
- "/bridgemain.h/DbgStackCommentGet": "DbgStackCommentGet",
- "/bridgemain.h/DbgSymbolEnum": "DbgSymbolEnum",
- "/bridgemain.h/DbgSymbolEnumFromCache": "DbgSymbolEnumFromCache",
- "/bridgemain.h/DbgSymbolEnumRange": "DbgSymbolEnumRange",
- "/bridgemain.h/DbgValFromString": "DbgValFromString",
- "/bridgemain.h/DbgValToString": "DbgValToString",
- "/bridgemain.h/DbgWinEvent": "DbgWinEvent",
- "/bridgemain.h/DbgWinEventGlobal": "DbgWinEventGlobal",
- "/bridgemain.h/DbgXrefAdd": "DbgXrefAdd",
- "/bridgemain.h/DbgXrefAddMulti": "DbgXrefAddMulti",
- "/bridgemain.h/DbgXrefDelAll": "DbgXrefDelAll",
- "/bridgemain.h/DbgXrefGet": "DbgXrefGet",
- "/bridgemain.h/GuiAddFavouriteCommand": "GuiAddFavouriteCommand",
- "/bridgemain.h/GuiAddFavouriteTool": "GuiAddFavouriteTool",
- "/bridgemain.h/GuiAddInfoLine": "GuiAddInfoLine",
- "/bridgemain.h/GuiAddLogMessage": "GuiAddLogMessage",
- "/bridgemain.h/GuiAddLogMessageHtml": "GuiAddLogMessageHtml",
- "/bridgemain.h/GuiAddQWidgetTab": "GuiAddQWidgetTab",
- "/bridgemain.h/GuiAddRecentFile": "GuiAddRecentFile",
- "/bridgemain.h/GuiAddStatusBarMessage": "GuiAddStatusBarMessage",
- "/bridgemain.h/GuiAutoCompleteAddCmd": "GuiAutoCompleteAddCmd",
- "/bridgemain.h/GuiAutoCompleteClearAll": "GuiAutoCompleteClearAll",
- "/bridgemain.h/GuiAutoCompleteDelCmd": "GuiAutoCompleteDelCmd",
- "/bridgemain.h/GuiCloseApplication": "GuiCloseApplication",
- "/bridgemain.h/GuiCloseQWidgetTab": "GuiCloseQWidgetTab",
- "/bridgemain.h/GuiDisableLog": "GuiDisableLog",
- "/bridgemain.h/GuiDisasmAt": "GuiDisasmAt",
- "/bridgemain.h/GuiDisplayWarning": "GuiDisplayWarning",
- "/bridgemain.h/GuiDumpAt": "GuiDumpAt",
- "/bridgemain.h/GuiDumpAtN": "GuiDumpAtN",
- "/bridgemain.h/GuiEnableLog": "GuiEnableLog",
- "/bridgemain.h/GuiExecuteOnGuiThread": "GuiExecuteOnGuiThread",
- "/bridgemain.h/GuiExecuteOnGuiThreadEx": "GuiExecuteOnGuiThreadEx",
- "/bridgemain.h/GuiFlushLog": "GuiFlushLog",
- "/bridgemain.h/GuiFocusView": "GuiFocusView",
- "/bridgemain.h/GuiFoldDisassembly": "GuiFoldDisassembly",
- "/bridgemain.h/GuiGetActiveView": "GuiGetActiveView",
- "/bridgemain.h/GuiGetCurrentGraph": "GuiGetCurrentGraph",
- "/bridgemain.h/GuiGetDebuggeeNotes": "GuiGetDebuggeeNotes",
- "/bridgemain.h/GuiGetDisassembly": "GuiGetDisassembly",
- "/bridgemain.h/GuiGetGlobalNotes": "GuiGetGlobalNotes",
- "/bridgemain.h/GuiGetLineWindow": "GuiGetLineWindow",
- "/bridgemain.h/GuiGetMainThreadId": "GuiGetMainThreadId",
- "/bridgemain.h/GuiGetWindowHandle": "GuiGetWindowHandle",
- "/bridgemain.h/GuiGotoTrace": "GuiGotoTrace",
- "/bridgemain.h/GuiGraphAt": "GuiGraphAt",
- "/bridgemain.h/GuiInvalidateSymbolSource": "GuiInvalidateSymbolSource",
- "/bridgemain.h/GuiIsLogEnabled": "GuiIsLogEnabled",
- "/bridgemain.h/GuiIsUpdateDisabled": "GuiIsUpdateDisabled",
- "/bridgemain.h/GuiLoadGraph": "GuiLoadGraph",
- "/bridgemain.h/GuiLoadSourceFileEx": "GuiLoadSourceFileEx",
- "/bridgemain.h/GuiLogClear": "GuiLogClear",
- "/bridgemain.h/GuiLogRedirect": "GuiLogRedirect",
- "/bridgemain.h/GuiLogRedirectStop": "GuiLogRedirectStop",
- "/bridgemain.h/GuiLogSave": "GuiLogSave",
- "/bridgemain.h/GuiMenuAdd": "GuiMenuAdd",
- "/bridgemain.h/GuiMenuAddEntry": "GuiMenuAddEntry",
- "/bridgemain.h/GuiMenuAddSeparator": "GuiMenuAddSeparator",
- "/bridgemain.h/GuiMenuClear": "GuiMenuClear",
- "/bridgemain.h/GuiMenuRemove": "GuiMenuRemove",
- "/bridgemain.h/GuiMenuSetEntryHotkey": "GuiMenuSetEntryHotkey",
- "/bridgemain.h/GuiMenuSetEntryIcon": "GuiMenuSetEntryIcon",
- "/bridgemain.h/GuiMenuSetEntryName": "GuiMenuSetEntryName",
- "/bridgemain.h/GuiMenuSetIcon": "GuiMenuSetIcon",
- "/bridgemain.h/GuiMenuSetName": "GuiMenuSetName",
- "/bridgemain.h/GuiOpenTraceFile": "GuiOpenTraceFile",
- "/bridgemain.h/GuiProcessEvents": "GuiProcessEvents",
- "/bridgemain.h/GuiReferenceAddColumn": "GuiReferenceAddColumn",
- "/bridgemain.h/GuiReferenceAddCommand": "GuiReferenceAddCommand",
- "/bridgemain.h/GuiReferenceDeleteAllColumns": "GuiReferenceDeleteAllColumns",
- "/bridgemain.h/GuiReferenceGetCellContent": "GuiReferenceGetCellContent",
- "/bridgemain.h/GuiReferenceGetRowCount": "GuiReferenceGetRowCount",
- "/bridgemain.h/GuiReferenceInitialize": "GuiReferenceInitialize",
- "/bridgemain.h/GuiReferenceReloadData": "GuiReferenceReloadData",
- "/bridgemain.h/GuiReferenceSearchGetCellContent": "GuiReferenceSearchGetCellContent",
- "/bridgemain.h/GuiReferenceSearchGetRowCount": "GuiReferenceSearchGetRowCount",
- "/bridgemain.h/GuiReferenceSetCellContent": "GuiReferenceSetCellContent",
- "/bridgemain.h/GuiReferenceSetCurrentTaskProgress": "GuiReferenceSetCurrentTaskProgress",
- "/bridgemain.h/GuiReferenceSetProgress": "GuiReferenceSetProgress",
- "/bridgemain.h/GuiReferenceSetRowCount": "GuiReferenceSetRowCount",
- "/bridgemain.h/GuiReferenceSetSearchStartCol": "GuiReferenceSetSearchStartCol",
- "/bridgemain.h/GuiRegisterScriptLanguage": "GuiRegisterScriptLanguage",
- "/bridgemain.h/GuiRepaintTableView": "GuiRepaintTableView",
- "/bridgemain.h/GuiScriptAdd": "GuiScriptAdd",
- "/bridgemain.h/GuiScriptClear": "GuiScriptClear",
- "/bridgemain.h/GuiScriptError": "GuiScriptError",
- "/bridgemain.h/GuiScriptMessage": "GuiScriptMessage",
- "/bridgemain.h/GuiScriptMsgyn": "GuiScriptMsgyn",
- "/bridgemain.h/GuiScriptSetInfoLine": "GuiScriptSetInfoLine",
- "/bridgemain.h/GuiScriptSetIp": "GuiScriptSetIp",
- "/bridgemain.h/GuiScriptSetTitle": "GuiScriptSetTitle",
- "/bridgemain.h/GuiSelectInMemoryMap": "GuiSelectInMemoryMap",
- "/bridgemain.h/GuiSelectInSymbolsTab": "GuiSelectInSymbolsTab",
- "/bridgemain.h/GuiSelectionGet": "GuiSelectionGet",
- "/bridgemain.h/GuiSelectionSet": "GuiSelectionSet",
- "/bridgemain.h/GuiSetDebugState": "GuiSetDebugState",
- "/bridgemain.h/GuiSetDebugStateFast": "GuiSetDebugStateFast",
- "/bridgemain.h/GuiSetDebuggeeNotes": "GuiSetDebuggeeNotes",
- "/bridgemain.h/GuiSetFavouriteToolShortcut": "GuiSetFavouriteToolShortcut",
- "/bridgemain.h/GuiSetGlobalNotes": "GuiSetGlobalNotes",
- "/bridgemain.h/GuiSetLastException": "GuiSetLastException",
- "/bridgemain.h/GuiShowCpu": "GuiShowCpu",
- "/bridgemain.h/GuiShowQWidgetTab": "GuiShowQWidgetTab",
- "/bridgemain.h/GuiShowReferences": "GuiShowReferences",
- "/bridgemain.h/GuiShowThreads": "GuiShowThreads",
- "/bridgemain.h/GuiShowTrace": "GuiShowTrace",
- "/bridgemain.h/GuiStackDumpAt": "GuiStackDumpAt",
- "/bridgemain.h/GuiSymbolLogAdd": "GuiSymbolLogAdd",
- "/bridgemain.h/GuiSymbolLogClear": "GuiSymbolLogClear",
- "/bridgemain.h/GuiSymbolRefreshCurrent": "GuiSymbolRefreshCurrent",
- "/bridgemain.h/GuiSymbolSetProgress": "GuiSymbolSetProgress",
- "/bridgemain.h/GuiSymbolUpdateModuleList": "GuiSymbolUpdateModuleList",
- "/bridgemain.h/GuiTranslateText": "GuiTranslateText",
- "/bridgemain.h/GuiTypeAddNode": "GuiTypeAddNode",
- "/bridgemain.h/GuiTypeClear": "GuiTypeClear",
- "/bridgemain.h/GuiUnregisterScriptLanguage": "GuiUnregisterScriptLanguage",
- "/bridgemain.h/GuiUpdateAllViews": "GuiUpdateAllViews",
- "/bridgemain.h/GuiUpdateArgumentWidget": "GuiUpdateArgumentWidget",
- "/bridgemain.h/GuiUpdateBreakpointsView": "GuiUpdateBreakpointsView",
- "/bridgemain.h/GuiUpdateCallStack": "GuiUpdateCallStack",
- "/bridgemain.h/GuiUpdateDisable": "GuiUpdateDisable",
- "/bridgemain.h/GuiUpdateDisassemblyView": "GuiUpdateDisassemblyView",
- "/bridgemain.h/GuiUpdateDumpView": "GuiUpdateDumpView",
- "/bridgemain.h/GuiUpdateGraphView": "GuiUpdateGraphView",
- "/bridgemain.h/GuiUpdateMemoryView": "GuiUpdateMemoryView",
- "/bridgemain.h/GuiUpdatePatches": "GuiUpdatePatches",
- "/bridgemain.h/GuiUpdateRegisterView": "GuiUpdateRegisterView",
- "/bridgemain.h/GuiUpdateSEHChain": "GuiUpdateSEHChain",
- "/bridgemain.h/GuiUpdateSideBar": "GuiUpdateSideBar",
- "/bridgemain.h/GuiUpdateThreadView": "GuiUpdateThreadView",
- "/bridgemain.h/GuiUpdateTimeWastedCounter": "GuiUpdateTimeWastedCounter",
- "/bridgemain.h/GuiUpdateTraceBrowser": "GuiUpdateTraceBrowser",
- "/bridgemain.h/GuiUpdateTypeWidget": "GuiUpdateTypeWidget",
- "/bridgemain.h/GuiUpdateWatchView": "GuiUpdateWatchView",
- "/bridgemain.h/GuiUpdateWindowTitle": "GuiUpdateWindowTitle"
+ "/_scriptapi_argument.h/Add": {
+  "Fn": "Script::Argument::Add",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::Add(params[\"info\"].get\u003cconst ArgumentInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/Clear": {
+  "Fn": "Script::Argument::Clear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::Clear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/Delete": {
+  "Fn": "Script::Argument::Delete",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::Delete(params[\"address\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/DeleteRange": {
+  "Fn": "Script::Argument::DeleteRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::DeleteRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e(), params[\"deleteManual\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/Get": {
+  "Fn": "Script::Argument::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::Get(params[\"addr\"].get\u003cduint\u003e(), params[\"start\"].get\u003cduint *\u003e(), params[\"end\"].get\u003cduint *\u003e(), params[\"instructionCount\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/GetInfo": {
+  "Fn": "Script::Argument::GetInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::GetInfo(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cArgumentInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/GetList": {
+  "Fn": "Script::Argument::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_argument.h/Overlaps": {
+  "Fn": "Script::Argument::Overlaps",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Argument::Overlaps(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_assembler.h/Assemble": {
+  "Fn": "Script::Assembler::Assemble",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Assembler::Assemble(params[\"addr\"].get\u003cduint\u003e(), params[\"dest\"].get\u003cunsigned char *\u003e(), params[\"size\"].get\u003cint *\u003e(), params[\"instruction\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_assembler.h/AssembleEx": {
+  "Fn": "Script::Assembler::AssembleEx",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Assembler::AssembleEx(params[\"addr\"].get\u003cduint\u003e(), params[\"dest\"].get\u003cunsigned char *\u003e(), params[\"size\"].get\u003cint *\u003e(), params[\"instruction\"].get\u003cconst char *\u003e(), params[\"error\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_assembler.h/AssembleMem": {
+  "Fn": "Script::Assembler::AssembleMem",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Assembler::AssembleMem(params[\"addr\"].get\u003cduint\u003e(), params[\"instruction\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_assembler.h/AssembleMemEx": {
+  "Fn": "Script::Assembler::AssembleMemEx",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Assembler::AssembleMemEx(params[\"addr\"].get\u003cduint\u003e(), params[\"instruction\"].get\u003cconst char *\u003e(), params[\"size\"].get\u003cint *\u003e(), params[\"error\"].get\u003cchar *\u003e(), params[\"fillnop\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/Clear": {
+  "Fn": "Script::Bookmark::Clear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::Clear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/Delete": {
+  "Fn": "Script::Bookmark::Delete",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::Delete(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/DeleteRange": {
+  "Fn": "Script::Bookmark::DeleteRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::DeleteRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/Get": {
+  "Fn": "Script::Bookmark::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::Get(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/GetInfo": {
+  "Fn": "Script::Bookmark::GetInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::GetInfo(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cBookmarkInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/GetList": {
+  "Fn": "Script::Bookmark::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_bookmark.h/Set": {
+  "Fn": "Script::Bookmark::Set",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Bookmark::Set(params[\"info\"].get\u003cconst BookmarkInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/Clear": {
+  "Fn": "Script::Comment::Clear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::Clear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/Delete": {
+  "Fn": "Script::Comment::Delete",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::Delete(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/DeleteRange": {
+  "Fn": "Script::Comment::DeleteRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::DeleteRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/Get": {
+  "Fn": "Script::Comment::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::Get(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/GetInfo": {
+  "Fn": "Script::Comment::GetInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::GetInfo(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cCommentInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/GetList": {
+  "Fn": "Script::Comment::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_comment.h/Set": {
+  "Fn": "Script::Comment::Set",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Comment::Set(params[\"info\"].get\u003cconst CommentInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/DeleteBreakpoint": {
+  "Fn": "Script::Debug::DeleteBreakpoint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::DeleteBreakpoint(params[\"address\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/DeleteHardwareBreakpoint": {
+  "Fn": "Script::Debug::DeleteHardwareBreakpoint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::DeleteHardwareBreakpoint(params[\"address\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/DisableBreakpoint": {
+  "Fn": "Script::Debug::DisableBreakpoint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::DisableBreakpoint(params[\"address\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/Pause": {
+  "Fn": "Script::Debug::Pause",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::Pause(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/Run": {
+  "Fn": "Script::Debug::Run",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::Run(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/SetBreakpoint": {
+  "Fn": "Script::Debug::SetBreakpoint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::SetBreakpoint(params[\"address\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/SetHardwareBreakpoint": {
+  "Fn": "Script::Debug::SetHardwareBreakpoint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::SetHardwareBreakpoint(params[\"address\"].get\u003cduint\u003e(), params[\"Type\"].get\u003cHardwareType\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/StepIn": {
+  "Fn": "Script::Debug::StepIn",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::StepIn(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/StepOut": {
+  "Fn": "Script::Debug::StepOut",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::StepOut(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/StepOver": {
+  "Fn": "Script::Debug::StepOver",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::StepOver(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/Stop": {
+  "Fn": "Script::Debug::Stop",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::Stop(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_debug.h/Wait": {
+  "Fn": "Script::Debug::Wait",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Debug::Wait(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/Get": {
+  "Fn": "Script::Flag::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::Get(params[\"flag\"].get\u003cFlagEnum\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetAF": {
+  "Fn": "Script::Flag::GetAF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetAF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetCF": {
+  "Fn": "Script::Flag::GetCF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetCF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetDF": {
+  "Fn": "Script::Flag::GetDF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetDF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetIF": {
+  "Fn": "Script::Flag::GetIF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetIF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetOF": {
+  "Fn": "Script::Flag::GetOF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetOF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetPF": {
+  "Fn": "Script::Flag::GetPF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetPF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetSF": {
+  "Fn": "Script::Flag::GetSF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetSF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetTF": {
+  "Fn": "Script::Flag::GetTF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetTF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/GetZF": {
+  "Fn": "Script::Flag::GetZF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::GetZF(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/Set": {
+  "Fn": "Script::Flag::Set",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::Set(params[\"flag\"].get\u003cFlagEnum\u003e(), params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetAF": {
+  "Fn": "Script::Flag::SetAF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetAF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetCF": {
+  "Fn": "Script::Flag::SetCF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetCF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetDF": {
+  "Fn": "Script::Flag::SetDF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetDF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetIF": {
+  "Fn": "Script::Flag::SetIF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetIF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetOF": {
+  "Fn": "Script::Flag::SetOF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetOF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetPF": {
+  "Fn": "Script::Flag::SetPF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetPF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetSF": {
+  "Fn": "Script::Flag::SetSF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetSF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetTF": {
+  "Fn": "Script::Flag::SetTF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetTF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_flag.h/SetZF": {
+  "Fn": "Script::Flag::SetZF",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Flag::SetZF(params[\"value\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/Add": {
+  "Fn": "Script::Function::Add",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::Add(params[\"info\"].get\u003cconst FunctionInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/Clear": {
+  "Fn": "Script::Function::Clear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::Clear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/Delete": {
+  "Fn": "Script::Function::Delete",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::Delete(params[\"address\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/DeleteRange": {
+  "Fn": "Script::Function::DeleteRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::DeleteRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/Get": {
+  "Fn": "Script::Function::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::Get(params[\"addr\"].get\u003cduint\u003e(), params[\"start\"].get\u003cduint *\u003e(), params[\"end\"].get\u003cduint *\u003e(), params[\"instructionCount\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/GetInfo": {
+  "Fn": "Script::Function::GetInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::GetInfo(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cFunctionInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/GetList": {
+  "Fn": "Script::Function::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_function.h/Overlaps": {
+  "Fn": "Script::Function::Overlaps",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Function::Overlaps(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/AddQWidgetTab": {
+  "Fn": "Script::Gui::AddQWidgetTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::AddQWidgetTab(params[\"qWidget\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/CloseQWidgetTab": {
+  "Fn": "Script::Gui::CloseQWidgetTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::CloseQWidgetTab(params[\"qWidget\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/InputLine": {
+  "Fn": "Script::Gui::InputLine",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::InputLine(params[\"title\"].get\u003cconst char *\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/InputValue": {
+  "Fn": "Script::Gui::InputValue",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::InputValue(params[\"title\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/Message": {
+  "Fn": "Script::Gui::Message",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::Message(params[\"message\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/MessageYesNo": {
+  "Fn": "Script::Gui::MessageYesNo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::MessageYesNo(params[\"message\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/Refresh": {
+  "Fn": "Script::Gui::Refresh",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::Refresh(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/SelectionGet": {
+  "Fn": "Script::Gui::SelectionGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::SelectionGet(params[\"window\"].get\u003cWindow\u003e(), params[\"start\"].get\u003cduint *\u003e(), params[\"end\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/SelectionGetEnd": {
+  "Fn": "Script::Gui::SelectionGetEnd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::SelectionGetEnd(params[\"window\"].get\u003cWindow\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/SelectionGetStart": {
+  "Fn": "Script::Gui::SelectionGetStart",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::SelectionGetStart(params[\"window\"].get\u003cWindow\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/SelectionSet": {
+  "Fn": "Script::Gui::SelectionSet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::SelectionSet(params[\"window\"].get\u003cWindow\u003e(), params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_gui.h/ShowQWidgetTab": {
+  "Fn": "Script::Gui::ShowQWidgetTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Gui::ShowQWidgetTab(params[\"qWidget\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/Clear": {
+  "Fn": "Script::Label::Clear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::Clear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/Delete": {
+  "Fn": "Script::Label::Delete",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::Delete(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/DeleteRange": {
+  "Fn": "Script::Label::DeleteRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::DeleteRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/FromString": {
+  "Fn": "Script::Label::FromString",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::FromString(params[\"label\"].get\u003cconst char *\u003e(), params[\"addr\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/Get": {
+  "Fn": "Script::Label::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::Get(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/GetInfo": {
+  "Fn": "Script::Label::GetInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::GetInfo(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cLabelInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/GetList": {
+  "Fn": "Script::Label::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/IsTemporary": {
+  "Fn": "Script::Label::IsTemporary",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::IsTemporary(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_label.h/Set": {
+  "Fn": "Script::Label::Set",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Label::Set(params[\"info\"].get\u003cconst LabelInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/GetBase": {
+  "Fn": "Script::Memory::GetBase",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::GetBase(params[\"addr\"].get\u003cduint\u003e(), params[\"reserved\"].get\u003cbool\u003e(), params[\"cache\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/GetProtect": {
+  "Fn": "Script::Memory::GetProtect",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::GetProtect(params[\"addr\"].get\u003cduint\u003e(), params[\"reserved\"].get\u003cbool\u003e(), params[\"cache\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/GetSize": {
+  "Fn": "Script::Memory::GetSize",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::GetSize(params[\"addr\"].get\u003cduint\u003e(), params[\"reserved\"].get\u003cbool\u003e(), params[\"cache\"].get\u003cbool\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/IsValidPtr": {
+  "Fn": "Script::Memory::IsValidPtr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::IsValidPtr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/Read": {
+  "Fn": "Script::Memory::Read",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::Read(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cvoid *\u003e(), params[\"size\"].get\u003cduint\u003e(), params[\"sizeRead\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/ReadByte": {
+  "Fn": "Script::Memory::ReadByte",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::ReadByte(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/ReadDword": {
+  "Fn": "Script::Memory::ReadDword",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::ReadDword(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/ReadPtr": {
+  "Fn": "Script::Memory::ReadPtr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::ReadPtr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/ReadQword": {
+  "Fn": "Script::Memory::ReadQword",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::ReadQword(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/ReadWord": {
+  "Fn": "Script::Memory::ReadWord",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::ReadWord(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/RemoteAlloc": {
+  "Fn": "Script::Memory::RemoteAlloc",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::RemoteAlloc(params[\"addr\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/RemoteFree": {
+  "Fn": "Script::Memory::RemoteFree",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::RemoteFree(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/SetProtect": {
+  "Fn": "Script::Memory::SetProtect",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::SetProtect(params[\"addr\"].get\u003cduint\u003e(), params[\"protect\"].get\u003cunsigned int\u003e(), params[\"size\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/Write": {
+  "Fn": "Script::Memory::Write",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::Write(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cconst void *\u003e(), params[\"size\"].get\u003cduint\u003e(), params[\"sizeWritten\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/WriteByte": {
+  "Fn": "Script::Memory::WriteByte",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::WriteByte(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/WriteDword": {
+  "Fn": "Script::Memory::WriteDword",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::WriteDword(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/WritePtr": {
+  "Fn": "Script::Memory::WritePtr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::WritePtr(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/WriteQword": {
+  "Fn": "Script::Memory::WriteQword",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::WriteQword(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_memory.h/WriteWord": {
+  "Fn": "Script::Memory::WriteWord",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Memory::WriteWord(params[\"addr\"].get\u003cduint\u003e(), params[\"data\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_misc.h/Alloc": {
+  "Fn": "Script::Misc::Alloc",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Misc::Alloc(params[\"size\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_misc.h/Free": {
+  "Fn": "Script::Misc::Free",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Misc::Free(params[\"ptr\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_misc.h/ParseExpression": {
+  "Fn": "Script::Misc::ParseExpression",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Misc::ParseExpression(params[\"expression\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_misc.h/RemoteGetProcAddress": {
+  "Fn": "Script::Misc::RemoteGetProcAddress",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Misc::RemoteGetProcAddress(params[\"module\"].get\u003cconst char *\u003e(), params[\"api\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_misc.h/ResolveLabel": {
+  "Fn": "Script::Misc::ResolveLabel",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Misc::ResolveLabel(params[\"label\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/BaseFromAddr": {
+  "Fn": "Script::Module::BaseFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::BaseFromAddr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/BaseFromName": {
+  "Fn": "Script::Module::BaseFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::BaseFromName(params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/EntryFromAddr": {
+  "Fn": "Script::Module::EntryFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::EntryFromAddr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/EntryFromName": {
+  "Fn": "Script::Module::EntryFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::EntryFromName(params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetExports": {
+  "Fn": "Script::Module::GetExports",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetExports(params[\"mod\"].get\u003cconst ModuleInfo *\u003e(), params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetImports": {
+  "Fn": "Script::Module::GetImports",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetImports(params[\"mod\"].get\u003cconst ModuleInfo *\u003e(), params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetList": {
+  "Fn": "Script::Module::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleBase": {
+  "Fn": "Script::Module::GetMainModuleBase",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleBase(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleEntry": {
+  "Fn": "Script::Module::GetMainModuleEntry",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleEntry(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleInfo": {
+  "Fn": "Script::Module::GetMainModuleInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleInfo(params[\"info\"].get\u003cModuleInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleName": {
+  "Fn": "Script::Module::GetMainModuleName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleName(params[\"name\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModulePath": {
+  "Fn": "Script::Module::GetMainModulePath",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModulePath(params[\"path\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleSectionCount": {
+  "Fn": "Script::Module::GetMainModuleSectionCount",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleSectionCount(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleSectionList": {
+  "Fn": "Script::Module::GetMainModuleSectionList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleSectionList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/GetMainModuleSize": {
+  "Fn": "Script::Module::GetMainModuleSize",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::GetMainModuleSize(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/InfoFromAddr": {
+  "Fn": "Script::Module::InfoFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::InfoFromAddr(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cModuleInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/InfoFromName": {
+  "Fn": "Script::Module::InfoFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::InfoFromName(params[\"name\"].get\u003cconst char *\u003e(), params[\"info\"].get\u003cModuleInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/NameFromAddr": {
+  "Fn": "Script::Module::NameFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::NameFromAddr(params[\"addr\"].get\u003cduint\u003e(), params[\"name\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/PathFromAddr": {
+  "Fn": "Script::Module::PathFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::PathFromAddr(params[\"addr\"].get\u003cduint\u003e(), params[\"path\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/PathFromName": {
+  "Fn": "Script::Module::PathFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::PathFromName(params[\"name\"].get\u003cconst char *\u003e(), params[\"path\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SectionCountFromAddr": {
+  "Fn": "Script::Module::SectionCountFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SectionCountFromAddr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SectionCountFromName": {
+  "Fn": "Script::Module::SectionCountFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SectionCountFromName(params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SectionFromAddr": {
+  "Fn": "Script::Module::SectionFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SectionFromAddr(params[\"addr\"].get\u003cduint\u003e(), params[\"number\"].get\u003cint\u003e(), params[\"section\"].get\u003cModuleSectionInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SectionFromName": {
+  "Fn": "Script::Module::SectionFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SectionFromName(params[\"name\"].get\u003cconst char *\u003e(), params[\"number\"].get\u003cint\u003e(), params[\"section\"].get\u003cModuleSectionInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SectionListFromAddr": {
+  "Fn": "Script::Module::SectionListFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SectionListFromAddr(params[\"addr\"].get\u003cduint\u003e(), params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SectionListFromName": {
+  "Fn": "Script::Module::SectionListFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SectionListFromName(params[\"name\"].get\u003cconst char *\u003e(), params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SizeFromAddr": {
+  "Fn": "Script::Module::SizeFromAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SizeFromAddr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_module.h/SizeFromName": {
+  "Fn": "Script::Module::SizeFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Module::SizeFromName(params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_pattern.h/Find": {
+  "Fn": "Script::Pattern::Find",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Pattern::Find(params[\"data\"].get\u003cunsigned char *\u003e(), params[\"datasize\"].get\u003cduint\u003e(), params[\"pattern\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_pattern.h/FindMem": {
+  "Fn": "Script::Pattern::FindMem",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Pattern::FindMem(params[\"start\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint\u003e(), params[\"pattern\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_pattern.h/SearchAndReplace": {
+  "Fn": "Script::Pattern::SearchAndReplace",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Pattern::SearchAndReplace(params[\"data\"].get\u003cunsigned char *\u003e(), params[\"datasize\"].get\u003cduint\u003e(), params[\"searchpattern\"].get\u003cconst char *\u003e(), params[\"replacepattern\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_pattern.h/SearchAndReplaceMem": {
+  "Fn": "Script::Pattern::SearchAndReplaceMem",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Pattern::SearchAndReplaceMem(params[\"start\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint\u003e(), params[\"searchpattern\"].get\u003cconst char *\u003e(), params[\"replacepattern\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_pattern.h/Write": {
+  "Fn": "Script::Pattern::Write",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Pattern::Write(params[\"data\"].get\u003cunsigned char *\u003e(), params[\"datasize\"].get\u003cduint\u003e(), params[\"pattern\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_pattern.h/WriteMem": {
+  "Fn": "Script::Pattern::WriteMem",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Pattern::WriteMem(params[\"start\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint\u003e(), params[\"pattern\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/Get": {
+  "Fn": "Script::Register::Get",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::Get(params[\"reg\"].get\u003cRegisterEnum\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetAH": {
+  "Fn": "Script::Register::GetAH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetAH(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetAL": {
+  "Fn": "Script::Register::GetAL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetAL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetAX": {
+  "Fn": "Script::Register::GetAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetAX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetBH": {
+  "Fn": "Script::Register::GetBH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetBH(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetBL": {
+  "Fn": "Script::Register::GetBL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetBL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetBP": {
+  "Fn": "Script::Register::GetBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetBP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetBPL": {
+  "Fn": "Script::Register::GetBPL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetBPL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetBX": {
+  "Fn": "Script::Register::GetBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetBX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCAX": {
+  "Fn": "Script::Register::GetCAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCAX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCBP": {
+  "Fn": "Script::Register::GetCBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCBP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCBX": {
+  "Fn": "Script::Register::GetCBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCBX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCCX": {
+  "Fn": "Script::Register::GetCCX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCCX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCDI": {
+  "Fn": "Script::Register::GetCDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCDI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCDX": {
+  "Fn": "Script::Register::GetCDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCDX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCFLAGS": {
+  "Fn": "Script::Register::GetCFLAGS",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCFLAGS(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCH": {
+  "Fn": "Script::Register::GetCH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCH(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCIP": {
+  "Fn": "Script::Register::GetCIP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCIP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCL": {
+  "Fn": "Script::Register::GetCL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCSI": {
+  "Fn": "Script::Register::GetCSI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCSI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCSP": {
+  "Fn": "Script::Register::GetCSP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCSP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetCX": {
+  "Fn": "Script::Register::GetCX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetCX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDH": {
+  "Fn": "Script::Register::GetDH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDH(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDI": {
+  "Fn": "Script::Register::GetDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDIL": {
+  "Fn": "Script::Register::GetDIL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDIL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDL": {
+  "Fn": "Script::Register::GetDL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDR0": {
+  "Fn": "Script::Register::GetDR0",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDR0(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDR1": {
+  "Fn": "Script::Register::GetDR1",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDR1(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDR2": {
+  "Fn": "Script::Register::GetDR2",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDR2(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDR3": {
+  "Fn": "Script::Register::GetDR3",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDR3(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDR6": {
+  "Fn": "Script::Register::GetDR6",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDR6(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDR7": {
+  "Fn": "Script::Register::GetDR7",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDR7(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetDX": {
+  "Fn": "Script::Register::GetDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetDX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetEAX": {
+  "Fn": "Script::Register::GetEAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetEAX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetEBP": {
+  "Fn": "Script::Register::GetEBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetEBP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetEBX": {
+  "Fn": "Script::Register::GetEBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetEBX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetECX": {
+  "Fn": "Script::Register::GetECX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetECX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetEDI": {
+  "Fn": "Script::Register::GetEDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetEDI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetEDX": {
+  "Fn": "Script::Register::GetEDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetEDX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetEIP": {
+  "Fn": "Script::Register::GetEIP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetEIP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetESI": {
+  "Fn": "Script::Register::GetESI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetESI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetESP": {
+  "Fn": "Script::Register::GetESP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetESP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR10": {
+  "Fn": "Script::Register::GetR10",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR10(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR10B": {
+  "Fn": "Script::Register::GetR10B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR10B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR10D": {
+  "Fn": "Script::Register::GetR10D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR10D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR10W": {
+  "Fn": "Script::Register::GetR10W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR10W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR11": {
+  "Fn": "Script::Register::GetR11",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR11(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR11B": {
+  "Fn": "Script::Register::GetR11B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR11B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR11D": {
+  "Fn": "Script::Register::GetR11D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR11D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR11W": {
+  "Fn": "Script::Register::GetR11W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR11W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR12": {
+  "Fn": "Script::Register::GetR12",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR12(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR12B": {
+  "Fn": "Script::Register::GetR12B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR12B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR12D": {
+  "Fn": "Script::Register::GetR12D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR12D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR12W": {
+  "Fn": "Script::Register::GetR12W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR12W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR13": {
+  "Fn": "Script::Register::GetR13",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR13(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR13B": {
+  "Fn": "Script::Register::GetR13B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR13B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR13D": {
+  "Fn": "Script::Register::GetR13D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR13D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR13W": {
+  "Fn": "Script::Register::GetR13W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR13W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR14": {
+  "Fn": "Script::Register::GetR14",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR14(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR14B": {
+  "Fn": "Script::Register::GetR14B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR14B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR14D": {
+  "Fn": "Script::Register::GetR14D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR14D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR14W": {
+  "Fn": "Script::Register::GetR14W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR14W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR15": {
+  "Fn": "Script::Register::GetR15",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR15(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR15B": {
+  "Fn": "Script::Register::GetR15B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR15B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR15D": {
+  "Fn": "Script::Register::GetR15D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR15D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR15W": {
+  "Fn": "Script::Register::GetR15W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR15W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR8": {
+  "Fn": "Script::Register::GetR8",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR8(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR8B": {
+  "Fn": "Script::Register::GetR8B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR8B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR8D": {
+  "Fn": "Script::Register::GetR8D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR8D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR8W": {
+  "Fn": "Script::Register::GetR8W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR8W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR9": {
+  "Fn": "Script::Register::GetR9",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR9(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR9B": {
+  "Fn": "Script::Register::GetR9B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR9B(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR9D": {
+  "Fn": "Script::Register::GetR9D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR9D(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetR9W": {
+  "Fn": "Script::Register::GetR9W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetR9W(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRAX": {
+  "Fn": "Script::Register::GetRAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRAX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRBP": {
+  "Fn": "Script::Register::GetRBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRBP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRBX": {
+  "Fn": "Script::Register::GetRBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRBX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRCX": {
+  "Fn": "Script::Register::GetRCX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRCX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRDI": {
+  "Fn": "Script::Register::GetRDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRDI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRDX": {
+  "Fn": "Script::Register::GetRDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRDX(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRIP": {
+  "Fn": "Script::Register::GetRIP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRIP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRSI": {
+  "Fn": "Script::Register::GetRSI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRSI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetRSP": {
+  "Fn": "Script::Register::GetRSP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetRSP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetSI": {
+  "Fn": "Script::Register::GetSI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetSI(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetSIL": {
+  "Fn": "Script::Register::GetSIL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetSIL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetSP": {
+  "Fn": "Script::Register::GetSP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetSP(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/GetSPL": {
+  "Fn": "Script::Register::GetSPL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::GetSPL(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/Set": {
+  "Fn": "Script::Register::Set",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::Set(params[\"reg\"].get\u003cRegisterEnum\u003e(), params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetAH": {
+  "Fn": "Script::Register::SetAH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetAH(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetAL": {
+  "Fn": "Script::Register::SetAL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetAL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetAX": {
+  "Fn": "Script::Register::SetAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetAX(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetBH": {
+  "Fn": "Script::Register::SetBH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetBH(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetBL": {
+  "Fn": "Script::Register::SetBL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetBL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetBP": {
+  "Fn": "Script::Register::SetBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetBP(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetBPL": {
+  "Fn": "Script::Register::SetBPL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetBPL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetBX": {
+  "Fn": "Script::Register::SetBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetBX(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCAX": {
+  "Fn": "Script::Register::SetCAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCAX(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCBP": {
+  "Fn": "Script::Register::SetCBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCBP(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCBX": {
+  "Fn": "Script::Register::SetCBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCBX(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCCX": {
+  "Fn": "Script::Register::SetCCX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCCX(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCDI": {
+  "Fn": "Script::Register::SetCDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCDI(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCDX": {
+  "Fn": "Script::Register::SetCDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCDX(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCFLAGS": {
+  "Fn": "Script::Register::SetCFLAGS",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCFLAGS(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCH": {
+  "Fn": "Script::Register::SetCH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCH(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCIP": {
+  "Fn": "Script::Register::SetCIP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCIP(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCL": {
+  "Fn": "Script::Register::SetCL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCSI": {
+  "Fn": "Script::Register::SetCSI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCSI(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCSP": {
+  "Fn": "Script::Register::SetCSP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCSP(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetCX": {
+  "Fn": "Script::Register::SetCX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetCX(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDH": {
+  "Fn": "Script::Register::SetDH",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDH(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDI": {
+  "Fn": "Script::Register::SetDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDI(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDIL": {
+  "Fn": "Script::Register::SetDIL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDIL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDL": {
+  "Fn": "Script::Register::SetDL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDR0": {
+  "Fn": "Script::Register::SetDR0",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDR0(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDR1": {
+  "Fn": "Script::Register::SetDR1",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDR1(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDR2": {
+  "Fn": "Script::Register::SetDR2",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDR2(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDR3": {
+  "Fn": "Script::Register::SetDR3",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDR3(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDR6": {
+  "Fn": "Script::Register::SetDR6",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDR6(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDR7": {
+  "Fn": "Script::Register::SetDR7",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDR7(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetDX": {
+  "Fn": "Script::Register::SetDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetDX(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetEAX": {
+  "Fn": "Script::Register::SetEAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetEAX(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetEBP": {
+  "Fn": "Script::Register::SetEBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetEBP(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetEBX": {
+  "Fn": "Script::Register::SetEBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetEBX(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetECX": {
+  "Fn": "Script::Register::SetECX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetECX(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetEDI": {
+  "Fn": "Script::Register::SetEDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetEDI(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetEDX": {
+  "Fn": "Script::Register::SetEDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetEDX(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetEIP": {
+  "Fn": "Script::Register::SetEIP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetEIP(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetESI": {
+  "Fn": "Script::Register::SetESI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetESI(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetESP": {
+  "Fn": "Script::Register::SetESP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetESP(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR10": {
+  "Fn": "Script::Register::SetR10",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR10(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR10B": {
+  "Fn": "Script::Register::SetR10B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR10B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR10D": {
+  "Fn": "Script::Register::SetR10D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR10D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR10W": {
+  "Fn": "Script::Register::SetR10W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR10W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR11": {
+  "Fn": "Script::Register::SetR11",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR11(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR11B": {
+  "Fn": "Script::Register::SetR11B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR11B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR11D": {
+  "Fn": "Script::Register::SetR11D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR11D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR11W": {
+  "Fn": "Script::Register::SetR11W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR11W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR12": {
+  "Fn": "Script::Register::SetR12",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR12(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR12B": {
+  "Fn": "Script::Register::SetR12B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR12B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR12D": {
+  "Fn": "Script::Register::SetR12D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR12D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR12W": {
+  "Fn": "Script::Register::SetR12W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR12W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR13": {
+  "Fn": "Script::Register::SetR13",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR13(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR13B": {
+  "Fn": "Script::Register::SetR13B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR13B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR13D": {
+  "Fn": "Script::Register::SetR13D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR13D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR13W": {
+  "Fn": "Script::Register::SetR13W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR13W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR14": {
+  "Fn": "Script::Register::SetR14",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR14(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR14B": {
+  "Fn": "Script::Register::SetR14B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR14B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR14D": {
+  "Fn": "Script::Register::SetR14D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR14D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR14W": {
+  "Fn": "Script::Register::SetR14W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR14W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR15": {
+  "Fn": "Script::Register::SetR15",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR15(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR15B": {
+  "Fn": "Script::Register::SetR15B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR15B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR15D": {
+  "Fn": "Script::Register::SetR15D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR15D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR15W": {
+  "Fn": "Script::Register::SetR15W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR15W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR8": {
+  "Fn": "Script::Register::SetR8",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR8(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR8B": {
+  "Fn": "Script::Register::SetR8B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR8B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR8D": {
+  "Fn": "Script::Register::SetR8D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR8D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR8W": {
+  "Fn": "Script::Register::SetR8W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR8W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR9": {
+  "Fn": "Script::Register::SetR9",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR9(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR9B": {
+  "Fn": "Script::Register::SetR9B",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR9B(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR9D": {
+  "Fn": "Script::Register::SetR9D",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR9D(params[\"value\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetR9W": {
+  "Fn": "Script::Register::SetR9W",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetR9W(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRAX": {
+  "Fn": "Script::Register::SetRAX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRAX(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRBP": {
+  "Fn": "Script::Register::SetRBP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRBP(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRBX": {
+  "Fn": "Script::Register::SetRBX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRBX(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRCX": {
+  "Fn": "Script::Register::SetRCX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRCX(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRDI": {
+  "Fn": "Script::Register::SetRDI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRDI(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRDX": {
+  "Fn": "Script::Register::SetRDX",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRDX(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRIP": {
+  "Fn": "Script::Register::SetRIP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRIP(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRSI": {
+  "Fn": "Script::Register::SetRSI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRSI(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetRSP": {
+  "Fn": "Script::Register::SetRSP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetRSP(params[\"value\"].get\u003cunsigned long long\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetSI": {
+  "Fn": "Script::Register::SetSI",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetSI(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetSIL": {
+  "Fn": "Script::Register::SetSIL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetSIL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetSP": {
+  "Fn": "Script::Register::SetSP",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetSP(params[\"value\"].get\u003cunsigned short\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/SetSPL": {
+  "Fn": "Script::Register::SetSPL",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::SetSPL(params[\"value\"].get\u003cunsigned char\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_register.h/Size": {
+  "Fn": "Script::Register::Size",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Register::Size(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_stack.h/Peek": {
+  "Fn": "Script::Stack::Peek",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Stack::Peek(params[\"offset\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_stack.h/Pop": {
+  "Fn": "Script::Stack::Pop",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Stack::Pop(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_stack.h/Push": {
+  "Fn": "Script::Stack::Push",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Stack::Push(params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/_scriptapi_symbol.h/GetList": {
+  "Fn": "Script::Symbol::GetList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = Script::Symbol::GetList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgegraph.h/AddNode": {
+  "Fn": "::BridgeCFGraph::AddNode",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = ::BridgeCFGraph::AddNode(params[\"node\"].get\u003cconst BridgeCFNode \u0026\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgegraph.h/AddParent": {
+  "Fn": "::BridgeCFGraph::AddParent",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = ::BridgeCFGraph::AddParent(params[\"child\"].get\u003cint\u003e(), params[\"parent\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgegraph.h/Free": {
+  "Fn": "::BridgeCFGraph::Free",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = ::BridgeCFGraph::Free(params[\"graphList\"].get\u003cconst BridgeCFGraphList *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgegraph.h/ToGraphList": {
+  "Fn": "::BridgeCFGraph::ToGraphList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = ::BridgeCFGraph::ToGraphList(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgegraph.h/ToNodeList": {
+  "Fn": "::BridgeCFNode::ToNodeList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = ::BridgeCFNode::ToNodeList(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgegraph.h/__debugbreak": {
+  "Fn": "__debugbreak",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = __debugbreak(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeAlloc": {
+  "Fn": "BridgeAlloc",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeAlloc(params[\"size\"].get\u003csize_t\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeFree": {
+  "Fn": "BridgeFree",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeFree(params[\"ptr\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeGetDbgVersion": {
+  "Fn": "BridgeGetDbgVersion",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeGetDbgVersion(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeGetNtBuildNumber": {
+  "Fn": "BridgeGetNtBuildNumber",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeGetNtBuildNumber(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeInit": {
+  "Fn": "BridgeInit",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeInit(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeIsARM64Emulated": {
+  "Fn": "BridgeIsARM64Emulated",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeIsARM64Emulated(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeIsProcessElevated": {
+  "Fn": "BridgeIsProcessElevated",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeIsProcessElevated(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeSettingFlush": {
+  "Fn": "BridgeSettingFlush",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeSettingFlush(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeSettingGet": {
+  "Fn": "BridgeSettingGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeSettingGet(params[\"section\"].get\u003cconst char *\u003e(), params[\"key\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeSettingGetUint": {
+  "Fn": "BridgeSettingGetUint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeSettingGetUint(params[\"section\"].get\u003cconst char *\u003e(), params[\"key\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeSettingRead": {
+  "Fn": "BridgeSettingRead",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeSettingRead(params[\"errorLine\"].get\u003cint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeSettingSet": {
+  "Fn": "BridgeSettingSet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeSettingSet(params[\"section\"].get\u003cconst char *\u003e(), params[\"key\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeSettingSetUint": {
+  "Fn": "BridgeSettingSetUint",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeSettingSetUint(params[\"section\"].get\u003cconst char *\u003e(), params[\"key\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeStart": {
+  "Fn": "BridgeStart",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeStart(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/BridgeUserDirectory": {
+  "Fn": "BridgeUserDirectory",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = BridgeUserDirectory(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgAnalyzeFunction": {
+  "Fn": "DbgAnalyzeFunction",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgAnalyzeFunction(params[\"entry\"].get\u003cduint\u003e(), params[\"graph\"].get\u003cBridgeCFGraphList *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgArgumentAdd": {
+  "Fn": "DbgArgumentAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgArgumentAdd(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgArgumentDel": {
+  "Fn": "DbgArgumentDel",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgArgumentDel(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgArgumentGet": {
+  "Fn": "DbgArgumentGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgArgumentGet(params[\"addr\"].get\u003cduint\u003e(), params[\"start\"].get\u003cduint *\u003e(), params[\"end\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgArgumentOverlaps": {
+  "Fn": "DbgArgumentOverlaps",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgArgumentOverlaps(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgAssembleAt": {
+  "Fn": "DbgAssembleAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgAssembleAt(params[\"addr\"].get\u003cduint\u003e(), params[\"instruction\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearAutoBookmarkRange": {
+  "Fn": "DbgClearAutoBookmarkRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearAutoBookmarkRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearAutoCommentRange": {
+  "Fn": "DbgClearAutoCommentRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearAutoCommentRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearAutoFunctionRange": {
+  "Fn": "DbgClearAutoFunctionRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearAutoFunctionRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearAutoLabelRange": {
+  "Fn": "DbgClearAutoLabelRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearAutoLabelRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearBookmarkRange": {
+  "Fn": "DbgClearBookmarkRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearBookmarkRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearCommentRange": {
+  "Fn": "DbgClearCommentRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearCommentRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgClearLabelRange": {
+  "Fn": "DbgClearLabelRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgClearLabelRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgCmdExec": {
+  "Fn": "DbgCmdExec",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgCmdExec(params[\"cmd\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgCmdExecDirect": {
+  "Fn": "DbgCmdExecDirect",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgCmdExecDirect(params[\"cmd\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgDelEncodeTypeRange": {
+  "Fn": "DbgDelEncodeTypeRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgDelEncodeTypeRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgDelEncodeTypeSegment": {
+  "Fn": "DbgDelEncodeTypeSegment",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgDelEncodeTypeSegment(params[\"start\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgDisasmAt": {
+  "Fn": "DbgDisasmAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgDisasmAt(params[\"addr\"].get\u003cduint\u003e(), params[\"instr\"].get\u003cDISASM_INSTR *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgDisasmFastAt": {
+  "Fn": "DbgDisasmFastAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgDisasmFastAt(params[\"addr\"].get\u003cduint\u003e(), params[\"basicinfo\"].get\u003cBASIC_INSTRUCTION_INFO *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgExit": {
+  "Fn": "DbgExit",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgExit(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgFunctionAdd": {
+  "Fn": "DbgFunctionAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgFunctionAdd(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgFunctionDel": {
+  "Fn": "DbgFunctionDel",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgFunctionDel(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgFunctionGet": {
+  "Fn": "DbgFunctionGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgFunctionGet(params[\"addr\"].get\u003cduint\u003e(), params[\"start\"].get\u003cduint *\u003e(), params[\"end\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgFunctionOverlaps": {
+  "Fn": "DbgFunctionOverlaps",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgFunctionOverlaps(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgFunctions": {
+  "Fn": "DbgFunctions",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgFunctions(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetArgTypeAt": {
+  "Fn": "DbgGetArgTypeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetArgTypeAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetBookmarkAt": {
+  "Fn": "DbgGetBookmarkAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetBookmarkAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetBpList": {
+  "Fn": "DbgGetBpList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetBpList(params[\"Type\"].get\u003cBPXTYPE\u003e(), params[\"list\"].get\u003cBPMAP *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetBpxTypeAt": {
+  "Fn": "DbgGetBpxTypeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetBpxTypeAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetBranchDestination": {
+  "Fn": "DbgGetBranchDestination",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetBranchDestination(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetCommentAt": {
+  "Fn": "DbgGetCommentAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetCommentAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetDebugEngine": {
+  "Fn": "DbgGetDebugEngine",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetDebugEngine(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetEncodeSizeAt": {
+  "Fn": "DbgGetEncodeSizeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetEncodeSizeAt(params[\"addr\"].get\u003cduint\u003e(), params[\"codesize\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetEncodeTypeAt": {
+  "Fn": "DbgGetEncodeTypeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetEncodeTypeAt(params[\"addr\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetEncodeTypeBuffer": {
+  "Fn": "DbgGetEncodeTypeBuffer",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetEncodeTypeBuffer(params[\"addr\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetFunctionTypeAt": {
+  "Fn": "DbgGetFunctionTypeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetFunctionTypeAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetLabelAt": {
+  "Fn": "DbgGetLabelAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetLabelAt(params[\"addr\"].get\u003cduint\u003e(), params[\"segment\"].get\u003cSEGMENTREG\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetLoopTypeAt": {
+  "Fn": "DbgGetLoopTypeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetLoopTypeAt(params[\"addr\"].get\u003cduint\u003e(), params[\"depth\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetModuleAt": {
+  "Fn": "DbgGetModuleAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetModuleAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetPebAddress": {
+  "Fn": "DbgGetPebAddress",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetPebAddress(params[\"ProcessId\"].get\u003cDWORD\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetProcessHandle": {
+  "Fn": "DbgGetProcessHandle",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetProcessHandle(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetProcessId": {
+  "Fn": "DbgGetProcessId",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetProcessId(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetRegDumpEx": {
+  "Fn": "DbgGetRegDumpEx",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetRegDumpEx(params[\"regdump\"].get\u003cREGDUMP *\u003e(), params[\"size\"].get\u003csize_t\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetStringAt": {
+  "Fn": "DbgGetStringAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetStringAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetSymbolInfo": {
+  "Fn": "DbgGetSymbolInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetSymbolInfo(params[\"symbolptr\"].get\u003cconst SYMBOLPTR *\u003e(), params[\"info\"].get\u003cSYMBOLINFO *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetSymbolInfoAt": {
+  "Fn": "DbgGetSymbolInfoAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetSymbolInfoAt(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cSYMBOLINFO *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetTebAddress": {
+  "Fn": "DbgGetTebAddress",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetTebAddress(params[\"ThreadId\"].get\u003cDWORD\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetThreadHandle": {
+  "Fn": "DbgGetThreadHandle",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetThreadHandle(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetThreadId": {
+  "Fn": "DbgGetThreadId",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetThreadId(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetThreadList": {
+  "Fn": "DbgGetThreadList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetThreadList(params[\"list\"].get\u003cTHREADLIST *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetTimeWastedCounter": {
+  "Fn": "DbgGetTimeWastedCounter",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetTimeWastedCounter(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetWatchList": {
+  "Fn": "DbgGetWatchList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetWatchList(params[\"list\"].get\u003cListInfo *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetXrefCountAt": {
+  "Fn": "DbgGetXrefCountAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetXrefCountAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgGetXrefTypeAt": {
+  "Fn": "DbgGetXrefTypeAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgGetXrefTypeAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgInit": {
+  "Fn": "DbgInit",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgInit(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgIsBpDisabled": {
+  "Fn": "DbgIsBpDisabled",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgIsBpDisabled(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgIsDebugging": {
+  "Fn": "DbgIsDebugging",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgIsDebugging(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgIsJumpGoingToExecute": {
+  "Fn": "DbgIsJumpGoingToExecute",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgIsJumpGoingToExecute(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgIsRunLocked": {
+  "Fn": "DbgIsRunLocked",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgIsRunLocked(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgIsRunning": {
+  "Fn": "DbgIsRunning",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgIsRunning(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgIsValidExpression": {
+  "Fn": "DbgIsValidExpression",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgIsValidExpression(params[\"expression\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgLoopAdd": {
+  "Fn": "DbgLoopAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgLoopAdd(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgLoopDel": {
+  "Fn": "DbgLoopDel",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgLoopDel(params[\"depth\"].get\u003cint\u003e(), params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgLoopGet": {
+  "Fn": "DbgLoopGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgLoopGet(params[\"depth\"].get\u003cint\u003e(), params[\"addr\"].get\u003cduint\u003e(), params[\"start\"].get\u003cduint *\u003e(), params[\"end\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgLoopOverlaps": {
+  "Fn": "DbgLoopOverlaps",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgLoopOverlaps(params[\"depth\"].get\u003cint\u003e(), params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMemFindBaseAddr": {
+  "Fn": "DbgMemFindBaseAddr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMemFindBaseAddr(params[\"addr\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMemGetPageSize": {
+  "Fn": "DbgMemGetPageSize",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMemGetPageSize(params[\"base\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMemIsValidReadPtr": {
+  "Fn": "DbgMemIsValidReadPtr",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMemIsValidReadPtr(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMemMap": {
+  "Fn": "DbgMemMap",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMemMap(params[\"memmap\"].get\u003cMEMMAP *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMemRead": {
+  "Fn": "DbgMemRead",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMemRead(params[\"va\"].get\u003cduint\u003e(), params[\"dest\"].get\u003cvoid *\u003e(), params[\"size\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMemWrite": {
+  "Fn": "DbgMemWrite",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMemWrite(params[\"va\"].get\u003cduint\u003e(), params[\"src\"].get\u003cconst void *\u003e(), params[\"size\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMenuEntryClicked": {
+  "Fn": "DbgMenuEntryClicked",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMenuEntryClicked(params[\"hEntry\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgMenuPrepare": {
+  "Fn": "DbgMenuPrepare",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgMenuPrepare(params[\"hMenu\"].get\u003cGUIMENUTYPE\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgModBaseFromName": {
+  "Fn": "DbgModBaseFromName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgModBaseFromName(params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgReleaseEncodeTypeBuffer": {
+  "Fn": "DbgReleaseEncodeTypeBuffer",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgReleaseEncodeTypeBuffer(params[\"buffer\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptAbort": {
+  "Fn": "DbgScriptAbort",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptAbort(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptBpGet": {
+  "Fn": "DbgScriptBpGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptBpGet(params[\"line\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptBpToggle": {
+  "Fn": "DbgScriptBpToggle",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptBpToggle(params[\"line\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptCmdExec": {
+  "Fn": "DbgScriptCmdExec",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptCmdExec(params[\"command\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptGetBranchInfo": {
+  "Fn": "DbgScriptGetBranchInfo",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptGetBranchInfo(params[\"line\"].get\u003cint\u003e(), params[\"info\"].get\u003cSCRIPTBRANCH *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptGetLineType": {
+  "Fn": "DbgScriptGetLineType",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptGetLineType(params[\"line\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptLoad": {
+  "Fn": "DbgScriptLoad",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptLoad(params[\"filename\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptRun": {
+  "Fn": "DbgScriptRun",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptRun(params[\"destline\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptSetIp": {
+  "Fn": "DbgScriptSetIp",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptSetIp(params[\"line\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptStep": {
+  "Fn": "DbgScriptStep",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptStep(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgScriptUnload": {
+  "Fn": "DbgScriptUnload",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgScriptUnload(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSelChanged": {
+  "Fn": "DbgSelChanged",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSelChanged(params[\"hWindow\"].get\u003cint\u003e(), params[\"VA\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetAutoBookmarkAt": {
+  "Fn": "DbgSetAutoBookmarkAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetAutoBookmarkAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetAutoCommentAt": {
+  "Fn": "DbgSetAutoCommentAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetAutoCommentAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetAutoFunctionAt": {
+  "Fn": "DbgSetAutoFunctionAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetAutoFunctionAt(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetAutoLabelAt": {
+  "Fn": "DbgSetAutoLabelAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetAutoLabelAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetCommentAt": {
+  "Fn": "DbgSetCommentAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetCommentAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetEncodeType": {
+  "Fn": "DbgSetEncodeType",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetEncodeType(params[\"addr\"].get\u003cduint\u003e(), params[\"size\"].get\u003cduint\u003e(), params[\"Type\"].get\u003cENCODETYPE\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSetLabelAt": {
+  "Fn": "DbgSetLabelAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSetLabelAt(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSettingsUpdated": {
+  "Fn": "DbgSettingsUpdated",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSettingsUpdated(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgStackCommentGet": {
+  "Fn": "DbgStackCommentGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgStackCommentGet(params[\"addr\"].get\u003cduint\u003e(), params[\"comment\"].get\u003cSTACK_COMMENT *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSymbolEnum": {
+  "Fn": "DbgSymbolEnum",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSymbolEnum(params[\"base\"].get\u003cduint\u003e(), params[\"cbSymbolEnum\"].get\u003cCBSYMBOLENUM\u003e(), params[\"user\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSymbolEnumFromCache": {
+  "Fn": "DbgSymbolEnumFromCache",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSymbolEnumFromCache(params[\"base\"].get\u003cduint\u003e(), params[\"cbSymbolEnum\"].get\u003cCBSYMBOLENUM\u003e(), params[\"user\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgSymbolEnumRange": {
+  "Fn": "DbgSymbolEnumRange",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgSymbolEnumRange(params[\"start\"].get\u003cduint\u003e(), params[\"end\"].get\u003cduint\u003e(), params[\"symbolMask\"].get\u003cunsigned int\u003e(), params[\"cbSymbolEnum\"].get\u003cCBSYMBOLENUM\u003e(), params[\"user\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgValFromString": {
+  "Fn": "DbgValFromString",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgValFromString(params[\"s\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgValToString": {
+  "Fn": "DbgValToString",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgValToString(params[\"s\"].get\u003cconst char *\u003e(), params[\"value\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgWinEvent": {
+  "Fn": "DbgWinEvent",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgWinEvent(params[\"message\"].get\u003cMSG *\u003e(), params[\"result\"].get\u003clong *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgWinEventGlobal": {
+  "Fn": "DbgWinEventGlobal",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgWinEventGlobal(params[\"message\"].get\u003cMSG *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgXrefAdd": {
+  "Fn": "DbgXrefAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgXrefAdd(params[\"addr\"].get\u003cduint\u003e(), params[\"from\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgXrefAddMulti": {
+  "Fn": "DbgXrefAddMulti",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgXrefAddMulti(params[\"edges\"].get\u003cconst XREF_EDGE *\u003e(), params[\"count\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgXrefDelAll": {
+  "Fn": "DbgXrefDelAll",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgXrefDelAll(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/DbgXrefGet": {
+  "Fn": "DbgXrefGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = DbgXrefGet(params[\"addr\"].get\u003cduint\u003e(), params[\"info\"].get\u003cXREF_INFO *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddFavouriteCommand": {
+  "Fn": "GuiAddFavouriteCommand",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddFavouriteCommand(params[\"name\"].get\u003cconst char *\u003e(), params[\"shortcut\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddFavouriteTool": {
+  "Fn": "GuiAddFavouriteTool",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddFavouriteTool(params[\"name\"].get\u003cconst char *\u003e(), params[\"description\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddInfoLine": {
+  "Fn": "GuiAddInfoLine",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddInfoLine(params[\"infoLine\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddLogMessage": {
+  "Fn": "GuiAddLogMessage",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddLogMessage(params[\"msg\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddLogMessageHtml": {
+  "Fn": "GuiAddLogMessageHtml",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddLogMessageHtml(params[\"msg\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddQWidgetTab": {
+  "Fn": "GuiAddQWidgetTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddQWidgetTab(params[\"qWidget\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddRecentFile": {
+  "Fn": "GuiAddRecentFile",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddRecentFile(params[\"file\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAddStatusBarMessage": {
+  "Fn": "GuiAddStatusBarMessage",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAddStatusBarMessage(params[\"msg\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAutoCompleteAddCmd": {
+  "Fn": "GuiAutoCompleteAddCmd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAutoCompleteAddCmd(params[\"cmd\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAutoCompleteClearAll": {
+  "Fn": "GuiAutoCompleteClearAll",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAutoCompleteClearAll(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiAutoCompleteDelCmd": {
+  "Fn": "GuiAutoCompleteDelCmd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiAutoCompleteDelCmd(params[\"cmd\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiCloseApplication": {
+  "Fn": "GuiCloseApplication",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiCloseApplication(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiCloseQWidgetTab": {
+  "Fn": "GuiCloseQWidgetTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiCloseQWidgetTab(params[\"qWidget\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiDisableLog": {
+  "Fn": "GuiDisableLog",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiDisableLog(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiDisasmAt": {
+  "Fn": "GuiDisasmAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiDisasmAt(params[\"addr\"].get\u003cduint\u003e(), params[\"cip\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiDisplayWarning": {
+  "Fn": "GuiDisplayWarning",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiDisplayWarning(params[\"title\"].get\u003cconst char *\u003e(), params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiDumpAt": {
+  "Fn": "GuiDumpAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiDumpAt(params[\"va\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiDumpAtN": {
+  "Fn": "GuiDumpAtN",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiDumpAtN(params[\"va\"].get\u003cduint\u003e(), params[\"index\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiEnableLog": {
+  "Fn": "GuiEnableLog",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiEnableLog(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiExecuteOnGuiThread": {
+  "Fn": "GuiExecuteOnGuiThread",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiExecuteOnGuiThread(params[\"cbGuiThread\"].get\u003cGUICALLBACK\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiExecuteOnGuiThreadEx": {
+  "Fn": "GuiExecuteOnGuiThreadEx",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiExecuteOnGuiThreadEx(params[\"cbGuiThread\"].get\u003cGUICALLBACKEX\u003e(), params[\"userdata\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiFlushLog": {
+  "Fn": "GuiFlushLog",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiFlushLog(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiFocusView": {
+  "Fn": "GuiFocusView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiFocusView(params[\"hWindow\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiFoldDisassembly": {
+  "Fn": "GuiFoldDisassembly",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiFoldDisassembly(params[\"startAddress\"].get\u003cduint\u003e(), params[\"length\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetActiveView": {
+  "Fn": "GuiGetActiveView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetActiveView(params[\"activeView\"].get\u003cACTIVEVIEW *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetCurrentGraph": {
+  "Fn": "GuiGetCurrentGraph",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetCurrentGraph(params[\"graphList\"].get\u003cBridgeCFGraphList *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetDebuggeeNotes": {
+  "Fn": "GuiGetDebuggeeNotes",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetDebuggeeNotes(params[\"text\"].get\u003cchar **\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetDisassembly": {
+  "Fn": "GuiGetDisassembly",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetDisassembly(params[\"addr\"].get\u003cduint\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetGlobalNotes": {
+  "Fn": "GuiGetGlobalNotes",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetGlobalNotes(params[\"text\"].get\u003cchar **\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetLineWindow": {
+  "Fn": "GuiGetLineWindow",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetLineWindow(params[\"title\"].get\u003cconst char *\u003e(), params[\"text\"].get\u003cchar *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetMainThreadId": {
+  "Fn": "GuiGetMainThreadId",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetMainThreadId(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGetWindowHandle": {
+  "Fn": "GuiGetWindowHandle",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGetWindowHandle(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGotoTrace": {
+  "Fn": "GuiGotoTrace",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGotoTrace(params[\"index\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiGraphAt": {
+  "Fn": "GuiGraphAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiGraphAt(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiInvalidateSymbolSource": {
+  "Fn": "GuiInvalidateSymbolSource",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiInvalidateSymbolSource(params[\"base\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiIsLogEnabled": {
+  "Fn": "GuiIsLogEnabled",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiIsLogEnabled(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiIsUpdateDisabled": {
+  "Fn": "GuiIsUpdateDisabled",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiIsUpdateDisabled(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiLoadGraph": {
+  "Fn": "GuiLoadGraph",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiLoadGraph(params[\"graph\"].get\u003cBridgeCFGraphList *\u003e(), params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiLoadSourceFileEx": {
+  "Fn": "GuiLoadSourceFileEx",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiLoadSourceFileEx(params[\"path\"].get\u003cconst char *\u003e(), params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiLogClear": {
+  "Fn": "GuiLogClear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiLogClear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiLogRedirect": {
+  "Fn": "GuiLogRedirect",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiLogRedirect(params[\"filename\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiLogRedirectStop": {
+  "Fn": "GuiLogRedirectStop",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiLogRedirectStop(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiLogSave": {
+  "Fn": "GuiLogSave",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiLogSave(params[\"filename\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuAdd": {
+  "Fn": "GuiMenuAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuAdd(params[\"hMenu\"].get\u003cint\u003e(), params[\"title\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuAddEntry": {
+  "Fn": "GuiMenuAddEntry",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuAddEntry(params[\"hMenu\"].get\u003cint\u003e(), params[\"title\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuAddSeparator": {
+  "Fn": "GuiMenuAddSeparator",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuAddSeparator(params[\"hMenu\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuClear": {
+  "Fn": "GuiMenuClear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuClear(params[\"hMenu\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuRemove": {
+  "Fn": "GuiMenuRemove",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuRemove(params[\"hEntryMenu\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuSetEntryHotkey": {
+  "Fn": "GuiMenuSetEntryHotkey",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuSetEntryHotkey(params[\"hEntry\"].get\u003cint\u003e(), params[\"hack\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuSetEntryIcon": {
+  "Fn": "GuiMenuSetEntryIcon",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuSetEntryIcon(params[\"hEntry\"].get\u003cint\u003e(), params[\"icon\"].get\u003cconst ICONDATA *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuSetEntryName": {
+  "Fn": "GuiMenuSetEntryName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuSetEntryName(params[\"hEntry\"].get\u003cint\u003e(), params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuSetIcon": {
+  "Fn": "GuiMenuSetIcon",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuSetIcon(params[\"hMenu\"].get\u003cint\u003e(), params[\"icon\"].get\u003cconst ICONDATA *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiMenuSetName": {
+  "Fn": "GuiMenuSetName",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiMenuSetName(params[\"hMenu\"].get\u003cint\u003e(), params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiOpenTraceFile": {
+  "Fn": "GuiOpenTraceFile",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiOpenTraceFile(params[\"fileName\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiProcessEvents": {
+  "Fn": "GuiProcessEvents",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiProcessEvents(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceAddColumn": {
+  "Fn": "GuiReferenceAddColumn",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceAddColumn(params[\"width\"].get\u003cint\u003e(), params[\"title\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceAddCommand": {
+  "Fn": "GuiReferenceAddCommand",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceAddCommand(params[\"title\"].get\u003cconst char *\u003e(), params[\"command\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceDeleteAllColumns": {
+  "Fn": "GuiReferenceDeleteAllColumns",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceDeleteAllColumns(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceGetCellContent": {
+  "Fn": "GuiReferenceGetCellContent",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceGetCellContent(params[\"row\"].get\u003cint\u003e(), params[\"col\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceGetRowCount": {
+  "Fn": "GuiReferenceGetRowCount",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceGetRowCount(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceInitialize": {
+  "Fn": "GuiReferenceInitialize",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceInitialize(params[\"name\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceReloadData": {
+  "Fn": "GuiReferenceReloadData",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceReloadData(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSearchGetCellContent": {
+  "Fn": "GuiReferenceSearchGetCellContent",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSearchGetCellContent(params[\"row\"].get\u003cint\u003e(), params[\"col\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSearchGetRowCount": {
+  "Fn": "GuiReferenceSearchGetRowCount",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSearchGetRowCount(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSetCellContent": {
+  "Fn": "GuiReferenceSetCellContent",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSetCellContent(params[\"row\"].get\u003cint\u003e(), params[\"col\"].get\u003cint\u003e(), params[\"str\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSetCurrentTaskProgress": {
+  "Fn": "GuiReferenceSetCurrentTaskProgress",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSetCurrentTaskProgress(params[\"progress\"].get\u003cint\u003e(), params[\"taskTitle\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSetProgress": {
+  "Fn": "GuiReferenceSetProgress",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSetProgress(params[\"progress\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSetRowCount": {
+  "Fn": "GuiReferenceSetRowCount",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSetRowCount(params[\"count\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiReferenceSetSearchStartCol": {
+  "Fn": "GuiReferenceSetSearchStartCol",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiReferenceSetSearchStartCol(params[\"col\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiRegisterScriptLanguage": {
+  "Fn": "GuiRegisterScriptLanguage",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiRegisterScriptLanguage(params[\"info\"].get\u003cSCRIPTTYPEINFO *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiRepaintTableView": {
+  "Fn": "GuiRepaintTableView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiRepaintTableView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptAdd": {
+  "Fn": "GuiScriptAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptAdd(params[\"count\"].get\u003cint\u003e(), params[\"lines\"].get\u003cconst char **\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptClear": {
+  "Fn": "GuiScriptClear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptClear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptError": {
+  "Fn": "GuiScriptError",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptError(params[\"line\"].get\u003cint\u003e(), params[\"message\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptMessage": {
+  "Fn": "GuiScriptMessage",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptMessage(params[\"message\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptMsgyn": {
+  "Fn": "GuiScriptMsgyn",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptMsgyn(params[\"message\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptSetInfoLine": {
+  "Fn": "GuiScriptSetInfoLine",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptSetInfoLine(params[\"line\"].get\u003cint\u003e(), params[\"info\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptSetIp": {
+  "Fn": "GuiScriptSetIp",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptSetIp(params[\"line\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiScriptSetTitle": {
+  "Fn": "GuiScriptSetTitle",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiScriptSetTitle(params[\"title\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSelectInMemoryMap": {
+  "Fn": "GuiSelectInMemoryMap",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSelectInMemoryMap(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSelectInSymbolsTab": {
+  "Fn": "GuiSelectInSymbolsTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSelectInSymbolsTab(params[\"addr\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSelectionGet": {
+  "Fn": "GuiSelectionGet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSelectionGet(params[\"hWindow\"].get\u003cGUISELECTIONTYPE\u003e(), params[\"selection\"].get\u003cSELECTIONDATA *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSelectionSet": {
+  "Fn": "GuiSelectionSet",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSelectionSet(params[\"hWindow\"].get\u003cGUISELECTIONTYPE\u003e(), params[\"selection\"].get\u003cconst SELECTIONDATA *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSetDebugState": {
+  "Fn": "GuiSetDebugState",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSetDebugState(params[\"state\"].get\u003cDBGSTATE\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSetDebugStateFast": {
+  "Fn": "GuiSetDebugStateFast",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSetDebugStateFast(params[\"state\"].get\u003cDBGSTATE\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSetDebuggeeNotes": {
+  "Fn": "GuiSetDebuggeeNotes",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSetDebuggeeNotes(params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSetFavouriteToolShortcut": {
+  "Fn": "GuiSetFavouriteToolShortcut",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSetFavouriteToolShortcut(params[\"name\"].get\u003cconst char *\u003e(), params[\"shortcut\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSetGlobalNotes": {
+  "Fn": "GuiSetGlobalNotes",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSetGlobalNotes(params[\"text\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSetLastException": {
+  "Fn": "GuiSetLastException",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSetLastException(params[\"exception\"].get\u003cunsigned int\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiShowCpu": {
+  "Fn": "GuiShowCpu",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiShowCpu(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiShowQWidgetTab": {
+  "Fn": "GuiShowQWidgetTab",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiShowQWidgetTab(params[\"qWidget\"].get\u003cvoid *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiShowReferences": {
+  "Fn": "GuiShowReferences",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiShowReferences(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiShowThreads": {
+  "Fn": "GuiShowThreads",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiShowThreads(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiShowTrace": {
+  "Fn": "GuiShowTrace",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiShowTrace(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiStackDumpAt": {
+  "Fn": "GuiStackDumpAt",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiStackDumpAt(params[\"addr\"].get\u003cduint\u003e(), params[\"csp\"].get\u003cduint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSymbolLogAdd": {
+  "Fn": "GuiSymbolLogAdd",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSymbolLogAdd(params[\"message\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSymbolLogClear": {
+  "Fn": "GuiSymbolLogClear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSymbolLogClear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSymbolRefreshCurrent": {
+  "Fn": "GuiSymbolRefreshCurrent",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSymbolRefreshCurrent(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSymbolSetProgress": {
+  "Fn": "GuiSymbolSetProgress",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSymbolSetProgress(params[\"percent\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiSymbolUpdateModuleList": {
+  "Fn": "GuiSymbolUpdateModuleList",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiSymbolUpdateModuleList(params[\"count\"].get\u003cint\u003e(), params[\"modules\"].get\u003cSYMBOLMODULEINFO *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiTranslateText": {
+  "Fn": "GuiTranslateText",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiTranslateText(params[\"Source\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiTypeAddNode": {
+  "Fn": "GuiTypeAddNode",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiTypeAddNode(params[\"parent\"].get\u003cvoid *\u003e(), params[\"Type\"].get\u003cconst TYPEDESCRIPTOR *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiTypeClear": {
+  "Fn": "GuiTypeClear",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiTypeClear(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUnregisterScriptLanguage": {
+  "Fn": "GuiUnregisterScriptLanguage",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUnregisterScriptLanguage(params[\"id\"].get\u003cint\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateAllViews": {
+  "Fn": "GuiUpdateAllViews",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateAllViews(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateArgumentWidget": {
+  "Fn": "GuiUpdateArgumentWidget",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateArgumentWidget(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateBreakpointsView": {
+  "Fn": "GuiUpdateBreakpointsView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateBreakpointsView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateCallStack": {
+  "Fn": "GuiUpdateCallStack",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateCallStack(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateDisable": {
+  "Fn": "GuiUpdateDisable",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateDisable(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateDisassemblyView": {
+  "Fn": "GuiUpdateDisassemblyView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateDisassemblyView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateDumpView": {
+  "Fn": "GuiUpdateDumpView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateDumpView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateGraphView": {
+  "Fn": "GuiUpdateGraphView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateGraphView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateMemoryView": {
+  "Fn": "GuiUpdateMemoryView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateMemoryView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdatePatches": {
+  "Fn": "GuiUpdatePatches",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdatePatches(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateRegisterView": {
+  "Fn": "GuiUpdateRegisterView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateRegisterView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateSEHChain": {
+  "Fn": "GuiUpdateSEHChain",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateSEHChain(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateSideBar": {
+  "Fn": "GuiUpdateSideBar",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateSideBar(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateThreadView": {
+  "Fn": "GuiUpdateThreadView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateThreadView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateTimeWastedCounter": {
+  "Fn": "GuiUpdateTimeWastedCounter",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateTimeWastedCounter(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateTraceBrowser": {
+  "Fn": "GuiUpdateTraceBrowser",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateTraceBrowser(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateTypeWidget": {
+  "Fn": "GuiUpdateTypeWidget",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateTypeWidget(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateWatchView": {
+  "Fn": "GuiUpdateWatchView",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateWatchView(};\n",
+  "Params": null,
+  "ReturnType": ""
+ },
+ "/bridgemain.h/GuiUpdateWindowTitle": {
+  "Fn": "GuiUpdateWindowTitle",
+  "Do": "ApiResponse resp{.success = true, .type = \"\", .result = GuiUpdateWindowTitle(params[\"filename\"].get\u003cconst char *\u003e()};\n",
+  "Params": null,
+  "ReturnType": ""
+ }
 }

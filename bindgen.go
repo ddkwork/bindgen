@@ -74,10 +74,10 @@ func Bind(targetDir string, cModelCallback ClangCModelCallback, paths ...string)
 
 type cApi struct {
 	path       string
-	fn         string
-	do         string
-	params     []FunctionParam
-	returnType string
+	Fn         string
+	Do         string
+	Params     []FunctionParam
+	ReturnType string
 }
 
 func genGoFile(results Result, targetDir string, paths ...string) {
@@ -157,14 +157,6 @@ import (
 				apiName = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
 			}
 			// mylog.Trace(m.name, m.Comment.mangledName)
-			//ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
-			api.Set(urlPath, cApi{
-				path:       urlPath,
-				fn:         apiName,
-				do:         "",
-				params:     nil,
-				returnType: "",
-			})
 			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{") //todo bug ReturnType not get
 
 			g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
@@ -183,6 +175,23 @@ import (
 			g.P()
 			buffer.WriteString(g.String())
 
+			var values []string
+			//ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
+			for _, p := range m.Params {
+				values = append(values, "params["+strconv.Quote(p.Name)+"].get<"+p.CType+">()")
+			}
+
+			gResp := stream.NewGeneratedFile()
+			gResp.P("ApiResponse resp{.success = true, .type = ",
+				strconv.Quote(m.ReturnType), //todo CType:   param.Get("type.qualType").String(),
+				", .result = ", apiName, "(", strings.Join(values, ", "), "};")
+			api.Set(urlPath, cApi{
+				path:       urlPath,
+				Fn:         apiName,
+				Do:         gResp.String(),
+				Params:     nil,
+				ReturnType: "",
+			})
 		}
 
 		mylog.Info(path, fileName+"_gen.go")
@@ -472,14 +481,14 @@ namespace nlohmann {
            if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
            ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
 `
-			g.P(strings.ReplaceAll(template, "Script::Module::GetList", api.fn))
+			g.P(strings.ReplaceAll(template, "Script::Module::GetList", api.Fn))
 		} else {
 			g.P(`
            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
            json params;
            for (const auto &param: arg) { params[param.name] = param.value; }
 `)
-			g.P(api.do)
+			g.P(api.Do)
 		}
 
 		g.P(`
@@ -791,8 +800,10 @@ func parseFunction(node gjson.Result) FunctionInfo {
 				"&", "",
 			).Replace(s)
 			info.Params = append(info.Params, FunctionParam{
-				Name: s,
-				Type: resolveType(param.Get("type")),
+				Name:    s,
+				Type:    resolveType(param.Get("type")),
+				CType:   param.Get("type.qualType").String(),
+				Comment: Comment{},
 			})
 		}
 		return true
@@ -1005,8 +1016,9 @@ type (
 	}
 
 	FunctionParam struct {
-		Name string
-		Type string
+		Name  string
+		Type  string
+		CType string
 		Comment
 	}
 
