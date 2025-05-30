@@ -250,7 +250,7 @@ type ApiResponse struct {
 	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
 	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
 
-	var marshals []string
+	var marshals = new(safemap.M[string, string])
 	gMarshal := stream.NewGeneratedFile()
 	for _, s := range results.Structs.Range() {
 		if s.CName == "" {
@@ -268,12 +268,12 @@ type ApiResponse struct {
 		gMarshal.P("            };")
 		gMarshal.P("        }")
 		gMarshal.P("    };")
-		marshals = append(marshals, gMarshal.String())
+		marshals.Update(s.CName, gMarshal.String())
 	}
 	genMcpCppServerCode(api, marshals)
 }
 
-func genMcpCppServerCode(m *safemap.M[string, cApi], marshals []string) {
+func genMcpCppServerCode(m *safemap.M[string, cApi], marshals *safemap.M[string, string]) {
 	start := `
 //
 // Created by Admin on 28/05/2025.
@@ -453,7 +453,7 @@ void stopHttpServer() {
  */
 `)
 	g.P("namespace nlohmann {")
-	for _, marshal := range marshals {
+	for _, marshal := range marshals.Range() {
 		g.P(marshal)
 		g.P()
 	}
