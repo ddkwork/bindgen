@@ -251,13 +251,10 @@ type ApiResponse struct {
 	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
 
 	var marshals = new(safemap.M[string, string])
-	gMarshal := stream.NewGeneratedFile()
 	for _, s := range results.Structs.Range() {
+		gMarshal := stream.NewGeneratedFile()
 		if s.CName == "" {
 			mylog.Todo("bug") //list and bridgemain etc
-			continue
-		}
-		if marshals.Has(s.CName) {
 			continue
 		}
 		gMarshal.P("    template<>")
