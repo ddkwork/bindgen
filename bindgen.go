@@ -188,7 +188,7 @@ import (
 			gResp := stream.NewGeneratedFile()
 			gResp.P("ApiResponse resp{.success = true, .type = ",
 				strconv.Quote(m.ReturnType), //todo CType:   param.Get("type.qualType").String(),
-				", .result = ", apiName, "(", strings.Join(values, ", "), "};")
+				", .result = ", apiName, "(", strings.Join(values, ", "), ")};")
 
 			api.Set(urlPath, cApi{
 				path:       urlPath,
