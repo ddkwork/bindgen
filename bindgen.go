@@ -72,9 +72,19 @@ func Bind(targetDir string, cModelCallback ClangCModelCallback, paths ...string)
 	mylog.Success("bind success")
 }
 
+type cApi struct {
+	path       string
+	fn         string
+	do         string
+	params     []FunctionParam
+	returnType string
+}
+
 func genGoFile(results Result, targetDir string, paths ...string) {
 	var methods []string
-	packet := new(safemap.M[string, string]) // urlPath api
+
+	api := new(safemap.M[string, cApi]) // urlPath api
+
 	pkgName := filepath.Base(targetDir)
 	for _, path := range paths {
 		buffer := bytes.NewBufferString("")
@@ -141,13 +151,20 @@ import (
 
 			urlPath := fmt.Sprintf("/%s/%s", filepath.Base(path), m.Name)
 			//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
-			api := m.Comment.mangledName
-			if strings.HasPrefix(api, "?") { // namespace
-				split := strings.Split(api, "@")
-				api = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
+			apiName := m.Comment.mangledName
+			if strings.HasPrefix(apiName, "?") { // namespace
+				split := strings.Split(apiName, "@")
+				apiName = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
 			}
 			// mylog.Trace(m.name, m.Comment.mangledName)
-			packet.Set(urlPath, api)
+			//ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
+			api.Set(urlPath, cApi{
+				path:       urlPath,
+				fn:         apiName,
+				do:         "",
+				params:     nil,
+				returnType: "",
+			})
 			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{") //todo bug ReturnType not get
 
 			g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
@@ -235,12 +252,12 @@ type ApiResponse struct {
 		    # 添加更多API...
 		]
 	*/
-	// mylog.Struct(packet.Map())
-	stream.MarshalJsonToFile(packet.Map(), filepath.Join(targetDir, "api.json"))
-	genMcpCppServerCode(packet)
+	// mylog.Struct(api.Map())
+	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
+	genMcpCppServerCode(api)
 }
 
-func genMcpCppServerCode(m *safemap.M[string, string]) {
+func genMcpCppServerCode(m *safemap.M[string, cApi]) {
 	start := `
 //
 // Created by Admin on 28/05/2025.
@@ -455,14 +472,14 @@ namespace nlohmann {
            if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
            ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
 `
-			g.P(strings.ReplaceAll(template, "Script::Module::GetList", api))
+			g.P(strings.ReplaceAll(template, "Script::Module::GetList", api.fn))
 		} else {
 			g.P(`
            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
            json params;
            for (const auto &param: arg) { params[param.name] = param.value; }
 `)
-			g.P("              //todo call api with params")
+			g.P(api.do)
 		}
 
 		g.P(`
