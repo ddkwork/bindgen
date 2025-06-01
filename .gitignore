@@ -17,6 +17,5 @@ cmake-build-debug
 /project/Everything-SDK/
 /project/x64dbg/release/
 /project/x64dbg/mock/
-/cppgo/HyperDbg/
 /cppgo/HyperDbg/hyperdbg/dependencies/
 /cppgo/HyperDbg/hyperdbg/libraries/
