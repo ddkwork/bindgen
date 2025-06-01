@@ -2,15 +2,18 @@ package bindgen
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"github.com/ddkwork/golibrary/clang"
 	"io/fs"
 	"net/url"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"slices"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/ddkwork/ddk/vswhere"
 	"github.com/ddkwork/golibrary/mylog"
@@ -50,6 +53,7 @@ func Bind(targetDir string, cModelCallback ClangCModelCallback, paths ...string)
 	w := waitgroup.New()
 	for _, path := range paths {
 		w.Go(func() {
+			mylog.Warning("ast", path)
 			root := gjson.ParseBytes(runClangASTDump(path, cModelCallback))
 			typedefsNameByID(root, &result)
 		})
@@ -586,9 +590,53 @@ func runClangASTDump(path string, cModelCallback ClangCModelCallback) []byte {
 	}
 	arg = append(arg, "-I", filepath.Dir(path))
 	arg = append(arg, path)
-	out := stream.RunCommandArgs(arg...)
+
+	b := clangExec(path)
+	stream.WriteTruncate(jsonPath, b.Bytes())
+	return b.Bytes()
+
+	out := stream.RunCommandArgs(arg...) //todo remove lock or set callback save ast?
 	stream.WriteTruncate(jsonPath, out.Stdout)
 	return out.Stdout.Bytes()
+}
+func clangExec(inputHeader string) bytes.Buffer {
+
+	clangArgs := []string{`-x`, `c++`}
+	//clangArgs = append(clangArgs, cflags...)
+	clangArgs = append(clangArgs, `-Xclang`, `-ast-dump=json`, `-fsyntax-only`, inputHeader)
+
+	cmd := exec.CommandContext(context.Background(), "clang", clangArgs...)
+	pr, err := cmd.StdoutPipe()
+	if err != nil {
+		mylog.Check(err)
+	}
+
+	cmd.Stderr = os.Stderr
+
+	err = cmd.Start()
+	if err != nil {
+		mylog.Check(err)
+	}
+
+	var buf bytes.Buffer
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		buf.ReadFrom(pr)
+	}()
+
+	// Go documentation says: only call cmd.Wait once all reads from the
+	// StdoutPipe have completed
+	wg.Wait()
+
+	err = cmd.Wait()
+	if err != nil {
+		mylog.CheckIgnore(err) //resl error is in os.stderr
+	}
+
+	return buf
 }
 
 func needSkip(n gjson.Result) bool {
@@ -891,6 +939,15 @@ func resolveType(typeNode gjson.Result) string {
 }
 
 func handleQualType(qualType string) string {
+	switch {
+	case strings.Contains(qualType, "std::"): //skip stl
+		return "any"
+	case qualType == "wchar_t":
+		return "rune"
+	case qualType == "*wchar_t": //todo bug
+		return "*rune"
+
+	}
 	m := safemap.NewOrdered[string, string](func(yield func(string, string) bool) {
 		yield("long double", "float128")
 		yield("int", "int")

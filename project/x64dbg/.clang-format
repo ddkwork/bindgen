@@ -1,4 +1,5 @@
 
+
 # Generated from CLion C/C++ Code Style settings
 #Language: Cpp
 BasedOnStyle: LLVM
@@ -121,7 +122,6 @@ MaxEmptyLinesToKeep: 1                  # 全局最多保留连续1个空行
 KeepEmptyLinesAtTheStartOfBlocks: false   # 删除函数体开头的空行
 SeparateDefinitionBlocks: Always         # 强制函数定义间加空行
 ColumnLimit: 0                  # 禁用行宽限制，防止自动换行
-BreakAfterReturnType: None    # Clang-Format 10+ 替代选项
 TypeNames: [Param]             # 类型名单独一行
 BreakAfterReturnType: None
 AllowShortFunctionsOnASingleLine: Empty  # 允许空函数单行显示
@@ -131,4 +131,5 @@ AllowAllArgumentsOnNextLine: false
 PenaltyReturnTypeOnItsOwnLine: 10000
 TabWidth: 4
 UseTab: Never
+
 

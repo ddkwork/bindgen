@@ -6,44 +6,6 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-// BridgeCFNodeList (:10)
-type BridgeCFNodeList struct {
-	ParentGraph  int      // C type: int
-	Start        int      // C type: int
-	End          int      // C type: int
-	Brtrue       int      // C type: int
-	Brfalse      int      // C type: int
-	Icount       int      // C type: int
-	Terminal     bool     // C type: bool
-	Split        bool     // C type: bool
-	Indirectcall bool     // C type: bool
-	Userdata     *uintptr // C type: void *
-	Exits        int      // C type: int
-	Instrs       int      // C type: int
-}
-
-// BridgeCFNode (D:\workspace\workspace\mcp\x64dbg\include\bridgegraph.h:41)
-type BridgeCFNode struct {
-	ParentGraph  int      // C type: int
-	Start        int      // C type: int
-	End          int      // C type: int
-	Brtrue       int      // C type: int
-	Brfalse      int      // C type: int
-	Icount       int      // C type: int
-	Terminal     bool     // C type: bool
-	Split        bool     // C type: bool
-	Indirectcall bool     // C type: bool
-	Userdata     *uintptr // C type: void *
-	Exits        int      // C type: int
-	Instrs       uintptr  // C type: std::vector<BridgeCFInstruction>
-}
-
-// BridgeCFGraph (:112)
-type BridgeCFGraph struct {
-	EntryPoint int      // C type: int
-	Userdata   *uintptr // C type: void *
-	Nodes      int      // C type: int
-}
 type bridgegraph struct{}
 
 func (b *bridgegraph) Free(graphList *uintptr) {
