@@ -1,0 +1,3203 @@
+{
+  "name": "GoLand",
+  "version": "2025.1.1",
+  "buildNumber": "251.25410.140",
+  "productCode": "GO",
+  "envVarBaseName": "GOLAND",
+  "dataDirectoryName": "GoLand2025.1",
+  "svgIconPath": "bin/goland.svg",
+  "productVendor": "JetBrains",
+  "launch": [
+    {
+      "os": "Windows",
+      "arch": "amd64",
+      "launcherPath": "bin/goland64.exe",
+      "javaExecutablePath": "jbr/bin/java.exe",
+      "vmOptionsFilePath": "bin/goland64.exe.vmoptions",
+      "bootClassPathJarNames": [
+        "platform-loader.jar",
+        "util-8.jar",
+        "util.jar",
+        "app-client.jar",
+        "util_rt.jar",
+        "product.jar",
+        "lib-client.jar",
+        "trove.jar",
+        "app.jar",
+        "opentelemetry.jar",
+        "jps-model.jar",
+        "stats.jar",
+        "rd.jar",
+        "external-system-rt.jar",
+        "protobuf.jar",
+        "bouncy-castle.jar",
+        "forms_rt.jar",
+        "lib.jar",
+        "externalProcess-rt.jar",
+        "groovy.jar",
+        "annotations.jar",
+        "jsch-agent.jar",
+        "kotlinx-coroutines-slf4j-1.8.0-intellij.jar",
+        "product-client.jar"
+      ],
+      "additionalJvmArguments": [
+        "-Xbootclasspath/a:%IDE_HOME%/lib/nio-fs.jar",
+        "-Djava.system.class.loader=com.intellij.util.lang.PathClassLoader",
+        "-Didea.vendor.name=JetBrains",
+        "-Didea.paths.selector=GoLand2025.1",
+        "-Djna.boot.library.path=%IDE_HOME%/lib/jna/amd64",
+        "-Djna.nosys=true",
+        "-Djna.noclasspath=true",
+        "-Dpty4j.preferred.native.folder=%IDE_HOME%/lib/pty4j",
+        "-Dio.netty.allocator.type=pooled",
+        "-Dintellij.platform.runtime.repository.path=%IDE_HOME%/modules/module-descriptors.jar",
+        "-Didea.platform.prefix=GoLand",
+        "-Dwsl.use.remote.agent.for.nio.filesystem=true",
+        "-Djava.nio.file.spi.DefaultFileSystemProvider=com.intellij.platform.core.nio.fs.MultiRoutingFileSystemProvider",
+        "-Dsplash=true",
+        "-Daether.connector.resumeDownloads=false",
+        "-Dcompose.swing.render.on.graphics=true",
+        "--add-opens=java.base/java.io=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.ref=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens=java.base/java.net=ALL-UNNAMED",
+        "--add-opens=java.base/java.nio=ALL-UNNAMED",
+        "--add-opens=java.base/java.nio.charset=ALL-UNNAMED",
+        "--add-opens=java.base/java.text=ALL-UNNAMED",
+        "--add-opens=java.base/java.time=ALL-UNNAMED",
+        "--add-opens=java.base/java.util=ALL-UNNAMED",
+        "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED",
+        "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED",
+        "--add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED",
+        "--add-opens=java.base/jdk.internal.vm=ALL-UNNAMED",
+        "--add-opens=java.base/sun.net.dns=ALL-UNNAMED",
+        "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED",
+        "--add-opens=java.base/sun.nio.fs=ALL-UNNAMED",
+        "--add-opens=java.base/sun.security.ssl=ALL-UNNAMED",
+        "--add-opens=java.base/sun.security.util=ALL-UNNAMED",
+        "--add-opens=java.desktop/com.sun.java.swing=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.dnd.peer=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.event=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.font=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.image=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.peer=ALL-UNNAMED",
+        "--add-opens=java.desktop/javax.swing=ALL-UNNAMED",
+        "--add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED",
+        "--add-opens=java.desktop/javax.swing.text=ALL-UNNAMED",
+        "--add-opens=java.desktop/javax.swing.text.html=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.awt=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.awt.datatransfer=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.awt.image=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.awt.windows=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.font=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.java2d=ALL-UNNAMED",
+        "--add-opens=java.desktop/sun.swing=ALL-UNNAMED",
+        "--add-opens=java.management/sun.management=ALL-UNNAMED",
+        "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+        "--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+        "--add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED",
+        "--add-opens=jdk.jdi/com.sun.tools.jdi=ALL-UNNAMED"
+      ],
+      "mainClass": "com.intellij.idea.Main",
+      "customCommands": [
+        {
+          "commands": [
+            "thinClient",
+            "thinClient-headless",
+            "installFrontendPlugins"
+          ],
+          "vmOptionsFilePath": "bin/jetbrains_client64.exe.vmoptions",
+          "bootClassPathJarNames": [
+            "platform-loader.jar"
+          ],
+          "additionalJvmArguments": [
+            "-Djava.system.class.loader=com.intellij.util.lang.PathClassLoader",
+            "-Didea.vendor.name=JetBrains",
+            "-Didea.paths.selector=GoLand2025.1",
+            "-Djna.boot.library.path=%IDE_HOME%/lib/jna/amd64",
+            "-Djna.nosys=true",
+            "-Djna.noclasspath=true",
+            "-Dpty4j.preferred.native.folder=%IDE_HOME%/lib/pty4j",
+            "-Dio.netty.allocator.type=pooled",
+            "-Dintellij.platform.runtime.repository.path=%IDE_HOME%/modules/module-descriptors.jar",
+            "-Dintellij.platform.root.module=intellij.goland.frontend.split",
+            "-Dintellij.platform.product.mode=frontend",
+            "-Didea.platform.prefix=JetBrainsClient",
+            "-Dwsl.use.remote.agent.for.nio.filesystem=false",
+            "-Dide.no.platform.update=true",
+            "-Didea.initially.ask.config=never",
+            "-Dnosplash=true",
+            "-Didea.paths.customizer=com.intellij.platform.ide.impl.startup.multiProcess.FrontendProcessPathCustomizer",
+            "-Dintellij.platform.full.ide.product.code=GO",
+            "-Dsplash=true",
+            "-Daether.connector.resumeDownloads=false",
+            "-Dcompose.swing.render.on.graphics=true",
+            "--add-opens=java.base/java.io=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang.ref=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+            "--add-opens=java.base/java.net=ALL-UNNAMED",
+            "--add-opens=java.base/java.nio=ALL-UNNAMED",
+            "--add-opens=java.base/java.nio.charset=ALL-UNNAMED",
+            "--add-opens=java.base/java.text=ALL-UNNAMED",
+            "--add-opens=java.base/java.time=ALL-UNNAMED",
+            "--add-opens=java.base/java.util=ALL-UNNAMED",
+            "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED",
+            "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED",
+            "--add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED",
+            "--add-opens=java.base/jdk.internal.vm=ALL-UNNAMED",
+            "--add-opens=java.base/sun.net.dns=ALL-UNNAMED",
+            "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED",
+            "--add-opens=java.base/sun.nio.fs=ALL-UNNAMED",
+            "--add-opens=java.base/sun.security.ssl=ALL-UNNAMED",
+            "--add-opens=java.base/sun.security.util=ALL-UNNAMED",
+            "--add-opens=java.desktop/com.sun.java.swing=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.dnd.peer=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.event=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.font=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.image=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.peer=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.text=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.text.html=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt.datatransfer=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt.image=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt.windows=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.font=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.java2d=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.swing=ALL-UNNAMED",
+            "--add-opens=java.management/sun.management=ALL-UNNAMED",
+            "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+            "--add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED",
+            "--add-opens=jdk.jdi/com.sun.tools.jdi=ALL-UNNAMED",
+            "-Dintellij.platform.load.app.info.from.resources=true"
+          ],
+          "mainClass": "com.intellij.platform.runtime.loader.IntellijLoader",
+          "envVarBaseName": "JETBRAINS_CLIENT",
+          "dataDirectoryName": "GoLand2025.1"
+        },
+        {
+          "commands": [
+            "qodana"
+          ],
+          "bootClassPathJarNames": [
+            "platform-loader.jar",
+            "util-8.jar",
+            "util.jar",
+            "app-client.jar",
+            "util_rt.jar",
+            "product.jar",
+            "lib-client.jar",
+            "trove.jar",
+            "app.jar",
+            "opentelemetry.jar",
+            "jps-model.jar",
+            "stats.jar",
+            "rd.jar",
+            "external-system-rt.jar",
+            "protobuf.jar",
+            "bouncy-castle.jar",
+            "forms_rt.jar",
+            "lib.jar",
+            "externalProcess-rt.jar",
+            "groovy.jar",
+            "annotations.jar",
+            "jsch-agent.jar",
+            "kotlinx-coroutines-slf4j-1.8.0-intellij.jar",
+            "product-client.jar",
+            "nio-fs.jar"
+          ],
+          "additionalJvmArguments": [
+            "-Djava.system.class.loader=com.intellij.util.lang.PathClassLoader",
+            "-Didea.vendor.name=JetBrains",
+            "-Didea.paths.selector=GoLand2025.1",
+            "-Djna.boot.library.path=%IDE_HOME%/lib/jna/amd64",
+            "-Djna.nosys=true",
+            "-Djna.noclasspath=true",
+            "-Dpty4j.preferred.native.folder=%IDE_HOME%/lib/pty4j",
+            "-Dio.netty.allocator.type=pooled",
+            "-Dintellij.platform.runtime.repository.path=%IDE_HOME%/modules/module-descriptors.jar",
+            "-Didea.platform.prefix=GoLand",
+            "-Dwsl.use.remote.agent.for.nio.filesystem=false",
+            "-Dsplash=true",
+            "-Daether.connector.resumeDownloads=false",
+            "-Dcompose.swing.render.on.graphics=true",
+            "--add-opens=java.base/java.io=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang.ref=ALL-UNNAMED",
+            "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+            "--add-opens=java.base/java.net=ALL-UNNAMED",
+            "--add-opens=java.base/java.nio=ALL-UNNAMED",
+            "--add-opens=java.base/java.nio.charset=ALL-UNNAMED",
+            "--add-opens=java.base/java.text=ALL-UNNAMED",
+            "--add-opens=java.base/java.time=ALL-UNNAMED",
+            "--add-opens=java.base/java.util=ALL-UNNAMED",
+            "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED",
+            "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED",
+            "--add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED",
+            "--add-opens=java.base/jdk.internal.vm=ALL-UNNAMED",
+            "--add-opens=java.base/sun.net.dns=ALL-UNNAMED",
+            "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED",
+            "--add-opens=java.base/sun.nio.fs=ALL-UNNAMED",
+            "--add-opens=java.base/sun.security.ssl=ALL-UNNAMED",
+            "--add-opens=java.base/sun.security.util=ALL-UNNAMED",
+            "--add-opens=java.desktop/com.sun.java.swing=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.dnd.peer=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.event=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.font=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.image=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.peer=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.text=ALL-UNNAMED",
+            "--add-opens=java.desktop/javax.swing.text.html=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt.datatransfer=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt.image=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.awt.windows=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.font=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.java2d=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.swing=ALL-UNNAMED",
+            "--add-opens=java.management/sun.management=ALL-UNNAMED",
+            "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+            "--add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED",
+            "--add-opens=jdk.jdi/com.sun.tools.jdi=ALL-UNNAMED",
+            "-Dqodana.application=true",
+            "-Dintellij.platform.load.app.info.from.resources=true",
+            "-Dfus.internal.reduce.initial.delay=true",
+            "-Didea.headless.statistics.max.files.to.send=5000",
+            "-Djava.awt.headless=true",
+            "-Didea.qodana.thirdpartyplugins.accept=true",
+            "-Dide.warmup.use.predicates=false",
+            "-Dvcs.log.index.enable=false",
+            "-Didea.job.launcher.without.timeout=true",
+            "-Dscanning.in.smart.mode=false",
+            "-Deap.login.enabled=false",
+            "-Dsdk.download.consent=true",
+            "-Dide.activity.tracking.enable.debug=true",
+            "-Deslint.service.expiration.timeout.ms=5000",
+            "-Dphp.additional.library.manager.new.updater=true",
+            "-Dgradle.force.project.sdk.import=true",
+            "-Dide.region.url.mapping.expiration.timeout=7200",
+            "-Dqodana.product.name=Qodana for Go",
+            "-Dqodana.build.number=QDGO-251.25410.140",
+            "-Dqodana.eap=false"
+          ]
+        }
+      ]
+    }
+  ],
+  "customProperties": [
+    {
+      "key": "source.git.revision",
+      "value": "1f3176f2429c2"
+    }
+  ],
+  "bundledPlugins": [
+    "Docker",
+    "Git4Idea",
+    "HtmlTools",
+    "JSIntentionPowerPack",
+    "JavaScript",
+    "JavaScriptDebugger",
+    "Refactor-X",
+    "Remote Development Server",
+    "com.intellij",
+    "com.intellij.completion.ml.ranking",
+    "com.intellij.configurationScript",
+    "com.intellij.copyright",
+    "com.intellij.css",
+    "com.intellij.database",
+    "com.intellij.dev",
+    "com.intellij.diagram",
+    "com.intellij.grpc",
+    "com.intellij.ja",
+    "com.intellij.jsonpath",
+    "com.intellij.ko",
+    "com.intellij.kubernetes",
+    "com.intellij.microservices.ui",
+    "com.intellij.modules.json",
+    "com.intellij.platform.images",
+    "com.intellij.plugins.colorful.darcula.colorscheme",
+    "com.intellij.plugins.goland.solarized.colorscheme",
+    "com.intellij.plugins.monokai.colorscheme",
+    "com.intellij.plugins.vscodekeymap",
+    "com.intellij.plugins.watcher",
+    "com.intellij.react",
+    "com.intellij.searcheverywhere.ml",
+    "com.intellij.settingsSync",
+    "com.intellij.stylelint",
+    "com.intellij.swagger",
+    "com.intellij.zh",
+    "com.jetbrains.codeWithMe",
+    "com.jetbrains.gateway",
+    "com.jetbrains.gateway.terminal",
+    "com.jetbrains.performancePlugin",
+    "com.jetbrains.performancePlugin.async",
+    "com.jetbrains.plugins.webDeployment",
+    "com.jetbrains.restClient",
+    "com.jetbrains.sh",
+    "com.jetbrains.station",
+    "com.ypwang.plugin.go-linter",
+    "hg4idea",
+    "idea.plugin.protoeditor",
+    "intellij.charts",
+    "intellij.git.commit.modal",
+    "intellij.grid.plugin",
+    "intellij.indexing.shared",
+    "intellij.indexing.shared.core",
+    "intellij.platform.ijent.impl",
+    "intellij.webpack",
+    "name.kropp.intellij.makefile",
+    "org.editorconfig.editorconfigjetbrains",
+    "org.intellij.intelliLang",
+    "org.intellij.plugins.markdown",
+    "org.intellij.qodana",
+    "org.jetbrains.completion.full.line",
+    "org.jetbrains.plugins.docker.gateway",
+    "org.jetbrains.plugins.emojipicker",
+    "org.jetbrains.plugins.github",
+    "org.jetbrains.plugins.gitlab",
+    "org.jetbrains.plugins.go",
+    "org.jetbrains.plugins.go-template",
+    "org.jetbrains.plugins.go.ide",
+    "org.jetbrains.plugins.go.sharedIndexes.bundled",
+    "org.jetbrains.plugins.remote-run",
+    "org.jetbrains.plugins.terminal",
+    "org.jetbrains.plugins.textmate",
+    "org.jetbrains.plugins.yaml",
+    "org.jetbrains.security.package-checker",
+    "tanvd.grazi",
+    "training"
+  ],
+  "modules": [
+    "com.intellij.marketplace",
+    "com.intellij.ml.inline.completion",
+    "com.intellij.modules.coverage",
+    "com.intellij.modules.database",
+    "com.intellij.modules.database.connectivity",
+    "com.intellij.modules.database.core",
+    "com.intellij.modules.duplicatesDetector",
+    "com.intellij.modules.externalSystem",
+    "com.intellij.modules.go",
+    "com.intellij.modules.go-capable",
+    "com.intellij.modules.goland",
+    "com.intellij.modules.javascript",
+    "com.intellij.modules.lang",
+    "com.intellij.modules.microservices",
+    "com.intellij.modules.nativeDebug-plugin-capable",
+    "com.intellij.modules.os.linux",
+    "com.intellij.modules.os.unix",
+    "com.intellij.modules.os.xwindow",
+    "com.intellij.modules.platform",
+    "com.intellij.modules.profiler",
+    "com.intellij.modules.python-core-capable",
+    "com.intellij.modules.python-in-mini-ide-capable",
+    "com.intellij.modules.python-in-non-pycharm-ide-capable",
+    "com.intellij.modules.remoteServers",
+    "com.intellij.modules.run.targets",
+    "com.intellij.modules.sql",
+    "com.intellij.modules.ssh",
+    "com.intellij.modules.ssh.ui",
+    "com.intellij.modules.structuralsearch",
+    "com.intellij.modules.ultimate",
+    "com.intellij.modules.vcs",
+    "com.intellij.modules.xdebugger",
+    "com.intellij.modules.xml",
+    "com.intellij.platform.experimental.backend",
+    "com.intellij.platform.experimental.frontend",
+    "com.intellij.platform.experimental.monolith",
+    "com.intellij.platform.ide.provisioner",
+    "com.intellij.station.core"
+  ],
+  "fileExtensions": [
+    "*.ane",
+    "*.ant",
+    "*.apk",
+    "*.ats",
+    "*.bash",
+    "*.bigtiff",
+    "*.bmp",
+    "*.cgo",
+    "*.cjs",
+    "*.cql",
+    "*.css",
+    "*.csv",
+    "*.cts",
+    "*.dcx",
+    "*.ddl",
+    "*.dic",
+    "*.diff",
+    "*.doc",
+    "*.dockerfile",
+    "*.dockerignore",
+    "*.docx",
+    "*.dtd",
+    "*.ear",
+    "*.egg",
+    "*.elt",
+    "*.ent",
+    "*.es6",
+    "*.fnc",
+    "*.fxml",
+    "*.ghe",
+    "*.gif",
+    "*.gitignore",
+    "*.go",
+    "*.go2",
+    "*.gohtml",
+    "*.har",
+    "*.hgignore",
+    "*.hlp",
+    "*.hql",
+    "*.htm",
+    "*.html",
+    "*.http",
+    "*.icns",
+    "*.ico",
+    "*.ignore",
+    "*.iml",
+    "*.ipr",
+    "*.iws",
+    "*.jar",
+    "*.jbig2",
+    "*.jhm",
+    "*.jnlp",
+    "*.jpeg",
+    "*.jpg",
+    "*.jrxml",
+    "*.js",
+    "*.js.flow",
+    "*.jsb2",
+    "*.jsb3",
+    "*.jshintrc",
+    "*.json",
+    "*.json5",
+    "*.jsonc",
+    "*.jsonl",
+    "*.jsonlines",
+    "*.jsx",
+    "*.kubernetes-helm-json",
+    "*.kubernetes-helm-txt",
+    "*.kubernetes-helm-yaml",
+    "*.kubernetes-werf-yaml",
+    "*.ldjson",
+    "*.map",
+    "*.markdown",
+    "*.md",
+    "*.mdb",
+    "*.mjs",
+    "*.mk",
+    "*.mod",
+    "*.mts",
+    "*.ndjson",
+    "*.odt",
+    "*.pam",
+    "*.patch",
+    "*.pb",
+    "*.pbm",
+    "*.pck",
+    "*.pcx",
+    "*.pdf",
+    "*.pgm",
+    "*.pkb",
+    "*.pks",
+    "*.pls",
+    "*.png",
+    "*.pnm",
+    "*.postman_collection",
+    "*.postman_collection.json",
+    "*.postman_environment",
+    "*.postman_environment.json",
+    "*.ppm",
+    "*.ppt",
+    "*.pptx",
+    "*.prc",
+    "*.proto",
+    "*.psd",
+    "*.redis",
+    "*.regexp",
+    "*.rest",
+    "*.rgbe",
+    "*.rnc",
+    "*.rng",
+    "*.s",
+    "*.sarif",
+    "*.sarif*.json",
+    "*.sarif.json",
+    "*.sh",
+    "*.sht",
+    "*.shtm",
+    "*.shtml",
+    "*.snap",
+    "*.sql",
+    "*.svg",
+    "*.swc",
+    "*.textproto",
+    "*.tga",
+    "*.tif",
+    "*.tiff",
+    "*.tld",
+    "*.tpb",
+    "*.tps",
+    "*.trg",
+    "*.ts",
+    "*.tsv",
+    "*.tsx",
+    "*.txtpb",
+    "*.uml",
+    "*.vsd",
+    "*.vw",
+    "*.war",
+    "*.wbmp",
+    "*.wsdl",
+    "*.xbm",
+    "*.xhtml",
+    "*.xml",
+    "*.xpm",
+    "*.xsd",
+    "*.xsl",
+    "*.xslt",
+    "*.xul",
+    "*.yaml",
+    "*.yml",
+    "*.zip",
+    "*.zsh",
+    ".babelrc",
+    ".devcontainer.json",
+    ".editorconfig",
+    ".eslintrc",
+    ".stylelintrc",
+    ".ws-context",
+    "Containerfile",
+    "Dockerfile",
+    "Dockerfile.fast-jar",
+    "Dockerfile.jlink",
+    "Dockerfile.jvm",
+    "Dockerfile.legacy-jar",
+    "Dockerfile.native",
+    "Dockerfile.native-distroless",
+    "Dockerfile.native-micro",
+    "GNUmakefile",
+    "GNUmakefile.inc",
+    "devcontainer.json",
+    "exclude",
+    "go.mod",
+    "go.work",
+    "http-client.cookies",
+    "jest.config",
+    "jshint.json",
+    "makefile",
+    "makefile.inc",
+    "tsconfig.app.json",
+    "tsconfig.base.json",
+    "tsconfig.e2e.json",
+    "tsconfig.editor.json",
+    "tsconfig.json",
+    "tsconfig.lib.json",
+    "tsconfig.spec.json",
+    "tsconfig.test.json",
+    "yarn.lock"
+  ],
+  "layout": [
+    {
+      "name": "Docker",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/clouds-docker-impl/lib/clouds-docker-impl.jar"
+      ]
+    },
+    {
+      "name": "Git4Idea",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/vcs-git/lib/vcs-git.jar",
+        "plugins/vcs-git/lib/git4idea-rt.jar"
+      ]
+    },
+    {
+      "name": "HtmlTools",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/html-tools/lib/html-tools.jar"
+      ]
+    },
+    {
+      "name": "JSIntentionPowerPack",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/javascript-intentions/lib/javascript-intentions.jar"
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/javascript-plugin/lib/javascript-plugin.jar",
+        "plugins/javascript-plugin/lib/javascript-frontback.jar"
+      ]
+    },
+    {
+      "name": "JavaScriptDebugger",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/javascript-debugger/lib/javascript-debugger.jar",
+        "plugins/javascript-debugger/lib/ChromeConnector.jar"
+      ]
+    },
+    {
+      "name": "Refactor-X",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/xml-refactoring/lib/xml-refactoring.jar"
+      ]
+    },
+    {
+      "name": "Remote Development Server",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/remote-dev-server/lib/remote-dev-server.jar"
+      ]
+    },
+    {
+      "name": "com.intellij",
+      "kind": "plugin",
+      "classPath": [
+        "lib/platform-loader.jar",
+        "lib/util-8.jar",
+        "lib/util.jar",
+        "lib/app-client.jar",
+        "lib/util_rt.jar",
+        "lib/product.jar",
+        "lib/lib-client.jar",
+        "lib/trove.jar",
+        "lib/app.jar",
+        "lib/opentelemetry.jar",
+        "lib/jps-model.jar",
+        "lib/stats.jar",
+        "lib/rd.jar",
+        "lib/external-system-rt.jar",
+        "lib/protobuf.jar",
+        "lib/bouncy-castle.jar",
+        "lib/nio-fs.jar",
+        "lib/forms_rt.jar",
+        "lib/lib.jar",
+        "lib/externalProcess-rt.jar",
+        "lib/groovy.jar",
+        "lib/annotations.jar",
+        "lib/jsch-agent.jar",
+        "lib/kotlinx-coroutines-slf4j-1.8.0-intellij.jar",
+        "lib/product-client.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.completion.ml.ranking",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/completionMlRanking/lib/completionMlRanking.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.configurationScript",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/configurationScript/lib/configurationScript.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.copyright",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/copyright/lib/copyright.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.css",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/css-impl/lib/css-impl.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.database",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/DatabaseTools/lib/database-plugin.jar",
+        "plugins/DatabaseTools/lib/jdbc-console.jar",
+        "plugins/DatabaseTools/lib/database-openapi.jar",
+        "plugins/DatabaseTools/lib/aether-dependency-resolver.jar",
+        "plugins/DatabaseTools/lib/maven-resolver-transport-file.jar",
+        "plugins/DatabaseTools/lib/maven-resolver-transport-http.jar",
+        "plugins/DatabaseTools/lib/maven-resolver-connector-basic.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.dev",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/dev/lib/dev.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.diagram",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/uml/lib/uml-support.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.grpc",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/grpc/lib/grpc.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.ja",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/localization-ja/lib/localization-ja.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.jsonpath",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/jsonpath/lib/jsonpath.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.ko",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/localization-ko/lib/localization-ko.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.kubernetes",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/clouds-kubernetes/lib/clouds-kubernetes.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.marketplace",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.microservices.ui",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/microservices-ui/lib/microservices-ui.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.ml.inline.completion",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.coverage",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.database",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.database.connectivity",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.database.core",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.duplicatesDetector",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.externalSystem",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.go",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.go-capable",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.goland",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.javascript",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.json",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/json/lib/json.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.modules.lang",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.microservices",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.nativeDebug-plugin-capable",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.os.linux",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.os.unix",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.os.xwindow",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.platform",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.profiler",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.python-core-capable",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.python-in-mini-ide-capable",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.python-in-non-pycharm-ide-capable",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.remoteServers",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.run.targets",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.sql",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.ssh",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.ssh.ui",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.structuralsearch",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.ultimate",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.vcs",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.xdebugger",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.modules.xml",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.platform.experimental.backend",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.platform.experimental.frontend",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.platform.experimental.monolith",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.platform.ide.provisioner",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.platform.images",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/platform-images/lib/platform-images.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.plugins.colorful.darcula.colorscheme",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/color-scheme-colorful-darcula/lib/color-scheme-colorful-darcula.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.plugins.goland.solarized.colorscheme",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/color-scheme-solarized-goland/lib/color-scheme-solarized-goland.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.plugins.monokai.colorscheme",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/color-scheme-monokai/lib/color-scheme-monokai.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.plugins.vscodekeymap",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/keymap-vscode/lib/keymap-vscode.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.plugins.watcher",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/fileWatcher/lib/fileWatcher.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.react",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/react/lib/react.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.searcheverywhere.ml",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/searchEverywhereMl/lib/searchEverywhereMl.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.settingsSync",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/settingsSync/lib/settingsSync.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.station.core",
+      "kind": "pluginAlias"
+    },
+    {
+      "name": "com.intellij.stylelint",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/stylelint/lib/stylelint.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.swagger",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/swagger/lib/swagger.jar"
+      ]
+    },
+    {
+      "name": "com.intellij.zh",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/localization-zh/lib/localization-zh.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.codeWithMe",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/cwm-plugin/lib/cwm-plugin.jar",
+        "plugins/cwm-plugin/lib/cwm-plugin-common.jar",
+        "plugins/cwm-plugin/lib/cwm-plugin-backend.jar",
+        "plugins/cwm-plugin/lib/cwm-plugin-android.jar",
+        "plugins/cwm-plugin/lib/rd.jar",
+        "plugins/cwm-plugin/lib/split.jar",
+        "plugins/cwm-plugin/lib/ice4j.jar",
+        "plugins/cwm-plugin/lib/jstun.jar",
+        "plugins/cwm-plugin/lib/jitsi-utils.jar",
+        "plugins/cwm-plugin/lib/tls-channel.jar",
+        "plugins/cwm-plugin/lib/vcs-protocol.jar",
+        "plugins/cwm-plugin/lib/backend-split.jar",
+        "plugins/cwm-plugin/lib/split-protocol.jar",
+        "plugins/cwm-plugin/lib/java-websocket.jar",
+        "plugins/cwm-plugin/lib/quiche-jna-stubs.jar",
+        "plugins/cwm-plugin/lib/remote-controller.jar",
+        "plugins/cwm-plugin/lib/bouncy-castle-pgp.jar",
+        "plugins/cwm-plugin/lib/grpc-netty-shaded.jar",
+        "plugins/cwm-plugin/lib/jnaerator-runtime.jar",
+        "plugins/cwm-plugin/lib/remote-controller-backend.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.gateway",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/gateway-plugin/lib/gateway-plugin.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.gateway.terminal",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/gateway-terminal/lib/gateway-terminal.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.performancePlugin",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/performanceTesting/lib/performanceTesting.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.performancePlugin.async",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/performanceTesting-async/lib/performanceTesting-async.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.plugins.webDeployment",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/webDeployment/lib/webDeployment.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.restClient",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/restClient/lib/restClient.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.sh",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/sh/lib/sh.jar"
+      ]
+    },
+    {
+      "name": "com.jetbrains.station",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/station-plugin/lib/station-plugin.jar"
+      ]
+    },
+    {
+      "name": "com.ypwang.plugin.go-linter",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/go-linter/lib/go-linter.jar"
+      ]
+    },
+    {
+      "name": "hg4idea",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/vcs-hg/lib/vcs-hg.jar"
+      ]
+    },
+    {
+      "name": "idea.plugin.protoeditor",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/protoeditor/lib/protoeditor.jar"
+      ]
+    },
+    {
+      "name": "intellij.aqua.runners.cypress",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.aqua.runners.js.core",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.aqua.runners.playwright.js",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.charts",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/charts/lib/charts.jar"
+      ]
+    },
+    {
+      "name": "intellij.clouds.docker.compose",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.file",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.gateway.git4idea",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.gateway/forwardPorts",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.gateway/json",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.kubernetes",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.remoteRun",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.docker.ssh",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.kubernetes.charts.gotpl",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.kubernetes.cron",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.clouds.kubernetes.db",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.completionMlRanking.experiments",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.copyright.vcs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.cwm.vcs",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.cwm.vcs.jar"
+      ]
+    },
+    {
+      "name": "intellij.database.diagrams",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.database.docker",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.database.flameGraphs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.database.grazie",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.database.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.dev.codeInsight",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.dev.psiViewer",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.diagram.impl/vcs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.diagram.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.diagram.maven",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.diagram.properties",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.driver.backend.split",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.execution.process.elevation",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.execution.process.elevation.jar"
+      ]
+    },
+    {
+      "name": "intellij.execution.process.elevation.backend.split",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.execution.process.mediator.client",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.execution.process.mediator.client.jar"
+      ]
+    },
+    {
+      "name": "intellij.execution.process.mediator.common",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.execution.process.mediator.common.jar"
+      ]
+    },
+    {
+      "name": "intellij.execution.process.mediator.daemon",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.execution.process.mediator.daemon.jar"
+      ]
+    },
+    {
+      "name": "intellij.featuresTrainer.onboarding",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fileWatcher/webDeployment",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.api",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.core",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.core.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.core.impl",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.cpp",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.cpp.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css.less",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css.less.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.css.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.css.postcss",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css.postcss.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css.sass",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.css.sass.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.experiments",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.federatedCompute",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.go",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.go.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.go.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.html",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.html.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.html.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.java.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.java.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.js",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.js.astro",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.js.astro.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.js.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.js.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.js.svelte",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.js.svelte.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.js.vue",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.js.vue.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.kotlin",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.kotlin.jupyter",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.kotlin.jupyter.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.kotlin.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.kotlin.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.php",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.php.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.php.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.python",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.python.jupyter",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.python.jupyter.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.python.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.python.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.rider",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.rider.cpp",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.rider.cpp.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.rider.cpp.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.rider.csharp",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.rider.csharp.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.rider.csharp.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.rider.local",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.ruby",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.ruby.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.ruby.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.rust",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.rust.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.rust.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.terraform",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.terraform.local",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.fullLine.terraform.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.fullLine.vcs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.web",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.fullLine.xdebugger",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.git.commit.modal",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/vcs-git-commit-modal/lib/vcs-git-commit-modal.jar"
+      ]
+    },
+    {
+      "name": "intellij.go.completionMlRanking",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/go-plugin/lib/modules/intellij.go.completionMlRanking.jar"
+      ]
+    },
+    {
+      "name": "intellij.go.copyright",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.coverage",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.dfa",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.diagram",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.docker",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.featuresTrainer",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.grazie",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.langInjection",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.microservices",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.profiler",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.sharedIndexes",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.sharedIndexes.bundled/sharedCore",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.shell",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.template.integration",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.terminal",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.go.watchers",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.goland.customization",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.goland.customization.jar"
+      ]
+    },
+    {
+      "name": "intellij.goland.featuresTrainer",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.goland.featuresTrainer.jar"
+      ]
+    },
+    {
+      "name": "intellij.grazie.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grazie.json",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grazie.markdown",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grazie.properties",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grazie.xml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grazie.yaml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grid",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.grid.jar"
+      ]
+    },
+    {
+      "name": "intellij.grid.charts.impl",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grid.core.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.grid.core.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.grid.csv.core.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.grid.csv.core.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.grid.images.impl",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grid.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.grid.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.grid.json.impl",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grid.plugin",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/grid-plugin/lib/grid-plugin.jar"
+      ]
+    },
+    {
+      "name": "intellij.grid.scripting.impl",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grid.scripting.rt",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/grid-plugin/lib/modules/intellij.grid.scripting.rt.jar"
+      ]
+    },
+    {
+      "name": "intellij.grid.types",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.grid.types.jar"
+      ]
+    },
+    {
+      "name": "intellij.groovy.dev",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.grpc/intelliLang",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.httpClient.injection.graphql",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.httpClient.textMate",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ide.startup.importSettings",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.ide.startup.importSettings.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/indexing-shared-ultimate-plugin-bundled/lib/indexing-shared-ultimate-plugin-bundled.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared.core",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/indexing-shared/lib/indexing-shared.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared.generator",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/indexing-shared-ultimate-plugin-bundled/lib/modules/intellij.indexing.shared.generator.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared.ultimate",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/indexing-shared-ultimate-plugin-bundled/lib/modules/intellij.indexing.shared.ultimate.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared.ultimate.git",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/indexing-shared-ultimate-plugin-bundled/lib/modules/intellij.indexing.shared.ultimate.git.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared.ultimate.java",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/indexing-shared-ultimate-plugin-bundled/lib/modules/intellij.indexing.shared.ultimate.java.jar"
+      ]
+    },
+    {
+      "name": "intellij.indexing.shared.ultimate.plugin.bundled/inner",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.java.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.java.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.java.dev",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.debugger.backend",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/javascript-debugger/lib/modules/intellij.javascript.debugger.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.javascript.debugger.dap.launcher",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.debugger.frontend",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/javascript-debugger/lib/modules/intellij.javascript.debugger.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.javascript.debugger.javaee",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.debugger.javaee/jsp",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.debugger.shared",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/javascript-debugger/lib/modules/intellij.javascript.debugger.shared.jar"
+      ]
+    },
+    {
+      "name": "intellij.javascript.devkit",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.impl/diagrams",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.sh",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.sharedIndexes",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.javascript.sharedIndexes.generator",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.json",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/json/lib/modules/intellij.json.jar"
+      ]
+    },
+    {
+      "name": "intellij.json.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/json/lib/modules/intellij.json.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.kotlin.dev",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.libraries.compose.foundation.desktop",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.compose.foundation.desktop.jar"
+      ]
+    },
+    {
+      "name": "intellij.libraries.grpc",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.grpc.jar"
+      ]
+    },
+    {
+      "name": "intellij.libraries.grpc.netty.shaded",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.grpc.netty.shaded.jar"
+      ]
+    },
+    {
+      "name": "intellij.libraries.ktor.client",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.ktor.client.jar"
+      ]
+    },
+    {
+      "name": "intellij.libraries.ktor.client.cio",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.ktor.client.cio.jar"
+      ]
+    },
+    {
+      "name": "intellij.libraries.microba",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.microba.jar"
+      ]
+    },
+    {
+      "name": "intellij.libraries.skiko",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.libraries.skiko.jar"
+      ]
+    },
+    {
+      "name": "intellij.llmInstaller",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.llmInstaller.enterprise",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.llmInstaller.pycharm.community",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.backend.split",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.compose.preview",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.fenceInjection",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.frontmatter",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.frontmatter.toml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.frontmatter.yaml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.images",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.model",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.spellchecker",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.markdown.xml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.microservices.ui/diagram",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.cpp.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.cpp.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.css.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.css.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.css.less.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.css.postcss.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.css.sass.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.go.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.go.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.html.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.html.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.java.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.java.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.javascript.astro.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.javascript.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.javascript.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.javascript.svelte.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.javascript.vue.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.jupyter.kotlin.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.jupyter.python.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.kotlin.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.kotlin.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.markdown.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.php.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.php.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.python.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.python.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.rbs.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.rider.cpp.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.rider.cpp.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.rider.csharp.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.rider.csharp.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.ruby.completion",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/fullLine/lib/modules/intellij.ml.llm.ruby.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.ml.llm.rust.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.sql.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.terraform.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.text.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.vcs.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.xdebugger.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.ml.llm.yaml.completion",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.modules.database/dialects.oracle.utplsql.coverage",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.notebooks.backend.split",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.amper",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.go",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.gradle",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.javascript",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.maven",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.php",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.packageChecker.python",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.performanceTesting.async.core",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.performanceTesting.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.performanceTesting.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.performanceTesting.frontend",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/performanceTesting/lib/modules/intellij.performanceTesting.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.performanceTesting.remoteDriver",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.performanceTesting.vcs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.platform.bookmarks.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.bookmarks.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.bookmarks.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.bookmarks.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.clouds",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.clouds.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.collaborationTools",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.collaborationTools.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.compose",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.compose.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.coverage",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.coverage.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.coverage.agent",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.coverage.agent.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.dap",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.dap.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.debugger.impl.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.debugger.impl.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.debugger.impl.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.debugger.impl.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.diagnostic.freezeAnalyzer",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.diagnostic.freezeAnalyzer.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.diagnostic.freezes",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.diagnostic.freezes.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.editor",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.editor.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.editor.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.editor.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.editor.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.editor.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.execution.dashboard",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.execution.dashboard.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.execution.serviceView",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.execution.serviceView.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.ide.newUiOnboarding",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.ide.newUiOnboarding.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.ijent.impl",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/platform-ijent-impl/lib/platform-ijent-impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.images.backend.svg",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.images.backend.svg.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.images.copyright",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.images.copyright.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.inline.completion",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.inline.completion.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.inline.completion.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.inline.completion.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.inline.completion.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.inline.completion.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.foundation",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.foundation.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.ideLafBridge",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.ideLafBridge.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.markdown.core",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.markdown.core.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.markdown.extensions.gfmAlerts",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.markdown.extensions.gfmAlerts.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.markdown.extensions.gfmStrikethrough",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.markdown.extensions.gfmStrikethrough.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.markdown.extensions.gfmTables",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.markdown.extensions.gfmTables.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.markdown.ideLafBridgeStyling",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.markdown.ideLafBridgeStyling.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.jewel.ui",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.jewel.ui.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.kernel.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.kernel.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.kernel.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.kernel.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.lvcs.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.lvcs.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.navbar",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.navbar.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.navbar.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.navbar.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.navbar.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.navbar.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.navbar.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.navbar.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.navbar.monolith",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.navbar.monolith.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.progress.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.progress.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.project.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.project.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.recentFiles",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.recentFiles.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.recentFiles.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.recentFiles.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.recentFiles.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.recentFiles.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.registry.cloud",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.registry.cloud.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.rpc.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.rpc.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.rpc.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.rpc.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.searchEverywhere",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.searchEverywhere.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.searchEverywhere.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.searchEverywhere.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.searchEverywhere.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.searchEverywhere.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.settings.local",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.settings.local.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.smRunner.vcs",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.smRunner.vcs.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.statistics.devkit",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.platform.tips",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.tips.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.vcs.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.common.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.platform.vcs.common.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.dvcs.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.dvcs.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.dvcs.impl.shared",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.dvcs.impl.shared.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl.backend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl.exec",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.exec.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl.frontend",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.frontend.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl.lang",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.lang.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl.lang.actions",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.lang.actions.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.impl.shared",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.impl.shared.jar"
+      ]
+    },
+    {
+      "name": "intellij.platform.vcs.log.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.platform.vcs.log.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.profiler.asyncOne",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.profiler.asyncOne.jar"
+      ]
+    },
+    {
+      "name": "intellij.profiler.common",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.profiler.common.jar"
+      ]
+    },
+    {
+      "name": "intellij.profiler.ultimate.ideaAsyncProfiler",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.profiler.ultimate.ideaAsyncProfiler.jar"
+      ]
+    },
+    {
+      "name": "intellij.protoeditor.go",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.protoeditor.jvm",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.protoeditor.python",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.coverage",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.cpp",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.go",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.inspectionKts.js",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.inspectionKts.kotlin",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.js",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.coverage",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.dev",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.gradle",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.groovy",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.kotlin",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.maven",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.jvm.swagger",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.php",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.python.community",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.python.coverage",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.qodana.sarif",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/qodana/lib/modules/intellij.qodana.sarif.jar"
+      ]
+    },
+    {
+      "name": "intellij.qodana/yaml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.remoteRun.terminal.backend.split",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.restClient/intelliLang",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.restClient/intelliLangInJs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.restClient/javaScript",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.restClient/jsonPath",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.restClient/microservicesUI",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.rml.dfa.impl",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.rml.dfa.impl.jar"
+      ]
+    },
+    {
+      "name": "intellij.searchEverywhereMl.ranking.core",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/searchEverywhereMl/lib/modules/intellij.searchEverywhereMl.ranking.core.jar"
+      ]
+    },
+    {
+      "name": "intellij.searchEverywhereMl.ranking.ext",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.searchEverywhereMl.ranking.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.searchEverywhereMl.ranking.vcs",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.searchEverywhereMl.ranking.yaml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.searchEverywhereMl.typos",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.settingsSync.core",
+      "kind": "productModuleV2",
+      "classPath": [
+        "lib/modules/intellij.settingsSync.core.jar"
+      ]
+    },
+    {
+      "name": "intellij.sh.copyright",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.sh.markdown",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.sh.python",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.sh.terminal",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.station.core",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.station.frontend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/station-plugin/lib/modules/intellij.station.frontend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.swagger.endpoints",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.swagger.gradle",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.swagger.java",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.swagger.maven",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.terminal.backend",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.terminal.backend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/cwm-plugin/lib/modules/intellij.terminal.backend.split.jar"
+      ]
+    },
+    {
+      "name": "intellij.terminal.frontend",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.terminal.sh",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.terminal/cloud",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.git.coverage",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.git.featuresTrainer",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.git/localHistory",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/vcs-git/lib/modules/intellij.vcs.git/localHistory.jar"
+      ]
+    },
+    {
+      "name": "intellij.vcs.git/newUiOnboarding",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.git/terminal",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.github",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/vcs-github-IU/lib/modules/intellij.vcs.github.jar"
+      ]
+    },
+    {
+      "name": "intellij.vcs.github.json",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.github.tracker",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.github.ultimate.cron",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.github.ultimate.docker",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.github.ultimate.features",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.gitlab",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.gitlab.ultimate.features",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.vcs.gitlab.yaml",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.webDeployment/phpStorm",
+      "kind": "moduleV2"
+    },
+    {
+      "name": "intellij.webpack",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/webpack/lib/webpack.jar"
+      ]
+    },
+    {
+      "name": "intellij.yaml",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/yaml/lib/modules/intellij.yaml.jar"
+      ]
+    },
+    {
+      "name": "intellij.yaml.backend",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/yaml/lib/modules/intellij.yaml.backend.jar"
+      ]
+    },
+    {
+      "name": "intellij.yaml.frontend.split",
+      "kind": "moduleV2",
+      "classPath": [
+        "plugins/yaml/lib/modules/intellij.yaml.frontend.split.jar"
+      ]
+    },
+    {
+      "name": "name.kropp.intellij.makefile",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/makefile/lib/makefile.jar"
+      ]
+    },
+    {
+      "name": "org.editorconfig.editorconfigjetbrains",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/editorconfig/lib/editorconfig.jar"
+      ]
+    },
+    {
+      "name": "org.intellij.intelliLang",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/platform-langInjection/lib/platform-langInjection.jar",
+        "plugins/platform-langInjection/lib/java-langInjection-jps.jar"
+      ]
+    },
+    {
+      "name": "org.intellij.plugins.markdown",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/markdown/lib/markdown.jar"
+      ]
+    },
+    {
+      "name": "org.intellij.qodana",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/qodana/lib/qodana.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.completion.full.line",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/fullLine/lib/fullLine.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.docker.gateway",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/clouds-docker-gateway/lib/clouds-docker-gateway.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.emojipicker",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/emojipicker/lib/emojipicker.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.github",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/vcs-github-IU/lib/vcs-github.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.gitlab",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/vcs-gitlab-IU/lib/vcs-gitlab.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.go",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/go-plugin/lib/go-plugin.jar",
+        "plugins/go-plugin/lib/go-frontback.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.go-template",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/go-template/lib/go-template.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.go.ide",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/go-ide/lib/go-ide.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.go.sharedIndexes.bundled",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/go-sharedIndexes-bundled/lib/go-sharedIndexes-bundled.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.remote-run",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/remoteRun/lib/remoteRun.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.terminal",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/terminal/lib/terminal.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.textmate",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/textmate/lib/textmate.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.plugins.yaml",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/yaml/lib/yaml.jar"
+      ]
+    },
+    {
+      "name": "org.jetbrains.security.package-checker",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/packageChecker/lib/packageChecker.jar"
+      ]
+    },
+    {
+      "name": "tanvd.grazi",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/grazie/lib/grazie.jar"
+      ]
+    },
+    {
+      "name": "training",
+      "kind": "plugin",
+      "classPath": [
+        "plugins/featuresTrainer/lib/featuresTrainer.jar"
+      ]
+    }
+  ]
+}
