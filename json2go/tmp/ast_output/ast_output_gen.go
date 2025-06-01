@@ -6,11 +6,11 @@ import (
 )
 
 type ArrayElem struct {
-	Type__     string      `json:"__type__"`
-	Name       string      `json:"name"`
-	Asname     interface{} `json:"asname"`
-	Lineno     int         `json:"lineno"`
-	Col_offset int         `json:"col_offset"`
+	Type__     string `json:"__type__"`
+	Name       string `json:"name"`
+	Asname     any    `json:"asname"`
+	Lineno     int    `json:"lineno"`
+	Col_offset int    `json:"col_offset"`
 }
 
 type ArrayElem1 struct {
@@ -21,9 +21,9 @@ type ArrayElem1 struct {
 }
 
 type RootConfig struct {
-	Type__       string        `json:"__type__"`
-	Body         []ArrayElem1  `json:"body"`
-	Type_ignores []interface{} `json:"type_ignores"`
+	Type__       string       `json:"__type__"`
+	Body         []ArrayElem1 `json:"body"`
+	Type_ignores []any        `json:"type_ignores"`
 }
 
 type RootContainer struct {
@@ -1265,7 +1265,7 @@ func main() {
 				Col_offset: 0,
 			},
 		},
-		Type_ignores: []interface{}{},
+		Type_ignores: []any{},
 	}
 	root := RootContainer{Data: &data}
 	fmt.Printf("%#v\\n", root)

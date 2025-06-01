@@ -20,7 +20,7 @@ type AjaxActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -28,7 +28,7 @@ type AjaxActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -51,7 +51,7 @@ type AjaxActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -82,7 +82,7 @@ type AlertSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -90,7 +90,7 @@ type AlertSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -118,7 +118,7 @@ type AnchorNavSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -126,14 +126,14 @@ type AnchorNavSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Links                []interface{} `json:"links"`
-	Active               interface{}   `json:"active"`
+	Links                []any         `json:"links"`
+	Active               any           `json:"active"`
 	LinkClassName        className     `json:"linkClassName"`
 	SectionClassName     className     `json:"sectionClassName"`
 	Direction            string        `json:"direction"`
@@ -151,7 +151,7 @@ type AnchorNavSectionSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -159,14 +159,14 @@ type AnchorNavSectionSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	Title                string        `json:"title"`
 	Href                 string        `json:"href"`
 	Body                 className     `json:"body"`
-	Children             []interface{} `json:"children"`
+	Children             []any         `json:"children"`
 }
 
 type ArrayControlSchema struct {
@@ -209,7 +209,7 @@ type ArrayControlSchema struct {
 	Size                               string           `json:"size"`
 	Label                              SchemaClassName  `json:"label"`
 	LabelAlign                         className        `json:"labelAlign"`
-	LabelWidth                         interface{}      `json:"labelWidth"`
+	LabelWidth                         any              `json:"labelWidth"`
 	LabelClassName                     string           `json:"labelClassName"`
 	Name                               string           `json:"name"`
 	ExtraName                          string           `json:"extraName"`
@@ -244,7 +244,7 @@ type ArrayControlSchema struct {
 	Visible                            bool             `json:"visible"`
 	VisibleOn                          className        `json:"visibleOn"`
 	Id                                 string           `json:"id"`
-	OnEvent                            interface{}      `json:"onEvent"`
+	OnEvent                            any              `json:"onEvent"`
 	Static                             bool             `json:"static"`
 	StaticOn                           className        `json:"staticOn"`
 	StaticPlaceholder                  string           `json:"staticPlaceholder"`
@@ -252,7 +252,7 @@ type ArrayControlSchema struct {
 	StaticLabelClassName               className        `json:"staticLabelClassName"`
 	StaticInputClassName               className        `json:"staticInputClassName"`
 	StaticSchema                       staticSchema     `json:"staticSchema"`
-	Style                              interface{}      `json:"style"`
+	Style                              any              `json:"style"`
 	EditorSetting                      editorSetting    `json:"editorSetting"`
 	UseMobileUI                        bool             `json:"useMobileUI"`
 	TypeVal                            string           `json:"type"`
@@ -260,11 +260,11 @@ type ArrayControlSchema struct {
 }
 
 type ArrayElem struct {
-	Type__     string      `json:"__type__"`
-	Name       string      `json:"name"`
-	Asname     interface{} `json:"asname"`
-	Lineno     int         `json:"lineno"`
-	Col_offset int         `json:"col_offset"`
+	Type__     string `json:"__type__"`
+	Name       string `json:"name"`
+	Asname     any    `json:"asname"`
+	Lineno     int    `json:"lineno"`
+	Col_offset int    `json:"col_offset"`
 }
 
 type ArrayElem1 struct {
@@ -277,10 +277,10 @@ type ArrayElem1 struct {
 type ArrayElem10 struct {
 	TypeVal              string        `json:"type"`
 	Header               header        `json:"header"`
-	Body                 []interface{} `json:"body"`
+	Body                 []any         `json:"body"`
 	Media                media         `json:"media"`
-	Actions              []interface{} `json:"actions"`
-	Toolbar              []interface{} `json:"toolbar"`
+	Actions              []any         `json:"actions"`
+	Toolbar              []any         `json:"toolbar"`
 	Secondary            className     `json:"secondary"`
 	UseCardLabel         bool          `json:"useCardLabel"`
 	Testid               string        `json:"testid"`
@@ -294,7 +294,7 @@ type ArrayElem10 struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -302,15 +302,15 @@ type ArrayElem10 struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 }
 
 type ArrayElem11 struct {
-	TypeVal string      `json:"type"`
-	Items   interface{} `json:"items"`
+	TypeVal string `json:"type"`
+	Items   any    `json:"items"`
 }
 
 type ArrayElem12 struct {
@@ -327,16 +327,16 @@ type ArrayElem13 struct {
 
 type ArrayElem14 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties2 `json:"patternProperties"`
+	PatternProperties patternProperties3 `json:"patternProperties"`
 }
 
 type ArrayElem15 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties3 `json:"patternProperties"`
+	PatternProperties patternProperties4 `json:"patternProperties"`
 }
 
 type ArrayElem16 struct {
-	Children             []interface{}   `json:"children"`
+	Children             []any           `json:"children"`
 	ID                   string          `json:"$$id"`
 	ClassName            className       `json:"className"`
 	Ref                  string          `json:"$ref"`
@@ -347,7 +347,7 @@ type ArrayElem16 struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -355,7 +355,7 @@ type ArrayElem16 struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -378,7 +378,7 @@ type ArrayElem16 struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -400,7 +400,7 @@ type ArrayElem16 struct {
 
 type ArrayElem17 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties4 `json:"patternProperties"`
+	PatternProperties patternProperties5 `json:"patternProperties"`
 }
 
 type ArrayElem18 struct {
@@ -419,7 +419,7 @@ type ArrayElem2 struct {
 
 type ArrayElem20 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties5 `json:"patternProperties"`
+	PatternProperties patternProperties6 `json:"patternProperties"`
 }
 
 type ArrayElem21 struct {
@@ -439,20 +439,20 @@ type ArrayElem23 struct {
 
 type ArrayElem24 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties6 `json:"patternProperties"`
+	PatternProperties patternProperties7 `json:"patternProperties"`
 }
 
 type ArrayElem25 struct {
-	TypeVal      string        `json:"type"`
-	Label        string        `json:"label"`
-	ValueTypes   []string      `json:"valueTypes"`
-	Operators    []interface{} `json:"operators"`
-	Funcs        []string      `json:"funcs"`
-	DefaultValue staticSchema  `json:"defaultValue"`
-	Placeholder  string        `json:"placeholder"`
-	Name         string        `json:"name"`
-	MinLength    float64       `json:"minLength"`
-	MaxLength    float64       `json:"maxLength"`
+	TypeVal      string       `json:"type"`
+	Label        string       `json:"label"`
+	ValueTypes   []string     `json:"valueTypes"`
+	Operators    []any        `json:"operators"`
+	Funcs        []string     `json:"funcs"`
+	DefaultValue staticSchema `json:"defaultValue"`
+	Placeholder  string       `json:"placeholder"`
+	Name         string       `json:"name"`
+	MinLength    float64      `json:"minLength"`
+	MaxLength    float64      `json:"maxLength"`
 }
 
 type ArrayElem26 struct {
@@ -462,7 +462,7 @@ type ArrayElem26 struct {
 
 type ArrayElem27 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties7 `json:"patternProperties"`
+	PatternProperties patternProperties8 `json:"patternProperties"`
 }
 
 type ArrayElem28 struct {
@@ -476,7 +476,7 @@ type ArrayElem28 struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -484,7 +484,7 @@ type ArrayElem28 struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -507,7 +507,7 @@ type ArrayElem28 struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -531,7 +531,7 @@ type ArrayElem28 struct {
 type ArrayElem29 struct {
 	Ref                  string             `json:"$ref"`
 	AdditionalProperties bool               `json:"additionalProperties"`
-	PatternProperties    patternProperties8 `json:"patternProperties"`
+	PatternProperties    patternProperties9 `json:"patternProperties"`
 }
 
 type ArrayElem3 struct {
@@ -540,39 +540,39 @@ type ArrayElem3 struct {
 }
 
 type ArrayElem30 struct {
-	Ref                  string             `json:"$ref"`
-	AdditionalProperties bool               `json:"additionalProperties"`
-	PatternProperties    patternProperties9 `json:"patternProperties"`
-}
-
-type ArrayElem31 struct {
 	Ref                  string              `json:"$ref"`
 	AdditionalProperties bool                `json:"additionalProperties"`
 	PatternProperties    patternProperties10 `json:"patternProperties"`
 }
 
-type ArrayElem32 struct {
+type ArrayElem31 struct {
 	Ref                  string              `json:"$ref"`
 	AdditionalProperties bool                `json:"additionalProperties"`
 	PatternProperties    patternProperties11 `json:"patternProperties"`
 }
 
-type ArrayElem33 struct {
+type ArrayElem32 struct {
 	Ref                  string              `json:"$ref"`
 	AdditionalProperties bool                `json:"additionalProperties"`
 	PatternProperties    patternProperties12 `json:"patternProperties"`
 }
 
-type ArrayElem34 struct {
+type ArrayElem33 struct {
 	Ref                  string              `json:"$ref"`
 	AdditionalProperties bool                `json:"additionalProperties"`
 	PatternProperties    patternProperties13 `json:"patternProperties"`
 }
 
-type ArrayElem35 struct {
+type ArrayElem34 struct {
 	Ref                  string              `json:"$ref"`
 	AdditionalProperties bool                `json:"additionalProperties"`
 	PatternProperties    patternProperties14 `json:"patternProperties"`
+}
+
+type ArrayElem35 struct {
+	Ref                  string              `json:"$ref"`
+	AdditionalProperties bool                `json:"additionalProperties"`
+	PatternProperties    patternProperties15 `json:"patternProperties"`
 }
 
 type ArrayElem36 struct {
@@ -590,10 +590,10 @@ type ArrayElem37 struct {
 }
 
 type ArrayElem38 struct {
-	Current                  int         `json:"current"`
-	Date                     string      `json:"date"`
-	Iso_currency_code        string      `json:"iso_currency_code"`
-	Unofficial_currency_code interface{} `json:"unofficial_currency_code"`
+	Current                  int    `json:"current"`
+	Date                     string `json:"date"`
+	Iso_currency_code        string `json:"iso_currency_code"`
+	Unofficial_currency_code any    `json:"unofficial_currency_code"`
 }
 
 type ArrayElem39 struct {
@@ -620,14 +620,14 @@ type ArrayElem41 struct {
 }
 
 type ArrayElem42 struct {
-	Account_id               string      `json:"account_id"`
-	Amount                   int         `json:"amount"`
-	Date                     string      `json:"date"`
-	Iso_currency_code        string      `json:"iso_currency_code"`
-	Original_description     string      `json:"original_description"`
-	Pending                  bool        `json:"pending"`
-	Transaction_id           string      `json:"transaction_id"`
-	Unofficial_currency_code interface{} `json:"unofficial_currency_code"`
+	Account_id               string `json:"account_id"`
+	Amount                   int    `json:"amount"`
+	Date                     string `json:"date"`
+	Iso_currency_code        string `json:"iso_currency_code"`
+	Original_description     string `json:"original_description"`
+	Pending                  bool   `json:"pending"`
+	Transaction_id           string `json:"transaction_id"`
+	Unofficial_currency_code any    `json:"unofficial_currency_code"`
 }
 
 type ArrayElem43 struct {
@@ -639,7 +639,7 @@ type ArrayElem43 struct {
 	Name                string        `json:"name"`
 	Official_name       string        `json:"official_name"`
 	Owners              []ArrayElem41 `json:"owners"`
-	Ownership_type      interface{}   `json:"ownership_type"`
+	Ownership_type      any           `json:"ownership_type"`
 	Subtype             string        `json:"subtype"`
 	Transactions        []ArrayElem42 `json:"transactions"`
 	TypeVal             string        `json:"type"`
@@ -664,13 +664,13 @@ type ArrayElem6 struct {
 }
 
 type ArrayElem7 struct {
-	Ref               string            `json:"$ref"`
-	PatternProperties patternProperties `json:"patternProperties"`
+	Ref               string             `json:"$ref"`
+	PatternProperties patternProperties1 `json:"patternProperties"`
 }
 
 type ArrayElem8 struct {
 	Ref               string             `json:"$ref"`
-	PatternProperties patternProperties1 `json:"patternProperties"`
+	PatternProperties patternProperties2 `json:"patternProperties"`
 }
 
 type ArrayElem9 struct {
@@ -720,7 +720,7 @@ type AudioSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -728,7 +728,7 @@ type AudioSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -764,7 +764,7 @@ type AvatarSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -772,7 +772,7 @@ type AvatarSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -794,29 +794,29 @@ type AvatarSchema struct {
 }
 
 type BadgeObject struct {
-	ClassName     string        `json:"className"`
-	Text          interface{}   `json:"text"`
-	Size          float64       `json:"size"`
-	Mode          string        `json:"mode"`
-	Offset        []interface{} `json:"offset"`
-	Position      string        `json:"position"`
-	OverflowCount float64       `json:"overflowCount"`
-	VisibleOn     string        `json:"visibleOn"`
-	Animation     bool          `json:"animation"`
-	Style         interface{}   `json:"style"`
-	Level         string        `json:"level"`
+	ClassName     string  `json:"className"`
+	Text          any     `json:"text"`
+	Size          float64 `json:"size"`
+	Mode          string  `json:"mode"`
+	Offset        []any   `json:"offset"`
+	Position      string  `json:"position"`
+	OverflowCount float64 `json:"overflowCount"`
+	VisibleOn     string  `json:"visibleOn"`
+	Animation     bool    `json:"animation"`
+	Style         any     `json:"style"`
+	Level         string  `json:"level"`
 }
 
 type BaseApiObject struct {
 	Method                 string          `json:"method"`
 	Url                    string          `json:"url"`
-	Data                   interface{}     `json:"data"`
+	Data                   any             `json:"data"`
 	ConvertKeyToPath       bool            `json:"convertKeyToPath"`
-	ResponseData           interface{}     `json:"responseData"`
+	ResponseData           any             `json:"responseData"`
 	AttachDataToQuery      bool            `json:"attachDataToQuery"`
 	DataType               string          `json:"dataType"`
 	ResponseType           string          `json:"responseType"`
-	Headers                interface{}     `json:"headers"`
+	Headers                any             `json:"headers"`
 	SendOn                 string          `json:"sendOn"`
 	ReplaceData            bool            `json:"replaceData"`
 	ConcatDataFields       SchemaClassName `json:"concatDataFields"`
@@ -845,20 +845,20 @@ type ButtonGroupControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
 	DeleteConfirmText    string           `json:"deleteConfirmText"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -896,7 +896,7 @@ type ButtonGroupControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -904,13 +904,13 @@ type ButtonGroupControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	BtnClassName         RootSchema       `json:"btnClassName"`
 	BtnActiveClassName   string           `json:"btnActiveClassName"`
-	Buttons              []interface{}    `json:"buttons"`
+	Buttons              []any            `json:"buttons"`
 	BtnLevel             string           `json:"btnLevel"`
 	BtnActiveLevel       string           `json:"btnActiveLevel"`
 	Vertical             bool             `json:"vertical"`
@@ -931,7 +931,7 @@ type ButtonGroupSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -939,7 +939,7 @@ type ButtonGroupSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -947,7 +947,7 @@ type ButtonGroupSchema struct {
 	Testid               string        `json:"testid"`
 	BtnClassName         RootSchema    `json:"btnClassName"`
 	BtnActiveClassName   string        `json:"btnActiveClassName"`
-	Buttons              []interface{} `json:"buttons"`
+	Buttons              []any         `json:"buttons"`
 	BtnLevel             string        `json:"btnLevel"`
 	BtnActiveLevel       string        `json:"btnActiveLevel"`
 	Vertical             bool          `json:"vertical"`
@@ -966,7 +966,7 @@ type ButtonToolbarSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -974,13 +974,13 @@ type ButtonToolbarSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Buttons              []interface{} `json:"buttons"`
+	Buttons              []any         `json:"buttons"`
 }
 
 type CRUD2CardsSchema struct {
@@ -1014,7 +1014,7 @@ type CRUD2CardsSchema struct {
 	Visible                       bool                `json:"visible"`
 	VisibleOn                     className           `json:"visibleOn"`
 	Id                            string              `json:"id"`
-	OnEvent                       interface{}         `json:"onEvent"`
+	OnEvent                       any                 `json:"onEvent"`
 	Static                        bool                `json:"static"`
 	StaticOn                      className           `json:"staticOn"`
 	StaticPlaceholder             string              `json:"staticPlaceholder"`
@@ -1022,7 +1022,7 @@ type CRUD2CardsSchema struct {
 	StaticLabelClassName          className           `json:"staticLabelClassName"`
 	StaticInputClassName          className           `json:"staticInputClassName"`
 	StaticSchema                  staticSchema        `json:"staticSchema"`
-	Style                         interface{}         `json:"style"`
+	Style                         any                 `json:"style"`
 	EditorSetting                 editorSetting       `json:"editorSetting"`
 	UseMobileUI                   bool                `json:"useMobileUI"`
 	TestIdBuilder                 RootSchema          `json:"testIdBuilder"`
@@ -1090,7 +1090,7 @@ type CRUD2ListSchema struct {
 	Visible                       bool                `json:"visible"`
 	VisibleOn                     className           `json:"visibleOn"`
 	Id                            string              `json:"id"`
-	OnEvent                       interface{}         `json:"onEvent"`
+	OnEvent                       any                 `json:"onEvent"`
 	Static                        bool                `json:"static"`
 	StaticOn                      className           `json:"staticOn"`
 	StaticPlaceholder             string              `json:"staticPlaceholder"`
@@ -1098,7 +1098,7 @@ type CRUD2ListSchema struct {
 	StaticLabelClassName          className           `json:"staticLabelClassName"`
 	StaticInputClassName          className           `json:"staticInputClassName"`
 	StaticSchema                  staticSchema        `json:"staticSchema"`
-	Style                         interface{}         `json:"style"`
+	Style                         any                 `json:"style"`
 	EditorSetting                 editorSetting       `json:"editorSetting"`
 	UseMobileUI                   bool                `json:"useMobileUI"`
 	TestIdBuilder                 RootSchema          `json:"testIdBuilder"`
@@ -1139,7 +1139,7 @@ type CRUD2TableSchema struct {
 	Title                         SchemaClassName     `json:"title"`
 	Source                        className           `json:"source"`
 	ColumnsTogglable              columnsTogglable    `json:"columnsTogglable"`
-	Columns                       []interface{}       `json:"columns"`
+	Columns                       []any               `json:"columns"`
 	RowSelection                  draggableConfig     `json:"rowSelection"`
 	Expandable                    className           `json:"expandable"`
 	Sticky                        bool                `json:"sticky"`
@@ -1158,7 +1158,7 @@ type CRUD2TableSchema struct {
 	QuickSaveItemApi              className           `json:"quickSaveItemApi"`
 	Messages                      className           `json:"messages"`
 	Reload                        string              `json:"reload"`
-	Actions                       []interface{}       `json:"actions"`
+	Actions                       []any               `json:"actions"`
 	MaxKeepItemSelectionLength    float64             `json:"maxKeepItemSelectionLength"`
 	KeepItemSelectionOnPageChange bool                `json:"keepItemSelectionOnPageChange"`
 	Selectable                    bool                `json:"selectable"`
@@ -1179,7 +1179,7 @@ type CRUD2TableSchema struct {
 	Visible                       bool                `json:"visible"`
 	VisibleOn                     className           `json:"visibleOn"`
 	Id                            string              `json:"id"`
-	OnEvent                       interface{}         `json:"onEvent"`
+	OnEvent                       any                 `json:"onEvent"`
 	Static                        bool                `json:"static"`
 	StaticOn                      className           `json:"staticOn"`
 	StaticPlaceholder             string              `json:"staticPlaceholder"`
@@ -1187,7 +1187,7 @@ type CRUD2TableSchema struct {
 	StaticLabelClassName          className           `json:"staticLabelClassName"`
 	StaticInputClassName          className           `json:"staticInputClassName"`
 	StaticSchema                  staticSchema        `json:"staticSchema"`
-	Style                         interface{}         `json:"style"`
+	Style                         any                 `json:"style"`
 	EditorSetting                 editorSetting       `json:"editorSetting"`
 	UseMobileUI                   bool                `json:"useMobileUI"`
 	TestIdBuilder                 RootSchema          `json:"testIdBuilder"`
@@ -1248,7 +1248,7 @@ type CRUDCardsSchema struct {
 	Visible                        bool                `json:"visible"`
 	VisibleOn                      className           `json:"visibleOn"`
 	Id                             string              `json:"id"`
-	OnEvent                        interface{}         `json:"onEvent"`
+	OnEvent                        any                 `json:"onEvent"`
 	Static                         bool                `json:"static"`
 	StaticOn                       className           `json:"staticOn"`
 	StaticPlaceholder              string              `json:"staticPlaceholder"`
@@ -1256,7 +1256,7 @@ type CRUDCardsSchema struct {
 	StaticLabelClassName           className           `json:"staticLabelClassName"`
 	StaticInputClassName           className           `json:"staticInputClassName"`
 	StaticSchema                   staticSchema        `json:"staticSchema"`
-	Style                          interface{}         `json:"style"`
+	Style                          any                 `json:"style"`
 	EditorSetting                  editorSetting       `json:"editorSetting"`
 	UseMobileUI                    bool                `json:"useMobileUI"`
 	TestIdBuilder                  RootSchema          `json:"testIdBuilder"`
@@ -1265,8 +1265,8 @@ type CRUDCardsSchema struct {
 	TypeVal                        string              `json:"type"`
 	Api                            className           `json:"api"`
 	DeferApi                       className           `json:"deferApi"`
-	BulkActions                    []interface{}       `json:"bulkActions"`
-	ItemActions                    []interface{}       `json:"itemActions"`
+	BulkActions                    []any               `json:"bulkActions"`
+	ItemActions                    []any               `json:"itemActions"`
 	PerPage                        float64             `json:"perPage"`
 	OrderBy                        string              `json:"orderBy"`
 	OrderDir                       string              `json:"orderDir"`
@@ -1287,8 +1287,8 @@ type CRUDCardsSchema struct {
 	QuickSaveItemApi               className           `json:"quickSaveItemApi"`
 	SaveOrderApi                   className           `json:"saveOrderApi"`
 	SyncLocation                   bool                `json:"syncLocation"`
-	HeaderToolbar                  []interface{}       `json:"headerToolbar"`
-	FooterToolbar                  []interface{}       `json:"footerToolbar"`
+	HeaderToolbar                  []any               `json:"headerToolbar"`
+	FooterToolbar                  []any               `json:"footerToolbar"`
 	PerPageAvailable               []float64           `json:"perPageAvailable"`
 	Messages                       RootSchema          `json:"messages"`
 	HideQuickSaveBtn               bool                `json:"hideQuickSaveBtn"`
@@ -1342,7 +1342,7 @@ type CRUDListSchema struct {
 	Visible                        bool                `json:"visible"`
 	VisibleOn                      className           `json:"visibleOn"`
 	Id                             string              `json:"id"`
-	OnEvent                        interface{}         `json:"onEvent"`
+	OnEvent                        any                 `json:"onEvent"`
 	Static                         bool                `json:"static"`
 	StaticOn                       className           `json:"staticOn"`
 	StaticPlaceholder              string              `json:"staticPlaceholder"`
@@ -1350,7 +1350,7 @@ type CRUDListSchema struct {
 	StaticLabelClassName           className           `json:"staticLabelClassName"`
 	StaticInputClassName           className           `json:"staticInputClassName"`
 	StaticSchema                   staticSchema        `json:"staticSchema"`
-	Style                          interface{}         `json:"style"`
+	Style                          any                 `json:"style"`
 	EditorSetting                  editorSetting       `json:"editorSetting"`
 	UseMobileUI                    bool                `json:"useMobileUI"`
 	TestIdBuilder                  RootSchema          `json:"testIdBuilder"`
@@ -1359,8 +1359,8 @@ type CRUDListSchema struct {
 	TypeVal                        string              `json:"type"`
 	Api                            className           `json:"api"`
 	DeferApi                       className           `json:"deferApi"`
-	BulkActions                    []interface{}       `json:"bulkActions"`
-	ItemActions                    []interface{}       `json:"itemActions"`
+	BulkActions                    []any               `json:"bulkActions"`
+	ItemActions                    []any               `json:"itemActions"`
 	PerPage                        float64             `json:"perPage"`
 	OrderBy                        string              `json:"orderBy"`
 	OrderDir                       string              `json:"orderDir"`
@@ -1381,8 +1381,8 @@ type CRUDListSchema struct {
 	QuickSaveItemApi               className           `json:"quickSaveItemApi"`
 	SaveOrderApi                   className           `json:"saveOrderApi"`
 	SyncLocation                   bool                `json:"syncLocation"`
-	HeaderToolbar                  []interface{}       `json:"headerToolbar"`
-	FooterToolbar                  []interface{}       `json:"footerToolbar"`
+	HeaderToolbar                  []any               `json:"headerToolbar"`
+	FooterToolbar                  []any               `json:"footerToolbar"`
 	PerPageAvailable               []float64           `json:"perPageAvailable"`
 	Messages                       RootSchema          `json:"messages"`
 	HideQuickSaveBtn               bool                `json:"hideQuickSaveBtn"`
@@ -1408,7 +1408,7 @@ type CRUDListSchema struct {
 type CRUDTableSchema struct {
 	AffixHeader                    bool                `json:"affixHeader"`
 	AffixFooter                    bool                `json:"affixFooter"`
-	Columns                        []interface{}       `json:"columns"`
+	Columns                        []any               `json:"columns"`
 	ColumnsTogglable               SchemaClassName     `json:"columnsTogglable"`
 	Footable                       SchemaClassName     `json:"footable"`
 	FooterClassName                className           `json:"footerClassName"`
@@ -1422,8 +1422,8 @@ type CRUDTableSchema struct {
 	ToolbarClassName               className           `json:"toolbarClassName"`
 	CombineNum                     SchemaClassName     `json:"combineNum"`
 	CombineFromIndex               float64             `json:"combineFromIndex"`
-	PrefixRow                      []interface{}       `json:"prefixRow"`
-	AffixRow                       []interface{}       `json:"affixRow"`
+	PrefixRow                      []any               `json:"prefixRow"`
+	AffixRow                       []any               `json:"affixRow"`
 	Resizable                      bool                `json:"resizable"`
 	RowClassNameExpr               string              `json:"rowClassNameExpr"`
 	ItemBadge                      className           `json:"itemBadge"`
@@ -1443,7 +1443,7 @@ type CRUDTableSchema struct {
 	Visible                        bool                `json:"visible"`
 	VisibleOn                      className           `json:"visibleOn"`
 	Id                             string              `json:"id"`
-	OnEvent                        interface{}         `json:"onEvent"`
+	OnEvent                        any                 `json:"onEvent"`
 	Static                         bool                `json:"static"`
 	StaticOn                       className           `json:"staticOn"`
 	StaticPlaceholder              string              `json:"staticPlaceholder"`
@@ -1451,7 +1451,7 @@ type CRUDTableSchema struct {
 	StaticLabelClassName           className           `json:"staticLabelClassName"`
 	StaticInputClassName           className           `json:"staticInputClassName"`
 	StaticSchema                   staticSchema        `json:"staticSchema"`
-	Style                          interface{}         `json:"style"`
+	Style                          any                 `json:"style"`
 	EditorSetting                  editorSetting       `json:"editorSetting"`
 	UseMobileUI                    bool                `json:"useMobileUI"`
 	TestIdBuilder                  RootSchema          `json:"testIdBuilder"`
@@ -1459,8 +1459,8 @@ type CRUDTableSchema struct {
 	LoadingConfig                  loadingConfig       `json:"loadingConfig"`
 	TypeVal                        string              `json:"type"`
 	Api                            className           `json:"api"`
-	BulkActions                    []interface{}       `json:"bulkActions"`
-	ItemActions                    []interface{}       `json:"itemActions"`
+	BulkActions                    []any               `json:"bulkActions"`
+	ItemActions                    []any               `json:"itemActions"`
 	PerPage                        float64             `json:"perPage"`
 	OrderBy                        string              `json:"orderBy"`
 	OrderDir                       string              `json:"orderDir"`
@@ -1481,8 +1481,8 @@ type CRUDTableSchema struct {
 	QuickSaveItemApi               className           `json:"quickSaveItemApi"`
 	SaveOrderApi                   className           `json:"saveOrderApi"`
 	SyncLocation                   bool                `json:"syncLocation"`
-	HeaderToolbar                  []interface{}       `json:"headerToolbar"`
-	FooterToolbar                  []interface{}       `json:"footerToolbar"`
+	HeaderToolbar                  []any               `json:"headerToolbar"`
+	FooterToolbar                  []any               `json:"footerToolbar"`
 	PerPageAvailable               []float64           `json:"perPageAvailable"`
 	Messages                       RootSchema          `json:"messages"`
 	HideQuickSaveBtn               bool                `json:"hideQuickSaveBtn"`
@@ -1514,7 +1514,7 @@ type CalendarSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1522,7 +1522,7 @@ type CalendarSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -1532,7 +1532,7 @@ type CalendarSchema struct {
 	ScheduleClassNames   []string      `json:"scheduleClassNames"`
 	ScheduleAction       className     `json:"scheduleAction"`
 	LargeMode            bool          `json:"largeMode"`
-	TodayActiveStyle     interface{}   `json:"todayActiveStyle"`
+	TodayActiveStyle     any           `json:"todayActiveStyle"`
 }
 
 type Card2Schema struct {
@@ -1546,7 +1546,7 @@ type Card2Schema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1554,7 +1554,7 @@ type Card2Schema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -1582,7 +1582,7 @@ type CardSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1590,17 +1590,17 @@ type CardSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	Header               header        `json:"header"`
-	Body                 []interface{} `json:"body"`
+	Body                 []any         `json:"body"`
 	Media                media         `json:"media"`
-	Actions              []interface{} `json:"actions"`
-	Toolbar              []interface{} `json:"toolbar"`
+	Actions              []any         `json:"actions"`
+	Toolbar              []any         `json:"toolbar"`
 	Secondary            className     `json:"secondary"`
 	UseCardLabel         bool          `json:"useCardLabel"`
 }
@@ -1617,7 +1617,7 @@ type CardsSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1625,7 +1625,7 @@ type CardsSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -1663,7 +1663,7 @@ type CarouselSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1671,14 +1671,14 @@ type CarouselSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	Auto                 bool          `json:"auto"`
-	Interval             interface{}   `json:"interval"`
+	Interval             any           `json:"interval"`
 	Duration             float64       `json:"duration"`
 	Width                float64       `json:"width"`
 	Height               float64       `json:"height"`
@@ -1689,7 +1689,7 @@ type CarouselSchema struct {
 	ItemSchema           className     `json:"itemSchema"`
 	Name                 RootSchema    `json:"name"`
 	ThumbMode            string        `json:"thumbMode"`
-	Options              []interface{} `json:"options"`
+	Options              []any         `json:"options"`
 	AlwaysShowArrow      bool          `json:"alwaysShowArrow"`
 	Multiple             multiple      `json:"multiple"`
 	Icons                icons         `json:"icons"`
@@ -1711,13 +1711,13 @@ type ChainedSelectControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -1725,7 +1725,7 @@ type ChainedSelectControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -1761,7 +1761,7 @@ type ChainedSelectControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -1769,7 +1769,7 @@ type ChainedSelectControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -1789,7 +1789,7 @@ type ChartSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1797,7 +1797,7 @@ type ChartSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -1809,8 +1809,8 @@ type ChartSchema struct {
 	InitFetchOn          className     `json:"initFetchOn"`
 	Config               mock          `json:"config"`
 	TrackExpression      string        `json:"trackExpression"`
-	Width                interface{}   `json:"width"`
-	Height               interface{}   `json:"height"`
+	Width                any           `json:"width"`
+	Height               any           `json:"height"`
 	Interval             float64       `json:"interval"`
 	Name                 RootSchema    `json:"name"`
 	DataFilter           RootSchema    `json:"dataFilter"`
@@ -1835,7 +1835,7 @@ type CheckboxControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -1843,14 +1843,14 @@ type CheckboxControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -1879,8 +1879,8 @@ type CheckboxControlSchema struct {
 	InitAutoFill         data             `json:"initAutoFill"`
 	Row                  float64          `json:"row"`
 	TypeVal              string           `json:"type"`
-	TrueValue            interface{}      `json:"trueValue"`
-	FalseValue           interface{}      `json:"falseValue"`
+	TrueValue            any              `json:"trueValue"`
+	FalseValue           any              `json:"falseValue"`
 	Option               string           `json:"option"`
 	Badge                className        `json:"badge"`
 	Partial              bool             `json:"partial"`
@@ -1904,13 +1904,13 @@ type CheckboxesControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -1918,7 +1918,7 @@ type CheckboxesControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -1954,7 +1954,7 @@ type CheckboxesControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -1962,7 +1962,7 @@ type CheckboxesControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -1987,7 +1987,7 @@ type CollapseGroupSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -1995,7 +1995,7 @@ type CollapseGroupSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -2020,7 +2020,7 @@ type CollapseSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -2028,7 +2028,7 @@ type CollapseSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -2066,7 +2066,7 @@ type ColorSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -2074,7 +2074,7 @@ type ColorSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -2090,7 +2090,7 @@ type ColumnSchema struct {
 	TypeVal            string          `json:"type"`
 	RowSpanExpr        string          `json:"rowSpanExpr"`
 	ColSpanExpr        string          `json:"colSpanExpr"`
-	Children           []interface{}   `json:"children"`
+	Children           []any           `json:"children"`
 	Copyable           bool            `json:"copyable"`
 	Remark             string          `json:"remark"`
 	Searchable         SchemaClassName `json:"searchable"`
@@ -2098,22 +2098,22 @@ type ColumnSchema struct {
 	Sortable           bool            `json:"sortable"`
 	Filterable         filterable      `json:"filterable"`
 	Align              string          `json:"align"`
-	Fixed              interface{}     `json:"fixed"`
+	Fixed              any             `json:"fixed"`
 	Toggled            bool            `json:"toggled"`
 	ClassName          string          `json:"className"`
 	TitleClassName     string          `json:"titleClassName"`
 	ClassNameExpr      string          `json:"classNameExpr"`
 	QuickEdit          className       `json:"quickEdit"`
-	Width              interface{}     `json:"width"`
+	Width              any             `json:"width"`
 	CanAccessSuperData bool            `json:"canAccessSuperData"`
 }
 
 type ComboCondition struct {
-	Test     string        `json:"test"`
-	Items    []interface{} `json:"items"`
-	Label    string        `json:"label"`
-	Scaffold staticSchema  `json:"scaffold"`
-	Mode     string        `json:"mode"`
+	Test     string       `json:"test"`
+	Items    []any        `json:"items"`
+	Label    string       `json:"label"`
+	Scaffold staticSchema `json:"scaffold"`
+	Mode     string       `json:"mode"`
 }
 
 type ComboControlSchema struct {
@@ -2127,7 +2127,7 @@ type ComboControlSchema struct {
 	Visible                            bool             `json:"visible"`
 	VisibleOn                          className        `json:"visibleOn"`
 	Id                                 string           `json:"id"`
-	OnEvent                            interface{}      `json:"onEvent"`
+	OnEvent                            any              `json:"onEvent"`
 	Static                             bool             `json:"static"`
 	StaticOn                           className        `json:"staticOn"`
 	StaticPlaceholder                  string           `json:"staticPlaceholder"`
@@ -2135,14 +2135,14 @@ type ComboControlSchema struct {
 	StaticLabelClassName               className        `json:"staticLabelClassName"`
 	StaticInputClassName               className        `json:"staticInputClassName"`
 	StaticSchema                       staticSchema     `json:"staticSchema"`
-	Style                              interface{}      `json:"style"`
+	Style                              any              `json:"style"`
 	EditorSetting                      editorSetting    `json:"editorSetting"`
 	UseMobileUI                        bool             `json:"useMobileUI"`
 	TestIdBuilder                      RootSchema       `json:"testIdBuilder"`
 	Size                               string           `json:"size"`
 	Label                              SchemaClassName  `json:"label"`
 	LabelAlign                         className        `json:"labelAlign"`
-	LabelWidth                         interface{}      `json:"labelWidth"`
+	LabelWidth                         any              `json:"labelWidth"`
 	LabelClassName                     string           `json:"labelClassName"`
 	Name                               string           `json:"name"`
 	ExtraName                          string           `json:"extraName"`
@@ -2176,13 +2176,13 @@ type ComboControlSchema struct {
 	DeleteConfirmText                  string           `json:"deleteConfirmText"`
 	DeleteApi                          className        `json:"deleteApi"`
 	TypeSwitchable                     bool             `json:"typeSwitchable"`
-	Conditions                         []interface{}    `json:"conditions"`
+	Conditions                         []any            `json:"conditions"`
 	FormClassName                      className        `json:"formClassName"`
 	AddButtonClassName                 className        `json:"addButtonClassName"`
 	AddButtonText                      string           `json:"addButtonText"`
 	Addable                            bool             `json:"addable"`
 	Addattop                           bool             `json:"addattop"`
-	Items                              []interface{}    `json:"items"`
+	Items                              []any            `json:"items"`
 	Draggable                          bool             `json:"draggable"`
 	DraggableTip                       string           `json:"draggableTip"`
 	Flat                               bool             `json:"flat"`
@@ -2212,11 +2212,11 @@ type ComboSubControl struct {
 }
 
 type ConditionBuilderConfig struct {
-	ValueTypes []string    `json:"valueTypes"`
-	Fields     RootSchema  `json:"fields"`
-	Funcs      RootSchema  `json:"funcs"`
-	MaxLevel   float64     `json:"maxLevel"`
-	Types      interface{} `json:"types"`
+	ValueTypes []string   `json:"valueTypes"`
+	Fields     RootSchema `json:"fields"`
+	Funcs      RootSchema `json:"funcs"`
+	MaxLevel   float64    `json:"maxLevel"`
+	Types      any        `json:"types"`
 }
 
 type ConditionBuilderControlSchema struct {
@@ -2230,7 +2230,7 @@ type ConditionBuilderControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -2238,14 +2238,14 @@ type ConditionBuilderControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -2290,36 +2290,36 @@ type ConditionBuilderControlSchema struct {
 }
 
 type ConditionBuilderFuncArg struct {
-	TypeVal      RootSchema    `json:"type"`
-	Label        string        `json:"label"`
-	ValueTypes   []string      `json:"valueTypes"`
-	Operators    []interface{} `json:"operators"`
-	Funcs        []string      `json:"funcs"`
-	DefaultValue staticSchema  `json:"defaultValue"`
-	Placeholder  string        `json:"placeholder"`
-	IsOptional   bool          `json:"isOptional"`
+	TypeVal      RootSchema   `json:"type"`
+	Label        string       `json:"label"`
+	ValueTypes   []string     `json:"valueTypes"`
+	Operators    []any        `json:"operators"`
+	Funcs        []string     `json:"funcs"`
+	DefaultValue staticSchema `json:"defaultValue"`
+	Placeholder  string       `json:"placeholder"`
+	IsOptional   bool         `json:"isOptional"`
 }
 
 type ConditionBuilderType struct {
-	DefaultOp   RootSchema    `json:"defaultOp"`
-	Operators   []interface{} `json:"operators"`
-	Placeholder string        `json:"placeholder"`
-	ValueTypes  []string      `json:"valueTypes"`
+	DefaultOp   RootSchema `json:"defaultOp"`
+	Operators   []any      `json:"operators"`
+	Placeholder string     `json:"placeholder"`
+	ValueTypes  []string   `json:"valueTypes"`
 }
 
 type ConditionFieldFunc struct {
-	TypeVal    string        `json:"type"`
-	ReturnType RootSchema    `json:"returnType"`
-	Args       []interface{} `json:"args"`
-	Label      string        `json:"label"`
+	TypeVal    string     `json:"type"`
+	ReturnType RootSchema `json:"returnType"`
+	Args       []any      `json:"args"`
+	Label      string     `json:"label"`
 }
 
 type ConditionGroupValue struct {
-	Id          string        `json:"id"`
-	Conjunction string        `json:"conjunction"`
-	Not         bool          `json:"not"`
-	Children    []interface{} `json:"children"`
-	IfVal       string        `json:"if"`
+	Id          string `json:"id"`
+	Conjunction string `json:"conjunction"`
+	Not         bool   `json:"not"`
+	Children    []any  `json:"children"`
+	IfVal       string `json:"if"`
 }
 
 type ConditionRule struct {
@@ -2352,7 +2352,7 @@ type ContainerSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -2360,7 +2360,7 @@ type ContainerSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -2370,7 +2370,7 @@ type ContainerSchema struct {
 	BodyClassName        className       `json:"bodyClassName"`
 	WrapperComponent     string          `json:"wrapperComponent"`
 	WrapperBody          bool            `json:"wrapperBody"`
-	Draggable            interface{}     `json:"draggable"`
+	Draggable            any             `json:"draggable"`
 	DraggableConfig      draggableConfig `json:"draggableConfig"`
 }
 
@@ -2385,7 +2385,7 @@ type CopyActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -2393,7 +2393,7 @@ type CopyActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -2416,7 +2416,7 @@ type CopyActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -2432,15 +2432,15 @@ type CopyActionSchema struct {
 }
 
 type CustomField struct {
-	TypeVal      string        `json:"type"`
-	Label        string        `json:"label"`
-	ValueTypes   []string      `json:"valueTypes"`
-	Operators    []interface{} `json:"operators"`
-	Funcs        []string      `json:"funcs"`
-	DefaultValue staticSchema  `json:"defaultValue"`
-	Placeholder  string        `json:"placeholder"`
-	Name         string        `json:"name"`
-	Value        staticSchema  `json:"value"`
+	TypeVal      string       `json:"type"`
+	Label        string       `json:"label"`
+	ValueTypes   []string     `json:"valueTypes"`
+	Operators    []any        `json:"operators"`
+	Funcs        []string     `json:"funcs"`
+	DefaultValue staticSchema `json:"defaultValue"`
+	Placeholder  string       `json:"placeholder"`
+	Name         string       `json:"name"`
+	Value        staticSchema `json:"value"`
 }
 
 type DataProviderCollection struct {
@@ -2461,7 +2461,7 @@ type DateControlSchema struct {
 	Visible                  bool             `json:"visible"`
 	VisibleOn                className        `json:"visibleOn"`
 	Id                       string           `json:"id"`
-	OnEvent                  interface{}      `json:"onEvent"`
+	OnEvent                  any              `json:"onEvent"`
 	Static                   bool             `json:"static"`
 	StaticOn                 className        `json:"staticOn"`
 	StaticPlaceholder        string           `json:"staticPlaceholder"`
@@ -2469,14 +2469,14 @@ type DateControlSchema struct {
 	StaticLabelClassName     className        `json:"staticLabelClassName"`
 	StaticInputClassName     className        `json:"staticInputClassName"`
 	StaticSchema             staticSchema     `json:"staticSchema"`
-	Style                    interface{}      `json:"style"`
+	Style                    any              `json:"style"`
 	EditorSetting            editorSetting    `json:"editorSetting"`
 	UseMobileUI              bool             `json:"useMobileUI"`
 	TestIdBuilder            RootSchema       `json:"testIdBuilder"`
 	Size                     string           `json:"size"`
 	Label                    SchemaClassName  `json:"label"`
 	LabelAlign               className        `json:"labelAlign"`
-	LabelWidth               interface{}      `json:"labelWidth"`
+	LabelWidth               any              `json:"labelWidth"`
 	LabelClassName           string           `json:"labelClassName"`
 	Name                     string           `json:"name"`
 	ExtraName                string           `json:"extraName"`
@@ -2532,7 +2532,7 @@ type DateRangeControlSchema struct {
 	Visible                  bool             `json:"visible"`
 	VisibleOn                className        `json:"visibleOn"`
 	Id                       string           `json:"id"`
-	OnEvent                  interface{}      `json:"onEvent"`
+	OnEvent                  any              `json:"onEvent"`
 	Static                   bool             `json:"static"`
 	StaticOn                 className        `json:"staticOn"`
 	StaticPlaceholder        string           `json:"staticPlaceholder"`
@@ -2540,14 +2540,14 @@ type DateRangeControlSchema struct {
 	StaticLabelClassName     className        `json:"staticLabelClassName"`
 	StaticInputClassName     className        `json:"staticInputClassName"`
 	StaticSchema             staticSchema     `json:"staticSchema"`
-	Style                    interface{}      `json:"style"`
+	Style                    any              `json:"style"`
 	EditorSetting            editorSetting    `json:"editorSetting"`
 	UseMobileUI              bool             `json:"useMobileUI"`
 	TestIdBuilder            RootSchema       `json:"testIdBuilder"`
 	Size                     string           `json:"size"`
 	Label                    SchemaClassName  `json:"label"`
 	LabelAlign               className        `json:"labelAlign"`
-	LabelWidth               interface{}      `json:"labelWidth"`
+	LabelWidth               any              `json:"labelWidth"`
 	LabelClassName           string           `json:"labelClassName"`
 	Name                     string           `json:"name"`
 	ExtraName                string           `json:"extraName"`
@@ -2608,7 +2608,7 @@ type DateRangeSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -2616,7 +2616,7 @@ type DateRangeSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -2640,7 +2640,7 @@ type DateSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -2648,7 +2648,7 @@ type DateSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -2674,7 +2674,7 @@ type DateTimeControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -2682,14 +2682,14 @@ type DateTimeControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -2746,7 +2746,7 @@ type DialogActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -2754,7 +2754,7 @@ type DialogActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -2777,7 +2777,7 @@ type DialogActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -2807,7 +2807,7 @@ type DialogSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -2815,14 +2815,14 @@ type DialogSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	InputParams          mock          `json:"inputParams"`
-	Actions              []interface{} `json:"actions"`
+	Actions              []any         `json:"actions"`
 	Body                 className     `json:"body"`
 	BodyClassName        className     `json:"bodyClassName"`
 	CloseOnEsc           bool          `json:"closeOnEsc"`
@@ -2842,12 +2842,12 @@ type DialogSchema struct {
 	Overlay              bool          `json:"overlay"`
 	DialogType           string        `json:"dialogType"`
 	Draggable            bool          `json:"draggable"`
-	Data                 interface{}   `json:"data"`
+	Data                 any           `json:"data"`
 }
 
 type DialogSchemaBase struct {
 	InputParams          mock          `json:"inputParams"`
-	Actions              []interface{} `json:"actions"`
+	Actions              []any         `json:"actions"`
 	Body                 className     `json:"body"`
 	BodyClassName        className     `json:"bodyClassName"`
 	CloseOnEsc           bool          `json:"closeOnEsc"`
@@ -2867,7 +2867,7 @@ type DialogSchemaBase struct {
 	Overlay              bool          `json:"overlay"`
 	DialogType           string        `json:"dialogType"`
 	Draggable            bool          `json:"draggable"`
-	Data                 interface{}   `json:"data"`
+	Data                 any           `json:"data"`
 	Testid               string        `json:"testid"`
 	ID                   string        `json:"$$id"`
 	ClassName            className     `json:"className"`
@@ -2879,7 +2879,7 @@ type DialogSchemaBase struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -2887,7 +2887,7 @@ type DialogSchemaBase struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -2904,7 +2904,7 @@ type DiffControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -2912,14 +2912,14 @@ type DiffControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -2964,7 +2964,7 @@ type DividerSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -2972,7 +2972,7 @@ type DividerSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -2998,7 +2998,7 @@ type DrawerActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -3006,7 +3006,7 @@ type DrawerActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -3029,7 +3029,7 @@ type DrawerActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -3059,7 +3059,7 @@ type DrawerSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3067,14 +3067,14 @@ type DrawerSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	InputParams          mock          `json:"inputParams"`
-	Actions              []interface{} `json:"actions"`
+	Actions              []any         `json:"actions"`
 	Body                 className     `json:"body"`
 	BodyClassName        className     `json:"bodyClassName"`
 	HeaderClassName      className     `json:"headerClassName"`
@@ -3085,8 +3085,8 @@ type DrawerSchema struct {
 	Title                className     `json:"title"`
 	Position             string        `json:"position"`
 	ShowCloseButton      bool          `json:"showCloseButton"`
-	Width                interface{}   `json:"width"`
-	Height               interface{}   `json:"height"`
+	Width                any           `json:"width"`
+	Height               any           `json:"height"`
 	Header               className     `json:"header"`
 	Footer               className     `json:"footer"`
 	Confirm              bool          `json:"confirm"`
@@ -3094,12 +3094,12 @@ type DrawerSchema struct {
 	Overlay              bool          `json:"overlay"`
 	CloseOnOutside       bool          `json:"closeOnOutside"`
 	ShowErrorMsg         bool          `json:"showErrorMsg"`
-	Data                 interface{}   `json:"data"`
+	Data                 any           `json:"data"`
 }
 
 type DrawerSchemaBase struct {
 	InputParams          mock          `json:"inputParams"`
-	Actions              []interface{} `json:"actions"`
+	Actions              []any         `json:"actions"`
 	Body                 className     `json:"body"`
 	ClassName            className     `json:"className"`
 	BodyClassName        className     `json:"bodyClassName"`
@@ -3111,8 +3111,8 @@ type DrawerSchemaBase struct {
 	Title                className     `json:"title"`
 	Position             string        `json:"position"`
 	ShowCloseButton      bool          `json:"showCloseButton"`
-	Width                interface{}   `json:"width"`
-	Height               interface{}   `json:"height"`
+	Width                any           `json:"width"`
+	Height               any           `json:"height"`
 	Header               className     `json:"header"`
 	Footer               className     `json:"footer"`
 	Confirm              bool          `json:"confirm"`
@@ -3120,7 +3120,7 @@ type DrawerSchemaBase struct {
 	Overlay              bool          `json:"overlay"`
 	CloseOnOutside       bool          `json:"closeOnOutside"`
 	ShowErrorMsg         bool          `json:"showErrorMsg"`
-	Data                 interface{}   `json:"data"`
+	Data                 any           `json:"data"`
 	Testid               string        `json:"testid"`
 	ID                   string        `json:"$$id"`
 	Ref                  string        `json:"$ref"`
@@ -3131,7 +3131,7 @@ type DrawerSchemaBase struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3139,7 +3139,7 @@ type DrawerSchemaBase struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -3160,7 +3160,7 @@ type DropdownButtonSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3168,7 +3168,7 @@ type DropdownButtonSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -3176,7 +3176,7 @@ type DropdownButtonSchema struct {
 	Testid               string        `json:"testid"`
 	Block                bool          `json:"block"`
 	BtnClassName         className     `json:"btnClassName"`
-	Buttons              []interface{} `json:"buttons"`
+	Buttons              []any         `json:"buttons"`
 	Body                 className     `json:"body"`
 	Label                string        `json:"label"`
 	Level                string        `json:"level"`
@@ -3203,7 +3203,7 @@ type EachSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3211,7 +3211,7 @@ type EachSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -3228,7 +3228,7 @@ type EachSchema struct {
 type EditorControlSchema struct {
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -3266,7 +3266,7 @@ type EditorControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -3274,7 +3274,7 @@ type EditorControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -3296,7 +3296,7 @@ type EmailActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -3304,7 +3304,7 @@ type EmailActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -3327,7 +3327,7 @@ type EmailActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -3346,12 +3346,12 @@ type EmailActionSchema struct {
 }
 
 type ExpandableSchema struct {
-	TypeVal                  string        `json:"type"`
-	KeyField                 string        `json:"keyField"`
-	ExpandableOn             string        `json:"expandableOn"`
-	ExpandedRowClassNameExpr string        `json:"expandedRowClassNameExpr"`
-	ExpandedRowKeys          []interface{} `json:"expandedRowKeys"`
-	ExpandedRowKeysExpr      string        `json:"expandedRowKeysExpr"`
+	TypeVal                  string `json:"type"`
+	KeyField                 string `json:"keyField"`
+	ExpandableOn             string `json:"expandableOn"`
+	ExpandedRowClassNameExpr string `json:"expandedRowClassNameExpr"`
+	ExpandedRowKeys          []any  `json:"expandedRowKeys"`
+	ExpandedRowKeysExpr      string `json:"expandedRowKeysExpr"`
 }
 
 type ExpressionField struct {
@@ -3365,14 +3365,14 @@ type ExpressionFormula struct {
 }
 
 type ExpressionFunc struct {
-	TypeVal string        `json:"type"`
-	FuncVal string        `json:"func"`
-	Args    []interface{} `json:"args"`
+	TypeVal string `json:"type"`
+	FuncVal string `json:"func"`
+	Args    []any  `json:"args"`
 }
 
 type FeedbackDialog struct {
 	InputParams          mock          `json:"inputParams"`
-	Actions              []interface{} `json:"actions"`
+	Actions              []any         `json:"actions"`
 	Body                 className     `json:"body"`
 	BodyClassName        className     `json:"bodyClassName"`
 	CloseOnEsc           bool          `json:"closeOnEsc"`
@@ -3392,7 +3392,7 @@ type FeedbackDialog struct {
 	Overlay              bool          `json:"overlay"`
 	DialogType           string        `json:"dialogType"`
 	Draggable            bool          `json:"draggable"`
-	Data                 interface{}   `json:"data"`
+	Data                 any           `json:"data"`
 	Testid               string        `json:"testid"`
 	ID                   string        `json:"$$id"`
 	ClassName            className     `json:"className"`
@@ -3404,7 +3404,7 @@ type FeedbackDialog struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            string        `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3412,7 +3412,7 @@ type FeedbackDialog struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -3421,8 +3421,8 @@ type FeedbackDialog struct {
 }
 
 type FieldGroup struct {
-	Label    string        `json:"label"`
-	Children []interface{} `json:"children"`
+	Label    string `json:"label"`
+	Children []any  `json:"children"`
 }
 
 type FieldSetControlSchema struct {
@@ -3451,7 +3451,7 @@ type FieldSetControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -3459,13 +3459,13 @@ type FieldSetControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -3524,7 +3524,7 @@ type FileControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -3532,14 +3532,14 @@ type FileControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -3564,7 +3564,7 @@ type FileControlSchema struct {
 	Value                mock             `json:"value"`
 	ClearValueOnHidden   bool             `json:"clearValueOnHidden"`
 	ValidateApi          SchemaClassName  `json:"validateApi"`
-	AutoFill             interface{}      `json:"autoFill"`
+	AutoFill             any              `json:"autoFill"`
 	InitAutoFill         bool             `json:"initAutoFill"`
 	Row                  float64          `json:"row"`
 	TypeVal              string           `json:"type"`
@@ -3614,7 +3614,7 @@ type FlexSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3622,7 +3622,7 @@ type FlexSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -3646,7 +3646,7 @@ type FormControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -3654,14 +3654,14 @@ type FormControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -3694,12 +3694,12 @@ type FormControlSchema struct {
 }
 
 type FormHorizontal struct {
-	Left       float64     `json:"left"`
-	Right      float64     `json:"right"`
-	LeftFixed  data        `json:"leftFixed"`
-	Justify    bool        `json:"justify"`
-	LabelAlign string      `json:"labelAlign"`
-	LabelWidth interface{} `json:"labelWidth"`
+	Left       float64 `json:"left"`
+	Right      float64 `json:"right"`
+	LeftFixed  data    `json:"leftFixed"`
+	Justify    bool    `json:"justify"`
+	LabelAlign string  `json:"labelAlign"`
+	LabelWidth any     `json:"labelWidth"`
 }
 
 type FormSchema struct {
@@ -3713,7 +3713,7 @@ type FormSchema struct {
 	Visible                     bool            `json:"visible"`
 	VisibleOn                   className       `json:"visibleOn"`
 	Id                          string          `json:"id"`
-	OnEvent                     interface{}     `json:"onEvent"`
+	OnEvent                     any             `json:"onEvent"`
 	Static                      bool            `json:"static"`
 	StaticOn                    RootSchema      `json:"staticOn"`
 	StaticPlaceholder           string          `json:"staticPlaceholder"`
@@ -3721,14 +3721,14 @@ type FormSchema struct {
 	StaticLabelClassName        className       `json:"staticLabelClassName"`
 	StaticInputClassName        className       `json:"staticInputClassName"`
 	StaticSchema                staticSchema    `json:"staticSchema"`
-	Style                       interface{}     `json:"style"`
+	Style                       any             `json:"style"`
 	EditorSetting               editorSetting   `json:"editorSetting"`
 	UseMobileUI                 bool            `json:"useMobileUI"`
 	TestIdBuilder               RootSchema      `json:"testIdBuilder"`
 	TypeVal                     string          `json:"type"`
 	Testid                      string          `json:"testid"`
 	Title                       string          `json:"title"`
-	Actions                     []interface{}   `json:"actions"`
+	Actions                     []any           `json:"actions"`
 	Body                        className       `json:"body"`
 	Tabs                        staticSchema    `json:"tabs"`
 	FieldSet                    staticSchema    `json:"fieldSet"`
@@ -3775,7 +3775,7 @@ type FormSchema struct {
 	Rules                       []ArrayItem3    `json:"rules"`
 	PreventEnterSubmit          bool            `json:"preventEnterSubmit"`
 	LabelAlign                  className       `json:"labelAlign"`
-	LabelWidth                  interface{}     `json:"labelWidth"`
+	LabelWidth                  any             `json:"labelWidth"`
 }
 
 type FormulaControlSchema struct {
@@ -3789,7 +3789,7 @@ type FormulaControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -3797,14 +3797,14 @@ type FormulaControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -3844,8 +3844,8 @@ type FormulaPickerInputSettings struct {
 }
 
 type FuncGroup struct {
-	GroupName string        `json:"groupName"`
-	Items     []interface{} `json:"items"`
+	GroupName string `json:"groupName"`
+	Items     []any  `json:"items"`
 }
 
 type FuncItem struct {
@@ -3869,7 +3869,7 @@ type Grid2DSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -3877,7 +3877,7 @@ type Grid2DSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -3885,10 +3885,10 @@ type Grid2DSchema struct {
 	Testid               string          `json:"testid"`
 	Cols                 float64         `json:"cols"`
 	Width                SchemaClassName `json:"width"`
-	Gap                  interface{}     `json:"gap"`
-	GapRow               interface{}     `json:"gapRow"`
-	RowHeight            interface{}     `json:"rowHeight"`
-	Grids                []interface{}   `json:"grids"`
+	Gap                  any             `json:"gap"`
+	GapRow               any             `json:"gapRow"`
+	RowHeight            any             `json:"rowHeight"`
+	Grids                []any           `json:"grids"`
 }
 
 type GridColumnObject struct {
@@ -3918,7 +3918,7 @@ type GridSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -3926,13 +3926,13 @@ type GridSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Columns              []interface{} `json:"columns"`
+	Columns              []any         `json:"columns"`
 	Gap                  string        `json:"gap"`
 	Valign               string        `json:"valign"`
 	Align                string        `json:"align"`
@@ -3949,7 +3949,7 @@ type GroupControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -3957,14 +3957,14 @@ type GroupControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -3993,7 +3993,7 @@ type GroupControlSchema struct {
 	InitAutoFill         data             `json:"initAutoFill"`
 	Row                  float64          `json:"row"`
 	TypeVal              string           `json:"type"`
-	Body                 []interface{}    `json:"body"`
+	Body                 []any            `json:"body"`
 	Gap                  string           `json:"gap"`
 	Direction            string           `json:"direction"`
 	SubFormMode          string           `json:"subFormMode"`
@@ -4005,16 +4005,16 @@ type GroupSubControl struct {
 }
 
 type HBoxColumnObject struct {
-	ColumnClassName string      `json:"columnClassName"`
-	Valign          string      `json:"valign"`
-	Width           interface{} `json:"width"`
-	Height          interface{} `json:"height"`
-	Style           interface{} `json:"style"`
-	Mode            string      `json:"mode"`
-	Horizontal      className   `json:"horizontal"`
-	Body            className   `json:"body"`
-	Visible         bool        `json:"visible"`
-	VisibleOn       className   `json:"visibleOn"`
+	ColumnClassName string    `json:"columnClassName"`
+	Valign          string    `json:"valign"`
+	Width           any       `json:"width"`
+	Height          any       `json:"height"`
+	Style           any       `json:"style"`
+	Mode            string    `json:"mode"`
+	Horizontal      className `json:"horizontal"`
+	Body            className `json:"body"`
+	Visible         bool      `json:"visible"`
+	VisibleOn       className `json:"visibleOn"`
 }
 
 type HBoxSchema struct {
@@ -4028,7 +4028,7 @@ type HBoxSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -4036,13 +4036,13 @@ type HBoxSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Columns              []interface{} `json:"columns"`
+	Columns              []any         `json:"columns"`
 	SubFormMode          string        `json:"subFormMode"`
 	SubFormHorizontal    className     `json:"subFormHorizontal"`
 	Gap                  string        `json:"gap"`
@@ -4065,7 +4065,7 @@ type HiddenControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -4073,14 +4073,14 @@ type HiddenControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -4122,7 +4122,7 @@ type IFrameSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -4130,16 +4130,16 @@ type IFrameSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	Src                  className     `json:"src"`
-	Events               interface{}   `json:"events"`
-	Width                interface{}   `json:"width"`
-	Height               interface{}   `json:"height"`
+	Events               any           `json:"events"`
+	Width                any           `json:"width"`
+	Height               any           `json:"height"`
 	Allow                string        `json:"allow"`
 	Name                 string        `json:"name"`
 	Referrerpolicy       string        `json:"referrerpolicy"`
@@ -4168,7 +4168,7 @@ type IconSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -4176,7 +4176,7 @@ type IconSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -4198,7 +4198,7 @@ type ImageControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -4206,14 +4206,14 @@ type ImageControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -4238,7 +4238,7 @@ type ImageControlSchema struct {
 	Value                mock             `json:"value"`
 	ClearValueOnHidden   bool             `json:"clearValueOnHidden"`
 	ValidateApi          SchemaClassName  `json:"validateApi"`
-	AutoFill             interface{}      `json:"autoFill"`
+	AutoFill             any              `json:"autoFill"`
 	InitAutoFill         bool             `json:"initAutoFill"`
 	Row                  float64          `json:"row"`
 	TypeVal              string           `json:"type"`
@@ -4290,7 +4290,7 @@ type ImageSchema struct {
 	Visible               bool          `json:"visible"`
 	VisibleOn             className     `json:"visibleOn"`
 	Id                    string        `json:"id"`
-	OnEvent               interface{}   `json:"onEvent"`
+	OnEvent               any           `json:"onEvent"`
 	Static                bool          `json:"static"`
 	StaticOn              className     `json:"staticOn"`
 	StaticPlaceholder     string        `json:"staticPlaceholder"`
@@ -4298,7 +4298,7 @@ type ImageSchema struct {
 	StaticLabelClassName  className     `json:"staticLabelClassName"`
 	StaticInputClassName  className     `json:"staticInputClassName"`
 	StaticSchema          staticSchema  `json:"staticSchema"`
-	Style                 interface{}   `json:"style"`
+	Style                 any           `json:"style"`
 	EditorSetting         editorSetting `json:"editorSetting"`
 	UseMobileUI           bool          `json:"useMobileUI"`
 	TestIdBuilder         RootSchema    `json:"testIdBuilder"`
@@ -4327,7 +4327,7 @@ type ImageSchema struct {
 	Blank                 bool          `json:"blank"`
 	HtmlTarget            string        `json:"htmlTarget"`
 	ShowToolbar           bool          `json:"showToolbar"`
-	ToolbarActions        []interface{} `json:"toolbarActions"`
+	ToolbarActions        []any         `json:"toolbarActions"`
 }
 
 type ImageToolbarAction struct {
@@ -4349,7 +4349,7 @@ type ImagesSchema struct {
 	Visible               bool          `json:"visible"`
 	VisibleOn             className     `json:"visibleOn"`
 	Id                    string        `json:"id"`
-	OnEvent               interface{}   `json:"onEvent"`
+	OnEvent               any           `json:"onEvent"`
 	Static                bool          `json:"static"`
 	StaticOn              className     `json:"staticOn"`
 	StaticPlaceholder     string        `json:"staticPlaceholder"`
@@ -4357,7 +4357,7 @@ type ImagesSchema struct {
 	StaticLabelClassName  className     `json:"staticLabelClassName"`
 	StaticInputClassName  className     `json:"staticInputClassName"`
 	StaticSchema          staticSchema  `json:"staticSchema"`
-	Style                 interface{}   `json:"style"`
+	Style                 any           `json:"style"`
 	EditorSetting         editorSetting `json:"editorSetting"`
 	UseMobileUI           bool          `json:"useMobileUI"`
 	TestIdBuilder         RootSchema    `json:"testIdBuilder"`
@@ -4371,7 +4371,7 @@ type ImagesSchema struct {
 	Name                  string        `json:"name"`
 	Value                 staticSchema  `json:"value"`
 	Source                string        `json:"source"`
-	Options               []interface{} `json:"options"`
+	Options               []any         `json:"options"`
 	Src                   string        `json:"src"`
 	OriginalSrc           string        `json:"originalSrc"`
 	EnlargeAble           bool          `json:"enlargeAble"`
@@ -4380,7 +4380,7 @@ type ImagesSchema struct {
 	ListClassName         className     `json:"listClassName"`
 	ImageGallaryClassName className     `json:"imageGallaryClassName"`
 	ShowToolbar           bool          `json:"showToolbar"`
-	ToolbarActions        []interface{} `json:"toolbarActions"`
+	ToolbarActions        []any         `json:"toolbarActions"`
 }
 
 type InputCityControlSchema struct {
@@ -4395,7 +4395,7 @@ type InputCityControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -4403,14 +4403,14 @@ type InputCityControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -4460,7 +4460,7 @@ type InputColorControlSchema struct {
 	Visible                  bool             `json:"visible"`
 	VisibleOn                className        `json:"visibleOn"`
 	Id                       string           `json:"id"`
-	OnEvent                  interface{}      `json:"onEvent"`
+	OnEvent                  any              `json:"onEvent"`
 	Static                   bool             `json:"static"`
 	StaticOn                 className        `json:"staticOn"`
 	StaticPlaceholder        string           `json:"staticPlaceholder"`
@@ -4468,14 +4468,14 @@ type InputColorControlSchema struct {
 	StaticLabelClassName     className        `json:"staticLabelClassName"`
 	StaticInputClassName     className        `json:"staticInputClassName"`
 	StaticSchema             staticSchema     `json:"staticSchema"`
-	Style                    interface{}      `json:"style"`
+	Style                    any              `json:"style"`
 	EditorSetting            editorSetting    `json:"editorSetting"`
 	UseMobileUI              bool             `json:"useMobileUI"`
 	TestIdBuilder            RootSchema       `json:"testIdBuilder"`
 	Size                     string           `json:"size"`
 	Label                    SchemaClassName  `json:"label"`
 	LabelAlign               className        `json:"labelAlign"`
-	LabelWidth               interface{}      `json:"labelWidth"`
+	LabelWidth               any              `json:"labelWidth"`
 	LabelClassName           string           `json:"labelClassName"`
 	Name                     string           `json:"name"`
 	ExtraName                string           `json:"extraName"`
@@ -4507,7 +4507,7 @@ type InputColorControlSchema struct {
 	Clearable                bool             `json:"clearable"`
 	Format                   string           `json:"format"`
 	CloseOnSelect            bool             `json:"closeOnSelect"`
-	PresetColors             []interface{}    `json:"presetColors"`
+	PresetColors             []any            `json:"presetColors"`
 	AllowCustomColor         bool             `json:"allowCustomColor"`
 	PopOverContainerSelector string           `json:"popOverContainerSelector"`
 }
@@ -4523,7 +4523,7 @@ type InputGroupControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -4531,14 +4531,14 @@ type InputGroupControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -4582,7 +4582,7 @@ type InputSignatureSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -4590,14 +4590,14 @@ type InputSignatureSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -4652,7 +4652,7 @@ type JSONSchemaEditorControlSchema struct {
 	Size                  string           `json:"size"`
 	Label                 SchemaClassName  `json:"label"`
 	LabelAlign            className        `json:"labelAlign"`
-	LabelWidth            interface{}      `json:"labelWidth"`
+	LabelWidth            any              `json:"labelWidth"`
 	LabelClassName        string           `json:"labelClassName"`
 	Name                  string           `json:"name"`
 	ExtraName             string           `json:"extraName"`
@@ -4687,7 +4687,7 @@ type JSONSchemaEditorControlSchema struct {
 	Visible               bool             `json:"visible"`
 	VisibleOn             className        `json:"visibleOn"`
 	Id                    string           `json:"id"`
-	OnEvent               interface{}      `json:"onEvent"`
+	OnEvent               any              `json:"onEvent"`
 	Static                bool             `json:"static"`
 	StaticOn              className        `json:"staticOn"`
 	StaticPlaceholder     string           `json:"staticPlaceholder"`
@@ -4695,16 +4695,16 @@ type JSONSchemaEditorControlSchema struct {
 	StaticLabelClassName  className        `json:"staticLabelClassName"`
 	StaticInputClassName  className        `json:"staticInputClassName"`
 	StaticSchema          staticSchema     `json:"staticSchema"`
-	Style                 interface{}      `json:"style"`
+	Style                 any              `json:"style"`
 	EditorSetting         editorSetting    `json:"editorSetting"`
 	UseMobileUI           bool             `json:"useMobileUI"`
 	TestIdBuilder         RootSchema       `json:"testIdBuilder"`
-	Definitions           interface{}      `json:"definitions"`
+	Definitions           any              `json:"definitions"`
 	RootTypeMutable       bool             `json:"rootTypeMutable"`
 	ShowRootInfo          bool             `json:"showRootInfo"`
 	DisabledTypes         []string         `json:"disabledTypes"`
 	EnableAdvancedSetting bool             `json:"enableAdvancedSetting"`
-	AdvancedSettings      interface{}      `json:"advancedSettings"`
+	AdvancedSettings      any              `json:"advancedSettings"`
 	Placeholder           className        `json:"placeholder"`
 	Mini                  bool             `json:"mini"`
 }
@@ -4720,7 +4720,7 @@ type JsonSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -4728,7 +4728,7 @@ type JsonSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -4757,7 +4757,7 @@ type LinkActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -4765,7 +4765,7 @@ type LinkActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -4788,7 +4788,7 @@ type LinkActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -4814,7 +4814,7 @@ type LinkSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -4822,7 +4822,7 @@ type LinkSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -4867,13 +4867,13 @@ type ListControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -4881,7 +4881,7 @@ type ListControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -4917,7 +4917,7 @@ type ListControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -4925,7 +4925,7 @@ type ListControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -4951,7 +4951,7 @@ type ListItemSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -4959,14 +4959,14 @@ type ListItemSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
-	Actions              []interface{} `json:"actions"`
+	Actions              []any         `json:"actions"`
 	ActionsPosition      string        `json:"actionsPosition"`
 	Avatar               className     `json:"avatar"`
-	Body                 []interface{} `json:"body"`
+	Body                 []any         `json:"body"`
 	Desc                 className     `json:"desc"`
 	Remark               className     `json:"remark"`
 	Title                className     `json:"title"`
@@ -4984,7 +4984,7 @@ type ListSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -4992,7 +4992,7 @@ type ListSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -5020,19 +5020,19 @@ type ListSchema struct {
 }
 
 type ListenerAction struct {
-	ActionType      string      `json:"actionType"`
-	Description     string      `json:"description"`
-	ComponentId     string      `json:"componentId"`
-	ComponentName   string      `json:"componentName"`
-	IgnoreError     bool        `json:"ignoreError"`
-	Args            interface{} `json:"args"`
-	Data            data        `json:"data"`
-	DataMergeMode   string      `json:"dataMergeMode"`
-	OutputVar       string      `json:"outputVar"`
-	PreventDefault  bool        `json:"preventDefault"`
-	StopPropagation bool        `json:"stopPropagation"`
-	Expression      data        `json:"expression"`
-	ExecOn          string      `json:"execOn"`
+	ActionType      string `json:"actionType"`
+	Description     string `json:"description"`
+	ComponentId     string `json:"componentId"`
+	ComponentName   string `json:"componentName"`
+	IgnoreError     bool   `json:"ignoreError"`
+	Args            any    `json:"args"`
+	Data            data   `json:"data"`
+	DataMergeMode   string `json:"dataMergeMode"`
+	OutputVar       string `json:"outputVar"`
+	PreventDefault  bool   `json:"preventDefault"`
+	StopPropagation bool   `json:"stopPropagation"`
+	Expression      data   `json:"expression"`
+	ExecOn          string `json:"execOn"`
 }
 
 type LocationControlSchema struct {
@@ -5046,7 +5046,7 @@ type LocationControlSchema struct {
 	Visible                bool             `json:"visible"`
 	VisibleOn              className        `json:"visibleOn"`
 	Id                     string           `json:"id"`
-	OnEvent                interface{}      `json:"onEvent"`
+	OnEvent                any              `json:"onEvent"`
 	Static                 bool             `json:"static"`
 	StaticOn               className        `json:"staticOn"`
 	StaticPlaceholder      string           `json:"staticPlaceholder"`
@@ -5054,14 +5054,14 @@ type LocationControlSchema struct {
 	StaticLabelClassName   className        `json:"staticLabelClassName"`
 	StaticInputClassName   className        `json:"staticInputClassName"`
 	StaticSchema           staticSchema     `json:"staticSchema"`
-	Style                  interface{}      `json:"style"`
+	Style                  any              `json:"style"`
 	EditorSetting          editorSetting    `json:"editorSetting"`
 	UseMobileUI            bool             `json:"useMobileUI"`
 	TestIdBuilder          RootSchema       `json:"testIdBuilder"`
 	Size                   string           `json:"size"`
 	Label                  SchemaClassName  `json:"label"`
 	LabelAlign             className        `json:"labelAlign"`
-	LabelWidth             interface{}      `json:"labelWidth"`
+	LabelWidth             any              `json:"labelWidth"`
 	LabelClassName         string           `json:"labelClassName"`
 	Name                   string           `json:"name"`
 	ExtraName              string           `json:"extraName"`
@@ -5108,7 +5108,7 @@ type MappingSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -5116,14 +5116,14 @@ type MappingSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
 	TypeVal              string          `json:"type"`
 	Testid               string          `json:"testid"`
 	Name                 string          `json:"name"`
-	MapVal               interface{}     `json:"map"`
+	MapVal               any             `json:"map"`
 	ValueField           string          `json:"valueField"`
 	LabelField           string          `json:"labelField"`
 	ItemSchema           className       `json:"itemSchema"`
@@ -5142,7 +5142,7 @@ type MatrixControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -5150,14 +5150,14 @@ type MatrixControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -5205,7 +5205,7 @@ type MonthControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -5213,14 +5213,14 @@ type MonthControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -5287,7 +5287,7 @@ type MonthRangeControlSchema struct {
 	Size                     string           `json:"size"`
 	Label                    SchemaClassName  `json:"label"`
 	LabelAlign               className        `json:"labelAlign"`
-	LabelWidth               interface{}      `json:"labelWidth"`
+	LabelWidth               any              `json:"labelWidth"`
 	LabelClassName           string           `json:"labelClassName"`
 	Name                     string           `json:"name"`
 	ExtraName                string           `json:"extraName"`
@@ -5322,7 +5322,7 @@ type MonthRangeControlSchema struct {
 	Visible                  bool             `json:"visible"`
 	VisibleOn                className        `json:"visibleOn"`
 	Id                       string           `json:"id"`
-	OnEvent                  interface{}      `json:"onEvent"`
+	OnEvent                  any              `json:"onEvent"`
 	Static                   bool             `json:"static"`
 	StaticOn                 className        `json:"staticOn"`
 	StaticPlaceholder        string           `json:"staticPlaceholder"`
@@ -5330,7 +5330,7 @@ type MonthRangeControlSchema struct {
 	StaticLabelClassName     className        `json:"staticLabelClassName"`
 	StaticInputClassName     className        `json:"staticInputClassName"`
 	StaticSchema             staticSchema     `json:"staticSchema"`
-	Style                    interface{}      `json:"style"`
+	Style                    any              `json:"style"`
 	EditorSetting            editorSetting    `json:"editorSetting"`
 	UseMobileUI              bool             `json:"useMobileUI"`
 	TestIdBuilder            RootSchema       `json:"testIdBuilder"`
@@ -5348,7 +5348,7 @@ type MultilineTextSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -5356,7 +5356,7 @@ type MultilineTextSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -5385,7 +5385,7 @@ type NavItemSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -5393,7 +5393,7 @@ type NavItemSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -5405,7 +5405,7 @@ type NavItemSchema struct {
 	Active               bool            `json:"active"`
 	DeferVal             bool            `json:"defer"`
 	DeferApi             RootSchema      `json:"deferApi"`
-	Children             []interface{}   `json:"children"`
+	Children             []any           `json:"children"`
 	Key                  string          `json:"key"`
 	DisabledTip          string          `json:"disabledTip"`
 	Mode                 string          `json:"mode"`
@@ -5436,7 +5436,7 @@ type NavSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -5444,13 +5444,13 @@ type NavSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
 	TypeVal              string          `json:"type"`
 	Testid               string          `json:"testid"`
-	Links                []interface{}   `json:"links"`
+	Links                []any           `json:"links"`
 	IndentSize           float64         `json:"indentSize"`
 	Source               className       `json:"source"`
 	DeferApi             className       `json:"deferApi"`
@@ -5492,13 +5492,13 @@ type NestedSelectControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -5506,7 +5506,7 @@ type NestedSelectControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -5542,7 +5542,7 @@ type NestedSelectControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -5550,7 +5550,7 @@ type NestedSelectControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -5565,7 +5565,7 @@ type NestedSelectControlSchema struct {
 	OnlyLeaf             bool             `json:"onlyLeaf"`
 	HideNodePathLabel    bool             `json:"hideNodePathLabel"`
 	MaxTagCount          float64          `json:"maxTagCount"`
-	OverflowTagPopover   interface{}      `json:"overflowTagPopover"`
+	OverflowTagPopover   any              `json:"overflowTagPopover"`
 }
 
 type NumberControlSchema struct {
@@ -5579,7 +5579,7 @@ type NumberControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -5587,14 +5587,14 @@ type NumberControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -5650,7 +5650,7 @@ type OperationSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -5658,14 +5658,14 @@ type OperationSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	Placeholder          string        `json:"placeholder"`
-	Buttons              []interface{} `json:"buttons"`
+	Buttons              []any         `json:"buttons"`
 }
 
 type OperatorType struct {
@@ -5698,7 +5698,7 @@ type OtherActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -5706,7 +5706,7 @@ type OtherActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -5729,7 +5729,7 @@ type OtherActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -5755,7 +5755,7 @@ type PageSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -5763,7 +5763,7 @@ type PageSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -5780,8 +5780,8 @@ type PageSchema struct {
 	AsideMinWidth        float64       `json:"asideMinWidth"`
 	AsideMaxWidth        float64       `json:"asideMaxWidth"`
 	AsideClassName       className     `json:"asideClassName"`
-	Css                  interface{}   `json:"css"`
-	MobileCSS            interface{}   `json:"mobileCSS"`
+	Css                  any           `json:"css"`
+	MobileCSS            any           `json:"mobileCSS"`
 	Data                 className     `json:"data"`
 	HeaderClassName      className     `json:"headerClassName"`
 	InitApi              className     `json:"initApi"`
@@ -5812,7 +5812,7 @@ type PaginationSchema struct {
 	Visible                  bool              `json:"visible"`
 	VisibleOn                className         `json:"visibleOn"`
 	Id                       string            `json:"id"`
-	OnEvent                  interface{}       `json:"onEvent"`
+	OnEvent                  any               `json:"onEvent"`
 	Static                   bool              `json:"static"`
 	StaticOn                 className         `json:"staticOn"`
 	StaticPlaceholder        string            `json:"staticPlaceholder"`
@@ -5820,7 +5820,7 @@ type PaginationSchema struct {
 	StaticLabelClassName     className         `json:"staticLabelClassName"`
 	StaticInputClassName     className         `json:"staticInputClassName"`
 	StaticSchema             staticSchema      `json:"staticSchema"`
-	Style                    interface{}       `json:"style"`
+	Style                    any               `json:"style"`
 	EditorSetting            editorSetting     `json:"editorSetting"`
 	UseMobileUI              bool              `json:"useMobileUI"`
 	TestIdBuilder            RootSchema        `json:"testIdBuilder"`
@@ -5850,7 +5850,7 @@ type PaginationWrapperSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -5858,7 +5858,7 @@ type PaginationWrapperSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -5884,7 +5884,7 @@ type PanelSchema struct {
 	Visible                 bool            `json:"visible"`
 	VisibleOn               className       `json:"visibleOn"`
 	Id                      string          `json:"id"`
-	OnEvent                 interface{}     `json:"onEvent"`
+	OnEvent                 any             `json:"onEvent"`
 	Static                  bool            `json:"static"`
 	StaticOn                className       `json:"staticOn"`
 	StaticPlaceholder       string          `json:"staticPlaceholder"`
@@ -5892,13 +5892,13 @@ type PanelSchema struct {
 	StaticLabelClassName    className       `json:"staticLabelClassName"`
 	StaticInputClassName    className       `json:"staticInputClassName"`
 	StaticSchema            staticSchema    `json:"staticSchema"`
-	Style                   interface{}     `json:"style"`
+	Style                   any             `json:"style"`
 	EditorSetting           editorSetting   `json:"editorSetting"`
 	UseMobileUI             bool            `json:"useMobileUI"`
 	TestIdBuilder           RootSchema      `json:"testIdBuilder"`
 	TypeVal                 string          `json:"type"`
 	Testid                  string          `json:"testid"`
-	Actions                 []interface{}   `json:"actions"`
+	Actions                 []any           `json:"actions"`
 	ActionsClassName        className       `json:"actionsClassName"`
 	Body                    className       `json:"body"`
 	BodyClassName           className       `json:"bodyClassName"`
@@ -5927,7 +5927,7 @@ type PasswordSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -5935,7 +5935,7 @@ type PasswordSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -5960,13 +5960,13 @@ type PickerControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -5974,7 +5974,7 @@ type PickerControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -6010,7 +6010,7 @@ type PickerControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -6018,7 +6018,7 @@ type PickerControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -6046,7 +6046,7 @@ type PlainSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -6054,7 +6054,7 @@ type PlainSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -6078,7 +6078,7 @@ type PortletSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -6086,12 +6086,12 @@ type PortletSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
-	Tabs                 []interface{} `json:"tabs"`
+	Tabs                 []any         `json:"tabs"`
 	Source               string        `json:"source"`
 	TabsClassName        className     `json:"tabsClassName"`
 	TabsMode             string        `json:"tabsMode"`
@@ -6099,7 +6099,7 @@ type PortletSchema struct {
 	LinksClassName       className     `json:"linksClassName"`
 	MountOnEnter         bool          `json:"mountOnEnter"`
 	UnmountOnExit        bool          `json:"unmountOnExit"`
-	Toolbar              []interface{} `json:"toolbar"`
+	Toolbar              []any         `json:"toolbar"`
 	Scrollable           bool          `json:"scrollable"`
 	Divider              bool          `json:"divider"`
 	Description          className     `json:"description"`
@@ -6118,7 +6118,7 @@ type PortletTabSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -6126,13 +6126,13 @@ type PortletTabSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	Title                string        `json:"title"`
 	Tab                  className     `json:"tab"`
-	Toolbar              []interface{} `json:"toolbar"`
+	Toolbar              []any         `json:"toolbar"`
 	Body                 className     `json:"body"`
 	Icon                 className     `json:"icon"`
 	IconPosition         string        `json:"iconPosition"`
@@ -6156,7 +6156,7 @@ type ProgressSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -6164,7 +6164,7 @@ type ProgressSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -6207,7 +6207,7 @@ type QRCodeSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -6215,7 +6215,7 @@ type QRCodeSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -6243,7 +6243,7 @@ type RadioControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -6251,14 +6251,14 @@ type RadioControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -6287,8 +6287,8 @@ type RadioControlSchema struct {
 	InitAutoFill         data             `json:"initAutoFill"`
 	Row                  float64          `json:"row"`
 	TypeVal              string           `json:"type"`
-	TrueValue            interface{}      `json:"trueValue"`
-	FalseValue           interface{}      `json:"falseValue"`
+	TrueValue            any              `json:"trueValue"`
+	FalseValue           any              `json:"falseValue"`
 	Option               string           `json:"option"`
 	Badge                className        `json:"badge"`
 	Partial              bool             `json:"partial"`
@@ -6311,13 +6311,13 @@ type RadiosControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -6325,7 +6325,7 @@ type RadiosControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -6361,7 +6361,7 @@ type RadiosControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -6369,7 +6369,7 @@ type RadiosControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -6390,7 +6390,7 @@ type RangeControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -6398,14 +6398,14 @@ type RangeControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -6440,7 +6440,7 @@ type RangeControlSchema struct {
 	Unit                 string           `json:"unit"`
 	ShowSteps            bool             `json:"showSteps"`
 	Parts                SchemaClassName  `json:"parts"`
-	Marks                interface{}      `json:"marks"`
+	Marks                any              `json:"marks"`
 	TooltipVisible       bool             `json:"tooltipVisible"`
 	TooltipPlacement     className        `json:"tooltipPlacement"`
 	Multiple             bool             `json:"multiple"`
@@ -6461,7 +6461,7 @@ type RatingControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -6469,14 +6469,14 @@ type RatingControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -6511,7 +6511,7 @@ type RatingControlSchema struct {
 	Readonly             bool             `json:"readonly"`
 	Colors               SchemaClassName  `json:"colors"`
 	InactiveColor        string           `json:"inactiveColor"`
-	Texts                interface{}      `json:"texts"`
+	Texts                any              `json:"texts"`
 	TextPosition         className        `json:"textPosition"`
 	Char                 string           `json:"char"`
 	CharClassName        string           `json:"charClassName"`
@@ -7357,7 +7357,7 @@ type ReloadActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -7365,7 +7365,7 @@ type ReloadActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -7388,7 +7388,7 @@ type ReloadActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               className       `json:"target"`
@@ -7413,7 +7413,7 @@ type RemarkSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -7421,7 +7421,7 @@ type RemarkSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -7449,7 +7449,7 @@ type RepeatControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -7457,14 +7457,14 @@ type RepeatControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -7507,7 +7507,7 @@ type RichTextControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -7515,14 +7515,14 @@ type RichTextControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -7560,18 +7560,30 @@ type RichTextControlSchema struct {
 }
 
 type RootConfig struct {
-	Type__       string        `json:"__type__"`
-	Body         []ArrayElem1  `json:"body"`
-	Type_ignores []interface{} `json:"type_ignores"`
+	Type__       string       `json:"__type__"`
+	Body         []ArrayElem1 `json:"body"`
+	Type_ignores []any        `json:"type_ignores"`
 }
 
 type RootConfig1 struct {
+	Ref                  string              `json:"$ref"`
+	AdditionalProperties bool                `json:"additionalProperties"`
+	PatternProperties    patternProperties   `json:"patternProperties"`
+	ID                   string              `json:"$$id"`
+	ClassName            className           `json:"className"`
+	Disabled             bool                `json:"disabled"`
+	DisabledOn           className           `json:"disabledOn"`
+	QRCodeImageSettings  QRCodeImageSettings `json:"QRCodeImageSettings"`
+	ConditionGroupValue  ConditionGroupValue `json:"ConditionGroupValue"`
+}
+
+type RootConfig2 struct {
 	Schema      string      `json:"$schema"`
 	Ref         string      `json:"$ref"`
 	Definitions definitions `json:"definitions"`
 }
 
-type RootConfig2 struct {
+type RootConfig3 struct {
 	Fsq_id               string        `json:"fsq_id"`
 	Categories           []ArrayElem36 `json:"categories"`
 	Chains               []trackConfig `json:"chains"`
@@ -7606,22 +7618,10 @@ type RootConfig2 struct {
 	Website              string        `json:"website"`
 }
 
-type RootConfig3 struct {
-	Report     report        `json:"report"`
-	Request_id string        `json:"request_id"`
-	Warnings   []interface{} `json:"warnings"`
-}
-
 type RootConfig4 struct {
-	Ref                  string              `json:"$ref"`
-	AdditionalProperties bool                `json:"additionalProperties"`
-	PatternProperties    patternProperties15 `json:"patternProperties"`
-	ID                   string              `json:"$$id"`
-	ClassName            className           `json:"className"`
-	Disabled             bool                `json:"disabled"`
-	DisabledOn           className           `json:"disabledOn"`
-	QRCodeImageSettings  QRCodeImageSettings `json:"QRCodeImageSettings"`
-	ConditionGroupValue  ConditionGroupValue `json:"ConditionGroupValue"`
+	Report     report `json:"report"`
+	Request_id string `json:"request_id"`
+	Warnings   []any  `json:"warnings"`
 }
 
 type RootConfig5 struct {
@@ -7654,35 +7654,35 @@ type RowSelectionOptionsSchema struct {
 }
 
 type RowSelectionSchema struct {
-	TypeVal             string        `json:"type"`
-	KeyField            string        `json:"keyField"`
-	DisableOn           string        `json:"disableOn"`
-	Selections          []interface{} `json:"selections"`
-	SelectedRowKeys     []interface{} `json:"selectedRowKeys"`
-	SelectedRowKeysExpr string        `json:"selectedRowKeysExpr"`
-	ColumnWidth         float64       `json:"columnWidth"`
-	RowClick            bool          `json:"rowClick"`
+	TypeVal             string  `json:"type"`
+	KeyField            string  `json:"keyField"`
+	DisableOn           string  `json:"disableOn"`
+	Selections          []any   `json:"selections"`
+	SelectedRowKeys     []any   `json:"selectedRowKeys"`
+	SelectedRowKeysExpr string  `json:"selectedRowKeysExpr"`
+	ColumnWidth         float64 `json:"columnWidth"`
+	RowClick            bool    `json:"rowClick"`
 }
 
 type SchemaApiObject struct {
-	Method                 string      `json:"method"`
-	Url                    className   `json:"url"`
-	Data                   interface{} `json:"data"`
-	ConvertKeyToPath       bool        `json:"convertKeyToPath"`
-	ResponseData           interface{} `json:"responseData"`
-	AttachDataToQuery      bool        `json:"attachDataToQuery"`
-	DataType               string      `json:"dataType"`
-	ResponseType           string      `json:"responseType"`
-	Headers                interface{} `json:"headers"`
-	SendOn                 className   `json:"sendOn"`
-	ReplaceData            bool        `json:"replaceData"`
-	AutoRefresh            bool        `json:"autoRefresh"`
-	TrackExpression        string      `json:"trackExpression"`
-	Cache                  float64     `json:"cache"`
-	ForceAppendDataToQuery bool        `json:"forceAppendDataToQuery"`
-	QsOptions              qsOptions   `json:"qsOptions"`
-	Silent                 bool        `json:"silent"`
-	DownloadFileName       string      `json:"downloadFileName"`
+	Method                 string    `json:"method"`
+	Url                    className `json:"url"`
+	Data                   any       `json:"data"`
+	ConvertKeyToPath       bool      `json:"convertKeyToPath"`
+	ResponseData           any       `json:"responseData"`
+	AttachDataToQuery      bool      `json:"attachDataToQuery"`
+	DataType               string    `json:"dataType"`
+	ResponseType           string    `json:"responseType"`
+	Headers                any       `json:"headers"`
+	SendOn                 className `json:"sendOn"`
+	ReplaceData            bool      `json:"replaceData"`
+	AutoRefresh            bool      `json:"autoRefresh"`
+	TrackExpression        string    `json:"trackExpression"`
+	Cache                  float64   `json:"cache"`
+	ForceAppendDataToQuery bool      `json:"forceAppendDataToQuery"`
+	QsOptions              qsOptions `json:"qsOptions"`
+	Silent                 bool      `json:"silent"`
+	DownloadFileName       string    `json:"downloadFileName"`
 }
 
 type SchemaClassName struct {
@@ -7772,7 +7772,7 @@ type SearchBoxSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -7780,7 +7780,7 @@ type SearchBoxSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -7813,13 +7813,13 @@ type SelectControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -7827,7 +7827,7 @@ type SelectControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -7863,7 +7863,7 @@ type SelectControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -7871,7 +7871,7 @@ type SelectControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -7883,12 +7883,12 @@ type SelectControlSchema struct {
 	ShowInvalidMatch     bool             `json:"showInvalidMatch"`
 	BorderMode           string           `json:"borderMode"`
 	SelectMode           string           `json:"selectMode"`
-	LeftOptions          []interface{}    `json:"leftOptions"`
+	LeftOptions          []any            `json:"leftOptions"`
 	LeftMode             string           `json:"leftMode"`
 	RightMode            string           `json:"rightMode"`
 	SearchResultMode     string           `json:"searchResultMode"`
-	Columns              []interface{}    `json:"columns"`
-	SearchResultColumns  []interface{}    `json:"searchResultColumns"`
+	Columns              []any            `json:"columns"`
+	SearchResultColumns  []any            `json:"searchResultColumns"`
 	Searchable           bool             `json:"searchable"`
 	SearchApi            className        `json:"searchApi"`
 	ItemHeight           float64          `json:"itemHeight"`
@@ -7897,7 +7897,7 @@ type SelectControlSchema struct {
 	DefaultCheckAll      bool             `json:"defaultCheckAll"`
 	CheckAllLabel        string           `json:"checkAllLabel"`
 	MaxTagCount          float64          `json:"maxTagCount"`
-	OverflowTagPopover   interface{}      `json:"overflowTagPopover"`
+	OverflowTagPopover   any              `json:"overflowTagPopover"`
 	OptionClassName      className        `json:"optionClassName"`
 	Overlay              overlay          `json:"overlay"`
 }
@@ -7914,7 +7914,7 @@ type ServiceSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -7922,7 +7922,7 @@ type ServiceSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -7972,7 +7972,7 @@ type SparkLineSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -7980,7 +7980,7 @@ type SparkLineSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -7991,7 +7991,7 @@ type SparkLineSchema struct {
 	Height               float64       `json:"height"`
 	ClickAction          className     `json:"clickAction"`
 	Placeholder          string        `json:"placeholder"`
-	Value                []interface{} `json:"value"`
+	Value                []any         `json:"value"`
 }
 
 type SpinnerSchema struct {
@@ -8006,7 +8006,7 @@ type SpinnerSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8014,7 +8014,7 @@ type SpinnerSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -8045,7 +8045,7 @@ type StateSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            string        `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8053,7 +8053,7 @@ type StateSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -8072,7 +8072,7 @@ type StaticExactControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -8080,14 +8080,14 @@ type StaticExactControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -8135,7 +8135,7 @@ type StatusSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8143,15 +8143,15 @@ type StatusSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
 	Placeholder          string        `json:"placeholder"`
-	MapVal               interface{}   `json:"map"`
-	LabelMap             interface{}   `json:"labelMap"`
+	MapVal               any           `json:"map"`
+	LabelMap             any           `json:"labelMap"`
 	Source               className     `json:"source"`
 }
 
@@ -8167,7 +8167,7 @@ type StepSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -8175,14 +8175,14 @@ type StepSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
 	Title                SchemaClassName `json:"title"`
 	SubTitle             SchemaClassName `json:"subTitle"`
 	Icon                 string          `json:"icon"`
-	Value                interface{}     `json:"value"`
+	Value                any             `json:"value"`
 	Description          SchemaClassName `json:"description"`
 }
 
@@ -8197,7 +8197,7 @@ type StepsSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8205,15 +8205,15 @@ type StepsSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Steps                []interface{} `json:"steps"`
+	Steps                []any         `json:"steps"`
 	Source               string        `json:"source"`
-	Value                interface{}   `json:"value"`
+	Value                any           `json:"value"`
 	Name                 string        `json:"name"`
 	Status               right         `json:"status"`
 	Mode                 string        `json:"mode"`
@@ -8232,7 +8232,7 @@ type SubFormControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -8240,14 +8240,14 @@ type SubFormControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -8305,7 +8305,7 @@ type SwitchContainerSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8313,13 +8313,13 @@ type SwitchContainerSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Items                []interface{} `json:"items"`
+	Items                []any         `json:"items"`
 }
 
 type SwitchControlSchema struct {
@@ -8333,7 +8333,7 @@ type SwitchControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -8341,14 +8341,14 @@ type SwitchControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -8377,8 +8377,8 @@ type SwitchControlSchema struct {
 	InitAutoFill         data             `json:"initAutoFill"`
 	Row                  float64          `json:"row"`
 	TypeVal              string           `json:"type"`
-	TrueValue            interface{}      `json:"trueValue"`
-	FalseValue           interface{}      `json:"falseValue"`
+	TrueValue            any              `json:"trueValue"`
+	FalseValue           any              `json:"falseValue"`
 	Option               string           `json:"option"`
 	OnText               SchemaClassName  `json:"onText"`
 	OffText              SchemaClassName  `json:"offText"`
@@ -8397,7 +8397,7 @@ type TabSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -8405,7 +8405,7 @@ type TabSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -8435,7 +8435,7 @@ type TableColumnObject struct {
 	Sortable           bool            `json:"sortable"`
 	Searchable         SchemaClassName `json:"searchable"`
 	Toggled            bool            `json:"toggled"`
-	Width              interface{}     `json:"width"`
+	Width              any             `json:"width"`
 	Align              string          `json:"align"`
 	VAlign             string          `json:"vAlign"`
 	HeaderAlign        string          `json:"headerAlign"`
@@ -8449,7 +8449,7 @@ type TableColumnObject struct {
 	Unique             bool            `json:"unique"`
 	CanAccessSuperData bool            `json:"canAccessSuperData"`
 	LazyRenderAfter    float64         `json:"lazyRenderAfter"`
-	InnerStyle         interface{}     `json:"innerStyle"`
+	InnerStyle         any             `json:"innerStyle"`
 }
 
 type TableColumnWithType struct {
@@ -8459,7 +8459,7 @@ type TableColumnWithType struct {
 type TableControlSchema struct {
 	AffixHeader           bool             `json:"affixHeader"`
 	AffixFooter           bool             `json:"affixFooter"`
-	Columns               []interface{}    `json:"columns"`
+	Columns               []any            `json:"columns"`
 	ColumnsTogglable      SchemaClassName  `json:"columnsTogglable"`
 	Footable              SchemaClassName  `json:"footable"`
 	FooterClassName       className        `json:"footerClassName"`
@@ -8473,8 +8473,8 @@ type TableControlSchema struct {
 	ToolbarClassName      className        `json:"toolbarClassName"`
 	CombineNum            SchemaClassName  `json:"combineNum"`
 	CombineFromIndex      float64          `json:"combineFromIndex"`
-	PrefixRow             []interface{}    `json:"prefixRow"`
-	AffixRow              []interface{}    `json:"affixRow"`
+	PrefixRow             []any            `json:"prefixRow"`
+	AffixRow              []any            `json:"affixRow"`
 	Resizable             bool             `json:"resizable"`
 	RowClassNameExpr      string           `json:"rowClassNameExpr"`
 	ItemBadge             className        `json:"itemBadge"`
@@ -8494,7 +8494,7 @@ type TableControlSchema struct {
 	Visible               bool             `json:"visible"`
 	VisibleOn             className        `json:"visibleOn"`
 	Id                    string           `json:"id"`
-	OnEvent               interface{}      `json:"onEvent"`
+	OnEvent               any              `json:"onEvent"`
 	Static                bool             `json:"static"`
 	StaticOn              className        `json:"staticOn"`
 	StaticPlaceholder     string           `json:"staticPlaceholder"`
@@ -8502,14 +8502,14 @@ type TableControlSchema struct {
 	StaticLabelClassName  className        `json:"staticLabelClassName"`
 	StaticInputClassName  className        `json:"staticInputClassName"`
 	StaticSchema          staticSchema     `json:"staticSchema"`
-	Style                 interface{}      `json:"style"`
+	Style                 any              `json:"style"`
 	EditorSetting         editorSetting    `json:"editorSetting"`
 	UseMobileUI           bool             `json:"useMobileUI"`
 	TestIdBuilder         RootSchema       `json:"testIdBuilder"`
 	Size                  string           `json:"size"`
 	Label                 SchemaClassName  `json:"label"`
 	LabelAlign            className        `json:"labelAlign"`
-	LabelWidth            interface{}      `json:"labelWidth"`
+	LabelWidth            any              `json:"labelWidth"`
 	LabelClassName        string           `json:"labelClassName"`
 	Name                  string           `json:"name"`
 	ExtraName             string           `json:"extraName"`
@@ -8543,7 +8543,7 @@ type TableControlSchema struct {
 	CopyBtnLabel          string           `json:"copyBtnLabel"`
 	CopyBtnIcon           string           `json:"copyBtnIcon"`
 	CopyAddBtn            bool             `json:"copyAddBtn"`
-	CopyData              interface{}      `json:"copyData"`
+	CopyData              any              `json:"copyData"`
 	Draggable             bool             `json:"draggable"`
 	AddApi                className        `json:"addApi"`
 	AddBtnLabel           string           `json:"addBtnLabel"`
@@ -8587,7 +8587,7 @@ type TableSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -8595,7 +8595,7 @@ type TableSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -8603,7 +8603,7 @@ type TableSchema struct {
 	Testid               string          `json:"testid"`
 	AffixHeader          bool            `json:"affixHeader"`
 	AffixFooter          bool            `json:"affixFooter"`
-	Columns              []interface{}   `json:"columns"`
+	Columns              []any           `json:"columns"`
 	ColumnsTogglable     SchemaClassName `json:"columnsTogglable"`
 	Footable             SchemaClassName `json:"footable"`
 	FooterClassName      className       `json:"footerClassName"`
@@ -8617,8 +8617,8 @@ type TableSchema struct {
 	ToolbarClassName     className       `json:"toolbarClassName"`
 	CombineNum           SchemaClassName `json:"combineNum"`
 	CombineFromIndex     float64         `json:"combineFromIndex"`
-	PrefixRow            []interface{}   `json:"prefixRow"`
-	AffixRow             []interface{}   `json:"affixRow"`
+	PrefixRow            []any           `json:"prefixRow"`
+	AffixRow             []any           `json:"affixRow"`
 	Resizable            bool            `json:"resizable"`
 	RowClassNameExpr     string          `json:"rowClassNameExpr"`
 	ItemBadge            className       `json:"itemBadge"`
@@ -8640,7 +8640,7 @@ type TableSchema2 struct {
 	Visible                       bool             `json:"visible"`
 	VisibleOn                     className        `json:"visibleOn"`
 	Id                            string           `json:"id"`
-	OnEvent                       interface{}      `json:"onEvent"`
+	OnEvent                       any              `json:"onEvent"`
 	Static                        bool             `json:"static"`
 	StaticOn                      className        `json:"staticOn"`
 	StaticPlaceholder             string           `json:"staticPlaceholder"`
@@ -8648,7 +8648,7 @@ type TableSchema2 struct {
 	StaticLabelClassName          className        `json:"staticLabelClassName"`
 	StaticInputClassName          className        `json:"staticInputClassName"`
 	StaticSchema                  staticSchema     `json:"staticSchema"`
-	Style                         interface{}      `json:"style"`
+	Style                         any              `json:"style"`
 	EditorSetting                 editorSetting    `json:"editorSetting"`
 	UseMobileUI                   bool             `json:"useMobileUI"`
 	TestIdBuilder                 RootSchema       `json:"testIdBuilder"`
@@ -8657,7 +8657,7 @@ type TableSchema2 struct {
 	Title                         SchemaClassName  `json:"title"`
 	Source                        className        `json:"source"`
 	ColumnsTogglable              columnsTogglable `json:"columnsTogglable"`
-	Columns                       []interface{}    `json:"columns"`
+	Columns                       []any            `json:"columns"`
 	RowSelection                  draggableConfig  `json:"rowSelection"`
 	Expandable                    className        `json:"expandable"`
 	Sticky                        bool             `json:"sticky"`
@@ -8676,7 +8676,7 @@ type TableSchema2 struct {
 	QuickSaveItemApi              className        `json:"quickSaveItemApi"`
 	Messages                      className        `json:"messages"`
 	Reload                        string           `json:"reload"`
-	Actions                       []interface{}    `json:"actions"`
+	Actions                       []any            `json:"actions"`
 	MaxKeepItemSelectionLength    float64          `json:"maxKeepItemSelectionLength"`
 	KeepItemSelectionOnPageChange bool             `json:"keepItemSelectionOnPageChange"`
 	Selectable                    bool             `json:"selectable"`
@@ -8699,7 +8699,7 @@ type TabsSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -8707,13 +8707,13 @@ type TabsSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
 	TypeVal              string          `json:"type"`
 	Testid               string          `json:"testid"`
-	Tabs                 []interface{}   `json:"tabs"`
+	Tabs                 []any           `json:"tabs"`
 	Source               string          `json:"source"`
 	TabsMode             className       `json:"tabsMode"`
 	ContentClassName     className       `json:"contentClassName"`
@@ -8745,12 +8745,12 @@ type TabsTransferControlSchema struct {
 	Sortable                   bool             `json:"sortable"`
 	SelectMode                 string           `json:"selectMode"`
 	ResultListModeFollowSelect bool             `json:"resultListModeFollowSelect"`
-	LeftOptions                []interface{}    `json:"leftOptions"`
+	LeftOptions                []any            `json:"leftOptions"`
 	LeftMode                   string           `json:"leftMode"`
 	RightMode                  string           `json:"rightMode"`
 	SearchResultMode           string           `json:"searchResultMode"`
-	Columns                    []interface{}    `json:"columns"`
-	SearchResultColumns        []interface{}    `json:"searchResultColumns"`
+	Columns                    []any            `json:"columns"`
+	SearchResultColumns        []any            `json:"searchResultColumns"`
 	Searchable                 bool             `json:"searchable"`
 	ResultSearchable           bool             `json:"resultSearchable"`
 	SearchApi                  className        `json:"searchApi"`
@@ -8773,7 +8773,7 @@ type TabsTransferControlSchema struct {
 	Size                       string           `json:"size"`
 	Label                      SchemaClassName  `json:"label"`
 	LabelAlign                 className        `json:"labelAlign"`
-	LabelWidth                 interface{}      `json:"labelWidth"`
+	LabelWidth                 any              `json:"labelWidth"`
 	LabelClassName             string           `json:"labelClassName"`
 	Name                       string           `json:"name"`
 	ExtraName                  string           `json:"extraName"`
@@ -8809,7 +8809,7 @@ type TabsTransferControlSchema struct {
 	Visible                    bool             `json:"visible"`
 	VisibleOn                  className        `json:"visibleOn"`
 	Id                         string           `json:"id"`
-	OnEvent                    interface{}      `json:"onEvent"`
+	OnEvent                    any              `json:"onEvent"`
 	Static                     bool             `json:"static"`
 	StaticOn                   className        `json:"staticOn"`
 	StaticPlaceholder          string           `json:"staticPlaceholder"`
@@ -8817,7 +8817,7 @@ type TabsTransferControlSchema struct {
 	StaticLabelClassName       className        `json:"staticLabelClassName"`
 	StaticInputClassName       className        `json:"staticInputClassName"`
 	StaticSchema               staticSchema     `json:"staticSchema"`
-	Style                      interface{}      `json:"style"`
+	Style                      any              `json:"style"`
 	EditorSetting              editorSetting    `json:"editorSetting"`
 	UseMobileUI                bool             `json:"useMobileUI"`
 	TestIdBuilder              RootSchema       `json:"testIdBuilder"`
@@ -8836,13 +8836,13 @@ type TabsTransferControlSchema struct {
 	DeferField                 string           `json:"deferField"`
 	DeferApi                   draggableConfig  `json:"deferApi"`
 	AddApi                     draggableConfig  `json:"addApi"`
-	AddControls                []interface{}    `json:"addControls"`
+	AddControls                []any            `json:"addControls"`
 	AddDialog                  className        `json:"addDialog"`
 	Creatable                  bool             `json:"creatable"`
 	CreateBtnLabel             string           `json:"createBtnLabel"`
 	Editable                   bool             `json:"editable"`
 	EditApi                    draggableConfig  `json:"editApi"`
-	EditControls               []interface{}    `json:"editControls"`
+	EditControls               []any            `json:"editControls"`
 	EditDialog                 className        `json:"editDialog"`
 	Removable                  bool             `json:"removable"`
 	DeleteApi                  draggableConfig  `json:"deleteApi"`
@@ -8866,13 +8866,13 @@ type TagControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             draggableConfig  `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -8880,7 +8880,7 @@ type TagControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -8916,7 +8916,7 @@ type TagControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -8924,7 +8924,7 @@ type TagControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -8952,7 +8952,7 @@ type TagSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8960,7 +8960,7 @@ type TagSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -8988,7 +8988,7 @@ type TasksSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -8996,7 +8996,7 @@ type TasksSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -9047,13 +9047,13 @@ type TextControlSchema struct {
 	DeferField            string           `json:"deferField"`
 	DeferApi              draggableConfig  `json:"deferApi"`
 	AddApi                draggableConfig  `json:"addApi"`
-	AddControls           []interface{}    `json:"addControls"`
+	AddControls           []any            `json:"addControls"`
 	AddDialog             className        `json:"addDialog"`
 	Creatable             bool             `json:"creatable"`
 	CreateBtnLabel        string           `json:"createBtnLabel"`
 	Editable              bool             `json:"editable"`
 	EditApi               draggableConfig  `json:"editApi"`
-	EditControls          []interface{}    `json:"editControls"`
+	EditControls          []any            `json:"editControls"`
 	EditDialog            className        `json:"editDialog"`
 	Removable             bool             `json:"removable"`
 	DeleteApi             draggableConfig  `json:"deleteApi"`
@@ -9061,7 +9061,7 @@ type TextControlSchema struct {
 	Size                  string           `json:"size"`
 	Label                 SchemaClassName  `json:"label"`
 	LabelAlign            className        `json:"labelAlign"`
-	LabelWidth            interface{}      `json:"labelWidth"`
+	LabelWidth            any              `json:"labelWidth"`
 	LabelClassName        string           `json:"labelClassName"`
 	Name                  string           `json:"name"`
 	ExtraName             string           `json:"extraName"`
@@ -9097,7 +9097,7 @@ type TextControlSchema struct {
 	Visible               bool             `json:"visible"`
 	VisibleOn             className        `json:"visibleOn"`
 	Id                    string           `json:"id"`
-	OnEvent               interface{}      `json:"onEvent"`
+	OnEvent               any              `json:"onEvent"`
 	Static                bool             `json:"static"`
 	StaticOn              className        `json:"staticOn"`
 	StaticPlaceholder     string           `json:"staticPlaceholder"`
@@ -9105,7 +9105,7 @@ type TextControlSchema struct {
 	StaticLabelClassName  className        `json:"staticLabelClassName"`
 	StaticInputClassName  className        `json:"staticInputClassName"`
 	StaticSchema          staticSchema     `json:"staticSchema"`
-	Style                 interface{}      `json:"style"`
+	Style                 any              `json:"style"`
 	EditorSetting         editorSetting    `json:"editorSetting"`
 	UseMobileUI           bool             `json:"useMobileUI"`
 	TestIdBuilder         RootSchema       `json:"testIdBuilder"`
@@ -9139,7 +9139,7 @@ type TextareaControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -9147,14 +9147,14 @@ type TextareaControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -9203,7 +9203,7 @@ type TimeControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -9211,14 +9211,14 @@ type TimeControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -9273,7 +9273,7 @@ type TimelineItemSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -9281,7 +9281,7 @@ type TimelineItemSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -9309,7 +9309,7 @@ type TimelineSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -9317,13 +9317,13 @@ type TimelineSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
 	TypeVal              string          `json:"type"`
 	Testid               string          `json:"testid"`
-	Items                []interface{}   `json:"items"`
+	Items                []any           `json:"items"`
 	Source               draggableConfig `json:"source"`
 	Mode                 string          `json:"mode"`
 	Direction            string          `json:"direction"`
@@ -9346,7 +9346,7 @@ type ToastActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -9354,7 +9354,7 @@ type ToastActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -9377,7 +9377,7 @@ type ToastActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -9403,7 +9403,7 @@ type ToastSchemaBase struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -9411,7 +9411,7 @@ type ToastSchemaBase struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -9435,7 +9435,7 @@ type TooltipWrapperSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -9443,7 +9443,7 @@ type TooltipWrapperSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -9464,7 +9464,7 @@ type TooltipWrapperSchema struct {
 	Inline               bool            `json:"inline"`
 	TooltipTheme         string          `json:"tooltipTheme"`
 	Enterable            bool            `json:"enterable"`
-	TooltipStyle         interface{}     `json:"tooltipStyle"`
+	TooltipStyle         any             `json:"tooltipStyle"`
 	TooltipClassName     string          `json:"tooltipClassName"`
 }
 
@@ -9479,7 +9479,7 @@ type TplSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -9487,7 +9487,7 @@ type TplSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -9520,13 +9520,13 @@ type TransferControlSchema struct {
 	DeferField                 string           `json:"deferField"`
 	DeferApi                   draggableConfig  `json:"deferApi"`
 	AddApi                     draggableConfig  `json:"addApi"`
-	AddControls                []interface{}    `json:"addControls"`
+	AddControls                []any            `json:"addControls"`
 	AddDialog                  className        `json:"addDialog"`
 	Creatable                  bool             `json:"creatable"`
 	CreateBtnLabel             string           `json:"createBtnLabel"`
 	Editable                   bool             `json:"editable"`
 	EditApi                    draggableConfig  `json:"editApi"`
-	EditControls               []interface{}    `json:"editControls"`
+	EditControls               []any            `json:"editControls"`
 	EditDialog                 className        `json:"editDialog"`
 	Removable                  bool             `json:"removable"`
 	DeleteApi                  draggableConfig  `json:"deleteApi"`
@@ -9534,7 +9534,7 @@ type TransferControlSchema struct {
 	Size                       string           `json:"size"`
 	Label                      SchemaClassName  `json:"label"`
 	LabelAlign                 className        `json:"labelAlign"`
-	LabelWidth                 interface{}      `json:"labelWidth"`
+	LabelWidth                 any              `json:"labelWidth"`
 	LabelClassName             string           `json:"labelClassName"`
 	Name                       string           `json:"name"`
 	ExtraName                  string           `json:"extraName"`
@@ -9570,7 +9570,7 @@ type TransferControlSchema struct {
 	Visible                    bool             `json:"visible"`
 	VisibleOn                  className        `json:"visibleOn"`
 	Id                         string           `json:"id"`
-	OnEvent                    interface{}      `json:"onEvent"`
+	OnEvent                    any              `json:"onEvent"`
 	Static                     bool             `json:"static"`
 	StaticOn                   className        `json:"staticOn"`
 	StaticPlaceholder          string           `json:"staticPlaceholder"`
@@ -9578,7 +9578,7 @@ type TransferControlSchema struct {
 	StaticLabelClassName       className        `json:"staticLabelClassName"`
 	StaticInputClassName       className        `json:"staticInputClassName"`
 	StaticSchema               staticSchema     `json:"staticSchema"`
-	Style                      interface{}      `json:"style"`
+	Style                      any              `json:"style"`
 	EditorSetting              editorSetting    `json:"editorSetting"`
 	UseMobileUI                bool             `json:"useMobileUI"`
 	TestIdBuilder              RootSchema       `json:"testIdBuilder"`
@@ -9589,12 +9589,12 @@ type TransferControlSchema struct {
 	Sortable                   bool             `json:"sortable"`
 	SelectMode                 string           `json:"selectMode"`
 	ResultListModeFollowSelect bool             `json:"resultListModeFollowSelect"`
-	LeftOptions                []interface{}    `json:"leftOptions"`
+	LeftOptions                []any            `json:"leftOptions"`
 	LeftMode                   string           `json:"leftMode"`
 	RightMode                  string           `json:"rightMode"`
 	SearchResultMode           string           `json:"searchResultMode"`
-	Columns                    []interface{}    `json:"columns"`
-	SearchResultColumns        []interface{}    `json:"searchResultColumns"`
+	Columns                    []any            `json:"columns"`
+	SearchResultColumns        []any            `json:"searchResultColumns"`
 	Searchable                 bool             `json:"searchable"`
 	ResultSearchable           bool             `json:"resultSearchable"`
 	SearchApi                  className        `json:"searchApi"`
@@ -9620,12 +9620,12 @@ type TransferPickerControlSchema struct {
 	Sortable                   bool             `json:"sortable"`
 	SelectMode                 string           `json:"selectMode"`
 	ResultListModeFollowSelect bool             `json:"resultListModeFollowSelect"`
-	LeftOptions                []interface{}    `json:"leftOptions"`
+	LeftOptions                []any            `json:"leftOptions"`
 	LeftMode                   string           `json:"leftMode"`
 	RightMode                  string           `json:"rightMode"`
 	SearchResultMode           string           `json:"searchResultMode"`
-	Columns                    []interface{}    `json:"columns"`
-	SearchResultColumns        []interface{}    `json:"searchResultColumns"`
+	Columns                    []any            `json:"columns"`
+	SearchResultColumns        []any            `json:"searchResultColumns"`
 	Searchable                 bool             `json:"searchable"`
 	ResultSearchable           bool             `json:"resultSearchable"`
 	SearchApi                  className        `json:"searchApi"`
@@ -9648,7 +9648,7 @@ type TransferPickerControlSchema struct {
 	Size                       string           `json:"size"`
 	Label                      SchemaClassName  `json:"label"`
 	LabelAlign                 className        `json:"labelAlign"`
-	LabelWidth                 interface{}      `json:"labelWidth"`
+	LabelWidth                 any              `json:"labelWidth"`
 	LabelClassName             string           `json:"labelClassName"`
 	Name                       string           `json:"name"`
 	ExtraName                  string           `json:"extraName"`
@@ -9684,7 +9684,7 @@ type TransferPickerControlSchema struct {
 	Visible                    bool             `json:"visible"`
 	VisibleOn                  className        `json:"visibleOn"`
 	Id                         string           `json:"id"`
-	OnEvent                    interface{}      `json:"onEvent"`
+	OnEvent                    any              `json:"onEvent"`
 	Static                     bool             `json:"static"`
 	StaticOn                   className        `json:"staticOn"`
 	StaticPlaceholder          string           `json:"staticPlaceholder"`
@@ -9692,7 +9692,7 @@ type TransferPickerControlSchema struct {
 	StaticLabelClassName       className        `json:"staticLabelClassName"`
 	StaticInputClassName       className        `json:"staticInputClassName"`
 	StaticSchema               staticSchema     `json:"staticSchema"`
-	Style                      interface{}      `json:"style"`
+	Style                      any              `json:"style"`
 	EditorSetting              editorSetting    `json:"editorSetting"`
 	UseMobileUI                bool             `json:"useMobileUI"`
 	TestIdBuilder              RootSchema       `json:"testIdBuilder"`
@@ -9711,13 +9711,13 @@ type TransferPickerControlSchema struct {
 	DeferField                 string           `json:"deferField"`
 	DeferApi                   draggableConfig  `json:"deferApi"`
 	AddApi                     draggableConfig  `json:"addApi"`
-	AddControls                []interface{}    `json:"addControls"`
+	AddControls                []any            `json:"addControls"`
 	AddDialog                  className        `json:"addDialog"`
 	Creatable                  bool             `json:"creatable"`
 	CreateBtnLabel             string           `json:"createBtnLabel"`
 	Editable                   bool             `json:"editable"`
 	EditApi                    draggableConfig  `json:"editApi"`
-	EditControls               []interface{}    `json:"editControls"`
+	EditControls               []any            `json:"editControls"`
 	EditDialog                 className        `json:"editDialog"`
 	Removable                  bool             `json:"removable"`
 	DeleteApi                  draggableConfig  `json:"deleteApi"`
@@ -9743,13 +9743,13 @@ type TreeControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             className        `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -9757,7 +9757,7 @@ type TreeControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -9793,7 +9793,7 @@ type TreeControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -9801,7 +9801,7 @@ type TreeControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -9845,13 +9845,13 @@ type TreeSelectControlSchema struct {
 	DeferField           string           `json:"deferField"`
 	DeferApi             className        `json:"deferApi"`
 	AddApi               draggableConfig  `json:"addApi"`
-	AddControls          []interface{}    `json:"addControls"`
+	AddControls          []any            `json:"addControls"`
 	AddDialog            className        `json:"addDialog"`
 	Creatable            bool             `json:"creatable"`
 	CreateBtnLabel       string           `json:"createBtnLabel"`
 	Editable             bool             `json:"editable"`
 	EditApi              draggableConfig  `json:"editApi"`
-	EditControls         []interface{}    `json:"editControls"`
+	EditControls         []any            `json:"editControls"`
 	EditDialog           className        `json:"editDialog"`
 	Removable            bool             `json:"removable"`
 	DeleteApi            draggableConfig  `json:"deleteApi"`
@@ -9859,7 +9859,7 @@ type TreeSelectControlSchema struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -9895,7 +9895,7 @@ type TreeSelectControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -9903,7 +9903,7 @@ type TreeSelectControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -9940,7 +9940,7 @@ type UUIDControlSchema struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -9948,14 +9948,14 @@ type UUIDControlSchema struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -9998,7 +9998,7 @@ type UrlActionSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -10006,7 +10006,7 @@ type UrlActionSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -10029,7 +10029,7 @@ type UrlActionSchema struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -10056,7 +10056,7 @@ type VBoxSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -10064,13 +10064,13 @@ type VBoxSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
 	TypeVal              string        `json:"type"`
 	Testid               string        `json:"testid"`
-	Rows                 []interface{} `json:"rows"`
+	Rows                 []any         `json:"rows"`
 }
 
 type VanillaAction struct {
@@ -10084,7 +10084,7 @@ type VanillaAction struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -10092,7 +10092,7 @@ type VanillaAction struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -10115,7 +10115,7 @@ type VanillaAction struct {
 	Required             []string        `json:"required"`
 	ActiveLevel          string          `json:"activeLevel"`
 	ActiveClassName      string          `json:"activeClassName"`
-	Close                interface{}     `json:"close"`
+	Close                any             `json:"close"`
 	RequireSelected      bool            `json:"requireSelected"`
 	MergeData            bool            `json:"mergeData"`
 	Target               string          `json:"target"`
@@ -10131,14 +10131,14 @@ type VanillaAction struct {
 }
 
 type VariableItem struct {
-	Label      string        `json:"label"`
-	Value      string        `json:"value"`
-	Path       string        `json:"path"`
-	Children   []interface{} `json:"children"`
-	TypeVal    string        `json:"type"`
-	Tag        string        `json:"tag"`
-	SelectMode string        `json:"selectMode"`
-	IsMember   bool          `json:"isMember"`
+	Label      string `json:"label"`
+	Value      string `json:"value"`
+	Path       string `json:"path"`
+	Children   []any  `json:"children"`
+	TypeVal    string `json:"type"`
+	Tag        string `json:"tag"`
+	SelectMode string `json:"selectMode"`
+	IsMember   bool   `json:"isMember"`
 }
 
 type VideoSchema struct {
@@ -10152,7 +10152,7 @@ type VideoSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -10160,7 +10160,7 @@ type VideoSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -10168,7 +10168,7 @@ type VideoSchema struct {
 	Testid               string        `json:"testid"`
 	AutoPlay             bool          `json:"autoPlay"`
 	ColumnsCount         float64       `json:"columnsCount"`
-	Frames               interface{}   `json:"frames"`
+	Frames               any           `json:"frames"`
 	FramesClassName      className     `json:"framesClassName"`
 	IsLive               bool          `json:"isLive"`
 	JumpFrame            bool          `json:"jumpFrame"`
@@ -10197,7 +10197,7 @@ type WizardSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -10205,7 +10205,7 @@ type WizardSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -10226,7 +10226,7 @@ type WizardSchema struct {
 	Reload               RootSchema      `json:"reload"`
 	Target               string          `json:"target"`
 	AffixFooter          SchemaClassName `json:"affixFooter"`
-	Steps                []interface{}   `json:"steps"`
+	Steps                []any           `json:"steps"`
 	StartStep            string          `json:"startStep"`
 	StepsClassName       string          `json:"stepsClassName"`
 	BodyClassName        string          `json:"bodyClassName"`
@@ -10243,7 +10243,7 @@ type WizardStepSchema struct {
 	JumpableOn                  className       `json:"jumpableOn"`
 	Title                       string          `json:"title"`
 	Label                       string          `json:"label"`
-	Actions                     []interface{}   `json:"actions"`
+	Actions                     []any           `json:"actions"`
 	Redirect                    string          `json:"redirect"`
 	Reload                      string          `json:"reload"`
 	Target                      string          `json:"target"`
@@ -10258,7 +10258,7 @@ type WizardStepSchema struct {
 	Visible                     bool            `json:"visible"`
 	VisibleOn                   className       `json:"visibleOn"`
 	Id                          string          `json:"id"`
-	OnEvent                     interface{}     `json:"onEvent"`
+	OnEvent                     any             `json:"onEvent"`
 	Static                      bool            `json:"static"`
 	StaticOn                    RootSchema      `json:"staticOn"`
 	StaticPlaceholder           string          `json:"staticPlaceholder"`
@@ -10266,13 +10266,13 @@ type WizardStepSchema struct {
 	StaticLabelClassName        className       `json:"staticLabelClassName"`
 	StaticInputClassName        className       `json:"staticInputClassName"`
 	StaticSchema                staticSchema    `json:"staticSchema"`
-	Style                       interface{}     `json:"style"`
+	Style                       any             `json:"style"`
 	EditorSetting               editorSetting   `json:"editorSetting"`
 	UseMobileUI                 bool            `json:"useMobileUI"`
 	TestIdBuilder               RootSchema      `json:"testIdBuilder"`
 	SubTitle                    SchemaClassName `json:"subTitle"`
 	Icon                        string          `json:"icon"`
-	Value                       interface{}     `json:"value"`
+	Value                       any             `json:"value"`
 	Description                 SchemaClassName `json:"description"`
 	Body                        className       `json:"body"`
 	Tabs                        staticSchema    `json:"tabs"`
@@ -10314,7 +10314,7 @@ type WizardStepSchema struct {
 	Rules                       []ArrayItem3    `json:"rules"`
 	PreventEnterSubmit          bool            `json:"preventEnterSubmit"`
 	LabelAlign                  className       `json:"labelAlign"`
-	LabelWidth                  interface{}     `json:"labelWidth"`
+	LabelWidth                  any             `json:"labelWidth"`
 }
 
 type WordsSchema struct {
@@ -10328,7 +10328,7 @@ type WordsSchema struct {
 	Visible              bool            `json:"visible"`
 	VisibleOn            className       `json:"visibleOn"`
 	Id                   string          `json:"id"`
-	OnEvent              interface{}     `json:"onEvent"`
+	OnEvent              any             `json:"onEvent"`
 	Static               bool            `json:"static"`
 	StaticOn             className       `json:"staticOn"`
 	StaticPlaceholder    string          `json:"staticPlaceholder"`
@@ -10336,7 +10336,7 @@ type WordsSchema struct {
 	StaticLabelClassName className       `json:"staticLabelClassName"`
 	StaticInputClassName className       `json:"staticInputClassName"`
 	StaticSchema         staticSchema    `json:"staticSchema"`
-	Style                interface{}     `json:"style"`
+	Style                any             `json:"style"`
 	EditorSetting        editorSetting   `json:"editorSetting"`
 	UseMobileUI          bool            `json:"useMobileUI"`
 	TestIdBuilder        RootSchema      `json:"testIdBuilder"`
@@ -10363,7 +10363,7 @@ type WrapperSchema struct {
 	Visible              bool          `json:"visible"`
 	VisibleOn            className     `json:"visibleOn"`
 	Id                   string        `json:"id"`
-	OnEvent              interface{}   `json:"onEvent"`
+	OnEvent              any           `json:"onEvent"`
 	Static               bool          `json:"static"`
 	StaticOn             className     `json:"staticOn"`
 	StaticPlaceholder    string        `json:"staticPlaceholder"`
@@ -10371,7 +10371,7 @@ type WrapperSchema struct {
 	StaticLabelClassName className     `json:"staticLabelClassName"`
 	StaticInputClassName className     `json:"staticInputClassName"`
 	StaticSchema         staticSchema  `json:"staticSchema"`
-	Style                interface{}   `json:"style"`
+	Style                any           `json:"style"`
 	EditorSetting        editorSetting `json:"editorSetting"`
 	UseMobileUI          bool          `json:"useMobileUI"`
 	TestIdBuilder        RootSchema    `json:"testIdBuilder"`
@@ -10447,12 +10447,12 @@ type autoFill struct {
 }
 
 type balances struct {
-	Available                int         `json:"available"`
-	Current                  int         `json:"current"`
-	Limit                    interface{} `json:"limit"`
-	Margin_loan_amount       interface{} `json:"margin_loan_amount"`
-	Iso_currency_code        string      `json:"iso_currency_code"`
-	Unofficial_currency_code interface{} `json:"unofficial_currency_code"`
+	Available                int    `json:"available"`
+	Current                  int    `json:"current"`
+	Limit                    any    `json:"limit"`
+	Margin_loan_amount       any    `json:"margin_loan_amount"`
+	Iso_currency_code        string `json:"iso_currency_code"`
+	Unofficial_currency_code any    `json:"unofficial_currency_code"`
 }
 
 type bearing struct {
@@ -10607,7 +10607,7 @@ type definitions struct {
 	StateSchema                        StateSchema                     `json:"StateSchema"`
 	CRUDSchema                         draggableConfig                 `json:"CRUDSchema"`
 	CRUDCardsSchema                    CRUDCardsSchema                 `json:"CRUDCardsSchema"`
-	PlainObject                        interface{}                     `json:"PlainObject"`
+	PlainObject                        any                             `json:"PlainObject"`
 	CRUDBultinToolbarType              string                          `json:"CRUDBultinToolbarType"`
 	SchemaMessage                      SchemaMessage                   `json:"SchemaMessage"`
 	AutoGenerateFilterObject           AutoGenerateFilterObject        `json:"AutoGenerateFilterObject"`
@@ -10724,7 +10724,7 @@ type definitions struct {
 	PropertyStopOpacity                right                           `json:"Property.StopOpacity"`
 	PropertyStroke                     right                           `json:"Property.Stroke"`
 	Field_0a048aec                     right                           `json:"Property.StrokeDasharray<(string|number)>"`
-	DataTypeDasharraystringnumber      interface{}                     `json:"DataType.Dasharray<(string|number)>"`
+	DataTypeDasharraystringnumber      any                             `json:"DataType.Dasharray<(string|number)>"`
 	Field_39430d8b                     right                           `json:"Property.StrokeDashoffset<(string|number)>"`
 	PropertyStrokeLinecap              right                           `json:"Property.StrokeLinecap"`
 	PropertyStrokeLinejoin             right                           `json:"Property.StrokeLinejoin"`
@@ -11306,7 +11306,7 @@ type definitions struct {
 	DataProviderCollection             DataProviderCollection          `json:"DataProviderCollection"`
 	SparkLineSchema                    SparkLineSchema                 `json:"SparkLineSchema"`
 	StatusSchema                       StatusSchema                    `json:"StatusSchema"`
-	StatusSource                       interface{}                     `json:"StatusSource"`
+	StatusSource                       any                             `json:"StatusSource"`
 	SpinnerSchema                      SpinnerSchema                   `json:"SpinnerSchema"`
 	TableSchema                        TableSchema                     `json:"TableSchema"`
 	TableSchema2                       TableSchema2                    `json:"TableSchema2"`
@@ -11340,7 +11340,7 @@ type definitions struct {
 	ArrayControlSchema                 ArrayControlSchema              `json:"ArrayControlSchema"`
 	ButtonGroupControlSchema           ButtonGroupControlSchema        `json:"ButtonGroupControlSchema"`
 	Option                             Option                          `json:"Option"`
-	Options                            []interface{}                   `json:"Options"`
+	Options                            []any                           `json:"Options"`
 	ChainedSelectControlSchema         ChainedSelectControlSchema      `json:"ChainedSelectControlSchema"`
 	CheckboxControlSchema              CheckboxControlSchema           `json:"CheckboxControlSchema"`
 	CheckboxesControlSchema            CheckboxesControlSchema         `json:"CheckboxesControlSchema"`
@@ -11351,11 +11351,11 @@ type definitions struct {
 	ComboCondition                     ComboCondition                  `json:"ComboCondition"`
 	ComboSubControl                    ComboSubControl                 `json:"ComboSubControl"`
 	ConditionBuilderControlSchema      ConditionBuilderControlSchema   `json:"ConditionBuilderControlSchema"`
-	ConditionBuilderFuncs              []interface{}                   `json:"ConditionBuilderFuncs"`
+	ConditionBuilderFuncs              []any                           `json:"ConditionBuilderFuncs"`
 	ConditionFieldFunc                 ConditionFieldFunc              `json:"ConditionFieldFunc"`
 	FieldTypes                         string                          `json:"FieldTypes"`
 	ConditionBuilderFuncArg            ConditionBuilderFuncArg         `json:"ConditionBuilderFuncArg"`
-	ConditionBuilderFields             []interface{}                   `json:"ConditionBuilderFields"`
+	ConditionBuilderFields             []any                           `json:"ConditionBuilderFields"`
 	ConditionBuilderField              right                           `json:"ConditionBuilderField"`
 	FieldSimple                        FieldSimple                     `json:"FieldSimple"`
 	CustomField                        CustomField                     `json:"CustomField"`
@@ -11431,7 +11431,7 @@ type definitions struct {
 	PasswordSchema                     PasswordSchema                  `json:"PasswordSchema"`
 	WordsSchema                        WordsSchema                     `json:"WordsSchema"`
 	TagSchema                          TagSchema                       `json:"TagSchema"`
-	SchemaDefaultData                  interface{}                     `json:"SchemaDefaultData"`
+	SchemaDefaultData                  any                             `json:"SchemaDefaultData"`
 	SchemaObjectCardBodyField          SchemaObjectCardBodyField       `json:"SchemaObjectCardBodyField"`
 	SchemaObjectListBodyField          SchemaObjectListBodyField       `json:"SchemaObjectListBodyField"`
 	SchemaObjectTableColumnWithType    SchemaObjectTableColumnWithType `json:"SchemaObjectTableColumnWithType"`
@@ -11439,7 +11439,7 @@ type definitions struct {
 	SchemaObjectHboxRow                SchemaObjectHboxRow             `json:"SchemaObjectHboxRow"`
 	SchemaObjectComboSubControl        SchemaObjectComboSubControl     `json:"SchemaObjectComboSubControl"`
 	SchemaObjectGroupSubControl        SchemaObjectGroupSubControl     `json:"SchemaObjectGroupSubControl"`
-	UnkownSchema                       interface{}                     `json:"UnkownSchema"`
+	UnkownSchema                       any                             `json:"UnkownSchema"`
 }
 
 type digital_wallet struct {
@@ -11489,8 +11489,8 @@ type features struct {
 }
 
 type filterable struct {
-	Source  string        `json:"source"`
-	Options []interface{} `json:"options"`
+	Source  string `json:"source"`
+	Options []any  `json:"options"`
 }
 
 type food_and_drink struct {
@@ -11499,7 +11499,7 @@ type food_and_drink struct {
 }
 
 type form struct {
-	Actions                     []interface{}   `json:"actions"`
+	Actions                     []any           `json:"actions"`
 	Body                        className       `json:"body"`
 	Title                       string          `json:"title"`
 	Tabs                        staticSchema    `json:"tabs"`
@@ -11547,7 +11547,7 @@ type form struct {
 	Rules                       []ArrayItem3    `json:"rules"`
 	PreventEnterSubmit          bool            `json:"preventEnterSubmit"`
 	LabelAlign                  className       `json:"labelAlign"`
-	LabelWidth                  interface{}     `json:"labelWidth"`
+	LabelWidth                  any             `json:"labelWidth"`
 	Static                      bool            `json:"static"`
 	StaticOn                    RootSchema      `json:"staticOn"`
 	StaticClassName             RootSchema      `json:"staticClassName"`
@@ -11562,12 +11562,12 @@ type form struct {
 	Visible                     bool            `json:"visible"`
 	VisibleOn                   className       `json:"visibleOn"`
 	Id                          string          `json:"id"`
-	OnEvent                     interface{}     `json:"onEvent"`
+	OnEvent                     any             `json:"onEvent"`
 	StaticPlaceholder           string          `json:"staticPlaceholder"`
 	StaticLabelClassName        className       `json:"staticLabelClassName"`
 	StaticInputClassName        className       `json:"staticInputClassName"`
 	StaticSchema                staticSchema    `json:"staticSchema"`
-	Style                       interface{}     `json:"style"`
+	Style                       any             `json:"style"`
 	EditorSetting               editorSetting   `json:"editorSetting"`
 	UseMobileUI                 bool            `json:"useMobileUI"`
 	TestIdBuilder               RootSchema      `json:"testIdBuilder"`
@@ -11576,9 +11576,9 @@ type form struct {
 type formula struct {
 	EvalMode             bool             `json:"evalMode"`
 	MixedMode            bool             `json:"mixedMode"`
-	Variables            []interface{}    `json:"variables"`
+	Variables            []any            `json:"variables"`
 	VariableMode         string           `json:"variableMode"`
-	Functions            []interface{}    `json:"functions"`
+	Functions            []any            `json:"functions"`
 	Title                string           `json:"title"`
 	Header               string           `json:"header"`
 	InputMode            string           `json:"inputMode"`
@@ -11598,7 +11598,7 @@ type formula struct {
 	Size                 string           `json:"size"`
 	Label                SchemaClassName  `json:"label"`
 	LabelAlign           className        `json:"labelAlign"`
-	LabelWidth           interface{}      `json:"labelWidth"`
+	LabelWidth           any              `json:"labelWidth"`
 	LabelClassName       string           `json:"labelClassName"`
 	Name                 string           `json:"name"`
 	ExtraName            string           `json:"extraName"`
@@ -11633,7 +11633,7 @@ type formula struct {
 	Visible              bool             `json:"visible"`
 	VisibleOn            className        `json:"visibleOn"`
 	Id                   string           `json:"id"`
-	OnEvent              interface{}      `json:"onEvent"`
+	OnEvent              any              `json:"onEvent"`
 	Static               bool             `json:"static"`
 	StaticOn             className        `json:"staticOn"`
 	StaticPlaceholder    string           `json:"staticPlaceholder"`
@@ -11641,7 +11641,7 @@ type formula struct {
 	StaticLabelClassName className        `json:"staticLabelClassName"`
 	StaticInputClassName className        `json:"staticInputClassName"`
 	StaticSchema         staticSchema     `json:"staticSchema"`
-	Style                interface{}      `json:"style"`
+	Style                any              `json:"style"`
 	EditorSetting        editorSetting    `json:"editorSetting"`
 	UseMobileUI          bool             `json:"useMobileUI"`
 	TestIdBuilder        RootSchema       `json:"testIdBuilder"`
@@ -11826,9 +11826,9 @@ type overflowIndicator struct {
 }
 
 type overlay struct {
-	Width        interface{} `json:"width"`
-	Align        string      `json:"align"`
-	FilterOption string      `json:"filterOption"`
+	Width        any    `json:"width"`
+	Align        string `json:"align"`
+	FilterOption string `json:"filterOption"`
 }
 
 type pagination struct {
@@ -11855,67 +11855,67 @@ type parsePrimitiveQuery struct {
 }
 
 type patternProperties struct {
-	PatternProperties staticSchema `json:"^(label|labelClassName|name|popOver|quickEdit|copyable)$"`
+	PatternProperties any `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|size|label|labelAlign|labelWidth|labelClassName|name|extraName|remark|labelRemark|hint|submitOnChange|readOnly|readOnlyOn|validateOnChange|description|desc|descriptionClassName|mode|horizontal|inline|inputClassName|placeholder|required|validationErrors|validations|value|clearValueOnHidden|validateApi|autoFill|initAutoFill|row|type|extractValue|joinValues|delimiter|allowCity|allowDistrict|allowStreet|searchable|itemClassName|columnClassName|columnRatio)$"`
 }
 
 type patternProperties1 struct {
-	PatternProperties staticSchema `json:"^(saveImmediately|resetOnFailed|reload|mode|icon)$"`
+	PatternProperties staticSchema `json:"^(label|labelClassName|name|popOver|quickEdit|copyable)$"`
 }
 
 type patternProperties10 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|label|fixed|popOver|quickEdit|quickEditOnUpdate|copyable|sortable|searchable|toggled|width|align|vAlign|headerAlign|classNameExpr|labelClassName|filterable|breakpoint|value|unique|canAccessSuperData|lazyRenderAfter|innerStyle)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|label|labelClassName|innerClassName|popOver|quickEdit|copyable)$"`
 }
 
 type patternProperties11 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|x|y|w|h|width|height|align|valign|gridClassName)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|label|fixed|popOver|quickEdit|quickEditOnUpdate|copyable|sortable|searchable|toggled|width|align|vAlign|headerAlign|classNameExpr|labelClassName|filterable|breakpoint|value|unique|canAccessSuperData|lazyRenderAfter|innerStyle)$"`
 }
 
 type patternProperties12 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|rowClassName|cellClassName)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|x|y|w|h|width|height|align|valign|gridClassName)$"`
 }
 
 type patternProperties13 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|unique|columnClassName)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|rowClassName|cellClassName)$"`
 }
 
 type patternProperties14 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|columnClassName|columnRatio)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|unique|columnClassName)$"`
 }
 
 type patternProperties15 struct {
-	PatternProperties interface{} `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|size|label|labelAlign|labelWidth|labelClassName|name|extraName|remark|labelRemark|hint|submitOnChange|readOnly|readOnlyOn|validateOnChange|description|desc|descriptionClassName|mode|horizontal|inline|inputClassName|placeholder|required|validationErrors|validations|value|clearValueOnHidden|validateApi|autoFill|initAutoFill|row|type|extractValue|joinValues|delimiter|allowCity|allowDistrict|allowStreet|searchable|itemClassName|columnClassName|columnRatio)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|columnClassName|columnRatio)$"`
 }
 
 type patternProperties2 struct {
-	PatternProperties staticSchema `json:"^(label|labelClassName|innerClassName|name|popOver|quickEdit|copyable)$"`
+	PatternProperties staticSchema `json:"^(saveImmediately|resetOnFailed|reload|mode|icon)$"`
 }
 
 type patternProperties3 struct {
-	PatternProperties staticSchema `json:"^(label|fixed|name|popOver|quickEdit|quickEditOnUpdate|copyable|sortable|searchable|toggled|width|align|vAlign|headerAlign|className|classNameExpr|labelClassName|filterable|breakpoint|remark|value|unique|canAccessSuperData|lazyRenderAfter|innerStyle)$"`
+	PatternProperties staticSchema `json:"^(label|labelClassName|innerClassName|name|popOver|quickEdit|copyable)$"`
 }
 
 type patternProperties4 struct {
-	PatternProperties staticSchema `json:"^(x|y|w|h|width|height|align|valign|gridClassName)$"`
+	PatternProperties staticSchema `json:"^(label|fixed|name|popOver|quickEdit|quickEditOnUpdate|copyable|sortable|searchable|toggled|width|align|vAlign|headerAlign|className|classNameExpr|labelClassName|filterable|breakpoint|remark|value|unique|canAccessSuperData|lazyRenderAfter|innerStyle)$"`
 }
 
 type patternProperties5 struct {
-	PatternProperties staticSchema `json:"^(rowClassName|cellClassName)$"`
+	PatternProperties staticSchema `json:"^(x|y|w|h|width|height|align|valign|gridClassName)$"`
 }
 
 type patternProperties6 struct {
-	PatternProperties staticSchema `json:"^(unique|columnClassName|testid)$"`
+	PatternProperties staticSchema `json:"^(rowClassName|cellClassName)$"`
 }
 
 type patternProperties7 struct {
-	PatternProperties staticSchema `json:"^(columnClassName|columnRatio|name)$"`
+	PatternProperties staticSchema `json:"^(unique|columnClassName|testid)$"`
 }
 
 type patternProperties8 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|label|labelClassName|popOver|quickEdit|copyable)$"`
+	PatternProperties staticSchema `json:"^(columnClassName|columnRatio|name)$"`
 }
 
 type patternProperties9 struct {
-	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|label|labelClassName|innerClassName|popOver|quickEdit|copyable)$"`
+	PatternProperties staticSchema `json:"^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|type|testid|title|subTitle|remark|body|bodyClassName|aside|asideResizor|asideSticky|asideMinWidth|asideMaxWidth|asideClassName|css|mobileCSS|data|headerClassName|initApi|initFetch|initFetchOn|messages|name|toolbar|toolbarClassName|definitions|interval|silentPolling|stopAutoRefreshWhen|showErrorMsg|cssVars|regions|pullRefresh|label|labelClassName|popOver|quickEdit|copyable)$"`
 }
 
 type payment struct {

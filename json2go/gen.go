@@ -235,17 +235,17 @@ func processObject(data gjson.Result) []FieldInfo {
 						elemType := determineItemType(items)
 						fieldType = "[]" + elemType
 					} else {
-						fieldType = "[]interface{}"
+						fieldType = "[]any"
 					}
 				case "object":
 					if properties := val.Get("properties"); properties.Exists() {
 						nestedFields := processObject(properties)
 						fieldType = getOrCreateStruct(nestedFields, cleanName(jsonName))
 					} else {
-						fieldType = "interface{}"
+						fieldType = "any"
 					}
 				default:
-					fieldType = "interface{}"
+					fieldType = "any"
 				}
 			} else {
 				nestedFields := processObject(val)
@@ -266,7 +266,7 @@ func processObject(data gjson.Result) []FieldInfo {
 			case gjson.True, gjson.False:
 				fieldType = "bool"
 			default:
-				fieldType = "interface{}"
+				fieldType = "any"
 			}
 		}
 
@@ -282,7 +282,7 @@ func processObject(data gjson.Result) []FieldInfo {
 
 func determineArrayItemType(val gjson.Result) string {
 	if !val.IsArray() {
-		return "interface{}"
+		return "any"
 	}
 
 	if firstElem := val.Get("0"); firstElem.Exists() {
@@ -303,7 +303,7 @@ func determineArrayItemType(val gjson.Result) string {
 			}
 		}
 	}
-	return "interface{}"
+	return "any"
 }
 
 func determineItemType(items gjson.Result) string {
@@ -322,10 +322,10 @@ func determineItemType(items gjson.Result) string {
 				nestedFields := processObject(properties)
 				return getOrCreateStruct(nestedFields, "ArrayItem")
 			}
-			return "interface{}"
+			return "any"
 		}
 	}
-	return "interface{}"
+	return "any"
 }
 
 func generateStructCode() string {
@@ -376,7 +376,7 @@ func generateInstanceCode(data gjson.Result, structType string) string {
 			sb.WriteString(fmt.Sprintf("%v,\n", val.Float()))
 		case "bool":
 			sb.WriteString(fmt.Sprintf("%v,\n", val.Bool()))
-		case "interface{}":
+		case "any":
 			sb.WriteString("nil,\n")
 		default:
 			if strings.HasPrefix(field.Type, "[]") {
