@@ -587,8 +587,8 @@ func runClangASTDump(path string, cModelCallback ClangCModelCallback) []byte {
 	arg = append(arg, "-I", filepath.Dir(path))
 	arg = append(arg, path)
 	out := stream.RunCommandArgs(arg...)
-	stream.WriteTruncate(jsonPath, out.Output)
-	return out.Output.Bytes()
+	stream.WriteTruncate(jsonPath, out.Stdout)
+	return out.Stdout.Bytes()
 }
 
 func needSkip(n gjson.Result) bool {

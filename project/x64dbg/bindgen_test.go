@@ -44,7 +44,7 @@ func TestName(t *testing.T) {
 }
 
 func TestWalk(t *testing.T) {
-	// os.RemoveAll("cache")
+	//os.RemoveAll("cache")
 	RepackSdk()
 	bindgen.Walk(
 		newSdk,
