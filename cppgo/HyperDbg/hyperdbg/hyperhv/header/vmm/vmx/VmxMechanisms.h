@@ -1,0 +1,5 @@
+
+#pragma once
+#define IMMEDIATE_VMEXIT_MECHANISM_VECTOR_FOR_SELF_IPI IPI_INTERRUPT
+VOID VmxMechanismCreateImmediateVmexit(VIRTUAL_MACHINE_STATE *VCpu);
+VOID VmxMechanismHandleImmediateVmexit(VIRTUAL_MACHINE_STATE *VCpu);

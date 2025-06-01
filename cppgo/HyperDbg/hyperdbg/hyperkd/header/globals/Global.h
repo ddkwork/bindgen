@@ -1,0 +1,52 @@
+
+#pragma once
+
+PROCESSOR_DEBUGGING_STATE *g_DbgState;
+
+UINT64 *g_ScriptGlobalVariables;
+
+DEBUGGER_TRAP_FLAG_STATE g_TrapFlagState;
+
+BOOLEAN g_HandleInUse;
+
+BOOLEAN g_AllowIOCTLFromUsermode;
+
+DEBUGGER_CORE_EVENTS *g_Events;
+
+DEBUGGEE_REQUEST_TO_IGNORE_BREAKS_UNTIL_AN_EVENT g_IgnoreBreaksToDebugger;
+
+HARDWARE_DEBUG_REGISTER_DETAILS g_HardwareDebugRegisterDetailsForStepOver;
+
+DEBUGGEE_REQUEST_TO_CHANGE_PROCESS g_ProcessSwitch;
+
+DEBUGGEE_REQUEST_TO_CHANGE_THREAD g_ThreadSwitch;
+
+UINT32 g_LastError;
+
+BOOLEAN g_EnableDebuggerEvents;
+
+LIST_ENTRY g_BreakpointsListHead;
+
+UINT64 g_MaximumBreakpointId;
+
+BOOLEAN g_KernelDebuggerState;
+
+BOOLEAN g_UserDebuggerState;
+
+BOOLEAN g_InterceptBreakpoints;
+
+BOOLEAN g_InterceptDebugBreaks;
+
+DEBUGGEE_PAUSING_REASON g_DebuggeeHaltReason;
+
+DEBUGGER_TRIGGERED_EVENT_DETAILS g_EventTriggerDetail;
+
+UINT64 g_SeedOfUserDebuggingDetails;
+
+BOOLEAN g_IsWaitingForReturnAndRunFromPageFault;
+
+LIST_ENTRY g_ProcessDebuggingDetailsListHead;
+
+BOOLEAN g_IsWaitingForUserModeProcessEntryToBeCalled;
+
+BOOLEAN g_InterceptBreakpointsAndEventsForCommandsInRemoteComputer;
