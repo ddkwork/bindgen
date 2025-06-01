@@ -1,0 +1,309 @@
+{
+	"report": {
+		"asset_report_id": "028e8404-a013-4a45-ac9e-002482f9cafc",
+		"client_report_id": "client_report_id_1221",
+		"date_generated": "2023-03-30T18:27:37Z",
+		"days_requested": 5,
+		"items": [
+			{
+				"accounts": [
+					{
+						"account_id": "1qKRXQjk8xUWDJojNwPXTj8gEmR48piqRNye8",
+						"balances": {
+							"available": 43200,
+							"current": 43200,
+							"limit": null,
+							"margin_loan_amount": null,
+							"iso_currency_code": "USD",
+							"unofficial_currency_code": null
+						},
+						"days_available": 5,
+						"historical_balances": [
+							{
+								"current": 49050,
+								"date": "2023-03-29",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": 49050,
+								"date": "2023-03-28",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": 49050,
+								"date": "2023-03-27",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": 49050,
+								"date": "2023-03-26",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": 49050,
+								"date": "2023-03-25",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							}
+						],
+						"mask": "4444",
+						"name": "Plaid Money Market",
+						"official_name": "Plaid Platinum Standard 1.85% Interest Money Market",
+						"owners": [
+							{
+								"addresses": [
+									{
+										"data": {
+											"city": "Malakoff",
+											"country": "US",
+											"region": "NY",
+											"street": "2992 Cameron Road",
+											"postal_code": "14236"
+										},
+										"primary": true
+									},
+									{
+										"data": {
+											"city": "San Matias",
+											"country": "US",
+											"region": "CA",
+											"street": "2493 Leisure Lane",
+											"postal_code": "93405-2255"
+										},
+										"primary": false
+									}
+								],
+								"emails": [
+									{
+										"data": "accountholder0@example.com",
+										"primary": true,
+										"type": "primary"
+									},
+									{
+										"data": "accountholder1@example.com",
+										"primary": false,
+										"type": "secondary"
+									},
+									{
+										"data": "extraordinarily.long.email.username.123456@reallylonghostname.com",
+										"primary": false,
+										"type": "other"
+									}
+								],
+								"names": [
+									"Alberta Bobbeth Charleson"
+								],
+								"phone_numbers": [
+									{
+										"data": "1112223333",
+										"primary": false,
+										"type": "home"
+									},
+									{
+										"data": "1112224444",
+										"primary": false,
+										"type": "work"
+									},
+									{
+										"data": "1112225555",
+										"primary": false,
+										"type": "mobile"
+									}
+								]
+							}
+						],
+						"ownership_type": null,
+						"subtype": "money market",
+						"transactions": [
+							{
+								"account_id": "1qKRXQjk8xUWDJojNwPXTj8gEmR48piqRNye8",
+								"amount": 5850,
+								"date": "2023-03-30",
+								"iso_currency_code": "USD",
+								"original_description": "ACH Electronic CreditGUSTO PAY 123456",
+								"pending": false,
+								"transaction_id": "gGQgjoeyqBF89PND6K14Sow1wddZBmtLomJ78",
+								"unofficial_currency_code": null
+							}
+						],
+						"type": "depository"
+					},
+					{
+						"account_id": "eG7pNLjknrFpWvP7Dkbdf3Pq6GVBPKTaQJK5v",
+						"balances": {
+							"available": 100,
+							"current": 110,
+							"limit": null,
+							"margin_loan_amount": null,
+							"iso_currency_code": "USD",
+							"unofficial_currency_code": null
+						},
+						"days_available": 5,
+						"historical_balances": [
+							{
+								"current": 110,
+								"date": "2023-03-29",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": -390,
+								"date": "2023-03-28",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": -373.67,
+								"date": "2023-03-27",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": -284.27,
+								"date": "2023-03-26",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							},
+							{
+								"current": -284.27,
+								"date": "2023-03-25",
+								"iso_currency_code": "USD",
+								"unofficial_currency_code": null
+							}
+						],
+						"mask": "0000",
+						"name": "Plaid Checking",
+						"official_name": "Plaid Gold Standard 0% Interest Checking",
+						"owners": [
+							{
+								"addresses": [
+									{
+										"data": {
+											"city": "Malakoff",
+											"country": "US",
+											"region": "NY",
+											"street": "2992 Cameron Road",
+											"postal_code": "14236"
+										},
+										"primary": true
+									},
+									{
+										"data": {
+											"city": "San Matias",
+											"country": "US",
+											"region": "CA",
+											"street": "2493 Leisure Lane",
+											"postal_code": "93405-2255"
+										},
+										"primary": false
+									}
+								],
+								"emails": [
+									{
+										"data": "accountholder0@example.com",
+										"primary": true,
+										"type": "primary"
+									},
+									{
+										"data": "accountholder1@example.com",
+										"primary": false,
+										"type": "secondary"
+									},
+									{
+										"data": "extraordinarily.long.email.username.123456@reallylonghostname.com",
+										"primary": false,
+										"type": "other"
+									}
+								],
+								"names": [
+									"Alberta Bobbeth Charleson"
+								],
+								"phone_numbers": [
+									{
+										"data": "1112223333",
+										"primary": false,
+										"type": "home"
+									},
+									{
+										"data": "1112224444",
+										"primary": false,
+										"type": "work"
+									},
+									{
+										"data": "1112225555",
+										"primary": false,
+										"type": "mobile"
+									}
+								]
+							}
+						],
+						"ownership_type": null,
+						"subtype": "checking",
+						"transactions": [
+							{
+								"account_id": "eG7pNLjknrFpWvP7Dkbdf3Pq6GVBPKTaQJK5v",
+								"amount": 89.4,
+								"date": "2023-03-27",
+								"iso_currency_code": "USD",
+								"original_description": "SparkFun",
+								"pending": false,
+								"transaction_id": "4zBRq1Qem4uAPnoyKjJNTRQpQddM4ztlo1PLD",
+								"unofficial_currency_code": null
+							},
+							{
+								"account_id": "eG7pNLjknrFpWvP7Dkbdf3Pq6GVBPKTaQJK5v",
+								"amount": 12,
+								"date": "2023-03-28",
+								"iso_currency_code": "USD",
+								"original_description": "McDonalds #3322",
+								"pending": false,
+								"transaction_id": "dkjL41PnbKsPral79jpxhMWdW55gkPfBkWpRL",
+								"unofficial_currency_code": null
+							},
+							{
+								"account_id": "eG7pNLjknrFpWvP7Dkbdf3Pq6GVBPKTaQJK5v",
+								"amount": 4.33,
+								"date": "2023-03-28",
+								"iso_currency_code": "USD",
+								"original_description": "Starbucks",
+								"pending": false,
+								"transaction_id": "a84ZxQaWDAtDL3dRgmazT57K7jjN3WFkNWMDy",
+								"unofficial_currency_code": null
+							},
+							{
+								"account_id": "eG7pNLjknrFpWvP7Dkbdf3Pq6GVBPKTaQJK5v",
+								"amount": -500,
+								"date": "2023-03-29",
+								"iso_currency_code": "USD",
+								"original_description": "United Airlines **** REFUND ****",
+								"pending": false,
+								"transaction_id": "xG9jbv3eMoFWepzB7wQLT3LoLggX5Duy1Gbe5",
+								"unofficial_currency_code": null
+							}
+						],
+						"type": "depository"
+					}
+				],
+				"date_last_updated": "2023-03-30T18:25:26Z",
+				"institution_id": "ins_109508",
+				"institution_name": "First Platypus Bank",
+				"item_id": "AZMP7JrGXgtPd3AQMeg7hwMKgk5E8qU1V5ME7"
+			}
+		],
+		"user": {
+			"client_user_id": "uid_40332",
+			"email": "abcharleston@example.com",
+			"first_name": "Anna",
+			"last_name": "Charleston",
+			"middle_name": "B",
+			"phone_number": "1-415-867-5309",
+			"ssn": "111-22-1234"
+		}
+	},
+	"request_id": "GVzMdiDd8DDAQK4",
+	"warnings": []
+}

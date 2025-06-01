@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"fmt"
+	"github.com/ddkwork/golibrary/clang"
 	"github.com/ddkwork/golibrary/mylog"
 	"os"
 	"regexp"
@@ -13,6 +14,10 @@ import (
 
 	"github.com/ddkwork/golibrary/assert"
 )
+
+func TestWalk(t *testing.T) {
+	clang.Walk("D:\\workspace\\workspace\\bindgen\\cppgo\\HyperDbg")
+}
 
 func Test_handleQualType(t *testing.T) {
 	// assert.Equal(t, "[64]int8", handleQualType("char[64]"))

@@ -7,13 +7,11 @@ AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: None
 AlignOperands: Align
 AllowAllConstructorInitializersOnNextLine: false
-AllowShortBlocksOnASingleLine: Always
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: Always
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
-AlwaysBreakTemplateDeclarations: Yes
+#AlwaysBreakTemplateDeclarations: Yes
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterCaseLabel: false
@@ -37,7 +35,6 @@ ContinuationIndentWidth: 8
 IndentCaseLabels: true
 IndentPPDirectives: None
 IndentWidth: 4
-KeepEmptyLinesAtTheStartOfBlocks: true
 NamespaceIndentation: All
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
@@ -116,20 +113,22 @@ StatementMacros: [
 ]
 
 # 控制空行
-MaxEmptyLinesToKeep: 1         # 函数体内最多保留 0 空行，函数间保留 1 空行
-SeparateDefinitionBlocks: Always  # 强制函数间空行（需 clang-format 14+）
+AllowAllParametersOfDeclarationOnNextLine: false  # 参数较多时换行方式
+AlwaysBreakAfterDefinitionReturnType: None        # 禁止返回类型后换行
 
-# 参数在同一行
-ColumnLimit: 180
-AllowAllParametersOfDeclarationOnNextLine: false
+# 核心空行控制配置
+MaxEmptyLinesToKeep: 1                  # 全局最多保留连续1个空行
+KeepEmptyLinesAtTheStartOfBlocks: false   # 删除函数体开头的空行
+SeparateDefinitionBlocks: Always         # 强制函数定义间加空行
+ColumnLimit: 0                  # 禁用行宽限制，防止自动换行
+BreakAfterReturnType: None    # Clang-Format 10+ 替代选项
+TypeNames: [Param]             # 类型名单独一行
+BreakAfterReturnType: None
+AllowShortFunctionsOnASingleLine: Empty  # 允许空函数单行显示
+AllowShortBlocksOnASingleLine: Empty     # 允许空代码块单行显示
 BinPackParameters: true
 AllowAllArgumentsOnNextLine: false
-
-# 强制返回类型与函数名同行
-AlwaysBreakAfterDefinitionReturnType: None
-AlwaysBreakAfterReturnType: None
-PenaltyReturnTypeOnItsOwnLine: 1000000
-
+PenaltyReturnTypeOnItsOwnLine: 10000
 TabWidth: 4
 UseTab: Never
 

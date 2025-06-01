@@ -1,0 +1,94 @@
+{
+  "$ref": "#/definitions/InputCityControlSchema",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^(loadingConfig|$$id|className|$ref|disabled|disabledOn|hidden|hiddenOn|visible|visibleOn|id|onEvent|static|staticOn|staticPlaceholder|staticClassName|staticLabelClassName|staticInputClassName|staticSchema|style|editorSetting|useMobileUI|testIdBuilder|size|label|labelAlign|labelWidth|labelClassName|name|extraName|remark|labelRemark|hint|submitOnChange|readOnly|readOnlyOn|validateOnChange|description|desc|descriptionClassName|mode|horizontal|inline|inputClassName|placeholder|required|validationErrors|validations|value|clearValueOnHidden|validateApi|autoFill|initAutoFill|row|type|extractValue|joinValues|delimiter|allowCity|allowDistrict|allowStreet|searchable|itemClassName|columnClassName|columnRatio)$": {
+      "type": "object"
+    }
+  },
+  "$$id": {
+    "type": "string",
+    "description": "component unique id"
+  },
+  "className": {
+    "$ref": "#/definitions/SchemaClassName",
+    "description": "container className"
+  },
+  "disabled": {
+    "type": "boolean",
+    "description": "disabled"
+  },
+  "disabledOn": {
+    "$ref": "#/definitions/SchemaExpression",
+    "description": "disabled expression"
+  },
+  "QRCodeImageSettings": {
+    "type": "object",
+    "properties": {
+      "src": {
+        "type": "string"
+      },
+      "height": {
+        "type": "number"
+      },
+      "width": {
+        "type": "number"
+      },
+      "excavate": {
+        "type": "boolean"
+      },
+      "x": {
+        "type": "number"
+      },
+      "y": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "src",
+      "height",
+      "width",
+      "excavate"
+    ],
+    "additionalProperties": false
+  },
+  "ConditionGroupValue": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "conjunction": {
+        "type": "string",
+        "enum": [
+          "and",
+          "or"
+        ]
+      },
+      "not": {
+        "type": "boolean"
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ConditionRule"
+            },
+            {
+              "$ref": "#/definitions/ConditionGroupValue"
+            }
+          ]
+        }
+      },
+      "if": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "conjunction"
+    ],
+    "additionalProperties": false
+  }
+}

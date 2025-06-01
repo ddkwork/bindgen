@@ -3,7 +3,7 @@ package bindgen
 import (
 	"bytes"
 	"fmt"
-	"github.com/ddkwork/golibrary/stream/clang"
+	"github.com/ddkwork/golibrary/clang"
 	"io/fs"
 	"net/url"
 	"os"

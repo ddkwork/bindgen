@@ -31,6 +31,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <Windows.h>
 #include <mutex>
 #include <ios>
 #include <sstream>
@@ -218,62 +219,62 @@ namespace nlohmann {
         }
     };
 
-    template<>
-    struct adl_serializer<BridgeCFNode> {
-        static void to_json(json &j, const BridgeCFNode &self) {
-            j = {
+//    template<>
+//    struct adl_serializer<BridgeCFNode> {
+//        static void to_json(json &j, const BridgeCFNode &self) {
+//            j = {
+//
+//                    {"parentGraph", self.parentGraph},
+//                    {"start", self.start},
+//                    {"end", self.end},
+//                    {"brtrue", self.brtrue},
+//                    {"brfalse", self.brfalse},
+//                    {"icount", self.icount},
+//                    {"terminal", self.terminal},
+//                    {"split", self.split},
+//                    {"indirectcall", self.indirectcall},
+//                    {"userdata", self.userdata},
+//                    {"exits", self.exits},
+//                    {"instrs", self.instrs},
+//            };
+//        }
+//    };
 
-                    {"parentGraph", self.parentGraph},
-                    {"start", self.start},
-                    {"end", self.end},
-                    {"brtrue", self.brtrue},
-                    {"brfalse", self.brfalse},
-                    {"icount", self.icount},
-                    {"terminal", self.terminal},
-                    {"split", self.split},
-                    {"indirectcall", self.indirectcall},
-                    {"userdata", self.userdata},
-                    {"exits", self.exits},
-                    {"instrs", self.instrs},
-            };
-        }
-    };
+//    template<>
+//    struct adl_serializer<BridgeCFGraph> {
+//        static void to_json(json &j, const BridgeCFGraph &self) {
+//            j = {
+//
+//                    {"entryPoint", self.entryPoint},
+//                    {"userdata", self.userdata},
+//                    {"nodes", self.nodes},
+//            };
+//        }
+//    };
 
-    template<>
-    struct adl_serializer<BridgeCFGraph> {
-        static void to_json(json &j, const BridgeCFGraph &self) {
-            j = {
-
-                    {"entryPoint", self.entryPoint},
-                    {"userdata", self.userdata},
-                    {"nodes", self.nodes},
-            };
-        }
-    };
-
-    template<>
-    struct adl_serializer<SYMBOLPTR_> {
-        static void to_json(json &j, const SYMBOLPTR_ &self) {
-            j = {
-
-                    {"modbase", self.modbase},
-                    {"symbol", self.symbol},
-            };
-        }
-    };
+//    template<>
+//    struct adl_serializer<SYMBOLPTR_> {
+//        static void to_json(json &j, const SYMBOLPTR_ &self) {
+//            j = {
+//
+//                    {"modbase", self.modbase},
+//                    {"symbol", self.symbol},
+//            };
+//        }
+//    };
 
 }// namespace nlohmann
 
 void dispatch() {
-    server.Post("/_scriptapi_argument.h/Add", [](const Request &req, Response &res) {
-        try {
-            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
-            json params;
-            for (const auto &param: arg) { params[param.name] = param.value; }
-            ApiResponse resp{.success = true, .type = "", .result = Script::Argument::Add(params["info"].get<const ArgumentInfo *>())};
-            res.set_content(json(resp).dump(), "application/json");
-        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
-    });
+//    server.Post("/_scriptapi_argument.h/Add", [](const Request &req, Response &res) {
+//        try {
+//            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
+//            json params;
+//            for (const auto &param: arg) { params[param.name] = param.value; }
+//            ApiResponse resp{.success = true, .type = "", .result = Script::Argument::Add(params["info"].get<const ArgumentInfo *>())};
+//            res.set_content(json(resp).dump(), "application/json");
+//        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
+//    });
 
     server.Post("/_scriptapi_argument.h/Get", [](const Request &req, Response &res) {
         try {
@@ -320,17 +321,17 @@ void dispatch() {
         } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
     });
 
-    server.Post("/_scriptapi_argument.h/DeleteRange", [](const Request &req, Response &res) {
-        try {
-            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
-            json params;
-            for (const auto &param: arg) { params[param.name] = param.value; }
-            ApiResponse resp{.success = true,
-                             .type = "",
-                             .result = Script::Argument::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>(), params["deleteManual"].get<bool>())};
-            res.set_content(json(resp).dump(), "application/json");
-        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
-    });
+//    server.Post("/_scriptapi_argument.h/DeleteRange", [](const Request &req, Response &res) {
+//        try {
+//            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
+//            json params;
+//            for (const auto &param: arg) { params[param.name] = param.value; }
+//            ApiResponse resp{.success = true,
+//                             .type = "",
+//                             .result = Script::Argument::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>(), params["deleteManual"].get<bool>())};
+//            res.set_content(json(resp).dump(), "application/json");
+//        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
+//    });
 
     server.Post("/_scriptapi_argument.h/Clear", [](const Request &req, Response &res) {
         try {
