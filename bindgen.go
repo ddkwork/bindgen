@@ -315,20 +315,57 @@ type ApiResponse struct {
 					if fn.Comment.currentFile != path {
 						continue
 					}
-					fn.Name = strings.TrimPrefix(fn.Name, path)
+					//fn.Name = strings.TrimPrefix(fn.Name, path)
 
+					bug := false
 					var values []string
 					for _, p := range fn.Params {
+						skips := []string{
+							"ArgumentInfo *",
+							"CommentInfo *",
+							"BookmarkInfo *",
+							"HardwareType",
+							"FlagEnum",
+							"FunctionInfo *",
+							"LabelInfo *",
+							"ModuleSectionInfo *",
+							"ModuleInfo *",
+						}
+						if slices.Contains(skips, strings.TrimPrefix(p.CType, "const ")) {
+							bug = true
+							break
+						}
+						if strings.Contains(path, "_scriptapi_gui") {
+							bug = true
+							break
+						}
+						if strings.Contains(path, "_scriptapi_misc") {
+							bug = true
+							break
+						}
+						if strings.Contains(path, "bridgemain") {
+							bug = true
+							break
+						}
+						if strings.Contains(path, "bridgegraph") {
+							bug = true
+							break
+						}
+
 						if strings.Contains("", p.CType) { //取出当前命名空间中的结构体名称
 							//p.CType=strings.ReplaceAll(p.CType,"const","")
 						}
 						values = append(values, "params["+strconv.Quote(p.Name)+"].get<"+p.CType+">()")
 					}
+					if bug {
+						continue
+					}
+					bug = false
 
 					gResp := stream.NewGeneratedFile()
 					do := fn.CName + "(" + strings.Join(values, ", ") + ")"
-					if fn.ReturnType == "void" { //todo test
-						gResp.P(fn.CName, "();")
+					if fn.ReturnCType == "void" {
+						gResp.P(do, ";")
 						do = "nullptr"
 					}
 
@@ -337,7 +374,7 @@ type ApiResponse struct {
 						", .result = ", do, "};")
 
 					urlPath := makeUrlPath(path, fn.Name)
-					api.Set(urlPath, cApi{
+					api.Update(urlPath, cApi{
 						path:       urlPath,
 						CName:      fn.CName,
 						Do:         gResp.String(),
