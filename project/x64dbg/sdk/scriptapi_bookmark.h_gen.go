@@ -6,15 +6,23 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-// BookmarkInfo (:10)
+// BookmarkInfo (:10 )
 type BookmarkInfo struct {
-	Mod    [256]int8 // C type: char[256]
-	Rva    uint      // C type: duint
-	Manual bool      // C type: bool
+	mod    [256]int8 // C type: char[256]
+	rva    uint      // C type: duint
+	manual bool      // C type: bool
 }
 type bookmark struct{}
 
-func (b *bookmark) Set(info *BookmarkInfo) {
+// Set    c api name: Script::Bookmark::Set
+// ┌────┬────────┬──────────────────────┬───────────────┐
+// │ id │  name  │        c type        │    go type    │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │ 0  │ info   │ const BookmarkInfo * │ *BookmarkInfo │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │    │ return │ bool                 │ bool          │
+// └────┴────────┴──────────────────────┴───────────────┘
+func (b *bookmark) Set(info *BookmarkInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -24,10 +32,18 @@ func (b *bookmark) Set(info *BookmarkInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bookmark) Get(addr uint) {
+// Get    c api name: Script::Bookmark::Get
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ addr   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (b *bookmark) Get(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -37,10 +53,20 @@ func (b *bookmark) Get(addr uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
+// GetInfo    c api name: Script::Bookmark::GetInfo
+// ┌────┬────────┬────────────────┬───────────────┐
+// │ id │  name  │     c type     │    go type    │
+// ├────┼────────┼────────────────┼───────────────┤
+// │ 0  │ addr   │ duint          │ uint          │
+// ├────┼────────┼────────────────┼───────────────┤
+// │ 1  │ info   │ BookmarkInfo * │ *BookmarkInfo │
+// ├────┼────────┼────────────────┼───────────────┤
+// │    │ return │ bool           │ bool          │
+// └────┴────────┴────────────────┴───────────────┘
+func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -55,10 +81,18 @@ func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bookmark) Delete(addr uint) {
+// Delete    c api name: Script::Bookmark::Delete
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ addr   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (b *bookmark) Delete(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -68,9 +102,19 @@ func (b *bookmark) Delete(addr uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
+// DeleteRange    c api name: Script::Bookmark::DeleteRange
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ start  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ end    │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (b *bookmark) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -86,17 +130,29 @@ func (b *bookmark) DeleteRange(start uint, end uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
+// Clear    c api name: Script::Bookmark::Clear
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (b *bookmark) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
 }
 
-func (b *bookmark) GetList(list *ListInfo) {
+// GetList    c api name: Script::Bookmark::GetList
+// ┌────┬────────┬────────────┬───────────┐
+// │ id │  name  │   c type   │  go type  │
+// ├────┼────────┼────────────┼───────────┤
+// │ 0  │ list   │ ListInfo * │ *ListInfo │
+// ├────┼────────┼────────────┼───────────┤
+// │    │ return │ bool       │ bool      │
+// └────┴────────┴────────────┴───────────┘
+func (b *bookmark) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -106,5 +162,5 @@ func (b *bookmark) GetList(list *ListInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }

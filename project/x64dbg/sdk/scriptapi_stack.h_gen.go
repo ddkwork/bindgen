@@ -8,14 +8,28 @@ import (
 
 type stack struct{}
 
-func (s *stack) Pop() {
+// Pop    c api name: Script::Stack::Pop
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (s *stack) Pop() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Pop").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (s *stack) Push(value uint) {
+// Push    c api name: Script::Stack::Push
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (s *stack) Push(value uint) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Push").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -25,10 +39,18 @@ func (s *stack) Push(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (s *stack) Peek(offset int) {
+// Peek    c api name: Script::Stack::Peek
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ offset │ int    │ int     │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (s *stack) Peek(offset int) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_stack.h/Peek").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -38,5 +60,5 @@ func (s *stack) Peek(offset int) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }

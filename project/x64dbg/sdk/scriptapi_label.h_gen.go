@@ -6,16 +6,24 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-// LabelInfo (:10)
+// LabelInfo (:10 )
 type LabelInfo struct {
-	Mod    [256]int8 // C type: char[256]
-	Rva    uint      // C type: duint
-	Text   [256]int8 // C type: char[256]
-	Manual bool      // C type: bool
+	mod    [256]int8 // C type: char[256]
+	rva    uint      // C type: duint
+	text   [256]int8 // C type: char[256]
+	manual bool      // C type: bool
 }
 type label struct{}
 
-func (l *label) Set(info *LabelInfo) {
+// Set    c api name: Script::Label::Set
+// ┌────┬────────┬───────────────────┬────────────┐
+// │ id │  name  │      c type       │  go type   │
+// ├────┼────────┼───────────────────┼────────────┤
+// │ 0  │ info   │ const LabelInfo * │ *LabelInfo │
+// ├────┼────────┼───────────────────┼────────────┤
+// │    │ return │ bool              │ bool       │
+// └────┴────────┴───────────────────┴────────────┘
+func (l *label) Set(info *LabelInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -25,15 +33,25 @@ func (l *label) Set(info *LabelInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (l *label) FromString(label string, addr *uint) {
+// FromString    c api name: Script::Label::FromString
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ label  │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 1  │ addr   │ duint *      │ *uint   │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (l *label) FromString(label *int8, addr *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/FromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "label",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", label),
 			},
 			{
@@ -43,10 +61,20 @@ func (l *label) FromString(label string, addr *uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (l *label) Get(addr uint, text *int8) {
+// Get    c api name: Script::Label::Get
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ addr   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ text   │ char * │ *int8   │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (l *label) Get(addr uint, text *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -61,10 +89,18 @@ func (l *label) Get(addr uint, text *int8) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (l *label) IsTemporary(addr uint) {
+// IsTemporary    c api name: Script::Label::IsTemporary
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ addr   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (l *label) IsTemporary(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/IsTemporary").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -74,10 +110,20 @@ func (l *label) IsTemporary(addr uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (l *label) GetInfo(addr uint, info *LabelInfo) {
+// GetInfo    c api name: Script::Label::GetInfo
+// ┌────┬────────┬─────────────┬────────────┐
+// │ id │  name  │   c type    │  go type   │
+// ├────┼────────┼─────────────┼────────────┤
+// │ 0  │ addr   │ duint       │ uint       │
+// ├────┼────────┼─────────────┼────────────┤
+// │ 1  │ info   │ LabelInfo * │ *LabelInfo │
+// ├────┼────────┼─────────────┼────────────┤
+// │    │ return │ bool        │ bool       │
+// └────┴────────┴─────────────┴────────────┘
+func (l *label) GetInfo(addr uint, info *LabelInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -92,10 +138,18 @@ func (l *label) GetInfo(addr uint, info *LabelInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (l *label) Delete(addr uint) {
+// Delete    c api name: Script::Label::Delete
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ addr   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (l *label) Delete(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -105,9 +159,19 @@ func (l *label) Delete(addr uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
+// DeleteRange    c api name: Script::Label::DeleteRange
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ start  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ end    │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (l *label) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -123,17 +187,29 @@ func (l *label) DeleteRange(start uint, end uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
+// Clear    c api name: Script::Label::Clear
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (l *label) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
 }
 
-func (l *label) GetList(list *ListInfo) {
+// GetList    c api name: Script::Label::GetList
+// ┌────┬────────┬────────────┬───────────┐
+// │ id │  name  │   c type   │  go type  │
+// ├────┼────────┼────────────┼───────────┤
+// │ 0  │ list   │ ListInfo * │ *ListInfo │
+// ├────┼────────┼────────────┼───────────┤
+// │    │ return │ bool       │ bool      │
+// └────┴────────┴────────────┴───────────┘
+func (l *label) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -143,5 +219,5 @@ func (l *label) GetList(list *ListInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }

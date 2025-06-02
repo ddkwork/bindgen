@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/aquasecurity/table"
 	"github.com/ddkwork/golibrary/clang"
 	"io/fs"
 	"net/url"
@@ -40,202 +41,201 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 		}
 		return err
 	}))
-	Bind(targetDir, cModelCallback, paths...)
-}
 
-func Bind(targetDir string, cModelCallback ClangCModelCallback, paths ...string) {
+	var methods []string
+	pkgName := filepath.Base(targetDir)
 	result := Result{
 		Enums:     new(safemap.M[string, EnumInfo]),
 		Structs:   new(safemap.M[string, StructInfo]),
 		Functions: new(safemap.M[string, FunctionInfo]),
 		Typedefs:  new(safemap.M[string, string]),
 	}
-	w := waitgroup.New()
-	for _, path := range paths {
-		w.Go(func() {
-			mylog.Warning("ast", path)
-			root := gjson.ParseBytes(runClangASTDump(path, cModelCallback))
-			typedefsNameByID(root, &result)
-		})
-	}
-	w.Wait()
-
-	w2 := waitgroup.New()
-	for _, path := range paths {
-		mylog.Warning("bind", path)
-		w2.Go(func() {
-			root := gjson.ParseBytes(runClangASTDump(path, cModelCallback))
-			traverseNode(root, &result, path)
-		})
-	}
-
-	w2.Wait()
-	os.RemoveAll("tmp")
-	os.RemoveAll(targetDir)
-
-	genGoFile(result, targetDir, paths...)
-	mylog.Success("bind success")
-}
-
-type cApi struct {
-	path       string
-	Fn         string
-	Do         string
-	Params     []FunctionParam
-	ReturnType string
-}
-
-func genGoFile(results Result, targetDir string, paths ...string) {
-	var methods []string
-
-	api := new(safemap.M[string, cApi]) // urlPath api
-
-	pkgName := filepath.Base(targetDir)
-	for _, path := range paths {
-		buffer := bytes.NewBufferString("")
-		buffer.WriteString("package " + pkgName + "\n")
-
-		if !results.Functions.Empty() {
-			buffer.WriteString(`
-import (
-	"fmt"
-	"encoding/json"
-	"github.com/ddkwork/golibrary/mylog"
-)
-`)
-		}
-
-		for _, e := range results.Enums.Range() {
-			if e.Comment.currentFile != path {
-				continue
+	step := bindStep{
+		collectTypedefs: func() {
+			w := waitgroup.New()
+			for _, path := range paths {
+				w.Go(func() {
+					mylog.Info("typedefs from ast dump", path) //collect typedefs,匿名的原因不能第一次获取到名称，名称被存在inner的最后一个节点，所以我们要先通过节点id收集
+					typedefsNameByID(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result)
+				})
 			}
-			buffer.WriteString(fmt.Sprintf("type %s int // %s\nconst (\n", e.Name, e.Loc))
-			for i, m := range e.Members {
-				line := fmt.Sprintf("\t%s", m.Name)
-				if i == 0 {
-					line += " " + e.Name + " = iota"
-				} else if m.ExplicitValue != "" {
-					line += " = " + m.ExplicitValue
+			w.Wait()
+		},
+		makeResult: func() {
+			w := waitgroup.New()
+			for _, path := range paths {
+				mylog.Warning("enums,structs,functions", path) //collect from ast parse
+				w.Go(func() {
+					traverseNode(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result, path)
+				})
+			}
+			w.Wait()
+		},
+		bindAllFile: func() {
+			mylog.Info("clean tmp and target dir")
+			os.RemoveAll("tmp")
+			os.RemoveAll(targetDir)
+
+			for _, path := range paths {
+				g := stream.NewGeneratedFile()
+				for _, enum := range result.Enums.Range() {
+					if enum.Comment.currentFile != path {
+						continue
+					}
+					g.P("type ", enum.Name, " int //", enum.Loc)
+					g.P("const (")
+					for i, m := range enum.Members {
+						line := m.Name
+						if i == 0 {
+							line += " " + enum.Name + " = iota "
+						} else if m.ExplicitValue != "" {
+							line += " = " + m.ExplicitValue
+						}
+						if m.ComputedValue > 0 { //todo bug
+							g.P(line, m.ComputedValue)
+						} else {
+							g.P(line)
+						}
+					}
+					g.P(")")
 				}
-				buffer.WriteString(fmt.Sprintf("%s // %d\n", line, m.ComputedValue))
-			}
-			buffer.WriteString(")\n")
-		}
 
-		for _, s := range results.Structs.Range() {
-			if s.Comment.currentFile != path {
-				continue
-			}
-			buffer.WriteString(fmt.Sprintf("// %s (%s)\n", s.Name, s.Loc))
-			buffer.WriteString(fmt.Sprintf("type %s struct {\n", s.Name))
-			for _, f := range s.Fields {
-				buffer.WriteString(fmt.Sprintf("\t%s %s // C type: %s\n",
-					strings.Title(f.Name),
-					f.TypeDecl,
-					f.Type))
-			}
-			buffer.WriteString("}\n")
-		}
+				for _, object := range result.Structs.Range() {
+					if object.Comment.currentFile != path {
+						continue
+					}
+					g.P("// ", object.Name, " (", object.Loc, " )")
+					g.P("type ", object.Name, " struct {")
+					for _, f := range object.Fields {
+						g.P(" ", f.Name, " ", f.TypeDecl, " // C type: ", f.Type)
+					}
+					g.P("}")
+				}
 
-		fileName := strings.TrimPrefix(filepath.Base(path), "_")
-		methodName := strings.TrimPrefix(fileName, "scriptapi_")
-		methodName = stream.TrimExtension(methodName)
-		methods = append(methods, methodName)
-		buffer.WriteString(fmt.Sprintf("type %s struct {}\n", methodName))
+				fileName := strings.TrimPrefix(filepath.Base(path), "_")
+				methodName := strings.TrimPrefix(fileName, "scriptapi_")
+				methodName = stream.TrimExtension(methodName)
+				methods = append(methods, methodName)
+				g.P("type ", methodName, " struct {}")
 
-		for _, m := range results.Functions.Range() {
-			if m.Comment.currentFile != path {
-				continue
+				for _, fn := range result.Functions.Range() {
+					if fn.Comment.currentFile != path {
+						continue
+					}
+					fn.Name = strings.TrimPrefix(fn.Name, path)
+
+					params := make([]string, len(fn.Params))
+					for i, p := range fn.Params {
+						params[i] = p.Name + " " + p.Type
+					}
+
+					urlPath := makeUrlPath(path, fn.Name)
+					//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
+					//apiName := fn.Comment.mangledName
+					//if strings.HasPrefix(apiName, "?") { // namespace
+					//	split := strings.Split(apiName, "@")
+					//	apiName = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
+					//}
+					// mylog.Trace(fn.name, fn.Comment.mangledName)
+
+					/////////////////////////////////////////////////////////
+					b := bytes.NewBufferString("")
+					t := table.New(b)
+					t.SetAlignment(table.AlignCenter, table.AlignLeft, table.AlignLeft, table.AlignLeft)
+					t.SetHeaders("id", "name", "c type", "go type")
+					for i, p := range fn.Params { //make comment
+						t.AddRow(strconv.Itoa(i), p.Name, p.CType, p.Type)
+					}
+					t.AddRow("", "return", fn.ReturnCType, fn.ReturnType)
+					t.Render()
+
+					g.P("// ", fn.Name, "    c api name: ", fn.CName)
+					for s := range strings.Lines(b.String()) {
+						g.P("// ", s)
+					}
+					/////////////////////////////////////////////////////////
+
+					g.P("func (", string(methodName[0]), " *", methodName, ") ", fn.Name, "(", strings.Join(params, ", "), ")", fn.ReturnType, "{")
+					g.AddImport("github.com/ddkwork/golibrary/mylog")
+					g.AddImport("encoding/json")
+					g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
+					g.P("  []Param{")
+					for _, p := range fn.Params {
+						g.P("     {")
+						g.P("      Name: ", strconv.Quote(p.Name), ",")
+						g.P("      Type: ", strconv.Quote(p.Type), ",")
+						g.AddImport("fmt")
+						g.P("      Value: ", "fmt.Sprintf(", strconv.Quote("%v"), ",", p.Name, "),") //todo test
+						g.P("     },")
+					}
+					g.P("   },")
+					g.P(" ))).Request()")
+					switch fn.ReturnCType { //todo
+					case "void":
+					case "bool":
+						g.P("return true")
+					case "int":
+						g.P("return 0")
+					case "uint":
+						g.P("return 0")
+					case "unsigned int ":
+						g.P("return 0")
+					case "int64_t":
+						g.P("return 0")
+					case "uint64_t":
+						g.P("return 0")
+					case "int32_t":
+						g.P("return 0")
+					case "uint32_t":
+						g.P("return 0")
+					case "int16_t":
+						g.P("return 0")
+					case "uint16_t":
+						g.P("return 0")
+					case "int8_t":
+						g.P("return 0")
+					case "uint8_t":
+						g.P("return 0")
+
+					case "float":
+						g.P("return 0.0")
+					case "double":
+						g.P("return 0.0")
+					case "char*":
+						g.P("return \"\"")
+					case "const char*":
+						g.P("return \"\"")
+					case "std::string":
+						g.P("return \"\"")
+					default:
+						g.P("panic(", strconv.Quote("not support return type: "+fn.ReturnCType), ")")
+					}
+					g.P("}")
+					g.P()
+				}
+
+				mylog.Trace(path, " --> ", fileName+"_gen.go")
+				g.InsertPackageWithImports(pkgName)
+				stream.WriteGoFile(filepath.Join(targetDir, fileName+"_gen.go"), g.String())
 			}
-			m.Name = strings.TrimPrefix(m.Name, path)
 
+		},
+		bindSdkEntryFile: func() {
+			mylog.Info("gen sdk_gen.go for manage all methods")
 			g := stream.NewGeneratedFile()
-			//g.P("func (", string(methodName[0]), " *", methodName, ") ", m.Name, "(")
-
-			buffer.WriteString(fmt.Sprintf("func ("+string(methodName[0])+" *%s) %s(", methodName, m.Name))
-			params := make([]string, len(m.Params))
-			for i, p := range m.Params {
-				params[i] = fmt.Sprintf("%s %s", p.Name, p.Type)
+			g.P("type Sdk struct {")
+			for _, m := range methods {
+				g.P(fmt.Sprintf("\t%s *%s\n", stream.ToCamelUpper(m), m))
 			}
-
-			urlPath := fmt.Sprintf("/%s/%s", filepath.Base(path), m.Name)
-			//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
-			apiName := m.Comment.mangledName
-			if strings.HasPrefix(apiName, "?") { // namespace
-				split := strings.Split(apiName, "@")
-				apiName = split[2] + "::" + split[1] + "::" + strings.TrimPrefix(split[0], "?")
-			}
-			// mylog.Trace(m.name, m.Comment.mangledName)
-			g.P(strings.Join(params, ", "), ")", m.ReturnType, "{") //todo bug ReturnType not get
-
-			g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
-			g.P("\t\t[]Param{")
-			for _, p := range m.Params {
-				g.P("\t\t\t{")
-				g.P("\t\t\t\tName: ", strconv.Quote(p.Name), ",")
-				g.P("\t\t\t\tType: ", strconv.Quote(p.Type), ",")
-				g.P("\t\t\t\tValue: ", "fmt.Sprintf(", strconv.Quote("%v"), ",", p.Name, "),") //todo test
-				g.P("\t\t\t},")
-			}
-			g.P("\t\t},")
-			g.P("\t))).Request()")
-			g.P("//todo handle response into result")
 			g.P("}")
-			g.P()
-			buffer.WriteString(g.String())
-
-			var values []string
-			for _, p := range m.Params {
-				values = append(values, "params["+strconv.Quote(p.Name)+"].get<"+p.CType+">()")
+			g.P(fmt.Sprintf("func New() *Sdk {\n\treturn &Sdk{" + "\n"))
+			for _, m := range methods {
+				g.P(fmt.Sprintf("\t\t%s: new(%s),\n", stream.ToCamelUpper(m), m))
 			}
+			g.P("}}")
 
-			gResp := stream.NewGeneratedFile()
-			gResp.P("ApiResponse resp{.success = true, .type = ",
-				strconv.Quote(m.ReturnType), //todo CType:   param.Get("type.qualType").String(),
-				", .result = ", apiName, "(", strings.Join(values, ", "), ")};")
-
-			api.Set(urlPath, cApi{
-				path:       urlPath,
-				Fn:         apiName,
-				Do:         gResp.String(),
-				Params:     m.Params,
-				ReturnType: m.ReturnType,
-			})
-
-		}
-
-		mylog.Info(path, fileName+"_gen.go")
-		stream.WriteGoFile(filepath.Join(targetDir, fileName+"_gen.go"), buffer.String())
-	}
-	buffer := bytes.NewBufferString("")
-	buffer.WriteString("package " + pkgName + "\n")
-	buffer.WriteString(`
-import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"io"
-	"log"
-	"net/http"
-	"os"
-	"strings"
-
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
-	"github.com/ddkwork/golibrary/mylog"
-)
-`)
-	buffer.WriteString("type Sdk struct {" + "\n")
-	for _, m := range methods {
-		buffer.WriteString(fmt.Sprintf("\t%s *%s\n", stream.ToCamelUpper(m), m))
-	}
-	buffer.WriteString("}\n")
-	buffer.WriteString(fmt.Sprintf("func New() *Sdk {\n\treturn &Sdk{" + "\n"))
-	for _, m := range methods {
-		buffer.WriteString(fmt.Sprintf("\t\t%s: new(%s),\n", stream.ToCamelUpper(m), m))
-	}
-	buffer.WriteString("}}\n")
-
-	body := `
+			g.AddImport("encoding/json")
+			body := `
 type Param struct {
 	Name  string 
 	Type  string 
@@ -248,38 +248,105 @@ type ApiResponse struct {
 	Result  json.RawMessage 
 }
 `
-	buffer.WriteString(body)
-	buffer.WriteString("  var Client=     httpClient.New()\n")
+			g.P(body)
+			g.AddImport("github.com/ddkwork/golibrary/stream/net/httpClient")
+			g.P("  var Client=     httpClient.New()\n")
 
-	stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), buffer.String())
-	stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "api.json"))
+			g.InsertPackageWithImports(pkgName)
+			stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), g.String())
+		},
+		bindMcpCppServerCode: func() {
+			mylog.Info("start gen mcp cpp server dispatch header file")
+			type cApi struct {
+				path       string
+				Fn         string
+				Do         string
+				Params     []FunctionParam
+				ReturnType string
+			}
 
-	gMarshal := stream.NewGeneratedFile()
-	var marshals = new(safemap.M[string, string])
-	for _, s := range results.Structs.Range() {
-		if s.CName == "" {
-			mylog.Todo("bug") //list and bridgemain etc
-			continue
-		}
-		gMarshal.P("    template<>")
-		gMarshal.P("    struct adl_serializer<", s.CName, "> {")
-		gMarshal.P("        static void to_json(json &j, const ", s.CName, " &self) {")
-		gMarshal.P("            j = {")
-		gMarshal.P("")
-		for _, p := range s.Fields {
-			gMarshal.P("                    {", strconv.Quote(p.Name), ", self.", p.Name, "},")
-		}
-		gMarshal.P("            };")
-		gMarshal.P("        }")
-		gMarshal.P("    };")
-		marshals.Update(s.CName, gMarshal.String())
-		gMarshal.Reset()
-	}
-	genMcpCppServerCode(api, marshals)
-}
+			type mcpContext struct {
+				targetDir string
+				paths     []string
+				result    Result
+				api       *safemap.M[string, cApi]
+				marshal   *safemap.M[string, string]
+			}
+			api := new(safemap.M[string, cApi]) // urlPath a
+			for _, path := range paths {
+				for _, enum := range result.Enums.Range() {
+					if enum.Comment.currentFile != path {
+						continue
+					}
+				}
+				for _, object := range result.Structs.Range() {
+					if object.Comment.currentFile != path {
+						continue
+					}
+				}
+				for _, fn := range result.Functions.Range() {
+					if fn.Comment.currentFile != path {
+						continue
+					}
+					fn.Name = strings.TrimPrefix(fn.Name, path)
 
-func genMcpCppServerCode(m *safemap.M[string, cApi], marshals *safemap.M[string, string]) {
-	start := `
+					var values []string
+					for _, p := range fn.Params {
+						values = append(values, "params["+strconv.Quote(p.Name)+"].get<"+p.CType+">()")
+					}
+
+					gResp := stream.NewGeneratedFile()
+					do := fn.CName + "(" + strings.Join(values, ", ") + ")"
+					if fn.ReturnType == "void" { //todo test
+						gResp.P(fn.CName, "();")
+						do = "nullptr"
+					}
+					gResp.P("ApiResponse resp{.success = true, .type = ",
+						strconv.Quote(fn.ReturnType), //todo CType:   param.Get("type.qualType").String(),
+						", .result = ", do, "};")
+
+					urlPath := makeUrlPath(path, fn.Name)
+					api.Set(urlPath, cApi{
+						path:       urlPath,
+						Fn:         fn.CName,
+						Do:         gResp.String(),
+						Params:     fn.Params,
+						ReturnType: fn.ReturnType,
+					})
+				}
+			}
+
+			mylog.Info("dump mcp cpp server code context to json file")
+			stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "a.json"))
+
+			mylog.Info("gen mcp cpp reflect struct template codes from ast structs")
+			gMarshal := stream.NewGeneratedFile()
+			var marshals = new(safemap.M[string, string])
+			for _, s := range result.Structs.Range() {
+				if s.CName == "" {
+					mylog.Todo("bug") //list and bridgemain etc
+					continue
+				}
+				switch s.CName {
+				case "BridgeCFGraph", "BridgeCFNode", "Script::Symbol::SymbolInfo": //todo bug
+					continue
+				}
+				gMarshal.P("    template<>")
+				gMarshal.P("    struct adl_serializer<", s.CName, "> {")
+				gMarshal.P("        static void to_json(json &j, const ", s.CName, " &self) {")
+				gMarshal.P("            j = {")
+				gMarshal.P("")
+				for _, p := range s.Fields {
+					gMarshal.P("                    {", strconv.Quote(p.Name), ", self.", p.Name, "},")
+				}
+				gMarshal.P("            };")
+				gMarshal.P("        }")
+				gMarshal.P("    };")
+				marshals.Update(s.CName, gMarshal.String())
+				gMarshal.Reset()
+			}
+
+			start := `
 //
 // Created by Admin on 28/05/2025.
 //
@@ -356,7 +423,7 @@ struct ApiResponse {
 };
 `
 
-	end := `
+			end := `
 
 DWORD WINAPI HttpServerThread(LPVOID lpParam) {
     dispatch();
@@ -444,11 +511,11 @@ void stopHttpServer() {
 
 `
 
-	g := stream.NewGeneratedFile()
-	g.P(start)
-	g.P()
+			g := stream.NewGeneratedFile()
+			g.P(start)
+			g.P()
 
-	g.P(`
+			g.P(`
 /*
  {
    json.Marshaler --> adl_serializer
@@ -457,76 +524,84 @@ void stopHttpServer() {
  }
  */
 `)
-	g.P("namespace nlohmann {")
-	for _, marshal := range marshals.Range() {
-		g.P(marshal)
-		g.P()
-	}
-	g.P("}// namespace nlohmann")
+			g.P("namespace nlohmann {")
+			for _, marshal := range marshals.Range() {
+				g.P(marshal)
+				g.P()
+			}
+			g.P("}// namespace nlohmann")
 
-	g.P("void dispatch() {")
-	for path, api := range m.Range() {
-		g.P("    server.Post(", strconv.Quote(path), ", [](const Request &req, Response &res) {")
-		g.P("       try {")
-		list := false
-		switch path {
-		case "/_scriptapi_module.h/GetList": //或者根据参数类型或api名称
-			list = true
-		default:
-		}
-		if list {
-			template := `
+			mylog.Info("gen mcp cpp server dispatch functions")
+			g.P("void dispatch() {")
+			for path, a := range api.Range() {
+				g.P("    server.Post(", strconv.Quote(path), ", [](const Request &req, Response &res) {")
+				g.P("       try {")
+				list := false
+				if len(a.Params) > 0 {
+					switch {
+					case a.Params[0].Type == "ListInfo *": //todo test
+						list = true
+					case a.Params[0].Name == "list":
+						list = true //bug in argument
+					default:
+					}
+				}
+
+				if list {
+					template := `
            BridgeList<Script::Module::ModuleInfo>  bridgeList;
            bool                                    ok = Script::Module::GetList(&bridgeList);
            std::vector<Script::Module::ModuleInfo> moduleVector;
            if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
            ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
 `
-			g.P(strings.ReplaceAll(template, "Script::Module::GetList", api.Fn))
-		} else {
-			g.P(`
+					g.P(strings.ReplaceAll(template, "Script::Module::GetList", a.Fn))
+				} else {
+					g.P(`
            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
            json params;
            for (const auto &param: arg) { params[param.name] = param.value; }
 `)
-			g.P(api.Do)
-		}
+					g.P(a.Do)
+				}
 
-		g.P(`
+				g.P(`
            res.set_content(json(resp).dump(), "application/json");
        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
    });
 `)
-		g.P()
-		/*
-		   server.Post("/bridgemain.h/DbgMemFindBaseAddr", [](const Request &req, Response &res) {
-		       try {
-		           auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
-		           json params;
-		           for (const auto &param: arg) { params[param.name] = param.value; }
-		           duint       size = 0;
-		           ApiResponse resp{.success = true, .type = "bool", .result = DbgMemFindBaseAddr(params["addr"].get<duint>(), &size)};
-		           res.set_content(json(resp).dump(), "application/json");
-		       } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
-		   });
-		   server.Post("/_scriptapi_module.h/GetList", [](const Request &req, Response &res) {
-		       try {
-		           BridgeList<Script::Module::ModuleInfo>  bridgeList;
-		           bool                                    ok = Script::Module::GetList(&bridgeList);
-		           std::vector<Script::Module::ModuleInfo> moduleVector;
-		           if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
-		           ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
-		           res.set_content(json(resp).dump(), "application/json");
-		       } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}.dump(), "application/json"); }
-		   });
+				g.P()
+			}
+			g.P("}")
 
-		*/
+			g.P(end)
+			stream.WriteTruncate("echo_gen.h", g.String())
+			clang.New().Format("echo_gen.h")
+			mylog.Success("gen mcp cpp server dispatch functions success")
+
+			//todo
+			//stream.RunCommandArgs("cmake", "--build", "cmake-build-debug", "--target", "MCPx64dbg", "-j", "6")
+		},
 	}
-	g.P("}")
+	step.collectTypedefs()
+	step.makeResult()
+	step.bindAllFile()
+	step.bindSdkEntryFile()
+	step.bindMcpCppServerCode()
+	mylog.Success("bind success, all work done")
+}
 
-	g.P(end)
-	stream.WriteTruncate("echo_gen.h", g.String())
-	clang.New().Format("echo_gen.h")
+// 函数式编程有时候比接口和方法或者普通函数的可读性好，逻辑连贯
+type bindStep struct {
+	collectTypedefs      func() //dump ast
+	makeResult           func() //parse ast into result for collect enums, struts and functions
+	bindAllFile          func() //... .h .cpp .c into .go
+	bindSdkEntryFile     func() //sdk_gen.go for manner all method
+	bindMcpCppServerCode func() //disPath_gen.h
+}
+
+func makeUrlPath(path string, fn string) string {
+	return fmt.Sprintf("/%s/%s", filepath.Base(path), fn)
 }
 
 func typedefsNameByID(root gjson.Result, result *Result) {
@@ -543,9 +618,6 @@ func typedefsNameByID(root gjson.Result, result *Result) {
 	})
 }
 
-// -DWIN32_LEAN_AND_MEAN
-//
-//	-D_WINSOCKAPI_
 var Flags = `
 #define WIN32_LEAN_AND_MEAN
 #define WINSOCK_DEPRECATED_NO_WARNINGS
@@ -754,6 +826,10 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 				}
 			}
 			function := parseFunction(n)
+			function.CName = function.Name
+			if len(namespace) > 0 {
+				function.CName = strings.Join(namespace, "::") + "::" + function.Name
+			}
 			if function.Name == "" {
 				if name == "" {
 					return
@@ -843,8 +919,12 @@ func parseStruct(node gjson.Result) StructInfo {
 		switch kind := child.Get("kind").String(); kind {
 		case "RecordDecl", "CXXRecordDecl":
 		case "FieldDecl":
+			name := child.Get("name").String()
+			if name == "type" { //todo bug
+				name = "Type"
+			}
 			info.Fields = append(info.Fields, StructField{
-				Name:     child.Get("name").String(),
+				Name:     name,
 				Type:     child.Get("type.qualType").String(),
 				TypeDecl: resolveType(child.Get("type")),
 			})
@@ -861,30 +941,32 @@ func parseStruct(node gjson.Result) StructInfo {
 }
 
 func parseFunction(node gjson.Result) FunctionInfo {
-	if node.Get("name").String() == "AddNode" {
-		println()
-	}
+	ReturnType := node.Get("type.qualType")
+	split := strings.Split(ReturnType.String(), "(")
 	info := FunctionInfo{
-		Name:       node.Get("name").String(),
-		Loc:        formatLoc(node.Get("loc")),
-		ReturnType: resolveType(node.Get("type.resultType")),
+		Name:         node.Get("name").String(),
+		CName:        "",
+		Loc:          formatLoc(node.Get("loc")),
+		ReturnType:   handleQualType(strings.TrimSpace(split[0])),
+		ReturnCType:  strings.TrimSpace(split[0]),
+		Params:       nil,
+		IsMethod:     false,
+		ReceiverType: "",
+		Comment:      Comment{},
 	}
 	node.Get("inner").ForEach(func(_, param gjson.Result) bool {
 		if param.Get("kind").String() == "ParmVarDecl" {
-			s := param.Get("name").String()
-			switch s { // todo more syntax check
+
+			name := param.Get("name").String()
+			switch name {
 			case "type":
-				s = "Type"
+				name = "Type"
 			case "string":
-				s = "s"
+				name = "s"
 			}
-			s = strings.NewReplacer(
-				"type", "Type",
-				"const", "",
-				"&", "",
-			).Replace(s)
+
 			info.Params = append(info.Params, FunctionParam{
-				Name:    s,
+				Name:    name,
 				Type:    resolveType(param.Get("type")),
 				CType:   param.Get("type.qualType").String(),
 				Comment: Comment{},
@@ -939,14 +1021,16 @@ func resolveType(typeNode gjson.Result) string {
 }
 
 func handleQualType(qualType string) string {
+	qualType = strings.TrimPrefix(qualType, "const ")
 	switch {
 	case strings.Contains(qualType, "std::"): //skip stl
 		return "any"
+	case qualType == "void *":
+		return "uintptr"
 	case qualType == "wchar_t":
 		return "rune"
-	case qualType == "*wchar_t": //todo bug
-		return "*rune"
-
+	case qualType == "wchar_t *": //todo bug
+		return "* rune"
 	}
 	m := safemap.NewOrdered[string, string](func(yield func(string, string) bool) {
 		yield("long double", "float128")
@@ -984,7 +1068,8 @@ func handleQualType(qualType string) string {
 		yield("double", "float64")
 		yield("bool", "bool")
 		yield("BOOL", "bool")
-		yield("void", "void")
+		yield("void", "")
+		yield("void *", "")
 		yield("PVOID", "uintptr")
 		yield("PCHAR", "int8*")
 
@@ -1034,9 +1119,8 @@ func handleQualType(qualType string) string {
 		yield("GUICALLBACKEX", "uintptr")                    // todo
 		yield("GUICALLBACK", "uintptr")                      // todo
 		yield("TYPEDESCRIPTOR", "uintptr")                   // todo
-		yield("BridgeCFGraphList", "uintptr")                // todo
 		yield("std::vector<BridgeCFInstruction>", "uintptr") // todo
-		// yield("xed_operand_enum_t", "uintptr")               // todo
+		yield("HMODULE", "uintptr")                          // todo
 	})
 	var arg []string
 	for k, v := range m.Range() {
@@ -1047,7 +1131,6 @@ func handleQualType(qualType string) string {
 		s = strings.NewReplacer(
 			"const ", "",
 			"*", "",
-			"void", "uintptr", // todo bug
 		).Replace(s)
 		return "*" + s
 	}
@@ -1118,8 +1201,10 @@ type (
 
 	FunctionInfo struct {
 		Name         string
+		CName        string
 		Loc          string
 		ReturnType   string
+		ReturnCType  string
 		Params       []FunctionParam
 		IsMethod     bool
 		ReceiverType string

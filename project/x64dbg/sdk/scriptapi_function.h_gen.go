@@ -6,17 +6,25 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-// FunctionInfo (:10)
+// FunctionInfo (:10 )
 type FunctionInfo struct {
-	Mod              [256]int8 // C type: char[256]
-	RvaStart         uint      // C type: duint
-	RvaEnd           uint      // C type: duint
-	Manual           bool      // C type: bool
-	Instructioncount uint      // C type: duint
+	mod              [256]int8 // C type: char[256]
+	rvaStart         uint      // C type: duint
+	rvaEnd           uint      // C type: duint
+	manual           bool      // C type: bool
+	instructioncount uint      // C type: duint
 }
 type function struct{}
 
-func (f *function) Add(info *FunctionInfo) {
+// Add    c api name: Script::Function::Add
+// ┌────┬────────┬──────────────────────┬───────────────┐
+// │ id │  name  │        c type        │    go type    │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │ 0  │ info   │ const FunctionInfo * │ *FunctionInfo │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │    │ return │ bool                 │ bool          │
+// └────┴────────┴──────────────────────┴───────────────┘
+func (f *function) Add(info *FunctionInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Add").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -26,10 +34,24 @@ func (f *function) Add(info *FunctionInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint) {
+// Get    c api name: Script::Function::Get
+// ┌────┬──────────────────┬─────────┬─────────┐
+// │ id │       name       │ c type  │ go type │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 0  │ addr             │ duint   │ uint    │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 1  │ start            │ duint * │ *uint   │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 2  │ end              │ duint * │ *uint   │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 3  │ instructionCount │ duint * │ *uint   │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │    │ return           │ bool    │ bool    │
+// └────┴──────────────────┴─────────┴─────────┘
+func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -54,10 +76,20 @@ func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (f *function) GetInfo(addr uint, info *FunctionInfo) {
+// GetInfo    c api name: Script::Function::GetInfo
+// ┌────┬────────┬────────────────┬───────────────┐
+// │ id │  name  │     c type     │    go type    │
+// ├────┼────────┼────────────────┼───────────────┤
+// │ 0  │ addr   │ duint          │ uint          │
+// ├────┼────────┼────────────────┼───────────────┤
+// │ 1  │ info   │ FunctionInfo * │ *FunctionInfo │
+// ├────┼────────┼────────────────┼───────────────┤
+// │    │ return │ bool           │ bool          │
+// └────┴────────┴────────────────┴───────────────┘
+func (f *function) GetInfo(addr uint, info *FunctionInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -72,10 +104,20 @@ func (f *function) GetInfo(addr uint, info *FunctionInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (f *function) Overlaps(start uint, end uint) {
+// Overlaps    c api name: Script::Function::Overlaps
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ start  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ end    │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (f *function) Overlaps(start uint, end uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Overlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -90,10 +132,18 @@ func (f *function) Overlaps(start uint, end uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (f *function) Delete(address uint) {
+// Delete    c api name: Script::Function::Delete
+// ┌────┬─────────┬────────┬─────────┐
+// │ id │  name   │ c type │ go type │
+// ├────┼─────────┼────────┼─────────┤
+// │ 0  │ address │ duint  │ uint    │
+// ├────┼─────────┼────────┼─────────┤
+// │    │ return  │ bool   │ bool    │
+// └────┴─────────┴────────┴─────────┘
+func (f *function) Delete(address uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -103,9 +153,19 @@ func (f *function) Delete(address uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
+// DeleteRange    c api name: Script::Function::DeleteRange
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ start  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ end    │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (f *function) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -121,17 +181,29 @@ func (f *function) DeleteRange(start uint, end uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
+// Clear    c api name: Script::Function::Clear
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (f *function) Clear() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Clear").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
 }
 
-func (f *function) GetList(list *ListInfo) {
+// GetList    c api name: Script::Function::GetList
+// ┌────┬────────┬────────────┬───────────┐
+// │ id │  name  │   c type   │  go type  │
+// ├────┼────────┼────────────┼───────────┤
+// │ 0  │ list   │ ListInfo * │ *ListInfo │
+// ├────┼────────┼────────────┼───────────┤
+// │    │ return │ bool       │ bool      │
+// └────┴────────┴────────────┴───────────┘
+func (f *function) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -141,5 +213,5 @@ func (f *function) GetList(list *ListInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }

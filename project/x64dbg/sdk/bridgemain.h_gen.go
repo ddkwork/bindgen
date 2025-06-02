@@ -6,80 +6,96 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-// ListInfo (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgelist.h:4)
+// ListInfo (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgelist.h:4 )
 type ListInfo struct {
-	Count int      // C type: int
-	Size  uint     // C type: size_t
-	Data  *uintptr // C type: void *
+	count int     // C type: int
+	size  uint    // C type: size_t
+	data  uintptr // C type: void *
 }
 
-// BridgeCFInstruction (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgegraph.h:4)
+// BridgeCFInstruction (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgegraph.h:4 )
 type BridgeCFInstruction struct {
-	Addr uint     // C type: duint
-	Data [15]byte // C type: unsigned char[15]
+	addr uint     // C type: duint
+	data [15]byte // C type: unsigned char[15]
 }
 
-// BridgeCFNodeList (:10)
+// BridgeCFNodeList (:10 )
 type BridgeCFNodeList struct {
-	ParentGraph  uint     // C type: duint
-	Start        uint     // C type: duint
-	End          uint     // C type: duint
-	Brtrue       uint     // C type: duint
-	Brfalse      uint     // C type: duint
-	Icount       uint     // C type: duint
-	Terminal     bool     // C type: bool
-	Split        bool     // C type: bool
-	Indirectcall bool     // C type: bool
-	Userdata     *uintptr // C type: void *
-	Exits        ListInfo // C type: ListInfo
-	Instrs       ListInfo // C type: ListInfo
+	parentGraph  uint     // C type: duint
+	start        uint     // C type: duint
+	end          uint     // C type: duint
+	brtrue       uint     // C type: duint
+	brfalse      uint     // C type: duint
+	icount       uint     // C type: duint
+	terminal     bool     // C type: bool
+	split        bool     // C type: bool
+	indirectcall bool     // C type: bool
+	userdata     uintptr  // C type: void *
+	exits        ListInfo // C type: ListInfo
+	instrs       ListInfo // C type: ListInfo
 }
 
-// BridgeCFGraphList (:26)
+// BridgeCFGraphList (:26 )
 type BridgeCFGraphList struct {
-	EntryPoint uint     // C type: duint
-	Userdata   *uintptr // C type: void *
-	Nodes      ListInfo // C type: ListInfo
+	entryPoint uint     // C type: duint
+	userdata   uintptr  // C type: void *
+	nodes      ListInfo // C type: ListInfo
 }
 
-// BridgeCFNode (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgegraph.h:41)
+// BridgeCFNode (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgegraph.h:41 )
 type BridgeCFNode struct {
-	ParentGraph  uint     // C type: duint
-	Start        uint     // C type: duint
-	End          uint     // C type: duint
-	Brtrue       uint     // C type: duint
-	Brfalse      uint     // C type: duint
-	Icount       uint     // C type: duint
-	Terminal     bool     // C type: bool
-	Split        bool     // C type: bool
-	Indirectcall bool     // C type: bool
-	Userdata     *uintptr // C type: void *
-	Exits        any      // C type: std::vector<duint>
-	Instrs       any      // C type: std::vector<BridgeCFInstruction>
+	parentGraph  uint    // C type: duint
+	start        uint    // C type: duint
+	end          uint    // C type: duint
+	brtrue       uint    // C type: duint
+	brfalse      uint    // C type: duint
+	icount       uint    // C type: duint
+	terminal     bool    // C type: bool
+	split        bool    // C type: bool
+	indirectcall bool    // C type: bool
+	userdata     uintptr // C type: void *
+	exits        any     // C type: std::vector<duint>
+	instrs       any     // C type: std::vector<BridgeCFInstruction>
 }
 
-// BridgeCFGraph (:112)
+// BridgeCFGraph (:112 )
 type BridgeCFGraph struct {
-	EntryPoint uint     // C type: duint
-	Userdata   *uintptr // C type: void *
-	Nodes      any      // C type: std::unordered_map<duint, BridgeCFNode>
-	Parents    any      // C type: std::unordered_map<duint, std::unordered_set<duint>>
+	entryPoint uint    // C type: duint
+	userdata   uintptr // C type: void *
+	nodes      any     // C type: std::unordered_map<duint, BridgeCFNode>
+	parents    any     // C type: std::unordered_map<duint, std::unordered_set<duint>>
 }
 type bridgemain struct{}
 
-func (b *bridgemain) BridgeInit() {
+// BridgeInit    c api name: BridgeInit
+// ┌────┬────────┬─────────────────┬─────────┐
+// │ id │  name  │     c type      │ go type │
+// ├────┼────────┼─────────────────┼─────────┤
+// │    │ return │ const wchar_t * │ * rune  │
+// └────┴────────┴─────────────────┴─────────┘
+func (b *bridgemain) BridgeInit() *rune {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeInit").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: const wchar_t *")
 }
 
-func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *wint8_t, allowFailure bool) {
+// BridgeLoadLibraryCheckedW    c api name: BridgeLoadLibraryCheckedW
+// ┌────┬──────────────┬─────────────────┬─────────┐
+// │ id │     name     │     c type      │ go type │
+// ├────┼──────────────┼─────────────────┼─────────┤
+// │ 0  │ szDll        │ const wchar_t * │ * rune  │
+// ├────┼──────────────┼─────────────────┼─────────┤
+// │ 1  │ allowFailure │ bool            │ bool    │
+// ├────┼──────────────┼─────────────────┼─────────┤
+// │    │ return       │ HMODULE         │ uintptr │
+// └────┴──────────────┴─────────────────┴─────────┘
+func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *rune, allowFailure bool) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedW").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "szDll",
-				Type:  "*wint8_t ",
+				Type:  "* rune",
 				Value: fmt.Sprintf("%v", szDll),
 			},
 			{
@@ -89,15 +105,25 @@ func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *wint8_t, allowFailure bool
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: HMODULE")
 }
 
-func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll string, allowFailure bool) {
+// BridgeLoadLibraryCheckedA    c api name: BridgeLoadLibraryCheckedA
+// ┌────┬──────────────┬──────────────┬─────────┐
+// │ id │     name     │    c type    │ go type │
+// ├────┼──────────────┼──────────────┼─────────┤
+// │ 0  │ szDll        │ const char * │ *int8   │
+// ├────┼──────────────┼──────────────┼─────────┤
+// │ 1  │ allowFailure │ bool         │ bool    │
+// ├────┼──────────────┼──────────────┼─────────┤
+// │    │ return       │ HMODULE      │ uintptr │
+// └────┴──────────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll *int8, allowFailure bool) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedA").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "szDll",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", szDll),
 			},
 			{
@@ -107,17 +133,31 @@ func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll string, allowFailure bool) 
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: HMODULE")
 }
 
-func (b *bridgemain) BridgeStart() {
+// BridgeStart    c api name: BridgeStart
+// ┌────┬────────┬─────────────────┬─────────┐
+// │ id │  name  │     c type      │ go type │
+// ├────┼────────┼─────────────────┼─────────┤
+// │    │ return │ const wchar_t * │ * rune  │
+// └────┴────────┴─────────────────┴─────────┘
+func (b *bridgemain) BridgeStart() *rune {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: const wchar_t *")
 }
 
-func (b *bridgemain) BridgeAlloc(size uint) {
+// BridgeAlloc    c api name: BridgeAlloc
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ size   │ size_t │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void * │ uintptr │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeAlloc(size uint) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -127,33 +167,52 @@ func (b *bridgemain) BridgeAlloc(size uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: void *")
 }
 
-func (b *bridgemain) BridgeFree(ptr *uintptr) {
+// BridgeFree    c api name: BridgeFree
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ ptr    │ void * │ uintptr │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeFree(ptr uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "ptr",
-				Type:  "*uintptr ",
+				Type:  "uintptr",
 				Value: fmt.Sprintf("%v", ptr),
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
-func (b *bridgemain) BridgeSettingGet(section string, key string, value *int8) {
+// BridgeSettingGet    c api name: BridgeSettingGet
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ char *       │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingGet(section *int8, key *int8, value *int8) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "section",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", section),
 			},
 			{
 				Name:  "key",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", key),
 			},
 			{
@@ -163,20 +222,32 @@ func (b *bridgemain) BridgeSettingGet(section string, key string, value *int8) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeSettingGetUint(section string, key string, value *uint) {
+// BridgeSettingGetUint    c api name: BridgeSettingGetUint
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ duint *      │ *uint   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingGetUint(section *int8, key *int8, value *uint) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "section",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", section),
 			},
 			{
 				Name:  "key",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", key),
 			},
 			{
@@ -186,43 +257,67 @@ func (b *bridgemain) BridgeSettingGetUint(section string, key string, value *uin
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeSettingSet(section string, key string, value string) {
+// BridgeSettingSet    c api name: BridgeSettingSet
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingSet(section *int8, key *int8, value *int8) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "section",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", section),
 			},
 			{
 				Name:  "key",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", key),
 			},
 			{
 				Name:  "value",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", value),
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeSettingSetUint(section string, key string, value uint) {
+// BridgeSettingSetUint    c api name: BridgeSettingSetUint
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ duint        │ uint    │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingSetUint(section *int8, key *int8, value uint) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "section",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", section),
 			},
 			{
 				Name:  "key",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", key),
 			},
 			{
@@ -232,17 +327,31 @@ func (b *bridgemain) BridgeSettingSetUint(section string, key string, value uint
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeSettingFlush() {
+// BridgeSettingFlush    c api name: BridgeSettingFlush
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeSettingFlush() bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingFlush").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeSettingRead(errorLine *int) {
+// BridgeSettingRead    c api name: BridgeSettingRead
+// ┌────┬───────────┬────────┬─────────┐
+// │ id │   name    │ c type │ go type │
+// ├────┼───────────┼────────┼─────────┤
+// │ 0  │ errorLine │ int *  │ *int    │
+// ├────┼───────────┼────────┼─────────┤
+// │    │ return    │ bool   │ bool    │
+// └────┴───────────┴────────┴─────────┘
+func (b *bridgemain) BridgeSettingRead(errorLine *int) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -252,66 +361,123 @@ func (b *bridgemain) BridgeSettingRead(errorLine *int) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeGetDbgVersion() {
+// BridgeGetDbgVersion    c api name: BridgeGetDbgVersion
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ int    │ int     │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeGetDbgVersion() int {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeGetDbgVersion").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	return 0
 }
 
-func (b *bridgemain) BridgeIsProcessElevated() {
+// BridgeIsProcessElevated    c api name: BridgeIsProcessElevated
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeIsProcessElevated() bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeIsProcessElevated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) BridgeGetNtBuildNumber() {
+// BridgeGetNtBuildNumber    c api name: BridgeGetNtBuildNumber
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeGetNtBuildNumber() uint {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeGetNtBuildNumber").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (b *bridgemain) BridgeUserDirectory() {
+// BridgeUserDirectory    c api name: BridgeUserDirectory
+// ┌────┬────────┬─────────────────┬─────────┐
+// │ id │  name  │     c type      │ go type │
+// ├────┼────────┼─────────────────┼─────────┤
+// │    │ return │ const wchar_t * │ * rune  │
+// └────┴────────┴─────────────────┴─────────┘
+func (b *bridgemain) BridgeUserDirectory() *rune {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeUserDirectory").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: const wchar_t *")
 }
 
-func (b *bridgemain) BridgeIsARM64Emulated() {
+// BridgeIsARM64Emulated    c api name: BridgeIsARM64Emulated
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeIsARM64Emulated() bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeIsARM64Emulated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) Data() {
+// Data    c api name: Data
+// ┌────┬────────┬────────────────────┬───────────────────┐
+// │ id │  name  │       c type       │      go type      │
+// ├────┼────────┼────────────────────┼───────────────────┤
+// │    │ return │ BridgeCFNodeList * │ *BridgeCFNodeList │
+// └────┴────────┴────────────────────┴───────────────────┘
+func (b *bridgemain) Data() *BridgeCFNodeList {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Data").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: BridgeCFNodeList *")
 }
 
-func (b *bridgemain) Count() {
+// Count    c api name: Count
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ int    │ int     │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) Count() int {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Count").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	return 0
 }
 
+// Cleanup    c api name: Cleanup
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (b *bridgemain) Cleanup() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Cleanup").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
 }
 
-func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) {
+// CopyData    c api name: CopyData
+// ┌────┬──────────┬───────────────────────────────────────┬───────────┐
+// │ id │   name   │                c type                 │  go type  │
+// ├────┼──────────┼───────────────────────────────────────┼───────────┤
+// │ 0  │ listInfo │ ListInfo *                            │ *ListInfo │
+// ├────┼──────────┼───────────────────────────────────────┼───────────┤
+// │ 1  │ listData │ const std::vector<BridgeCFNodeList> & │ any       │
+// ├────┼──────────┼───────────────────────────────────────┼───────────┤
+// │    │ return   │ bool                                  │ bool      │
+// └────┴──────────┴───────────────────────────────────────┴───────────┘
+func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/CopyData").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -326,23 +492,42 @@ func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) Free(graphList *uintptr) {
+// Free    c api name: Free
+// ┌────┬───────────┬───────────────────────────┬────────────────────┐
+// │ id │   name    │          c type           │      go type       │
+// ├────┼───────────┼───────────────────────────┼────────────────────┤
+// │ 0  │ graphList │ const BridgeCFGraphList * │ *BridgeCFGraphList │
+// ├────┼───────────┼───────────────────────────┼────────────────────┤
+// │    │ return    │ void                      │                    │
+// └────┴───────────┴───────────────────────────┴────────────────────┘
+func (b *bridgemain) Free(graphList *BridgeCFGraphList) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "graphList",
-				Type:  "*uintptr ",
+				Type:  "*BridgeCFGraphList ",
 				Value: fmt.Sprintf("%v", graphList),
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
-func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) {
+// ToVector    c api name: ToVector
+// ┌────┬──────────┬─────────────────────────────────┬───────────┐
+// │ id │   name   │             c type              │  go type  │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │ 0  │ listInfo │ const ListInfo *                │ *ListInfo │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │ 1  │ listData │ std::vector<BridgeCFNodeList> & │ any       │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │ 2  │ freedata │ bool                            │ bool      │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │    │ return   │ bool                            │ bool      │
+// └────┴──────────┴─────────────────────────────────┴───────────┘
+func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToVector").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -362,23 +547,42 @@ func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (b *bridgemain) ToNodeList() {
+// ToNodeList    c api name: ToNodeList
+// ┌────┬────────┬──────────────────┬──────────────────┐
+// │ id │  name  │      c type      │     go type      │
+// ├────┼────────┼──────────────────┼──────────────────┤
+// │    │ return │ BridgeCFNodeList │ BridgeCFNodeList │
+// └────┴────────┴──────────────────┴──────────────────┘
+func (b *bridgemain) ToNodeList() BridgeCFNodeList {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToNodeList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: BridgeCFNodeList")
 }
 
+// __debugbreak    c api name: __debugbreak
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (b *bridgemain) __debugbreak() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/__debugbreak").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
 }
 
+// AddNode    c api name: AddNode
+// ┌────┬────────┬──────────────────────┬───────────────┐
+// │ id │  name  │        c type        │    go type    │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │ 0  │ node   │ const BridgeCFNode & │ *BridgeCFNode │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │    │ return │ void                 │               │
+// └────┴────────┴──────────────────────┴───────────────┘
 func (b *bridgemain) AddNode(node *BridgeCFNode) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -389,9 +593,18 @@ func (b *bridgemain) AddNode(node *BridgeCFNode) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
+// AddParent    c api name: AddParent
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ child  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ parent │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (b *bridgemain) AddParent(child uint, parent uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -407,27 +620,44 @@ func (b *bridgemain) AddParent(child uint, parent uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }
 
-func (b *bridgemain) ToGraphList() {
+// ToGraphList    c api name: ToGraphList
+// ┌────┬────────┬───────────────────┬───────────────────┐
+// │ id │  name  │      c type       │      go type      │
+// ├────┼────────┼───────────────────┼───────────────────┤
+// │    │ return │ BridgeCFGraphList │ BridgeCFGraphList │
+// └────┴────────┴───────────────────┴───────────────────┘
+func (b *bridgemain) ToGraphList() BridgeCFGraphList {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToGraphList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: BridgeCFGraphList")
 }
 
-func (b *bridgemain) __builtin_memcpy(*uintptr, *uintptr, uint64) {
+// __builtin_memcpy    c api name: __builtin_memcpy
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │        │ void *             │ uintptr │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 1  │        │ const void *       │ uintptr │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 2  │        │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ void *             │ uintptr │
+// └────┴────────┴────────────────────┴─────────┘
+func (b *bridgemain) __builtin_memcpy(uintptr, uintptr, uint64) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/__builtin_memcpy").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "",
-				Type:  "*uintptr ",
+				Type:  "uintptr",
 				Value: fmt.Sprintf("%v"),
 			},
 			{
 				Name:  "",
-				Type:  "*uintptr ",
+				Type:  "uintptr",
 				Value: fmt.Sprintf("%v"),
 			},
 			{
@@ -437,5 +667,5 @@ func (b *bridgemain) __builtin_memcpy(*uintptr, *uintptr, uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: void *")
 }

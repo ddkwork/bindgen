@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/ddkwork/bindgen/project/x64dbg/sdk"
 	"io/fs"
 	"path/filepath"
 	"strings"
@@ -25,16 +26,17 @@ func TestDecodeNamespace(t *testing.T) {
 }
 
 func TestNew(t *testing.T) {
-	//s := sdk.New()
-	//s.Bridgemain.DbgIsRunning()
-	//s.Debug.Wait()
+	//stream.RunCommandArgs("cmake", "--build", "cmake-build-debug", "--target", "MCPx64dbg", "-j", "6")
+
+	s := sdk.New()
+	s.Register.GetEAX()
 }
 
 func TestName(t *testing.T) {
 	//fakeError.Walk(".")
-	bindgen.Bind(targetDir, func(s string) bool {
-		return false
-	}, "../../bug.h")
+	//bindgen.Bind(targetDir, func(s string) bool {
+	//	return false
+	//}, "../../bug.h")
 
 	// os.RemoveAll("cache")
 	//RepackSdk()

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/ddkwork/golibrary/clang"
 	"github.com/ddkwork/golibrary/mylog"
+	"github.com/tidwall/gjson"
 	"os"
 	"regexp"
 	"strconv"
@@ -14,6 +15,133 @@ import (
 
 	"github.com/ddkwork/golibrary/assert"
 )
+
+func TestBug(t *testing.T) {
+	jsonBody := `
+{
+  "id" : "0x26035761dc8",
+  "kind" : "FunctionDecl",
+  "loc" : {
+    "offset" : 860,
+    "line" : 47,
+    "col" : 30,
+    "tokLen" : 25
+  },
+  "range" : {
+    "begin" : {
+      "spellingLoc" : {
+        "offset" : 608,
+        "line" : 32,
+        "col" : 23,
+        "tokLen" : 10
+      },
+      "expansionLoc" : {
+        "offset" : 831,
+        "line" : 47,
+        "col" : 1,
+        "tokLen" : 13
+      }
+    },
+    "end" : {
+      "offset" : 925,
+      "col" : 95,
+      "tokLen" : 1
+    }
+  },
+  "name" : "BridgeLoadLibraryCheckedW",
+  "mangledName" : "BridgeLoadLibraryCheckedW",
+  "type" : {
+    "desugaredQualType" : "HMODULE (const wchar_t *, bool)",
+    "qualType" : "HMODULE (const wchar_t *, bool) __attribute__((stdcall))"
+  },
+  "inner" : [ {
+    "id" : "0x26035761ba8",
+    "kind" : "ParmVarDecl",
+    "loc" : {
+      "offset" : 901,
+      "col" : 71,
+      "tokLen" : 5
+    },
+    "range" : {
+      "begin" : {
+        "offset" : 886,
+        "col" : 56,
+        "tokLen" : 5
+      },
+      "end" : {
+        "offset" : 901,
+        "col" : 71,
+        "tokLen" : 5
+      }
+    },
+    "name" : "szDll",
+    "type" : {
+      "qualType" : "const wchar_t *"
+    }
+  }, {
+    "id" : "0x26035761c28",
+    "kind" : "ParmVarDecl",
+    "loc" : {
+      "offset" : 913,
+      "col" : 83,
+      "tokLen" : 12
+    },
+    "range" : {
+      "begin" : {
+        "offset" : 908,
+        "col" : 78,
+        "tokLen" : 4
+      },
+      "end" : {
+        "offset" : 913,
+        "col" : 83,
+        "tokLen" : 12
+      }
+    },
+    "name" : "allowFailure",
+    "type" : {
+      "qualType" : "bool"
+    }
+  }, {
+    "id" : "0x26035761e80",
+    "kind" : "DLLImportAttr",
+    "range" : {
+      "begin" : {
+        "spellingLoc" : {
+          "offset" : 619,
+          "line" : 32,
+          "col" : 34,
+          "tokLen" : 9
+        },
+        "expansionLoc" : {
+          "offset" : 831,
+          "line" : 47,
+          "col" : 1,
+          "tokLen" : 13
+        }
+      },
+      "end" : {
+        "spellingLoc" : {
+          "offset" : 619,
+          "line" : 32,
+          "col" : 34,
+          "tokLen" : 9
+        },
+        "expansionLoc" : {
+          "offset" : 831,
+          "line" : 47,
+          "col" : 1,
+          "tokLen" : 13
+        }
+      }
+    }
+  } ]
+}
+`
+	root := gjson.Parse(jsonBody)
+	functionInfo := parseFunction(root)
+	mylog.Struct(functionInfo.Params)
+}
 
 func TestWalk(t *testing.T) {
 	clang.Walk("D:\\workspace\\workspace\\bindgen\\cppgo\\HyperDbg")

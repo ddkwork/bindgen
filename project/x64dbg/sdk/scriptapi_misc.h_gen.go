@@ -8,12 +8,22 @@ import (
 
 type misc struct{}
 
-func (m *misc) ParseExpression(expression string, value *uint) {
+// ParseExpression    c api name: Script::Misc::ParseExpression
+// ┌────┬────────────┬──────────────┬─────────┐
+// │ id │    name    │    c type    │ go type │
+// ├────┼────────────┼──────────────┼─────────┤
+// │ 0  │ expression │ const char * │ *int8   │
+// ├────┼────────────┼──────────────┼─────────┤
+// │ 1  │ value      │ duint *      │ *uint   │
+// ├────┼────────────┼──────────────┼─────────┤
+// │    │ return     │ bool         │ bool    │
+// └────┴────────────┴──────────────┴─────────┘
+func (m *misc) ParseExpression(expression *int8, value *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ParseExpression").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "expression",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", expression),
 			},
 			{
@@ -23,41 +33,67 @@ func (m *misc) ParseExpression(expression string, value *uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (m *misc) RemoteGetProcAddress(module string, api string) {
+// RemoteGetProcAddress    c api name: Script::Misc::RemoteGetProcAddress
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ module │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 1  │ api    │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ duint        │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (m *misc) RemoteGetProcAddress(module *int8, api *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/RemoteGetProcAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "module",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", module),
 			},
 			{
 				Name:  "api",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", api),
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (m *misc) ResolveLabel(label string) {
+// ResolveLabel    c api name: Script::Misc::ResolveLabel
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ label  │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ duint        │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (m *misc) ResolveLabel(label *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ResolveLabel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "label",
-				Type:  "string",
+				Type:  "*int8 ",
 				Value: fmt.Sprintf("%v", label),
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (m *misc) Alloc(size uint) {
+// Alloc    c api name: Script::Misc::Alloc
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ size   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void * │ uintptr │
+// └────┴────────┴────────┴─────────┘
+func (m *misc) Alloc(size uint) uintptr {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Alloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -67,18 +103,25 @@ func (m *misc) Alloc(size uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: void *")
 }
 
-func (m *misc) Free(ptr *uintptr) {
+// Free    c api name: Script::Misc::Free
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ ptr    │ void * │ uintptr │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
+func (m *misc) Free(ptr uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
 				Name:  "ptr",
-				Type:  "*uintptr ",
+				Type:  "uintptr",
 				Value: fmt.Sprintf("%v", ptr),
 			},
 		},
 	))).Request()
-	// todo handle response into result
 }

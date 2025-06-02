@@ -6,24 +6,32 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-type SymbolType int // :10
+type SymbolType int //:10
 const (
-	Function SymbolType = iota // 0
-	Import                     // 1
-	Export                     // 2
+	Function SymbolType = iota
+	Import1
+	Export2
 )
 
-// SymbolInfo (:17)
+// SymbolInfo (:17 )
 type SymbolInfo struct {
-	Mod    [256]int8  // C type: char[256]
-	Rva    uint       // C type: duint
-	Name   [256]int8  // C type: char[256]
-	Manual bool       // C type: bool
+	mod    [256]int8  // C type: char[256]
+	rva    uint       // C type: duint
+	name   [256]int8  // C type: char[256]
+	manual bool       // C type: bool
 	Type   SymbolType // C type: SymbolType
 }
 type symbol struct{}
 
-func (s *symbol) GetList(list *ListInfo) {
+// GetList    c api name: Script::Symbol::GetList
+// ┌────┬────────┬────────────┬───────────┐
+// │ id │  name  │   c type   │  go type  │
+// ├────┼────────┼────────────┼───────────┤
+// │ 0  │ list   │ ListInfo * │ *ListInfo │
+// ├────┼────────┼────────────┼───────────┤
+// │    │ return │ bool       │ bool      │
+// └────┴────────┴────────────┴───────────┘
+func (s *symbol) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_symbol.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -33,5 +41,5 @@ func (s *symbol) GetList(list *ListInfo) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }

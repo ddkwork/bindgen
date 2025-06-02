@@ -1,16 +1,7 @@
 package sdk
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
-	"io"
-	"log"
-	"net/http"
-	"os"
-	"strings"
-
-	"github.com/ddkwork/golibrary/mylog"
 	"github.com/ddkwork/golibrary/stream/net/httpClient"
 )
 

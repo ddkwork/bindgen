@@ -6,99 +6,107 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-type RegisterEnum int // :10
+type RegisterEnum int //:10
 const (
-	DR0    RegisterEnum = iota // 0
-	DR1                        // 1
-	DR2                        // 2
-	DR3                        // 3
-	DR6                        // 4
-	DR7                        // 5
-	EAX                        // 6
-	AX                         // 7
-	AH                         // 8
-	AL                         // 9
-	EBX                        // 10
-	BX                         // 11
-	BH                         // 12
-	BL                         // 13
-	ECX                        // 14
-	CX                         // 15
-	CH                         // 16
-	CL                         // 17
-	EDX                        // 18
-	DX                         // 19
-	DH                         // 20
-	DL                         // 21
-	EDI                        // 22
-	DI                         // 23
-	ESI                        // 24
-	SI                         // 25
-	EBP                        // 26
-	BP                         // 27
-	ESP                        // 28
-	SP                         // 29
-	EIP                        // 30
-	RAX                        // 31
-	RBX                        // 32
-	RCX                        // 33
-	RDX                        // 34
-	RSI                        // 35
-	SIL                        // 36
-	RDI                        // 37
-	DIL                        // 38
-	RBP                        // 39
-	BPL                        // 40
-	RSP                        // 41
-	SPL                        // 42
-	RIP                        // 43
-	R8                         // 44
-	R8D                        // 45
-	R8W                        // 46
-	R8B                        // 47
-	R9                         // 48
-	R9D                        // 49
-	R9W                        // 50
-	R9B                        // 51
-	R10                        // 52
-	R10D                       // 53
-	R10W                       // 54
-	R10B                       // 55
-	R11                        // 56
-	R11D                       // 57
-	R11W                       // 58
-	R11B                       // 59
-	R12                        // 60
-	R12D                       // 61
-	R12W                       // 62
-	R12B                       // 63
-	R13                        // 64
-	R13D                       // 65
-	R13W                       // 66
-	R13B                       // 67
-	R14                        // 68
-	R14D                       // 69
-	R14W                       // 70
-	R14B                       // 71
-	R15                        // 72
-	R15D                       // 73
-	R15W                       // 74
-	R15B                       // 75
-	CIP                        // 76
-	CSP                        // 77
-	CAX                        // 78
-	CBX                        // 79
-	CCX                        // 80
-	CDX                        // 81
-	CDI                        // 82
-	CSI                        // 83
-	CBP                        // 84
-	CFLAGS                     // 85
+	DR0 RegisterEnum = iota
+	DR11
+	DR22
+	DR33
+	DR64
+	DR75
+	EAX6
+	AX7
+	AH8
+	AL9
+	EBX10
+	BX11
+	BH12
+	BL13
+	ECX14
+	CX15
+	CH16
+	CL17
+	EDX18
+	DX19
+	DH20
+	DL21
+	EDI22
+	DI23
+	ESI24
+	SI25
+	EBP26
+	BP27
+	ESP28
+	SP29
+	EIP30
+	RAX31
+	RBX32
+	RCX33
+	RDX34
+	RSI35
+	SIL36
+	RDI37
+	DIL38
+	RBP39
+	BPL40
+	RSP41
+	SPL42
+	RIP43
+	R844
+	R8D45
+	R8W46
+	R8B47
+	R948
+	R9D49
+	R9W50
+	R9B51
+	R1052
+	R10D53
+	R10W54
+	R10B55
+	R1156
+	R11D57
+	R11W58
+	R11B59
+	R1260
+	R12D61
+	R12W62
+	R12B63
+	R1364
+	R13D65
+	R13W66
+	R13B67
+	R1468
+	R14D69
+	R14W70
+	R14B71
+	R1572
+	R15D73
+	R15W74
+	R15B75
+	CIP76
+	CSP77
+	CAX78
+	CBX79
+	CCX80
+	CDX81
+	CDI82
+	CSI83
+	CBP84
+	CFLAGS85
 )
 
 type register struct{}
 
-func (r *register) Get(reg RegisterEnum) {
+// Get    c api name: Script::Register::Get
+// ┌────┬────────┬──────────────┬──────────────┐
+// │ id │  name  │    c type    │   go type    │
+// ├────┼────────┼──────────────┼──────────────┤
+// │ 0  │ reg    │ RegisterEnum │ RegisterEnum │
+// ├────┼────────┼──────────────┼──────────────┤
+// │    │ return │ duint        │ uint         │
+// └────┴────────┴──────────────┴──────────────┘
+func (r *register) Get(reg RegisterEnum) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -108,10 +116,20 @@ func (r *register) Get(reg RegisterEnum) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) Set(reg RegisterEnum, value uint) {
+// Set    c api name: Script::Register::Set
+// ┌────┬────────┬──────────────┬──────────────┐
+// │ id │  name  │    c type    │   go type    │
+// ├────┼────────┼──────────────┼──────────────┤
+// │ 0  │ reg    │ RegisterEnum │ RegisterEnum │
+// ├────┼────────┼──────────────┼──────────────┤
+// │ 1  │ value  │ duint        │ uint         │
+// ├────┼────────┼──────────────┼──────────────┤
+// │    │ return │ bool         │ bool         │
+// └────┴────────┴──────────────┴──────────────┘
+func (r *register) Set(reg RegisterEnum, value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -126,24 +144,44 @@ func (r *register) Set(reg RegisterEnum, value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) Size() {
+// Size    c api name: Script::Register::Size
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ int    │ int     │
+// └────┴────────┴────────┴─────────┘
+func (r *register) Size() int {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Size").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	return 0
 }
 
-func (r *register) GetDR0() {
+// GetDR0    c api name: Script::Register::GetDR0
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetDR0() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR0").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetDR0(value uint) {
+// SetDR0    c api name: Script::Register::SetDR0
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetDR0(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR0").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -153,17 +191,31 @@ func (r *register) SetDR0(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDR1() {
+// GetDR1    c api name: Script::Register::GetDR1
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetDR1() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR1").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetDR1(value uint) {
+// SetDR1    c api name: Script::Register::SetDR1
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetDR1(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR1").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -173,17 +225,31 @@ func (r *register) SetDR1(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDR2() {
+// GetDR2    c api name: Script::Register::GetDR2
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetDR2() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR2").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetDR2(value uint) {
+// SetDR2    c api name: Script::Register::SetDR2
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetDR2(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR2").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -193,17 +259,31 @@ func (r *register) SetDR2(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDR3() {
+// GetDR3    c api name: Script::Register::GetDR3
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetDR3() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR3").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetDR3(value uint) {
+// SetDR3    c api name: Script::Register::SetDR3
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetDR3(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR3").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -213,17 +293,31 @@ func (r *register) SetDR3(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDR6() {
+// GetDR6    c api name: Script::Register::GetDR6
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetDR6() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR6").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetDR6(value uint) {
+// SetDR6    c api name: Script::Register::SetDR6
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetDR6(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR6").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -233,17 +327,31 @@ func (r *register) SetDR6(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDR7() {
+// GetDR7    c api name: Script::Register::GetDR7
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetDR7() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDR7").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetDR7(value uint) {
+// SetDR7    c api name: Script::Register::SetDR7
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetDR7(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR7").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -253,17 +361,31 @@ func (r *register) SetDR7(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetEAX() {
+// GetEAX    c api name: Script::Register::GetEAX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetEAX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetEAX(value uint) {
+// SetEAX    c api name: Script::Register::SetEAX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetEAX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -273,17 +395,31 @@ func (r *register) SetEAX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetAX() {
+// GetAX    c api name: Script::Register::GetAX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetAX() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetAX(value uint16) {
+// SetAX    c api name: Script::Register::SetAX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetAX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -293,17 +429,31 @@ func (r *register) SetAX(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetAH() {
+// GetAH    c api name: Script::Register::GetAH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetAH() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetAH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetAH(value byte) {
+// SetAH    c api name: Script::Register::SetAH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetAH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -313,17 +463,31 @@ func (r *register) SetAH(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetAL() {
+// GetAL    c api name: Script::Register::GetAL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetAL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetAL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetAL(value byte) {
+// SetAL    c api name: Script::Register::SetAL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetAL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -333,17 +497,31 @@ func (r *register) SetAL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetEBX() {
+// GetEBX    c api name: Script::Register::GetEBX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetEBX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetEBX(value uint) {
+// SetEBX    c api name: Script::Register::SetEBX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetEBX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -353,17 +531,31 @@ func (r *register) SetEBX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetBX() {
+// GetBX    c api name: Script::Register::GetBX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetBX() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetBX(value uint16) {
+// SetBX    c api name: Script::Register::SetBX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetBX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -373,17 +565,31 @@ func (r *register) SetBX(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetBH() {
+// GetBH    c api name: Script::Register::GetBH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetBH() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetBH(value byte) {
+// SetBH    c api name: Script::Register::SetBH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetBH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -393,17 +599,31 @@ func (r *register) SetBH(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetBL() {
+// GetBL    c api name: Script::Register::GetBL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetBL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetBL(value byte) {
+// SetBL    c api name: Script::Register::SetBL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetBL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -413,17 +633,31 @@ func (r *register) SetBL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetECX() {
+// GetECX    c api name: Script::Register::GetECX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetECX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetECX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetECX(value uint) {
+// SetECX    c api name: Script::Register::SetECX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetECX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetECX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -433,17 +667,31 @@ func (r *register) SetECX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCX() {
+// GetCX    c api name: Script::Register::GetCX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetCX() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetCX(value uint16) {
+// SetCX    c api name: Script::Register::SetCX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetCX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -453,17 +701,31 @@ func (r *register) SetCX(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCH() {
+// GetCH    c api name: Script::Register::GetCH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetCH() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetCH(value byte) {
+// SetCH    c api name: Script::Register::SetCH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetCH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -473,17 +735,31 @@ func (r *register) SetCH(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCL() {
+// GetCL    c api name: Script::Register::GetCL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetCL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetCL(value byte) {
+// SetCL    c api name: Script::Register::SetCL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetCL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -493,17 +769,31 @@ func (r *register) SetCL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetEDX() {
+// GetEDX    c api name: Script::Register::GetEDX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetEDX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetEDX(value uint) {
+// SetEDX    c api name: Script::Register::SetEDX
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetEDX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -513,17 +803,31 @@ func (r *register) SetEDX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDX() {
+// GetDX    c api name: Script::Register::GetDX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetDX() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetDX(value uint16) {
+// SetDX    c api name: Script::Register::SetDX
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetDX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -533,17 +837,31 @@ func (r *register) SetDX(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDH() {
+// GetDH    c api name: Script::Register::GetDH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetDH() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetDH(value byte) {
+// SetDH    c api name: Script::Register::SetDH
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetDH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -553,17 +871,31 @@ func (r *register) SetDH(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDL() {
+// GetDL    c api name: Script::Register::GetDL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetDL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetDL(value byte) {
+// SetDL    c api name: Script::Register::SetDL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetDL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -573,17 +905,31 @@ func (r *register) SetDL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetEDI() {
+// GetEDI    c api name: Script::Register::GetEDI
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetEDI() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetEDI(value uint) {
+// SetEDI    c api name: Script::Register::SetEDI
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetEDI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -593,17 +939,31 @@ func (r *register) SetEDI(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDI() {
+// GetDI    c api name: Script::Register::GetDI
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetDI() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetDI(value uint16) {
+// SetDI    c api name: Script::Register::SetDI
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetDI(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -613,17 +973,31 @@ func (r *register) SetDI(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetESI() {
+// GetESI    c api name: Script::Register::GetESI
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetESI() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetESI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetESI(value uint) {
+// SetESI    c api name: Script::Register::SetESI
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetESI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -633,17 +1007,31 @@ func (r *register) SetESI(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetSI() {
+// GetSI    c api name: Script::Register::GetSI
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetSI() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetSI(value uint16) {
+// SetSI    c api name: Script::Register::SetSI
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetSI(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -653,17 +1041,31 @@ func (r *register) SetSI(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetEBP() {
+// GetEBP    c api name: Script::Register::GetEBP
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetEBP() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetEBP(value uint) {
+// SetEBP    c api name: Script::Register::SetEBP
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetEBP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -673,17 +1075,31 @@ func (r *register) SetEBP(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetBP() {
+// GetBP    c api name: Script::Register::GetBP
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetBP() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetBP(value uint16) {
+// SetBP    c api name: Script::Register::SetBP
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetBP(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -693,17 +1109,31 @@ func (r *register) SetBP(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetESP() {
+// GetESP    c api name: Script::Register::GetESP
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetESP() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetESP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetESP(value uint) {
+// SetESP    c api name: Script::Register::SetESP
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetESP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -713,17 +1143,31 @@ func (r *register) SetESP(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetSP() {
+// GetSP    c api name: Script::Register::GetSP
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetSP() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetSP(value uint16) {
+// SetSP    c api name: Script::Register::SetSP
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetSP(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -733,17 +1177,31 @@ func (r *register) SetSP(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetEIP() {
+// GetEIP    c api name: Script::Register::GetEIP
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetEIP() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetEIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetEIP(value uint) {
+// SetEIP    c api name: Script::Register::SetEIP
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetEIP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -753,17 +1211,31 @@ func (r *register) SetEIP(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRAX() {
+// GetRAX    c api name: Script::Register::GetRAX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRAX() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRAX(value uint64) {
+// SetRAX    c api name: Script::Register::SetRAX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRAX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -773,17 +1245,31 @@ func (r *register) SetRAX(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRBX() {
+// GetRBX    c api name: Script::Register::GetRBX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRBX() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRBX(value uint64) {
+// SetRBX    c api name: Script::Register::SetRBX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRBX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -793,17 +1279,31 @@ func (r *register) SetRBX(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRCX() {
+// GetRCX    c api name: Script::Register::GetRCX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRCX() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRCX(value uint64) {
+// SetRCX    c api name: Script::Register::SetRCX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRCX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -813,17 +1313,31 @@ func (r *register) SetRCX(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRDX() {
+// GetRDX    c api name: Script::Register::GetRDX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRDX() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRDX(value uint64) {
+// SetRDX    c api name: Script::Register::SetRDX
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRDX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -833,17 +1347,31 @@ func (r *register) SetRDX(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRSI() {
+// GetRSI    c api name: Script::Register::GetRSI
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRSI() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRSI(value uint64) {
+// SetRSI    c api name: Script::Register::SetRSI
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRSI(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -853,17 +1381,31 @@ func (r *register) SetRSI(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetSIL() {
+// GetSIL    c api name: Script::Register::GetSIL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetSIL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetSIL(value byte) {
+// SetSIL    c api name: Script::Register::SetSIL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetSIL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -873,17 +1415,31 @@ func (r *register) SetSIL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRDI() {
+// GetRDI    c api name: Script::Register::GetRDI
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRDI() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRDI(value uint64) {
+// SetRDI    c api name: Script::Register::SetRDI
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRDI(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -893,17 +1449,31 @@ func (r *register) SetRDI(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetDIL() {
+// GetDIL    c api name: Script::Register::GetDIL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetDIL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetDIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetDIL(value byte) {
+// SetDIL    c api name: Script::Register::SetDIL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetDIL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -913,17 +1483,31 @@ func (r *register) SetDIL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRBP() {
+// GetRBP    c api name: Script::Register::GetRBP
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRBP() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRBP(value uint64) {
+// SetRBP    c api name: Script::Register::SetRBP
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRBP(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -933,17 +1517,31 @@ func (r *register) SetRBP(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetBPL() {
+// GetBPL    c api name: Script::Register::GetBPL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetBPL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetBPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetBPL(value byte) {
+// SetBPL    c api name: Script::Register::SetBPL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetBPL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -953,17 +1551,31 @@ func (r *register) SetBPL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRSP() {
+// GetRSP    c api name: Script::Register::GetRSP
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRSP() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRSP(value uint64) {
+// SetRSP    c api name: Script::Register::SetRSP
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRSP(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -973,17 +1585,31 @@ func (r *register) SetRSP(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetSPL() {
+// GetSPL    c api name: Script::Register::GetSPL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetSPL() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetSPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetSPL(value byte) {
+// SetSPL    c api name: Script::Register::SetSPL
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetSPL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -993,17 +1619,31 @@ func (r *register) SetSPL(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetRIP() {
+// GetRIP    c api name: Script::Register::GetRIP
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetRIP() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetRIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetRIP(value uint64) {
+// SetRIP    c api name: Script::Register::SetRIP
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetRIP(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1013,17 +1653,31 @@ func (r *register) SetRIP(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR8() {
+// GetR8    c api name: Script::Register::GetR8
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR8() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR8(value uint64) {
+// SetR8    c api name: Script::Register::SetR8
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR8(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1033,17 +1687,31 @@ func (r *register) SetR8(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR8D() {
+// GetR8D    c api name: Script::Register::GetR8D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR8D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR8D(value uint) {
+// SetR8D    c api name: Script::Register::SetR8D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR8D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1053,17 +1721,31 @@ func (r *register) SetR8D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR8W() {
+// GetR8W    c api name: Script::Register::GetR8W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR8W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR8W(value uint16) {
+// SetR8W    c api name: Script::Register::SetR8W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR8W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1073,17 +1755,31 @@ func (r *register) SetR8W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR8B() {
+// GetR8B    c api name: Script::Register::GetR8B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR8B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR8B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR8B(value byte) {
+// SetR8B    c api name: Script::Register::SetR8B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR8B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1093,17 +1789,31 @@ func (r *register) SetR8B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR9() {
+// GetR9    c api name: Script::Register::GetR9
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR9() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR9(value uint64) {
+// SetR9    c api name: Script::Register::SetR9
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR9(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1113,17 +1823,31 @@ func (r *register) SetR9(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR9D() {
+// GetR9D    c api name: Script::Register::GetR9D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR9D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR9D(value uint) {
+// SetR9D    c api name: Script::Register::SetR9D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR9D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1133,17 +1857,31 @@ func (r *register) SetR9D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR9W() {
+// GetR9W    c api name: Script::Register::GetR9W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR9W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR9W(value uint16) {
+// SetR9W    c api name: Script::Register::SetR9W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR9W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1153,17 +1891,31 @@ func (r *register) SetR9W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR9B() {
+// GetR9B    c api name: Script::Register::GetR9B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR9B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR9B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR9B(value byte) {
+// SetR9B    c api name: Script::Register::SetR9B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR9B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1173,17 +1925,31 @@ func (r *register) SetR9B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR10() {
+// GetR10    c api name: Script::Register::GetR10
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR10() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR10(value uint64) {
+// SetR10    c api name: Script::Register::SetR10
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR10(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1193,17 +1959,31 @@ func (r *register) SetR10(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR10D() {
+// GetR10D    c api name: Script::Register::GetR10D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR10D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR10D(value uint) {
+// SetR10D    c api name: Script::Register::SetR10D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR10D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1213,17 +1993,31 @@ func (r *register) SetR10D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR10W() {
+// GetR10W    c api name: Script::Register::GetR10W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR10W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR10W(value uint16) {
+// SetR10W    c api name: Script::Register::SetR10W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR10W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1233,17 +2027,31 @@ func (r *register) SetR10W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR10B() {
+// GetR10B    c api name: Script::Register::GetR10B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR10B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR10B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR10B(value byte) {
+// SetR10B    c api name: Script::Register::SetR10B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR10B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1253,17 +2061,31 @@ func (r *register) SetR10B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR11() {
+// GetR11    c api name: Script::Register::GetR11
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR11() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR11(value uint64) {
+// SetR11    c api name: Script::Register::SetR11
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR11(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1273,17 +2095,31 @@ func (r *register) SetR11(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR11D() {
+// GetR11D    c api name: Script::Register::GetR11D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR11D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR11D(value uint) {
+// SetR11D    c api name: Script::Register::SetR11D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR11D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1293,17 +2129,31 @@ func (r *register) SetR11D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR11W() {
+// GetR11W    c api name: Script::Register::GetR11W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR11W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR11W(value uint16) {
+// SetR11W    c api name: Script::Register::SetR11W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR11W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1313,17 +2163,31 @@ func (r *register) SetR11W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR11B() {
+// GetR11B    c api name: Script::Register::GetR11B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR11B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR11B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR11B(value byte) {
+// SetR11B    c api name: Script::Register::SetR11B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR11B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1333,17 +2197,31 @@ func (r *register) SetR11B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR12() {
+// GetR12    c api name: Script::Register::GetR12
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR12() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR12(value uint64) {
+// SetR12    c api name: Script::Register::SetR12
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR12(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1353,17 +2231,31 @@ func (r *register) SetR12(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR12D() {
+// GetR12D    c api name: Script::Register::GetR12D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR12D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR12D(value uint) {
+// SetR12D    c api name: Script::Register::SetR12D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR12D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1373,17 +2265,31 @@ func (r *register) SetR12D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR12W() {
+// GetR12W    c api name: Script::Register::GetR12W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR12W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR12W(value uint16) {
+// SetR12W    c api name: Script::Register::SetR12W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR12W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1393,17 +2299,31 @@ func (r *register) SetR12W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR12B() {
+// GetR12B    c api name: Script::Register::GetR12B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR12B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR12B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR12B(value byte) {
+// SetR12B    c api name: Script::Register::SetR12B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR12B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1413,17 +2333,31 @@ func (r *register) SetR12B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR13() {
+// GetR13    c api name: Script::Register::GetR13
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR13() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR13(value uint64) {
+// SetR13    c api name: Script::Register::SetR13
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR13(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1433,17 +2367,31 @@ func (r *register) SetR13(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR13D() {
+// GetR13D    c api name: Script::Register::GetR13D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR13D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR13D(value uint) {
+// SetR13D    c api name: Script::Register::SetR13D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR13D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1453,17 +2401,31 @@ func (r *register) SetR13D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR13W() {
+// GetR13W    c api name: Script::Register::GetR13W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR13W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR13W(value uint16) {
+// SetR13W    c api name: Script::Register::SetR13W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR13W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1473,17 +2435,31 @@ func (r *register) SetR13W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR13B() {
+// GetR13B    c api name: Script::Register::GetR13B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR13B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR13B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR13B(value byte) {
+// SetR13B    c api name: Script::Register::SetR13B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR13B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1493,17 +2469,31 @@ func (r *register) SetR13B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR14() {
+// GetR14    c api name: Script::Register::GetR14
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR14() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR14(value uint64) {
+// SetR14    c api name: Script::Register::SetR14
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR14(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1513,17 +2503,31 @@ func (r *register) SetR14(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR14D() {
+// GetR14D    c api name: Script::Register::GetR14D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR14D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR14D(value uint) {
+// SetR14D    c api name: Script::Register::SetR14D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR14D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1533,17 +2537,31 @@ func (r *register) SetR14D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR14W() {
+// GetR14W    c api name: Script::Register::GetR14W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR14W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR14W(value uint16) {
+// SetR14W    c api name: Script::Register::SetR14W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR14W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1553,17 +2571,31 @@ func (r *register) SetR14W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR14B() {
+// GetR14B    c api name: Script::Register::GetR14B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR14B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR14B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR14B(value byte) {
+// SetR14B    c api name: Script::Register::SetR14B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR14B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1573,17 +2605,31 @@ func (r *register) SetR14B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR15() {
+// GetR15    c api name: Script::Register::GetR15
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ unsigned long long │ uint64  │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) GetR15() uint64 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned long long")
 }
 
-func (r *register) SetR15(value uint64) {
+// SetR15    c api name: Script::Register::SetR15
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
+func (r *register) SetR15(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1593,17 +2639,31 @@ func (r *register) SetR15(value uint64) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR15D() {
+// GetR15D    c api name: Script::Register::GetR15D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ unsigned int │ uint    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) GetR15D() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned int")
 }
 
-func (r *register) SetR15D(value uint) {
+// SetR15D    c api name: Script::Register::SetR15D
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
+func (r *register) SetR15D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1613,17 +2673,31 @@ func (r *register) SetR15D(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR15W() {
+// GetR15W    c api name: Script::Register::GetR15W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ unsigned short │ uint16  │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) GetR15W() uint16 {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned short")
 }
 
-func (r *register) SetR15W(value uint16) {
+// SetR15W    c api name: Script::Register::SetR15W
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
+func (r *register) SetR15W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1633,17 +2707,31 @@ func (r *register) SetR15W(value uint16) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetR15B() {
+// GetR15B    c api name: Script::Register::GetR15B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ unsigned char │ byte    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) GetR15B() byte {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetR15B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: unsigned char")
 }
 
-func (r *register) SetR15B(value byte) {
+// SetR15B    c api name: Script::Register::SetR15B
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
+func (r *register) SetR15B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1653,17 +2741,31 @@ func (r *register) SetR15B(value byte) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCAX() {
+// GetCAX    c api name: Script::Register::GetCAX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCAX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCAX(value uint) {
+// SetCAX    c api name: Script::Register::SetCAX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCAX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1673,17 +2775,31 @@ func (r *register) SetCAX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCBX() {
+// GetCBX    c api name: Script::Register::GetCBX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCBX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCBX(value uint) {
+// SetCBX    c api name: Script::Register::SetCBX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCBX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1693,17 +2809,31 @@ func (r *register) SetCBX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCCX() {
+// GetCCX    c api name: Script::Register::GetCCX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCCX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCCX(value uint) {
+// SetCCX    c api name: Script::Register::SetCCX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCCX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1713,17 +2843,31 @@ func (r *register) SetCCX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCDX() {
+// GetCDX    c api name: Script::Register::GetCDX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCDX() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCDX(value uint) {
+// SetCDX    c api name: Script::Register::SetCDX
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCDX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1733,17 +2877,31 @@ func (r *register) SetCDX(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCDI() {
+// GetCDI    c api name: Script::Register::GetCDI
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCDI() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCDI(value uint) {
+// SetCDI    c api name: Script::Register::SetCDI
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCDI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1753,17 +2911,31 @@ func (r *register) SetCDI(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCSI() {
+// GetCSI    c api name: Script::Register::GetCSI
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCSI() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCSI(value uint) {
+// SetCSI    c api name: Script::Register::SetCSI
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCSI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1773,17 +2945,31 @@ func (r *register) SetCSI(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCBP() {
+// GetCBP    c api name: Script::Register::GetCBP
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCBP() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCBP(value uint) {
+// SetCBP    c api name: Script::Register::SetCBP
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCBP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1793,17 +2979,31 @@ func (r *register) SetCBP(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCSP() {
+// GetCSP    c api name: Script::Register::GetCSP
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCSP() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCSP(value uint) {
+// SetCSP    c api name: Script::Register::SetCSP
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCSP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1813,17 +3013,31 @@ func (r *register) SetCSP(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCIP() {
+// GetCIP    c api name: Script::Register::GetCIP
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCIP() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCIP(value uint) {
+// SetCIP    c api name: Script::Register::SetCIP
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCIP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1833,17 +3047,31 @@ func (r *register) SetCIP(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
 
-func (r *register) GetCFLAGS() {
+// GetCFLAGS    c api name: Script::Register::GetCFLAGS
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ duint  │ uint    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) GetCFLAGS() uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/GetCFLAGS").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
-	// todo handle response into result
+	panic("not support return type: duint")
 }
 
-func (r *register) SetCFLAGS(value uint) {
+// SetCFLAGS    c api name: Script::Register::SetCFLAGS
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
+func (r *register) SetCFLAGS(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCFLAGS").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
 			{
@@ -1853,5 +3081,5 @@ func (r *register) SetCFLAGS(value uint) {
 			},
 		},
 	))).Request()
-	// todo handle response into result
+	return true
 }
