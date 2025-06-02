@@ -68,11 +68,23 @@ type BridgeCFGraph struct {
 type bridgemain struct{}
 
 // BridgeInit    c api name: BridgeInit
-// ┌────┬────────┬─────────────────┬─────────┐
-// │ id │  name  │     c type      │ go type │
-// ├────┼────────┼─────────────────┼─────────┤
-// │    │ return │ const wchar_t * │ * rune  │
-// └────┴────────┴─────────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ const wchar_t *      │ * rune  │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeInit           │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeInit           │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeInit() *rune {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeInit").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -81,15 +93,27 @@ func (b *bridgemain) BridgeInit() *rune {
 }
 
 // BridgeLoadLibraryCheckedW    c api name: BridgeLoadLibraryCheckedW
-// ┌────┬──────────────┬─────────────────┬─────────┐
-// │ id │     name     │     c type      │ go type │
-// ├────┼──────────────┼─────────────────┼─────────┤
-// │ 0  │ szDll        │ const wchar_t * │ * rune  │
-// ├────┼──────────────┼─────────────────┼─────────┤
-// │ 1  │ allowFailure │ bool            │ bool    │
-// ├────┼──────────────┼─────────────────┼─────────┤
-// │    │ return       │ HMODULE         │ uintptr │
-// └────┴──────────────┴─────────────────┴─────────┘
+// ┌────┬──────────────────────┬───────────────────────────┬─────────┐
+// │ id │         name         │          c type           │ go type │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 0  │ szDll                │ const wchar_t *           │ * rune  │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 1  │ allowFailure         │ bool                      │ bool    │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ return               │ HMODULE                   │ uintptr │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h      │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeLoadLibraryCheckedW │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeLoadLibraryCheckedW │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.file         │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                           │         │
+// └────┴──────────────────────┴───────────────────────────┴─────────┘
 func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *rune, allowFailure bool) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedW").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -109,15 +133,27 @@ func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *rune, allowFailure bool) u
 }
 
 // BridgeLoadLibraryCheckedA    c api name: BridgeLoadLibraryCheckedA
-// ┌────┬──────────────┬──────────────┬─────────┐
-// │ id │     name     │    c type    │ go type │
-// ├────┼──────────────┼──────────────┼─────────┤
-// │ 0  │ szDll        │ const char * │ *int8   │
-// ├────┼──────────────┼──────────────┼─────────┤
-// │ 1  │ allowFailure │ bool         │ bool    │
-// ├────┼──────────────┼──────────────┼─────────┤
-// │    │ return       │ HMODULE      │ uintptr │
-// └────┴──────────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬───────────────────────────┬─────────┐
+// │ id │         name         │          c type           │ go type │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 0  │ szDll                │ const char *              │ *int8   │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 1  │ allowFailure         │ bool                      │ bool    │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ return               │ HMODULE                   │ uintptr │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h      │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeLoadLibraryCheckedA │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeLoadLibraryCheckedA │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.file         │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                           │         │
+// └────┴──────────────────────┴───────────────────────────┴─────────┘
 func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll *int8, allowFailure bool) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedA").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -137,11 +173,23 @@ func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll *int8, allowFailure bool) u
 }
 
 // BridgeStart    c api name: BridgeStart
-// ┌────┬────────┬─────────────────┬─────────┐
-// │ id │  name  │     c type      │ go type │
-// ├────┼────────┼─────────────────┼─────────┤
-// │    │ return │ const wchar_t * │ * rune  │
-// └────┴────────┴─────────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ const wchar_t *      │ * rune  │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeStart          │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeStart          │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeStart() *rune {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -150,13 +198,25 @@ func (b *bridgemain) BridgeStart() *rune {
 }
 
 // BridgeAlloc    c api name: BridgeAlloc
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ size   │ size_t │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void * │ uintptr │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ size                 │ size_t               │ uint    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ void *               │ uintptr │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeAlloc          │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeAlloc          │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeAlloc(size uint) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -171,13 +231,25 @@ func (b *bridgemain) BridgeAlloc(size uint) uintptr {
 }
 
 // BridgeFree    c api name: BridgeFree
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ ptr    │ void * │ uintptr │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ ptr                  │ void *               │ uintptr │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ void                 │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeFree           │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeFree           │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeFree(ptr uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -191,17 +263,29 @@ func (b *bridgemain) BridgeFree(ptr uintptr) {
 }
 
 // BridgeSettingGet    c api name: BridgeSettingGet
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ char *       │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ char *               │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingGet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingGet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingGet(section *int8, key *int8, value *int8) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -226,17 +310,29 @@ func (b *bridgemain) BridgeSettingGet(section *int8, key *int8, value *int8) boo
 }
 
 // BridgeSettingGetUint    c api name: BridgeSettingGetUint
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ duint *      │ *uint   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ duint *              │ *uint   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingGetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingGetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingGetUint(section *int8, key *int8, value *uint) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -261,17 +357,29 @@ func (b *bridgemain) BridgeSettingGetUint(section *int8, key *int8, value *uint)
 }
 
 // BridgeSettingSet    c api name: BridgeSettingSet
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingSet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingSet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingSet(section *int8, key *int8, value *int8) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -296,17 +404,29 @@ func (b *bridgemain) BridgeSettingSet(section *int8, key *int8, value *int8) boo
 }
 
 // BridgeSettingSetUint    c api name: BridgeSettingSetUint
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ duint        │ uint    │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ duint                │ uint    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingSetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingSetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingSetUint(section *int8, key *int8, value uint) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -331,11 +451,23 @@ func (b *bridgemain) BridgeSettingSetUint(section *int8, key *int8, value uint) 
 }
 
 // BridgeSettingFlush    c api name: BridgeSettingFlush
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingFlush   │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingFlush   │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingFlush() bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingFlush").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -344,13 +476,25 @@ func (b *bridgemain) BridgeSettingFlush() bool {
 }
 
 // BridgeSettingRead    c api name: BridgeSettingRead
-// ┌────┬───────────┬────────┬─────────┐
-// │ id │   name    │ c type │ go type │
-// ├────┼───────────┼────────┼─────────┤
-// │ 0  │ errorLine │ int *  │ *int    │
-// ├────┼───────────┼────────┼─────────┤
-// │    │ return    │ bool   │ bool    │
-// └────┴───────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ errorLine            │ int *                │ *int    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingRead    │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingRead    │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingRead(errorLine *int) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -365,11 +509,23 @@ func (b *bridgemain) BridgeSettingRead(errorLine *int) bool {
 }
 
 // BridgeGetDbgVersion    c api name: BridgeGetDbgVersion
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ int    │ int     │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ int                  │ int     │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeGetDbgVersion  │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeGetDbgVersion  │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeGetDbgVersion() int {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeGetDbgVersion").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -378,11 +534,23 @@ func (b *bridgemain) BridgeGetDbgVersion() int {
 }
 
 // BridgeIsProcessElevated    c api name: BridgeIsProcessElevated
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬─────────────────────────┬─────────┐
+// │ id │         name         │         c type          │ go type │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ return               │ bool                    │ bool    │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h    │         │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeIsProcessElevated │         │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeIsProcessElevated │         │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ comment.file         │                         │         │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                         │         │
+// ├────┼──────────────────────┼─────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                         │         │
+// └────┴──────────────────────┴─────────────────────────┴─────────┘
 func (b *bridgemain) BridgeIsProcessElevated() bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeIsProcessElevated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -391,11 +559,23 @@ func (b *bridgemain) BridgeIsProcessElevated() bool {
 }
 
 // BridgeGetNtBuildNumber    c api name: BridgeGetNtBuildNumber
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ unsigned int │ uint    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬────────────────────────┬─────────┐
+// │ id │         name         │         c type         │ go type │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ return               │ unsigned int           │ uint    │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h   │         │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeGetNtBuildNumber │         │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeGetNtBuildNumber │         │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ comment.file         │                        │         │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                        │         │
+// ├────┼──────────────────────┼────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                        │         │
+// └────┴──────────────────────┴────────────────────────┴─────────┘
 func (b *bridgemain) BridgeGetNtBuildNumber() uint {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeGetNtBuildNumber").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -404,11 +584,23 @@ func (b *bridgemain) BridgeGetNtBuildNumber() uint {
 }
 
 // BridgeUserDirectory    c api name: BridgeUserDirectory
-// ┌────┬────────┬─────────────────┬─────────┐
-// │ id │  name  │     c type      │ go type │
-// ├────┼────────┼─────────────────┼─────────┤
-// │    │ return │ const wchar_t * │ * rune  │
-// └────┴────────┴─────────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ const wchar_t *      │ * rune  │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeUserDirectory  │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeUserDirectory  │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeUserDirectory() *rune {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeUserDirectory").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -417,11 +609,23 @@ func (b *bridgemain) BridgeUserDirectory() *rune {
 }
 
 // BridgeIsARM64Emulated    c api name: BridgeIsARM64Emulated
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬───────────────────────┬─────────┐
+// │ id │         name         │        c type         │ go type │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ return               │ bool                  │ bool    │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h  │         │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeIsARM64Emulated │         │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeIsARM64Emulated │         │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ comment.file         │                       │         │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ comment.includedFrom │                       │         │
+// ├────┼──────────────────────┼───────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                       │         │
+// └────┴──────────────────────┴───────────────────────┴─────────┘
 func (b *bridgemain) BridgeIsARM64Emulated() bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeIsARM64Emulated").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -430,11 +634,25 @@ func (b *bridgemain) BridgeIsARM64Emulated() bool {
 }
 
 // Data    c api name: Data
-// ┌────┬────────┬────────────────────┬───────────────────┐
-// │ id │  name  │       c type       │      go type      │
-// ├────┼────────┼────────────────────┼───────────────────┤
-// │    │ return │ BridgeCFNodeList * │ *BridgeCFNodeList │
-// └────┴────────┴────────────────────┴───────────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────────────┐
+// │ id │         name         │                            c type                            │      go type      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ return               │ BridgeCFNodeList *                                           │ *BridgeCFNodeList │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.name         │ Data                                                         │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.mangledName  │ ?Data@?$BridgeList@UBridgeCFNodeList@@@@QEBAPEAUBridgeCFNod- │                   │
+// │    │                      │ eList@@XZ                                                    │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.file         │                                                              │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │                   │
+// │    │                      │ emain.h                                                      │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.expansionLoc │                                                              │                   │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────────────┘
 func (b *bridgemain) Data() *BridgeCFNodeList {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Data").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -443,11 +661,24 @@ func (b *bridgemain) Data() *BridgeCFNodeList {
 }
 
 // Count    c api name: Count
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ int    │ int     │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ int                                                          │ int     │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ Count                                                        │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?Count@?$BridgeList@UBridgeCFNodeList@@@@QEBAHXZ             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) Count() int {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Count").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -456,11 +687,24 @@ func (b *bridgemain) Count() int {
 }
 
 // Cleanup    c api name: Cleanup
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ void                                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ Cleanup                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?Cleanup@?$BridgeList@UBridgeCFNodeList@@@@QEAAXXZ           │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) Cleanup() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Cleanup").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -468,15 +712,30 @@ func (b *bridgemain) Cleanup() {
 }
 
 // CopyData    c api name: CopyData
-// ┌────┬──────────┬───────────────────────────────────────┬───────────┐
-// │ id │   name   │                c type                 │  go type  │
-// ├────┼──────────┼───────────────────────────────────────┼───────────┤
-// │ 0  │ listInfo │ ListInfo *                            │ *ListInfo │
-// ├────┼──────────┼───────────────────────────────────────┼───────────┤
-// │ 1  │ listData │ const std::vector<BridgeCFNodeList> & │ any       │
-// ├────┼──────────┼───────────────────────────────────────┼───────────┤
-// │    │ return   │ bool                                  │ bool      │
-// └────┴──────────┴───────────────────────────────────────┴───────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────┐
+// │ id │         name         │                            c type                            │  go type  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 0  │ listInfo             │ ListInfo *                                                   │ *ListInfo │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 1  │ listData             │ const std::vector<BridgeCFNodeList> &                        │ any       │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ return               │ bool                                                         │ bool      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.name         │ CopyData                                                     │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.mangledName  │ ?CopyData@?$BridgeList@UBridgeCFNodeList@@@@SA_NPEAUListInf- │           │
+// │    │                      │ o@@AEBV?$vector@UBridgeCFNodeList@@V?$allocator@UBridgeCFNo- │           │
+// │    │                      │ deList@@@std@@@std@@@Z                                       │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.file         │                                                              │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │           │
+// │    │                      │ emain.h                                                      │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.expansionLoc │                                                              │           │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────┘
 func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/CopyData").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -496,13 +755,26 @@ func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) bool {
 }
 
 // Free    c api name: Free
-// ┌────┬───────────┬───────────────────────────┬────────────────────┐
-// │ id │   name    │          c type           │      go type       │
-// ├────┼───────────┼───────────────────────────┼────────────────────┤
-// │ 0  │ graphList │ const BridgeCFGraphList * │ *BridgeCFGraphList │
-// ├────┼───────────┼───────────────────────────┼────────────────────┤
-// │    │ return    │ void                      │                    │
-// └────┴───────────┴───────────────────────────┴────────────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬────────────────────┐
+// │ id │         name         │                            c type                            │      go type       │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │ 0  │ graphList            │ const BridgeCFGraphList *                                    │ *BridgeCFGraphList │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ return               │ void                                                         │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.name         │ Free                                                         │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.mangledName  │ ?Free@BridgeCFGraph@@SAXPEBUBridgeCFGraphList@@@Z            │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.file         │                                                              │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │                    │
+// │    │                      │ emain.h                                                      │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.expansionLoc │                                                              │                    │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴────────────────────┘
 func (b *bridgemain) Free(graphList *BridgeCFGraphList) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -516,17 +788,32 @@ func (b *bridgemain) Free(graphList *BridgeCFGraphList) {
 }
 
 // ToVector    c api name: ToVector
-// ┌────┬──────────┬─────────────────────────────────┬───────────┐
-// │ id │   name   │             c type              │  go type  │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │ 0  │ listInfo │ const ListInfo *                │ *ListInfo │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │ 1  │ listData │ std::vector<BridgeCFNodeList> & │ any       │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │ 2  │ freedata │ bool                            │ bool      │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │    │ return   │ bool                            │ bool      │
-// └────┴──────────┴─────────────────────────────────┴───────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────┐
+// │ id │         name         │                            c type                            │  go type  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 0  │ listInfo             │ const ListInfo *                                             │ *ListInfo │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 1  │ listData             │ std::vector<BridgeCFNodeList> &                              │ any       │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 2  │ freedata             │ bool                                                         │ bool      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ return               │ bool                                                         │ bool      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.name         │ ToVector                                                     │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.mangledName  │ ?ToVector@?$BridgeList@UBridgeCFNodeList@@@@SA_NPEBUListInf- │           │
+// │    │                      │ o@@AEAV?$vector@UBridgeCFNodeList@@V?$allocator@UBridgeCFNo- │           │
+// │    │                      │ deList@@@std@@@std@@_N@Z                                     │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.file         │                                                              │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │           │
+// │    │                      │ emain.h                                                      │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.expansionLoc │                                                              │           │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────┘
 func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToVector").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -551,11 +838,24 @@ func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) b
 }
 
 // ToNodeList    c api name: ToNodeList
-// ┌────┬────────┬──────────────────┬──────────────────┐
-// │ id │  name  │      c type      │     go type      │
-// ├────┼────────┼──────────────────┼──────────────────┤
-// │    │ return │ BridgeCFNodeList │ BridgeCFNodeList │
-// └────┴────────┴──────────────────┴──────────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬──────────────────┐
+// │ id │         name         │                            c type                            │     go type      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ return               │ BridgeCFNodeList                                             │ BridgeCFNodeList │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │                  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ comment.name         │ ToNodeList                                                   │                  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ comment.mangledName  │ ?ToNodeList@BridgeCFNode@@QEBA?AUBridgeCFNodeList@@XZ        │                  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ comment.file         │                                                              │                  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │                  │
+// │    │                      │ emain.h                                                      │                  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────────┤
+// │    │ comment.expansionLoc │                                                              │                  │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴──────────────────┘
 func (b *bridgemain) ToNodeList() BridgeCFNodeList {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToNodeList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -564,11 +864,24 @@ func (b *bridgemain) ToNodeList() BridgeCFNodeList {
 }
 
 // __debugbreak    c api name: __debugbreak
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ void                                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ __debugbreak                                                 │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ __debugbreak                                                 │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) __debugbreak() {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/__debugbreak").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -576,13 +889,26 @@ func (b *bridgemain) __debugbreak() {
 }
 
 // AddNode    c api name: AddNode
-// ┌────┬────────┬──────────────────────┬───────────────┐
-// │ id │  name  │        c type        │    go type    │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │ 0  │ node   │ const BridgeCFNode & │ *BridgeCFNode │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │    │ return │ void                 │               │
-// └────┴────────┴──────────────────────┴───────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────────┐
+// │ id │         name         │                            c type                            │    go type    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │ 0  │ node                 │ const BridgeCFNode &                                         │ *BridgeCFNode │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ return               │ void                                                         │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.name         │ AddNode                                                      │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.mangledName  │ ?AddNode@BridgeCFGraph@@QEAAXAEBUBridgeCFNode@@@Z            │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.file         │                                                              │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │               │
+// │    │                      │ emain.h                                                      │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.expansionLoc │                                                              │               │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────────┘
 func (b *bridgemain) AddNode(node *BridgeCFNode) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -596,15 +922,28 @@ func (b *bridgemain) AddNode(node *BridgeCFNode) {
 }
 
 // AddParent    c api name: AddParent
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ child  │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │ 1  │ parent │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ child                │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │ parent               │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ void                                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ AddParent                                                    │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?AddParent@BridgeCFGraph@@QEAAX_K0@Z                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) AddParent(child uint, parent uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -623,11 +962,24 @@ func (b *bridgemain) AddParent(child uint, parent uint) {
 }
 
 // ToGraphList    c api name: ToGraphList
-// ┌────┬────────┬───────────────────┬───────────────────┐
-// │ id │  name  │      c type       │      go type      │
-// ├────┼────────┼───────────────────┼───────────────────┤
-// │    │ return │ BridgeCFGraphList │ BridgeCFGraphList │
-// └────┴────────┴───────────────────┴───────────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────────────┐
+// │ id │         name         │                            c type                            │      go type      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ return               │ BridgeCFGraphList                                            │ BridgeCFGraphList │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.name         │ ToGraphList                                                  │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.mangledName  │ ?ToGraphList@BridgeCFGraph@@QEBA?AUBridgeCFGraphList@@XZ     │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.file         │                                                              │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │                   │
+// │    │                      │ emain.h                                                      │                   │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────────┤
+// │    │ comment.expansionLoc │                                                              │                   │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────────────┘
 func (b *bridgemain) ToGraphList() BridgeCFGraphList {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToGraphList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
@@ -636,17 +988,30 @@ func (b *bridgemain) ToGraphList() BridgeCFGraphList {
 }
 
 // __builtin_memcpy    c api name: __builtin_memcpy
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │        │ void *             │ uintptr │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 1  │        │ const void *       │ uintptr │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 2  │        │ unsigned long long │ uint64  │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ void *             │ uintptr │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │                      │ void *                                                       │ uintptr │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │                      │ const void *                                                 │ uintptr │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 2  │                      │ unsigned long long                                           │ uint64  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ void *                                                       │ uintptr │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ __builtin_memcpy                                             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ __builtin_memcpy                                             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) __builtin_memcpy(uintptr, uintptr, uint64) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/__builtin_memcpy").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -671,15 +1036,27 @@ func (b *bridgemain) __builtin_memcpy(uintptr, uintptr, uint64) uintptr {
 }
 
 // BridgeLoadLibraryCheckedW    c api name: BridgeLoadLibraryCheckedW
-// ┌────┬──────────────┬─────────────────┬─────────┐
-// │ id │     name     │     c type      │ go type │
-// ├────┼──────────────┼─────────────────┼─────────┤
-// │ 0  │ szDll        │ const wchar_t * │ * rune  │
-// ├────┼──────────────┼─────────────────┼─────────┤
-// │ 1  │ allowFailure │ bool            │ bool    │
-// ├────┼──────────────┼─────────────────┼─────────┤
-// │    │ return       │ HMODULE         │ uintptr │
-// └────┴──────────────┴─────────────────┴─────────┘
+// ┌────┬──────────────────────┬───────────────────────────┬─────────┐
+// │ id │         name         │          c type           │ go type │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 0  │ szDll                │ const wchar_t *           │ * rune  │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 1  │ allowFailure         │ bool                      │ bool    │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ return               │ HMODULE                   │ uintptr │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h      │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeLoadLibraryCheckedW │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeLoadLibraryCheckedW │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.file         │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                           │         │
+// └────┴──────────────────────┴───────────────────────────┴─────────┘
 func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *rune, allowFailure bool) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedW").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -699,15 +1076,27 @@ func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *rune, allowFailure bool) u
 }
 
 // BridgeLoadLibraryCheckedA    c api name: BridgeLoadLibraryCheckedA
-// ┌────┬──────────────┬──────────────┬─────────┐
-// │ id │     name     │    c type    │ go type │
-// ├────┼──────────────┼──────────────┼─────────┤
-// │ 0  │ szDll        │ const char * │ *int8   │
-// ├────┼──────────────┼──────────────┼─────────┤
-// │ 1  │ allowFailure │ bool         │ bool    │
-// ├────┼──────────────┼──────────────┼─────────┤
-// │    │ return       │ HMODULE      │ uintptr │
-// └────┴──────────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬───────────────────────────┬─────────┐
+// │ id │         name         │          c type           │ go type │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 0  │ szDll                │ const char *              │ *int8   │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │ 1  │ allowFailure         │ bool                      │ bool    │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ return               │ HMODULE                   │ uintptr │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h      │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeLoadLibraryCheckedA │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeLoadLibraryCheckedA │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.file         │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                           │         │
+// ├────┼──────────────────────┼───────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                           │         │
+// └────┴──────────────────────┴───────────────────────────┴─────────┘
 func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll *int8, allowFailure bool) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedA").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -727,13 +1116,25 @@ func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll *int8, allowFailure bool) u
 }
 
 // BridgeAlloc    c api name: BridgeAlloc
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ size   │ size_t │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void * │ uintptr │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ size                 │ size_t               │ uint    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ void *               │ uintptr │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeAlloc          │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeAlloc          │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeAlloc(size uint) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -748,13 +1149,25 @@ func (b *bridgemain) BridgeAlloc(size uint) uintptr {
 }
 
 // BridgeFree    c api name: BridgeFree
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ ptr    │ void * │ uintptr │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ ptr                  │ void *               │ uintptr │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ void                 │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeFree           │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeFree           │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeFree(ptr uintptr) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -768,17 +1181,29 @@ func (b *bridgemain) BridgeFree(ptr uintptr) {
 }
 
 // BridgeSettingGet    c api name: BridgeSettingGet
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ char *       │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ char *               │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingGet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingGet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingGet(section *int8, key *int8, value *int8) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -803,17 +1228,29 @@ func (b *bridgemain) BridgeSettingGet(section *int8, key *int8, value *int8) boo
 }
 
 // BridgeSettingGetUint    c api name: BridgeSettingGetUint
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ duint *      │ *uint   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ duint *              │ *uint   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingGetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingGetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingGetUint(section *int8, key *int8, value *uint) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -838,17 +1275,29 @@ func (b *bridgemain) BridgeSettingGetUint(section *int8, key *int8, value *uint)
 }
 
 // BridgeSettingSet    c api name: BridgeSettingSet
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingSet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingSet     │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingSet(section *int8, key *int8, value *int8) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -873,17 +1322,29 @@ func (b *bridgemain) BridgeSettingSet(section *int8, key *int8, value *int8) boo
 }
 
 // BridgeSettingSetUint    c api name: BridgeSettingSetUint
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ section │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 1  │ key     │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 2  │ value   │ duint        │ uint    │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ section              │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 1  │ key                  │ const char *         │ *int8   │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 2  │ value                │ duint                │ uint    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingSetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingSetUint │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingSetUint(section *int8, key *int8, value uint) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -908,13 +1369,25 @@ func (b *bridgemain) BridgeSettingSetUint(section *int8, key *int8, value uint) 
 }
 
 // BridgeSettingRead    c api name: BridgeSettingRead
-// ┌────┬───────────┬────────┬─────────┐
-// │ id │   name    │ c type │ go type │
-// ├────┼───────────┼────────┼─────────┤
-// │ 0  │ errorLine │ int *  │ *int    │
-// ├────┼───────────┼────────┼─────────┤
-// │    │ return    │ bool   │ bool    │
-// └────┴───────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────┬─────────┐
+// │ id │         name         │        c type        │ go type │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │ 0  │ errorLine            │ int *                │ *int    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ return               │ bool                 │ bool    │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.name         │ BridgeSettingRead    │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.mangledName  │ BridgeSettingRead    │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.file         │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.includedFrom │                      │         │
+// ├────┼──────────────────────┼──────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                      │         │
+// └────┴──────────────────────┴──────────────────────┴─────────┘
 func (b *bridgemain) BridgeSettingRead(errorLine *int) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -929,15 +1402,30 @@ func (b *bridgemain) BridgeSettingRead(errorLine *int) bool {
 }
 
 // CopyData    c api name: CopyData
-// ┌────┬──────────┬───────────────────────────────────────┬───────────┐
-// │ id │   name   │                c type                 │  go type  │
-// ├────┼──────────┼───────────────────────────────────────┼───────────┤
-// │ 0  │ listInfo │ ListInfo *                            │ *ListInfo │
-// ├────┼──────────┼───────────────────────────────────────┼───────────┤
-// │ 1  │ listData │ const std::vector<BridgeCFNodeList> & │ any       │
-// ├────┼──────────┼───────────────────────────────────────┼───────────┤
-// │    │ return   │ bool                                  │ bool      │
-// └────┴──────────┴───────────────────────────────────────┴───────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────┐
+// │ id │         name         │                            c type                            │  go type  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 0  │ listInfo             │ ListInfo *                                                   │ *ListInfo │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 1  │ listData             │ const std::vector<BridgeCFNodeList> &                        │ any       │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ return               │ bool                                                         │ bool      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.name         │ CopyData                                                     │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.mangledName  │ ?CopyData@?$BridgeList@UBridgeCFNodeList@@@@SA_NPEAUListInf- │           │
+// │    │                      │ o@@AEBV?$vector@UBridgeCFNodeList@@V?$allocator@UBridgeCFNo- │           │
+// │    │                      │ deList@@@std@@@std@@@Z                                       │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.file         │                                                              │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │           │
+// │    │                      │ emain.h                                                      │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.expansionLoc │                                                              │           │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────┘
 func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/CopyData").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -957,13 +1445,26 @@ func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) bool {
 }
 
 // Free    c api name: Free
-// ┌────┬───────────┬───────────────────────────┬────────────────────┐
-// │ id │   name    │          c type           │      go type       │
-// ├────┼───────────┼───────────────────────────┼────────────────────┤
-// │ 0  │ graphList │ const BridgeCFGraphList * │ *BridgeCFGraphList │
-// ├────┼───────────┼───────────────────────────┼────────────────────┤
-// │    │ return    │ void                      │                    │
-// └────┴───────────┴───────────────────────────┴────────────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬────────────────────┐
+// │ id │         name         │                            c type                            │      go type       │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │ 0  │ graphList            │ const BridgeCFGraphList *                                    │ *BridgeCFGraphList │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ return               │ void                                                         │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.name         │ Free                                                         │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.mangledName  │ ?Free@BridgeCFGraph@@SAXPEBUBridgeCFGraphList@@@Z            │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.file         │                                                              │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │                    │
+// │    │                      │ emain.h                                                      │                    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼────────────────────┤
+// │    │ comment.expansionLoc │                                                              │                    │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴────────────────────┘
 func (b *bridgemain) Free(graphList *BridgeCFGraphList) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -977,17 +1478,32 @@ func (b *bridgemain) Free(graphList *BridgeCFGraphList) {
 }
 
 // ToVector    c api name: ToVector
-// ┌────┬──────────┬─────────────────────────────────┬───────────┐
-// │ id │   name   │             c type              │  go type  │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │ 0  │ listInfo │ const ListInfo *                │ *ListInfo │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │ 1  │ listData │ std::vector<BridgeCFNodeList> & │ any       │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │ 2  │ freedata │ bool                            │ bool      │
-// ├────┼──────────┼─────────────────────────────────┼───────────┤
-// │    │ return   │ bool                            │ bool      │
-// └────┴──────────┴─────────────────────────────────┴───────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────┐
+// │ id │         name         │                            c type                            │  go type  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 0  │ listInfo             │ const ListInfo *                                             │ *ListInfo │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 1  │ listData             │ std::vector<BridgeCFNodeList> &                              │ any       │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │ 2  │ freedata             │ bool                                                         │ bool      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ return               │ bool                                                         │ bool      │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.name         │ ToVector                                                     │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.mangledName  │ ?ToVector@?$BridgeList@UBridgeCFNodeList@@@@SA_NPEBUListInf- │           │
+// │    │                      │ o@@AEAV?$vector@UBridgeCFNodeList@@V?$allocator@UBridgeCFNo- │           │
+// │    │                      │ deList@@@std@@@std@@_N@Z                                     │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.file         │                                                              │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │           │
+// │    │                      │ emain.h                                                      │           │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────┤
+// │    │ comment.expansionLoc │                                                              │           │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────┘
 func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) bool {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/ToVector").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1012,13 +1528,26 @@ func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) b
 }
 
 // AddNode    c api name: AddNode
-// ┌────┬────────┬──────────────────────┬───────────────┐
-// │ id │  name  │        c type        │    go type    │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │ 0  │ node   │ const BridgeCFNode & │ *BridgeCFNode │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │    │ return │ void                 │               │
-// └────┴────────┴──────────────────────┴───────────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬───────────────┐
+// │ id │         name         │                            c type                            │    go type    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │ 0  │ node                 │ const BridgeCFNode &                                         │ *BridgeCFNode │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ return               │ void                                                         │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.name         │ AddNode                                                      │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.mangledName  │ ?AddNode@BridgeCFGraph@@QEAAXAEBUBridgeCFNode@@@Z            │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.file         │                                                              │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │               │
+// │    │                      │ emain.h                                                      │               │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼───────────────┤
+// │    │ comment.expansionLoc │                                                              │               │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴───────────────┘
 func (b *bridgemain) AddNode(node *BridgeCFNode) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1032,15 +1561,28 @@ func (b *bridgemain) AddNode(node *BridgeCFNode) {
 }
 
 // AddParent    c api name: AddParent
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ child  │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │ 1  │ parent │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ child                │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │ parent               │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ void                                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ AddParent                                                    │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?AddParent@BridgeCFGraph@@QEAAX_K0@Z                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) AddParent(child uint, parent uint) {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1059,17 +1601,30 @@ func (b *bridgemain) AddParent(child uint, parent uint) {
 }
 
 // __builtin_memcpy    c api name: __builtin_memcpy
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │        │ void *             │ uintptr │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 1  │        │ const void *       │ uintptr │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 2  │        │ unsigned long long │ uint64  │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ void *             │ uintptr │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │                      │ void *                                                       │ uintptr │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │                      │ const void *                                                 │ uintptr │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 2  │                      │ unsigned long long                                           │ uint64  │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ void *                                                       │ uintptr │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\bridgemain.h                                         │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ __builtin_memcpy                                             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ __builtin_memcpy                                             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │ D:\workspace\workspace\bindgen\project\x64dbg\include\bridg- │         │
+// │    │                      │ emain.h                                                      │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │                                                              │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (b *bridgemain) __builtin_memcpy(uintptr, uintptr, uint64) uintptr {
 	Client.Post().Url("http://localhost:8888/bridgemain.h/__builtin_memcpy").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

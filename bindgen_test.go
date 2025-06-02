@@ -139,7 +139,7 @@ func TestBug(t *testing.T) {
 }
 `
 	root := gjson.Parse(jsonBody)
-	functionInfo := parseFunction(root)
+	functionInfo := parseFunction(root, "")
 	mylog.Struct(functionInfo.Params)
 }
 

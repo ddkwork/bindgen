@@ -160,13 +160,20 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 								p.CName = strings.ReplaceAll(p.CName, object.CName, fn.namespace+object.CName)
 								fn.Params[i] = p
 								result.Functions.Update(fn.Name, fn)
-
 							}
 						}
 
 						t.AddRow(strconv.Itoa(i), p.Name, p.CType, p.Type)
 					}
 					t.AddRow("", "return", fn.ReturnCType, fn.ReturnType)
+
+					t.AddRow("", "comment.currentFile", fn.Comment.currentFile)
+					t.AddRow("", "comment.name", fn.Comment.name)
+					t.AddRow("", "comment.mangledName", fn.Comment.mangledName)
+					t.AddRow("", "comment.file", fn.Comment.file)
+					t.AddRow("", "comment.includedFrom", fn.Comment.includedFrom)
+					t.AddRow("", "comment.expansionLoc", fn.Comment.expansionLoc)
+
 					t.Render()
 
 					g.P("// ", fn.Name, "    c api name: ", fn.CName)
