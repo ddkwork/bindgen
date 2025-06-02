@@ -131,13 +131,15 @@ func (g *gui) SelectionGetEnd(window Window) uint {
 }
 
 // Message    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::Message
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ message │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ void         │         │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬─────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name   │                            c type                            │ go type │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ message │ const                                                        │ *int8   │
+// │    │         │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │         │
+// │    │         │ d::Gui::char *                                               │         │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return  │ void                                                         │         │
+// └────┴─────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) Message(message *int8) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/Message").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -151,13 +153,15 @@ func (g *gui) Message(message *int8) {
 }
 
 // MessageYesNo    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::MessageYesNo
-// ┌────┬─────────┬──────────────┬─────────┐
-// │ id │  name   │    c type    │ go type │
-// ├────┼─────────┼──────────────┼─────────┤
-// │ 0  │ message │ const char * │ *int8   │
-// ├────┼─────────┼──────────────┼─────────┤
-// │    │ return  │ bool         │ bool    │
-// └────┴─────────┴──────────────┴─────────┘
+// ┌────┬─────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name   │                            c type                            │ go type │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ message │ const                                                        │ *int8   │
+// │    │         │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │         │
+// │    │         │ d::Gui::char *                                               │         │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return  │ bool                                                         │ bool    │
+// └────┴─────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) MessageYesNo(message *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/MessageYesNo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -172,15 +176,17 @@ func (g *gui) MessageYesNo(message *int8) bool {
 }
 
 // InputLine    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::InputLine
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ title  │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 1  │ text   │ char *       │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ bool         │ bool    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name  │                            c type                            │ go type │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ title  │ const                                                        │ *int8   │
+// │    │        │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │         │
+// │    │        │ d::Gui::char *                                               │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │ text   │ char *                                                       │ *int8   │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return │ bool                                                         │ bool    │
+// └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) InputLine(title *int8, text *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputLine").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -200,15 +206,17 @@ func (g *gui) InputLine(title *int8, text *int8) bool {
 }
 
 // InputValue    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::InputValue
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ title  │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 1  │ value  │ duint *      │ *uint   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ bool         │ bool    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name  │                            c type                            │ go type │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ title  │ const                                                        │ *int8   │
+// │    │        │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │         │
+// │    │        │ d::Gui::char *                                               │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │ value  │ duint *                                                      │ *uint   │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return │ bool                                                         │ bool    │
+// └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) InputValue(title *int8, value *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/InputValue").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -15,13 +15,13 @@ type BookmarkInfo struct {
 type bookmark struct{}
 
 // Set    c api name: Script::Bookmark::Set
-// ┌────┬────────┬──────────────────────┬───────────────┐
-// │ id │  name  │        c type        │    go type    │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │ 0  │ info   │ const BookmarkInfo * │ *BookmarkInfo │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │    │ return │ bool                 │ bool          │
-// └────┴────────┴──────────────────────┴───────────────┘
+// ┌────┬────────┬────────────────────────────────────────┬───────────────┐
+// │ id │  name  │                 c type                 │    go type    │
+// ├────┼────────┼────────────────────────────────────────┼───────────────┤
+// │ 0  │ info   │ const Script::Bookmark::BookmarkInfo * │ *BookmarkInfo │
+// ├────┼────────┼────────────────────────────────────────┼───────────────┤
+// │    │ return │ bool                                   │ bool          │
+// └────┴────────┴────────────────────────────────────────┴───────────────┘
 func (b *bookmark) Set(info *BookmarkInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -9,19 +9,19 @@ import (
 type assembler struct{}
 
 // Assemble    c api name: Script::Assembler::Assemble
-// ┌────┬─────────────┬─────────────────┬─────────┐
-// │ id │    name     │     c type      │ go type │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 0  │ addr        │ duint           │ uint    │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 1  │ dest        │ unsigned char * │ *byte   │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 2  │ size        │ int *           │ *int    │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 3  │ instruction │ const char *    │ *int8   │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │    │ return      │ bool            │ bool    │
-// └────┴─────────────┴─────────────────┴─────────┘
+// ┌────┬─────────────┬─────────────────────────────────┬─────────┐
+// │ id │    name     │             c type              │ go type │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 0  │ addr        │ duint                           │ uint    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 1  │ dest        │ unsigned char *                 │ *byte   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 2  │ size        │ int *                           │ *int    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 3  │ instruction │ const Script::Assembler::char * │ *int8   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │    │ return      │ bool                            │ bool    │
+// └────┴─────────────┴─────────────────────────────────┴─────────┘
 func (a *assembler) Assemble(addr uint, dest *byte, size *int, instruction *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/Assemble").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -51,21 +51,21 @@ func (a *assembler) Assemble(addr uint, dest *byte, size *int, instruction *int8
 }
 
 // AssembleEx    c api name: Script::Assembler::AssembleEx
-// ┌────┬─────────────┬─────────────────┬─────────┐
-// │ id │    name     │     c type      │ go type │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 0  │ addr        │ duint           │ uint    │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 1  │ dest        │ unsigned char * │ *byte   │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 2  │ size        │ int *           │ *int    │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 3  │ instruction │ const char *    │ *int8   │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │ 4  │ error       │ char *          │ *int8   │
-// ├────┼─────────────┼─────────────────┼─────────┤
-// │    │ return      │ bool            │ bool    │
-// └────┴─────────────┴─────────────────┴─────────┘
+// ┌────┬─────────────┬─────────────────────────────────┬─────────┐
+// │ id │    name     │             c type              │ go type │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 0  │ addr        │ duint                           │ uint    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 1  │ dest        │ unsigned char *                 │ *byte   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 2  │ size        │ int *                           │ *int    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 3  │ instruction │ const Script::Assembler::char * │ *int8   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 4  │ error       │ char *                          │ *int8   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │    │ return      │ bool                            │ bool    │
+// └────┴─────────────┴─────────────────────────────────┴─────────┘
 func (a *assembler) AssembleEx(addr uint, dest *byte, size *int, instruction *int8, error *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -100,15 +100,15 @@ func (a *assembler) AssembleEx(addr uint, dest *byte, size *int, instruction *in
 }
 
 // AssembleMem    c api name: Script::Assembler::AssembleMem
-// ┌────┬─────────────┬──────────────┬─────────┐
-// │ id │    name     │    c type    │ go type │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 0  │ addr        │ duint        │ uint    │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 1  │ instruction │ const char * │ *int8   │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │    │ return      │ bool         │ bool    │
-// └────┴─────────────┴──────────────┴─────────┘
+// ┌────┬─────────────┬─────────────────────────────────┬─────────┐
+// │ id │    name     │             c type              │ go type │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 0  │ addr        │ duint                           │ uint    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 1  │ instruction │ const Script::Assembler::char * │ *int8   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │    │ return      │ bool                            │ bool    │
+// └────┴─────────────┴─────────────────────────────────┴─────────┘
 func (a *assembler) AssembleMem(addr uint, instruction *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleMem").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -128,21 +128,21 @@ func (a *assembler) AssembleMem(addr uint, instruction *int8) bool {
 }
 
 // AssembleMemEx    c api name: Script::Assembler::AssembleMemEx
-// ┌────┬─────────────┬──────────────┬─────────┐
-// │ id │    name     │    c type    │ go type │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 0  │ addr        │ duint        │ uint    │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 1  │ instruction │ const char * │ *int8   │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 2  │ size        │ int *        │ *int    │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 3  │ error       │ char *       │ *int8   │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 4  │ fillnop     │ bool         │ bool    │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │    │ return      │ bool         │ bool    │
-// └────┴─────────────┴──────────────┴─────────┘
+// ┌────┬─────────────┬─────────────────────────────────┬─────────┐
+// │ id │    name     │             c type              │ go type │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 0  │ addr        │ duint                           │ uint    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 1  │ instruction │ const Script::Assembler::char * │ *int8   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 2  │ size        │ int *                           │ *int    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 3  │ error       │ char *                          │ *int8   │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │ 4  │ fillnop     │ bool                            │ bool    │
+// ├────┼─────────────┼─────────────────────────────────┼─────────┤
+// │    │ return      │ bool                            │ bool    │
+// └────┴─────────────┴─────────────────────────────────┴─────────┘
 func (a *assembler) AssembleMemEx(addr uint, instruction *int8, size *int, error *int8, fillnop bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_assembler.h/AssembleMemEx").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

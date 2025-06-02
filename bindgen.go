@@ -259,7 +259,7 @@ type ApiResponse struct {
 			mylog.Info("start gen mcp cpp server dispatch header file")
 			type cApi struct {
 				path       string
-				Fn         string
+				CName      string
 				Do         string
 				Params     []FunctionParam
 				ReturnType string
@@ -302,16 +302,16 @@ type ApiResponse struct {
 						do = "nullptr"
 					}
 					gResp.P("ApiResponse resp{.success = true, .type = ",
-						strconv.Quote(fn.ReturnType), //todo CType:   param.Get("type.qualType").String(),
+						strconv.Quote(fn.ReturnCType),
 						", .result = ", do, "};")
 
 					urlPath := makeUrlPath(path, fn.Name)
 					api.Set(urlPath, cApi{
 						path:       urlPath,
-						Fn:         fn.CName,
+						CName:      fn.CName,
 						Do:         gResp.String(),
 						Params:     fn.Params,
-						ReturnType: fn.ReturnType,
+						ReturnType: fn.ReturnCType,
 					})
 				}
 			}
@@ -555,7 +555,7 @@ void stopHttpServer() {
            if (ok) { BridgeList<Script::Module::ModuleInfo>::ToVector(&bridgeList, moduleVector, true); }
            ApiResponse resp{.success = ok, .type = "array", .result = moduleVector};
 `
-					g.P(strings.ReplaceAll(template, "Script::Module::GetList", a.Fn))
+					g.P(strings.ReplaceAll(template, "Script::Module::GetList", a.CName))
 				} else {
 					g.P(`
            auto arg = nlohmann::json::parse(req.body).get<std::vector<Param>>();
@@ -723,8 +723,8 @@ func needSkip(n gjson.Result) bool {
 }
 
 func traverseNode(node gjson.Result, result *Result, path string) {
-	var processNode func(gjson.Result, []string)
-	processNode = func(n gjson.Result, namespace []string) {
+	var processNode func(gjson.Result, string)
+	processNode = func(n gjson.Result, namespace string) {
 		name := n.Get("name").String()
 		comment := Comment{
 			currentFile:  path,
@@ -783,11 +783,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 				}
 			}
 
-			object := parseStruct(n)
-			object.CName = object.Name
-			if len(namespace) > 0 {
-				object.CName = strings.Join(namespace, "::") + "::" + object.Name
-			}
+			object := parseStruct(n, namespace)
 			if object.Name == "" {
 				if name == "" {
 					return
@@ -825,11 +821,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 					return
 				}
 			}
-			function := parseFunction(n)
-			function.CName = function.Name
-			if len(namespace) > 0 {
-				function.CName = strings.Join(namespace, "::") + "::" + function.Name
-			}
+			function := parseFunction(n, namespace)
 			if function.Name == "" {
 				if name == "" {
 					return
@@ -846,11 +838,10 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 		})
 	}
 
-	namespace := finedNamespace(node)
-	processNode(node, namespace)
+	processNode(node, finedNamespace(node))
 }
 
-func finedNamespace(node gjson.Result) []string {
+func finedNamespace(node gjson.Result) string {
 	var namespace []string
 	var traverseInner func(gjson.Result)
 	traverseInner = func(inner gjson.Result) {
@@ -866,7 +857,10 @@ func finedNamespace(node gjson.Result) []string {
 		})
 	}
 	traverseInner(node.Get("inner"))
-	return namespace
+	if len(namespace) > 0 {
+		return strings.Join(namespace, "::") + "::"
+	}
+	return ""
 }
 
 func parseEnum(node gjson.Result) EnumInfo {
@@ -899,10 +893,10 @@ func parseEnum(node gjson.Result) EnumInfo {
 	return info
 }
 
-func parseStruct(node gjson.Result) StructInfo {
+func parseStruct(node gjson.Result, namespace string) StructInfo {
 	info := StructInfo{
 		Name:    node.Get("name").String(),
-		CName:   "",
+		CName:   namespace + node.Get("name").String(),
 		Loc:     formatLoc(node.Get("loc")),
 		IsImpl:  node.Get("isImplicit").Bool(),
 		Fields:  nil,
@@ -929,7 +923,7 @@ func parseStruct(node gjson.Result) StructInfo {
 				TypeDecl: resolveType(child.Get("type")),
 			})
 		case "CXXMethodDecl":
-			fn := parseFunction(child)
+			fn := parseFunction(child, namespace)
 			fn.IsMethod = true
 			fn.ReceiverType = info.Name
 			info.Methods = append(info.Methods, fn)
@@ -940,12 +934,12 @@ func parseStruct(node gjson.Result) StructInfo {
 	return info
 }
 
-func parseFunction(node gjson.Result) FunctionInfo {
+func parseFunction(node gjson.Result, namespace string) FunctionInfo {
 	ReturnType := node.Get("type.qualType")
 	split := strings.Split(ReturnType.String(), "(")
 	info := FunctionInfo{
 		Name:         node.Get("name").String(),
-		CName:        "",
+		CName:        namespace + node.Get("name").String(),
 		Loc:          formatLoc(node.Get("loc")),
 		ReturnType:   handleQualType(strings.TrimSpace(split[0])),
 		ReturnCType:  strings.TrimSpace(split[0]),
@@ -964,11 +958,16 @@ func parseFunction(node gjson.Result) FunctionInfo {
 			case "string":
 				name = "s"
 			}
-
+			cType := param.Get("type.qualType").String()
+			if strings.HasPrefix(cType, "const ") {
+				cType = strings.TrimPrefix(cType, "const ")
+				cType = "const " + namespace + cType
+			}
 			info.Params = append(info.Params, FunctionParam{
 				Name:    name,
+				CName:   param.Get("name").String(),
 				Type:    resolveType(param.Get("type")),
-				CType:   param.Get("type.qualType").String(),
+				CType:   cType,
 				Comment: Comment{},
 			})
 		}
@@ -1194,6 +1193,7 @@ type (
 
 	FunctionParam struct {
 		Name  string
+		CName string
 		Type  string
 		CType string
 		Comment

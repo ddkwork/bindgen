@@ -17,13 +17,13 @@ type FunctionInfo struct {
 type function struct{}
 
 // Add    c api name: Script::Function::Add
-// ┌────┬────────┬──────────────────────┬───────────────┐
-// │ id │  name  │        c type        │    go type    │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │ 0  │ info   │ const FunctionInfo * │ *FunctionInfo │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │    │ return │ bool                 │ bool          │
-// └────┴────────┴──────────────────────┴───────────────┘
+// ┌────┬────────┬────────────────────────────────────────┬───────────────┐
+// │ id │  name  │                 c type                 │    go type    │
+// ├────┼────────┼────────────────────────────────────────┼───────────────┤
+// │ 0  │ info   │ const Script::Function::FunctionInfo * │ *FunctionInfo │
+// ├────┼────────┼────────────────────────────────────────┼───────────────┤
+// │    │ return │ bool                                   │ bool          │
+// └────┴────────┴────────────────────────────────────────┴───────────────┘
 func (f *function) Add(info *FunctionInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Add").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -16,13 +16,13 @@ type CommentInfo struct {
 type comment struct{}
 
 // Set    c api name: Script::Comment::Set
-// ┌────┬────────┬─────────────────────┬──────────────┐
-// │ id │  name  │       c type        │   go type    │
-// ├────┼────────┼─────────────────────┼──────────────┤
-// │ 0  │ info   │ const CommentInfo * │ *CommentInfo │
-// ├────┼────────┼─────────────────────┼──────────────┤
-// │    │ return │ bool                │ bool         │
-// └────┴────────┴─────────────────────┴──────────────┘
+// ┌────┬────────┬──────────────────────────────────────┬──────────────┐
+// │ id │  name  │                c type                │   go type    │
+// ├────┼────────┼──────────────────────────────────────┼──────────────┤
+// │ 0  │ info   │ const Script::Comment::CommentInfo * │ *CommentInfo │
+// ├────┼────────┼──────────────────────────────────────┼──────────────┤
+// │    │ return │ bool                                 │ bool         │
+// └────┴────────┴──────────────────────────────────────┴──────────────┘
 func (c *comment) Set(info *CommentInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

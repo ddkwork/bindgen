@@ -73,15 +73,15 @@ func (m *module) InfoFromAddr(addr uint, info *ModuleInfo) bool {
 }
 
 // InfoFromName    c api name: Script::Module::InfoFromName
-// ┌────┬────────┬──────────────┬─────────────┐
-// │ id │  name  │    c type    │   go type   │
-// ├────┼────────┼──────────────┼─────────────┤
-// │ 0  │ name   │ const char * │ *int8       │
-// ├────┼────────┼──────────────┼─────────────┤
-// │ 1  │ info   │ ModuleInfo * │ *ModuleInfo │
-// ├────┼────────┼──────────────┼─────────────┤
-// │    │ return │ bool         │ bool        │
-// └────┴────────┴──────────────┴─────────────┘
+// ┌────┬────────┬──────────────────────────────┬─────────────┐
+// │ id │  name  │            c type            │   go type   │
+// ├────┼────────┼──────────────────────────────┼─────────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8       │
+// ├────┼────────┼──────────────────────────────┼─────────────┤
+// │ 1  │ info   │ ModuleInfo *                 │ *ModuleInfo │
+// ├────┼────────┼──────────────────────────────┼─────────────┤
+// │    │ return │ bool                         │ bool        │
+// └────┴────────┴──────────────────────────────┴─────────────┘
 func (m *module) InfoFromName(name *int8, info *ModuleInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/InfoFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -122,13 +122,13 @@ func (m *module) BaseFromAddr(addr uint) uint {
 }
 
 // BaseFromName    c api name: Script::Module::BaseFromName
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ name   │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ duint        │ uint    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────┬─────────┐
+// │ id │  name  │            c type            │ go type │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8   │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │    │ return │ duint                        │ uint    │
+// └────┴────────┴──────────────────────────────┴─────────┘
 func (m *module) BaseFromName(name *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/BaseFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -164,13 +164,13 @@ func (m *module) SizeFromAddr(addr uint) uint {
 }
 
 // SizeFromName    c api name: Script::Module::SizeFromName
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ name   │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ duint        │ uint    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────┬─────────┐
+// │ id │  name  │            c type            │ go type │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8   │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │    │ return │ duint                        │ uint    │
+// └────┴────────┴──────────────────────────────┴─────────┘
 func (m *module) SizeFromName(name *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SizeFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -241,15 +241,15 @@ func (m *module) PathFromAddr(addr uint, path *int8) bool {
 }
 
 // PathFromName    c api name: Script::Module::PathFromName
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ name   │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 1  │ path   │ char *       │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ bool         │ bool    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────┬─────────┐
+// │ id │  name  │            c type            │ go type │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8   │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │ 1  │ path   │ char *                       │ *int8   │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │    │ return │ bool                         │ bool    │
+// └────┴────────┴──────────────────────────────┴─────────┘
 func (m *module) PathFromName(name *int8, path *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/PathFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -290,13 +290,13 @@ func (m *module) EntryFromAddr(addr uint) uint {
 }
 
 // EntryFromName    c api name: Script::Module::EntryFromName
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ name   │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ duint        │ uint    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────┬─────────┐
+// │ id │  name  │            c type            │ go type │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8   │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │    │ return │ duint                        │ uint    │
+// └────┴────────┴──────────────────────────────┴─────────┘
 func (m *module) EntryFromName(name *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/EntryFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -332,13 +332,13 @@ func (m *module) SectionCountFromAddr(addr uint) int {
 }
 
 // SectionCountFromName    c api name: Script::Module::SectionCountFromName
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ name   │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ int          │ int     │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────┬─────────┐
+// │ id │  name  │            c type            │ go type │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8   │
+// ├────┼────────┼──────────────────────────────┼─────────┤
+// │    │ return │ int                          │ int     │
+// └────┴────────┴──────────────────────────────┴─────────┘
 func (m *module) SectionCountFromName(name *int8) int {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionCountFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -388,17 +388,17 @@ func (m *module) SectionFromAddr(addr uint, number int, section *ModuleSectionIn
 }
 
 // SectionFromName    c api name: Script::Module::SectionFromName
-// ┌────┬─────────┬─────────────────────┬────────────────────┐
-// │ id │  name   │       c type        │      go type       │
-// ├────┼─────────┼─────────────────────┼────────────────────┤
-// │ 0  │ name    │ const char *        │ *int8              │
-// ├────┼─────────┼─────────────────────┼────────────────────┤
-// │ 1  │ number  │ int                 │ int                │
-// ├────┼─────────┼─────────────────────┼────────────────────┤
-// │ 2  │ section │ ModuleSectionInfo * │ *ModuleSectionInfo │
-// ├────┼─────────┼─────────────────────┼────────────────────┤
-// │    │ return  │ bool                │ bool               │
-// └────┴─────────┴─────────────────────┴────────────────────┘
+// ┌────┬─────────┬──────────────────────────────┬────────────────────┐
+// │ id │  name   │            c type            │      go type       │
+// ├────┼─────────┼──────────────────────────────┼────────────────────┤
+// │ 0  │ name    │ const Script::Module::char * │ *int8              │
+// ├────┼─────────┼──────────────────────────────┼────────────────────┤
+// │ 1  │ number  │ int                          │ int                │
+// ├────┼─────────┼──────────────────────────────┼────────────────────┤
+// │ 2  │ section │ ModuleSectionInfo *          │ *ModuleSectionInfo │
+// ├────┼─────────┼──────────────────────────────┼────────────────────┤
+// │    │ return  │ bool                         │ bool               │
+// └────┴─────────┴──────────────────────────────┴────────────────────┘
 func (m *module) SectionFromName(name *int8, number int, section *ModuleSectionInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -451,15 +451,15 @@ func (m *module) SectionListFromAddr(addr uint, list *ListInfo) bool {
 }
 
 // SectionListFromName    c api name: Script::Module::SectionListFromName
-// ┌────┬────────┬──────────────┬───────────┐
-// │ id │  name  │    c type    │  go type  │
-// ├────┼────────┼──────────────┼───────────┤
-// │ 0  │ name   │ const char * │ *int8     │
-// ├────┼────────┼──────────────┼───────────┤
-// │ 1  │ list   │ ListInfo *   │ *ListInfo │
-// ├────┼────────┼──────────────┼───────────┤
-// │    │ return │ bool         │ bool      │
-// └────┴────────┴──────────────┴───────────┘
+// ┌────┬────────┬──────────────────────────────┬───────────┐
+// │ id │  name  │            c type            │  go type  │
+// ├────┼────────┼──────────────────────────────┼───────────┤
+// │ 0  │ name   │ const Script::Module::char * │ *int8     │
+// ├────┼────────┼──────────────────────────────┼───────────┤
+// │ 1  │ list   │ ListInfo *                   │ *ListInfo │
+// ├────┼────────┼──────────────────────────────┼───────────┤
+// │    │ return │ bool                         │ bool      │
+// └────┴────────┴──────────────────────────────┴───────────┘
 func (m *module) SectionListFromName(name *int8, list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/SectionListFromName").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -636,15 +636,15 @@ func (m *module) GetList(list *ListInfo) bool {
 }
 
 // GetExports    c api name: Script::Module::GetExports
-// ┌────┬────────┬────────────────────┬─────────────┐
-// │ id │  name  │       c type       │   go type   │
-// ├────┼────────┼────────────────────┼─────────────┤
-// │ 0  │ mod    │ const ModuleInfo * │ *ModuleInfo │
-// ├────┼────────┼────────────────────┼─────────────┤
-// │ 1  │ list   │ ListInfo *         │ *ListInfo   │
-// ├────┼────────┼────────────────────┼─────────────┤
-// │    │ return │ bool               │ bool        │
-// └────┴────────┴────────────────────┴─────────────┘
+// ┌────┬────────┬────────────────────────────────────┬─────────────┐
+// │ id │  name  │               c type               │   go type   │
+// ├────┼────────┼────────────────────────────────────┼─────────────┤
+// │ 0  │ mod    │ const Script::Module::ModuleInfo * │ *ModuleInfo │
+// ├────┼────────┼────────────────────────────────────┼─────────────┤
+// │ 1  │ list   │ ListInfo *                         │ *ListInfo   │
+// ├────┼────────┼────────────────────────────────────┼─────────────┤
+// │    │ return │ bool                               │ bool        │
+// └────┴────────┴────────────────────────────────────┴─────────────┘
 func (m *module) GetExports(mod *ModuleInfo, list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetExports").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -664,15 +664,15 @@ func (m *module) GetExports(mod *ModuleInfo, list *ListInfo) bool {
 }
 
 // GetImports    c api name: Script::Module::GetImports
-// ┌────┬────────┬────────────────────┬─────────────┐
-// │ id │  name  │       c type       │   go type   │
-// ├────┼────────┼────────────────────┼─────────────┤
-// │ 0  │ mod    │ const ModuleInfo * │ *ModuleInfo │
-// ├────┼────────┼────────────────────┼─────────────┤
-// │ 1  │ list   │ ListInfo *         │ *ListInfo   │
-// ├────┼────────┼────────────────────┼─────────────┤
-// │    │ return │ bool               │ bool        │
-// └────┴────────┴────────────────────┴─────────────┘
+// ┌────┬────────┬────────────────────────────────────┬─────────────┐
+// │ id │  name  │               c type               │   go type   │
+// ├────┼────────┼────────────────────────────────────┼─────────────┤
+// │ 0  │ mod    │ const Script::Module::ModuleInfo * │ *ModuleInfo │
+// ├────┼────────┼────────────────────────────────────┼─────────────┤
+// │ 1  │ list   │ ListInfo *                         │ *ListInfo   │
+// ├────┼────────┼────────────────────────────────────┼─────────────┤
+// │    │ return │ bool                               │ bool        │
+// └────┴────────┴────────────────────────────────────┴─────────────┘
 func (m *module) GetImports(mod *ModuleInfo, list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_module.h/GetImports").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

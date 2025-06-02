@@ -17,13 +17,13 @@ type ArgumentInfo struct {
 type argument struct{}
 
 // Add    c api name: Script::Argument::Add
-// ┌────┬────────┬──────────────────────┬───────────────┐
-// │ id │  name  │        c type        │    go type    │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │ 0  │ info   │ const ArgumentInfo * │ *ArgumentInfo │
-// ├────┼────────┼──────────────────────┼───────────────┤
-// │    │ return │ bool                 │ bool          │
-// └────┴────────┴──────────────────────┴───────────────┘
+// ┌────┬────────┬────────────────────────────────────────┬───────────────┐
+// │ id │  name  │                 c type                 │    go type    │
+// ├────┼────────┼────────────────────────────────────────┼───────────────┤
+// │ 0  │ info   │ const Script::Argument::ArgumentInfo * │ *ArgumentInfo │
+// ├────┼────────┼────────────────────────────────────────┼───────────────┤
+// │    │ return │ bool                                   │ bool          │
+// └────┴────────┴────────────────────────────────────────┴───────────────┘
 func (a *argument) Add(info *ArgumentInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_argument.h/Add").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

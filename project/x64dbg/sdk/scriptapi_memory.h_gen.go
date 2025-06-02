@@ -51,19 +51,19 @@ func (m *memory) Read(addr uint, data uintptr, size uint, sizeRead *uint) bool {
 }
 
 // Write    c api name: Script::Memory::Write
-// ┌────┬─────────────┬──────────────┬─────────┐
-// │ id │    name     │    c type    │ go type │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 0  │ addr        │ duint        │ uint    │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 1  │ data        │ const void * │ uintptr │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 2  │ size        │ duint        │ uint    │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │ 3  │ sizeWritten │ duint *      │ *uint   │
-// ├────┼─────────────┼──────────────┼─────────┤
-// │    │ return      │ bool         │ bool    │
-// └────┴─────────────┴──────────────┴─────────┘
+// ┌────┬─────────────┬──────────────────────────────┬─────────┐
+// │ id │    name     │            c type            │ go type │
+// ├────┼─────────────┼──────────────────────────────┼─────────┤
+// │ 0  │ addr        │ duint                        │ uint    │
+// ├────┼─────────────┼──────────────────────────────┼─────────┤
+// │ 1  │ data        │ const Script::Memory::void * │ uintptr │
+// ├────┼─────────────┼──────────────────────────────┼─────────┤
+// │ 2  │ size        │ duint                        │ uint    │
+// ├────┼─────────────┼──────────────────────────────┼─────────┤
+// │ 3  │ sizeWritten │ duint *                      │ *uint   │
+// ├────┼─────────────┼──────────────────────────────┼─────────┤
+// │    │ return      │ bool                         │ bool    │
+// └────┴─────────────┴──────────────────────────────┴─────────┘
 func (m *memory) Write(addr uint, data uintptr, size uint, sizeWritten *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_memory.h/Write").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

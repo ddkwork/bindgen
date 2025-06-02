@@ -16,13 +16,13 @@ type LabelInfo struct {
 type label struct{}
 
 // Set    c api name: Script::Label::Set
-// ┌────┬────────┬───────────────────┬────────────┐
-// │ id │  name  │      c type       │  go type   │
-// ├────┼────────┼───────────────────┼────────────┤
-// │ 0  │ info   │ const LabelInfo * │ *LabelInfo │
-// ├────┼────────┼───────────────────┼────────────┤
-// │    │ return │ bool              │ bool       │
-// └────┴────────┴───────────────────┴────────────┘
+// ┌────┬────────┬──────────────────────────────────┬────────────┐
+// │ id │  name  │              c type              │  go type   │
+// ├────┼────────┼──────────────────────────────────┼────────────┤
+// │ 0  │ info   │ const Script::Label::LabelInfo * │ *LabelInfo │
+// ├────┼────────┼──────────────────────────────────┼────────────┤
+// │    │ return │ bool                             │ bool       │
+// └────┴────────┴──────────────────────────────────┴────────────┘
 func (l *label) Set(info *LabelInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -37,15 +37,15 @@ func (l *label) Set(info *LabelInfo) bool {
 }
 
 // FromString    c api name: Script::Label::FromString
-// ┌────┬────────┬──────────────┬─────────┐
-// │ id │  name  │    c type    │ go type │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 0  │ label  │ const char * │ *int8   │
-// ├────┼────────┼──────────────┼─────────┤
-// │ 1  │ addr   │ duint *      │ *uint   │
-// ├────┼────────┼──────────────┼─────────┤
-// │    │ return │ bool         │ bool    │
-// └────┴────────┴──────────────┴─────────┘
+// ┌────┬────────┬─────────────────────────────┬─────────┐
+// │ id │  name  │           c type            │ go type │
+// ├────┼────────┼─────────────────────────────┼─────────┤
+// │ 0  │ label  │ const Script::Label::char * │ *int8   │
+// ├────┼────────┼─────────────────────────────┼─────────┤
+// │ 1  │ addr   │ duint *                     │ *uint   │
+// ├────┼────────┼─────────────────────────────┼─────────┤
+// │    │ return │ bool                        │ bool    │
+// └────┴────────┴─────────────────────────────┴─────────┘
 func (l *label) FromString(label *int8, addr *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_label.h/FromString").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
