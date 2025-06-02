@@ -36,13 +36,13 @@ func (b *bookmark) Set(info *BookmarkInfo) bool {
 }
 
 // Get    c api name: Script::Bookmark::Get
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ addr   │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬─────────────────────────┬─────────┐
+// │ id │  name  │         c type          │ go type │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │ 0  │ addr   │ Script::Bookmark::duint │ uint    │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │    │ return │ bool                    │ bool    │
+// └────┴────────┴─────────────────────────┴─────────┘
 func (b *bookmark) Get(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -57,15 +57,15 @@ func (b *bookmark) Get(addr uint) bool {
 }
 
 // GetInfo    c api name: Script::Bookmark::GetInfo
-// ┌────┬────────┬────────────────┬───────────────┐
-// │ id │  name  │     c type     │    go type    │
-// ├────┼────────┼────────────────┼───────────────┤
-// │ 0  │ addr   │ duint          │ uint          │
-// ├────┼────────┼────────────────┼───────────────┤
-// │ 1  │ info   │ BookmarkInfo * │ *BookmarkInfo │
-// ├────┼────────┼────────────────┼───────────────┤
-// │    │ return │ bool           │ bool          │
-// └────┴────────┴────────────────┴───────────────┘
+// ┌────┬────────┬──────────────────────────────────┬───────────────┐
+// │ id │  name  │              c type              │    go type    │
+// ├────┼────────┼──────────────────────────────────┼───────────────┤
+// │ 0  │ addr   │ Script::Bookmark::duint          │ uint          │
+// ├────┼────────┼──────────────────────────────────┼───────────────┤
+// │ 1  │ info   │ Script::Bookmark::BookmarkInfo * │ *BookmarkInfo │
+// ├────┼────────┼──────────────────────────────────┼───────────────┤
+// │    │ return │ bool                             │ bool          │
+// └────┴────────┴──────────────────────────────────┴───────────────┘
 func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -85,13 +85,13 @@ func (b *bookmark) GetInfo(addr uint, info *BookmarkInfo) bool {
 }
 
 // Delete    c api name: Script::Bookmark::Delete
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ addr   │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬─────────────────────────┬─────────┐
+// │ id │  name  │         c type          │ go type │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │ 0  │ addr   │ Script::Bookmark::duint │ uint    │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │    │ return │ bool                    │ bool    │
+// └────┴────────┴─────────────────────────┴─────────┘
 func (b *bookmark) Delete(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -106,15 +106,15 @@ func (b *bookmark) Delete(addr uint) bool {
 }
 
 // DeleteRange    c api name: Script::Bookmark::DeleteRange
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ start  │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │ 1  │ end    │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬─────────────────────────┬─────────┐
+// │ id │  name  │         c type          │ go type │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │ 0  │ start  │ Script::Bookmark::duint │ uint    │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │ 1  │ end    │ Script::Bookmark::duint │ uint    │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │    │ return │ void                    │         │
+// └────┴────────┴─────────────────────────┴─────────┘
 func (b *bookmark) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -145,13 +145,13 @@ func (b *bookmark) Clear() {
 }
 
 // GetList    c api name: Script::Bookmark::GetList
-// ┌────┬────────┬────────────┬───────────┐
-// │ id │  name  │   c type   │  go type  │
-// ├────┼────────┼────────────┼───────────┤
-// │ 0  │ list   │ ListInfo * │ *ListInfo │
-// ├────┼────────┼────────────┼───────────┤
-// │    │ return │ bool       │ bool      │
-// └────┴────────┴────────────┴───────────┘
+// ┌────┬────────┬──────────────────────────────┬───────────┐
+// │ id │  name  │            c type            │  go type  │
+// ├────┼────────┼──────────────────────────────┼───────────┤
+// │ 0  │ list   │ Script::Bookmark::ListInfo * │ *ListInfo │
+// ├────┼────────┼──────────────────────────────┼───────────┤
+// │    │ return │ bool                         │ bool      │
+// └────┴────────┴──────────────────────────────┴───────────┘
 func (b *bookmark) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_bookmark.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

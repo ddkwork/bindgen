@@ -37,15 +37,15 @@ func (c *comment) Set(info *CommentInfo) bool {
 }
 
 // Get    c api name: Script::Comment::Get
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ addr   │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │ 1  │ text   │ char * │ *int8   │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬─────────────────────────┬─────────┐
+// │ id │  name  │         c type          │ go type │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │ 0  │ addr   │ Script::Comment::duint  │ uint    │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │ 1  │ text   │ Script::Comment::char * │ *int8   │
+// ├────┼────────┼─────────────────────────┼─────────┤
+// │    │ return │ bool                    │ bool    │
+// └────┴────────┴─────────────────────────┴─────────┘
 func (c *comment) Get(addr uint, text *int8) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -65,15 +65,15 @@ func (c *comment) Get(addr uint, text *int8) bool {
 }
 
 // GetInfo    c api name: Script::Comment::GetInfo
-// ┌────┬────────┬───────────────┬──────────────┐
-// │ id │  name  │    c type     │   go type    │
-// ├────┼────────┼───────────────┼──────────────┤
-// │ 0  │ addr   │ duint         │ uint         │
-// ├────┼────────┼───────────────┼──────────────┤
-// │ 1  │ info   │ CommentInfo * │ *CommentInfo │
-// ├────┼────────┼───────────────┼──────────────┤
-// │    │ return │ bool          │ bool         │
-// └────┴────────┴───────────────┴──────────────┘
+// ┌────┬────────┬────────────────────────────────┬──────────────┐
+// │ id │  name  │             c type             │   go type    │
+// ├────┼────────┼────────────────────────────────┼──────────────┤
+// │ 0  │ addr   │ Script::Comment::duint         │ uint         │
+// ├────┼────────┼────────────────────────────────┼──────────────┤
+// │ 1  │ info   │ Script::Comment::CommentInfo * │ *CommentInfo │
+// ├────┼────────┼────────────────────────────────┼──────────────┤
+// │    │ return │ bool                           │ bool         │
+// └────┴────────┴────────────────────────────────┴──────────────┘
 func (c *comment) GetInfo(addr uint, info *CommentInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -93,13 +93,13 @@ func (c *comment) GetInfo(addr uint, info *CommentInfo) bool {
 }
 
 // Delete    c api name: Script::Comment::Delete
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ addr   │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬────────────────────────┬─────────┐
+// │ id │  name  │         c type         │ go type │
+// ├────┼────────┼────────────────────────┼─────────┤
+// │ 0  │ addr   │ Script::Comment::duint │ uint    │
+// ├────┼────────┼────────────────────────┼─────────┤
+// │    │ return │ bool                   │ bool    │
+// └────┴────────┴────────────────────────┴─────────┘
 func (c *comment) Delete(addr uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -114,15 +114,15 @@ func (c *comment) Delete(addr uint) bool {
 }
 
 // DeleteRange    c api name: Script::Comment::DeleteRange
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ start  │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │ 1  │ end    │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬────────────────────────┬─────────┐
+// │ id │  name  │         c type         │ go type │
+// ├────┼────────┼────────────────────────┼─────────┤
+// │ 0  │ start  │ Script::Comment::duint │ uint    │
+// ├────┼────────┼────────────────────────┼─────────┤
+// │ 1  │ end    │ Script::Comment::duint │ uint    │
+// ├────┼────────┼────────────────────────┼─────────┤
+// │    │ return │ void                   │         │
+// └────┴────────┴────────────────────────┴─────────┘
 func (c *comment) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -153,13 +153,13 @@ func (c *comment) Clear() {
 }
 
 // GetList    c api name: Script::Comment::GetList
-// ┌────┬────────┬────────────┬───────────┐
-// │ id │  name  │   c type   │  go type  │
-// ├────┼────────┼────────────┼───────────┤
-// │ 0  │ list   │ ListInfo * │ *ListInfo │
-// ├────┼────────┼────────────┼───────────┤
-// │    │ return │ bool       │ bool      │
-// └────┴────────┴────────────┴───────────┘
+// ┌────┬────────┬─────────────────────────────┬───────────┐
+// │ id │  name  │           c type            │  go type  │
+// ├────┼────────┼─────────────────────────────┼───────────┤
+// │ 0  │ list   │ Script::Comment::ListInfo * │ *ListInfo │
+// ├────┼────────┼─────────────────────────────┼───────────┤
+// │    │ return │ bool                        │ bool      │
+// └────┴────────┴─────────────────────────────┴───────────┘
 func (c *comment) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_comment.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

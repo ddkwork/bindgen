@@ -962,6 +962,8 @@ func parseFunction(node gjson.Result, namespace string) FunctionInfo {
 			if strings.HasPrefix(cType, "const ") {
 				cType = strings.TrimPrefix(cType, "const ")
 				cType = "const " + namespace + cType
+			} else {
+				cType = namespace + cType
 			}
 			info.Params = append(info.Params, FunctionParam{
 				Name:    name,

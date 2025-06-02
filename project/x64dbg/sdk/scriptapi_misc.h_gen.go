@@ -14,7 +14,7 @@ type misc struct{}
 // ├────┼────────────┼────────────────────────────┼─────────┤
 // │ 0  │ expression │ const Script::Misc::char * │ *int8   │
 // ├────┼────────────┼────────────────────────────┼─────────┤
-// │ 1  │ value      │ duint *                    │ *uint   │
+// │ 1  │ value      │ Script::Misc::duint *      │ *uint   │
 // ├────┼────────────┼────────────────────────────┼─────────┤
 // │    │ return     │ bool                       │ bool    │
 // └────┴────────────┴────────────────────────────┴─────────┘
@@ -86,13 +86,13 @@ func (m *misc) ResolveLabel(label *int8) uint {
 }
 
 // Alloc    c api name: Script::Misc::Alloc
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ size   │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void * │ uintptr │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬─────────────────────┬─────────┐
+// │ id │  name  │       c type        │ go type │
+// ├────┼────────┼─────────────────────┼─────────┤
+// │ 0  │ size   │ Script::Misc::duint │ uint    │
+// ├────┼────────┼─────────────────────┼─────────┤
+// │    │ return │ void *              │ uintptr │
+// └────┴────────┴─────────────────────┴─────────┘
 func (m *misc) Alloc(size uint) uintptr {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Alloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -107,13 +107,13 @@ func (m *misc) Alloc(size uint) uintptr {
 }
 
 // Free    c api name: Script::Misc::Free
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ ptr    │ void * │ uintptr │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ void   │         │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬──────────────────────┬─────────┐
+// │ id │  name  │        c type        │ go type │
+// ├────┼────────┼──────────────────────┼─────────┤
+// │ 0  │ ptr    │ Script::Misc::void * │ uintptr │
+// ├────┼────────┼──────────────────────┼─────────┤
+// │    │ return │ void                 │         │
+// └────┴────────┴──────────────────────┴─────────┘
 func (m *misc) Free(ptr uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

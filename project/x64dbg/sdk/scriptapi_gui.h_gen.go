@@ -19,17 +19,20 @@ const (
 type gui struct{}
 
 // SelectionGet    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGet
-// ┌────┬────────┬─────────┬─────────┐
-// │ id │  name  │ c type  │ go type │
-// ├────┼────────┼─────────┼─────────┤
-// │ 0  │ window │ Window  │ Window  │
-// ├────┼────────┼─────────┼─────────┤
-// │ 1  │ start  │ duint * │ *uint   │
-// ├────┼────────┼─────────┼─────────┤
-// │ 2  │ end    │ duint * │ *uint   │
-// ├────┼────────┼─────────┼─────────┤
-// │    │ return │ bool    │ bool    │
-// └────┴────────┴─────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name  │                            c type                            │ go type │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ window │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ Window  │
+// │    │        │ d::Gui::Window                                               │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │ start  │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ *uint   │
+// │    │        │ d::Gui::duint *                                              │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 2  │ end    │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ *uint   │
+// │    │        │ d::Gui::duint *                                              │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return │ bool                                                         │ bool    │
+// └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) SelectionGet(window Window, start *uint, end *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -54,17 +57,20 @@ func (g *gui) SelectionGet(window Window, start *uint, end *uint) bool {
 }
 
 // SelectionSet    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionSet
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ window │ Window │ Window  │
-// ├────┼────────┼────────┼─────────┤
-// │ 1  │ start  │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │ 2  │ end    │ duint  │ uint    │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ bool   │ bool    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name  │                            c type                            │ go type │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ window │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ Window  │
+// │    │        │ d::Gui::Window                                               │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 1  │ start  │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ uint    │
+// │    │        │ d::Gui::duint                                                │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 2  │ end    │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ uint    │
+// │    │        │ d::Gui::duint                                                │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return │ bool                                                         │ bool    │
+// └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) SelectionSet(window Window, start uint, end uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -89,13 +95,14 @@ func (g *gui) SelectionSet(window Window, start uint, end uint) bool {
 }
 
 // SelectionGetStart    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGetStart
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ window │ Window │ Window  │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ duint  │ uint    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name  │                            c type                            │ go type │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ window │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ Window  │
+// │    │        │ d::Gui::Window                                               │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return │ duint                                                        │ uint    │
+// └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) SelectionGetStart(window Window) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetStart").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -110,13 +117,14 @@ func (g *gui) SelectionGetStart(window Window) uint {
 }
 
 // SelectionGetEnd    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGetEnd
-// ┌────┬────────┬────────┬─────────┐
-// │ id │  name  │ c type │ go type │
-// ├────┼────────┼────────┼─────────┤
-// │ 0  │ window │ Window │ Window  │
-// ├────┼────────┼────────┼─────────┤
-// │    │ return │ duint  │ uint    │
-// └────┴────────┴────────┴─────────┘
+// ┌────┬────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name  │                            c type                            │ go type │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ window │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ Window  │
+// │    │        │ d::Gui::Window                                               │         │
+// ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return │ duint                                                        │ uint    │
+// └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) SelectionGetEnd(window Window) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/SelectionGetEnd").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -183,7 +191,8 @@ func (g *gui) MessageYesNo(message *int8) bool {
 // │    │        │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │         │
 // │    │        │ d::Gui::char *                                               │         │
 // ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
-// │ 1  │ text   │ char *                                                       │ *int8   │
+// │ 1  │ text   │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ *int8   │
+// │    │        │ d::Gui::char *                                               │         │
 // ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
 // │    │ return │ bool                                                         │ bool    │
 // └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
@@ -213,7 +222,8 @@ func (g *gui) InputLine(title *int8, text *int8) bool {
 // │    │        │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │         │
 // │    │        │ d::Gui::char *                                               │         │
 // ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
-// │ 1  │ value  │ duint *                                                      │ *uint   │
+// │ 1  │ value  │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ *uint   │
+// │    │        │ d::Gui::duint *                                              │         │
 // ├────┼────────┼──────────────────────────────────────────────────────────────┼─────────┤
 // │    │ return │ bool                                                         │ bool    │
 // └────┴────────┴──────────────────────────────────────────────────────────────┴─────────┘
@@ -248,13 +258,14 @@ func (g *gui) Refresh() {
 }
 
 // AddQWidgetTab    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::AddQWidgetTab
-// ┌────┬─────────┬────────┬─────────┐
-// │ id │  name   │ c type │ go type │
-// ├────┼─────────┼────────┼─────────┤
-// │ 0  │ qWidget │ void * │ uintptr │
-// ├────┼─────────┼────────┼─────────┤
-// │    │ return  │ void   │         │
-// └────┴─────────┴────────┴─────────┘
+// ┌────┬─────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name   │                            c type                            │ go type │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ qWidget │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ uintptr │
+// │    │         │ d::Gui::void *                                               │         │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return  │ void                                                         │         │
+// └────┴─────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) AddQWidgetTab(qWidget uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/AddQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -268,13 +279,14 @@ func (g *gui) AddQWidgetTab(qWidget uintptr) {
 }
 
 // ShowQWidgetTab    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::ShowQWidgetTab
-// ┌────┬─────────┬────────┬─────────┐
-// │ id │  name   │ c type │ go type │
-// ├────┼─────────┼────────┼─────────┤
-// │ 0  │ qWidget │ void * │ uintptr │
-// ├────┼─────────┼────────┼─────────┤
-// │    │ return  │ void   │         │
-// └────┴─────────┴────────┴─────────┘
+// ┌────┬─────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name   │                            c type                            │ go type │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ qWidget │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ uintptr │
+// │    │         │ d::Gui::void *                                               │         │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return  │ void                                                         │         │
+// └────┴─────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) ShowQWidgetTab(qWidget uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/ShowQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -288,13 +300,14 @@ func (g *gui) ShowQWidgetTab(qWidget uintptr) {
 }
 
 // CloseQWidgetTab    c api name: Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::CloseQWidgetTab
-// ┌────┬─────────┬────────┬─────────┐
-// │ id │  name   │ c type │ go type │
-// ├────┼─────────┼────────┼─────────┤
-// │ 0  │ qWidget │ void * │ uintptr │
-// ├────┼─────────┼────────┼─────────┤
-// │    │ return  │ void   │         │
-// └────┴─────────┴────────┴─────────┘
+// ┌────┬─────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │  name   │                            c type                            │ go type │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ qWidget │ Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMo- │ uintptr │
+// │    │         │ d::Gui::void *                                               │         │
+// ├────┼─────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return  │ void                                                         │         │
+// └────┴─────────┴──────────────────────────────────────────────────────────────┴─────────┘
 func (g *gui) CloseQWidgetTab(qWidget uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_gui.h/CloseQWidgetTab").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

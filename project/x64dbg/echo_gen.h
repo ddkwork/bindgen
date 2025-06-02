@@ -220,7 +220,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::Get(params["addr"].get<duint>(), params["start"].get<duint *>(), params["end"].get<duint *>(), params["instructionCount"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::Get(params["addr"].get<Script::Argument::duint>(), params["start"].get<Script::Argument::duint *>(), params["end"].get<Script::Argument::duint *>(), params["instructionCount"].get<Script::Argument::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -234,7 +234,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::GetInfo(params["addr"].get<duint>(), params["info"].get<ArgumentInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::GetInfo(params["addr"].get<Script::Argument::duint>(), params["info"].get<Script::Argument::ArgumentInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -248,7 +248,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::Overlaps(params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::Overlaps(params["start"].get<Script::Argument::duint>(), params["end"].get<Script::Argument::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -262,7 +262,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::Delete(params["address"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Argument::Delete(params["address"].get<Script::Argument::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -276,7 +276,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Argument::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>(), params["deleteManual"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Argument::DeleteRange(params["start"].get<Script::Argument::duint>(), params["end"].get<Script::Argument::duint>(), params["deleteManual"].get<Script::Argument::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -319,7 +319,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::Assemble(params["addr"].get<duint>(), params["dest"].get<unsigned char *>(), params["size"].get<int *>(), params["instruction"].get<const Script::Assembler::char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::Assemble(params["addr"].get<Script::Assembler::duint>(), params["dest"].get<Script::Assembler::unsigned char *>(), params["size"].get<Script::Assembler::int *>(), params["instruction"].get<const Script::Assembler::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -333,7 +333,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::AssembleEx(params["addr"].get<duint>(), params["dest"].get<unsigned char *>(), params["size"].get<int *>(), params["instruction"].get<const Script::Assembler::char *>(), params["error"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::AssembleEx(params["addr"].get<Script::Assembler::duint>(), params["dest"].get<Script::Assembler::unsigned char *>(), params["size"].get<Script::Assembler::int *>(), params["instruction"].get<const Script::Assembler::char *>(), params["error"].get<Script::Assembler::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -347,7 +347,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::AssembleMem(params["addr"].get<duint>(), params["instruction"].get<const Script::Assembler::char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::AssembleMem(params["addr"].get<Script::Assembler::duint>(), params["instruction"].get<const Script::Assembler::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -361,7 +361,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::AssembleMemEx(params["addr"].get<duint>(), params["instruction"].get<const Script::Assembler::char *>(), params["size"].get<int *>(), params["error"].get<char *>(), params["fillnop"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Assembler::AssembleMemEx(params["addr"].get<Script::Assembler::duint>(), params["instruction"].get<const Script::Assembler::char *>(), params["size"].get<Script::Assembler::int *>(), params["error"].get<Script::Assembler::char *>(), params["fillnop"].get<Script::Assembler::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -389,7 +389,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Bookmark::Get(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Bookmark::Get(params["addr"].get<Script::Bookmark::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -403,7 +403,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Bookmark::GetInfo(params["addr"].get<duint>(), params["info"].get<BookmarkInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Bookmark::GetInfo(params["addr"].get<Script::Bookmark::duint>(), params["info"].get<Script::Bookmark::BookmarkInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -417,7 +417,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Bookmark::Delete(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Bookmark::Delete(params["addr"].get<Script::Bookmark::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -431,7 +431,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Bookmark::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Bookmark::DeleteRange(params["start"].get<Script::Bookmark::duint>(), params["end"].get<Script::Bookmark::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -488,7 +488,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Comment::Get(params["addr"].get<duint>(), params["text"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Comment::Get(params["addr"].get<Script::Comment::duint>(), params["text"].get<Script::Comment::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -502,7 +502,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Comment::GetInfo(params["addr"].get<duint>(), params["info"].get<CommentInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Comment::GetInfo(params["addr"].get<Script::Comment::duint>(), params["info"].get<Script::Comment::CommentInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -516,7 +516,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Comment::Delete(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Comment::Delete(params["addr"].get<Script::Comment::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -530,7 +530,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Comment::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Comment::DeleteRange(params["start"].get<Script::Comment::duint>(), params["end"].get<Script::Comment::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -671,7 +671,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::SetBreakpoint(params["address"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::SetBreakpoint(params["address"].get<Script::Debug::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -685,7 +685,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::DeleteBreakpoint(params["address"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::DeleteBreakpoint(params["address"].get<Script::Debug::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -699,7 +699,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::DisableBreakpoint(params["address"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::DisableBreakpoint(params["address"].get<Script::Debug::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -713,7 +713,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::SetHardwareBreakpoint(params["address"].get<duint>(), params["Type"].get<HardwareType>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::SetHardwareBreakpoint(params["address"].get<Script::Debug::duint>(), params["Type"].get<Script::Debug::HardwareType>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -727,7 +727,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::DeleteHardwareBreakpoint(params["address"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Debug::DeleteHardwareBreakpoint(params["address"].get<Script::Debug::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -741,7 +741,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::Get(params["flag"].get<FlagEnum>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::Get(params["flag"].get<Script::Flag::FlagEnum>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -755,7 +755,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::Set(params["flag"].get<FlagEnum>(), params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::Set(params["flag"].get<Script::Flag::FlagEnum>(), params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -783,7 +783,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetZF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetZF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -811,7 +811,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetOF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetOF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -839,7 +839,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetCF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetCF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -867,7 +867,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetPF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetPF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -895,7 +895,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetSF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetSF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -923,7 +923,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetTF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetTF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -951,7 +951,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetAF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetAF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -979,7 +979,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetDF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetDF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1007,7 +1007,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetIF(params["value"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Flag::SetIF(params["value"].get<Script::Flag::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1035,7 +1035,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::Get(params["addr"].get<duint>(), params["start"].get<duint *>(), params["end"].get<duint *>(), params["instructionCount"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::Get(params["addr"].get<Script::Function::duint>(), params["start"].get<Script::Function::duint *>(), params["end"].get<Script::Function::duint *>(), params["instructionCount"].get<Script::Function::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1049,7 +1049,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::GetInfo(params["addr"].get<duint>(), params["info"].get<FunctionInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::GetInfo(params["addr"].get<Script::Function::duint>(), params["info"].get<Script::Function::FunctionInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1063,7 +1063,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::Overlaps(params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::Overlaps(params["start"].get<Script::Function::duint>(), params["end"].get<Script::Function::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1077,7 +1077,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::Delete(params["address"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Function::Delete(params["address"].get<Script::Function::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1091,7 +1091,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Function::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Function::DeleteRange(params["start"].get<Script::Function::duint>(), params["end"].get<Script::Function::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1134,7 +1134,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGet(params["window"].get<Window>(), params["start"].get<duint *>(), params["end"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGet(params["window"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::Window>(), params["start"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::duint *>(), params["end"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1148,7 +1148,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionSet(params["window"].get<Window>(), params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionSet(params["window"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::Window>(), params["start"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::duint>(), params["end"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1162,7 +1162,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGetStart(params["window"].get<Window>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGetStart(params["window"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::Window>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1176,7 +1176,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGetEnd(params["window"].get<Window>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::SelectionGetEnd(params["window"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::Window>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1218,7 +1218,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::InputLine(params["title"].get<const Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::char *>(), params["text"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::InputLine(params["title"].get<const Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::char *>(), params["text"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1232,7 +1232,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::InputValue(params["title"].get<const Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::char *>(), params["value"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::InputValue(params["title"].get<const Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::char *>(), params["value"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1260,7 +1260,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::AddQWidgetTab(params["qWidget"].get<void *>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::AddQWidgetTab(params["qWidget"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::void *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1274,7 +1274,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::ShowQWidgetTab(params["qWidget"].get<void *>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::ShowQWidgetTab(params["qWidget"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::void *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1288,7 +1288,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::CloseQWidgetTab(params["qWidget"].get<void *>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::CloseQWidgetTab(params["qWidget"].get<Script::Gui::Disassembly::Dump::Stack::Graph::MemMap::SymMod::Gui::void *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1316,7 +1316,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::FromString(params["label"].get<const Script::Label::char *>(), params["addr"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::FromString(params["label"].get<const Script::Label::char *>(), params["addr"].get<Script::Label::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1330,7 +1330,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::Get(params["addr"].get<duint>(), params["text"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::Get(params["addr"].get<Script::Label::duint>(), params["text"].get<Script::Label::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1344,7 +1344,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::IsTemporary(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::IsTemporary(params["addr"].get<Script::Label::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1358,7 +1358,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::GetInfo(params["addr"].get<duint>(), params["info"].get<LabelInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::GetInfo(params["addr"].get<Script::Label::duint>(), params["info"].get<Script::Label::LabelInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1372,7 +1372,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::Delete(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Label::Delete(params["addr"].get<Script::Label::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1386,7 +1386,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Label::DeleteRange(params["start"].get<duint>(), params["end"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Label::DeleteRange(params["start"].get<Script::Label::duint>(), params["end"].get<Script::Label::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1429,7 +1429,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::Read(params["addr"].get<duint>(), params["data"].get<void *>(), params["size"].get<duint>(), params["sizeRead"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::Read(params["addr"].get<Script::Memory::duint>(), params["data"].get<Script::Memory::void *>(), params["size"].get<Script::Memory::duint>(), params["sizeRead"].get<Script::Memory::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1443,7 +1443,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::Write(params["addr"].get<duint>(), params["data"].get<const Script::Memory::void *>(), params["size"].get<duint>(), params["sizeWritten"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::Write(params["addr"].get<Script::Memory::duint>(), params["data"].get<const Script::Memory::void *>(), params["size"].get<Script::Memory::duint>(), params["sizeWritten"].get<Script::Memory::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1457,7 +1457,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::IsValidPtr(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::IsValidPtr(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1471,7 +1471,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::RemoteAlloc(params["addr"].get<duint>(), params["size"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::RemoteAlloc(params["addr"].get<Script::Memory::duint>(), params["size"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1485,7 +1485,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::RemoteFree(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::RemoteFree(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1499,7 +1499,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "unsigned int", .result = Script::Memory::GetProtect(params["addr"].get<duint>(), params["reserved"].get<bool>(), params["cache"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "unsigned int", .result = Script::Memory::GetProtect(params["addr"].get<Script::Memory::duint>(), params["reserved"].get<Script::Memory::bool>(), params["cache"].get<Script::Memory::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1513,7 +1513,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::SetProtect(params["addr"].get<duint>(), params["protect"].get<unsigned int>(), params["size"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::SetProtect(params["addr"].get<Script::Memory::duint>(), params["protect"].get<Script::Memory::unsigned int>(), params["size"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1527,7 +1527,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::GetBase(params["addr"].get<duint>(), params["reserved"].get<bool>(), params["cache"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::GetBase(params["addr"].get<Script::Memory::duint>(), params["reserved"].get<Script::Memory::bool>(), params["cache"].get<Script::Memory::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1541,7 +1541,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::GetSize(params["addr"].get<duint>(), params["reserved"].get<bool>(), params["cache"].get<bool>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::GetSize(params["addr"].get<Script::Memory::duint>(), params["reserved"].get<Script::Memory::bool>(), params["cache"].get<Script::Memory::bool>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1555,7 +1555,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "unsigned char", .result = Script::Memory::ReadByte(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "unsigned char", .result = Script::Memory::ReadByte(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1569,7 +1569,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteByte(params["addr"].get<duint>(), params["data"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteByte(params["addr"].get<Script::Memory::duint>(), params["data"].get<Script::Memory::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1583,7 +1583,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "unsigned short", .result = Script::Memory::ReadWord(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "unsigned short", .result = Script::Memory::ReadWord(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1597,7 +1597,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteWord(params["addr"].get<duint>(), params["data"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteWord(params["addr"].get<Script::Memory::duint>(), params["data"].get<Script::Memory::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1611,7 +1611,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "unsigned int", .result = Script::Memory::ReadDword(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "unsigned int", .result = Script::Memory::ReadDword(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1625,7 +1625,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteDword(params["addr"].get<duint>(), params["data"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteDword(params["addr"].get<Script::Memory::duint>(), params["data"].get<Script::Memory::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1639,7 +1639,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "unsigned long long", .result = Script::Memory::ReadQword(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "unsigned long long", .result = Script::Memory::ReadQword(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1653,7 +1653,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteQword(params["addr"].get<duint>(), params["data"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WriteQword(params["addr"].get<Script::Memory::duint>(), params["data"].get<Script::Memory::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1667,7 +1667,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::ReadPtr(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Memory::ReadPtr(params["addr"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1681,7 +1681,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WritePtr(params["addr"].get<duint>(), params["data"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Memory::WritePtr(params["addr"].get<Script::Memory::duint>(), params["data"].get<Script::Memory::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1695,7 +1695,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Misc::ParseExpression(params["expression"].get<const Script::Misc::char *>(), params["value"].get<duint *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Misc::ParseExpression(params["expression"].get<const Script::Misc::char *>(), params["value"].get<Script::Misc::duint *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1737,7 +1737,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void *", .result = Script::Misc::Alloc(params["size"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "void *", .result = Script::Misc::Alloc(params["size"].get<Script::Misc::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1751,7 +1751,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Misc::Free(params["ptr"].get<void *>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Misc::Free(params["ptr"].get<Script::Misc::void *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1765,7 +1765,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::InfoFromAddr(params["addr"].get<duint>(), params["info"].get<ModuleInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::InfoFromAddr(params["addr"].get<Script::Module::duint>(), params["info"].get<Script::Module::ModuleInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1779,7 +1779,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::InfoFromName(params["name"].get<const Script::Module::char *>(), params["info"].get<ModuleInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::InfoFromName(params["name"].get<const Script::Module::char *>(), params["info"].get<Script::Module::ModuleInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1793,7 +1793,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Module::BaseFromAddr(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Module::BaseFromAddr(params["addr"].get<Script::Module::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1821,7 +1821,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Module::SizeFromAddr(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Module::SizeFromAddr(params["addr"].get<Script::Module::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1849,7 +1849,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::NameFromAddr(params["addr"].get<duint>(), params["name"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::NameFromAddr(params["addr"].get<Script::Module::duint>(), params["name"].get<Script::Module::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1863,7 +1863,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::PathFromAddr(params["addr"].get<duint>(), params["path"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::PathFromAddr(params["addr"].get<Script::Module::duint>(), params["path"].get<Script::Module::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1877,7 +1877,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::PathFromName(params["name"].get<const Script::Module::char *>(), params["path"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::PathFromName(params["name"].get<const Script::Module::char *>(), params["path"].get<Script::Module::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1891,7 +1891,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Module::EntryFromAddr(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Module::EntryFromAddr(params["addr"].get<Script::Module::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1919,7 +1919,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "int", .result = Script::Module::SectionCountFromAddr(params["addr"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "int", .result = Script::Module::SectionCountFromAddr(params["addr"].get<Script::Module::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1947,7 +1947,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionFromAddr(params["addr"].get<duint>(), params["number"].get<int>(), params["section"].get<ModuleSectionInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionFromAddr(params["addr"].get<Script::Module::duint>(), params["number"].get<Script::Module::int>(), params["section"].get<Script::Module::ModuleSectionInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1961,7 +1961,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionFromName(params["name"].get<const Script::Module::char *>(), params["number"].get<int>(), params["section"].get<ModuleSectionInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionFromName(params["name"].get<const Script::Module::char *>(), params["number"].get<Script::Module::int>(), params["section"].get<Script::Module::ModuleSectionInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1975,7 +1975,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionListFromAddr(params["addr"].get<duint>(), params["list"].get<ListInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionListFromAddr(params["addr"].get<Script::Module::duint>(), params["list"].get<Script::Module::ListInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -1989,7 +1989,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionListFromName(params["name"].get<const Script::Module::char *>(), params["list"].get<ListInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::SectionListFromName(params["name"].get<const Script::Module::char *>(), params["list"].get<Script::Module::ListInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2003,7 +2003,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetMainModuleInfo(params["info"].get<ModuleInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetMainModuleInfo(params["info"].get<Script::Module::ModuleInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2073,7 +2073,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetMainModuleName(params["name"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetMainModuleName(params["name"].get<Script::Module::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2087,7 +2087,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetMainModulePath(params["path"].get<char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetMainModulePath(params["path"].get<Script::Module::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2131,7 +2131,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetExports(params["mod"].get<const Script::Module::ModuleInfo *>(), params["list"].get<ListInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetExports(params["mod"].get<const Script::Module::ModuleInfo *>(), params["list"].get<Script::Module::ListInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2145,7 +2145,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetImports(params["mod"].get<const Script::Module::ModuleInfo *>(), params["list"].get<ListInfo *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Module::GetImports(params["mod"].get<const Script::Module::ModuleInfo *>(), params["list"].get<Script::Module::ListInfo *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2159,7 +2159,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Pattern::Find(params["data"].get<unsigned char *>(), params["datasize"].get<duint>(), params["pattern"].get<const Script::Pattern::char *>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Pattern::Find(params["data"].get<Script::Pattern::unsigned char *>(), params["datasize"].get<Script::Pattern::duint>(), params["pattern"].get<const Script::Pattern::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2173,7 +2173,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Pattern::FindMem(params["start"].get<duint>(), params["size"].get<duint>(), params["pattern"].get<const Script::Pattern::char *>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Pattern::FindMem(params["start"].get<Script::Pattern::duint>(), params["size"].get<Script::Pattern::duint>(), params["pattern"].get<const Script::Pattern::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2187,7 +2187,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Pattern::Write(params["data"].get<unsigned char *>(), params["datasize"].get<duint>(), params["pattern"].get<const Script::Pattern::char *>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Pattern::Write(params["data"].get<Script::Pattern::unsigned char *>(), params["datasize"].get<Script::Pattern::duint>(), params["pattern"].get<const Script::Pattern::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2201,7 +2201,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "void", .result = Script::Pattern::WriteMem(params["start"].get<duint>(), params["size"].get<duint>(), params["pattern"].get<const Script::Pattern::char *>())};
+            ApiResponse resp{.success = true, .type = "void", .result = Script::Pattern::WriteMem(params["start"].get<Script::Pattern::duint>(), params["size"].get<Script::Pattern::duint>(), params["pattern"].get<const Script::Pattern::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2215,7 +2215,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Pattern::SearchAndReplace(params["data"].get<unsigned char *>(), params["datasize"].get<duint>(), params["searchpattern"].get<const Script::Pattern::char *>(), params["replacepattern"].get<const Script::Pattern::char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Pattern::SearchAndReplace(params["data"].get<Script::Pattern::unsigned char *>(), params["datasize"].get<Script::Pattern::duint>(), params["searchpattern"].get<const Script::Pattern::char *>(), params["replacepattern"].get<const Script::Pattern::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2229,7 +2229,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Pattern::SearchAndReplaceMem(params["start"].get<duint>(), params["size"].get<duint>(), params["searchpattern"].get<const Script::Pattern::char *>(), params["replacepattern"].get<const Script::Pattern::char *>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Pattern::SearchAndReplaceMem(params["start"].get<Script::Pattern::duint>(), params["size"].get<Script::Pattern::duint>(), params["searchpattern"].get<const Script::Pattern::char *>(), params["replacepattern"].get<const Script::Pattern::char *>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2243,7 +2243,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Register::Get(params["reg"].get<RegisterEnum>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Register::Get(params["reg"].get<Script::Register::RegisterEnum>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2257,7 +2257,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::Set(params["reg"].get<RegisterEnum>(), params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::Set(params["reg"].get<Script::Register::RegisterEnum>(), params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2299,7 +2299,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR0(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR0(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2327,7 +2327,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR1(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR1(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2355,7 +2355,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR2(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR2(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2383,7 +2383,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR3(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR3(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2411,7 +2411,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR6(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR6(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2439,7 +2439,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR7(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDR7(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2467,7 +2467,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEAX(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEAX(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2495,7 +2495,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetAX(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetAX(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2523,7 +2523,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetAH(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetAH(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2551,7 +2551,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetAL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetAL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2579,7 +2579,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEBX(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEBX(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2607,7 +2607,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBX(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBX(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2635,7 +2635,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBH(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBH(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2663,7 +2663,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2691,7 +2691,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetECX(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetECX(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2719,7 +2719,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCX(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCX(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2747,7 +2747,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCH(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCH(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2775,7 +2775,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2803,7 +2803,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEDX(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEDX(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2831,7 +2831,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDX(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDX(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2859,7 +2859,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDH(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDH(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2887,7 +2887,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2915,7 +2915,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEDI(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEDI(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2943,7 +2943,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDI(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDI(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2971,7 +2971,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetESI(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetESI(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -2999,7 +2999,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSI(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSI(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3027,7 +3027,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEBP(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEBP(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3055,7 +3055,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBP(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBP(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3083,7 +3083,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetESP(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetESP(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3111,7 +3111,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSP(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSP(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3139,7 +3139,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEIP(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetEIP(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3167,7 +3167,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRAX(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRAX(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3195,7 +3195,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRBX(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRBX(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3223,7 +3223,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRCX(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRCX(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3251,7 +3251,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRDX(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRDX(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3279,7 +3279,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRSI(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRSI(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3307,7 +3307,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSIL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSIL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3335,7 +3335,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRDI(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRDI(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3363,7 +3363,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDIL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetDIL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3391,7 +3391,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRBP(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRBP(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3419,7 +3419,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBPL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetBPL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3447,7 +3447,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRSP(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRSP(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3475,7 +3475,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSPL(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetSPL(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3503,7 +3503,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRIP(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetRIP(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3531,7 +3531,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3559,7 +3559,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3587,7 +3587,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3615,7 +3615,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR8B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3643,7 +3643,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3671,7 +3671,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3699,7 +3699,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3727,7 +3727,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR9B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3755,7 +3755,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3783,7 +3783,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3811,7 +3811,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3839,7 +3839,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR10B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3867,7 +3867,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3895,7 +3895,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3923,7 +3923,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3951,7 +3951,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR11B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -3979,7 +3979,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4007,7 +4007,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4035,7 +4035,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4063,7 +4063,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR12B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4091,7 +4091,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4119,7 +4119,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4147,7 +4147,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4175,7 +4175,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR13B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4203,7 +4203,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4231,7 +4231,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4259,7 +4259,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4287,7 +4287,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR14B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4315,7 +4315,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15(params["value"].get<unsigned long long>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15(params["value"].get<Script::Register::unsigned long long>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4343,7 +4343,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15D(params["value"].get<unsigned int>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15D(params["value"].get<Script::Register::unsigned int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4371,7 +4371,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15W(params["value"].get<unsigned short>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15W(params["value"].get<Script::Register::unsigned short>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4399,7 +4399,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15B(params["value"].get<unsigned char>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetR15B(params["value"].get<Script::Register::unsigned char>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4427,7 +4427,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCAX(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCAX(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4455,7 +4455,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCBX(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCBX(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4483,7 +4483,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCCX(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCCX(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4511,7 +4511,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCDX(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCDX(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4539,7 +4539,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCDI(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCDI(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4567,7 +4567,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCSI(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCSI(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4595,7 +4595,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCBP(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCBP(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4623,7 +4623,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCSP(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCSP(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4651,7 +4651,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCIP(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCIP(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4679,7 +4679,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCFLAGS(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "bool", .result = Script::Register::SetCFLAGS(params["value"].get<Script::Register::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4707,7 +4707,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Stack::Push(params["value"].get<duint>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Stack::Push(params["value"].get<Script::Stack::duint>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
@@ -4721,7 +4721,7 @@ void dispatch() {
             for (const auto &param: arg) {
                 params[param.name] = param.value;
             }
-            ApiResponse resp{.success = true, .type = "duint", .result = Script::Stack::Peek(params["offset"].get<int>())};
+            ApiResponse resp{.success = true, .type = "duint", .result = Script::Stack::Peek(params["offset"].get<Script::Stack::int>())};
             res.set_content(json(resp).dump(), "application/json");
         } catch (const std::exception &e) {
             res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json");
