@@ -24,13 +24,13 @@ type SymbolInfo struct {
 type symbol struct{}
 
 // GetList    c api name: Script::Symbol::GetList
-// ┌────┬────────┬────────────────────────────┬───────────┐
-// │ id │  name  │           c type           │  go type  │
-// ├────┼────────┼────────────────────────────┼───────────┤
-// │ 0  │ list   │ Script::Symbol::ListInfo * │ *ListInfo │
-// ├────┼────────┼────────────────────────────┼───────────┤
-// │    │ return │ bool                       │ bool      │
-// └────┴────────┴────────────────────────────┴───────────┘
+// ┌────┬────────┬────────────┬───────────┐
+// │ id │  name  │   c type   │  go type  │
+// ├────┼────────┼────────────┼───────────┤
+// │ 0  │ list   │ ListInfo * │ *ListInfo │
+// ├────┼────────┼────────────┼───────────┤
+// │    │ return │ bool       │ bool      │
+// └────┴────────┴────────────┴───────────┘
 func (s *symbol) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_symbol.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

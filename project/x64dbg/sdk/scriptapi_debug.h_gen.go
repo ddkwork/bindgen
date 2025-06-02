@@ -100,13 +100,13 @@ func (d *debug) StepOut() {
 }
 
 // SetBreakpoint    c api name: Script::Debug::SetBreakpoint
-// ┌────┬─────────┬──────────────────────┬─────────┐
-// │ id │  name   │        c type        │ go type │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │ 0  │ address │ Script::Debug::duint │ uint    │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │    │ return  │ bool                 │ bool    │
-// └────┴─────────┴──────────────────────┴─────────┘
+// ┌────┬─────────┬────────┬─────────┐
+// │ id │  name   │ c type │ go type │
+// ├────┼─────────┼────────┼─────────┤
+// │ 0  │ address │ duint  │ uint    │
+// ├────┼─────────┼────────┼─────────┤
+// │    │ return  │ bool   │ bool    │
+// └────┴─────────┴────────┴─────────┘
 func (d *debug) SetBreakpoint(address uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -121,13 +121,13 @@ func (d *debug) SetBreakpoint(address uint) bool {
 }
 
 // DeleteBreakpoint    c api name: Script::Debug::DeleteBreakpoint
-// ┌────┬─────────┬──────────────────────┬─────────┐
-// │ id │  name   │        c type        │ go type │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │ 0  │ address │ Script::Debug::duint │ uint    │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │    │ return  │ bool                 │ bool    │
-// └────┴─────────┴──────────────────────┴─────────┘
+// ┌────┬─────────┬────────┬─────────┐
+// │ id │  name   │ c type │ go type │
+// ├────┼─────────┼────────┼─────────┤
+// │ 0  │ address │ duint  │ uint    │
+// ├────┼─────────┼────────┼─────────┤
+// │    │ return  │ bool   │ bool    │
+// └────┴─────────┴────────┴─────────┘
 func (d *debug) DeleteBreakpoint(address uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -142,13 +142,13 @@ func (d *debug) DeleteBreakpoint(address uint) bool {
 }
 
 // DisableBreakpoint    c api name: Script::Debug::DisableBreakpoint
-// ┌────┬─────────┬──────────────────────┬─────────┐
-// │ id │  name   │        c type        │ go type │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │ 0  │ address │ Script::Debug::duint │ uint    │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │    │ return  │ bool                 │ bool    │
-// └────┴─────────┴──────────────────────┴─────────┘
+// ┌────┬─────────┬────────┬─────────┐
+// │ id │  name   │ c type │ go type │
+// ├────┼─────────┼────────┼─────────┤
+// │ 0  │ address │ duint  │ uint    │
+// ├────┼─────────┼────────┼─────────┤
+// │    │ return  │ bool   │ bool    │
+// └────┴─────────┴────────┴─────────┘
 func (d *debug) DisableBreakpoint(address uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DisableBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -163,15 +163,15 @@ func (d *debug) DisableBreakpoint(address uint) bool {
 }
 
 // SetHardwareBreakpoint    c api name: Script::Debug::SetHardwareBreakpoint
-// ┌────┬─────────┬─────────────────────────────┬──────────────┐
-// │ id │  name   │           c type            │   go type    │
-// ├────┼─────────┼─────────────────────────────┼──────────────┤
-// │ 0  │ address │ Script::Debug::duint        │ uint         │
-// ├────┼─────────┼─────────────────────────────┼──────────────┤
-// │ 1  │ Type    │ Script::Debug::HardwareType │ HardwareType │
-// ├────┼─────────┼─────────────────────────────┼──────────────┤
-// │    │ return  │ bool                        │ bool         │
-// └────┴─────────┴─────────────────────────────┴──────────────┘
+// ┌────┬─────────┬──────────────┬──────────────┐
+// │ id │  name   │    c type    │   go type    │
+// ├────┼─────────┼──────────────┼──────────────┤
+// │ 0  │ address │ duint        │ uint         │
+// ├────┼─────────┼──────────────┼──────────────┤
+// │ 1  │ Type    │ HardwareType │ HardwareType │
+// ├────┼─────────┼──────────────┼──────────────┤
+// │    │ return  │ bool         │ bool         │
+// └────┴─────────┴──────────────┴──────────────┘
 func (d *debug) SetHardwareBreakpoint(address uint, Type HardwareType) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -191,13 +191,13 @@ func (d *debug) SetHardwareBreakpoint(address uint, Type HardwareType) bool {
 }
 
 // DeleteHardwareBreakpoint    c api name: Script::Debug::DeleteHardwareBreakpoint
-// ┌────┬─────────┬──────────────────────┬─────────┐
-// │ id │  name   │        c type        │ go type │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │ 0  │ address │ Script::Debug::duint │ uint    │
-// ├────┼─────────┼──────────────────────┼─────────┤
-// │    │ return  │ bool                 │ bool    │
-// └────┴─────────┴──────────────────────┴─────────┘
+// ┌────┬─────────┬────────┬─────────┐
+// │ id │  name   │ c type │ go type │
+// ├────┼─────────┼────────┼─────────┤
+// │ 0  │ address │ duint  │ uint    │
+// ├────┼─────────┼────────┼─────────┤
+// │    │ return  │ bool   │ bool    │
+// └────┴─────────┴────────┴─────────┘
 func (d *debug) DeleteHardwareBreakpoint(address uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -22,13 +22,13 @@ const (
 type flag struct{}
 
 // Get    c api name: Script::Flag::Get
-// ┌────┬────────┬────────────────────────┬──────────┐
-// │ id │  name  │         c type         │ go type  │
-// ├────┼────────┼────────────────────────┼──────────┤
-// │ 0  │ flag   │ Script::Flag::FlagEnum │ FlagEnum │
-// ├────┼────────┼────────────────────────┼──────────┤
-// │    │ return │ bool                   │ bool     │
-// └────┴────────┴────────────────────────┴──────────┘
+// ┌────┬────────┬──────────┬──────────┐
+// │ id │  name  │  c type  │ go type  │
+// ├────┼────────┼──────────┼──────────┤
+// │ 0  │ flag   │ FlagEnum │ FlagEnum │
+// ├────┼────────┼──────────┼──────────┤
+// │    │ return │ bool     │ bool     │
+// └────┴────────┴──────────┴──────────┘
 func (f *flag) Get(flag FlagEnum) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -43,15 +43,15 @@ func (f *flag) Get(flag FlagEnum) bool {
 }
 
 // Set    c api name: Script::Flag::Set
-// ┌────┬────────┬────────────────────────┬──────────┐
-// │ id │  name  │         c type         │ go type  │
-// ├────┼────────┼────────────────────────┼──────────┤
-// │ 0  │ flag   │ Script::Flag::FlagEnum │ FlagEnum │
-// ├────┼────────┼────────────────────────┼──────────┤
-// │ 1  │ value  │ Script::Flag::bool     │ bool     │
-// ├────┼────────┼────────────────────────┼──────────┤
-// │    │ return │ bool                   │ bool     │
-// └────┴────────┴────────────────────────┴──────────┘
+// ┌────┬────────┬──────────┬──────────┐
+// │ id │  name  │  c type  │ go type  │
+// ├────┼────────┼──────────┼──────────┤
+// │ 0  │ flag   │ FlagEnum │ FlagEnum │
+// ├────┼────────┼──────────┼──────────┤
+// │ 1  │ value  │ bool     │ bool     │
+// ├────┼────────┼──────────┼──────────┤
+// │    │ return │ bool     │ bool     │
+// └────┴────────┴──────────┴──────────┘
 func (f *flag) Set(flag FlagEnum, value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -84,13 +84,13 @@ func (f *flag) GetZF() bool {
 }
 
 // SetZF    c api name: Script::Flag::SetZF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetZF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetZF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -118,13 +118,13 @@ func (f *flag) GetOF() bool {
 }
 
 // SetOF    c api name: Script::Flag::SetOF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetOF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetOF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -152,13 +152,13 @@ func (f *flag) GetCF() bool {
 }
 
 // SetCF    c api name: Script::Flag::SetCF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetCF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetCF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -186,13 +186,13 @@ func (f *flag) GetPF() bool {
 }
 
 // SetPF    c api name: Script::Flag::SetPF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetPF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetPF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -220,13 +220,13 @@ func (f *flag) GetSF() bool {
 }
 
 // SetSF    c api name: Script::Flag::SetSF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetSF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetSF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -254,13 +254,13 @@ func (f *flag) GetTF() bool {
 }
 
 // SetTF    c api name: Script::Flag::SetTF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetTF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetTF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -288,13 +288,13 @@ func (f *flag) GetAF() bool {
 }
 
 // SetAF    c api name: Script::Flag::SetAF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetAF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetAF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -322,13 +322,13 @@ func (f *flag) GetDF() bool {
 }
 
 // SetDF    c api name: Script::Flag::SetDF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetDF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetDF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -356,13 +356,13 @@ func (f *flag) GetIF() bool {
 }
 
 // SetIF    c api name: Script::Flag::SetIF
-// ┌────┬────────┬────────────────────┬─────────┐
-// │ id │  name  │       c type       │ go type │
-// ├────┼────────┼────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Flag::bool │ bool    │
-// ├────┼────────┼────────────────────┼─────────┤
-// │    │ return │ bool               │ bool    │
-// └────┴────────┴────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ bool   │ bool    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *flag) SetIF(value bool) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_flag.h/SetIF").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

@@ -9,15 +9,15 @@ import (
 type misc struct{}
 
 // ParseExpression    c api name: Script::Misc::ParseExpression
-// ┌────┬────────────┬────────────────────────────┬─────────┐
-// │ id │    name    │           c type           │ go type │
-// ├────┼────────────┼────────────────────────────┼─────────┤
-// │ 0  │ expression │ const Script::Misc::char * │ *int8   │
-// ├────┼────────────┼────────────────────────────┼─────────┤
-// │ 1  │ value      │ Script::Misc::duint *      │ *uint   │
-// ├────┼────────────┼────────────────────────────┼─────────┤
-// │    │ return     │ bool                       │ bool    │
-// └────┴────────────┴────────────────────────────┴─────────┘
+// ┌────┬────────────┬──────────────┬─────────┐
+// │ id │    name    │    c type    │ go type │
+// ├────┼────────────┼──────────────┼─────────┤
+// │ 0  │ expression │ const char * │ *int8   │
+// ├────┼────────────┼──────────────┼─────────┤
+// │ 1  │ value      │ duint *      │ *uint   │
+// ├────┼────────────┼──────────────┼─────────┤
+// │    │ return     │ bool         │ bool    │
+// └────┴────────────┴──────────────┴─────────┘
 func (m *misc) ParseExpression(expression *int8, value *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ParseExpression").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -37,15 +37,15 @@ func (m *misc) ParseExpression(expression *int8, value *uint) bool {
 }
 
 // RemoteGetProcAddress    c api name: Script::Misc::RemoteGetProcAddress
-// ┌────┬────────┬────────────────────────────┬─────────┐
-// │ id │  name  │           c type           │ go type │
-// ├────┼────────┼────────────────────────────┼─────────┤
-// │ 0  │ module │ const Script::Misc::char * │ *int8   │
-// ├────┼────────┼────────────────────────────┼─────────┤
-// │ 1  │ api    │ const Script::Misc::char * │ *int8   │
-// ├────┼────────┼────────────────────────────┼─────────┤
-// │    │ return │ duint                      │ uint    │
-// └────┴────────┴────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ module │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 1  │ api    │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ duint        │ uint    │
+// └────┴────────┴──────────────┴─────────┘
 func (m *misc) RemoteGetProcAddress(module *int8, api *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/RemoteGetProcAddress").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -65,13 +65,13 @@ func (m *misc) RemoteGetProcAddress(module *int8, api *int8) uint {
 }
 
 // ResolveLabel    c api name: Script::Misc::ResolveLabel
-// ┌────┬────────┬────────────────────────────┬─────────┐
-// │ id │  name  │           c type           │ go type │
-// ├────┼────────┼────────────────────────────┼─────────┤
-// │ 0  │ label  │ const Script::Misc::char * │ *int8   │
-// ├────┼────────┼────────────────────────────┼─────────┤
-// │    │ return │ duint                      │ uint    │
-// └────┴────────┴────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ label  │ const char * │ *int8   │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ duint        │ uint    │
+// └────┴────────┴──────────────┴─────────┘
 func (m *misc) ResolveLabel(label *int8) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/ResolveLabel").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -86,13 +86,13 @@ func (m *misc) ResolveLabel(label *int8) uint {
 }
 
 // Alloc    c api name: Script::Misc::Alloc
-// ┌────┬────────┬─────────────────────┬─────────┐
-// │ id │  name  │       c type        │ go type │
-// ├────┼────────┼─────────────────────┼─────────┤
-// │ 0  │ size   │ Script::Misc::duint │ uint    │
-// ├────┼────────┼─────────────────────┼─────────┤
-// │    │ return │ void *              │ uintptr │
-// └────┴────────┴─────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ size   │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void * │ uintptr │
+// └────┴────────┴────────┴─────────┘
 func (m *misc) Alloc(size uint) uintptr {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Alloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -107,13 +107,13 @@ func (m *misc) Alloc(size uint) uintptr {
 }
 
 // Free    c api name: Script::Misc::Free
-// ┌────┬────────┬──────────────────────┬─────────┐
-// │ id │  name  │        c type        │ go type │
-// ├────┼────────┼──────────────────────┼─────────┤
-// │ 0  │ ptr    │ Script::Misc::void * │ uintptr │
-// ├────┼────────┼──────────────────────┼─────────┤
-// │    │ return │ void                 │         │
-// └────┴────────┴──────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ ptr    │ void * │ uintptr │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (m *misc) Free(ptr uintptr) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_misc.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

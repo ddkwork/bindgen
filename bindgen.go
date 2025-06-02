@@ -61,7 +61,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 			}
 			w.Wait()
 		},
-		makeResult: func() {
+		collectAll: func() {
 			w := waitgroup.New()
 			for _, path := range paths {
 				mylog.Warning("enums,structs,functions", path) //collect from ast parse
@@ -122,7 +122,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 					if fn.Comment.currentFile != path {
 						continue
 					}
-					fn.Name = strings.TrimPrefix(fn.Name, path)
+					//fn.Name = strings.TrimPrefix(fn.Name, path)
 
 					params := make([]string, len(fn.Params))
 					for i, p := range fn.Params {
@@ -144,6 +144,26 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 					t.SetAlignment(table.AlignCenter, table.AlignLeft, table.AlignLeft, table.AlignLeft)
 					t.SetHeaders("id", "name", "c type", "go type")
 					for i, p := range fn.Params { //make comment
+
+						for _, object := range result.Structs.Range() {
+							if object.Comment.currentFile != path {
+								continue
+							}
+							needNamespace := false
+							switch {
+							case p.CName == object.CName:
+								needNamespace = true
+							case strings.Contains(p.CName, object.CName):
+								needNamespace = true
+							}
+							if needNamespace {
+								p.CName = strings.ReplaceAll(p.CName, object.CName, fn.namespace+object.CName)
+								fn.Params[i] = p
+								result.Functions.Update(fn.Name, fn)
+
+							}
+						}
+
 						t.AddRow(strconv.Itoa(i), p.Name, p.CType, p.Type)
 					}
 					t.AddRow("", "return", fn.ReturnCType, fn.ReturnType)
@@ -292,6 +312,9 @@ type ApiResponse struct {
 
 					var values []string
 					for _, p := range fn.Params {
+						if strings.Contains("", p.CType) { //取出当前命名空间中的结构体名称
+							//p.CType=strings.ReplaceAll(p.CType,"const","")
+						}
 						values = append(values, "params["+strconv.Quote(p.Name)+"].get<"+p.CType+">()")
 					}
 
@@ -301,6 +324,7 @@ type ApiResponse struct {
 						gResp.P(fn.CName, "();")
 						do = "nullptr"
 					}
+
 					gResp.P("ApiResponse resp{.success = true, .type = ",
 						strconv.Quote(fn.ReturnCType),
 						", .result = ", do, "};")
@@ -584,7 +608,7 @@ void stopHttpServer() {
 		},
 	}
 	step.collectTypedefs()
-	step.makeResult()
+	step.collectAll()
 	step.bindAllFile()
 	step.bindSdkEntryFile()
 	step.bindMcpCppServerCode()
@@ -594,7 +618,7 @@ void stopHttpServer() {
 // 函数式编程有时候比接口和方法或者普通函数的可读性好，逻辑连贯
 type bindStep struct {
 	collectTypedefs      func() //dump ast
-	makeResult           func() //parse ast into result for collect enums, struts and functions
+	collectAll           func() //parse ast into result for collect enums, struts and functions
 	bindAllFile          func() //... .h .cpp .c into .go
 	bindSdkEntryFile     func() //sdk_gen.go for manner all method
 	bindMcpCppServerCode func() //disPath_gen.h
@@ -940,6 +964,7 @@ func parseFunction(node gjson.Result, namespace string) FunctionInfo {
 	info := FunctionInfo{
 		Name:         node.Get("name").String(),
 		CName:        namespace + node.Get("name").String(),
+		namespace:    namespace,
 		Loc:          formatLoc(node.Get("loc")),
 		ReturnType:   handleQualType(strings.TrimSpace(split[0])),
 		ReturnCType:  strings.TrimSpace(split[0]),
@@ -958,18 +983,12 @@ func parseFunction(node gjson.Result, namespace string) FunctionInfo {
 			case "string":
 				name = "s"
 			}
-			cType := param.Get("type.qualType").String()
-			if strings.HasPrefix(cType, "const ") {
-				cType = strings.TrimPrefix(cType, "const ")
-				cType = "const " + namespace + cType
-			} else {
-				cType = namespace + cType
-			}
+
 			info.Params = append(info.Params, FunctionParam{
 				Name:    name,
 				CName:   param.Get("name").String(),
 				Type:    resolveType(param.Get("type")),
-				CType:   cType,
+				CType:   param.Get("type.qualType").String(),
 				Comment: Comment{},
 			})
 		}
@@ -1204,6 +1223,7 @@ type (
 	FunctionInfo struct {
 		Name         string
 		CName        string
+		namespace    string
 		Loc          string
 		ReturnType   string
 		ReturnCType  string

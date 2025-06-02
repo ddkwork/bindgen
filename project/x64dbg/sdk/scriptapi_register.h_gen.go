@@ -99,13 +99,13 @@ const (
 type register struct{}
 
 // Get    c api name: Script::Register::Get
-// ┌────┬────────┬────────────────────────────────┬──────────────┐
-// │ id │  name  │             c type             │   go type    │
-// ├────┼────────┼────────────────────────────────┼──────────────┤
-// │ 0  │ reg    │ Script::Register::RegisterEnum │ RegisterEnum │
-// ├────┼────────┼────────────────────────────────┼──────────────┤
-// │    │ return │ duint                          │ uint         │
-// └────┴────────┴────────────────────────────────┴──────────────┘
+// ┌────┬────────┬──────────────┬──────────────┐
+// │ id │  name  │    c type    │   go type    │
+// ├────┼────────┼──────────────┼──────────────┤
+// │ 0  │ reg    │ RegisterEnum │ RegisterEnum │
+// ├────┼────────┼──────────────┼──────────────┤
+// │    │ return │ duint        │ uint         │
+// └────┴────────┴──────────────┴──────────────┘
 func (r *register) Get(reg RegisterEnum) uint {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -120,15 +120,15 @@ func (r *register) Get(reg RegisterEnum) uint {
 }
 
 // Set    c api name: Script::Register::Set
-// ┌────┬────────┬────────────────────────────────┬──────────────┐
-// │ id │  name  │             c type             │   go type    │
-// ├────┼────────┼────────────────────────────────┼──────────────┤
-// │ 0  │ reg    │ Script::Register::RegisterEnum │ RegisterEnum │
-// ├────┼────────┼────────────────────────────────┼──────────────┤
-// │ 1  │ value  │ Script::Register::duint        │ uint         │
-// ├────┼────────┼────────────────────────────────┼──────────────┤
-// │    │ return │ bool                           │ bool         │
-// └────┴────────┴────────────────────────────────┴──────────────┘
+// ┌────┬────────┬──────────────┬──────────────┐
+// │ id │  name  │    c type    │   go type    │
+// ├────┼────────┼──────────────┼──────────────┤
+// │ 0  │ reg    │ RegisterEnum │ RegisterEnum │
+// ├────┼────────┼──────────────┼──────────────┤
+// │ 1  │ value  │ duint        │ uint         │
+// ├────┼────────┼──────────────┼──────────────┤
+// │    │ return │ bool         │ bool         │
+// └────┴────────┴──────────────┴──────────────┘
 func (r *register) Set(reg RegisterEnum, value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/Set").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -174,13 +174,13 @@ func (r *register) GetDR0() uint {
 }
 
 // SetDR0    c api name: Script::Register::SetDR0
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetDR0(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR0").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -208,13 +208,13 @@ func (r *register) GetDR1() uint {
 }
 
 // SetDR1    c api name: Script::Register::SetDR1
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetDR1(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR1").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -242,13 +242,13 @@ func (r *register) GetDR2() uint {
 }
 
 // SetDR2    c api name: Script::Register::SetDR2
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetDR2(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR2").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -276,13 +276,13 @@ func (r *register) GetDR3() uint {
 }
 
 // SetDR3    c api name: Script::Register::SetDR3
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetDR3(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR3").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -310,13 +310,13 @@ func (r *register) GetDR6() uint {
 }
 
 // SetDR6    c api name: Script::Register::SetDR6
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetDR6(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR6").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -344,13 +344,13 @@ func (r *register) GetDR7() uint {
 }
 
 // SetDR7    c api name: Script::Register::SetDR7
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetDR7(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDR7").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -378,13 +378,13 @@ func (r *register) GetEAX() uint {
 }
 
 // SetEAX    c api name: Script::Register::SetEAX
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetEAX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -412,13 +412,13 @@ func (r *register) GetAX() uint16 {
 }
 
 // SetAX    c api name: Script::Register::SetAX
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetAX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -446,13 +446,13 @@ func (r *register) GetAH() byte {
 }
 
 // SetAH    c api name: Script::Register::SetAH
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetAH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -480,13 +480,13 @@ func (r *register) GetAL() byte {
 }
 
 // SetAL    c api name: Script::Register::SetAL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetAL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetAL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -514,13 +514,13 @@ func (r *register) GetEBX() uint {
 }
 
 // SetEBX    c api name: Script::Register::SetEBX
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetEBX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -548,13 +548,13 @@ func (r *register) GetBX() uint16 {
 }
 
 // SetBX    c api name: Script::Register::SetBX
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetBX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -582,13 +582,13 @@ func (r *register) GetBH() byte {
 }
 
 // SetBH    c api name: Script::Register::SetBH
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetBH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -616,13 +616,13 @@ func (r *register) GetBL() byte {
 }
 
 // SetBL    c api name: Script::Register::SetBL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetBL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -650,13 +650,13 @@ func (r *register) GetECX() uint {
 }
 
 // SetECX    c api name: Script::Register::SetECX
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetECX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetECX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -684,13 +684,13 @@ func (r *register) GetCX() uint16 {
 }
 
 // SetCX    c api name: Script::Register::SetCX
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetCX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -718,13 +718,13 @@ func (r *register) GetCH() byte {
 }
 
 // SetCH    c api name: Script::Register::SetCH
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetCH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -752,13 +752,13 @@ func (r *register) GetCL() byte {
 }
 
 // SetCL    c api name: Script::Register::SetCL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetCL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -786,13 +786,13 @@ func (r *register) GetEDX() uint {
 }
 
 // SetEDX    c api name: Script::Register::SetEDX
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetEDX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -820,13 +820,13 @@ func (r *register) GetDX() uint16 {
 }
 
 // SetDX    c api name: Script::Register::SetDX
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetDX(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -854,13 +854,13 @@ func (r *register) GetDH() byte {
 }
 
 // SetDH    c api name: Script::Register::SetDH
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetDH(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDH").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -888,13 +888,13 @@ func (r *register) GetDL() byte {
 }
 
 // SetDL    c api name: Script::Register::SetDL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetDL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -922,13 +922,13 @@ func (r *register) GetEDI() uint {
 }
 
 // SetEDI    c api name: Script::Register::SetEDI
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetEDI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -956,13 +956,13 @@ func (r *register) GetDI() uint16 {
 }
 
 // SetDI    c api name: Script::Register::SetDI
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetDI(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -990,13 +990,13 @@ func (r *register) GetESI() uint {
 }
 
 // SetESI    c api name: Script::Register::SetESI
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetESI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1024,13 +1024,13 @@ func (r *register) GetSI() uint16 {
 }
 
 // SetSI    c api name: Script::Register::SetSI
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetSI(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1058,13 +1058,13 @@ func (r *register) GetEBP() uint {
 }
 
 // SetEBP    c api name: Script::Register::SetEBP
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetEBP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1092,13 +1092,13 @@ func (r *register) GetBP() uint16 {
 }
 
 // SetBP    c api name: Script::Register::SetBP
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetBP(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1126,13 +1126,13 @@ func (r *register) GetESP() uint {
 }
 
 // SetESP    c api name: Script::Register::SetESP
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetESP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetESP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1160,13 +1160,13 @@ func (r *register) GetSP() uint16 {
 }
 
 // SetSP    c api name: Script::Register::SetSP
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetSP(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1194,13 +1194,13 @@ func (r *register) GetEIP() uint {
 }
 
 // SetEIP    c api name: Script::Register::SetEIP
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetEIP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetEIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1228,13 +1228,13 @@ func (r *register) GetRAX() uint64 {
 }
 
 // SetRAX    c api name: Script::Register::SetRAX
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRAX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1262,13 +1262,13 @@ func (r *register) GetRBX() uint64 {
 }
 
 // SetRBX    c api name: Script::Register::SetRBX
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRBX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1296,13 +1296,13 @@ func (r *register) GetRCX() uint64 {
 }
 
 // SetRCX    c api name: Script::Register::SetRCX
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRCX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1330,13 +1330,13 @@ func (r *register) GetRDX() uint64 {
 }
 
 // SetRDX    c api name: Script::Register::SetRDX
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRDX(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1364,13 +1364,13 @@ func (r *register) GetRSI() uint64 {
 }
 
 // SetRSI    c api name: Script::Register::SetRSI
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRSI(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1398,13 +1398,13 @@ func (r *register) GetSIL() byte {
 }
 
 // SetSIL    c api name: Script::Register::SetSIL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetSIL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1432,13 +1432,13 @@ func (r *register) GetRDI() uint64 {
 }
 
 // SetRDI    c api name: Script::Register::SetRDI
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRDI(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1466,13 +1466,13 @@ func (r *register) GetDIL() byte {
 }
 
 // SetDIL    c api name: Script::Register::SetDIL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetDIL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetDIL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1500,13 +1500,13 @@ func (r *register) GetRBP() uint64 {
 }
 
 // SetRBP    c api name: Script::Register::SetRBP
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRBP(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1534,13 +1534,13 @@ func (r *register) GetBPL() byte {
 }
 
 // SetBPL    c api name: Script::Register::SetBPL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetBPL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetBPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1568,13 +1568,13 @@ func (r *register) GetRSP() uint64 {
 }
 
 // SetRSP    c api name: Script::Register::SetRSP
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRSP(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1602,13 +1602,13 @@ func (r *register) GetSPL() byte {
 }
 
 // SetSPL    c api name: Script::Register::SetSPL
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetSPL(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetSPL").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1636,13 +1636,13 @@ func (r *register) GetRIP() uint64 {
 }
 
 // SetRIP    c api name: Script::Register::SetRIP
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetRIP(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetRIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1670,13 +1670,13 @@ func (r *register) GetR8() uint64 {
 }
 
 // SetR8    c api name: Script::Register::SetR8
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR8(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1704,13 +1704,13 @@ func (r *register) GetR8D() uint {
 }
 
 // SetR8D    c api name: Script::Register::SetR8D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR8D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1738,13 +1738,13 @@ func (r *register) GetR8W() uint16 {
 }
 
 // SetR8W    c api name: Script::Register::SetR8W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR8W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1772,13 +1772,13 @@ func (r *register) GetR8B() byte {
 }
 
 // SetR8B    c api name: Script::Register::SetR8B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR8B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR8B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1806,13 +1806,13 @@ func (r *register) GetR9() uint64 {
 }
 
 // SetR9    c api name: Script::Register::SetR9
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR9(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1840,13 +1840,13 @@ func (r *register) GetR9D() uint {
 }
 
 // SetR9D    c api name: Script::Register::SetR9D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR9D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1874,13 +1874,13 @@ func (r *register) GetR9W() uint16 {
 }
 
 // SetR9W    c api name: Script::Register::SetR9W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR9W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1908,13 +1908,13 @@ func (r *register) GetR9B() byte {
 }
 
 // SetR9B    c api name: Script::Register::SetR9B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR9B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR9B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1942,13 +1942,13 @@ func (r *register) GetR10() uint64 {
 }
 
 // SetR10    c api name: Script::Register::SetR10
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR10(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -1976,13 +1976,13 @@ func (r *register) GetR10D() uint {
 }
 
 // SetR10D    c api name: Script::Register::SetR10D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR10D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2010,13 +2010,13 @@ func (r *register) GetR10W() uint16 {
 }
 
 // SetR10W    c api name: Script::Register::SetR10W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR10W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2044,13 +2044,13 @@ func (r *register) GetR10B() byte {
 }
 
 // SetR10B    c api name: Script::Register::SetR10B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR10B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR10B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2078,13 +2078,13 @@ func (r *register) GetR11() uint64 {
 }
 
 // SetR11    c api name: Script::Register::SetR11
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR11(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2112,13 +2112,13 @@ func (r *register) GetR11D() uint {
 }
 
 // SetR11D    c api name: Script::Register::SetR11D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR11D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2146,13 +2146,13 @@ func (r *register) GetR11W() uint16 {
 }
 
 // SetR11W    c api name: Script::Register::SetR11W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR11W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2180,13 +2180,13 @@ func (r *register) GetR11B() byte {
 }
 
 // SetR11B    c api name: Script::Register::SetR11B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR11B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR11B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2214,13 +2214,13 @@ func (r *register) GetR12() uint64 {
 }
 
 // SetR12    c api name: Script::Register::SetR12
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR12(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2248,13 +2248,13 @@ func (r *register) GetR12D() uint {
 }
 
 // SetR12D    c api name: Script::Register::SetR12D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR12D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2282,13 +2282,13 @@ func (r *register) GetR12W() uint16 {
 }
 
 // SetR12W    c api name: Script::Register::SetR12W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR12W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2316,13 +2316,13 @@ func (r *register) GetR12B() byte {
 }
 
 // SetR12B    c api name: Script::Register::SetR12B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR12B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR12B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2350,13 +2350,13 @@ func (r *register) GetR13() uint64 {
 }
 
 // SetR13    c api name: Script::Register::SetR13
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR13(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2384,13 +2384,13 @@ func (r *register) GetR13D() uint {
 }
 
 // SetR13D    c api name: Script::Register::SetR13D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR13D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2418,13 +2418,13 @@ func (r *register) GetR13W() uint16 {
 }
 
 // SetR13W    c api name: Script::Register::SetR13W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR13W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2452,13 +2452,13 @@ func (r *register) GetR13B() byte {
 }
 
 // SetR13B    c api name: Script::Register::SetR13B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR13B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR13B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2486,13 +2486,13 @@ func (r *register) GetR14() uint64 {
 }
 
 // SetR14    c api name: Script::Register::SetR14
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR14(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2520,13 +2520,13 @@ func (r *register) GetR14D() uint {
 }
 
 // SetR14D    c api name: Script::Register::SetR14D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR14D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2554,13 +2554,13 @@ func (r *register) GetR14W() uint16 {
 }
 
 // SetR14W    c api name: Script::Register::SetR14W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR14W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2588,13 +2588,13 @@ func (r *register) GetR14B() byte {
 }
 
 // SetR14B    c api name: Script::Register::SetR14B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR14B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR14B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2622,13 +2622,13 @@ func (r *register) GetR15() uint64 {
 }
 
 // SetR15    c api name: Script::Register::SetR15
-// ┌────┬────────┬──────────────────────────────────────┬─────────┐
-// │ id │  name  │                c type                │ go type │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned long long │ uint64  │
-// ├────┼────────┼──────────────────────────────────────┼─────────┤
-// │    │ return │ bool                                 │ bool    │
-// └────┴────────┴──────────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │ value  │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ bool               │ bool    │
+// └────┴────────┴────────────────────┴─────────┘
 func (r *register) SetR15(value uint64) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2656,13 +2656,13 @@ func (r *register) GetR15D() uint {
 }
 
 // SetR15D    c api name: Script::Register::SetR15D
-// ┌────┬────────┬────────────────────────────────┬─────────┐
-// │ id │  name  │             c type             │ go type │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned int │ uint    │
-// ├────┼────────┼────────────────────────────────┼─────────┤
-// │    │ return │ bool                           │ bool    │
-// └────┴────────┴────────────────────────────────┴─────────┘
+// ┌────┬────────┬──────────────┬─────────┐
+// │ id │  name  │    c type    │ go type │
+// ├────┼────────┼──────────────┼─────────┤
+// │ 0  │ value  │ unsigned int │ uint    │
+// ├────┼────────┼──────────────┼─────────┤
+// │    │ return │ bool         │ bool    │
+// └────┴────────┴──────────────┴─────────┘
 func (r *register) SetR15D(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15D").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2690,13 +2690,13 @@ func (r *register) GetR15W() uint16 {
 }
 
 // SetR15W    c api name: Script::Register::SetR15W
-// ┌────┬────────┬──────────────────────────────────┬─────────┐
-// │ id │  name  │              c type              │ go type │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned short │ uint16  │
-// ├────┼────────┼──────────────────────────────────┼─────────┤
-// │    │ return │ bool                             │ bool    │
-// └────┴────────┴──────────────────────────────────┴─────────┘
+// ┌────┬────────┬────────────────┬─────────┐
+// │ id │  name  │     c type     │ go type │
+// ├────┼────────┼────────────────┼─────────┤
+// │ 0  │ value  │ unsigned short │ uint16  │
+// ├────┼────────┼────────────────┼─────────┤
+// │    │ return │ bool           │ bool    │
+// └────┴────────┴────────────────┴─────────┘
 func (r *register) SetR15W(value uint16) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15W").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2724,13 +2724,13 @@ func (r *register) GetR15B() byte {
 }
 
 // SetR15B    c api name: Script::Register::SetR15B
-// ┌────┬────────┬─────────────────────────────────┬─────────┐
-// │ id │  name  │             c type              │ go type │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::unsigned char │ byte    │
-// ├────┼────────┼─────────────────────────────────┼─────────┤
-// │    │ return │ bool                            │ bool    │
-// └────┴────────┴─────────────────────────────────┴─────────┘
+// ┌────┬────────┬───────────────┬─────────┐
+// │ id │  name  │    c type     │ go type │
+// ├────┼────────┼───────────────┼─────────┤
+// │ 0  │ value  │ unsigned char │ byte    │
+// ├────┼────────┼───────────────┼─────────┤
+// │    │ return │ bool          │ bool    │
+// └────┴────────┴───────────────┴─────────┘
 func (r *register) SetR15B(value byte) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetR15B").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2758,13 +2758,13 @@ func (r *register) GetCAX() uint {
 }
 
 // SetCAX    c api name: Script::Register::SetCAX
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCAX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCAX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2792,13 +2792,13 @@ func (r *register) GetCBX() uint {
 }
 
 // SetCBX    c api name: Script::Register::SetCBX
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCBX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2826,13 +2826,13 @@ func (r *register) GetCCX() uint {
 }
 
 // SetCCX    c api name: Script::Register::SetCCX
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCCX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCCX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2860,13 +2860,13 @@ func (r *register) GetCDX() uint {
 }
 
 // SetCDX    c api name: Script::Register::SetCDX
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCDX(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDX").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2894,13 +2894,13 @@ func (r *register) GetCDI() uint {
 }
 
 // SetCDI    c api name: Script::Register::SetCDI
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCDI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCDI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2928,13 +2928,13 @@ func (r *register) GetCSI() uint {
 }
 
 // SetCSI    c api name: Script::Register::SetCSI
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCSI(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSI").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2962,13 +2962,13 @@ func (r *register) GetCBP() uint {
 }
 
 // SetCBP    c api name: Script::Register::SetCBP
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCBP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCBP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -2996,13 +2996,13 @@ func (r *register) GetCSP() uint {
 }
 
 // SetCSP    c api name: Script::Register::SetCSP
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCSP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCSP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3030,13 +3030,13 @@ func (r *register) GetCIP() uint {
 }
 
 // SetCIP    c api name: Script::Register::SetCIP
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCIP(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCIP").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -3064,13 +3064,13 @@ func (r *register) GetCFLAGS() uint {
 }
 
 // SetCFLAGS    c api name: Script::Register::SetCFLAGS
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ value  │ Script::Register::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ value  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (r *register) SetCFLAGS(value uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_register.h/SetCFLAGS").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{

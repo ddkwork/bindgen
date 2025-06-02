@@ -669,3 +669,426 @@ func (b *bridgemain) __builtin_memcpy(uintptr, uintptr, uint64) uintptr {
 	))).Request()
 	panic("not support return type: void *")
 }
+
+// BridgeLoadLibraryCheckedW    c api name: BridgeLoadLibraryCheckedW
+// ┌────┬──────────────┬─────────────────┬─────────┐
+// │ id │     name     │     c type      │ go type │
+// ├────┼──────────────┼─────────────────┼─────────┤
+// │ 0  │ szDll        │ const wchar_t * │ * rune  │
+// ├────┼──────────────┼─────────────────┼─────────┤
+// │ 1  │ allowFailure │ bool            │ bool    │
+// ├────┼──────────────┼─────────────────┼─────────┤
+// │    │ return       │ HMODULE         │ uintptr │
+// └────┴──────────────┴─────────────────┴─────────┘
+func (b *bridgemain) BridgeLoadLibraryCheckedW(szDll *rune, allowFailure bool) uintptr {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedW").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "szDll",
+				Type:  "* rune",
+				Value: fmt.Sprintf("%v", szDll),
+			},
+			{
+				Name:  "allowFailure",
+				Type:  "bool",
+				Value: fmt.Sprintf("%v", allowFailure),
+			},
+		},
+	))).Request()
+	panic("not support return type: HMODULE")
+}
+
+// BridgeLoadLibraryCheckedA    c api name: BridgeLoadLibraryCheckedA
+// ┌────┬──────────────┬──────────────┬─────────┐
+// │ id │     name     │    c type    │ go type │
+// ├────┼──────────────┼──────────────┼─────────┤
+// │ 0  │ szDll        │ const char * │ *int8   │
+// ├────┼──────────────┼──────────────┼─────────┤
+// │ 1  │ allowFailure │ bool         │ bool    │
+// ├────┼──────────────┼──────────────┼─────────┤
+// │    │ return       │ HMODULE      │ uintptr │
+// └────┴──────────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeLoadLibraryCheckedA(szDll *int8, allowFailure bool) uintptr {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeLoadLibraryCheckedA").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "szDll",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", szDll),
+			},
+			{
+				Name:  "allowFailure",
+				Type:  "bool",
+				Value: fmt.Sprintf("%v", allowFailure),
+			},
+		},
+	))).Request()
+	panic("not support return type: HMODULE")
+}
+
+// BridgeAlloc    c api name: BridgeAlloc
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ size   │ size_t │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void * │ uintptr │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeAlloc(size uint) uintptr {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeAlloc").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "size",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", size),
+			},
+		},
+	))).Request()
+	panic("not support return type: void *")
+}
+
+// BridgeFree    c api name: BridgeFree
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ ptr    │ void * │ uintptr │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) BridgeFree(ptr uintptr) {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeFree").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "ptr",
+				Type:  "uintptr",
+				Value: fmt.Sprintf("%v", ptr),
+			},
+		},
+	))).Request()
+}
+
+// BridgeSettingGet    c api name: BridgeSettingGet
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ char *       │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingGet(section *int8, key *int8, value *int8) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGet").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "section",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", section),
+			},
+			{
+				Name:  "key",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", key),
+			},
+			{
+				Name:  "value",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", value),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// BridgeSettingGetUint    c api name: BridgeSettingGetUint
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ duint *      │ *uint   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingGetUint(section *int8, key *int8, value *uint) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingGetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "section",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", section),
+			},
+			{
+				Name:  "key",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", key),
+			},
+			{
+				Name:  "value",
+				Type:  "*uint ",
+				Value: fmt.Sprintf("%v", value),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// BridgeSettingSet    c api name: BridgeSettingSet
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingSet(section *int8, key *int8, value *int8) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSet").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "section",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", section),
+			},
+			{
+				Name:  "key",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", key),
+			},
+			{
+				Name:  "value",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", value),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// BridgeSettingSetUint    c api name: BridgeSettingSetUint
+// ┌────┬─────────┬──────────────┬─────────┐
+// │ id │  name   │    c type    │ go type │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 0  │ section │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 1  │ key     │ const char * │ *int8   │
+// ├────┼─────────┼──────────────┼─────────┤
+// │ 2  │ value   │ duint        │ uint    │
+// ├────┼─────────┼──────────────┼─────────┤
+// │    │ return  │ bool         │ bool    │
+// └────┴─────────┴──────────────┴─────────┘
+func (b *bridgemain) BridgeSettingSetUint(section *int8, key *int8, value uint) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingSetUint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "section",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", section),
+			},
+			{
+				Name:  "key",
+				Type:  "*int8 ",
+				Value: fmt.Sprintf("%v", key),
+			},
+			{
+				Name:  "value",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", value),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// BridgeSettingRead    c api name: BridgeSettingRead
+// ┌────┬───────────┬────────┬─────────┐
+// │ id │   name    │ c type │ go type │
+// ├────┼───────────┼────────┼─────────┤
+// │ 0  │ errorLine │ int *  │ *int    │
+// ├────┼───────────┼────────┼─────────┤
+// │    │ return    │ bool   │ bool    │
+// └────┴───────────┴────────┴─────────┘
+func (b *bridgemain) BridgeSettingRead(errorLine *int) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/BridgeSettingRead").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "errorLine",
+				Type:  "*int ",
+				Value: fmt.Sprintf("%v", errorLine),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// CopyData    c api name: CopyData
+// ┌────┬──────────┬───────────────────────────────────────┬───────────┐
+// │ id │   name   │                c type                 │  go type  │
+// ├────┼──────────┼───────────────────────────────────────┼───────────┤
+// │ 0  │ listInfo │ ListInfo *                            │ *ListInfo │
+// ├────┼──────────┼───────────────────────────────────────┼───────────┤
+// │ 1  │ listData │ const std::vector<BridgeCFNodeList> & │ any       │
+// ├────┼──────────┼───────────────────────────────────────┼───────────┤
+// │    │ return   │ bool                                  │ bool      │
+// └────┴──────────┴───────────────────────────────────────┴───────────┘
+func (b *bridgemain) CopyData(listInfo *ListInfo, listData any) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/CopyData").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "listInfo",
+				Type:  "*ListInfo ",
+				Value: fmt.Sprintf("%v", listInfo),
+			},
+			{
+				Name:  "listData",
+				Type:  "any",
+				Value: fmt.Sprintf("%v", listData),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// Free    c api name: Free
+// ┌────┬───────────┬───────────────────────────┬────────────────────┐
+// │ id │   name    │          c type           │      go type       │
+// ├────┼───────────┼───────────────────────────┼────────────────────┤
+// │ 0  │ graphList │ const BridgeCFGraphList * │ *BridgeCFGraphList │
+// ├────┼───────────┼───────────────────────────┼────────────────────┤
+// │    │ return    │ void                      │                    │
+// └────┴───────────┴───────────────────────────┴────────────────────┘
+func (b *bridgemain) Free(graphList *BridgeCFGraphList) {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/Free").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "graphList",
+				Type:  "*BridgeCFGraphList ",
+				Value: fmt.Sprintf("%v", graphList),
+			},
+		},
+	))).Request()
+}
+
+// ToVector    c api name: ToVector
+// ┌────┬──────────┬─────────────────────────────────┬───────────┐
+// │ id │   name   │             c type              │  go type  │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │ 0  │ listInfo │ const ListInfo *                │ *ListInfo │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │ 1  │ listData │ std::vector<BridgeCFNodeList> & │ any       │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │ 2  │ freedata │ bool                            │ bool      │
+// ├────┼──────────┼─────────────────────────────────┼───────────┤
+// │    │ return   │ bool                            │ bool      │
+// └────┴──────────┴─────────────────────────────────┴───────────┘
+func (b *bridgemain) ToVector(listInfo *ListInfo, listData any, freedata bool) bool {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/ToVector").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "listInfo",
+				Type:  "*ListInfo ",
+				Value: fmt.Sprintf("%v", listInfo),
+			},
+			{
+				Name:  "listData",
+				Type:  "any",
+				Value: fmt.Sprintf("%v", listData),
+			},
+			{
+				Name:  "freedata",
+				Type:  "bool",
+				Value: fmt.Sprintf("%v", freedata),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// AddNode    c api name: AddNode
+// ┌────┬────────┬──────────────────────┬───────────────┐
+// │ id │  name  │        c type        │    go type    │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │ 0  │ node   │ const BridgeCFNode & │ *BridgeCFNode │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │    │ return │ void                 │               │
+// └────┴────────┴──────────────────────┴───────────────┘
+func (b *bridgemain) AddNode(node *BridgeCFNode) {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/AddNode").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "node",
+				Type:  "*BridgeCFNode ",
+				Value: fmt.Sprintf("%v", node),
+			},
+		},
+	))).Request()
+}
+
+// AddParent    c api name: AddParent
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ child  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ parent │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
+func (b *bridgemain) AddParent(child uint, parent uint) {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/AddParent").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "child",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", child),
+			},
+			{
+				Name:  "parent",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", parent),
+			},
+		},
+	))).Request()
+}
+
+// __builtin_memcpy    c api name: __builtin_memcpy
+// ┌────┬────────┬────────────────────┬─────────┐
+// │ id │  name  │       c type       │ go type │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 0  │        │ void *             │ uintptr │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 1  │        │ const void *       │ uintptr │
+// ├────┼────────┼────────────────────┼─────────┤
+// │ 2  │        │ unsigned long long │ uint64  │
+// ├────┼────────┼────────────────────┼─────────┤
+// │    │ return │ void *             │ uintptr │
+// └────┴────────┴────────────────────┴─────────┘
+func (b *bridgemain) __builtin_memcpy(uintptr, uintptr, uint64) uintptr {
+	Client.Post().Url("http://localhost:8888/bridgemain.h/__builtin_memcpy").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "",
+				Type:  "uintptr",
+				Value: fmt.Sprintf("%v"),
+			},
+			{
+				Name:  "",
+				Type:  "uintptr",
+				Value: fmt.Sprintf("%v"),
+			},
+			{
+				Name:  "",
+				Type:  "uint64",
+				Value: fmt.Sprintf("%v"),
+			},
+		},
+	))).Request()
+	panic("not support return type: void *")
+}

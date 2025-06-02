@@ -17,13 +17,13 @@ type FunctionInfo struct {
 type function struct{}
 
 // Add    c api name: Script::Function::Add
-// ┌────┬────────┬────────────────────────────────────────┬───────────────┐
-// │ id │  name  │                 c type                 │    go type    │
-// ├────┼────────┼────────────────────────────────────────┼───────────────┤
-// │ 0  │ info   │ const Script::Function::FunctionInfo * │ *FunctionInfo │
-// ├────┼────────┼────────────────────────────────────────┼───────────────┤
-// │    │ return │ bool                                   │ bool          │
-// └────┴────────┴────────────────────────────────────────┴───────────────┘
+// ┌────┬────────┬──────────────────────┬───────────────┐
+// │ id │  name  │        c type        │    go type    │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │ 0  │ info   │ const FunctionInfo * │ *FunctionInfo │
+// ├────┼────────┼──────────────────────┼───────────────┤
+// │    │ return │ bool                 │ bool          │
+// └────┴────────┴──────────────────────┴───────────────┘
 func (f *function) Add(info *FunctionInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Add").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -38,19 +38,19 @@ func (f *function) Add(info *FunctionInfo) bool {
 }
 
 // Get    c api name: Script::Function::Get
-// ┌────┬──────────────────┬───────────────────────────┬─────────┐
-// │ id │       name       │          c type           │ go type │
-// ├────┼──────────────────┼───────────────────────────┼─────────┤
-// │ 0  │ addr             │ Script::Function::duint   │ uint    │
-// ├────┼──────────────────┼───────────────────────────┼─────────┤
-// │ 1  │ start            │ Script::Function::duint * │ *uint   │
-// ├────┼──────────────────┼───────────────────────────┼─────────┤
-// │ 2  │ end              │ Script::Function::duint * │ *uint   │
-// ├────┼──────────────────┼───────────────────────────┼─────────┤
-// │ 3  │ instructionCount │ Script::Function::duint * │ *uint   │
-// ├────┼──────────────────┼───────────────────────────┼─────────┤
-// │    │ return           │ bool                      │ bool    │
-// └────┴──────────────────┴───────────────────────────┴─────────┘
+// ┌────┬──────────────────┬─────────┬─────────┐
+// │ id │       name       │ c type  │ go type │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 0  │ addr             │ duint   │ uint    │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 1  │ start            │ duint * │ *uint   │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 2  │ end              │ duint * │ *uint   │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │ 3  │ instructionCount │ duint * │ *uint   │
+// ├────┼──────────────────┼─────────┼─────────┤
+// │    │ return           │ bool    │ bool    │
+// └────┴──────────────────┴─────────┴─────────┘
 func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Get").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -80,15 +80,15 @@ func (f *function) Get(addr uint, start *uint, end *uint, instructionCount *uint
 }
 
 // GetInfo    c api name: Script::Function::GetInfo
-// ┌────┬────────┬──────────────────────────────────┬───────────────┐
-// │ id │  name  │              c type              │    go type    │
-// ├────┼────────┼──────────────────────────────────┼───────────────┤
-// │ 0  │ addr   │ Script::Function::duint          │ uint          │
-// ├────┼────────┼──────────────────────────────────┼───────────────┤
-// │ 1  │ info   │ Script::Function::FunctionInfo * │ *FunctionInfo │
-// ├────┼────────┼──────────────────────────────────┼───────────────┤
-// │    │ return │ bool                             │ bool          │
-// └────┴────────┴──────────────────────────────────┴───────────────┘
+// ┌────┬────────┬────────────────┬───────────────┐
+// │ id │  name  │     c type     │    go type    │
+// ├────┼────────┼────────────────┼───────────────┤
+// │ 0  │ addr   │ duint          │ uint          │
+// ├────┼────────┼────────────────┼───────────────┤
+// │ 1  │ info   │ FunctionInfo * │ *FunctionInfo │
+// ├────┼────────┼────────────────┼───────────────┤
+// │    │ return │ bool           │ bool          │
+// └────┴────────┴────────────────┴───────────────┘
 func (f *function) GetInfo(addr uint, info *FunctionInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetInfo").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -108,15 +108,15 @@ func (f *function) GetInfo(addr uint, info *FunctionInfo) bool {
 }
 
 // Overlaps    c api name: Script::Function::Overlaps
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ start  │ Script::Function::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 1  │ end    │ Script::Function::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ bool                    │ bool    │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ start  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ end    │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ bool   │ bool    │
+// └────┴────────┴────────┴─────────┘
 func (f *function) Overlaps(start uint, end uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Overlaps").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -136,13 +136,13 @@ func (f *function) Overlaps(start uint, end uint) bool {
 }
 
 // Delete    c api name: Script::Function::Delete
-// ┌────┬─────────┬─────────────────────────┬─────────┐
-// │ id │  name   │         c type          │ go type │
-// ├────┼─────────┼─────────────────────────┼─────────┤
-// │ 0  │ address │ Script::Function::duint │ uint    │
-// ├────┼─────────┼─────────────────────────┼─────────┤
-// │    │ return  │ bool                    │ bool    │
-// └────┴─────────┴─────────────────────────┴─────────┘
+// ┌────┬─────────┬────────┬─────────┐
+// │ id │  name   │ c type │ go type │
+// ├────┼─────────┼────────┼─────────┤
+// │ 0  │ address │ duint  │ uint    │
+// ├────┼─────────┼────────┼─────────┤
+// │    │ return  │ bool   │ bool    │
+// └────┴─────────┴────────┴─────────┘
 func (f *function) Delete(address uint) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/Delete").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -157,15 +157,15 @@ func (f *function) Delete(address uint) bool {
 }
 
 // DeleteRange    c api name: Script::Function::DeleteRange
-// ┌────┬────────┬─────────────────────────┬─────────┐
-// │ id │  name  │         c type          │ go type │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 0  │ start  │ Script::Function::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │ 1  │ end    │ Script::Function::duint │ uint    │
-// ├────┼────────┼─────────────────────────┼─────────┤
-// │    │ return │ void                    │         │
-// └────┴────────┴─────────────────────────┴─────────┘
+// ┌────┬────────┬────────┬─────────┐
+// │ id │  name  │ c type │ go type │
+// ├────┼────────┼────────┼─────────┤
+// │ 0  │ start  │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │ 1  │ end    │ duint  │ uint    │
+// ├────┼────────┼────────┼─────────┤
+// │    │ return │ void   │         │
+// └────┴────────┴────────┴─────────┘
 func (f *function) DeleteRange(start uint, end uint) {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/DeleteRange").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
@@ -196,13 +196,13 @@ func (f *function) Clear() {
 }
 
 // GetList    c api name: Script::Function::GetList
-// ┌────┬────────┬──────────────────────────────┬───────────┐
-// │ id │  name  │            c type            │  go type  │
-// ├────┼────────┼──────────────────────────────┼───────────┤
-// │ 0  │ list   │ Script::Function::ListInfo * │ *ListInfo │
-// ├────┼────────┼──────────────────────────────┼───────────┤
-// │    │ return │ bool                         │ bool      │
-// └────┴────────┴──────────────────────────────┴───────────┘
+// ┌────┬────────┬────────────┬───────────┐
+// │ id │  name  │   c type   │  go type  │
+// ├────┼────────┼────────────┼───────────┤
+// │ 0  │ list   │ ListInfo * │ *ListInfo │
+// ├────┼────────┼────────────┼───────────┤
+// │    │ return │ bool       │ bool      │
+// └────┴────────┴────────────┴───────────┘
 func (f *function) GetList(list *ListInfo) bool {
 	Client.Post().Url("http://localhost:8888/_scriptapi_function.h/GetList").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{
