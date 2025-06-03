@@ -42,6 +42,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 		return err
 	}))
 
+	a := astParser{}
 	var methods []string
 	pkgName := filepath.Base(targetDir)
 	result := Result{
@@ -56,7 +57,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 			for _, path := range paths {
 				w.Go(func() {
 					mylog.Info("typedefs from ast dump", path) //collect typedefs,匿名的原因不能第一次获取到名称，名称被存在inner的最后一个节点，所以我们要先通过节点id收集
-					typedefsNameByID(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result)
+					a.typedefsNameByID(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result)
 				})
 			}
 			w.Wait()
@@ -66,7 +67,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 			for _, path := range paths {
 				mylog.Warning("enums,structs,functions", path) //collect from ast parse
 				w.Go(func() {
-					traverseNode(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result, path)
+					a.traverseNode(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result, path)
 				})
 			}
 			w.Wait()
@@ -129,7 +130,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 						params[i] = p.Name + " " + p.Type
 					}
 
-					urlPath := makeUrlPath(path, fn.Name)
+					urlPath := a.makeUrlPath(path, fn.Name)
 					//?GetList@Bookmark@Script@@YA_NPEAUListInfo@@@Z
 					//apiName := fn.Comment.mangledName
 					//if strings.HasPrefix(apiName, "?") { // namespace
@@ -373,7 +374,7 @@ type ApiResponse struct {
 						strconv.Quote(fn.ReturnCType),
 						", .result = ", do, "};")
 
-					urlPath := makeUrlPath(path, fn.Name)
+					urlPath := a.makeUrlPath(path, fn.Name)
 					api.Update(urlPath, cApi{
 						path:       urlPath,
 						CName:      fn.CName,
@@ -660,7 +661,7 @@ void stopHttpServer() {
 }
 
 // 函数式编程有时候比接口和方法或者普通函数的可读性好，逻辑连贯
-type bindStep struct {
+type bindStep struct { //cpp的结构体成员函数，浏览代码和可读性都不错，同时具有接口签名的样式
 	collectTypedefs      func() //dump ast
 	collectAll           func() //parse ast into result for collect enums, struts and functions
 	bindAllFile          func() //... .h .cpp .c into .go
@@ -668,11 +669,11 @@ type bindStep struct {
 	bindMcpCppServerCode func() //disPath_gen.h
 }
 
-func makeUrlPath(path string, fn string) string {
+func (a astParser) makeUrlPath(path string, fn string) string {
 	return fmt.Sprintf("/%s/%s", filepath.Base(path), fn)
 }
 
-func typedefsNameByID(root gjson.Result, result *Result) {
+func (a astParser) typedefsNameByID(root gjson.Result, result *Result) {
 	root.Get("inner").ForEach(func(_, child gjson.Result) bool {
 		if child.Get("kind").String() == "TypedefDecl" {
 			id := child.Get("inner.0.ownedTagDecl.id").String()
@@ -779,7 +780,7 @@ func clangExec(inputHeader string) bytes.Buffer {
 	return buf
 }
 
-func needSkip(n gjson.Result) bool {
+func (a astParser) needSkip(n gjson.Result) bool {
 	kind := n.Get("kind").String()
 	if kind == "BuiltinType" {
 		return true
@@ -790,7 +791,7 @@ func needSkip(n gjson.Result) bool {
 	return false
 }
 
-func traverseNode(node gjson.Result, result *Result, path string) {
+func (a astParser) traverseNode(node gjson.Result, result *Result, path string) {
 	var processNode func(gjson.Result, string)
 	processNode = func(n gjson.Result, namespace string) {
 		name := n.Get("name").String()
@@ -802,7 +803,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 			includedFrom: n.Get("range.begin.includedFrom.file").String(),
 			expansionLoc: n.Get("range.begin.expansionLoc.file").String(),
 		}
-		if needSkip(n) {
+		if a.needSkip(n) {
 			return
 		}
 		kind := n.Get("kind").String()
@@ -817,7 +818,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 				}
 				name = value
 			}
-			enum := parseEnum(n)
+			enum := a.parseEnum(n)
 			if enum.Name == "" {
 				if name == "" {
 					return
@@ -851,7 +852,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 				}
 			}
 
-			object := parseStruct(n, namespace)
+			object := a.parseStruct(n, namespace)
 			if object.Name == "" {
 				if name == "" {
 					return
@@ -889,7 +890,7 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 					return
 				}
 			}
-			function := parseFunction(n, namespace)
+			function := a.parseFunction(n, namespace)
 			if function.Name == "" {
 				if name == "" {
 					return
@@ -906,15 +907,15 @@ func traverseNode(node gjson.Result, result *Result, path string) {
 		})
 	}
 
-	processNode(node, finedNamespace(node))
+	processNode(node, a.finedNamespace(node))
 }
 
-func finedNamespace(node gjson.Result) string {
+func (a astParser) finedNamespace(node gjson.Result) string {
 	var namespace []string
 	var traverseInner func(gjson.Result)
 	traverseInner = func(inner gjson.Result) {
 		inner.ForEach(func(_, child gjson.Result) bool {
-			if needSkip(child) {
+			if a.needSkip(child) {
 				return true
 			}
 			if child.Get("kind").String() == "NamespaceDecl" {
@@ -931,18 +932,18 @@ func finedNamespace(node gjson.Result) string {
 	return ""
 }
 
-func parseEnum(node gjson.Result) EnumInfo {
+func (a astParser) parseEnum(node gjson.Result) EnumInfo {
 	info := EnumInfo{
 		Name: node.Get("name").String(),
-		Loc:  formatLoc(node.Get("loc")),
+		Loc:  a.formatLoc(node.Get("loc")),
 	}
 
 	nextValue := 0
 	node.Get("inner").ForEach(func(_, member gjson.Result) bool {
 		if member.Get("kind").String() == "EnumConstantDecl" {
-			explicit, computed := resolveEnumValue(member, nextValue)
+			explicit, computed := a.resolveEnumValue(member, nextValue)
 			if explicit != "" {
-				if val, e := parseNumber(explicit); e == nil {
+				if val, e := a.parseNumber(explicit); e == nil {
 					nextValue = val + 1
 				}
 			} else {
@@ -961,11 +962,11 @@ func parseEnum(node gjson.Result) EnumInfo {
 	return info
 }
 
-func parseStruct(node gjson.Result, namespace string) StructInfo {
+func (a astParser) parseStruct(node gjson.Result, namespace string) StructInfo {
 	info := StructInfo{
 		Name:    node.Get("name").String(),
 		CName:   namespace + node.Get("name").String(),
-		Loc:     formatLoc(node.Get("loc")),
+		Loc:     a.formatLoc(node.Get("loc")),
 		IsImpl:  node.Get("isImplicit").Bool(),
 		Fields:  nil,
 		Methods: nil,
@@ -988,10 +989,10 @@ func parseStruct(node gjson.Result, namespace string) StructInfo {
 			info.Fields = append(info.Fields, StructField{
 				Name:     name,
 				Type:     child.Get("type.qualType").String(),
-				TypeDecl: resolveType(child.Get("type")),
+				TypeDecl: a.resolveType(child.Get("type")),
 			})
 		case "CXXMethodDecl":
-			fn := parseFunction(child, namespace)
+			fn := a.parseFunction(child, namespace)
 			fn.IsMethod = true
 			fn.ReceiverType = info.Name
 			info.Methods = append(info.Methods, fn)
@@ -1002,15 +1003,15 @@ func parseStruct(node gjson.Result, namespace string) StructInfo {
 	return info
 }
 
-func parseFunction(node gjson.Result, namespace string) FunctionInfo {
+func (a astParser) parseFunction(node gjson.Result, namespace string) FunctionInfo {
 	ReturnType := node.Get("type.qualType")
 	split := strings.Split(ReturnType.String(), "(")
 	info := FunctionInfo{
 		Name:         node.Get("name").String(),
 		CName:        namespace + node.Get("name").String(),
 		namespace:    namespace,
-		Loc:          formatLoc(node.Get("loc")),
-		ReturnType:   handleQualType(strings.TrimSpace(split[0])),
+		Loc:          a.formatLoc(node.Get("loc")),
+		ReturnType:   a.handleQualType(strings.TrimSpace(split[0])),
 		ReturnCType:  strings.TrimSpace(split[0]),
 		Params:       nil,
 		IsMethod:     false,
@@ -1031,7 +1032,7 @@ func parseFunction(node gjson.Result, namespace string) FunctionInfo {
 			info.Params = append(info.Params, FunctionParam{
 				Name:    name,
 				CName:   param.Get("name").String(),
-				Type:    resolveType(param.Get("type")),
+				Type:    a.resolveType(param.Get("type")),
 				CType:   param.Get("type.qualType").String(),
 				Comment: Comment{},
 			})
@@ -1042,7 +1043,7 @@ func parseFunction(node gjson.Result, namespace string) FunctionInfo {
 	return info
 }
 
-func resolveEnumValue(node gjson.Result, defaultVal int) (string, int) {
+func (a astParser) resolveEnumValue(node gjson.Result, defaultVal int) (string, int) {
 	var explicit string
 	node.Get("inner").ForEach(func(_, child gjson.Result) bool {
 		if child.Get("value").Exists() {
@@ -1055,7 +1056,7 @@ func resolveEnumValue(node gjson.Result, defaultVal int) (string, int) {
 		explicit = node.Get("init.value").String()
 	}
 	if explicit != "" {
-		val, e := parseNumber(explicit)
+		val, e := a.parseNumber(explicit)
 		if e != nil {
 			mylog.CheckIgnore(e)
 			return "", defaultVal
@@ -1065,7 +1066,7 @@ func resolveEnumValue(node gjson.Result, defaultVal int) (string, int) {
 	return "", defaultVal
 }
 
-func parseNumber(s string) (int, error) {
+func (a astParser) parseNumber(s string) (int, error) {
 	base := 10
 	if strings.HasPrefix(s, "0x") {
 		s = s[2:]
@@ -1080,11 +1081,11 @@ func parseNumber(s string) (int, error) {
 	return strconv.Atoi(s)
 }
 
-func resolveType(typeNode gjson.Result) string {
-	return handleQualType(typeNode.Get("qualType").String())
+func (a astParser) resolveType(typeNode gjson.Result) string {
+	return a.handleQualType(typeNode.Get("qualType").String())
 }
 
-func handleQualType(qualType string) string {
+func (a astParser) handleQualType(qualType string) string {
 	qualType = strings.TrimPrefix(qualType, "const ")
 	switch {
 	case strings.Contains(qualType, "std::"): //skip stl
@@ -1216,7 +1217,7 @@ func handleQualType(qualType string) string {
 	return s
 }
 
-func formatLoc(loc gjson.Result) string {
+func (a astParser) formatLoc(loc gjson.Result) string {
 	if !loc.Exists() {
 		return ""
 	}
@@ -1226,6 +1227,8 @@ func formatLoc(loc gjson.Result) string {
 	)
 }
 
+type astParser struct {
+}
 type (
 	EnumMember struct {
 		Name          string
