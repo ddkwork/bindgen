@@ -74,6 +74,19 @@ struct ApiResponse {
 
 namespace nlohmann {
     template<>
+    struct adl_serializer<Script::Comment::CommentInfo> {
+        static void to_json(json &j, const Script::Comment::CommentInfo &self) {
+            j = {
+
+                    {"mod", self.mod},
+                    {"rva", self.rva},
+                    {"text", self.text},
+                    {"manual", self.manual},
+            };
+        }
+    };
+
+    template<>
     struct adl_serializer<Script::Argument::ArgumentInfo> {
         static void to_json(json &j, const Script::Argument::ArgumentInfo &self) {
             j = {
@@ -88,51 +101,14 @@ namespace nlohmann {
     };
 
     template<>
-    struct adl_serializer<Script::Comment::CommentInfo> {
-        static void to_json(json &j, const Script::Comment::CommentInfo &self) {
+    struct adl_serializer<Script::Label::LabelInfo> {
+        static void to_json(json &j, const Script::Label::LabelInfo &self) {
             j = {
 
                     {"mod", self.mod},
                     {"rva", self.rva},
                     {"text", self.text},
                     {"manual", self.manual},
-            };
-        }
-    };
-
-    template<>
-    struct adl_serializer<Script::Function::FunctionInfo> {
-        static void to_json(json &j, const Script::Function::FunctionInfo &self) {
-            j = {
-
-                    {"mod", self.mod},
-                    {"rvaStart", self.rvaStart},
-                    {"rvaEnd", self.rvaEnd},
-                    {"manual", self.manual},
-                    {"instructioncount", self.instructioncount},
-            };
-        }
-    };
-
-    template<>
-    struct adl_serializer<Script::Bookmark::BookmarkInfo> {
-        static void to_json(json &j, const Script::Bookmark::BookmarkInfo &self) {
-            j = {
-
-                    {"mod", self.mod},
-                    {"rva", self.rva},
-                    {"manual", self.manual},
-            };
-        }
-    };
-
-    template<>
-    struct adl_serializer<SYMBOLPTR_> {
-        static void to_json(json &j, const SYMBOLPTR_ &self) {
-            j = {
-
-                    {"modbase", self.modbase},
-                    {"symbol", self.symbol},
             };
         }
     };
@@ -195,14 +171,38 @@ namespace nlohmann {
     };
 
     template<>
-    struct adl_serializer<Script::Label::LabelInfo> {
-        static void to_json(json &j, const Script::Label::LabelInfo &self) {
+    struct adl_serializer<Script::Bookmark::BookmarkInfo> {
+        static void to_json(json &j, const Script::Bookmark::BookmarkInfo &self) {
             j = {
 
                     {"mod", self.mod},
                     {"rva", self.rva},
-                    {"text", self.text},
                     {"manual", self.manual},
+            };
+        }
+    };
+
+    template<>
+    struct adl_serializer<Script::Function::FunctionInfo> {
+        static void to_json(json &j, const Script::Function::FunctionInfo &self) {
+            j = {
+
+                    {"mod", self.mod},
+                    {"rvaStart", self.rvaStart},
+                    {"rvaEnd", self.rvaEnd},
+                    {"manual", self.manual},
+                    {"instructioncount", self.instructioncount},
+            };
+        }
+    };
+
+    template<>
+    struct adl_serializer<SYMBOLPTR_> {
+        static void to_json(json &j, const SYMBOLPTR_ &self) {
+            j = {
+
+                    {"modbase", self.modbase},
+                    {"symbol", self.symbol},
             };
         }
     };

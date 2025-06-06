@@ -9,14 +9,14 @@ import (
 type FlagEnum int //:10
 const (
 	ZF FlagEnum = iota
-	OF1
-	CF2
-	PF3
-	SF4
-	TF5
-	AF6
-	DF7
-	IF8
+	OF          = 1
+	CF          = 2
+	PF          = 3
+	SF          = 4
+	TF          = 5
+	AF          = 6
+	DF          = 7
+	IF          = 8
 )
 
 type flag struct{}

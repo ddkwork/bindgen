@@ -9,11 +9,11 @@ import (
 type Window int //:52
 const (
 	DisassemblyWindow Window = iota
-	DumpWindow1
-	StackWindow2
-	GraphWindow3
-	MemMapWindow4
-	SymModWindow5
+	DumpWindow               = 1
+	StackWindow              = 2
+	GraphWindow              = 3
+	MemMapWindow             = 4
+	SymModWindow             = 5
 )
 
 type gui struct{}

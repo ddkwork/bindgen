@@ -8,92 +8,92 @@ import (
 
 type RegisterEnum int //:10
 const (
-	DR0 RegisterEnum = iota
-	DR11
-	DR22
-	DR33
-	DR64
-	DR75
-	EAX6
-	AX7
-	AH8
-	AL9
-	EBX10
-	BX11
-	BH12
-	BL13
-	ECX14
-	CX15
-	CH16
-	CL17
-	EDX18
-	DX19
-	DH20
-	DL21
-	EDI22
-	DI23
-	ESI24
-	SI25
-	EBP26
-	BP27
-	ESP28
-	SP29
-	EIP30
-	RAX31
-	RBX32
-	RCX33
-	RDX34
-	RSI35
-	SIL36
-	RDI37
-	DIL38
-	RBP39
-	BPL40
-	RSP41
-	SPL42
-	RIP43
-	R844
-	R8D45
-	R8W46
-	R8B47
-	R948
-	R9D49
-	R9W50
-	R9B51
-	R1052
-	R10D53
-	R10W54
-	R10B55
-	R1156
-	R11D57
-	R11W58
-	R11B59
-	R1260
-	R12D61
-	R12W62
-	R12B63
-	R1364
-	R13D65
-	R13W66
-	R13B67
-	R1468
-	R14D69
-	R14W70
-	R14B71
-	R1572
-	R15D73
-	R15W74
-	R15B75
-	CIP76
-	CSP77
-	CAX78
-	CBX79
-	CCX80
-	CDX81
-	CDI82
-	CSI83
-	CBP84
-	CFLAGS85
+	DR0    RegisterEnum = iota
+	DR1                 = 1
+	DR2                 = 2
+	DR3                 = 3
+	DR6                 = 4
+	DR7                 = 5
+	EAX                 = 6
+	AX                  = 7
+	AH                  = 8
+	AL                  = 9
+	EBX                 = 10
+	BX                  = 11
+	BH                  = 12
+	BL                  = 13
+	ECX                 = 14
+	CX                  = 15
+	CH                  = 16
+	CL                  = 17
+	EDX                 = 18
+	DX                  = 19
+	DH                  = 20
+	DL                  = 21
+	EDI                 = 22
+	DI                  = 23
+	ESI                 = 24
+	SI                  = 25
+	EBP                 = 26
+	BP                  = 27
+	ESP                 = 28
+	SP                  = 29
+	EIP                 = 30
+	RAX                 = 31
+	RBX                 = 32
+	RCX                 = 33
+	RDX                 = 34
+	RSI                 = 35
+	SIL                 = 36
+	RDI                 = 37
+	DIL                 = 38
+	RBP                 = 39
+	BPL                 = 40
+	RSP                 = 41
+	SPL                 = 42
+	RIP                 = 43
+	R8                  = 44
+	R8D                 = 45
+	R8W                 = 46
+	R8B                 = 47
+	R9                  = 48
+	R9D                 = 49
+	R9W                 = 50
+	R9B                 = 51
+	R10                 = 52
+	R10D                = 53
+	R10W                = 54
+	R10B                = 55
+	R11                 = 56
+	R11D                = 57
+	R11W                = 58
+	R11B                = 59
+	R12                 = 60
+	R12D                = 61
+	R12W                = 62
+	R12B                = 63
+	R13                 = 64
+	R13D                = 65
+	R13W                = 66
+	R13B                = 67
+	R14                 = 68
+	R14D                = 69
+	R14W                = 70
+	R14B                = 71
+	R15                 = 72
+	R15D                = 73
+	R15W                = 74
+	R15B                = 75
+	CIP                 = 76
+	CSP                 = 77
+	CAX                 = 78
+	CBX                 = 79
+	CCX                 = 80
+	CDX                 = 81
+	CDI                 = 82
+	CSI                 = 83
+	CBP                 = 84
+	CFLAGS              = 85
 )
 
 type register struct{}

@@ -8,9 +8,9 @@ import (
 
 type HardwareType int //:10
 const (
-	HardwareAccess HardwareType = iota
-	HardwareWrite1
-	HardwareExecute2
+	HardwareAccess  HardwareType = iota
+	HardwareWrite                = 1
+	HardwareExecute              = 2
 )
 
 type debug struct{}

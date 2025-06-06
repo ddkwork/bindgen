@@ -83,15 +83,22 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 					g.P("const (")
 					for i, m := range enum.Members {
 						line := m.Name
-						if i == 0 {
-							line += " " + enum.Name + " = iota "
-						} else if m.ExplicitValue != "" {
-							line += " = " + m.ExplicitValue
+						if m.Name == "flagmodule" {
+							println()
 						}
-						if m.ComputedValue > 0 { //todo bug
-							g.P(line, m.ComputedValue)
-						} else {
+						switch i {
+						case 0:
+							line += " " + enum.Name + " = iota "
+							if m.ExplicitValue != "" {
+								line += " + " + m.ExplicitValue
+							}
 							g.P(line)
+						default:
+							if m.ComputedValue > 0 {
+								g.P(line, "=", m.ComputedValue)
+							} else {
+								g.P(line)
+							}
 						}
 					}
 					g.P(")")
@@ -664,7 +671,6 @@ type bindStep struct { //cpp的结构体成员函数，浏览代码和可读性�
 	bindSdkEntryFile     func() //sdk_gen.go for manner all method
 	bindMcpCppServerCode func() //disPath_gen.h
 }
-
 
 func (a astParser) makeUrlPath(path string, fn string) string {
 	return fmt.Sprintf("/%s/%s", filepath.Base(path), fn)

@@ -9,8 +9,8 @@ import (
 type SymbolType int //:10
 const (
 	Function SymbolType = iota
-	Import1
-	Export2
+	Import              = 1
+	Export              = 2
 )
 
 // SymbolInfo (:17 )

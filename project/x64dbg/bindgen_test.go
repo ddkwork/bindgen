@@ -2,7 +2,6 @@ package main
 
 import (
 	"io/fs"
-	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -46,7 +45,7 @@ func TestName(t *testing.T) {
 }
 
 func TestWalk(t *testing.T) {
-	os.RemoveAll("cache")
+	//os.RemoveAll("cache")
 	//bindgen.Flags = ""
 	RepackSdk()
 	bindgen.Walk(
