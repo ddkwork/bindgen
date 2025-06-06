@@ -665,21 +665,6 @@ type bindStep struct { //cpp的结构体成员函数，浏览代码和可读性�
 	bindMcpCppServerCode func() //disPath_gen.h
 }
 
-type astProvider struct {
-	makeUrlPath      func(path string, fn string) string
-	typedefsNameByID func(root gjson.Result, result *Result)
-	needSkip         func(n gjson.Result) bool
-	traverseNode     func(node gjson.Result, result *Result, path string)
-	finedNamespace   func(node gjson.Result) string
-	parseEnum        func(node gjson.Result) EnumInfo
-	parseStruct      func(node gjson.Result, namespace string) StructInfo
-	parseFunction    func(node gjson.Result, namespace string) FunctionInfo
-	resolveEnumValue func(node gjson.Result, defaultVal int) (string, int)
-	parseNumber      func(s string) (int, error)
-	resolveType      func(typeNode gjson.Result) string
-	handleQualType   func(qualType string) string
-	formatLoc        func(loc gjson.Result) string
-}
 
 func (a astParser) makeUrlPath(path string, fn string) string {
 	return fmt.Sprintf("/%s/%s", filepath.Base(path), fn)
