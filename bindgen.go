@@ -2,26 +2,22 @@ package bindgen
 
 import (
 	"bytes"
-	"context"
 	"fmt"
 	"github.com/aquasecurity/table"
-	"github.com/ddkwork/golibrary/clang"
+	"github.com/ddkwork/ddk/vswhere"
+	"github.com/ddkwork/golibrary/std/clang"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/safemap"
+	"github.com/ddkwork/golibrary/std/stream"
+	"github.com/ddkwork/golibrary/std/waitgroup"
+	"github.com/tidwall/gjson"
 	"io/fs"
 	"net/url"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"slices"
 	"strconv"
 	"strings"
-	"sync"
-
-	"github.com/ddkwork/ddk/vswhere"
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/safemap"
-	"github.com/ddkwork/golibrary/stream"
-	"github.com/ddkwork/golibrary/waitgroup"
-	"github.com/tidwall/gjson"
 )
 
 type (
@@ -55,8 +51,8 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 		collectTypedefs: func() {
 			w := waitgroup.New()
 			for _, path := range paths {
+				mylog.Info("typedefs from ast dump", path) //collect typedefs,匿名的原因不能第一次获取到名称，名称被存在inner的最后一个节点，所以我们要先通过节点id收集
 				w.Go(func() {
-					mylog.Info("typedefs from ast dump", path) //collect typedefs,匿名的原因不能第一次获取到名称，名称被存在inner的最后一个节点，所以我们要先通过节点id收集
 					a.typedefsNameByID(gjson.ParseBytes(runClangASTDump(path, cModelCallback)), &result)
 				})
 			}
@@ -184,7 +180,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 					/////////////////////////////////////////////////////////
 
 					g.P("func (", string(methodName[0]), " *", methodName, ") ", fn.Name, "(", strings.Join(params, ", "), ")", fn.ReturnType, "{")
-					g.AddImport("github.com/ddkwork/golibrary/mylog")
+					g.AddImport("github.com/ddkwork/golibrary/std/mylog")
 					g.AddImport("encoding/json")
 					g.P(" ", "Client.Post().Url(", strconv.Quote(mylog.Check2(url.JoinPath("http://localhost:8888", urlPath))), ").SetJsonHead().Body(mylog.Check2(json.Marshal(")
 					g.P("  []Param{")
@@ -249,7 +245,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 
 		},
 		bindSdkEntryFile: func() {
-			mylog.Info("gen sdk_gen.go for manage all methods")
+			mylog.Info("", "gen sdk_gen.go for manage all methods")
 			g := stream.NewGeneratedFile()
 			g.P("type Sdk struct {")
 			for _, m := range methods {
@@ -277,14 +273,14 @@ type ApiResponse struct {
 }
 `
 			g.P(body)
-			g.AddImport("github.com/ddkwork/golibrary/stream/net/httpClient")
+			g.AddImport("github.com/ddkwork/golibrary/std/stream/net/httpClient")
 			g.P("  var Client=     httpClient.New()\n")
 
 			g.InsertPackageWithImports(pkgName)
 			stream.WriteGoFile(filepath.Join(targetDir, "sdk_gen.go"), g.String())
 		},
 		bindMcpCppServerCode: func() {
-			mylog.Info("start gen mcp cpp server dispatch header file")
+			mylog.Info("", "start gen mcp cpp server dispatch header file")
 			type cApi struct {
 				path       string
 				CName      string
@@ -385,10 +381,10 @@ type ApiResponse struct {
 				}
 			}
 
-			mylog.Info("dump mcp cpp server code context to json file")
+			mylog.Info("", "dump mcp cpp server code context to json file")
 			stream.MarshalJsonToFile(api.Map(), filepath.Join(targetDir, "a.json"))
 
-			mylog.Info("gen mcp cpp reflect struct template codes from ast structs")
+			mylog.Info("", "gen mcp cpp reflect struct template codes from ast structs")
 			gMarshal := stream.NewGeneratedFile()
 			var marshals = new(safemap.M[string, string])
 			for _, s := range result.Structs.Range() {
@@ -600,7 +596,7 @@ void stopHttpServer() {
 			}
 			g.P("}// namespace nlohmann")
 
-			mylog.Info("gen mcp cpp server dispatch functions")
+			mylog.Info("", "gen mcp cpp server dispatch functions")
 			g.P("void dispatch() {")
 			for path, a := range api.Range() {
 				g.P("    server.Post(", strconv.Quote(path), ", [](const Request &req, Response &res) {")
@@ -646,7 +642,7 @@ void stopHttpServer() {
 			g.P(end)
 			stream.WriteTruncate("echo_gen.h", g.String())
 			clang.New().Format("echo_gen.h")
-			mylog.Success("gen mcp cpp server dispatch functions success")
+			mylog.Success("", "gen mcp cpp server dispatch functions success")
 
 			//todo
 			//stream.RunCommandArgs("cmake", "--build", "cmake-build-debug", "--target", "MCPx64dbg", "-j", "6")
@@ -657,7 +653,7 @@ void stopHttpServer() {
 	step.bindAllFile()
 	step.bindSdkEntryFile()
 	step.bindMcpCppServerCode()
-	mylog.Success("bind success, all work done")
+	mylog.Success("all bind work done")
 }
 
 // 函数式编程有时候比接口和方法或者普通函数的可读性好，逻辑连贯
@@ -667,6 +663,22 @@ type bindStep struct { //cpp的结构体成员函数，浏览代码和可读性�
 	bindAllFile          func() //... .h .cpp .c into .go
 	bindSdkEntryFile     func() //sdk_gen.go for manner all method
 	bindMcpCppServerCode func() //disPath_gen.h
+}
+
+type astProvider struct {
+	makeUrlPath      func(path string, fn string) string
+	typedefsNameByID func(root gjson.Result, result *Result)
+	needSkip         func(n gjson.Result) bool
+	traverseNode     func(node gjson.Result, result *Result, path string)
+	finedNamespace   func(node gjson.Result) string
+	parseEnum        func(node gjson.Result) EnumInfo
+	parseStruct      func(node gjson.Result, namespace string) StructInfo
+	parseFunction    func(node gjson.Result, namespace string) FunctionInfo
+	resolveEnumValue func(node gjson.Result, defaultVal int) (string, int)
+	parseNumber      func(s string) (int, error)
+	resolveType      func(typeNode gjson.Result) string
+	handleQualType   func(qualType string) string
+	formatLoc        func(loc gjson.Result) string
 }
 
 func (a astParser) makeUrlPath(path string, fn string) string {
@@ -731,53 +743,9 @@ func runClangASTDump(path string, cModelCallback ClangCModelCallback) []byte {
 	}
 	arg = append(arg, "-I", filepath.Dir(path))
 	arg = append(arg, path)
-
-	b := clangExec(path)
-	stream.WriteTruncate(jsonPath, b.Bytes())
-	return b.Bytes()
-
-	out := stream.RunCommandArgs(arg...) //todo remove lock or set callback save ast?
-	stream.WriteTruncate(jsonPath, out.Stdout)
-	return out.Stdout.Bytes()
-}
-func clangExec(inputHeader string) bytes.Buffer {
-
-	clangArgs := []string{`-x`, `c++`}
-	//clangArgs = append(clangArgs, cflags...)
-	clangArgs = append(clangArgs, `-Xclang`, `-ast-dump=json`, `-fsyntax-only`, inputHeader)
-
-	cmd := exec.CommandContext(context.Background(), "clang", clangArgs...)
-	pr, err := cmd.StdoutPipe()
-	if err != nil {
-		mylog.Check(err)
-	}
-
-	cmd.Stderr = os.Stderr
-
-	err = cmd.Start()
-	if err != nil {
-		mylog.Check(err)
-	}
-
-	var buf bytes.Buffer
-	var wg sync.WaitGroup
-
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		buf.ReadFrom(pr)
-	}()
-
-	// Go documentation says: only call cmd.Wait once all reads from the
-	// StdoutPipe have completed
-	wg.Wait()
-
-	err = cmd.Wait()
-	if err != nil {
-		mylog.CheckIgnore(err) //resl error is in os.stderr
-	}
-
-	return buf
+	out := stream.RunCommand(arg...)
+	stream.WriteTruncate(jsonPath, out.Bytes())
+	return out.Bytes()
 }
 
 func (a astParser) needSkip(n gjson.Result) bool {

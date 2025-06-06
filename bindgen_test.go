@@ -4,8 +4,8 @@ import (
 	"bytes"
 	_ "embed"
 	"fmt"
-	"github.com/ddkwork/golibrary/clang"
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/clang"
+	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/tidwall/gjson"
 	"os"
 	"regexp"
@@ -13,7 +13,7 @@ import (
 	"testing"
 	"text/template"
 
-	"github.com/ddkwork/golibrary/assert"
+	"github.com/ddkwork/golibrary/std/assert"
 )
 
 func TestBug(t *testing.T) {

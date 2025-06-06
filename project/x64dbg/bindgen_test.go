@@ -2,13 +2,14 @@ package main
 
 import (
 	"io/fs"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 
 	"github.com/ddkwork/bindgen"
-	"github.com/ddkwork/golibrary/assert"
-	"github.com/ddkwork/golibrary/stream"
+	"github.com/ddkwork/golibrary/std/assert"
+	"github.com/ddkwork/golibrary/std/stream"
 )
 
 const (
@@ -45,7 +46,8 @@ func TestName(t *testing.T) {
 }
 
 func TestWalk(t *testing.T) {
-	//os.RemoveAll("cache")
+
+	os.RemoveAll("cache")
 	//bindgen.Flags = ""
 	RepackSdk()
 	bindgen.Walk(

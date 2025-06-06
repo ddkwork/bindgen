@@ -2,7 +2,7 @@ package sdk
 
 import (
 	"encoding/json"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 )
 
 type Sdk struct {
