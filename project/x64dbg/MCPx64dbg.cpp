@@ -45,14 +45,22 @@ void pluginStop() {
 }
 
 // Plugin setup
-bool pluginSetup() { return true; }
+bool pluginSetup() {
+    return true;
+}
 
 // Plugin exports
-extern "C" __declspec(dllexport) bool pluginit(PLUG_INITSTRUCT *initStruct) { return pluginInit(initStruct); }
+extern "C" __declspec(dllexport) bool pluginit(PLUG_INITSTRUCT *initStruct) {
+    return pluginInit(initStruct);
+}
 
-extern "C" __declspec(dllexport) void plugstop() { pluginStop(); }
+extern "C" __declspec(dllexport) void plugstop() {
+    pluginStop();
+}
 
-extern "C" __declspec(dllexport) void plugsetup(PLUG_SETUPSTRUCT *setupStruct) { pluginSetup(); }
+extern "C" __declspec(dllexport) void plugsetup(PLUG_SETUPSTRUCT *setupStruct) {
+    pluginSetup();
+}
 
 // Register plugin commands
 void registerCommands() {

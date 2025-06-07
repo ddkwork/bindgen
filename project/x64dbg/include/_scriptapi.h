@@ -1,7 +1,6 @@
 #ifndef _SCRIPTAPI_H_
 #define _SCRIPTAPI_H_
 
-
 //dispatch build need
 #include "../json.hpp"
 #include "../pluginsdk/_scriptapi.h"
@@ -24,14 +23,15 @@
 #include "../pluginsdk/_scriptapi_symbol.h"
 
 using json = nlohmann::json;
+
 struct ApiResponse {
     bool        success;
     std::string type;//return go type
     json        result;
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(ApiResponse, success, type, result)
 };
-#endif //_SCRIPTAPI_H_
-/*  clang dump ast need
+#endif//_SCRIPTAPI_H_
+      /*  clang dump ast need
 #define MAX_PATH 256
 #define MAX_LABEL_SIZE 256
 #define MAX_COMMENT_SIZE 512

@@ -44,40 +44,40 @@ namespace api {
                     .type = "AssemblerResult",
                     .result = result,
             };//dest[16], error[MAX_ERROR_SIZE]
-            };//dest[16], error[MAX_ERROR_SIZE]
+        };//dest[16], error[MAX_ERROR_SIZE]
 
-            ApiResponse AssembleMem(duint addr, std::string instruction) {
-                unsigned char dest[16] = {0};
-                int           size = 0;
-                auto          ok = Script::Assembler::AssembleMem(addr, instruction.c_str());
-                auto          result = AssemblerResult{
-                                 .size = size,
-                                 .dest = reinterpret_cast<const char *const>(dest),
-                                 .error = "",
-                };
-                return ApiResponse{
-                        .success = ok,
-                        .type = "AssemblerResult",
-                        .result = result,
-                };
+        ApiResponse AssembleMem(duint addr, std::string instruction) {
+            unsigned char dest[16] = {0};
+            int           size = 0;
+            auto          ok = Script::Assembler::AssembleMem(addr, instruction.c_str());
+            auto          result = AssemblerResult{
+                             .size = size,
+                             .dest = reinterpret_cast<const char *const>(dest),
+                             .error = "",
             };
+            return ApiResponse{
+                    .success = ok,
+                    .type = "AssemblerResult",
+                    .result = result,
+            };
+        };
 
-            ApiResponse AssembleMemEx(duint addr, std::string instruction, bool fillnop) {
-                char err[MAX_ERROR_SIZE] = {0};
-                int  size = 0;
-                auto ok = Script::Assembler::AssembleMemEx(addr, instruction.c_str(), &size, const_cast<char *>(err), fillnop);
-                auto result = AssemblerResult{
-                        .size = size,
-                        .dest = "",
-                        .error = std::string(err),
-                };
-                return ApiResponse{
-                        .success = ok,
-                        .type = "AssemblerResult",
-                        .result = result,
-                };
-            };//error[MAX_ERROR_SIZE]
-        };// namespace Assembler
-    };// namespace api
+        ApiResponse AssembleMemEx(duint addr, std::string instruction, bool fillnop) {
+            char err[MAX_ERROR_SIZE] = {0};
+            int  size = 0;
+            auto ok = Script::Assembler::AssembleMemEx(addr, instruction.c_str(), &size, const_cast<char *>(err), fillnop);
+            auto result = AssemblerResult{
+                    .size = size,
+                    .dest = "",
+                    .error = std::string(err),
+            };
+            return ApiResponse{
+                    .success = ok,
+                    .type = "AssemblerResult",
+                    .result = result,
+            };
+        };//error[MAX_ERROR_SIZE]
+    };// namespace Assembler
+};// namespace api
 
 #endif//_API_ASSEMBLER_H
