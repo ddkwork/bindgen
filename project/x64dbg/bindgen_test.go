@@ -1,8 +1,11 @@
 package main
 
 import (
+	"github.com/ddkwork/golibrary/std/mylog"
 	"io/fs"
+	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -25,7 +28,22 @@ func TestDecodeNamespace(t *testing.T) {
 }
 
 func TestNew(t *testing.T) {
-	//stream.RunCommandArgs("cmake", "--build", "cmake-build-debug", "--target", "MCPx64dbg", "-j", "6")
+	//cmake -G "Visual Studio 17 2022" -A x64 ^
+	//-S D:\workspace\workspace\bindgen\project\x64dbg ^
+	//-B D:\workspace\workspace\bindgen\project\x64dbg\cmake-build-debug
+	//
+	//cmake --build D:\workspace\workspace\bindgen\project\x64dbg\cmake-build-debug ^
+	//--target MCPx64dbg --config Debug -j 6
+
+	os.RemoveAll("cmake-build-debug")
+	g := stream.NewGeneratedFile()
+	abs := mylog.Check2(filepath.Abs("."))
+	outDir := filepath.Join(abs, "cmake-build-debug")
+	vs2022 := "Visual Studio 17 2022"
+	g.P("cmake -G "+strconv.Quote(vs2022), " -A x64 -S "+abs, " -B ", outDir)
+	g.P("cmake --build ", outDir, " --target MCPx64dbg --config Debug -j 6")
+
+	stream.RunCommand(g.String())
 
 	//s := sdk.New()
 	//s.Register.GetEAX()
@@ -48,12 +66,13 @@ func TestWalk(t *testing.T) {
 	//os.RemoveAll("cache")
 	//bindgen.Flags = ""
 	RepackSdk()
+	return
 	bindgen.Walk(
 		newSdk,
 		targetDir,
 		func(s string) bool {
 			for k := range map[string]bool{
-				//"_plugins.h": true,
+				"bridgemain.h": true,
 			} {
 				if filepath.Base(s) == k {
 					return false

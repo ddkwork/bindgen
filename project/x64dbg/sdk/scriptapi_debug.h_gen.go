@@ -13,6 +13,12 @@ const (
 	HardwareExecute              = 2
 )
 
+// ListInfo (D:\workspace\workspace\bindgen\project\x64dbg\include\bridgelist.h:4 )
+type ListInfo struct {
+	count int     // C type: int
+	size  uint    // C type: size_t
+	data  uintptr // C type: void *
+}
 type debug struct{}
 
 // Wait    c api name: Script::Debug::Wait
@@ -188,6 +194,184 @@ func (d *debug) StepOut() {
 	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/StepOut").SetJsonHead().Body(mylog.Check2(json.Marshal(
 		[]Param{},
 	))).Request()
+}
+
+// SetBreakpoint    c api name: Script::Debug::SetBreakpoint
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ address              │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ bool                                                         │ bool    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\_scriptapi_debug.h                                   │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ SetBreakpoint                                                │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?SetBreakpoint@Debug@Script@@YA_N_K@Z                        │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │ D:\workspace\workspace\bindgen\project\x64dbg\include\_scri- │         │
+// │    │                      │ ptapi_debug.h                                                │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
+func (d *debug) SetBreakpoint(address uint) bool {
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "address",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", address),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// DeleteBreakpoint    c api name: Script::Debug::DeleteBreakpoint
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ address              │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ bool                                                         │ bool    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\_scriptapi_debug.h                                   │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ DeleteBreakpoint                                             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?DeleteBreakpoint@Debug@Script@@YA_N_K@Z                     │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │ D:\workspace\workspace\bindgen\project\x64dbg\include\_scri- │         │
+// │    │                      │ ptapi_debug.h                                                │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
+func (d *debug) DeleteBreakpoint(address uint) bool {
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "address",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", address),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// DisableBreakpoint    c api name: Script::Debug::DisableBreakpoint
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ address              │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ bool                                                         │ bool    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\_scriptapi_debug.h                                   │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ DisableBreakpoint                                            │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?DisableBreakpoint@Debug@Script@@YA_N_K@Z                    │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │ D:\workspace\workspace\bindgen\project\x64dbg\include\_scri- │         │
+// │    │                      │ ptapi_debug.h                                                │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
+func (d *debug) DisableBreakpoint(address uint) bool {
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DisableBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "address",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", address),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// SetHardwareBreakpoint    c api name: Script::Debug::SetHardwareBreakpoint
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬──────────────┐
+// │ id │         name         │                            c type                            │   go type    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │ 0  │ address              │ duint                                                        │ uint         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │ 1  │ Type                 │ HardwareType                                                 │ HardwareType │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ return               │ bool                                                         │ bool         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ comment.currentFile  │ include\_scriptapi_debug.h                                   │              │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ comment.name         │ SetHardwareBreakpoint                                        │              │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ comment.mangledName  │ ?SetHardwareBreakpoint@Debug@Script@@YA_N_KW4HardwareType@1- │              │
+// │    │                      │ 2@@Z                                                         │              │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ comment.file         │                                                              │              │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ comment.includedFrom │                                                              │              │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼──────────────┤
+// │    │ comment.expansionLoc │ D:\workspace\workspace\bindgen\project\x64dbg\include\_scri- │              │
+// │    │                      │ ptapi_debug.h                                                │              │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴──────────────┘
+func (d *debug) SetHardwareBreakpoint(address uint, Type HardwareType) bool {
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/SetHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "address",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", address),
+			},
+			{
+				Name:  "Type",
+				Type:  "HardwareType",
+				Value: fmt.Sprintf("%v", Type),
+			},
+		},
+	))).Request()
+	return true
+}
+
+// DeleteHardwareBreakpoint    c api name: Script::Debug::DeleteHardwareBreakpoint
+// ┌────┬──────────────────────┬──────────────────────────────────────────────────────────────┬─────────┐
+// │ id │         name         │                            c type                            │ go type │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │ 0  │ address              │ duint                                                        │ uint    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ return               │ bool                                                         │ bool    │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.currentFile  │ include\_scriptapi_debug.h                                   │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.name         │ DeleteHardwareBreakpoint                                     │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.mangledName  │ ?DeleteHardwareBreakpoint@Debug@Script@@YA_N_K@Z             │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.file         │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.includedFrom │                                                              │         │
+// ├────┼──────────────────────┼──────────────────────────────────────────────────────────────┼─────────┤
+// │    │ comment.expansionLoc │ D:\workspace\workspace\bindgen\project\x64dbg\include\_scri- │         │
+// │    │                      │ ptapi_debug.h                                                │         │
+// └────┴──────────────────────┴──────────────────────────────────────────────────────────────┴─────────┘
+func (d *debug) DeleteHardwareBreakpoint(address uint) bool {
+	Client.Post().Url("http://localhost:8888/_scriptapi_debug.h/DeleteHardwareBreakpoint").SetJsonHead().Body(mylog.Check2(json.Marshal(
+		[]Param{
+			{
+				Name:  "address",
+				Type:  "uint",
+				Value: fmt.Sprintf("%v", address),
+			},
+		},
+	))).Request()
+	return true
 }
 
 // SetBreakpoint    c api name: Script::Debug::SetBreakpoint

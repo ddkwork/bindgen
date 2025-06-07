@@ -25,7 +25,6 @@ type Sdk struct {
 	Symbol      *symbol
 	Bridgegraph *bridgegraph
 	Bridgelist  *bridgelist
-	Bridgemain  *bridgemain
 }
 
 func New() *Sdk {
@@ -49,7 +48,6 @@ func New() *Sdk {
 		Symbol:      new(symbol),
 		Bridgegraph: new(bridgegraph),
 		Bridgelist:  new(bridgelist),
-		Bridgemain:  new(bridgemain),
 	}
 }
 

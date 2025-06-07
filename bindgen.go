@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/aquasecurity/table"
 	"github.com/ddkwork/ddk/vswhere"
-	"github.com/ddkwork/golibrary/std/clang"
 	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/ddkwork/golibrary/std/safemap"
 	"github.com/ddkwork/golibrary/std/stream"
@@ -367,15 +366,16 @@ type ApiResponse struct {
 					bug = false
 
 					gResp := stream.NewGeneratedFile()
-					do := fn.CName + "(" + strings.Join(values, ", ") + ")"
+					do := fn.CName + "(\n" + strings.Join(values, ", \n") + ")"
 					if fn.ReturnCType == "void" {
 						gResp.P(do, ";")
 						do = "nullptr"
 					}
 
+					gResp.P()
 					gResp.P("ApiResponse resp{.success = true, .type = ",
 						strconv.Quote(fn.ReturnCType),
-						", .result = ", do, "};")
+						", .result = ", do, "\n};")
 
 					urlPath := a.makeUrlPath(path, fn.Name)
 					api.Update(urlPath, cApi{
@@ -475,7 +475,7 @@ std::mutex g_httpMutex;
 
 bool         startHttpServer();
 void         stopHttpServer();
-void         dispatch(SOCKET clientSocket);
+void         dispatch();
 DWORD WINAPI HttpServerThread(LPVOID lpParam);
 bool         cbEnableHttpServer(int argc, char *argv[]);
 bool         cbSetHttpPort(int argc, char *argv[]);
@@ -634,9 +634,12 @@ void stopHttpServer() {
            json params;
            for (const auto &param: arg) { params[param.name] = param.value; }
 `)
+
+					g.P()
 					g.P(a.Do)
 				}
 
+				g.P()
 				g.P(`
            res.set_content(json(resp).dump(), "application/json");
        } catch (const std::exception &e) { res.set_content(json{{"success", false}, {"error", e.what()}}, "application/json"); }
@@ -648,11 +651,8 @@ void stopHttpServer() {
 
 			g.P(end)
 			stream.WriteTruncate("echo_gen.h", g.String())
-			clang.New().Format("echo_gen.h")
+			//clang.New().Format("echo_gen.h")
 			mylog.Success("", "gen mcp cpp server dispatch functions success")
-
-			//todo
-			//stream.RunCommandArgs("cmake", "--build", "cmake-build-debug", "--target", "MCPx64dbg", "-j", "6")
 		},
 	}
 	step.collectTypedefs()
@@ -922,9 +922,13 @@ func (a astParser) parseEnum(node gjson.Result) EnumInfo {
 }
 
 func (a astParser) parseStruct(node gjson.Result, namespace string) StructInfo {
+	name := node.Get("name").String()
+	if name != "" {
+		name = namespace + name
+	}
 	info := StructInfo{
-		Name:    node.Get("name").String(),
-		CName:   namespace + node.Get("name").String(),
+		Name:    strings.TrimPrefix(name, namespace),
+		CName:   name,
 		Loc:     a.formatLoc(node.Get("loc")),
 		IsImpl:  node.Get("isImplicit").Bool(),
 		Fields:  nil,

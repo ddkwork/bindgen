@@ -25,7 +25,7 @@ set(sdkPath "${CMAKE_SOURCE_DIR}")
 # Include directories
 include_directories(
         ${sdkPath}
-        ${sdkPath}/pluginsdk
+        ${sdkPath}/include
 #        ${sdkPath}/nlohmann  # Add nlohmann include path
 #        ${CMAKE_SOURCE_DIR}/include
 )
