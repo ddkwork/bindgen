@@ -5,6 +5,7 @@ log.log
 *.json
 *.cmd
 cmake-build-debug
+cmake-build-release
 /x64dbg/todo/
 /project/ARImpRec/
 /project/hyperdbg/
