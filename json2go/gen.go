@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/ddkwork/golibrary/std/stream"
-	"github.com/ddkwork/golibrary/std/waitgroup"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 	"unicode"
 
 	"github.com/tidwall/gjson"
@@ -414,7 +414,7 @@ func generateInstanceCode(data gjson.Result, structType string) string {
 }
 
 func Walk(root string) {
-	g := waitgroup.New()
+	g := sync.WaitGroup{}
 	filepath.Walk(root, func(path string, info fs.FileInfo, err error) error {
 		if filepath.Ext(path) == ".json" {
 			g.Go(func() {
@@ -457,5 +457,5 @@ func main() {
 	filePath := filepath.Join("tmp", base, base+"_gen.go")
 	stream.WriteGoFile(filePath, code)
 	fmt.Println("try running the generated file...")
-	stream.RunCommandArgs("go", "run", filePath)
+	stream.RunCommand("go", "run", filePath)
 }

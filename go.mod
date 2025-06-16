@@ -1,13 +1,13 @@
 module github.com/ddkwork/bindgen
 
-go 1.24.3
+go 1.25rc1
 
 require (
 	github.com/PrasadG193/yaml2go v0.2.1
 	github.com/aquasecurity/table v1.10.0
 	github.com/dave/dst v0.27.3
 	github.com/ddkwork/ddk v0.0.0-20250519211246-9fe08265bdbe
-	github.com/ddkwork/golibrary v0.1.4-0.20250605163732-5443832e2c55
+	github.com/ddkwork/golibrary v0.1.4-0.20250616120223-0a6e456032ab
 	github.com/ebitengine/purego v0.9.0-alpha.6
 	github.com/go-resty/resty/v2 v2.16.5
 	github.com/go-zeromq/zmq4 v0.17.0

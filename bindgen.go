@@ -8,7 +8,6 @@ import (
 	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/ddkwork/golibrary/std/safemap"
 	"github.com/ddkwork/golibrary/std/stream"
-	"github.com/ddkwork/golibrary/std/waitgroup"
 	"github.com/tidwall/gjson"
 	"io/fs"
 	"net/url"
@@ -17,6 +16,7 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 type (
@@ -48,7 +48,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 	}
 	step := bindStep{
 		collectTypedefs: func() {
-			w := waitgroup.New()
+			w := sync.WaitGroup{}
 			for _, path := range paths {
 				mylog.Info("typedefs from ast dump", path) //collect typedefs,匿名的原因不能第一次获取到名称，名称被存在inner的最后一个节点，所以我们要先通过节点id收集
 				w.Go(func() {
@@ -58,7 +58,7 @@ func Walk(root, targetDir string, skipFileCallback SkipFileCallback, cModelCallb
 			w.Wait()
 		},
 		collectAll: func() {
-			w := waitgroup.New()
+			w := sync.WaitGroup{}
 			for _, path := range paths {
 				mylog.Warning("enums,structs,functions", path) //collect from ast parse
 				w.Go(func() {

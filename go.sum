@@ -14,7 +14,7 @@ github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/ddkwork/ddk v0.0.0-20250519211246-9fe08265bdbe h1:RGSufnWRHzsMHPdCPeAa96dJz8ENvlVhN+s714fat7I=
 github.com/ddkwork/ddk v0.0.0-20250519211246-9fe08265bdbe/go.mod h1:JMx5xHy9tpA6qjBF3u4GyJENSNrIpAg7dqdhfYVTWv8=
-github.com/ddkwork/golibrary v0.1.4-0.20250605163732-5443832e2c55 h1:od1bvYN0uKB4Rqtq+K6hAWgnIyy673yg4bLzzu5nVOA=
+github.com/ddkwork/golibrary v0.1.4-0.20250616120223-0a6e456032ab h1:od1bvYN0uKB4Rqtq+K6hAWgnIyy673yg4bLzzu5nVOA=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
 github.com/ebitengine/purego v0.9.0-alpha.6 h1:ePI8nFRfHEhVa3Bpm9rkheA3WynRBZkEU3bh1Sux6eg=
