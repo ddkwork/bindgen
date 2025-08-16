@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/ddkwork/ddk/vswhere"
 	"github.com/ddkwork/golibrary/std/mylog"
 	"io/fs"
 	"os"
