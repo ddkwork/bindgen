@@ -7,7 +7,7 @@ require (
 	github.com/aquasecurity/table v1.10.0
 	github.com/dave/dst v0.27.3
 	github.com/ddkwork/ddk v0.0.0-20250616133849-aeec284b7037
-	github.com/ddkwork/golibrary v0.1.5-0.20250627073414-26b52a7347b5
+	github.com/ddkwork/golibrary v0.1.5-0.20250816073422-ec5c841d4409
 	github.com/ebitengine/purego v0.9.0-alpha.10
 	github.com/go-resty/resty/v2 v2.16.5
 	github.com/go-zeromq/zmq4 v0.17.0
@@ -15,8 +15,8 @@ require (
 	github.com/tidwall/gjson v1.18.0
 	github.com/valyala/fastjson v1.6.4
 	github.com/vmihailenco/msgpack/v5 v5.4.1
-	golang.org/x/sync v0.15.0
-	golang.org/x/sys v0.33.0
+	golang.org/x/sync v0.16.0
+	golang.org/x/sys v0.34.0
 	gopkg.in/yaml.v3 v3.0.1
 	modernc.org/cc/v4 v4.26.4
 )
@@ -38,11 +38,11 @@ require (
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
-	golang.org/x/mod v0.25.0 // indirect
-	golang.org/x/net v0.41.0 // indirect
-	golang.org/x/term v0.32.0 // indirect
-	golang.org/x/text v0.26.0 // indirect
-	golang.org/x/tools v0.34.1-0.20250613162507-3f93fece84c7 // indirect
+	golang.org/x/mod v0.27.0 // indirect
+	golang.org/x/net v0.42.0 // indirect
+	golang.org/x/term v0.33.0 // indirect
+	golang.org/x/text v0.28.0 // indirect
+	golang.org/x/tools v0.35.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/opt v0.1.4 // indirect
