@@ -21,10 +21,10 @@ func newMSVCConfig(t testing.TB) *cc.Config {
 	}
 	ewdkPaths := findEWDKIncludePaths()
 	cfg := &cc.Config{
-		ABI:            abi,
-		CC:             findClExe(),
-		Predefined:     loadMSVCExtraTypes(),
-		IncludePaths:   append([]string{""}, ewdkPaths...),
+		ABI:             abi,
+		CC:              findClExe(),
+		Predefined:      loadMSVCExtraTypes(),
+		IncludePaths:    append([]string{""}, ewdkPaths...),
 		SysIncludePaths: ewdkPaths,
 	}
 	return cfg
@@ -99,7 +99,6 @@ type BindgenConfig struct {
 	OutputDir        string
 	PackageName      string
 	ModuleName       string
-	DisableModule    bool
 	HeaderOrder      []string
 	BindDll          bool
 	DllName          string
@@ -108,6 +107,7 @@ type BindgenConfig struct {
 	RecurseHeaders   bool
 	SingleFile       bool
 	Predefined       string
+	SkipMSVCTypes    bool
 }
 
 func Generate(t *testing.T, configs []BindgenConfig) {
@@ -128,45 +128,18 @@ func Generate(t *testing.T, configs []BindgenConfig) {
 func TestGenerate(t *testing.T) {
 	bindgenDir := "."
 
-	t.Run("sdk", func(t *testing.T) {
+	t.Run("hyperdbg", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:    filepath.Join(bindgenDir, "SDK", "headers"),
-			OutputDir:     filepath.Join("..", "..", "debugger", "sdk"),
-			PackageName:   "sdk",
-			DisableModule: true,
-			HeaderOrder: []string{
-				"BasicTypes.h",
-				"Constants.h",
-				"ErrorCodes.h",
-				"Connection.h",
-				"DataTypes.h",
-				"Events.h",
-				"HardwareDebugger.h",
-				"Ioctls.h",
-				"Pcie.h",
-				"RequestStructures.h",
-				"ScriptEngineCommonDefinitions.h",
-				"Symbols.h",
-				"Assertions.h",
-			},
+			HeadersDir:       "project/hyperdbg/clone/SDK",
+			OutputDir:        "project/hyperdbg/sdk",
+			PackageName:      "sdk",
+			HeaderOrder:      []string{"HyperDbgSdk.h"},
+			ExtraIncludeDirs: []string{"project/hyperdbg/clone", "project/hyperdbg/clone/SDK/headers"},
+			SingleFile:       true,
 		}})
 	})
 
-	t.Run("zydis-amalgamated", func(t *testing.T) {
-			Generate(t, []BindgenConfig{{
-				HeadersDir:  filepath.Join(bindgenDir, "project", "zydis", "amalgamated-dist"),
-				OutputDir:   filepath.Join(bindgenDir, "project", "zydis", "amalgamated-dist", "zydis"),
-				PackageName: "zydis",
-				HeaderOrder: []string{
-					"Zydis.h",
-				},
-				BindDll: true,
-				DllName: "Zydis.dll",
-			DllFuncFilter: func(name string) bool {
-				return strings.HasPrefix(name, "Zydis") || strings.HasPrefix(name, "Zyan")
-			},
-		}})
-	})
+	return //不要运行下面的，我还没改好
 
 	t.Run("zydis", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
@@ -179,7 +152,7 @@ func TestGenerate(t *testing.T) {
 				"Zydis/Zydis.h",
 			},
 			BindDll: true,
-			DllName: "ZydisDll.dll",
+			DllName: "Zydis.dll",
 			DllFuncFilter: func(name string) bool {
 				return strings.HasPrefix(name, "Zydis") || strings.HasPrefix(name, "Zyan")
 			},
@@ -323,8 +296,6 @@ func TestGenerate(t *testing.T) {
 	// },
 }
 
-
-
 func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 	fmt.Printf("\n=== Processing: %s ===\n", bc.PackageName)
 
@@ -381,7 +352,9 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 	var sources []cc.Source
 	sources = append(sources, cc.Source{Name: "<predefined>", Value: cfg.Predefined})
 	sources = append(sources, cc.Source{Name: "<builtin>", Value: cc.Builtin})
-	sources = append(sources, cc.Source{Name: "<msvc_types>", Value: loadMSVCTypes()})
+	if !bc.SkipMSVCTypes {
+		sources = append(sources, cc.Source{Name: "<msvc_types>", Value: loadMSVCTypes()})
+	}
 
 	for _, name := range bc.HeaderOrder {
 		content, ok := headerMap[name]
@@ -413,15 +386,13 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 
 	os.MkdirAll(bc.OutputDir, 0o755)
 
-	if !bc.DisableModule {
-		modPath := bc.ModuleName
-		if modPath == "" {
-			modPath = "github.com/ddkwork/" + bc.PackageName
-		}
-		modContent := fmt.Sprintf("module %s\n\ngo 1.26.1\n", modPath)
-		if err := os.WriteFile(filepath.Join(bc.OutputDir, "go.mod"), []byte(modContent), 0o644); err != nil {
-			fmt.Fprintf(os.Stderr, "Error writing go.mod: %v\n", err)
-		}
+	modPath := bc.ModuleName
+	if modPath == "" {
+		modPath = "github.com/ddkwork/" + bc.PackageName
+	}
+	modContent := fmt.Sprintf("module %s\n\ngo 1.26.1\n", modPath)
+	if err := os.WriteFile(filepath.Join(bc.OutputDir, "go.mod"), []byte(modContent), 0o644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing go.mod: %v\n", err)
 	}
 
 	if ast == nil {
@@ -481,6 +452,11 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		if ed == nil {
 			continue
 		}
+		sourceFile := findSourceFileName(l, sources, headerMap)
+		baseName := strings.TrimSuffix(filepath.Base(sourceFile), ".h")
+		if sourceFile == "<builtin>" || sourceFile == "<predefined>" || sourceFile == "<msvc_types>" {
+			continue
+		}
 		switch ed.Case {
 		case cc.ExternalDeclarationDecl:
 			decl := ed.Declaration
@@ -488,11 +464,6 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				continue
 			}
 			ds := decl.DeclarationSpecifiers
-			sourceFile := findSourceFileName(l, sources, headerMap)
-			baseName := strings.TrimSuffix(filepath.Base(sourceFile), ".h")
-			if strings.HasPrefix(baseName, "<") {
-				continue
-			}
 			switch t := ds.Type().(type) {
 			case *cc.StructType:
 				tag := t.Tag()
@@ -880,21 +851,21 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		definedConsts := make(map[string]bool)
 
 		sourceMatch := func(src string) bool {
-		if bc.SingleFile {
-			if src == bc.HeaderOrder[0] {
-				return true
+			if bc.SingleFile {
+				if src == bc.HeaderOrder[0] {
+					return true
+				}
+				_, inHeaders := headerMap[src]
+				if inHeaders {
+					return true
+				}
+				if src == "unknown.h" || src == "" {
+					return true
+				}
+				return false
 			}
-			_, inHeaders := headerMap[src]
-			if inHeaders {
-				return true
-			}
-			if src == "unknown.h" || src == "" {
-				return true
-			}
-			return false
+			return src == fileName
 		}
-		return src == fileName
-	}
 		var aliasTypes []typedefInfo
 		var funcTypes []typedefInfo
 		var skipStructNames map[string]bool
@@ -984,30 +955,56 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				content.WriteString(")\n\n")
 			} else if len(ei.memberOrder) > 0 {
 				content.WriteString("const (\n")
-				hasExplicitValues := false
-				for _, name := range ei.memberOrder[1:] {
+				isSequential := true
+				seqStart := int64(0)
+				for i, name := range ei.memberOrder {
 					if m, ok := ei.members.Get(name); ok && m.hasVal {
-						hasExplicitValues = true
+						if i == 0 {
+							seqStart = m.intVal
+						} else if m.intVal != seqStart+int64(i) {
+							isSequential = false
+							break
+						}
+					} else {
+						isSequential = false
 						break
 					}
 				}
-				if hasExplicitValues {
-					for _, name := range ei.memberOrder {
-						if m, ok := ei.members.Get(name); ok && m.hasVal {
-							content.WriteString(fmt.Sprintf("\t%s %s = %s\n", name, ei.goName, m.value))
-						} else {
-							content.WriteString(fmt.Sprintf("\t%s\n", name))
-						}
+				if isSequential {
+					if seqStart == 0 {
+						content.WriteString(fmt.Sprintf("\t%s %s = iota\n", ei.memberOrder[0], ei.goName))
+					} else {
+						content.WriteString(fmt.Sprintf("\t%s %s = %d + iota\n", ei.memberOrder[0], ei.goName, seqStart))
 					}
-				} else if firstMember, ok := ei.members.Get(ei.memberOrder[0]); ok && firstMember.hasVal && firstMember.intVal != 0 {
-					content.WriteString(fmt.Sprintf("\t%s %s = %d + iota\n", ei.memberOrder[0], ei.goName, firstMember.intVal))
 					for _, name := range ei.memberOrder[1:] {
 						content.WriteString(fmt.Sprintf("\t%s\n", name))
 					}
 				} else {
-					content.WriteString(fmt.Sprintf("\t%s %s = iota\n", ei.memberOrder[0], ei.goName))
+					hasExplicitValues := false
 					for _, name := range ei.memberOrder[1:] {
-						content.WriteString(fmt.Sprintf("\t%s\n", name))
+						if m, ok := ei.members.Get(name); ok && m.hasVal {
+							hasExplicitValues = true
+							break
+						}
+					}
+					if hasExplicitValues {
+						for _, name := range ei.memberOrder {
+							if m, ok := ei.members.Get(name); ok && m.hasVal {
+								content.WriteString(fmt.Sprintf("\t%s %s = %s\n", name, ei.goName, m.value))
+							} else {
+								content.WriteString(fmt.Sprintf("\t%s\n", name))
+							}
+						}
+					} else if firstMember, ok := ei.members.Get(ei.memberOrder[0]); ok && firstMember.hasVal && firstMember.intVal != 0 {
+						content.WriteString(fmt.Sprintf("\t%s %s = %d + iota\n", ei.memberOrder[0], ei.goName, firstMember.intVal))
+						for _, name := range ei.memberOrder[1:] {
+							content.WriteString(fmt.Sprintf("\t%s\n", name))
+						}
+					} else {
+						content.WriteString(fmt.Sprintf("\t%s %s = iota\n", ei.memberOrder[0], ei.goName))
+						for _, name := range ei.memberOrder[1:] {
+							content.WriteString(fmt.Sprintf("\t%s\n", name))
+						}
 					}
 				}
 				content.WriteString(")\n\n")
@@ -1030,10 +1027,10 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				src = si.originalSource
 			}
 			goName := si.goName
-			reserved := map[string]bool{"uint":true,"uint8":true,"uint16":true,"uint32":true,"uint64":true,
-				"int":true,"int8":true,"int16":true,"int32":true,"int64":true,
-				"uintptr":true,"string":true,"bool":true,"byte":true,"rune":true,
-				"float32":true,"float64":true}
+			reserved := map[string]bool{"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true,
+				"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
+				"uintptr": true, "string": true, "bool": true, "byte": true, "rune": true,
+				"float32": true, "float64": true}
 			for reserved[goName] || usedNames[goName] {
 				goName = goName + "_"
 			}
@@ -1145,14 +1142,6 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 	if bc.BindDll {
 		generateDllBinding(t, ast, bc, result.Typedefs)
 	}
-
-	tempDir := filepath.Join(bc.OutputDir, "temp")
-	os.MkdirAll(tempDir, 0o755)
-	testFile := filepath.Join(tempDir, "test.go")
-	importPath := strings.ReplaceAll(bc.OutputDir, `\`, "/")
-	importPath = strings.TrimPrefix(importPath, "c:/Users/Admin/Desktop/hypedbg/")
-	importPath = "github.com/ddkwork/HyperDbg/" + importPath
-	os.WriteFile(testFile, fmt.Appendf(nil, "package main\n\nimport (\n\t_ %q\n)\n\nfunc main() {}\n", importPath), 0o644)
 }
 
 func addImports(content string, packageName string) string {
@@ -1923,14 +1912,17 @@ func extractEnumeratorValue(e *cc.Enumerator) (valueStr string, intVal int64, ha
 
 func findSourceFileName(unit *cc.TranslationUnit, sources []cc.Source, headerMap map[string]string) string {
 	posStr := unit.Position().String()
-	for _, src := range sources {
-		if strings.Contains(posStr, src.Name) {
-			return src.Name
-		}
-	}
 	for name := range headerMap {
 		if strings.Contains(posStr, name) {
 			return name
+		}
+	}
+	for _, src := range sources {
+		if strings.HasPrefix(src.Name, "<") {
+			continue
+		}
+		if strings.Contains(posStr, src.Name) {
+			return src.Name
 		}
 	}
 	if strings.Contains(posStr, "xed-") {
