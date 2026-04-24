@@ -1,0 +1,10 @@
+vendor
+log.log
+.idea
+*.apk
+*.json
+todo/
+clone/
+build_debug/
+build/
+/init.cmd

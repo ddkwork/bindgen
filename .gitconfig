@@ -1,0 +1,20 @@
+
+[http]
+    proxy = http://127.0.0.1:7890
+    sslVerify = false
+[https]
+    proxy = http://127.0.0.1:7890
+
+
+[user]
+	name = Admin
+	email = 2762713521@qq.com
+
+
+[core]
+	autocrlf = false
+
+[safe]
+	directory = *
+
+
