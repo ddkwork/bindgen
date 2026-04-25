@@ -2,11 +2,92 @@ package zydis
 
 import (
 	"fmt"
+	"time"
 	"unsafe"
 )
 
 // Source: Zydis.h
 type (
+	_builtin_va_list = *uintptr
+	_predefined_size_t = uint64
+	_predefined_wchar_t = uint16
+	_predefined_ptrdiff_t = int64
+	Wchar_t = uint16
+	Size_t = uint64
+	SIZE_T = uintptr
+	Ptrdiff_t = int64
+	Uintptr_t = uint64
+	Intptr_t = int64
+	Uint8_t = uint8
+	Uint16_t = uint16
+	Uint32_t = uint32
+	Uint64_t = uint64
+	Int8_t = int8
+	Int16_t = int16
+	Int32_t = int32
+	Int64_t = int64
+	Time_t = time.Duration
+	Errno_t = int32
+	_time32_t = int32
+	_time64_t = time.Duration
+	Va_list = *int8
+	PLIST_ENTRY = *LIST_ENTRY
+	BOOL = int32
+	BOOLEAN = bool
+	DWORD = uint32
+	WORD = uint16
+	PVOID = uintptr
+	LPVOID = uintptr
+	HANDLE = uintptr
+	QWORD = uint64
+	UINT64 = uint64
+	PUINT64 = *uint64
+	UINT32 = uint32
+	PUINT32 = *uint32
+	UINT16 = uint16
+	PUINT16 = *uint16
+	UINT8 = uint8
+	PUINT8 = *uint8
+	INT64 = int64
+	PINT64 = *int64
+	INT32 = int32
+	PINT32 = *int32
+	INT16 = int16
+	PINT16 = *int16
+	INT8 = int8
+	PINT8 = *int8
+	ULONG64 = uint64
+	PULONG64 = *uint64
+	DWORD64 = uint64
+	PDWORD64 = *uint64
+	CHAR = int8
+	WCHAR = uint16
+	UCHAR = uint8
+	SHORT = int16
+	USHORT = uint16
+	INT = int32
+	UINT = uint32
+	PUINT = *uint32
+	LONG = int32
+	ULONG = uint32
+	Int_least8_t = int8
+	Int_least16_t = int16
+	Int_least32_t = int32
+	Int_least64_t = int64
+	Uint_least8_t = uint8
+	Uint_least16_t = uint16
+	Uint_least32_t = uint32
+	Uint_least64_t = uint64
+	Int_fast8_t = int8
+	Int_fast16_t = int32
+	Int_fast32_t = int32
+	Int_fast64_t = int64
+	Uint_fast8_t = uint8
+	Uint_fast16_t = uint32
+	Uint_fast32_t = uint32
+	Uint_fast64_t = uint64
+	Intmax_t = int64
+	Uintmax_t = uint64
 	ZyanU8 = uint8
 	ZyanU16 = uint16
 	ZyanU32 = uint32
@@ -9871,6 +9952,12 @@ func (z ZydisFeature_) String() string {
 	}
 }
 
+// Source: unknown.h:21 -> _LIST_ENTRY
+type LIST_ENTRY struct {
+	Flink *LIST_ENTRY
+	Blink *LIST_ENTRY
+}
+
 // Source: unknown.h:59 -> ZydisShortString_
 type ZydisShortString_ struct {
 	Data *int8
@@ -10291,7 +10378,7 @@ type ZydisDecodedInstructionRaw__Anon1Union_ struct {
 
 // Source: unknown.h:0 -> ZydisDecodedInstructionRaw__Anon1Union
 type ZydisDecodedInstructionRaw__Anon1Union struct {
-	Data [21]byte
+	Data ZydisDecodedInstructionRawEvex
 }
 
 // Source: unknown.h:0 -> ZydisDecodedInstructionModRm_
@@ -10426,7 +10513,7 @@ type ZydisDecodedInstructionRaw_Anon1Union_ struct {
 
 // Source: unknown.h:0 -> ZydisDecodedInstructionRaw_Anon1Union
 type ZydisDecodedInstructionRaw_Anon1Union struct {
-	Data [21]byte
+	Data ZydisDecodedInstructionRawEvex
 }
 
 // Source: unknown.h:1582 -> ZydisDecoderContext_
@@ -10544,7 +10631,7 @@ type ZydisEncoderRequest_ struct {
 	OperandSizeHint ZydisOperandSizeHint
 	OperandCount uint8
 	_  [7]byte
-	Operands [5]ZydisEncoderOperand
+	Operands [5]ZydisEncoderOperand_
 	Evex ZydisEncoderRequestEvexFeatures_
 	Mvex ZydisEncoderRequestMvexFeatures_
 }
@@ -10665,7 +10752,7 @@ type ZydisFormatter_ struct {
 	HexUppercase uint8
 	HexForceLeadingNumber uint8
 	_  [6]byte
-	NumberFormat ZydisFormatter__Anon1Elem
+	NumberFormat [2]ZydisFormatter__Anon1Elem
 	DecoApxNfUseSuffix uint8
 	DecoApxDfvUseImmediate uint8
 	_  [6]byte
@@ -10716,7 +10803,7 @@ type ZydisFormatterContext_ struct {
 type ZydisInstructionSegments_ struct {
 	Count uint8
 	_  [3]byte
-	Segments ZydisInstructionSegments__Anon1Elem
+	Segments [9]ZydisInstructionSegments__Anon1Elem
 }
 
 // Source: unknown.h:0 -> ZydisInstructionSegments__Anon1Elem
@@ -10731,7 +10818,7 @@ type ZydisInstructionSegments__Anon1Elem struct {
 type ZydisDisassembledInstruction_ struct {
 	RuntimeAddress uint64
 	Info ZydisDecodedInstruction
-	Operands [10]ZydisDecodedOperand
+	Operands [10]ZydisDecodedOperand_
 	Text [96]int8
 }
 
@@ -10759,4 +10846,205 @@ type ZydisDecodedInstruction struct {
 	_  [4]byte
 	Raw ZydisDecodedInstructionRaw
 }
+
+func ZyanMakeStatus(Error uint32, Module uint32, Code uint32) uint32 {
+	return uint32((uint32)((((Error)&0x01)<<31)|(((Module)&0x7FF)<<20)|((Code)&0xFFFFF)))
+}
+
+func ZyanSuccess(Status uint32) bool {
+	return ((Status)&0x80000000) == 0
+}
+
+func ZyanIsPowerOf2(X uint32) bool {
+	return ((X)&((X)-1))==0
+}
+
+func ZyanStatusModule(Status uint32) uint32 {
+	return uint32(((Status)>>20)&0x7FF)
+}
+
+func ZyanAlignDown(X uint32, Align uint32) uint32 {
+	return uint32(((X)-1)&^((Align)-1))
+}
+
+func ZyanFailed(Status uint32) bool {
+	return ((Status)&0x80000000) != 0
+}
+
+func ZyanStatusCode(Status uint32) uint32 {
+	return uint32(((Status)&0xFFFFF))
+}
+
+func ZyanAlignUp(X uint32, Align uint32) uint32 {
+	return uint32(((X)+(Align)-1)&^((Align)-1))
+}
+
+func ZyanIsAlignedTo(X uint32, Align uint32) bool {
+	return ((X)&((Align)-1))==0
+}
+
+// Source: Zydis.h -> Macro constants
+const (
+	ZydisMaxInstructionLength uint32 = 15
+	ZydisMaxOperandCount uint32 = 10
+	ZydisMaxOperandCountVisible uint32 = 5
+	ZyanStringMinCapacity uint32 = 32
+	ZyanModuleZydis uint32 = 0x002
+	ZyanVectorMinCapacity uint32 = 1
+	ZydisMaxInstructionSegmentCount uint32 = 9
+	ZydisEncoderMaxOperands uint32 = 5
+	ZyanStringDefaultGrowthFactor uint32 = 2
+	ZydisTokenInvalid uint32 = 0x00
+	ZyanVectorDefaultGrowthFactor uint32 = 2
+	ZydisTokenWhitespace uint32 = 0x01
+	ZyanStringDefaultShrinkThreshold uint32 = 4
+	ZyanVectorDefaultShrinkThreshold uint32 = 4
+	ZydisTokenDelimiter uint32 = 0x02
+	ZydisEncodablePrefixes uint64 = (ZydisAttribHasLock|ZydisAttribHasRep|ZydisAttribHasRepe|ZydisAttribHasRepne|ZydisAttribHasBnd|ZydisAttribHasXacquire|ZydisAttribHasXrelease|ZydisAttribHasBranchNotTaken|ZydisAttribHasBranchTaken|ZydisAttribHasNotrack|ZydisAttribHasSegmentCs|ZydisAttribHasSegmentSs|ZydisAttribHasSegmentDs|ZydisAttribHasSegmentEs|ZydisAttribHasSegmentFs|ZydisAttribHasSegmentGs)
+	ZydisOattribIsMultisource4 uint32 = (1<<0)
+	ZydisTokenParenthesisOpen uint32 = 0x03
+	ZydisTokenParenthesisClose uint32 = 0x04
+	ZydisTokenPrefix uint32 = 0x05
+	ZyanStringHasFixedCapacity uint32 = 0x01
+	ZydisTokenMnemonic uint32 = 0x06
+	ZydisTokenRegister uint32 = 0x07
+	ZydisVersion uint64 = 0x0005000000000000
+	ZydisTokenAddressAbs uint32 = 0x08
+	ZydisTokenAddressRel uint32 = 0x09
+	ZydisTokenDisplacement uint32 = 0x0A
+	ZydisTokenImmediate uint32 = 0x0B
+	ZydisTokenTypecast uint32 = 0x0C
+	ZydisTokenDecorator uint32 = 0x0D
+	ZydisTokenSymbol uint32 = 0x0E
+	ZydisTokenUser uint32 = 0x80
+	ZyanModuleZycore uint32 = 0x001
+	ZyanModuleArgparse uint32 = 0x003
+	ZyanModuleUser uint32 = 0x3FF
+	ZyanArchitectureWidth uint32 = 64
+	ZyanLittleEndian uint32 = 0
+	ZyanBigEndian uint32 = 1
+	ZyanEndian uint32 = ZyanLittleEndian
+	ZyanFalse uint32 = 0
+	ZyanTrue uint32 = 1
+	ZydisCpuflagCf uint32 = (1<<0)
+	ZydisCpuflagPf uint32 = (1<<2)
+	ZydisCpuflagAf uint32 = (1<<4)
+	ZyanTernaryFalse int32 = (-1)
+	ZyanTernaryUnknown uint32 = 0x00
+	ZydisCpuflagZf uint32 = (1<<6)
+	ZyanTernaryTrue uint32 = 0x01
+	ZydisCpuflagSf uint32 = (1<<7)
+	ZydisCpuflagTf uint32 = (1<<8)
+	ZydisCpuflagIf uint32 = (1<<9)
+	ZydisCpuflagDf uint32 = (1<<10)
+	ZydisCpuflagOf uint32 = (1<<11)
+	ZydisCpuflagIopl uint32 = (1<<12)
+	ZydisCpuflagNt uint32 = (1<<14)
+	ZydisCpuflagRf uint32 = (1<<16)
+	ZydisCpuflagVm uint32 = (1<<17)
+	ZydisCpuflagAc uint32 = (1<<18)
+	ZydisCpuflagVif uint32 = (1<<19)
+	ZydisCpuflagVip uint32 = (1<<20)
+	ZydisCpuflagId uint32 = (1<<21)
+	ZydisFpuflagC0 uint32 = (1<<0)
+	ZydisFpuflagC1 uint32 = (1<<1)
+	ZydisFpuflagC2 uint32 = (1<<2)
+	ZydisFpuflagC3 uint32 = (1<<3)
+	ZydisAttribHasModrm uint32 = (1<<0)
+	ZydisAttribHasSib uint32 = (1<<1)
+	ZydisAttribHasRex uint32 = (1<<2)
+	ZydisAttribHasXop uint32 = (1<<3)
+	ZydisAttribHasVex uint32 = (1<<4)
+	ZydisAttribHasEvex uint32 = (1<<5)
+	ZydisAttribHasMvex uint32 = (1<<6)
+	ZydisAttribIsRelative uint32 = (1<<7)
+	ZydisAttribIsPrivileged uint32 = (1<<8)
+	ZydisAttribCpuflagAccess uint32 = (1<<9)
+	ZydisAttribCpuStateCr uint32 = (1<<10)
+	ZydisAttribCpuStateCw uint32 = (1<<11)
+	ZydisAttribFpuStateCr uint32 = (1<<12)
+	ZydisAttribFpuStateCw uint32 = (1<<13)
+	ZydisAttribXmmStateCr uint32 = (1<<14)
+	ZydisAttribXmmStateCw uint32 = (1<<15)
+	ZydisAttribAcceptsLock uint32 = (1<<16)
+	ZydisAttribAcceptsRep uint32 = (1<<17)
+	ZydisAttribAcceptsRepe uint32 = (1<<18)
+	ZydisAttribAcceptsRepz uint32 = ZydisAttribAcceptsRepe
+	ZydisAttribAcceptsRepne uint32 = (1<<19)
+	ZydisAttribAcceptsRepnz uint32 = ZydisAttribAcceptsRepne
+	ZydisAttribAcceptsBnd uint32 = (1<<20)
+	ZydisAttribAcceptsXacquire uint32 = (1<<21)
+	ZydisAttribAcceptsXrelease uint32 = (1<<22)
+	ZydisAttribAcceptsHleWithoutLock uint32 = (1<<23)
+	ZydisAttribAcceptsBranchHints uint32 = (1<<24)
+	ZydisAttribAcceptsNotrack uint32 = (1<<25)
+	ZydisAttribAcceptsSegment uint32 = (1<<26)
+	ZydisAttribHasLock uint64 = (1<<27)
+	ZydisAttribHasRep uint64 = (1<<28)
+	ZydisAttribHasRepe uint64 = (1<<29)
+	ZydisAttribHasRepz uint64 = ZydisAttribHasRepe
+	ZydisAttribHasRepne uint64 = (1<<30)
+	ZydisAttribHasRepnz uint64 = ZydisAttribHasRepne
+	ZydisAttribHasBnd uint64 = (1<<31)
+	ZydisAttribHasXacquire uint64 = (1<<32)
+	ZydisAttribHasXrelease uint64 = (1<<33)
+	ZydisAttribHasBranchNotTaken uint64 = (1<<34)
+	ZydisAttribHasBranchTaken uint64 = (1<<35)
+	ZydisAttribHasNotrack uint64 = (1<<36)
+	ZydisAttribHasSegmentCs uint64 = (1<<37)
+	ZydisAttribHasSegmentSs uint64 = (1<<38)
+	ZydisAttribHasSegmentDs uint64 = (1<<39)
+	ZydisAttribHasSegmentEs uint64 = (1<<40)
+	ZydisAttribHasSegmentFs uint64 = (1<<41)
+	ZydisAttribHasSegmentGs uint64 = (1<<42)
+	ZydisAttribHasSegment uint64 = (ZydisAttribHasSegmentCs|ZydisAttribHasSegmentSs|ZydisAttribHasSegmentDs|ZydisAttribHasSegmentEs|ZydisAttribHasSegmentFs|ZydisAttribHasSegmentGs)
+	ZydisAttribHasOperandsize uint64 = (1<<43)
+	ZydisAttribHasAddresssize uint64 = (1<<44)
+	ZydisAttribHasEvexB uint64 = (1<<45)
+	ZydisAttribHasRex2 uint64 = (1<<46)
+	ZydisAttribHasEevex uint64 = (1<<47)
+	ZydisDfvCf uint32 = (1<<0)
+	ZydisDfvZf uint32 = (1<<1)
+	ZydisDfvSf uint32 = (1<<2)
+	ZydisDfvOf uint32 = (1<<3)
+	ZydisDfvNone uint32 = 0
+	ZydisDfvAll uint32 = (ZydisDfvCf|ZydisDfvZf|ZydisDfvSf|ZydisDfvOf)
+)
+
+// Source: Zydis.h -> Macro variables
+var (
+	ZyanStatusBadSystemcall uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x0B)
+	ZyanStatusTooManyArgs uint32 = ZyanMakeStatus(1,ZyanModuleArgparse,0x02)
+	ZyanStatusArgNotUnderstood uint32 = ZyanMakeStatus(1,ZyanModuleArgparse,0x00)
+	ZyanStatusInvalidArgument uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x04)
+	ZyanStatusOutOfResources uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x0C)
+	ZydisStatusInvalidMask uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x0B)
+	ZyanStatusNotEnoughMemory uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x0A)
+	ZydisStatusBadRegister uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x03)
+	ZydisStatusIllegalLegacyPfx uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x05)
+	ZyanStatusRequiredArgMissing uint32 = ZyanMakeStatus(1,ZyanModuleArgparse,0x04)
+	ZydisStatusInstructionTooLong uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x02)
+	ZydisStatusIllegalLock uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x04)
+	ZydisStatusSkipToken uint32 = ZyanMakeStatus(0,ZyanModuleZydis,0x0C)
+	ZyanStatusArgMissesValue uint32 = ZyanMakeStatus(1,ZyanModuleArgparse,0x03)
+	ZydisStatusMalformedEvex uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x09)
+	ZyanStatusSuccess uint32 = ZyanMakeStatus(0,ZyanModuleZycore,0x00)
+	ZyanStatusFalse uint32 = ZyanMakeStatus(0,ZyanModuleZycore,0x03)
+	ZyanStatusMissingDependency uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x0D)
+	ZydisStatusNoMoreData uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x00)
+	ZydisStatusIllegalRex uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x06)
+	ZyanStatusInvalidOperation uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x05)
+	ZydisStatusInvalidMap uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x08)
+	ZydisStatusMalformedMvex uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x0A)
+	ZydisStatusImpossibleInstruction uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x0D)
+	ZyanStatusTooFewArgs uint32 = ZyanMakeStatus(1,ZyanModuleArgparse,0x01)
+	ZyanStatusAccessDenied uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x06)
+	ZyanStatusNotFound uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x07)
+	ZyanStatusInsufficientBufferSize uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x09)
+	ZyanStatusOutOfRange uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x08)
+	ZyanStatusFailed uint32 = ZyanMakeStatus(1,ZyanModuleZycore,0x01)
+	ZyanStatusTrue uint32 = ZyanMakeStatus(0,ZyanModuleZycore,0x02)
+	ZydisStatusDecodingError uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x01)
+	ZydisStatusIllegalRex2 uint32 = ZyanMakeStatus(1,ZyanModuleZydis,0x07)
+)
 

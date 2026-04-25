@@ -276,11 +276,49 @@ func loadMSVCExtraTypes() string {
 #define true 1
 #define _VCRT_COMPILER_PREPROCESSOR 1
 #define _STDINT
+#define _INC_ASSERT
+#define _STDDEF
+#define _STDLIB
+#define _STRING
 #define _Check_return_
 #define _Check_return_opt_
 #define _Check_return_wat_
 #define __ALTDECL __cdecl
 #define FILE void
+#define assert(expression) ((void)0)
+#define EXIT_FAILURE 1
+#define EXIT_SUCCESS 0
+#define RAND_MAX 0x7FFF
+#define INT8_MIN         (-127 - 1)
+#define INT16_MIN        (-32767 - 1)
+#define INT32_MIN        (-2147483647 - 1)
+#define INT64_MIN        (-9223372036854775807LL - 1)
+#define INT8_MAX         127
+#define INT16_MAX        32767
+#define INT32_MAX        2147483647
+#define INT64_MAX        9223372036854775807LL
+#define UINT8_MAX        255
+#define UINT16_MAX       65535
+#define UINT32_MAX       4294967295U
+#define UINT64_MAX       18446744073709551615ULL
+void* malloc(unsigned long size);
+void* calloc(unsigned long count, unsigned long size);
+void* realloc(void* ptr, unsigned long size);
+void free(void* ptr);
+void exit(int code);
+void abort(void);
+int atexit(void (*func)(void));
+void* memcpy(void* dest, const void* src, unsigned long n);
+void* memmove(void* dest, const void* src, unsigned long n);
+char* strcpy(char* dest, const char* src);
+char* strncpy(char* dest, const char* src, unsigned long n);
+char* strcat(char* dest, const char* src);
+unsigned long strlen(const char* str);
+int memcmp(const void* s1, const void* s2, unsigned long n);
+int strcmp(const char* s1, const char* s2);
+int strncmp(const char* s1, const char* s2, unsigned long n);
+void* memset(void* c, int val, unsigned long n);
+char* strchr(const char* s, int c);
 `
 }
 

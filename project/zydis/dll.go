@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"os"
 	"path/filepath"
-	"syscall"
 	"unsafe"
 
 	"golang.org/x/sys/windows"
@@ -12,7 +11,7 @@ import (
 
 type Zydis struct{}
 
-//go:embed ZydisDll.dll
+//go:embed zydis.dll
 var dllBytes []byte
 
 var (
@@ -143,7 +142,7 @@ var (
 )
 
 func init() {
-	dll = windows.NewLazyDLL(saveEmbeddedDLL(dllBytes, "ZydisDll.dll"))
+	dll = windows.NewLazyDLL(saveEmbeddedDLL(dllBytes, "zydis.dll"))
 	proc_ZydisCategoryGetString = dll.NewProc("ZydisCategoryGetString")
 	proc_ZydisISASetGetString = dll.NewProc("ZydisISASetGetString")
 	proc_ZydisISAExtGetString = dll.NewProc("ZydisISAExtGetString")
@@ -272,85 +271,82 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	if _, err := os.Stat(p); err == nil {
-		return p
-	}
 	os.WriteFile(p, data, 0644)
 	return p
 }
 
 func (z *Zydis) CategoryGetString(Category ZydisInstructionCategory) *int8 {
-	r1, _, _ := proc_ZydisCategoryGetString.Call(uintptr(unsafe.Pointer(&Category)))
+	r1, _, _ := proc_ZydisCategoryGetString.Call(uintptr(Category))
 	return (*int8)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) ISASetGetString(Isa_set ZydisISASet) *int8 {
-	r1, _, _ := proc_ZydisISASetGetString.Call(uintptr(unsafe.Pointer(&Isa_set)))
+	r1, _, _ := proc_ZydisISASetGetString.Call(uintptr(Isa_set))
 	return (*int8)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) ISAExtGetString(Isa_ext ZydisISAExt) *int8 {
-	r1, _, _ := proc_ZydisISAExtGetString.Call(uintptr(unsafe.Pointer(&Isa_ext)))
+	r1, _, _ := proc_ZydisISAExtGetString.Call(uintptr(Isa_ext))
 	return (*int8)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) MnemonicGetString(Mnemonic ZydisMnemonic) *int8 {
-	r1, _, _ := proc_ZydisMnemonicGetString.Call(uintptr(unsafe.Pointer(&Mnemonic)))
+	r1, _, _ := proc_ZydisMnemonicGetString.Call(uintptr(Mnemonic))
 	return (*int8)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) MnemonicGetStringWrapped(Mnemonic ZydisMnemonic) *ZydisShortString {
-	r1, _, _ := proc_ZydisMnemonicGetStringWrapped.Call(uintptr(unsafe.Pointer(&Mnemonic)))
+	r1, _, _ := proc_ZydisMnemonicGetStringWrapped.Call(uintptr(Mnemonic))
 	return (*ZydisShortString)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) RegisterEncode(Register_class ZydisRegisterClass, Id uint8) ZydisRegister {
-	r1, _, _ := proc_ZydisRegisterEncode.Call(uintptr(unsafe.Pointer(&Register_class)), uintptr(Id))
+	r1, _, _ := proc_ZydisRegisterEncode.Call(uintptr(Register_class), uintptr(Id))
 	return ZydisRegister(r1)
 }
 
 func (z *Zydis) RegisterGetId(Reg ZydisRegister) int8 {
-	r1, _, _ := proc_ZydisRegisterGetId.Call(uintptr(unsafe.Pointer(&Reg)))
+	r1, _, _ := proc_ZydisRegisterGetId.Call(uintptr(Reg))
 	return int8(r1)
 }
 
 func (z *Zydis) RegisterGetClass(Reg ZydisRegister) ZydisRegisterClass {
-	r1, _, _ := proc_ZydisRegisterGetClass.Call(uintptr(unsafe.Pointer(&Reg)))
+	r1, _, _ := proc_ZydisRegisterGetClass.Call(uintptr(Reg))
 	return ZydisRegisterClass(r1)
 }
 
 func (z *Zydis) RegisterGetWidth(Mode ZydisMachineMode, Reg ZydisRegister) ZydisRegisterWidth {
-	r1, _, _ := proc_ZydisRegisterGetWidth.Call(uintptr(unsafe.Pointer(&Mode)), uintptr(unsafe.Pointer(&Reg)))
-	return ZydisRegisterWidth(r1)
+	r1, _, _ := proc_ZydisRegisterGetWidth.Call(uintptr(Mode), uintptr(Reg))
+	return uint16(r1)
 }
 
 func (z *Zydis) RegisterGetLargestEnclosing(Mode ZydisMachineMode, Reg ZydisRegister) ZydisRegister {
-	r1, _, _ := proc_ZydisRegisterGetLargestEnclosing.Call(uintptr(unsafe.Pointer(&Mode)), uintptr(unsafe.Pointer(&Reg)))
+	r1, _, _ := proc_ZydisRegisterGetLargestEnclosing.Call(uintptr(Mode), uintptr(Reg))
 	return ZydisRegister(r1)
 }
 
 func (z *Zydis) RegisterGetString(Reg ZydisRegister) *int8 {
-	r1, _, _ := proc_ZydisRegisterGetString.Call(uintptr(unsafe.Pointer(&Reg)))
+	r1, _, _ := proc_ZydisRegisterGetString.Call(uintptr(Reg))
 	return (*int8)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) RegisterGetStringWrapped(Reg ZydisRegister) *ZydisShortString {
-	r1, _, _ := proc_ZydisRegisterGetStringWrapped.Call(uintptr(unsafe.Pointer(&Reg)))
+	r1, _, _ := proc_ZydisRegisterGetStringWrapped.Call(uintptr(Reg))
 	return (*ZydisShortString)(unsafe.Pointer(r1))
 }
 
 func (z *Zydis) RegisterClassGetWidth(Mode ZydisMachineMode, Register_class ZydisRegisterClass) ZydisRegisterWidth {
-	r1, _, _ := proc_ZydisRegisterClassGetWidth.Call(uintptr(unsafe.Pointer(&Mode)), uintptr(unsafe.Pointer(&Register_class)))
-	return ZydisRegisterWidth(r1)
+	r1, _, _ := proc_ZydisRegisterClassGetWidth.Call(uintptr(Mode), uintptr(Register_class))
+	return uint16(r1)
 }
 
 func (z *Zydis) DecoderInit(Decoder *ZydisDecoder, Machine_mode ZydisMachineMode, Stack_width ZydisStackWidth) uint32 {
-	r1, _, _ := proc_ZydisDecoderInit.Call(uintptr(unsafe.Pointer(Decoder)), uintptr(unsafe.Pointer(&Machine_mode)), uintptr(unsafe.Pointer(&Stack_width)))
+	r1, _, _ := proc_ZydisDecoderInit.Call(uintptr(unsafe.Pointer(Decoder)), uintptr(Machine_mode), uintptr(Stack_width))
 	return uint32(r1)
 }
 
 func (z *Zydis) DecoderEnableMode(Decoder *ZydisDecoder, Mode ZydisDecoderMode, Enabled uint8) uint32 {
-	r1, _, _ := proc_ZydisDecoderEnableMode.Call(uintptr(unsafe.Pointer(Decoder)), uintptr(unsafe.Pointer(&Mode)), uintptr(Enabled))
+	r1, _, _ := proc_ZydisDecoderEnableMode.Call(uintptr(unsafe.Pointer(Decoder)), uintptr(Mode), uintptr(Enabled))
 	return uint32(r1)
 }
 
@@ -810,7 +806,7 @@ func (z *Zydis) FormatterBufferGetString(Buffer *ZydisFormatterBuffer, String **
 }
 
 func (z *Zydis) FormatterBufferAppend(Buffer *ZydisFormatterBuffer, Type ZydisTokenType) uint32 {
-	r1, _, _ := proc_ZydisFormatterBufferAppend.Call(uintptr(unsafe.Pointer(Buffer)), uintptr(unsafe.Pointer(&Type)))
+	r1, _, _ := proc_ZydisFormatterBufferAppend.Call(uintptr(unsafe.Pointer(Buffer)), uintptr(Type))
 	return uint32(r1)
 }
 
@@ -825,17 +821,17 @@ func (z *Zydis) FormatterBufferRestore(Buffer *ZydisFormatterBuffer, State uintp
 }
 
 func (z *Zydis) FormatterInit(Formatter *ZydisFormatter, Style ZydisFormatterStyle) uint32 {
-	r1, _, _ := proc_ZydisFormatterInit.Call(uintptr(unsafe.Pointer(Formatter)), uintptr(unsafe.Pointer(&Style)))
+	r1, _, _ := proc_ZydisFormatterInit.Call(uintptr(unsafe.Pointer(Formatter)), uintptr(Style))
 	return uint32(r1)
 }
 
 func (z *Zydis) FormatterSetProperty(Formatter *ZydisFormatter, Property ZydisFormatterProperty, Value uintptr) uint32 {
-	r1, _, _ := proc_ZydisFormatterSetProperty.Call(uintptr(unsafe.Pointer(Formatter)), uintptr(unsafe.Pointer(&Property)), Value)
+	r1, _, _ := proc_ZydisFormatterSetProperty.Call(uintptr(unsafe.Pointer(Formatter)), uintptr(Property), Value)
 	return uint32(r1)
 }
 
 func (z *Zydis) FormatterSetHook(Formatter *ZydisFormatter, Type ZydisFormatterFunction, Callback *unsafe.Pointer) uint32 {
-	r1, _, _ := proc_ZydisFormatterSetHook.Call(uintptr(unsafe.Pointer(Formatter)), uintptr(unsafe.Pointer(&Type)), uintptr(unsafe.Pointer(Callback)))
+	r1, _, _ := proc_ZydisFormatterSetHook.Call(uintptr(unsafe.Pointer(Formatter)), uintptr(Type), uintptr(unsafe.Pointer(Callback)))
 	return uint32(r1)
 }
 
@@ -865,12 +861,12 @@ func (z *Zydis) GetInstructionSegments(Instruction *ZydisDecodedInstruction, Seg
 }
 
 func (z *Zydis) DisassembleIntel(Machine_mode ZydisMachineMode, Runtime_address uint64, Buffer unsafe.Pointer, Length uintptr, Instruction *ZydisDisassembledInstruction) uint32 {
-	r1, _, _ := proc_ZydisDisassembleIntel.Call(uintptr(unsafe.Pointer(&Machine_mode)), *(*uintptr)(unsafe.Pointer(&Runtime_address)), uintptr(Buffer), Length, uintptr(unsafe.Pointer(Instruction)))
+	r1, _, _ := proc_ZydisDisassembleIntel.Call(uintptr(Machine_mode), *(*uintptr)(unsafe.Pointer(&Runtime_address)), uintptr(Buffer), Length, uintptr(unsafe.Pointer(Instruction)))
 	return uint32(r1)
 }
 
 func (z *Zydis) DisassembleATT(Machine_mode ZydisMachineMode, Runtime_address uint64, Buffer unsafe.Pointer, Length uintptr, Instruction *ZydisDisassembledInstruction) uint32 {
-	r1, _, _ := proc_ZydisDisassembleATT.Call(uintptr(unsafe.Pointer(&Machine_mode)), *(*uintptr)(unsafe.Pointer(&Runtime_address)), uintptr(Buffer), Length, uintptr(unsafe.Pointer(Instruction)))
+	r1, _, _ := proc_ZydisDisassembleATT.Call(uintptr(Machine_mode), *(*uintptr)(unsafe.Pointer(&Runtime_address)), uintptr(Buffer), Length, uintptr(unsafe.Pointer(Instruction)))
 	return uint32(r1)
 }
 
@@ -890,7 +886,7 @@ func (z *Zydis) GetVersion() uint64 {
 }
 
 func (z *Zydis) IsFeatureEnabled(Feature ZydisFeature) uint32 {
-	r1, _, _ := proc_ZydisIsFeatureEnabled.Call(uintptr(unsafe.Pointer(&Feature)))
+	r1, _, _ := proc_ZydisIsFeatureEnabled.Call(uintptr(Feature))
 	return uint32(r1)
 }
 

@@ -7,6 +7,8 @@ import (
 	"regexp"
 	"runtime"
 	"slices"
+	"sort"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -92,6 +94,7 @@ type Result struct {
 	Typedefs *safemap.M[string, typedefInfo]
 	Macros   *safemap.M[string, macroConstInfo]
 	FnMacros *safemap.M[string, macroConstInfo]
+	Imports  map[string]bool
 }
 
 type BindgenConfig struct {
@@ -108,6 +111,12 @@ type BindgenConfig struct {
 	SingleFile       bool
 	Predefined       string
 	SkipMSVCTypes    bool
+	ExtraConstants   map[string]extraConst
+}
+
+type extraConst struct {
+	GoType  string
+	GoValue string
 }
 
 func Generate(t *testing.T, configs []BindgenConfig) {
@@ -126,7 +135,6 @@ func Generate(t *testing.T, configs []BindgenConfig) {
 }
 
 func TestGenerate(t *testing.T) {
-	bindgenDir := "."
 
 	t.Run("hyperdbg", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
@@ -139,34 +147,31 @@ func TestGenerate(t *testing.T) {
 		}})
 	})
 
-	return //不要运行下面的，我还没改好
+	
 
 	t.Run("zydis", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:     filepath.Join(bindgenDir, "project", "zydis", "zydis", "zydis", "include"),
-			OutputDir:      filepath.Join(bindgenDir, "project", "zydis", "zydis", "zydis"),
-			PackageName:    "zydis",
-			RecurseHeaders: true,
-			SingleFile:     true,
-			HeaderOrder: []string{
-				"Zydis/Zydis.h",
-			},
-			BindDll: true,
-			DllName: "Zydis.dll",
+			HeadersDir:       "project/zydis/clone/zydis/include",
+			OutputDir:        "project/zydis",
+			PackageName:      "zydis",
+			RecurseHeaders:   true,
+			SingleFile:       true,
+			HeaderOrder:      []string{"Zydis/Zydis.h"},
+			BindDll:          true,
+			DllName:          "zydis.dll",
 			DllFuncFilter: func(name string) bool {
 				return strings.HasPrefix(name, "Zydis") || strings.HasPrefix(name, "Zyan")
 			},
 			ExtraIncludeDirs: []string{
-				filepath.Join(bindgenDir, "project", "zydis", "zydis", "zydis", "dependencies", "zycore", "include"),
-				filepath.Join(bindgenDir, "project", "zydis", "zydis", "zydis", "stubs"),
+				"project/zydis/clone/zydis/dependencies/zycore/include",
 			},
 		}})
 	})
-
+return //不要运行下面的，我还没改好
 	t.Run("ipmrec", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  filepath.Join(bindgenDir, "project", "ARImpRec"),
-			OutputDir:   filepath.Join(bindgenDir, "project", "ARImpRec"),
+			HeadersDir:  "project/ARImpRec",
+			OutputDir:   "project/ARImpRec",
 			PackageName: "ipmrec",
 			HeaderOrder: []string{
 				"ARImpRec.h",
@@ -181,8 +186,8 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("keystone", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  filepath.Join(bindgenDir, "project", "patchKeystone", "clone", "keystone", "include", "keystone"),
-			OutputDir:   filepath.Join(bindgenDir, "project", "patchKeystone", "keystone"),
+			HeadersDir:  "project/patchKeystone/clone/keystone/include/keystone",
+			OutputDir:   "project/patchKeystone/keystone",
 			PackageName: "keystone",
 			HeaderOrder: []string{
 				"keystone.h",
@@ -207,8 +212,8 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("windivert", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  filepath.Join(bindgenDir, "project", "WinDivert", "include"),
-			OutputDir:   filepath.Join(bindgenDir, "project", "WinDivert"),
+			HeadersDir:  "project/WinDivert/include",
+			OutputDir:   "project/WinDivert",
 			PackageName: "windivert",
 			HeaderOrder: []string{
 				"windivert_bindgen.h",
@@ -223,8 +228,8 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("everything", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  filepath.Join(bindgenDir, "project", "Everything-SDK", "include"),
-			OutputDir:   filepath.Join(bindgenDir, "project", "Everything-SDK"),
+			HeadersDir:  "project/Everything-SDK/include",
+			OutputDir:   "project/Everything-SDK",
 			PackageName: "everything",
 			HeaderOrder: []string{
 				"Everything_stub.h",
@@ -239,8 +244,8 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("xed", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  filepath.Join(bindgenDir, "project", "xed", "xed", "include"),
-			OutputDir:   filepath.Join(bindgenDir, "project", "xed", "xed"),
+			HeadersDir:  "project/xed/xed/include",
+			OutputDir:   "project/xed/xed",
 			PackageName: "xed",
 			HeaderOrder: []string{
 				"xed-interface.h",
@@ -250,8 +255,8 @@ func TestGenerate(t *testing.T) {
 			DllName:    "xed.dll",
 			Predefined: "#define XED_ENCODER\n#define XED_ENCODE_ORDER_MAX_OPERANDS 5\n#define XED_ENCODE_ORDER_MAX_ENTRIES 35\n",
 			ExtraIncludeDirs: []string{
-				filepath.Join(bindgenDir, "project", "xed", "xed", "obj", "wkit", "include", "xed"),
-				filepath.Join(bindgenDir, "project", "xed", "include"),
+				"project/xed/xed/obj/wkit/include/xed",
+				"project/xed/include",
 			},
 			DllFuncFilter: func(name string) bool {
 				return strings.HasPrefix(name, "xed_")
@@ -406,15 +411,8 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		Typedefs: safemap.New[string, typedefInfo](true),
 		Macros:   safemap.New[string, macroConstInfo](true),
 		FnMacros: safemap.New[string, macroConstInfo](true),
+		Imports:  make(map[string]bool),
 	}
-
-	result.Structs.Set("LIST_ENTRY", structInfo{
-		goName: "LIST_ENTRY",
-		cName:  "_LIST_ENTRY",
-		fields: "\tFlink *LIST_ENTRY\n\tBlink *LIST_ENTRY\n",
-		source: "BasicTypes.h",
-		lineNo: 0,
-	})
 
 	result.Macros.Set("PAGE_SIZE", macroConstInfo{
 		goName:  "PageSize",
@@ -454,7 +452,8 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		}
 		sourceFile := findSourceFileName(l, sources, headerMap)
 		baseName := strings.TrimSuffix(filepath.Base(sourceFile), ".h")
-		if sourceFile == "<builtin>" || sourceFile == "<predefined>" || sourceFile == "<msvc_types>" {
+		isMsvcTypes := sourceFile == "<msvc_types>"
+		if sourceFile == "<builtin>" || sourceFile == "<predefined>" {
 			continue
 		}
 		switch ed.Case {
@@ -464,6 +463,17 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				continue
 			}
 			ds := decl.DeclarationSpecifiers
+		if decl.InitDeclaratorList != nil {
+				for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
+					if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
+						continue
+					}
+					tdName := id.InitDeclarator.Declarator.Name()
+					if tdName == "" {
+						continue
+					}
+				}
+			}
 			switch t := ds.Type().(type) {
 			case *cc.StructType:
 				tag := t.Tag()
@@ -555,56 +565,56 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 					})
 				}
 
-				if decl.InitDeclaratorList != nil {
-					for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
-						if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
-							continue
+			if !isMsvcTypes && decl.InitDeclaratorList != nil {
+				for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
+					if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
+						continue
+					}
+					tdName := id.InitDeclarator.Declarator.Name()
+					if tdName == "" {
+						continue
+					}
+					tdType := id.InitDeclarator.Declarator.Type()
+					if tdType == nil {
+						continue
+					}
+					goTdName := cTagToGoName(tdName)
+					switch vt := tdType.(type) {
+					case *cc.EnumType:
+						enumTag := vt.Tag()
+						tagStr := string(enumTag.Src())
+						if tagStr != "" {
+							result.Typedefs.Set(goTdName, typedefInfo{
+								goName: goTdName,
+								goType: cTagToGoName(tagStr),
+								source: sourceFile,
+							})
 						}
-						tdName := id.InitDeclarator.Declarator.Name()
-						if tdName == "" {
-							continue
-						}
-						tdType := id.InitDeclarator.Declarator.Type()
-						if tdType == nil {
-							continue
-						}
-						goTdName := cTagToGoName(tdName)
-						switch vt := tdType.(type) {
-						case *cc.EnumType:
-							enumTag := vt.Tag()
-							tagStr := string(enumTag.Src())
-							if tagStr != "" {
-								result.Typedefs.Set(goTdName, typedefInfo{
-									goName: goTdName,
-									goType: cTagToGoName(tagStr),
-									source: sourceFile,
-								})
+					case *cc.StructType:
+					structTag := vt.Tag()
+					tagStr := string(structTag.Src())
+					if tagStr != "" {
+							result.Typedefs.Set(goTdName, typedefInfo{
+								goName: goTdName,
+								goType: cTagToGoName(tagStr),
+								source: sourceFile,
+							})
+						} else {
+							isPacked := packedFiles[baseName]
+							fieldDefs, methodDefs, innerTypes := generateStructFields(vt, goTdName, isPacked)
+							result.Structs.Set(goTdName, structInfo{
+								goName:  goTdName,
+								cName:   tdName,
+								fields:  fieldDefs,
+								methods: methodDefs,
+								source:  sourceFile,
+							})
+							for _, it := range innerTypes {
+								it.source = sourceFile
+								result.Structs.Set(it.goName, it)
 							}
-						case *cc.StructType:
-							structTag := vt.Tag()
-							tagStr := string(structTag.Src())
-							if tagStr != "" {
-								result.Typedefs.Set(goTdName, typedefInfo{
-									goName: goTdName,
-									goType: cTagToGoName(tagStr),
-									source: sourceFile,
-								})
-							} else {
-								isPacked := packedFiles[baseName]
-								fieldDefs, methodDefs, innerTypes := generateStructFields(vt, goTdName, isPacked)
-								result.Structs.Set(goTdName, structInfo{
-									goName:  goTdName,
-									cName:   tdName,
-									fields:  fieldDefs,
-									methods: methodDefs,
-									source:  sourceFile,
-								})
-								for _, it := range innerTypes {
-									it.source = sourceFile
-									result.Structs.Set(it.goName, it)
-								}
-							}
-						case *cc.UnionType:
+						}
+					case *cc.UnionType:
 							backingName, backingType, bfs := extractUnionBitfields(vt)
 							if backingName != "" && len(bfs) > 0 {
 								fieldDefs := fmt.Sprintf("\t%s %s\n", backingName, backingType)
@@ -648,7 +658,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 
 			}
 
-			if decl.InitDeclaratorList != nil {
+			if !isMsvcTypes && decl.InitDeclaratorList != nil {
 				for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
 					if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
 						continue
@@ -729,6 +739,17 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			continue
 		}
 		found := slices.Contains(bc.HeaderOrder, sourceFile)
+		if !found && bc.SingleFile {
+			_, found = headerMap[sourceFile]
+			if !found {
+				for k := range headerMap {
+					if filepath.Base(k) == sourceFile {
+						found = true
+						break
+					}
+				}
+			}
+		}
 		if !found {
 			continue
 		}
@@ -859,14 +880,19 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				if inHeaders {
 					return true
 				}
-				if src == "unknown.h" || src == "" {
+				for k := range headerMap {
+					if filepath.Base(k) == src {
+						return true
+					}
+				}
+				if src == "unknown.h" || src == "" || src == "<msvc_types>" {
 					return true
 				}
 				return false
 			}
 			return src == fileName
 		}
-		var aliasTypes []typedefInfo
+	var aliasTypes []typedefInfo
 		var funcTypes []typedefInfo
 		var skipStructNames map[string]bool
 		for _, td := range result.Typedefs.Range() {
@@ -1067,6 +1093,9 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			if !sourceMatch(mc.source) {
 				continue
 			}
+			if !isValidGoFnMacroBody(mc.value) {
+				continue
+			}
 			cleanedBody := cleanCMacroValue(mc.goBody)
 			if !isValidGoFnMacroBody(cleanedBody) {
 				continue
@@ -1122,11 +1151,20 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			content.WriteString(")\n\n")
 		}
 
-		if !hasContent {
+		if !hasContent && len(bc.ExtraConstants) == 0 {
 			continue
 		}
 
-		finalContent := addImports(content.String(), bc.PackageName)
+		if len(bc.ExtraConstants) > 0 {
+			content.WriteString("// Extra constants\n")
+			content.WriteString("const (\n")
+			for name, ec := range bc.ExtraConstants {
+				content.WriteString(fmt.Sprintf("\t%s %s = %s\n", name, ec.GoType, ec.GoValue))
+			}
+			content.WriteString(")\n\n")
+		}
+
+		finalContent := addImports(content.String(), bc.PackageName, result.Imports)
 
 		outputFile := filepath.Join(bc.OutputDir, baseName+".go")
 		err := os.WriteFile(outputFile, []byte(finalContent), 0o644)
@@ -1140,24 +1178,38 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 	fmt.Printf("\n✅ %s binding generation completed!\n", bc.PackageName)
 
 	if bc.BindDll {
-		generateDllBinding(t, ast, bc, result.Typedefs)
+		generateDllBinding(t, ast, bc, result.Typedefs, result.Enums)
 	}
 }
 
-func addImports(content string, packageName string) string {
-	var imports []string
-	if strings.Contains(content, "fmt.Sprintf") || strings.Contains(content, "fmt.Sprintf") {
-		imports = append(imports, `"fmt"`)
+func addImports(content string, packageName string, extraImports map[string]bool) string {
+	imports := make(map[string]bool)
+	for k, v := range extraImports {
+		imports[k] = v
+	}
+	if strings.Contains(content, "fmt.Sprintf") {
+		imports[`"fmt"`] = true
 	}
 	if strings.Contains(content, "unsafe.") {
-		imports = append(imports, `"unsafe"`)
+		imports[`"unsafe"`] = true
+	}
+	if strings.Contains(content, "time.Duration") {
+		imports[`"time"`] = true
+	}
+	if strings.Contains(content, "bits.ReverseBytes") || strings.Contains(content, "bits.Reverse(") {
+		imports[`"math/bits"`] = true
 	}
 	if len(imports) == 0 {
 		return content
 	}
+	var sortedImports []string
+	for imp := range imports {
+		sortedImports = append(sortedImports, imp)
+	}
+	sort.Strings(sortedImports)
 	var importBlock strings.Builder
 	importBlock.WriteString("import (\n")
-	for _, imp := range imports {
+	for _, imp := range sortedImports {
 		importBlock.WriteString("\t" + imp + "\n")
 	}
 	importBlock.WriteString(")\n\n")
@@ -1238,6 +1290,39 @@ func isBoolExpr(body string) bool {
 }
 
 func convertCBoolExpr(body string) string {
+	doubleNotRe := regexp.MustCompile(`!!\s*\(`)
+	if doubleNotRe.MatchString(body) {
+		body = doubleNotRe.ReplaceAllStringFunc(body, func(match string) string {
+			return "!!("
+		})
+		for {
+			idx := strings.Index(body, "!!(")
+			if idx == -1 {
+				break
+			}
+			parenStart := idx + 2
+			depth := 0
+			end := -1
+			for i := parenStart; i < len(body); i++ {
+				if body[i] == '(' {
+					depth++
+				} else if body[i] == ')' {
+					depth--
+					if depth == 0 {
+						end = i
+						break
+					}
+				}
+			}
+			if end == -1 {
+				break
+			}
+			inner := body[parenStart+1 : end]
+			replacement := "(" + inner + ") != 0"
+			body = body[:idx] + replacement + body[end+1:]
+		}
+		return body
+	}
 	for {
 		idx := strings.Index(body, "!(")
 		if idx == -1 {
@@ -1328,21 +1413,47 @@ func isValidGoFnMacroBody(body string) bool {
 		return false
 	}
 	cMarkers := []string{
-		";", "{", "}", "#", "?", "->", "uL", "u)", "/=",
-		"*(const", "__attribute", "assert(", "static",
+		";", "{", "}", "#", "?", "->", "/=",
+		"*(const", "__attribute", "assert(", "static", "sizeof",
 		"ZYAN_", "ZYDIS_", "ZyanU16", "ZyanU32", "ZyanU64",
 		"ZyanI16", "ZyanI32", "ZyanI64",
 		"uNsigNed", "constZyan", "inline", "(void)",
+		"_byteswap_ulong", "_byteswap_uint64", "_byteswap_ushort",
+		"UINT64_C", "INT64_C", "__has_include", "__has_builtin",
 	}
 	for _, m := range cMarkers {
 		if strings.Contains(body, m) {
 			return false
 		}
 	}
+	uLiteralRe := regexp.MustCompile(`\bu["']`)
+	if uLiteralRe.MatchString(body) {
+		return false
+	}
 	if len(body) > 0 && body[0] == ':' {
 		return false
 	}
+	if isSimpleNumber(body) {
+		return false
+	}
+	largeHexRe := regexp.MustCompile(`0x[0-9A-Fa-f]{9,}`)
+	if largeHexRe.MatchString(body) {
+		return false
+	}
 	return true
+}
+
+func isSimpleNumber(s string) bool {
+	s = strings.TrimSpace(s)
+	if s == "" {
+		return false
+	}
+	_, err := strconv.ParseInt(s, 0, 64)
+	if err == nil {
+		return true
+	}
+	_, err = strconv.ParseUint(s, 0, 64)
+	return err == nil
 }
 
 func isValidGoMacroValue(val string) bool {
@@ -1408,7 +1519,7 @@ func isValidGoMacroValue(val string) bool {
 func cleanCMacroValue(val string) string {
 	result := val
 	result = strings.ReplaceAll(result, "~", "^")
-	re := regexp.MustCompile(`([0-9A-Fa-f])([UuLl]+)\b`)
+	re := regexp.MustCompile(`([0-9A-Fa-f])([UuLl]+|[Uu]?[Ii][0-9]+)\b`)
 	result = re.ReplaceAllString(result, "$1")
 	sizeofRe := regexp.MustCompile(`sizeof\(([A-Za-z_]\w*)\)`)
 	result = sizeofRe.ReplaceAllStringFunc(result, func(match string) string {
@@ -1539,10 +1650,18 @@ func determineMacroGoType(val string) string {
 		return "uint32"
 	}
 	if strings.HasPrefix(cleaned, "-") || strings.Contains(cleaned, "(-") {
+		numRe := regexp.MustCompile(`\b(\d{10,})\b`)
+		if numRe.MatchString(cleaned) {
+			return "int64"
+		}
 		if strings.Contains(cleaned, "<<") || strings.Contains(cleaned, ">>") {
 			return "int64"
 		}
 		return "int32"
+	}
+	numRe := regexp.MustCompile(`\b(\d{10,})\b`)
+	if numRe.MatchString(cleaned) {
+		return "uint64"
 	}
 	shiftRe := regexp.MustCompile(`<<\s*(\d+)`)
 	if matches := shiftRe.FindAllStringSubmatch(cleaned, -1); len(matches) > 0 {
@@ -1791,6 +1910,12 @@ func convertCMacroBodyToGo(body string, cParamNames, goParamNames []string) stri
 		result = strings.ReplaceAll(result, cName, goName)
 	}
 	result = strings.ReplaceAll(result, "~", "^")
+	result = strings.ReplaceAll(result, "_byteswap_ulong(", "bits.ReverseBytes32(")
+	result = strings.ReplaceAll(result, "_byteswap_uint64(", "bits.ReverseBytes64(")
+	result = strings.ReplaceAll(result, "_byteswap_ushort(", "bits.ReverseBytes16(")
+	result = regexp.MustCompile(`UINT64_C\s*\(`).ReplaceAllString(result, "uint64(")
+	result = regexp.MustCompile(`INT64_C\s*\(`).ReplaceAllString(result, "int64(")
+	result = regexp.MustCompile(`__has_include\s*\([^)]*\)`).ReplaceAllString(result, "0")
 	notRe := regexp.MustCompile(`!\s*\(`)
 	result = notRe.ReplaceAllString(result, "!(")
 	result = strings.TrimSpace(result)
@@ -2619,6 +2744,7 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 						methods: nestedMethods,
 					})
 					innerTypes = append(innerTypes, nestedInner...)
+					fieldType = elemGoName
 				} else {
 					anonCount++
 					anonElemName := structGoName + "_Anon" + fmt.Sprintf("%d", anonCount) + "Elem"
@@ -2654,6 +2780,7 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 						cName:  tagStr,
 						fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(uv, unionSize)),
 					})
+					fieldType = elemGoName
 				} else {
 					anonCount++
 					anonUnionName := structGoName + "_Anon" + fmt.Sprintf("%d", anonCount) + "Union"
@@ -3320,7 +3447,8 @@ func mapCTypeToGo(t cc.Type) string {
 	case *cc.ArrayType:
 		elemType := mapCTypeToGo(v.Elem())
 		size := v.Len()
-		return fmt.Sprintf("[%d]%s", size, elemType)
+		result := fmt.Sprintf("[%d]%s", size, elemType)
+		return result
 	case *cc.StructType:
 		tag := v.Tag()
 		tagStr := string(tag.Src())
@@ -3364,7 +3492,7 @@ type dllFuncParam struct {
 	isPointer bool
 }
 
-func generateDllBinding(t *testing.T, ast *cc.AST, bc BindgenConfig, typedefs *safemap.M[string, typedefInfo]) {
+func generateDllBinding(t *testing.T, ast *cc.AST, bc BindgenConfig, typedefs *safemap.M[string, typedefInfo], enums *safemap.M[string, enumInfo]) {
 	var funcs []dllFuncInfo
 	funcTypeNames := map[string]bool{}
 	for l := ast.TranslationUnit; l != nil; l = l.TranslationUnit {
@@ -3442,7 +3570,7 @@ func generateDllBinding(t *testing.T, ast *cc.AST, bc BindgenConfig, typedefs *s
 	}
 	fmt.Printf("Found %d exported functions for DLL binding\n", len(funcs))
 
-	dllCode := generateDllBindingCode(funcs, bc.DllName, bc.PackageName, funcTypeNames, typedefs)
+	dllCode := generateDllBindingCode(funcs, bc.DllName, bc.PackageName, funcTypeNames, typedefs, enums)
 	dllFile := filepath.Join(bc.OutputDir, "dll.go")
 	os.WriteFile(dllFile, []byte(dllCode), 0o644)
 	fmt.Printf("Generated: %s\n", dllFile)
@@ -3490,7 +3618,7 @@ func generateDllBinding(t *testing.T, ast *cc.AST, bc BindgenConfig, typedefs *s
 	}
 }
 
-func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTypeNames map[string]bool, typedefs *safemap.M[string, typedefInfo]) string {
+func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTypeNames map[string]bool, typedefs *safemap.M[string, typedefInfo], enums *safemap.M[string, enumInfo]) string {
 	var sb strings.Builder
 	sb.WriteString(fmt.Sprintf("package %s\n\n", pkgName))
 	sb.WriteString("import (\n")
@@ -3540,9 +3668,6 @@ func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTy
 	sb.WriteString("func saveEmbeddedDLL(data []byte, name string) string {\n")
 	sb.WriteString("\ttmpDir := os.TempDir()\n")
 	sb.WriteString("\tp := filepath.Join(tmpDir, name)\n")
-	sb.WriteString("\tif _, err := os.Stat(p); err == nil {\n")
-	sb.WriteString("\t\treturn p\n")
-	sb.WriteString("\t}\n")
 	sb.WriteString("\tos.WriteFile(p, data, 0644)\n")
 	sb.WriteString("\treturn p\n")
 	sb.WriteString("}\n\n")
@@ -3572,7 +3697,7 @@ func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTy
 
 		var syscallArgs []string
 		for _, p := range fn.params {
-			syscallArgs = append(syscallArgs, dllParamToSyscall(p, funcTypeNames, typedefs))
+			syscallArgs = append(syscallArgs, dllParamToSyscall(p, funcTypeNames, typedefs, enums))
 		}
 		argsStr := strings.Join(syscallArgs, ", ")
 		if fn.returnType == "void" || fn.returnType == "" {
@@ -3582,14 +3707,17 @@ func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTy
 			sb.WriteString("\treturn r1 != 0\n")
 		} else {
 			sb.WriteString(fmt.Sprintf("\tr1, _, _ := proc_%s.Call(%s)\n", goDllIdent(fn.cName), argsStr))
-			cast := dllReturnTypeCast(fn.returnType)
+			resolvedRet := resolveTypedef(fn.returnType, typedefs)
+			cast := dllReturnTypeCast(resolvedRet)
 			smallIntTypes := map[string]bool{"uintptr": true, "uint32": true, "int32": true, "uint16": true, "int16": true, "uint8": true, "int8": true}
 			if cast != "" && smallIntTypes[cast] {
 				sb.WriteString(fmt.Sprintf("\treturn %s(r1)\n", cast))
-			} else if fn.returnType == "unsafe.Pointer" {
+			} else if resolvedRet == "unsafe.Pointer" {
 				sb.WriteString("\treturn unsafe.Pointer(r1)\n")
-			} else if strings.HasPrefix(fn.returnType, "*") {
-				sb.WriteString(fmt.Sprintf("\treturn (*%s)(unsafe.Pointer(r1))\n", strings.TrimPrefix(fn.returnType, "*")))
+			} else if strings.HasPrefix(resolvedRet, "*") {
+				sb.WriteString(fmt.Sprintf("\treturn (*%s)(unsafe.Pointer(r1))\n", strings.TrimPrefix(resolvedRet, "*")))
+			} else if enums.Has(resolvedRet) || enums.Has(fn.returnType) {
+				sb.WriteString(fmt.Sprintf("\treturn %s(r1)\n", fn.returnType))
 			} else if fn.returnType != "" && fn.returnType != "void" {
 				sb.WriteString(fmt.Sprintf("\treturn *(*%s)(unsafe.Pointer(&r1))\n", fn.returnType))
 			} else {
@@ -3609,10 +3737,19 @@ func goDllIdent(name string) string {
 	return name
 }
 
-func dllParamToSyscall(p dllFuncParam, funcTypeNames map[string]bool, typedefs *safemap.M[string, typedefInfo]) string {
+func dllParamToSyscall(p dllFuncParam, funcTypeNames map[string]bool, typedefs *safemap.M[string, typedefInfo], enums *safemap.M[string, enumInfo]) string {
 	resolvedType := p.goType
-	if td, ok := typedefs.Get(p.goType); ok && !td.isFunc {
-		resolvedType = td.goType
+	seen := make(map[string]bool)
+	for {
+		if seen[resolvedType] {
+			break
+		}
+		seen[resolvedType] = true
+		if td, ok := typedefs.Get(resolvedType); ok && !td.isFunc {
+			resolvedType = td.goType
+		} else {
+			break
+		}
 	}
 	switch resolvedType {
 	case "uintptr":
@@ -3636,8 +3773,31 @@ func dllParamToSyscall(p dllFuncParam, funcTypeNames map[string]bool, typedefs *
 		if strings.HasPrefix(p.goType, "*") || p.isPointer {
 			return "uintptr(unsafe.Pointer(" + p.goName + "))"
 		}
+		if isGoPrimitiveType(resolvedType) {
+			return "uintptr(" + p.goName + ")"
+		}
+		if enums.Has(resolvedType) || enums.Has(p.goType) {
+			return "uintptr(" + p.goName + ")"
+		}
 		return "uintptr(unsafe.Pointer(&" + p.goName + "))"
 	}
+}
+
+func resolveTypedef(goType string, typedefs *safemap.M[string, typedefInfo]) string {
+	seen := make(map[string]bool)
+	resolved := goType
+	for {
+		if seen[resolved] {
+			break
+		}
+		seen[resolved] = true
+		if td, ok := typedefs.Get(resolved); ok && !td.isFunc {
+			resolved = td.goType
+		} else {
+			break
+		}
+	}
+	return resolved
 }
 
 func dllReturnTypeCast(goType string) string {
@@ -3684,7 +3844,7 @@ func TestDllReceiverName(t *testing.T) {
 		t.Run(tt.pkgName, func(t *testing.T) {
 			code := generateDllBindingCode([]dllFuncInfo{
 				{goName: tt.wantStruct + "_test_func", cName: "test_func", returnType: "void", params: nil},
-			}, "test.dll", tt.pkgName, nil, nil)
+			}, "test.dll", tt.pkgName, nil, nil, nil)
 			wantPattern := fmt.Sprintf("func (%s *%s)", tt.wantRecv, tt.wantStruct)
 			if !strings.Contains(code, wantPattern) {
 				t.Errorf("generated code want receiver %q, got:\n%s", wantPattern, code)
