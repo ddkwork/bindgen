@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_evm uint32
 
 const (
-	KsErrAsmEvmInvalidoperand Ks_err_asm_evm = 512
-	KsErrAsmEvmMissingfeature Ks_err_asm_evm = 513
-	KsErrAsmEvmMnemonicfail Ks_err_asm_evm = 514
+	KsErrAsmEvmInvalidoperand Ks_err_asm_evm = 512 + iota
+	KsErrAsmEvmMissingfeature
+	KsErrAsmEvmMnemonicfail
 )
 
 func (k Ks_err_asm_evm) String() string {

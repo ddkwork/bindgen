@@ -43,54 +43,51 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	if _, err := os.Stat(p); err == nil {
-		return p
-	}
 	os.WriteFile(p, data, 0644)
 	return p
 }
 
-func (k *Keystone) Ks_version(Major *uint32, Minor *uint32) uint32 {
+func (k *Keystone) KsVersion(Major *uint32, Minor *uint32) uint32 {
 	r1, _, _ := proc_ks_version.Call(uintptr(unsafe.Pointer(Major)), uintptr(unsafe.Pointer(Minor)))
 	return uint32(r1)
 }
 
-func (k *Keystone) Ks_arch_supported(Arch Ks_arch) bool {
+func (k *Keystone) KsArchSupported(Arch Ks_arch) bool {
 	r1, _, _ := proc_ks_arch_supported.Call(uintptr(Arch))
 	return r1 != 0
 }
 
-func (k *Keystone) Ks_open(Arch Ks_arch, Mode int32, Ks **Ks_engine) Ks_err {
+func (k *Keystone) KsOpen(Arch Ks_arch, Mode int32, Ks **Ks_engine) Ks_err {
 	r1, _, _ := proc_ks_open.Call(uintptr(Arch), uintptr(Mode), uintptr(unsafe.Pointer(Ks)))
 	return Ks_err(r1)
 }
 
-func (k *Keystone) Ks_close(Ks *Ks_engine) Ks_err {
+func (k *Keystone) KsClose(Ks *Ks_engine) Ks_err {
 	r1, _, _ := proc_ks_close.Call(uintptr(unsafe.Pointer(Ks)))
 	return Ks_err(r1)
 }
 
-func (k *Keystone) Ks_errno(Ks *Ks_engine) Ks_err {
+func (k *Keystone) KsErrno(Ks *Ks_engine) Ks_err {
 	r1, _, _ := proc_ks_errno.Call(uintptr(unsafe.Pointer(Ks)))
 	return Ks_err(r1)
 }
 
-func (k *Keystone) Ks_strerror(Code Ks_err) *int8 {
+func (k *Keystone) KsStrerror(Code Ks_err) *int8 {
 	r1, _, _ := proc_ks_strerror.Call(uintptr(Code))
 	return (*int8)(unsafe.Pointer(r1))
 }
 
-func (k *Keystone) Ks_option(Ks *Ks_engine, Type Ks_opt_type, Value uintptr) Ks_err {
+func (k *Keystone) KsOption(Ks *Ks_engine, Type Ks_opt_type, Value uintptr) Ks_err {
 	r1, _, _ := proc_ks_option.Call(uintptr(unsafe.Pointer(Ks)), uintptr(Type), Value)
 	return Ks_err(r1)
 }
 
-func (k *Keystone) Ks_asm(Ks *Ks_engine, String *int8, Address uint64, Encoding **uint8, Encoding_size *uintptr, Stat_count *uintptr) int32 {
-	r1, _, _ := proc_ks_asm.Call(uintptr(unsafe.Pointer(Ks)), uintptr(unsafe.Pointer(String)), uintptr(Address), uintptr(unsafe.Pointer(Encoding)), uintptr(unsafe.Pointer(Encoding_size)), uintptr(unsafe.Pointer(Stat_count)))
+func (k *Keystone) KsAsm(Ks *Ks_engine, String *int8, Address uint64, Encoding **uint8, Encoding_size *uintptr, Stat_count *uintptr) int32 {
+	r1, _, _ := proc_ks_asm.Call(uintptr(unsafe.Pointer(Ks)), uintptr(unsafe.Pointer(String)), *(*uintptr)(unsafe.Pointer(&Address)), uintptr(unsafe.Pointer(Encoding)), uintptr(unsafe.Pointer(Encoding_size)), uintptr(unsafe.Pointer(Stat_count)))
 	return int32(r1)
 }
 
-func (k *Keystone) Ks_free(P *uint8) {
+func (k *Keystone) KsFree(P *uint8) {
 	proc_ks_free.Call(uintptr(unsafe.Pointer(P)))
 }
 

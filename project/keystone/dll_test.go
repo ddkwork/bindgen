@@ -30,10 +30,10 @@ func cString(s string) (*int8, []byte) {
 	return (*int8)(unsafe.Pointer(&b[0])), b
 }
 
-func TestKs_version(t *testing.T) {
+func TestKsVersion(t *testing.T) {
 	k := newKeystone(t)
 	var major, minor uint32
-	result := k.Ks_version(&major, &minor)
+	result := k.KsVersion(&major, &minor)
 	expected := KsMakeVersion(KsApiMajor, KsApiMinor)
 	if result != expected {
 		t.Fatalf("ks_version returned %d (major=%d minor=%d), expected %d", result, major, minor, expected)
@@ -41,7 +41,7 @@ func TestKs_version(t *testing.T) {
 	t.Logf("keystone version: %d.%d", major, minor)
 }
 
-func TestKs_arch_supported(t *testing.T) {
+func TestKsArchSupported(t *testing.T) {
 	k := newKeystone(t)
 
 	tests := []struct {
@@ -58,76 +58,76 @@ func TestKs_arch_supported(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.arch.String(), func(t *testing.T) {
-			got := k.Ks_arch_supported(tt.arch)
+			got := k.KsArchSupported(tt.arch)
 			if got != tt.want {
-				t.Errorf("Ks_arch_supported(%v) = %v, want %v (%s)", tt.arch, got, tt.want, tt.reason)
+				t.Errorf("KsArchSupported(%v) = %v, want %v (%s)", tt.arch, got, tt.want, tt.reason)
 			}
 		})
 	}
 }
 
-func TestKs_openClose_X86_32(t *testing.T) {
+func TestKsOpenClose_X86_32(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	err := k.Ks_open(KsArchX86, int32(KsMode32), &ks)
+	err := k.KsOpen(KsArchX86, int32(KsMode32), &ks)
 	if err != KsErrOk {
-		t.Fatalf("Ks_open(X86, Mode32) failed: %d (%s)", err, goString(k.Ks_strerror(err)))
+		t.Fatalf("KsOpen(X86, Mode32) failed: %d (%s)", err, goString(k.KsStrerror(err)))
 	}
 	defer func() {
-		err := k.Ks_close(ks)
+		err := k.KsClose(ks)
 		if err != KsErrOk {
-			t.Errorf("Ks_close failed: %d (%s)", err, goString(k.Ks_strerror(err)))
+			t.Errorf("KsClose failed: %d (%s)", err, goString(k.KsStrerror(err)))
 		}
 	}()
 	if ks == nil {
-		t.Fatal("Ks_open returned nil engine")
+		t.Fatal("KsOpen returned nil engine")
 	}
 }
 
-func TestKs_openClose_X86_64(t *testing.T) {
+func TestKsOpenClose_X86_64(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	err := k.Ks_open(KsArchX86, int32(KsMode64), &ks)
+	err := k.KsOpen(KsArchX86, int32(KsMode64), &ks)
 	if err != KsErrOk {
-		t.Fatalf("Ks_open(X86, Mode64) failed: %d (%s)", err, goString(k.Ks_strerror(err)))
+		t.Fatalf("KsOpen(X86, Mode64) failed: %d (%s)", err, goString(k.KsStrerror(err)))
 	}
 	defer func() {
-		if closeErr := k.Ks_close(ks); closeErr != KsErrOk {
-			t.Errorf("Ks_close failed: %d (%s)", closeErr, goString(k.Ks_strerror(closeErr)))
+		if closeErr := k.KsClose(ks); closeErr != KsErrOk {
+			t.Errorf("KsClose failed: %d (%s)", closeErr, goString(k.KsStrerror(closeErr)))
 		}
 	}()
 	if ks == nil {
-		t.Fatal("Ks_open returned nil engine")
+		t.Fatal("KsOpen returned nil engine")
 	}
 }
 
-func TestKs_openInvalidMode(t *testing.T) {
+func TestKsOpenInvalidMode(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	err := k.Ks_open(KsArchX86, int32(KsModeBigEndian), &ks)
+	err := k.KsOpen(KsArchX86, int32(KsModeBigEndian), &ks)
 	if err == KsErrOk {
-		k.Ks_close(ks)
+		k.KsClose(ks)
 		t.Fatal("expected error for X86 + BigEndian mode, got success")
 	}
 }
 
-func TestKs_asm_X86_32(t *testing.T) {
+func TestKsAsm_X86_32(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	if err := k.Ks_open(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
+	if err := k.KsOpen(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
 		t.Fatalf("open: %d", err)
 	}
-	defer k.Ks_close(ks)
+	defer k.KsClose(ks)
 
 	var encoding *uint8
 	var encSize uintptr
 	var statCount uintptr
 	str, pin := cString("inc eax\ncall 0x1000\nmov ecx, edx")
-	result := k.Ks_asm(ks, str, 0x0, &encoding, &encSize, &statCount)
+	result := k.KsAsm(ks, str, 0x0, &encoding, &encSize, &statCount)
 	_ = pin
-	t.Logf("Ks_asm result=%d errno=%d", result, k.Ks_errno(ks))
+	t.Logf("KsAsm result=%d errno=%d", result, k.KsErrno(ks))
 	if result != 0 {
-		t.Fatalf("Ks_asm failed: %d (%s)", result, goString(k.Ks_strerror(Ks_err(result))))
+		t.Fatalf("KsAsm failed: %d (%s)", result, goString(k.KsStrerror(Ks_err(result))))
 	}
 	if encoding == nil {
 		t.Fatal("encoding is nil")
@@ -136,55 +136,55 @@ func TestKs_asm_X86_32(t *testing.T) {
 		t.Fatal("encSize is 0")
 	}
 	t.Logf("assembled %d bytes, %d statements", encSize, statCount)
-	k.Ks_free(encoding)
+	k.KsFree(encoding)
 }
 
-func TestKs_asm_X86_64(t *testing.T) {
+func TestKsAsm_X86_64(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	if err := k.Ks_open(KsArchX86, int32(KsMode64), &ks); err != KsErrOk {
+	if err := k.KsOpen(KsArchX86, int32(KsMode64), &ks); err != KsErrOk {
 		t.Fatalf("open: %d", err)
 	}
-	defer k.Ks_close(ks)
+	defer k.KsClose(ks)
 
 	var encoding *uint8
 	var encSize uintptr
 	var statCount uintptr
 	str, pin := cString("mov rax, 0x123456789ABCDEF0\nret")
-	result := k.Ks_asm(ks, str, 0x400000, &encoding, &encSize, &statCount)
+	result := k.KsAsm(ks, str, 0x400000, &encoding, &encSize, &statCount)
 	_ = pin
 	if result != 0 {
-		t.Fatalf("Ks_asm failed: %d (%s)", result, goString(k.Ks_strerror(Ks_err(result))))
+		t.Fatalf("KsAsm failed: %d (%s)", result, goString(k.KsStrerror(Ks_err(result))))
 	}
 	if encSize == 0 {
 		t.Fatal("encSize is 0")
 	}
 	t.Logf("assembled %d bytes for 64-bit mode", encSize)
-	k.Ks_free(encoding)
+	k.KsFree(encoding)
 }
 
-func TestKs_asm_Arm64(t *testing.T) {
+func TestKsAsm_Arm64(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	if err := k.Ks_open(KsArchArm64, int32(KsModeLittleEndian), &ks); err != KsErrOk {
+	if err := k.KsOpen(KsArchArm64, int32(KsModeLittleEndian), &ks); err != KsErrOk {
 		t.Fatalf("open: %d", err)
 	}
-	defer k.Ks_close(ks)
+	defer k.KsClose(ks)
 
 	var encoding *uint8
 	var encSize uintptr
 	var statCount uintptr
 	str, pin := cString("mov x0, #42\nret")
-	result := k.Ks_asm(ks, str, 0, &encoding, &encSize, &statCount)
+	result := k.KsAsm(ks, str, 0, &encoding, &encSize, &statCount)
 	_ = pin
 	if result != 0 {
-		t.Fatalf("Ks_asm failed: %d (%s)", result, goString(k.Ks_strerror(Ks_err(result))))
+		t.Fatalf("KsAsm failed: %d (%s)", result, goString(k.KsStrerror(Ks_err(result))))
 	}
 	t.Logf("arm64 assembled %d bytes", encSize)
-	k.Ks_free(encoding)
+	k.KsFree(encoding)
 }
 
-func TestKs_strerror(t *testing.T) {
+func TestKsStrerror(t *testing.T) {
 	k := newKeystone(t)
 
 	tests := []struct {
@@ -199,9 +199,9 @@ func TestKs_strerror(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.code.String(), func(t *testing.T) {
-			msg := k.Ks_strerror(tt.code)
+			msg := k.KsStrerror(tt.code)
 			if msg == nil {
-				t.Fatal("Ks_strerror returned nil")
+				t.Fatal("KsStrerror returned nil")
 			}
 			s := goString(msg)
 			if len(s) > 0 && tt.code != KsErrOk {
@@ -211,51 +211,51 @@ func TestKs_strerror(t *testing.T) {
 	}
 }
 
-func TestKs_errno(t *testing.T) {
+func TestKsErrno(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	err := k.Ks_open(KsArchX86, int32(KsMode32), &ks)
+	err := k.KsOpen(KsArchX86, int32(KsMode32), &ks)
 	if err != KsErrOk {
 		t.Fatalf("open: %d", err)
 	}
-	defer k.Ks_close(ks)
+	defer k.KsClose(ks)
 
-	errno := k.Ks_errno(ks)
+	errno := k.KsErrno(ks)
 	if errno != KsErrOk {
-		t.Logf("errno after open: %d (%s)", errno, goString(k.Ks_strerror(errno)))
+		t.Logf("errno after open: %d (%s)", errno, goString(k.KsStrerror(errno)))
 	}
 }
 
-func TestKs_option_Syntax(t *testing.T) {
+func TestKsOption_Syntax(t *testing.T) {
 	k := newKeystone(t)
 	var ks *Ks_engine
-	if err := k.Ks_open(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
+	if err := k.KsOpen(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
 		t.Fatalf("open: %d", err)
 	}
-	defer k.Ks_close(ks)
+	defer k.KsClose(ks)
 
 	syntaxValue := uintptr(1)
-	err := k.Ks_option(ks, KsOptSyntax, syntaxValue)
+	err := k.KsOption(ks, KsOptSyntax, syntaxValue)
 	if err != KsErrOk {
-		t.Logf("option may not be supported: %d (%s)", err, goString(k.Ks_strerror(err)))
+		t.Logf("option may not be supported: %d (%s)", err, goString(k.KsStrerror(err)))
 	}
 }
 
-func TestKs_free_NilPointer(t *testing.T) {
+func TestKsFree_NilPointer(t *testing.T) {
 	k := newKeystone(t)
-	k.Ks_free(nil)
-	t.Log("Ks_free(nil) completed without error")
+	k.KsFree(nil)
+	t.Log("KsFree(nil) completed without error")
 }
 
 func TestFullLifecycle_X86(t *testing.T) {
 	k := newKeystone(t)
 
 	var ks *Ks_engine
-	if err := k.Ks_open(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
-		t.Fatalf("open: %d (%s)", err, goString(k.Ks_strerror(err)))
+	if err := k.KsOpen(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
+		t.Fatalf("open: %d (%s)", err, goString(k.KsStrerror(err)))
 	}
 
-	if errno := k.Ks_errno(ks); errno != KsErrOk {
+	if errno := k.KsErrno(ks); errno != KsErrOk {
 		t.Errorf("unexpected errno after open: %d", errno)
 	}
 
@@ -263,15 +263,15 @@ func TestFullLifecycle_X86(t *testing.T) {
 	var encSize, statCount uintptr
 	str, pin := cString("nop\npush ebp\npop ebp")
 	_ = pin
-	if asmResult := k.Ks_asm(ks, str, 0, &encoding, &encSize, &statCount); asmResult != 0 {
-		t.Fatalf("asm: %d (%s)", asmResult, goString(k.Ks_strerror(Ks_err(asmResult))))
+	if asmResult := k.KsAsm(ks, str, 0, &encoding, &encSize, &statCount); asmResult != 0 {
+		t.Fatalf("asm: %d (%s)", asmResult, goString(k.KsStrerror(Ks_err(asmResult))))
 	}
 	if encSize == 0 {
 		t.Fatal("expected non-zero encoding size")
 	}
-	k.Ks_free(encoding)
+	k.KsFree(encoding)
 
-	if closeErr := k.Ks_close(ks); closeErr != KsErrOk {
-		t.Errorf("close: %d (%s)", closeErr, goString(k.Ks_strerror(closeErr)))
+	if closeErr := k.KsClose(ks); closeErr != KsErrOk {
+		t.Errorf("close: %d (%s)", closeErr, goString(k.KsStrerror(closeErr)))
 	}
 }

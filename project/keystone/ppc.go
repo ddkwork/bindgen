@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_ppc uint32
 
 const (
-	KsErrAsmPpcInvalidoperand Ks_err_asm_ppc = 512
-	KsErrAsmPpcMissingfeature Ks_err_asm_ppc = 513
-	KsErrAsmPpcMnemonicfail Ks_err_asm_ppc = 514
+	KsErrAsmPpcInvalidoperand Ks_err_asm_ppc = 512 + iota
+	KsErrAsmPpcMissingfeature
+	KsErrAsmPpcMnemonicfail
 )
 
 func (k Ks_err_asm_ppc) String() string {

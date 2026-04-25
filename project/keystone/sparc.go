@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_sparc uint32
 
 const (
-	KsErrAsmSparcInvalidoperand Ks_err_asm_sparc = 512
-	KsErrAsmSparcMissingfeature Ks_err_asm_sparc = 513
-	KsErrAsmSparcMnemonicfail Ks_err_asm_sparc = 514
+	KsErrAsmSparcInvalidoperand Ks_err_asm_sparc = 512 + iota
+	KsErrAsmSparcMissingfeature
+	KsErrAsmSparcMnemonicfail
 )
 
 func (k Ks_err_asm_sparc) String() string {

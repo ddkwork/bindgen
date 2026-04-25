@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_riscv uint32
 
 const (
-	KsErrAsmRiscvInvalidoperand Ks_err_asm_riscv = 512
-	KsErrAsmRiscvMissingfeature Ks_err_asm_riscv = 513
-	KsErrAsmRiscvMnemonicfail Ks_err_asm_riscv = 514
+	KsErrAsmRiscvInvalidoperand Ks_err_asm_riscv = 512 + iota
+	KsErrAsmRiscvMissingfeature
+	KsErrAsmRiscvMnemonicfail
 )
 
 func (k Ks_err_asm_riscv) String() string {

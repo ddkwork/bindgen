@@ -319,8 +319,11 @@ func TestGenerateDiag2(t *testing.T) {
 		})
 		t.Logf("MSVC_FULL err=%v ast=nil?%v", err3, ast3 == nil)
 
-		basicContent, _ := os.ReadFile(filepath.Join("SDK", "headers", "BasicTypes.h"))
-		_ = basicContent
+		basicContent, errBasic := os.ReadFile(filepath.Join("SDK", "headers", "BasicTypes.h"))
+		if errBasic != nil {
+			t.Logf("BasicTypes.h not found, skipping partial parse test: %v", errBasic)
+			return
+		}
 		lines := strings.Split(string(basicContent), "\n")
 		for _, endLine := range []int{26, 27, 28, 29, 30} {
 			partial := strings.Join(lines[:endLine], "\n")

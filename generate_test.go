@@ -167,7 +167,6 @@ func TestGenerate(t *testing.T) {
 			},
 		}})
 	})
-return //不要运行下面的，我还没改好
 	t.Run("ipmrec", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
 			HeadersDir:  "project/ARImpRec",
@@ -186,8 +185,8 @@ return //不要运行下面的，我还没改好
 
 	t.Run("keystone", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  "project/patchKeystone/clone/keystone/include/keystone",
-			OutputDir:   "project/patchKeystone/keystone",
+			HeadersDir:  "project/keystone/clone/keystone/include/keystone",
+			OutputDir:   "project/keystone",
 			PackageName: "keystone",
 			HeaderOrder: []string{
 				"keystone.h",

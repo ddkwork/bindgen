@@ -15,17 +15,17 @@ type Ks_sym_resolver func(*int8, *uint64) bool
 type Ks_arch uint32
 
 const (
-	KsArchArm Ks_arch = 1
-	KsArchArm64 Ks_arch = 2
-	KsArchMips Ks_arch = 3
-	KsArchX86 Ks_arch = 4
-	KsArchPpc Ks_arch = 5
-	KsArchSparc Ks_arch = 6
-	KsArchSystemz Ks_arch = 7
-	KsArchHexagon Ks_arch = 8
-	KsArchEvm Ks_arch = 9
-	KsArchRiscv Ks_arch = 10
-	KsArchMax Ks_arch = 11
+	KsArchArm Ks_arch = 1 + iota
+	KsArchArm64
+	KsArchMips
+	KsArchX86
+	KsArchPpc
+	KsArchSparc
+	KsArchSystemz
+	KsArchHexagon
+	KsArchEvm
+	KsArchRiscv
+	KsArchMax
 )
 
 func (k Ks_arch) String() string {
@@ -264,8 +264,8 @@ func (k Ks_err) String() string {
 type Ks_opt_type uint32
 
 const (
-	KsOptSyntax Ks_opt_type = 1
-	KsOptSymResolver Ks_opt_type = 2
+	KsOptSyntax Ks_opt_type = 1 + iota
+	KsOptSymResolver
 )
 
 func (k Ks_opt_type) String() string {

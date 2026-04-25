@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_mips uint32
 
 const (
-	KsErrAsmMipsInvalidoperand Ks_err_asm_mips = 512
-	KsErrAsmMipsMissingfeature Ks_err_asm_mips = 513
-	KsErrAsmMipsMnemonicfail Ks_err_asm_mips = 514
+	KsErrAsmMipsInvalidoperand Ks_err_asm_mips = 512 + iota
+	KsErrAsmMipsMissingfeature
+	KsErrAsmMipsMnemonicfail
 )
 
 func (k Ks_err_asm_mips) String() string {

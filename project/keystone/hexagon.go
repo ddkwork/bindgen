@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_hexagon uint32
 
 const (
-	KsErrAsmHexagonInvalidoperand Ks_err_asm_hexagon = 512
-	KsErrAsmHexagonMissingfeature Ks_err_asm_hexagon = 513
-	KsErrAsmHexagonMnemonicfail Ks_err_asm_hexagon = 514
+	KsErrAsmHexagonInvalidoperand Ks_err_asm_hexagon = 512 + iota
+	KsErrAsmHexagonMissingfeature
+	KsErrAsmHexagonMnemonicfail
 )
 
 func (k Ks_err_asm_hexagon) String() string {

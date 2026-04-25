@@ -15,29 +15,29 @@ if(LLVM_TARGETS_TO_BUILD STREQUAL "all")
     set(LLVM_TARGETS_TO_BUILD X86 ARM AArch64 Mips PowerPC Sparc SystemZ Hexagon RISCV)
 endif()
 
-file(GLOB_RECURSE src_MC "keystone/llvm/lib/MC/*.cpp")
-file(GLOB src_Support "keystone/llvm/lib/Support/*.c*")
-file(GLOB src_Target "keystone/llvm/lib/Target/*.cpp")
+file(GLOB_RECURSE src_MC "clone/keystone/llvm/lib/MC/*.cpp")
+file(GLOB src_Support "clone/keystone/llvm/lib/Support/*.c*")
+file(GLOB src_Target "clone/keystone/llvm/lib/Target/*.cpp")
 
 set(src_core ${src_MC} ${src_Support} ${src_Target})
 
-file(GLOB_RECURSE src_AArch64 "keystone/llvm/lib/Target/AArch64/*.cpp")
-file(GLOB_RECURSE src_ARM "keystone/llvm/lib/Target/ARM/*.cpp")
-file(GLOB_RECURSE src_Hexagon "keystone/llvm/lib/Target/Hexagon/*.cpp")
-file(GLOB_RECURSE src_Mips "keystone/llvm/lib/Target/Mips/*.cpp")
-file(GLOB_RECURSE src_PowerPC "keystone/llvm/lib/Target/PowerPC/*.cpp")
-file(GLOB_RECURSE src_Sparc "keystone/llvm/lib/Target/Sparc/*.cpp")
-file(GLOB_RECURSE src_SystemZ "keystone/llvm/lib/Target/SystemZ/*.cpp")
-file(GLOB_RECURSE src_X86 "keystone/llvm/lib/Target/X86/*.cpp")
-file(GLOB_RECURSE src_RISCV "keystone/llvm/lib/Target/RISCV/*.cpp")
+file(GLOB_RECURSE src_AArch64 "clone/keystone/llvm/lib/Target/AArch64/*.cpp")
+file(GLOB_RECURSE src_ARM "clone/keystone/llvm/lib/Target/ARM/*.cpp")
+file(GLOB_RECURSE src_Hexagon "clone/keystone/llvm/lib/Target/Hexagon/*.cpp")
+file(GLOB_RECURSE src_Mips "clone/keystone/llvm/lib/Target/Mips/*.cpp")
+file(GLOB_RECURSE src_PowerPC "clone/keystone/llvm/lib/Target/PowerPC/*.cpp")
+file(GLOB_RECURSE src_Sparc "clone/keystone/llvm/lib/Target/Sparc/*.cpp")
+file(GLOB_RECURSE src_SystemZ "clone/keystone/llvm/lib/Target/SystemZ/*.cpp")
+file(GLOB_RECURSE src_X86 "clone/keystone/llvm/lib/Target/X86/*.cpp")
+file(GLOB_RECURSE src_RISCV "clone/keystone/llvm/lib/Target/RISCV/*.cpp")
 
 set(KeystoneSourceFiles ${src_core})
 foreach(t ${LLVM_TARGETS_TO_BUILD})
     set(KeystoneSourceFiles ${KeystoneSourceFiles} ${src_${t}})
 endforeach()
 list(APPEND KeystoneSourceFiles
-    "keystone/llvm/keystone/ks.cpp"
-    "keystone/llvm/keystone/EVMMapping.cpp"
+    "clone/keystone/llvm/keystone/ks.cpp"
+    "clone/keystone/llvm/keystone/EVMMapping.cpp"
 )
 
 set(LLVM_ENUM_TARGETS "")
@@ -71,43 +71,43 @@ set(LLVM_NATIVE_TARGETMC LLVMInitializeX86TargetMC)
 set(LLVM_NATIVE_ASMPARSER LLVMInitializeX86AsmParser)
 
 configure_file(
-    "keystone/llvm/include/llvm/Config/Targets.def.in"
+    "clone/keystone/llvm/include/llvm/Config/Targets.def.in"
     "${CMAKE_CURRENT_BINARY_DIR}/include/llvm/Config/Targets.def"
 )
 configure_file(
-    "keystone/llvm/include/llvm/Config/AsmParsers.def.in"
+    "clone/keystone/llvm/include/llvm/Config/AsmParsers.def.in"
     "${CMAKE_CURRENT_BINARY_DIR}/include/llvm/Config/AsmParsers.def"
 )
 configure_file(
-    "keystone/llvm/include/llvm/Support/DataTypes.h.cmake"
+    "clone/keystone/llvm/include/llvm/Support/DataTypes.h.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/include/llvm/Support/DataTypes.h"
 )
 configure_file(
-    "keystone/llvm/include/llvm/Config/llvm-config.h.cmake"
+    "clone/keystone/llvm/include/llvm/Config/llvm-config.h.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/include/llvm/Config/llvm-config.h"
 )
 configure_file(
-    "keystone/llvm/include/llvm/Config/config.h.cmake"
+    "clone/keystone/llvm/include/llvm/Config/config.h.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/include/llvm/Config/config.h"
 )
 
 um_dll(keystone ${KeystoneSourceFiles})
 
 target_include_directories(keystone PRIVATE
-    "keystone/include"
-    "keystone"
-    "keystone/llvm/include"
+    "clone/keystone/include"
+    "clone/keystone"
+    "clone/keystone/llvm/include"
     "${CMAKE_CURRENT_BINARY_DIR}/include"
-    "keystone/llvm/keystone"
-    "keystone/llvm/lib/Target/AArch64"
-    "keystone/llvm/lib/Target/ARM"
-    "keystone/llvm/lib/Target/Hexagon"
-    "keystone/llvm/lib/Target/Mips"
-    "keystone/llvm/lib/Target/PowerPC"
-    "keystone/llvm/lib/Target/Sparc"
-    "keystone/llvm/lib/Target/SystemZ"
-    "keystone/llvm/lib/Target/X86"
-    "keystone/llvm/lib/Target/RISCV"
+    "clone/keystone/llvm/keystone"
+    "clone/keystone/llvm/lib/Target/AArch64"
+    "clone/keystone/llvm/lib/Target/ARM"
+    "clone/keystone/llvm/lib/Target/Hexagon"
+    "clone/keystone/llvm/lib/Target/Mips"
+    "clone/keystone/llvm/lib/Target/PowerPC"
+    "clone/keystone/llvm/lib/Target/Sparc"
+    "clone/keystone/llvm/lib/Target/SystemZ"
+    "clone/keystone/llvm/lib/Target/X86"
+    "clone/keystone/llvm/lib/Target/RISCV"
 )
 
 target_compile_definitions(keystone PRIVATE
@@ -131,6 +131,6 @@ target_compile_options(keystone PRIVATE /Od /Zi /EHsc)
 
 add_custom_command(TARGET keystone POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/include/keystone"
-    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/keystone/include/keystone" "${CMAKE_CURRENT_BINARY_DIR}/include/keystone"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/clone/keystone/include/keystone" "${CMAKE_CURRENT_BINARY_DIR}/include/keystone"
     COMMENT "Copying Keystone header files to output directory..."
 )

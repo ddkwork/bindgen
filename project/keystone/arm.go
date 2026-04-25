@@ -8,9 +8,9 @@ import (
 type Ks_err_asm_arm uint32
 
 const (
-	KsErrAsmArmInvalidoperand Ks_err_asm_arm = 512
-	KsErrAsmArmMissingfeature Ks_err_asm_arm = 513
-	KsErrAsmArmMnemonicfail Ks_err_asm_arm = 514
+	KsErrAsmArmInvalidoperand Ks_err_asm_arm = 512 + iota
+	KsErrAsmArmMissingfeature
+	KsErrAsmArmMnemonicfail
 )
 
 func (k Ks_err_asm_arm) String() string {
