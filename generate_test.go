@@ -563,6 +563,36 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				if unionName != "" {
 					goUnionName := cTagToGoName(unionName)
 					unionSize := t.Size()
+					if unionFields := generateUnionFields(t, unionSize); unionFields != "" {
+						var nestedInner []structInfo
+						for j := 0; j < t.NumFields(); j++ {
+							if uf := t.FieldByIndex(j); uf != nil {
+								if usv, ok := uf.Type().(*cc.StructType); ok {
+									nestedTag := usv.Tag()
+									nestedTagStr := string(nestedTag.Src())
+									if nestedTagStr != "" && !hasBitfields(usv) {
+										nestedF, nestedM, _ := generateStructFields(usv, mapCTypeToGo(uf.Type()), false)
+										nestedInner = append(nestedInner, structInfo{
+											goName:  mapCTypeToGo(uf.Type()),
+											cName:   nestedTagStr,
+											fields:  nestedF,
+											methods: nestedM,
+										})
+									}
+								}
+							}
+						}
+						result.Structs.Set(goUnionName+"_", structInfo{
+							goName: goUnionName + "_",
+							cName:  unionName,
+							fields: unionFields,
+							source: sourceFile,
+						})
+						for _, it := range nestedInner {
+							it.source = sourceFile
+							result.Structs.Set(it.goName, it)
+						}
+					}
 					fieldDefs := fmt.Sprintf("\t%s\n", unionAlignedFFIType(t, unionSize))
 					result.Structs.Set(goUnionName, structInfo{
 						goName: goUnionName,
@@ -1130,8 +1160,32 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 
 		if len(constItems) > 0 {
 			hasContent = true
-			if baseName == "ErrorCodes" {
-				generateErrorCodeEnum(&content, constItems, baseName)
+			isErrorCodeGroup := strings.HasPrefix(baseName, "ErrorCodes") || func() bool {
+				for _, mc := range constItems {
+					if (strings.HasPrefix(mc.goName, "DebuggerError") || strings.HasPrefix(mc.goName, "DebuggerOperation")) && strings.Contains(mc.source, "ErrorCodes") {
+						return true
+					}
+				}
+				return false
+			}()
+			if isErrorCodeGroup {
+				var errorCodeItems []macroConstInfo
+				var nonErrorCodeItems []macroConstInfo
+				for _, mc := range constItems {
+					if strings.HasPrefix(mc.goName, "DebuggerError") || strings.HasPrefix(mc.goName, "DebuggerOperation") {
+						errorCodeItems = append(errorCodeItems, mc)
+					} else {
+						nonErrorCodeItems = append(nonErrorCodeItems, mc)
+					}
+				}
+				content.WriteString("// Source: ErrorCodes.h -> Error codes\n")
+				generateErrorCodeEnum(&content, errorCodeItems, baseName)
+				propagateConstTypes(nonErrorCodeItems)
+				content.WriteString("\n// Source: " + baseName + ".h -> Macro constants\nconst (\n")
+				for _, mc := range nonErrorCodeItems {
+					content.WriteString(fmt.Sprintf("\t%s %s = %s\n", mc.goName, mc.goType, resolveMacroValueNames(mc.goValue)))
+				}
+				content.WriteString(")\n\n")
 			} else {
 				propagateConstTypes(constItems)
 				content.WriteString(fmt.Sprintf("// Source: %s -> Macro constants\n", baseName+".h"))
@@ -1371,11 +1425,12 @@ func isTypeAliasMacro(val string) bool {
 	}
 	lower := strings.ToLower(strings.TrimSpace(val))
 	for _, p := range typeAliasPatterns {
-		if strings.Contains(lower, p) {
+		re := regexp.MustCompile(`\b` + regexp.QuoteMeta(p) + `\b`)
+		if re.MatchString(lower) {
 			return true
 		}
 	}
-	if strings.Contains(val, "*") || strings.ContainsAny(val, "[]") {
+	if strings.ContainsAny(val, "[]") {
 		return true
 	}
 	return false
@@ -2090,7 +2145,7 @@ func generateUnionFields(u *cc.UnionType, unionSize int64) string {
 					fields = append(fields, fmt.Sprintf("\t%s %s", fieldName, fieldType))
 				}
 			} else {
-				return ""
+				fields = append(fields, fmt.Sprintf("\t%s %s", fieldName, fieldType))
 			}
 			continue
 		}
@@ -2270,6 +2325,23 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 						fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(v, v.Size())),
 					})
 				} else if unionFields := generateUnionFields(v, v.Size()); unionFields != "" {
+					for j := 0; j < v.NumFields(); j++ {
+						if uf := v.FieldByIndex(j); uf != nil {
+							if usv, ok := uf.Type().(*cc.StructType); ok {
+								nestedTag := usv.Tag()
+								nestedTagStr := string(nestedTag.Src())
+								if nestedTagStr != "" && !hasBitfields(usv) {
+									nestedF, nestedM, _ := generateStructFields(usv, mapCTypeToGo(uf.Type()), isPacked)
+									innerTypes = append(innerTypes, structInfo{
+										goName:  mapCTypeToGo(uf.Type()),
+										cName:   nestedTagStr,
+										fields:  nestedF,
+										methods: nestedM,
+									})
+								}
+							}
+						}
+					}
 					innerTypes = append(innerTypes, structInfo{
 						goName: af.goType + "_",
 						cName:  tagStr,
@@ -2703,6 +2775,23 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 			unionSize := uv.Size()
 			if unionFields := generateUnionFields(uv, unionSize); unionFields != "" {
 				unionGoName := fieldType
+				for j := 0; j < uv.NumFields(); j++ {
+					if uf := uv.FieldByIndex(j); uf != nil {
+						if usv, ok := uf.Type().(*cc.StructType); ok {
+							nestedTag := usv.Tag()
+							nestedTagStr := string(nestedTag.Src())
+							if nestedTagStr != "" && !hasBitfields(usv) {
+								nestedF, nestedM, _ := generateStructFields(usv, mapCTypeToGo(uf.Type()), isPacked)
+								innerTypes = append(innerTypes, structInfo{
+									goName:  mapCTypeToGo(uf.Type()),
+									cName:   nestedTagStr,
+									fields:  nestedF,
+									methods: nestedM,
+								})
+							}
+						}
+					}
+				}
 				innerTypes = append(innerTypes, structInfo{
 					goName: unionGoName + "_",
 					cName:  tagStr,

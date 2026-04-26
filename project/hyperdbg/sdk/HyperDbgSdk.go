@@ -2755,6 +2755,54 @@ type PORTABLE_PCI_COMMON_HEADER struct {
 }
 
 // Source: Pcie.h:0 -> _PORTABLE_PCI_DEVICE_HEADER
+type PORTABLE_PCI_DEVICE_HEADER_ struct {
+	ConfigSpaceEp PORTABLE_PCI_EP_HEADER
+	ConfigSpacePtpBridge PORTABLE_PCI_BRIDGE_HEADER
+}
+
+// Source: Pcie.h:0 -> _PORTABLE_PCI_EP_HEADER
+type PORTABLE_PCI_EP_HEADER struct {
+	Bar [6]uint32
+	CardBusCISPtr uint32
+	SubVendorId uint16
+	SubSystemId uint16
+	ROMBar uint32
+	CapabilitiesPtr uint8
+	Reserved [3]uint8
+	Reserved1 uint32
+	InterruptLine uint8
+	InterruptPin uint8
+	MinGnt uint8
+	MaxLat uint8
+}
+
+// Source: Pcie.h:0 -> _PORTABLE_PCI_BRIDGE_HEADER
+type PORTABLE_PCI_BRIDGE_HEADER struct {
+	Bar [2]uint32
+	PrimaryBusNumber uint8
+	SecondaryBusNumber uint8
+	SubordinateBusNumber uint8
+	SecondaryLatencyTimer uint8
+	IoBase uint8
+	IoLimit uint8
+	SecondaryStatus uint16
+	MemoryBase uint16
+	MemoryLimit uint16
+	PrefetchableMemoryBase uint16
+	PrefetchableMemoryLimit uint16
+	PrefetchableBaseUpper32b uint32
+	PrefetchableLimitUpper32b uint32
+	IoBaseUpper16b uint16
+	IoLimitUpper16b uint16
+	CapabilityPtr uint8
+	Reserved [3]uint8
+	ROMBar uint32
+	InterruptLine uint8
+	InterruptPin uint8
+	BridgeControl uint16
+}
+
+// Source: Pcie.h:0 -> _PORTABLE_PCI_DEVICE_HEADER
 type PORTABLE_PCI_DEVICE_HEADER struct {
 	Data PORTABLE_PCI_EP_HEADER
 }
@@ -3777,25 +3825,328 @@ type ACTION_BUFFER struct {
 	_  [7]byte
 }
 
-func HIBYTE(W uint32) uint32 {
-	return uint32((uint8)(((uint16)(W)>>8)&0xFF))
-}
-
-func HIWORD(L uint32) uint32 {
-	return uint32((uint16)(((uint32)(L)>>16)&0xFFFF))
+func CtlCode(Function uint32) uint32 {
+	return uint32(((FileDeviceUnknown)<<16)|((FileAnyAccess)<<14)|((Function)<<2)|(MethodBuffered))
 }
 
 func LOWORD(L uint32) uint32 {
 	return uint32((uint16)(L))
 }
 
+func HIWORD(L uint32) uint32 {
+	return uint32((uint16)(((uint32)(L)>>16)&0xFFFF))
+}
+
+func HIBYTE(W uint32) uint32 {
+	return uint32((uint8)(((uint16)(W)>>8)&0xFF))
+}
+
 func LOBYTE(W uint32) uint32 {
 	return uint32((uint8)(W))
 }
 
-func CtlCode(Function uint32) uint32 {
-	return uint32(((FileDeviceUnknown)<<16)|((FileAnyAccess)<<14)|((Function)<<2)|(MethodBuffered))
+// Source: ErrorCodes.h -> Error codes
+// Source: HyperDbgSdk.h -> Error codes
+type DebuggerErrorCode uint32
+
+const (
+	DebuggerOperationWasSuccessful DebuggerErrorCode = 0xFFFFFFFF
+	DebuggerErrorTagNotExists DebuggerErrorCode = 0xc0000000
+	DebuggerErrorInvalidActionType DebuggerErrorCode = 0xc0000001
+	DebuggerErrorActionBufferSizeIsZero DebuggerErrorCode = 0xc0000002
+	DebuggerErrorEventTypeIsInvalid DebuggerErrorCode = 0xc0000003
+	DebuggerErrorUnableToCreateEvent DebuggerErrorCode = 0xc0000004
+	DebuggerErrorInvalidAddress DebuggerErrorCode = 0xc0000005
+	DebuggerErrorInvalidCoreId DebuggerErrorCode = 0xc0000006
+	DebuggerErrorExceptionIndexExceedFirst32Entries DebuggerErrorCode = 0xc0000007
+	DebuggerErrorInterruptIndexIsNotValid DebuggerErrorCode = 0xc0000008
+	DebuggerErrorUnableToHideOrUnhideDebugger DebuggerErrorCode = 0xc0000009
+	DebuggerErrorDebuggerAlreadyHide DebuggerErrorCode = 0xc000000a
+	DebuggerErrorEditMemoryStatusInvalidParameter DebuggerErrorCode = 0xc000000b
+	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnCurrentProcess DebuggerErrorCode = 0xc000000c
+	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnOtherProcess DebuggerErrorCode = 0xc000000d
+	DebuggerErrorModifyEventsInvalidTag DebuggerErrorCode = 0xc000000e
+	DebuggerErrorModifyEventsInvalidTypeOfAction DebuggerErrorCode = 0xc000000f
+	DebuggerErrorSteppingInvalidParameter DebuggerErrorCode = 0xc0000010
+	DebuggerErrorSteppingsEitherThreadNotFoundOrDisabled DebuggerErrorCode = 0xc0000011
+	DebuggerErrorPreparingDebuggeeInvalidBaudrate DebuggerErrorCode = 0xc0000012
+	DebuggerErrorPreparingDebuggeeInvalidSerialPort DebuggerErrorCode = 0xc0000013
+	DebuggerErrorPreparingDebuggeeInvalidCoreInRemoteDebugge DebuggerErrorCode = 0xc0000014
+	DebuggerErrorPreparingDebuggeeUnableToSwitchToNewProcess DebuggerErrorCode = 0xc0000015
+	DebuggerErrorPreparingDebuggeeToRunScript DebuggerErrorCode = 0xc0000016
+	DebuggerErrorInvalidRegisterNumber DebuggerErrorCode = 0xc0000017
+	DebuggerErrorMaximumBreakpointWithoutContinue DebuggerErrorCode = 0xc0000018
+	DebuggerErrorBreakpointAlreadyExistsOnTheAddress DebuggerErrorCode = 0xc0000019
+	DebuggerErrorBreakpointIdNotFound DebuggerErrorCode = 0xc000001a
+	DebuggerErrorBreakpointAlreadyDisabled DebuggerErrorCode = 0xc000001b
+	DebuggerErrorBreakpointAlreadyEnabled DebuggerErrorCode = 0xc000001c
+	DebuggerErrorMemoryTypeInvalid DebuggerErrorCode = 0xc000001d
+	DebuggerErrorInvalidProcessId DebuggerErrorCode = 0xc000001e
+	DebuggerErrorEventIsNotApplied DebuggerErrorCode = 0xc000001f
+	DebuggerErrorDetailsOrSwitchProcessInvalidParameter DebuggerErrorCode = 0xc0000020
+	DebuggerErrorDetailsOrSwitchThreadInvalidParameter DebuggerErrorCode = 0xc0000021
+	DebuggerErrorMaximumBreakpointForASinglePageIsHit DebuggerErrorCode = 0xc0000022
+	DebuggerErrorPreAllocatedBufferIsEmpty DebuggerErrorCode = 0xc0000023
+	DebuggerErrorEptCouldNotSplitTheLargePageTo4kbPages DebuggerErrorCode = 0xc0000024
+	DebuggerErrorEptFailedToGetPml1EntryOfTargetAddress DebuggerErrorCode = 0xc0000025
+	DebuggerErrorEptMultipleHooksInASinglePage DebuggerErrorCode = 0xc0000026
+	DebuggerErrorCouldNotBuildTheEptHook DebuggerErrorCode = 0xc0000027
+	DebuggerErrorCouldNotFindAllocationType DebuggerErrorCode = 0xc0000028
+	DebuggerErrorInvalidTestQueryIndex DebuggerErrorCode = 0xc0000029
+	DebuggerErrorUnableToAttachToTargetUserModeProcess DebuggerErrorCode = 0xc000002a
+	DebuggerErrorUnableToRemoveHooksEntrypointNotReached DebuggerErrorCode = 0xc000002b
+	DebuggerErrorUnableToRemoveHooks DebuggerErrorCode = 0xc000002c
+	DebuggerErrorFunctionsForInitializingPebAddressesAreNotInitialized DebuggerErrorCode = 0xc000002d
+	DebuggerErrorUnableToDetect32BitOr64BitProcess DebuggerErrorCode = 0xc000002e
+	DebuggerErrorUnableToKillTheProcess DebuggerErrorCode = 0xc000002f
+	DebuggerErrorInvalidThreadDebuggingToken DebuggerErrorCode = 0xc0000030
+	DebuggerErrorUnableToPauseTheProcessThreads DebuggerErrorCode = 0xc0000031
+	DebuggerErrorUnableToAttachToAnAlreadyAttachedProcess DebuggerErrorCode = 0xc0000032
+	DebuggerErrorTheUserDebuggerNotAttachedToTheProcess DebuggerErrorCode = 0xc0000033
+	DebuggerErrorUnableToDetachAsThereArePausedThreads DebuggerErrorCode = 0xc0000034
+	DebuggerErrorUnableToSwitchProcessIdOrThreadIdIsInvalid DebuggerErrorCode = 0xc0000035
+	DebuggerErrorUnableToSwitchThereIsNoThreadOnTheProcess DebuggerErrorCode = 0xc0000036
+	DebuggerErrorUnableToGetModulesOfTheProcess DebuggerErrorCode = 0xc0000037
+	DebuggerErrorUnableToGetCallstack DebuggerErrorCode = 0xc0000038
+	DebuggerErrorUnableToQueryCountOfProcessesOrThreads DebuggerErrorCode = 0xc0000039
+	DebuggerErrorUsingShortCircuitingEventWithPostEventModeIsForbiddedn DebuggerErrorCode = 0xc000003a
+	DebuggerErrorUnknownTestQueryReceived DebuggerErrorCode = 0xc000003b
+	DebuggerErrorReadingMemoryInvalidParameter DebuggerErrorCode = 0xc000003c
+	DebuggerErrorTheTrapFlagListIsFull DebuggerErrorCode = 0xc000003d
+	DebuggerErrorUnableToKillTheProcessDoesNotExists DebuggerErrorCode = 0xc000003e
+	DebuggerErrorModeExecutionIsInvalid DebuggerErrorCode = 0xc000003f
+	DebuggerErrorProcessIdCannotBeSpecifiedWhileApplyingEventFromVmxRootMode DebuggerErrorCode = 0xc0000040
+	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForEventAndConditionals DebuggerErrorCode = 0xc0000041
+	DebuggerErrorInstantEventRegularPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000042
+	DebuggerErrorInstantEventBigPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000043
+	DebuggerErrorUnableToCreateActionCannotAllocateBuffer DebuggerErrorCode = 0xc0000044
+	DebuggerErrorInstantEventActionRegularPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000045
+	DebuggerErrorInstantEventActionBigPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000046
+	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForActionBuffer DebuggerErrorCode = 0xc0000047
+	DebuggerErrorInstantEventRequestedOptionalBufferIsBiggerThanDebuggersSendReceiveStack DebuggerErrorCode = 0xc0000048
+	DebuggerErrorInstantEventRegularRequestedSafeBufferNotFound DebuggerErrorCode = 0xc0000049
+	DebuggerErrorInstantEventBigRequestedSafeBufferNotFound DebuggerErrorCode = 0xc000004a
+	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForRequestedSafeBuffer DebuggerErrorCode = 0xc000004b
+	DebuggerErrorUnableToAllocateRequestedSafeBuffer DebuggerErrorCode = 0xc000004c
+	DebuggerErrorCouldNotFindPreactivationType DebuggerErrorCode = 0xc000004d
+	DebuggerErrorTheModeExecTrapIsNotInitialized DebuggerErrorCode = 0xc000004e
+	DebuggerErrorTheTargetEventIsDisabledButCannotBeClearedPrirityBufferIsFull DebuggerErrorCode = 0xc000004f
+	DebuggerErrorNotAllCoresAreLockedForApplyingInstantEvent DebuggerErrorCode = 0xc0000050
+	DebuggerErrorTargetSwitchingCoreIsNotLocked DebuggerErrorCode = 0xc0000051
+	DebuggerErrorInvalidPhysicalAddress DebuggerErrorCode = 0xc0000052
+	DebuggerErrorApicActionsError DebuggerErrorCode = 0xc0000053
+	DebuggerErrorDebuggerAlreadyUnhide DebuggerErrorCode = 0xc0000054
+	DebuggerErrorDebuggerNotInitialized DebuggerErrorCode = 0xc0000055
+	DebuggerErrorCannotPutEptHooksOnPhysicalAddressAbove512Gb DebuggerErrorCode = 0xc0000056
+	DebuggerErrorInvalidSmiOperationParameters DebuggerErrorCode = 0xc0000057
+	DebuggerErrorUnableToTriggerSmi DebuggerErrorCode = 0xc0000058
+	DebuggerErrorUnableToApplyCommandToTheTargetThread DebuggerErrorCode = 0xc0000059
+	DebuggerErrorHypertraceNotInitialized DebuggerErrorCode = 0xc000005a
+	DebuggerErrorInvalidHypertraceOperationType DebuggerErrorCode = 0xc000005b
+	DebuggerErrorLbrAlreadyEnabled DebuggerErrorCode = 0xc000005c
+	DebuggerErrorLbrAlreadyDisabled DebuggerErrorCode = 0xc000005d
+	DebuggerErrorLbrNotSupported DebuggerErrorCode = 0xc000005e
+)
+
+func (c DebuggerErrorCode) String() string {
+	switch c {
+	case DebuggerOperationWasSuccessful:
+		return "Was Successful"
+	case DebuggerErrorTagNotExists:
+		return "Tag Not Exists"
+	case DebuggerErrorInvalidActionType:
+		return "Invalid Action Type"
+	case DebuggerErrorActionBufferSizeIsZero:
+		return "Action Buffer Size Is Zero"
+	case DebuggerErrorEventTypeIsInvalid:
+		return "Event Type Is Invalid"
+	case DebuggerErrorUnableToCreateEvent:
+		return "Unable To Create Event"
+	case DebuggerErrorInvalidAddress:
+		return "Invalid Address"
+	case DebuggerErrorInvalidCoreId:
+		return "Invalid Core Id"
+	case DebuggerErrorExceptionIndexExceedFirst32Entries:
+		return "Exception Index Exceed First 32 Entries"
+	case DebuggerErrorInterruptIndexIsNotValid:
+		return "Interrupt Index Is Not Valid"
+	case DebuggerErrorUnableToHideOrUnhideDebugger:
+		return "Unable To Hide Or Unhide Debugger"
+	case DebuggerErrorDebuggerAlreadyHide:
+		return "Debugger Already Hide"
+	case DebuggerErrorEditMemoryStatusInvalidParameter:
+		return "Edit Memory Status Invalid Parameter"
+	case DebuggerErrorEditMemoryStatusInvalidAddressBasedOnCurrentProcess:
+		return "Edit Memory Status Invalid Address Based On Current Process"
+	case DebuggerErrorEditMemoryStatusInvalidAddressBasedOnOtherProcess:
+		return "Edit Memory Status Invalid Address Based On Other Process"
+	case DebuggerErrorModifyEventsInvalidTag:
+		return "Modify Events Invalid Tag"
+	case DebuggerErrorModifyEventsInvalidTypeOfAction:
+		return "Modify Events Invalid Type Of Action"
+	case DebuggerErrorSteppingInvalidParameter:
+		return "Stepping Invalid Parameter"
+	case DebuggerErrorSteppingsEitherThreadNotFoundOrDisabled:
+		return "Steppings Either Thread Not Found Or Disabled"
+	case DebuggerErrorPreparingDebuggeeInvalidBaudrate:
+		return "Preparing Debuggee Invalid Baudrate"
+	case DebuggerErrorPreparingDebuggeeInvalidSerialPort:
+		return "Preparing Debuggee Invalid Serial Port"
+	case DebuggerErrorPreparingDebuggeeInvalidCoreInRemoteDebugge:
+		return "Preparing Debuggee Invalid Core In Remote Debugge"
+	case DebuggerErrorPreparingDebuggeeUnableToSwitchToNewProcess:
+		return "Preparing Debuggee Unable To Switch To New Process"
+	case DebuggerErrorPreparingDebuggeeToRunScript:
+		return "Preparing Debuggee To Run Script"
+	case DebuggerErrorInvalidRegisterNumber:
+		return "Invalid Register Number"
+	case DebuggerErrorMaximumBreakpointWithoutContinue:
+		return "Maximum Breakpoint Without Continue"
+	case DebuggerErrorBreakpointAlreadyExistsOnTheAddress:
+		return "Breakpoint Already Exists On The Address"
+	case DebuggerErrorBreakpointIdNotFound:
+		return "Breakpoint Id Not Found"
+	case DebuggerErrorBreakpointAlreadyDisabled:
+		return "Breakpoint Already Disabled"
+	case DebuggerErrorBreakpointAlreadyEnabled:
+		return "Breakpoint Already Enabled"
+	case DebuggerErrorMemoryTypeInvalid:
+		return "Memory Type Invalid"
+	case DebuggerErrorInvalidProcessId:
+		return "Invalid Process Id"
+	case DebuggerErrorEventIsNotApplied:
+		return "Event Is Not Applied"
+	case DebuggerErrorDetailsOrSwitchProcessInvalidParameter:
+		return "Details Or Switch Process Invalid Parameter"
+	case DebuggerErrorDetailsOrSwitchThreadInvalidParameter:
+		return "Details Or Switch Thread Invalid Parameter"
+	case DebuggerErrorMaximumBreakpointForASinglePageIsHit:
+		return "Maximum Breakpoint For A Single Page Is Hit"
+	case DebuggerErrorPreAllocatedBufferIsEmpty:
+		return "Pre Allocated Buffer Is Empty"
+	case DebuggerErrorEptCouldNotSplitTheLargePageTo4kbPages:
+		return "Ept Could Not Split The Large Page To 4kb Pages"
+	case DebuggerErrorEptFailedToGetPml1EntryOfTargetAddress:
+		return "Ept Failed To Get Pml 1 Entry Of Target Address"
+	case DebuggerErrorEptMultipleHooksInASinglePage:
+		return "Ept Multiple Hooks In A Single Page"
+	case DebuggerErrorCouldNotBuildTheEptHook:
+		return "Could Not Build The Ept Hook"
+	case DebuggerErrorCouldNotFindAllocationType:
+		return "Could Not Find Allocation Type"
+	case DebuggerErrorInvalidTestQueryIndex:
+		return "Invalid Test Query Index"
+	case DebuggerErrorUnableToAttachToTargetUserModeProcess:
+		return "Unable To Attach To Target User Mode Process"
+	case DebuggerErrorUnableToRemoveHooksEntrypointNotReached:
+		return "Unable To Remove Hooks Entrypoint Not Reached"
+	case DebuggerErrorUnableToRemoveHooks:
+		return "Unable To Remove Hooks"
+	case DebuggerErrorFunctionsForInitializingPebAddressesAreNotInitialized:
+		return "Functions For Initializing Peb Addresses Are Not Initialized"
+	case DebuggerErrorUnableToDetect32BitOr64BitProcess:
+		return "Unable To Detect 32 Bit Or 64 Bit Process"
+	case DebuggerErrorUnableToKillTheProcess:
+		return "Unable To Kill The Process"
+	case DebuggerErrorInvalidThreadDebuggingToken:
+		return "Invalid Thread Debugging Token"
+	case DebuggerErrorUnableToPauseTheProcessThreads:
+		return "Unable To Pause The Process Threads"
+	case DebuggerErrorUnableToAttachToAnAlreadyAttachedProcess:
+		return "Unable To Attach To An Already Attached Process"
+	case DebuggerErrorTheUserDebuggerNotAttachedToTheProcess:
+		return "The User Debugger Not Attached To The Process"
+	case DebuggerErrorUnableToDetachAsThereArePausedThreads:
+		return "Unable To Detach As There Are Paused Threads"
+	case DebuggerErrorUnableToSwitchProcessIdOrThreadIdIsInvalid:
+		return "Unable To Switch Process Id Or Thread Id Is Invalid"
+	case DebuggerErrorUnableToSwitchThereIsNoThreadOnTheProcess:
+		return "Unable To Switch There Is No Thread On The Process"
+	case DebuggerErrorUnableToGetModulesOfTheProcess:
+		return "Unable To Get Modules Of The Process"
+	case DebuggerErrorUnableToGetCallstack:
+		return "Unable To Get Callstack"
+	case DebuggerErrorUnableToQueryCountOfProcessesOrThreads:
+		return "Unable To Query Count Of Processes Or Threads"
+	case DebuggerErrorUsingShortCircuitingEventWithPostEventModeIsForbiddedn:
+		return "Using Short Circuiting Event With Post Event Mode Is Forbiddedn"
+	case DebuggerErrorUnknownTestQueryReceived:
+		return "Unknown Test Query Received"
+	case DebuggerErrorReadingMemoryInvalidParameter:
+		return "Reading Memory Invalid Parameter"
+	case DebuggerErrorTheTrapFlagListIsFull:
+		return "The Trap Flag List Is Full"
+	case DebuggerErrorUnableToKillTheProcessDoesNotExists:
+		return "Unable To Kill The Process Does Not Exists"
+	case DebuggerErrorModeExecutionIsInvalid:
+		return "Mode Execution Is Invalid"
+	case DebuggerErrorProcessIdCannotBeSpecifiedWhileApplyingEventFromVmxRootMode:
+		return "Process Id Cannot Be Specified While Applying Event From Vmx Root Mode"
+	case DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForEventAndConditionals:
+		return "Instant Event Preallocated Buffer Is Not Enough For Event And Conditionals"
+	case DebuggerErrorInstantEventRegularPreallocatedBufferNotFound:
+		return "Instant Event Regular Preallocated Buffer Not Found"
+	case DebuggerErrorInstantEventBigPreallocatedBufferNotFound:
+		return "Instant Event Big Preallocated Buffer Not Found"
+	case DebuggerErrorUnableToCreateActionCannotAllocateBuffer:
+		return "Unable To Create Action Cannot Allocate Buffer"
+	case DebuggerErrorInstantEventActionRegularPreallocatedBufferNotFound:
+		return "Instant Event Action Regular Preallocated Buffer Not Found"
+	case DebuggerErrorInstantEventActionBigPreallocatedBufferNotFound:
+		return "Instant Event Action Big Preallocated Buffer Not Found"
+	case DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForActionBuffer:
+		return "Instant Event Preallocated Buffer Is Not Enough For Action Buffer"
+	case DebuggerErrorInstantEventRequestedOptionalBufferIsBiggerThanDebuggersSendReceiveStack:
+		return "Instant Event Requested Optional Buffer Is Bigger Than Debuggers Send Receive Stack"
+	case DebuggerErrorInstantEventRegularRequestedSafeBufferNotFound:
+		return "Instant Event Regular Requested Safe Buffer Not Found"
+	case DebuggerErrorInstantEventBigRequestedSafeBufferNotFound:
+		return "Instant Event Big Requested Safe Buffer Not Found"
+	case DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForRequestedSafeBuffer:
+		return "Instant Event Preallocated Buffer Is Not Enough For Requested Safe Buffer"
+	case DebuggerErrorUnableToAllocateRequestedSafeBuffer:
+		return "Unable To Allocate Requested Safe Buffer"
+	case DebuggerErrorCouldNotFindPreactivationType:
+		return "Could Not Find Preactivation Type"
+	case DebuggerErrorTheModeExecTrapIsNotInitialized:
+		return "The Mode Exec Trap Is Not Initialized"
+	case DebuggerErrorTheTargetEventIsDisabledButCannotBeClearedPrirityBufferIsFull:
+		return "The Target Event Is Disabled But Cannot Be Cleared Pririty Buffer Is Full"
+	case DebuggerErrorNotAllCoresAreLockedForApplyingInstantEvent:
+		return "Not All Cores Are Locked For Applying Instant Event"
+	case DebuggerErrorTargetSwitchingCoreIsNotLocked:
+		return "Target Switching Core Is Not Locked"
+	case DebuggerErrorInvalidPhysicalAddress:
+		return "Invalid Physical Address"
+	case DebuggerErrorApicActionsError:
+		return "Apic Actions Error"
+	case DebuggerErrorDebuggerAlreadyUnhide:
+		return "Debugger Already Unhide"
+	case DebuggerErrorDebuggerNotInitialized:
+		return "Debugger Not Initialized"
+	case DebuggerErrorCannotPutEptHooksOnPhysicalAddressAbove512Gb:
+		return "Cannot Put Ept Hooks On Physical Address Above 512 Gb"
+	case DebuggerErrorInvalidSmiOperationParameters:
+		return "Invalid Smi Operation Parameters"
+	case DebuggerErrorUnableToTriggerSmi:
+		return "Unable To Trigger Smi"
+	case DebuggerErrorUnableToApplyCommandToTheTargetThread:
+		return "Unable To Apply Command To The Target Thread"
+	case DebuggerErrorHypertraceNotInitialized:
+		return "Hypertrace Not Initialized"
+	case DebuggerErrorInvalidHypertraceOperationType:
+		return "Invalid Hypertrace Operation Type"
+	case DebuggerErrorLbrAlreadyEnabled:
+		return "Lbr Already Enabled"
+	case DebuggerErrorLbrAlreadyDisabled:
+		return "Lbr Already Disabled"
+	case DebuggerErrorLbrNotSupported:
+		return "Lbr Not Supported"
+	default:
+		return fmt.Sprintf("DebuggerErrorCode(0x%X)", uint32(c))
+	}
 }
+
 
 // Source: HyperDbgSdk.h -> Macro constants
 const (
@@ -3803,25 +4154,21 @@ const (
 	VersionMajor uint32 = 0
 	VersionMinor uint32 = 18
 	VersionPatch uint32 = 1
-	DebuggerOperationWasSuccessful uint32 = 0xFFFFFFFF
 	DefaultInitialDebuggeeToDebuggerOffset uint32 = 0x200
 	DefaultInitialDebuggerToDebuggeeOffset uint32 = 0x0
 	BusBitWidth uint32 = 8
 	DeviceBitWidth uint32 = 5
 	FunctionBitWidth uint32 = 3
-	DebuggerErrorTagNotExists uint32 = 0xc0000000
-	DefaultInitialBramBufferSize uint32 = 256
 	FileAnyAccess uint32 = 0
+	DefaultInitialBramBufferSize uint32 = 256
 	DomainMaxNum uint32 = 0
 	BusMaxNum uint32 = 255
-	DebuggerErrorInvalidActionType uint32 = 0xc0000001
 	DeviceMaxNum uint32 = 32
 	FunctionMaxNum uint32 = 8
 	DevMaxNum uint32 = 255
 	CamConfigSpaceLength uint32 = 255
 	SymbolUndefined uint32 = 0
 	SymbolGlobalIdType uint32 = 1
-	DebuggerErrorActionBufferSizeIsZero uint32 = 0xc0000002
 	SymbolLocalIdType uint32 = 2
 	SymbolNumType uint32 = 3
 	MethodBuffered uint32 = 0
@@ -3831,44 +4178,35 @@ const (
 	SymbolTempType uint32 = 7
 	NullZero uint32 = 0
 	SymbolStringType uint32 = 8
-	DebuggerErrorEventTypeIsInvalid uint32 = 0xc0000003
-	FileDeviceUnknown uint32 = 0x00000022
 	SymbolVariableCountType uint32 = 9
+	FileDeviceUnknown uint32 = 0x00000022
 	SymbolInvalid uint32 = 10
 	SymbolWstringType uint32 = 11
 	FALSE uint32 = 0
 	TRUE uint32 = 1
 	SymbolFunctionParameterIdType uint32 = 12
 	SymbolReturnAddressType uint32 = 13
-	DebuggerErrorUnableToCreateEvent uint32 = 0xc0000004
-	SymbolFunctionParameterType uint32 = 14
 	Upper56Bits uint64 = 0xffffffffffffff00
+	SymbolFunctionParameterType uint32 = 14
 	Upper48Bits uint64 = 0xffffffffffff0000
 	SymbolStackIndexType uint32 = 15
-	SymbolStackBaseIndexType uint32 = 16
 	Upper32Bits uint64 = 0xffffffff00000000
-	Lower32Bits uint64 = 0x00000000ffffffff
+	SymbolStackBaseIndexType uint32 = 16
 	SymbolReturnValueType uint32 = 17
+	Lower32Bits uint64 = 0x00000000ffffffff
 	Lower16Bits uint64 = 0x000000000000ffff
 	SymbolReferenceLocalIdType uint32 = 18
-	SymbolReferenceTempType uint32 = 19
 	Lower8Bits uint64 = 0x00000000000000ff
-	SecondLower8Bits uint64 = 0x000000000000ff00
-	DebuggerErrorInvalidAddress uint32 = 0xc0000005
+	SymbolReferenceTempType uint32 = 19
 	SymbolDereferenceLocalIdType uint32 = 20
+	SecondLower8Bits uint64 = 0x000000000000ff00
 	Upper48BitsAndLower8Bits uint64 = 0xffffffffffff00ff
 	SymbolDereferenceTempType uint32 = 21
-	DebuggerErrorInvalidCoreId uint32 = 0xc0000006
-	DebuggerErrorExceptionIndexExceedFirst32Entries uint32 = 0xc0000007
-	DebuggerErrorInterruptIndexIsNotValid uint32 = 0xc0000008
-	DebuggerErrorUnableToHideOrUnhideDebugger uint32 = 0xc0000009
 	SymbolMemValidCheckMask uint32 = (1<<31)
 	INVALID uint32 = 0x80000000
-	DebuggerErrorDebuggerAlreadyHide uint32 = 0xc000000a
 	LalrAccept uint32 = 0x7fffffff
 	FuncUndefined uint32 = 0
 	FuncInc uint32 = 1
-	DebuggerErrorEditMemoryStatusInvalidParameter uint32 = 0xc000000b
 	FuncDec uint32 = 2
 	FuncReference uint32 = 3
 	FuncOr uint32 = 4
@@ -3876,7 +4214,6 @@ const (
 	FuncAnd uint32 = 6
 	FuncAsr uint32 = 7
 	FuncAsl uint32 = 8
-	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnCurrentProcess uint32 = 0xc000000c
 	FuncAdd uint32 = 9
 	FuncSub uint32 = 10
 	FuncMul uint32 = 11
@@ -3885,7 +4222,6 @@ const (
 	FuncGt uint32 = 14
 	FuncLt uint32 = 15
 	FuncEgt uint32 = 16
-	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnOtherProcess uint32 = 0xc000000d
 	FuncElt uint32 = 17
 	FuncEqual uint32 = 18
 	FuncNeq uint32 = 19
@@ -3893,7 +4229,6 @@ const (
 	FuncJz uint32 = 21
 	FuncJnz uint32 = 22
 	FuncMov uint32 = 23
-	DebuggerErrorModifyEventsInvalidTag uint32 = 0xc000000e
 	FuncStartOfDoWhile uint32 = 24
 	FuncStartOfDoWhileCommands uint32 = 25
 	FuncEndOfDoWhile uint32 = 26
@@ -3901,14 +4236,12 @@ const (
 	FuncForIncDec uint32 = 28
 	FuncStartOfForOmmands uint32 = 29
 	FuncEndOfIf uint32 = 30
-	DebuggerErrorModifyEventsInvalidTypeOfAction uint32 = 0xc000000f
 	FuncIgnoreLvalue uint32 = 31
 	FuncPush uint32 = 32
 	FuncPop uint32 = 33
 	FuncCall uint32 = 34
 	FuncRet uint32 = 35
 	FuncPrint uint32 = 36
-	DebuggerErrorSteppingInvalidParameter uint32 = 0xc0000010
 	FuncFormats uint32 = 37
 	FuncEventEnable uint32 = 38
 	FuncEventDisable uint32 = 39
@@ -3916,20 +4249,17 @@ const (
 	FuncTestStatement uint32 = 41
 	FuncSpinlockLock uint32 = 42
 	FuncSpinlockUnlock uint32 = 43
-	DebuggerErrorSteppingsEitherThreadNotFoundOrDisabled uint32 = 0xc0000011
 	FuncEventSc uint32 = 44
 	FuncMicrosleep uint32 = 45
 	FuncPrintf uint32 = 46
 	FuncPause uint32 = 47
 	FuncFlush uint32 = 48
-	DebuggerErrorPreparingDebuggeeInvalidBaudrate uint32 = 0xc0000012
 	FuncEventTraceStep uint32 = 49
 	FuncEventTraceStepIn uint32 = 50
 	FuncEventTraceStepOut uint32 = 51
 	FuncEventTraceInstrumentationStep uint32 = 52
 	FuncEventTraceInstrumentationStepIn uint32 = 53
 	FuncLbrStart uint32 = 54
-	DebuggerErrorPreparingDebuggeeInvalidSerialPort uint32 = 0xc0000013
 	FuncLbrStop uint32 = 55
 	FuncRdtsc uint32 = 56
 	FuncRdtscp uint32 = 57
@@ -3937,16 +4267,14 @@ const (
 	FuncEventInject uint32 = 59
 	FuncPoi uint32 = 60
 	FuncDb uint32 = 61
-	DebuggerErrorPreparingDebuggeeInvalidCoreInRemoteDebugge uint32 = 0xc0000014
 	FuncDd uint32 = 62
 	FuncDw uint32 = 63
 	FuncDq uint32 = 64
 	FuncNeg uint32 = 65
-	FuncHi uint32 = 66
 	MaximumPacketsCapacity uint32 = 1000
+	FuncHi uint32 = 66
 	FuncLow uint32 = 67
 	FuncNot uint32 = 68
-	DebuggerErrorPreparingDebuggeeUnableToSwitchToNewProcess uint32 = 0xc0000015
 	FuncCheckAddress uint32 = 69
 	FuncDisassembleLen uint32 = 70
 	FuncDisassembleLen32 uint32 = 71
@@ -3954,7 +4282,6 @@ const (
 	FuncDisassembleLen64 uint32 = 72
 	FuncInterlockedIncrement uint32 = 73
 	FuncInterlockedDecrement uint32 = 74
-	DebuggerErrorPreparingDebuggeeToRunScript uint32 = 0xc0000016
 	FuncPhysicalToVirtual uint32 = 75
 	FuncVirtualToPhysical uint32 = 76
 	FuncPoiPa uint32 = 77
@@ -3962,7 +4289,6 @@ const (
 	FuncHiPa uint32 = 78
 	FuncLowPa uint32 = 79
 	FuncDbPa uint32 = 80
-	DebuggerErrorInvalidRegisterNumber uint32 = 0xc0000017
 	FuncDdPa uint32 = 81
 	FuncDwPa uint32 = 82
 	PacketChunkSize uint32 = NormalPageSize
@@ -3971,114 +4297,70 @@ const (
 	FuncEb uint32 = 85
 	FuncEq uint32 = 86
 	FuncInterlockedExchange uint32 = 87
-	DebuggerErrorMaximumBreakpointWithoutContinue uint32 = 0xc0000018
 	FuncInterlockedExchangeAdd uint32 = 88
 	FuncEbPa uint32 = 89
 	FuncEdPa uint32 = 90
 	FuncEqPa uint32 = 91
 	FuncInterlockedCompareExchange uint32 = 92
 	FuncStrlen uint32 = 93
-	DebuggerErrorBreakpointAlreadyExistsOnTheAddress uint32 = 0xc0000019
 	FuncStrcmp uint32 = 94
 	FuncMemcmp uint32 = 95
 	FuncStrncmp uint32 = 96
+	MaxSerialPacketSize uint32 = 20*NormalPageSize
 	FuncWcslen uint32 = 97
 	FuncWcscmp uint32 = 98
-	DebuggerErrorBreakpointIdNotFound uint32 = 0xc000001a
 	FuncEventInjectErrorCode uint32 = 99
 	FuncMemcpy uint32 = 100
 	FuncMemcpyPa uint32 = 101
 	FuncWcsncmp uint32 = 102
-	DebuggerErrorBreakpointAlreadyDisabled uint32 = 0xc000001b
-	DebuggerErrorBreakpointAlreadyEnabled uint32 = 0xc000001c
-	DebuggerErrorMemoryTypeInvalid uint32 = 0xc000001d
 	DbgPrintLimitation uint32 = 512
-	DebuggerErrorInvalidProcessId uint32 = 0xc000001e
 	DebuggerEventTagStartSeed uint32 = 0x1000000
-	DebuggerErrorEventIsNotApplied uint32 = 0xc000001f
 	DebuggerThreadDebuggingTagStartSeed uint32 = 0x1000000
-	DebuggerErrorDetailsOrSwitchProcessInvalidParameter uint32 = 0xc0000020
 	DebuggerOutputSourceTagStartSeed uint32 = 0x1
-	DebuggerErrorDetailsOrSwitchThreadInvalidParameter uint32 = 0xc0000021
 	DebuggerOutputSourceMaximumRemoteSourceForSingleEvent uint32 = 0x5
-	DebuggerErrorMaximumBreakpointForASinglePageIsHit uint32 = 0xc0000022
 	DebuggerScriptEngineMemcpyMovingBufferSize uint32 = 64
-	DebuggerErrorPreAllocatedBufferIsEmpty uint32 = 0xc0000023
-	DebuggerErrorEptCouldNotSplitTheLargePageTo4kbPages uint32 = 0xc0000024
 	MaximumNumberOfInitialPreallocatedEptHooks uint32 = 5
-	DebuggerErrorEptFailedToGetPml1EntryOfTargetAddress uint32 = 0xc0000025
-	DebuggerErrorEptMultipleHooksInASinglePage uint32 = 0xc0000026
 	MaximumRegularInstantEvents uint32 = 20
-	DebuggerErrorCouldNotBuildTheEptHook uint32 = 0xc0000027
 	MaximumBigInstantEvents uint32 = 0
-	DebuggerErrorCouldNotFindAllocationType uint32 = 0xc0000028
-	DebuggerErrorInvalidTestQueryIndex uint32 = 0xc0000029
-	DebuggerErrorUnableToAttachToTargetUserModeProcess uint32 = 0xc000002a
-	DebuggerErrorUnableToRemoveHooksEntrypointNotReached uint32 = 0xc000002b
 	RegularInstantEventRequestedSafeBuffer uint32 = PageSize
-	DebuggerErrorUnableToRemoveHooks uint32 = 0xc000002c
 	BigInstantEventRequestedSafeBuffer uint32 = MaxSerialPacketSize
-	DebuggerErrorFunctionsForInitializingPebAddressesAreNotInitialized uint32 = 0xc000002d
-	DebuggerErrorUnableToDetect32BitOr64BitProcess uint32 = 0xc000002e
-	DebuggerErrorUnableToKillTheProcess uint32 = 0xc000002f
 	CommunicationBufferSize uint32 = PacketChunkSize+0x100
-	DebuggerErrorInvalidThreadDebuggingToken uint32 = 0xc0000030
-	DebuggerErrorUnableToPauseTheProcessThreads uint32 = 0xc0000031
 	TopLevelDriversVmcallStartingNumber uint32 = 0x00000200
-	DebuggerErrorUnableToAttachToAnAlreadyAttachedProcess uint32 = 0xc0000032
 	TopLevelDriversVmcallEndingNumber uint32 = TopLevelDriversVmcallStartingNumber+0x100
-	DebuggerErrorTheUserDebuggerNotAttachedToTheProcess uint32 = 0xc0000033
-	DebuggerErrorUnableToDetachAsThereArePausedThreads uint32 = 0xc0000034
 	OperationMandatoryDebuggeeBit uint32 = (1<<31)
-	DebuggerErrorUnableToSwitchProcessIdOrThreadIdIsInvalid uint32 = 0xc0000035
 	OperationLogInfoMessage uint32 = 1
 	OperationLogWarningMessage uint32 = 2
 	OperationLogErrorMessage uint32 = 3
-	DebuggerErrorUnableToSwitchThereIsNoThreadOnTheProcess uint32 = 0xc0000036
 	OperationLogNonImmediateMessage uint32 = 4
 	OperationLogWithTag uint32 = 5
 	OperationLogMessageMandatory uint32 = 6|OperationMandatoryDebuggeeBit
 	OperationCommandFromDebuggerCloseAndUnloadVmm uint32 = 7|OperationMandatoryDebuggeeBit
 	OperationDebuggeeUserInput uint32 = 8|OperationMandatoryDebuggeeBit
-	DebuggerErrorUnableToGetModulesOfTheProcess uint32 = 0xc0000037
 	OperationDebuggeeRegisterEvent uint32 = 9|OperationMandatoryDebuggeeBit
 	OperationDebuggeeAddActionToEvent uint32 = 10|OperationMandatoryDebuggeeBit
 	OperationDebuggeeClearEvents uint32 = 11|OperationMandatoryDebuggeeBit
 	OperationDebuggeeClearEventsWithoutNotifyingDebugger uint32 = 12|OperationMandatoryDebuggeeBit
 	OperationHypervisorDriverIsSuccessfullyLoaded uint32 = 13|OperationMandatoryDebuggeeBit
-	DebuggerErrorUnableToGetCallstack uint32 = 0xc0000038
 	OperationHypervisorDriverEndOfIrps uint32 = 14|OperationMandatoryDebuggeeBit
 	OperationCommandFromDebuggerReloadSymbol uint32 = 15|OperationMandatoryDebuggeeBit
 	OperationNotificationFromUserDebuggerPause uint32 = 16|OperationMandatoryDebuggeeBit
-	DebuggerErrorUnableToQueryCountOfProcessesOrThreads uint32 = 0xc0000039
 	MaximumBreakpointsWithoutContinue uint32 = 100
-	DebuggerErrorUsingShortCircuitingEventWithPostEventModeIsForbiddedn uint32 = 0xc000003a
-	DebuggerErrorUnknownTestQueryReceived uint32 = 0xc000003b
 	MaximumNumberOfThreadInformationForTraps uint32 = 200
-	DebuggerErrorReadingMemoryInvalidParameter uint32 = 0xc000003c
-	DebuggerErrorTheTrapFlagListIsFull uint32 = 0xc000003d
 	POOLTAG uint32 = 0x48444247
-	DebuggerErrorUnableToKillTheProcessDoesNotExists uint32 = 0xc000003e
 	SerialEndOfBufferCharsCount uint32 = 0x4
-	DebuggerErrorModeExecutionIsInvalid uint32 = 0xc000003f
 	SerialEndOfBufferChar1 uint32 = 0x00
 	SerialEndOfBufferChar2 uint32 = 0x80
 	SerialEndOfBufferChar3 uint32 = 0xEE
-	DebuggerErrorProcessIdCannotBeSpecifiedWhileApplyingEventFromVmxRootMode uint32 = 0xc0000040
 	SerialEndOfBufferChar4 uint32 = 0xFF
 	TcpEndOfBufferCharsCount uint32 = 0x4
-	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForEventAndConditionals uint32 = 0xc0000041
 	TcpEndOfBufferChar1 uint32 = 0x10
 	TcpEndOfBufferChar2 uint32 = 0x20
-	DebuggerErrorInstantEventRegularPreallocatedBufferNotFound uint32 = 0xc0000042
 	TcpEndOfBufferChar3 uint32 = 0x33
 	TcpEndOfBufferChar4 uint32 = 0x44
-	DebuggerErrorInstantEventBigPreallocatedBufferNotFound uint32 = 0xc0000043
 	PseudoRegisterPid uint32 = 0
 	PseudoRegisterTid uint32 = 1
 	PseudoRegisterPname uint32 = 2
 	PseudoRegisterCore uint32 = 3
-	DebuggerErrorUnableToCreateActionCannotAllocateBuffer uint32 = 0xc0000044
 	MaximumCharacterForOsName uint32 = 256
 	PseudoRegisterProc uint32 = 4
 	PseudoRegisterThread uint32 = 5
@@ -4086,32 +4368,21 @@ const (
 	PseudoRegisterTeb uint32 = 7
 	PseudoRegisterIp uint32 = 8
 	PseudoRegisterBuffer uint32 = 9
-	DebuggerErrorInstantEventActionRegularPreallocatedBufferNotFound uint32 = 0xc0000045
 	PseudoRegisterContext uint32 = 10
 	PseudoRegisterEventTag uint32 = 11
 	PseudoRegisterEventId uint32 = 12
-	PseudoRegisterEventStage uint32 = 13
 	MaximumInstrSize uint32 = 16
+	PseudoRegisterEventStage uint32 = 13
 	PseudoRegisterDate uint32 = 14
 	PseudoRegisterTime uint32 = 15
-	DebuggerErrorInstantEventActionBigPreallocatedBufferNotFound uint32 = 0xc0000046
 	MaximumCallInstrSize uint32 = 7
-	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForActionBuffer uint32 = 0xc0000047
 	MaximumSupportedSymbols uint32 = 1000
-	DebuggerErrorInstantEventRequestedOptionalBufferIsBiggerThanDebuggersSendReceiveStack uint32 = 0xc0000048
-	DebuggerErrorInstantEventRegularRequestedSafeBufferNotFound uint32 = 0xc0000049
 	MaximumGuidAndAgeSize uint32 = 60
-	DebuggerErrorInstantEventBigRequestedSafeBufferNotFound uint32 = 0xc000004a
-	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForRequestedSafeBuffer uint32 = 0xc000004b
 	IndicatorOfHyperdbgPacket uint64 = 0x4859504552444247
-	DebuggerErrorUnableToAllocateRequestedSafeBuffer uint32 = 0xc000004c
-	DebuggerErrorCouldNotFindPreactivationType uint32 = 0xc000004d
 	MaximumSearchResults uint32 = 0x1000
-	DebuggerErrorTheModeExecTrapIsNotInitialized uint32 = 0xc000004e
 	X86FlagsCf uint32 = (1<<0)
 	X86FlagsPf uint32 = (1<<2)
 	X86FlagsAf uint32 = (1<<4)
-	DebuggerErrorTheTargetEventIsDisabledButCannotBeClearedPrirityBufferIsFull uint32 = 0xc000004f
 	X86FlagsZf uint32 = (1<<6)
 	X86FlagsSf uint32 = (1<<7)
 	X86FlagsTf uint32 = (1<<8)
@@ -4119,50 +4390,35 @@ const (
 	X86FlagsDf uint32 = (1<<10)
 	X86FlagsOf uint32 = (1<<11)
 	X86FlagsStatusMask uint32 = (0xfff)
-	DebuggerErrorNotAllCoresAreLockedForApplyingInstantEvent uint32 = 0xc0000050
 	X86FlagsIoplMask uint32 = (3<<12)
 	X86FlagsIoplShift uint32 = (12)
 	X86FlagsIoplShift2ndBit uint32 = (13)
 	X86FlagsNt uint32 = (1<<14)
 	X86FlagsRf uint32 = (1<<16)
 	X86FlagsVm uint32 = (1<<17)
-	DebuggerErrorTargetSwitchingCoreIsNotLocked uint32 = 0xc0000051
 	X86FlagsAc uint32 = (1<<18)
 	X86FlagsVif uint32 = (1<<19)
 	X86FlagsVip uint32 = (1<<20)
 	X86FlagsId uint32 = (1<<21)
 	X86FlagsReservedOnes uint32 = 0x2
 	X86FlagsReserved uint32 = 0xffc0802a
-	DebuggerErrorInvalidPhysicalAddress uint32 = 0xc0000052
 	X86FlagsReservedBits uint32 = 0xffc38028
 	X86FlagsFixed uint32 = 0x00000002
-	DebuggerErrorApicActionsError uint32 = 0xc0000053
-	DebuggerErrorDebuggerAlreadyUnhide uint32 = 0xc0000054
-	DebuggerErrorDebuggerNotInitialized uint32 = 0xc0000055
 	MaxStackBufferCount uint32 = 256
-	DebuggerErrorCannotPutEptHooksOnPhysicalAddressAbove512Gb uint32 = 0xc0000056
 	MaxExecutionCount uint32 = 1000000
-	DebuggerErrorInvalidSmiOperationParameters uint32 = 0xc0000057
 	MaxVarCount uint32 = 512
 	MaxFunctionNameLength uint32 = 32
-	DebuggerErrorUnableToTriggerSmi uint32 = 0xc0000058
-	DebuggerErrorUnableToApplyCommandToTheTargetThread uint32 = 0xc0000059
-	DebuggerErrorHypertraceNotInitialized uint32 = 0xc000005a
-	DebuggerErrorInvalidHypertraceOperationType uint32 = 0xc000005b
 	PassiveLevel uint32 = 0
-	DebuggerErrorLbrAlreadyEnabled uint32 = 0xc000005c
 	LowLevel uint32 = 0
 	ApcLevel uint32 = 1
 	DispatchLevel uint32 = 2
 	CmciLevel uint32 = 5
 	ClockLevel uint32 = 13
 	IpiLevel uint32 = 14
-	DebuggerErrorLbrAlreadyDisabled uint32 = 0xc000005d
 	DrsLevel uint32 = 14
 	PowerLevel uint32 = 14
 	ProfileLevel uint32 = 15
 	HighLevel uint32 = 15
-	DebuggerErrorLbrNotSupported uint32 = 0xc000005e
 	X86Cr0Pe uint32 = 0x00000001
 	X86Cr0Mp uint32 = 0x00000002
 	X86Cr0Em uint32 = 0x00000004
@@ -4186,6 +4442,16 @@ const (
 	X86Cr4Osfxsr uint32 = 0x0200
 	X86Cr4Osxmmexcpt uint32 = 0x0400
 	X86Cr4Vmxe uint32 = 0x2000
+	Kgdt64Null uint32 = (0*16)
+	Kgdt64R0Code uint32 = (1*16)
+	Kgdt64R0Data uint32 = (1*16)+8
+	Kgdt64R3Cmcode uint32 = (2*16)
+	Kgdt64R3Data uint32 = (2*16)+8
+	Kgdt64R3Code uint32 = (3*16)
+	Kgdt64SysTss uint32 = (4*16)
+	Kgdt64R3Cmteb uint32 = (5*16)
+	Kgdt64R0Cmcode uint32 = (6*16)
+	Kgdt64Last uint32 = (7*16)
 	PcidNone uint32 = 0x000
 	PcidMask uint32 = 0x003
 	CpuidHvVendorAndMaxFunctions uint32 = 0x40000000
@@ -4219,45 +4485,45 @@ const (
 
 // Source: HyperDbgSdk.h -> Macro variables
 var (
-	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
-	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
-	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
-	IoctlSendGeneralBufferFromDebuggeeToDebugger uint32 = CtlCode(0x814)
-	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
-	IoctlPreactivateFunctionality uint32 = CtlCode(0x820)
-	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
-	IoctlPcidevinfoEnum uint32 = CtlCode(0x823)
-	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
-	IoctlRegisterEvent uint32 = CtlCode(0x800)
-	IoctlDebuggerVa2paAndPa2vaCommands uint32 = CtlCode(0x809)
-	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
-	IoctlPerformHypertraceOperation uint32 = CtlCode(0x827)
-	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
-	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
-	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
-	IoctlGetListOfThreadsAndProcesses uint32 = CtlCode(0x81b)
-	IoctlPausePacketReceived uint32 = CtlCode(0x811)
 	IoctlPerformActionsOnApic uint32 = CtlCode(0x822)
-	IoctlQueryCurrentThread uint32 = CtlCode(0x81d)
+	IoctlRegisterEvent uint32 = CtlCode(0x800)
+	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
+	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
 	IoctlDebuggerBringPagesIn uint32 = CtlCode(0x81f)
-	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
-	IoctlSendUserDebuggerCommands uint32 = CtlCode(0x817)
-	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
-	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
-	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
-	IoctlSendUsermodeMessagesToDebugger uint32 = CtlCode(0x813)
-	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
-	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
-	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
-	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
-	IoctlTerminateVmx uint32 = CtlCode(0x802)
-	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
+	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
 	IoctlDebuggerModifyEvents uint32 = CtlCode(0x80c)
-	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
+	IoctlQueryCurrentThread uint32 = CtlCode(0x81d)
+	IoctlPcidevinfoEnum uint32 = CtlCode(0x823)
+	IoctlDebuggerVa2paAndPa2vaCommands uint32 = CtlCode(0x809)
 	IoctlPerformSmiOperation uint32 = CtlCode(0x826)
+	IoctlPerformHypertraceOperation uint32 = CtlCode(0x827)
+	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
+	IoctlSendGeneralBufferFromDebuggeeToDebugger uint32 = CtlCode(0x814)
 	IoctlDebuggerEditMemory uint32 = CtlCode(0x80a)
+	IoctlPreactivateFunctionality uint32 = CtlCode(0x820)
+	IoctlPausePacketReceived uint32 = CtlCode(0x811)
+	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
+	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
+	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
+	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
 	IoctlRequestRevMachineService uint32 = CtlCode(0x81e)
+	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
+	IoctlSendUserDebuggerCommands uint32 = CtlCode(0x817)
+	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
+	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
+	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
+	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
+	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
+	IoctlTerminateVmx uint32 = CtlCode(0x802)
+	IoctlGetListOfThreadsAndProcesses uint32 = CtlCode(0x81b)
+	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
+	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
 	IoctlSendSignalExecutionInDebuggeeFinished uint32 = CtlCode(0x812)
+	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
+	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
+	IoctlSendUsermodeMessagesToDebugger uint32 = CtlCode(0x813)
+	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
+	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
 	IoctlDebuggerReadPageTableEntriesDetails uint32 = CtlCode(0x805)
 )
 
