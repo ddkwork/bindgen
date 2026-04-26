@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -13,8 +14,14 @@ import (
 	"testing"
 
 	"github.com/ddkwork/golibrary/std/safemap"
+	"github.com/ddkwork/golibrary/std/stream"
 	"modernc.org/cc/v4"
 )
+
+func TestFixError(t *testing.T) {
+	stream.Fmt(".")
+	stream.Fix(".")
+}
 
 func newMSVCConfig(t testing.TB) *cc.Config {
 	abi, err := cc.NewABI(runtime.GOOS, runtime.GOARCH)
@@ -135,7 +142,6 @@ func Generate(t *testing.T, configs []BindgenConfig) {
 }
 
 func TestGenerate(t *testing.T) {
-
 	t.Run("hyperdbg", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
 			HeadersDir:       "project/hyperdbg/clone/SDK",
@@ -147,18 +153,16 @@ func TestGenerate(t *testing.T) {
 		}})
 	})
 
-	
-
 	t.Run("zydis", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:       "project/zydis/clone/zydis/include",
-			OutputDir:        "project/zydis",
-			PackageName:      "zydis",
-			RecurseHeaders:   true,
-			SingleFile:       true,
-			HeaderOrder:      []string{"Zydis/Zydis.h"},
-			BindDll:          true,
-			DllName:          "zydis.dll",
+			HeadersDir:     "project/zydis/clone/zydis/include",
+			OutputDir:      "project/zydis",
+			PackageName:    "zydis",
+			RecurseHeaders: true,
+			SingleFile:     true,
+			HeaderOrder:    []string{"Zydis/Zydis.h"},
+			BindDll:        true,
+			DllName:        "zydis.dll",
 			DllFuncFilter: func(name string) bool {
 				return strings.HasPrefix(name, "Zydis") || strings.HasPrefix(name, "Zyan")
 			},
@@ -470,7 +474,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				continue
 			}
 			ds := decl.DeclarationSpecifiers
-		if decl.InitDeclaratorList != nil {
+			if decl.InitDeclaratorList != nil {
 				for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
 					if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
 						continue
@@ -602,56 +606,56 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 					})
 				}
 
-			if !isMsvcTypes && decl.InitDeclaratorList != nil {
-				for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
-					if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
-						continue
-					}
-					tdName := id.InitDeclarator.Declarator.Name()
-					if tdName == "" {
-						continue
-					}
-					tdType := id.InitDeclarator.Declarator.Type()
-					if tdType == nil {
-						continue
-					}
-					goTdName := cTagToGoName(tdName)
-					switch vt := tdType.(type) {
-					case *cc.EnumType:
-						enumTag := vt.Tag()
-						tagStr := string(enumTag.Src())
-						if tagStr != "" {
-							result.Typedefs.Set(goTdName, typedefInfo{
-								goName: goTdName,
-								goType: cTagToGoName(tagStr),
-								source: sourceFile,
-							})
+				if !isMsvcTypes && decl.InitDeclaratorList != nil {
+					for id := decl.InitDeclaratorList; id != nil; id = id.InitDeclaratorList {
+						if id.InitDeclarator == nil || id.InitDeclarator.Declarator == nil {
+							continue
 						}
-					case *cc.StructType:
-					structTag := vt.Tag()
-					tagStr := string(structTag.Src())
-					if tagStr != "" {
-							result.Typedefs.Set(goTdName, typedefInfo{
-								goName: goTdName,
-								goType: cTagToGoName(tagStr),
-								source: sourceFile,
-							})
-						} else {
-							isPacked := packedFiles[baseName]
-							fieldDefs, methodDefs, innerTypes := generateStructFields(vt, goTdName, isPacked)
-							result.Structs.Set(goTdName, structInfo{
-								goName:  goTdName,
-								cName:   tdName,
-								fields:  fieldDefs,
-								methods: methodDefs,
-								source:  sourceFile,
-							})
-							for _, it := range innerTypes {
-								it.source = sourceFile
-								result.Structs.Set(it.goName, it)
+						tdName := id.InitDeclarator.Declarator.Name()
+						if tdName == "" {
+							continue
+						}
+						tdType := id.InitDeclarator.Declarator.Type()
+						if tdType == nil {
+							continue
+						}
+						goTdName := cTagToGoName(tdName)
+						switch vt := tdType.(type) {
+						case *cc.EnumType:
+							enumTag := vt.Tag()
+							tagStr := string(enumTag.Src())
+							if tagStr != "" {
+								result.Typedefs.Set(goTdName, typedefInfo{
+									goName: goTdName,
+									goType: cTagToGoName(tagStr),
+									source: sourceFile,
+								})
 							}
-						}
-					case *cc.UnionType:
+						case *cc.StructType:
+							structTag := vt.Tag()
+							tagStr := string(structTag.Src())
+							if tagStr != "" {
+								result.Typedefs.Set(goTdName, typedefInfo{
+									goName: goTdName,
+									goType: cTagToGoName(tagStr),
+									source: sourceFile,
+								})
+							} else {
+								isPacked := packedFiles[baseName]
+								fieldDefs, methodDefs, innerTypes := generateStructFields(vt, goTdName, isPacked)
+								result.Structs.Set(goTdName, structInfo{
+									goName:  goTdName,
+									cName:   tdName,
+									fields:  fieldDefs,
+									methods: methodDefs,
+									source:  sourceFile,
+								})
+								for _, it := range innerTypes {
+									it.source = sourceFile
+									result.Structs.Set(it.goName, it)
+								}
+							}
+						case *cc.UnionType:
 							backingName, backingType, bfs := extractUnionBitfields(vt)
 							if backingName != "" && len(bfs) > 0 {
 								fieldDefs := fmt.Sprintf("\t%s %s\n", backingName, backingType)
@@ -929,7 +933,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			}
 			return src == fileName
 		}
-	var aliasTypes []typedefInfo
+		var aliasTypes []typedefInfo
 		var funcTypes []typedefInfo
 		var skipStructNames map[string]bool
 		for _, td := range result.Typedefs.Range() {
@@ -1090,10 +1094,12 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				src = si.originalSource
 			}
 			goName := si.goName
-			reserved := map[string]bool{"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true,
+			reserved := map[string]bool{
+				"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true,
 				"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
 				"uintptr": true, "string": true, "bool": true, "byte": true, "rune": true,
-				"float32": true, "float64": true}
+				"float32": true, "float64": true,
+			}
 			for reserved[goName] || usedNames[goName] {
 				goName = goName + "_"
 			}
@@ -1245,9 +1251,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 
 func addImports(content string, packageName string, extraImports map[string]bool) string {
 	imports := make(map[string]bool)
-	for k, v := range extraImports {
-		imports[k] = v
-	}
+	maps.Copy(imports, extraImports)
 	if strings.Contains(content, "fmt.Sprintf") {
 		imports[`"fmt"`] = true
 	}
@@ -1443,14 +1447,15 @@ func isFFIUnion(fields string) bool {
 
 func generateUnionAccessorMethods(content *strings.Builder, unionGoName string, structs interface {
 	Get(string) (structInfo, bool)
-}) {
+},
+) {
 	accessorName := unionGoName + "_"
 	acc, ok := structs.Get(accessorName)
 	if !ok {
 		return
 	}
-	lines := strings.Split(strings.TrimSpace(acc.fields), "\n")
-	for _, line := range lines {
+	lines := strings.SplitSeq(strings.TrimSpace(acc.fields), "\n")
+	for line := range lines {
 		line = strings.TrimSpace(line)
 		if line == "" || strings.HasPrefix(line, "//") {
 			continue
@@ -1555,12 +1560,14 @@ func isValidGoMacroValue(val string) bool {
 	if strings.Contains(val, "ZyanU64") || strings.Contains(val, "ZyanU32") || strings.Contains(val, "ZyanU16") {
 		return false
 	}
-	cStdMacros := []string{"INT8_MIN", "INT16_MIN", "INT32_MIN", "INT64_MIN",
+	cStdMacros := []string{
+		"INT8_MIN", "INT16_MIN", "INT32_MIN", "INT64_MIN",
 		"INT8_MAX", "INT16_MAX", "INT32_MAX", "INT64_MAX",
 		"UINT8_MAX", "UINT16_MAX", "UINT32_MAX", "UINT64_MAX",
 		"Int8Min", "Int16Min", "Int32Min", "Int64Min",
 		"Int8Max", "Int16Max", "Int32Max", "Int64Max",
-		"Uint8Max", "Uint16Max", "Uint32Max", "Uint64Max"}
+		"Uint8Max", "Uint16Max", "Uint32Max", "Uint64Max",
+	}
 	for _, m := range cStdMacros {
 		if strings.Contains(val, m) {
 			return false
@@ -3810,8 +3817,8 @@ func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTy
 				sb.WriteString(fmt.Sprintf("\treturn %s(r1)\n", cast))
 			} else if resolvedRet == "unsafe.Pointer" {
 				sb.WriteString("\treturn unsafe.Pointer(r1)\n")
-			} else if strings.HasPrefix(resolvedRet, "*") {
-				sb.WriteString(fmt.Sprintf("\treturn (*%s)(unsafe.Pointer(r1))\n", strings.TrimPrefix(resolvedRet, "*")))
+			} else if after, ok := strings.CutPrefix(resolvedRet, "*"); ok {
+				sb.WriteString(fmt.Sprintf("\treturn (*%s)(unsafe.Pointer(r1))\n", after))
 			} else if enums.Has(resolvedRet) || enums.Has(fn.returnType) {
 				sb.WriteString(fmt.Sprintf("\treturn %s(r1)\n", fn.returnType))
 			} else if fn.returnType != "" && fn.returnType != "void" {

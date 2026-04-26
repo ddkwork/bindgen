@@ -472,10 +472,10 @@ func TestExample_RewriteCode(t *testing.T) {
 	jzBytes := []byte{0x0F, 0x84, 0x00, 0x00, 0x00, 0x00}
 
 	testCases := []struct {
-		name     string
-		bytes    []byte
-		wantSub  bool
-		wantJnz  bool
+		name    string
+		bytes   []byte
+		wantSub bool
+		wantJnz bool
 	}{
 		{"add eax,eax", addBytes, true, false},
 		{"jz", jzBytes, false, true},

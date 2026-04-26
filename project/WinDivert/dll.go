@@ -15,35 +15,35 @@ type Windivert struct{}
 var dllBytes []byte
 
 var (
-	dll            *windows.LazyDLL
-	proc_WinDivertOpen      *windows.LazyProc
-	proc_WinDivertRecv      *windows.LazyProc
-	proc_WinDivertRecvEx      *windows.LazyProc
-	proc_WinDivertSend      *windows.LazyProc
-	proc_WinDivertSendEx      *windows.LazyProc
-	proc_WinDivertShutdown      *windows.LazyProc
-	proc_WinDivertClose      *windows.LazyProc
-	proc_WinDivertSetParam      *windows.LazyProc
-	proc_WinDivertGetParam      *windows.LazyProc
-	proc_WinDivertHelperHashPacket      *windows.LazyProc
-	proc_WinDivertHelperParsePacket      *windows.LazyProc
-	proc_WinDivertHelperParseIPv4Address      *windows.LazyProc
-	proc_WinDivertHelperParseIPv6Address      *windows.LazyProc
-	proc_WinDivertHelperFormatIPv4Address      *windows.LazyProc
-	proc_WinDivertHelperFormatIPv6Address      *windows.LazyProc
-	proc_WinDivertHelperCalcChecksums      *windows.LazyProc
+	dll                                   *windows.LazyDLL
+	proc_WinDivertOpen                    *windows.LazyProc
+	proc_WinDivertRecv                    *windows.LazyProc
+	proc_WinDivertRecvEx                  *windows.LazyProc
+	proc_WinDivertSend                    *windows.LazyProc
+	proc_WinDivertSendEx                  *windows.LazyProc
+	proc_WinDivertShutdown                *windows.LazyProc
+	proc_WinDivertClose                   *windows.LazyProc
+	proc_WinDivertSetParam                *windows.LazyProc
+	proc_WinDivertGetParam                *windows.LazyProc
+	proc_WinDivertHelperHashPacket        *windows.LazyProc
+	proc_WinDivertHelperParsePacket       *windows.LazyProc
+	proc_WinDivertHelperParseIPv4Address  *windows.LazyProc
+	proc_WinDivertHelperParseIPv6Address  *windows.LazyProc
+	proc_WinDivertHelperFormatIPv4Address *windows.LazyProc
+	proc_WinDivertHelperFormatIPv6Address *windows.LazyProc
+	proc_WinDivertHelperCalcChecksums     *windows.LazyProc
 	proc_WinDivertHelperDecrementTTL      *windows.LazyProc
-	proc_WinDivertHelperCompileFilter      *windows.LazyProc
-	proc_WinDivertHelperEvalFilter      *windows.LazyProc
+	proc_WinDivertHelperCompileFilter     *windows.LazyProc
+	proc_WinDivertHelperEvalFilter        *windows.LazyProc
 	proc_WinDivertHelperFormatFilter      *windows.LazyProc
-	proc_WinDivertHelperNtohs      *windows.LazyProc
-	proc_WinDivertHelperHtons      *windows.LazyProc
-	proc_WinDivertHelperNtohl      *windows.LazyProc
-	proc_WinDivertHelperHtonl      *windows.LazyProc
-	proc_WinDivertHelperNtohll      *windows.LazyProc
-	proc_WinDivertHelperHtonll      *windows.LazyProc
-	proc_WinDivertHelperNtohIPv6Address      *windows.LazyProc
-	proc_WinDivertHelperHtonIPv6Address      *windows.LazyProc
+	proc_WinDivertHelperNtohs             *windows.LazyProc
+	proc_WinDivertHelperHtons             *windows.LazyProc
+	proc_WinDivertHelperNtohl             *windows.LazyProc
+	proc_WinDivertHelperHtonl             *windows.LazyProc
+	proc_WinDivertHelperNtohll            *windows.LazyProc
+	proc_WinDivertHelperHtonll            *windows.LazyProc
+	proc_WinDivertHelperNtohIPv6Address   *windows.LazyProc
+	proc_WinDivertHelperHtonIPv6Address   *windows.LazyProc
 )
 
 func init() {
@@ -81,15 +81,12 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	if _, err := os.Stat(p); err == nil {
-		return p
-	}
-	os.WriteFile(p, data, 0644)
+	os.WriteFile(p, data, 0o644)
 	return p
 }
 
 func (w *Windivert) WinDivertOpen(Filter *int8, Layer WINDIVERT_LAYER, Priority int16, Flags uint64) uintptr {
-	r1, _, _ := proc_WinDivertOpen.Call(uintptr(unsafe.Pointer(Filter)), uintptr(Layer), uintptr(Priority), uintptr(Flags))
+	r1, _, _ := proc_WinDivertOpen.Call(uintptr(unsafe.Pointer(Filter)), uintptr(Layer), uintptr(Priority), *(*uintptr)(unsafe.Pointer(&Flags)))
 	return uintptr(r1)
 }
 
@@ -99,7 +96,7 @@ func (w *Windivert) WinDivertRecv(Handle uintptr, PPacket unsafe.Pointer, Packet
 }
 
 func (w *Windivert) WinDivertRecvEx(Handle uintptr, PPacket unsafe.Pointer, PacketLen uint32, PRecvLen *uint32, Flags uint64, PAddr *WINDIVERT_ADDRESS, PAddrLen *uint32, LpOverlapped unsafe.Pointer) int32 {
-	r1, _, _ := proc_WinDivertRecvEx.Call(Handle, uintptr(PPacket), uintptr(PacketLen), uintptr(unsafe.Pointer(PRecvLen)), uintptr(Flags), uintptr(unsafe.Pointer(PAddr)), uintptr(unsafe.Pointer(PAddrLen)), uintptr(LpOverlapped))
+	r1, _, _ := proc_WinDivertRecvEx.Call(Handle, uintptr(PPacket), uintptr(PacketLen), uintptr(unsafe.Pointer(PRecvLen)), *(*uintptr)(unsafe.Pointer(&Flags)), uintptr(unsafe.Pointer(PAddr)), uintptr(unsafe.Pointer(PAddrLen)), uintptr(LpOverlapped))
 	return int32(r1)
 }
 
@@ -109,7 +106,7 @@ func (w *Windivert) WinDivertSend(Handle uintptr, PPacket unsafe.Pointer, Packet
 }
 
 func (w *Windivert) WinDivertSendEx(Handle uintptr, PPacket unsafe.Pointer, PacketLen uint32, PSendLen *uint32, Flags uint64, PAddr *WINDIVERT_ADDRESS, AddrLen uint32, LpOverlapped unsafe.Pointer) int32 {
-	r1, _, _ := proc_WinDivertSendEx.Call(Handle, uintptr(PPacket), uintptr(PacketLen), uintptr(unsafe.Pointer(PSendLen)), uintptr(Flags), uintptr(unsafe.Pointer(PAddr)), uintptr(AddrLen), uintptr(LpOverlapped))
+	r1, _, _ := proc_WinDivertSendEx.Call(Handle, uintptr(PPacket), uintptr(PacketLen), uintptr(unsafe.Pointer(PSendLen)), *(*uintptr)(unsafe.Pointer(&Flags)), uintptr(unsafe.Pointer(PAddr)), uintptr(AddrLen), uintptr(LpOverlapped))
 	return int32(r1)
 }
 
@@ -124,7 +121,7 @@ func (w *Windivert) WinDivertClose(Handle uintptr) int32 {
 }
 
 func (w *Windivert) WinDivertSetParam(Handle uintptr, Param WINDIVERT_PARAM, Value uint64) int32 {
-	r1, _, _ := proc_WinDivertSetParam.Call(Handle, uintptr(Param), uintptr(Value))
+	r1, _, _ := proc_WinDivertSetParam.Call(Handle, uintptr(Param), *(*uintptr)(unsafe.Pointer(&Value)))
 	return int32(r1)
 }
 
@@ -134,8 +131,8 @@ func (w *Windivert) WinDivertGetParam(Handle uintptr, Param WINDIVERT_PARAM, PVa
 }
 
 func (w *Windivert) WinDivertHelperHashPacket(PPacket unsafe.Pointer, PacketLen uint32, Seed uint64) uint64 {
-	r1, _, _ := proc_WinDivertHelperHashPacket.Call(uintptr(PPacket), uintptr(PacketLen), uintptr(Seed))
-	return uint64(r1)
+	r1, _, _ := proc_WinDivertHelperHashPacket.Call(uintptr(PPacket), uintptr(PacketLen), *(*uintptr)(unsafe.Pointer(&Seed)))
+	return *(*uint64)(unsafe.Pointer(&r1))
 }
 
 func (w *Windivert) WinDivertHelperParsePacket(PPacket unsafe.Pointer, PacketLen uint32, PpIpHdr *PWINDIVERT_IPHDR, PpIpv6Hdr *PWINDIVERT_IPV6HDR, PProtocol *uint8, PpIcmpHdr *PWINDIVERT_ICMPHDR, PpIcmpv6Hdr *PWINDIVERT_ICMPV6HDR, PpTcpHdr *PWINDIVERT_TCPHDR, PpUdpHdr *PWINDIVERT_UDPHDR, PpData *uintptr, PDataLen *uint32, PpNext *uintptr, PNextLen *uint32) int32 {
@@ -164,7 +161,7 @@ func (w *Windivert) WinDivertHelperFormatIPv6Address(PAddr *uint32, Buffer *int8
 }
 
 func (w *Windivert) WinDivertHelperCalcChecksums(PPacket unsafe.Pointer, PacketLen uint32, PAddr *WINDIVERT_ADDRESS, Flags uint64) int32 {
-	r1, _, _ := proc_WinDivertHelperCalcChecksums.Call(uintptr(PPacket), uintptr(PacketLen), uintptr(unsafe.Pointer(PAddr)), uintptr(Flags))
+	r1, _, _ := proc_WinDivertHelperCalcChecksums.Call(uintptr(PPacket), uintptr(PacketLen), uintptr(unsafe.Pointer(PAddr)), *(*uintptr)(unsafe.Pointer(&Flags)))
 	return int32(r1)
 }
 
@@ -209,13 +206,13 @@ func (w *Windivert) WinDivertHelperHtonl(X uint32) uint32 {
 }
 
 func (w *Windivert) WinDivertHelperNtohll(X uint64) uint64 {
-	r1, _, _ := proc_WinDivertHelperNtohll.Call(uintptr(X))
-	return uint64(r1)
+	r1, _, _ := proc_WinDivertHelperNtohll.Call(*(*uintptr)(unsafe.Pointer(&X)))
+	return *(*uint64)(unsafe.Pointer(&r1))
 }
 
 func (w *Windivert) WinDivertHelperHtonll(X uint64) uint64 {
-	r1, _, _ := proc_WinDivertHelperHtonll.Call(uintptr(X))
-	return uint64(r1)
+	r1, _, _ := proc_WinDivertHelperHtonll.Call(*(*uintptr)(unsafe.Pointer(&X)))
+	return *(*uint64)(unsafe.Pointer(&r1))
 }
 
 func (w *Windivert) WinDivertHelperNtohIPv6Address(InAddr *uint32, OutAddr *uint32) {
@@ -225,4 +222,3 @@ func (w *Windivert) WinDivertHelperNtohIPv6Address(InAddr *uint32, OutAddr *uint
 func (w *Windivert) WinDivertHelperHtonIPv6Address(InAddr *uint32, OutAddr *uint32) {
 	proc_WinDivertHelperHtonIPv6Address.Call(uintptr(unsafe.Pointer(InAddr)), uintptr(unsafe.Pointer(OutAddr)))
 }
-

@@ -10,7 +10,7 @@ func findClExe() string { return os.Getenv("CC") }
 
 func findEWDKIncludePaths() []string {
 	var rawPaths []string
-	for _, p := range strings.Split(os.Getenv("INCLUDE"), ";") {
+	for p := range strings.SplitSeq(os.Getenv("INCLUDE"), ";") {
 		if p = strings.TrimSpace(p); p != "" {
 			rawPaths = append(rawPaths, p)
 		}

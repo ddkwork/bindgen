@@ -559,9 +559,9 @@ func TestAssembleMultiple(t *testing.T) {
 func TestAssembleRoundTrip(t *testing.T) {
 	a := newAssembler(t)
 	tests := []struct {
-		line       string
-		mode       int
-		expectHex  string
+		line      string
+		mode      int
+		expectHex string
 	}{
 		{"NOP", 64, "90"},
 		{"RET", 64, "C3"},
