@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"strings"
 )
 
@@ -11,43 +10,22 @@ func findClExe() string { return os.Getenv("CC") }
 
 func findEWDKIncludePaths() []string {
 	var rawPaths []string
-	rawPaths = append(rawPaths, "SDK/headers")
 	for _, p := range strings.Split(os.Getenv("INCLUDE"), ";") {
 		if p = strings.TrimSpace(p); p != "" {
 			rawPaths = append(rawPaths, p)
 		}
 	}
-	var crtPaths, otherPaths, msvcPaths []string
-	for _, p := range rawPaths {
-		clean := filepath.Clean(p)
-		if strings.Contains(clean, `km\crt`) || strings.Contains(clean, `km/crt`) {
-			crtPaths = append(crtPaths, clean)
-		} else if strings.Contains(clean, `ucrt`) && !strings.Contains(clean, `VC\Tools\MSVC`) {
-			continue
-		} else if strings.Contains(clean, `VC\Tools\MSVC`) || strings.Contains(clean, `VC/Tools/MSVC`) {
-			msvcPaths = append(msvcPaths, clean)
-		} else {
-			otherPaths = append(otherPaths, clean)
-		}
-	}
-	var paths []string
-	paths = append(paths, crtPaths...)
-	paths = append(paths, otherPaths...)
-	paths = append(paths, msvcPaths...)
 	var clean []string
 	seen := make(map[string]bool)
-	for _, p := range paths {
-		if p == "" || seen[p] {
-			continue
-		}
+	for _, p := range rawPaths {
 		info, err := os.Stat(p)
-		if err != nil || !info.IsDir() {
+		if err != nil || !info.IsDir() || seen[p] {
 			continue
 		}
 		seen[p] = true
 		clean = append(clean, p)
 	}
-	fmt.Printf("msenv: loaded %d include paths\n", len(clean))
+	fmt.Printf("msenv: loaded %d include paths from INCLUDE\n", len(clean))
 	return clean
 }
 
