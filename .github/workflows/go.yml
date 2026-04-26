@@ -86,6 +86,7 @@ jobs:
           New-Item -ItemType Directory -Path "project\xed\clone" -Force | Out-Null
           cd project\xed\clone
           git clone --recursive https://github.com/intel/xed.git
+          git clone https://github.com/intel/mbuild.git
 
       - name: Clone hyperdbg source
         run: |
