@@ -169,7 +169,7 @@ func TestGenerate(t *testing.T) {
 	})
 	t.Run("ipmrec", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  "project/ARImpRec",
+			HeadersDir:  "project/ARImpRec/clone",
 			OutputDir:   "project/ARImpRec",
 			PackageName: "ipmrec",
 			HeaderOrder: []string{
@@ -211,7 +211,7 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("windivert", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  "project/WinDivert/include",
+			HeadersDir:  "project/WinDivert/clone/include",
 			OutputDir:   "project/WinDivert",
 			PackageName: "windivert",
 			HeaderOrder: []string{
@@ -227,7 +227,7 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("everything", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  "project/Everything-SDK/include",
+			HeadersDir:  "project/Everything-SDK/clone/include",
 			OutputDir:   "project/Everything-SDK",
 			PackageName: "everything",
 			HeaderOrder: []string{
@@ -243,8 +243,8 @@ func TestGenerate(t *testing.T) {
 
 	t.Run("xed", func(t *testing.T) {
 		Generate(t, []BindgenConfig{{
-			HeadersDir:  "project/xed/xed/include",
-			OutputDir:   "project/xed/xed",
+			HeadersDir:  "project/xed/clone/include",
+			OutputDir:   "project/xed",
 			PackageName: "xed",
 			HeaderOrder: []string{
 				"xed-interface.h",
@@ -252,10 +252,18 @@ func TestGenerate(t *testing.T) {
 			SingleFile: true,
 			BindDll:    true,
 			DllName:    "xed.dll",
-			Predefined: "#define XED_ENCODER\n#define XED_ENCODE_ORDER_MAX_OPERANDS 5\n#define XED_ENCODE_ORDER_MAX_ENTRIES 35\n",
+			Predefined: `
+#define XED_ENCODER
+#define XED_ENCODE_ORDER_MAX_OPERANDS 5
+#define XED_ENCODE_ORDER_MAX_ENTRIES 35
+#define stderr ((void*)0)
+int fprintf(void*, const char*, ...);
+int fflush(void*);
+void abort(void);
+`,
 			ExtraIncludeDirs: []string{
-				"project/xed/xed/obj/wkit/include/xed",
-				"project/xed/include",
+				"project/xed/clone/include",
+				"project/xed/clone/xed/include/public/xed",
 			},
 			DllFuncFilter: func(name string) bool {
 				return strings.HasPrefix(name, "xed_")
