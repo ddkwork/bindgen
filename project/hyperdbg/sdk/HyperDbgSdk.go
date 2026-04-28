@@ -7,174 +7,174 @@ import (
 
 // Source: HyperDbgSdk.h
 type (
-	_builtin_va_list                                        = *uintptr
-	_predefined_size_t                                      = uint64
-	_predefined_wchar_t                                     = uint16
-	_predefined_ptrdiff_t                                   = int64
-	Wchar_t                                                 = uint16
-	Size_t                                                  = uint64
-	SIZE_T                                                  = uintptr
-	Ptrdiff_t                                               = int64
-	Uintptr_t                                               = uint64
-	Intptr_t                                                = int64
-	Uint8_t                                                 = uint8
-	Uint16_t                                                = uint16
-	Uint32_t                                                = uint32
-	Uint64_t                                                = uint64
-	Int8_t                                                  = int8
-	Int16_t                                                 = int16
-	Int32_t                                                 = int32
-	Int64_t                                                 = int64
-	Time_t                                                  = time.Duration
-	Errno_t                                                 = int32
-	_time32_t                                               = int32
-	_time64_t                                               = time.Duration
-	Va_list                                                 = *int8
-	PLIST_ENTRY                                             = *LIST_ENTRY
-	BOOL                                                    = int32
-	BOOLEAN                                                 = bool
-	DWORD                                                   = uint32
-	WORD                                                    = uint16
-	PVOID                                                   = uintptr
-	LPVOID                                                  = uintptr
-	HANDLE                                                  = uintptr
-	QWORD                                                   = uint64
-	UINT64                                                  = uint64
-	PUINT64                                                 = *uint64
-	UINT32                                                  = uint32
-	PUINT32                                                 = *uint32
-	UINT16                                                  = uint16
-	PUINT16                                                 = *uint16
-	UINT8                                                   = uint8
-	PUINT8                                                  = *uint8
-	INT64                                                   = int64
-	PINT64                                                  = *int64
-	INT32                                                   = int32
-	PINT32                                                  = *int32
-	INT16                                                   = int16
-	PINT16                                                  = *int16
-	INT8                                                    = int8
-	PINT8                                                   = *int8
-	ULONG64                                                 = uint64
-	PULONG64                                                = *uint64
-	DWORD64                                                 = uint64
-	PDWORD64                                                = *uint64
-	CHAR                                                    = int8
-	WCHAR                                                   = uint16
-	UCHAR                                                   = uint8
-	SHORT                                                   = int16
-	USHORT                                                  = uint16
-	INT                                                     = int32
-	UINT                                                    = uint32
-	PUINT                                                   = *uint32
-	LONG                                                    = int32
-	ULONG                                                   = uint32
-	BYTE                                                    = uint8
-	PBOOLEAN                                                = *uint8
-	PGUEST_REGS                                             = *GUEST_REGS
-	PGUEST_XMM_REGS                                         = *GUEST_XMM_REGS
-	PGUEST_EXTRA_REGISTERS                                  = *GUEST_EXTRA_REGISTERS
-	PSCRIPT_ENGINE_GENERAL_REGISTERS                        = *SCRIPT_ENGINE_GENERAL_REGISTERS
-	PCR3_TYPE                                               = *CR3_TYPE
-	PDEBUGGER_REMOTE_PACKET                                 = *DEBUGGER_REMOTE_PACKET
-	PDEBUGGEE_USER_INPUT_PACKET                             = *DEBUGGEE_USER_INPUT_PACKET
-	PDEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET     = *DEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET
-	PDEBUGGER_PAUSE_PACKET_RECEIVED                         = *DEBUGGER_PAUSE_PACKET_RECEIVED
-	PDEBUGGER_TRIGGERED_EVENT_DETAILS                       = *DEBUGGER_TRIGGERED_EVENT_DETAILS
-	PDEBUGGEE_KD_PAUSED_PACKET                              = *DEBUGGEE_KD_PAUSED_PACKET
-	PDEBUGGEE_UD_PAUSED_PACKET                              = *DEBUGGEE_UD_PAUSED_PACKET
-	PDEBUGGEE_MESSAGE_PACKET                                = *DEBUGGEE_MESSAGE_PACKET
-	PREGISTER_NOTIFY_BUFFER                                 = *REGISTER_NOTIFY_BUFFER
-	PDIRECT_VMCALL_PARAMETERS                               = *DIRECT_VMCALL_PARAMETERS
-	PSYSCALL_CALLBACK_CONTEXT_PARAMS                        = *SYSCALL_CALLBACK_CONTEXT_PARAMS
-	PEPT_HOOKS_CONTEXT                                      = *EPT_HOOKS_CONTEXT
-	PEPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR           = *EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR
-	PEPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2                 = *EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2
-	PEPT_SINGLE_HOOK_UNHOOKING_DETAILS                      = *EPT_SINGLE_HOOK_UNHOOKING_DETAILS
-	PVMX_SEGMENT_SELECTOR                                   = *VMX_SEGMENT_SELECTOR
-	PDEBUGGER_MODIFY_EVENTS                                 = *DEBUGGER_MODIFY_EVENTS
-	PDEBUGGER_SHORT_CIRCUITING_EVENT                        = *DEBUGGER_SHORT_CIRCUITING_EVENT
-	PDEBUGGER_EVENT_OPTIONS                                 = *DEBUGGER_EVENT_OPTIONS
-	PDEBUGGER_GENERAL_EVENT_DETAIL                          = *DEBUGGER_GENERAL_EVENT_DETAIL
-	PDEBUGGER_GENERAL_ACTION                                = *DEBUGGER_GENERAL_ACTION
-	PDEBUGGER_EVENT_AND_ACTION_RESULT                       = *DEBUGGER_EVENT_AND_ACTION_RESULT
-	PPORTABLE_PCI_COMMON_HEADER                             = *PORTABLE_PCI_COMMON_HEADER
-	PPORTABLE_PCI_DEVICE_HEADER                             = *PORTABLE_PCI_DEVICE_HEADER
-	PPORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL               = *PORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL
-	PPCI_DEV_MINIMAL                                        = *PCI_DEV_MINIMAL
-	PPCI_DEV_MMIOBAR_INFO                                   = *PCI_DEV_MMIOBAR_INFO
-	PPORTABLE_PCI_CONFIG_SPACE_HEADER                       = *PORTABLE_PCI_CONFIG_SPACE_HEADER
-	PPCI_DEV                                                = *PCI_DEV
-	PDEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS               = *DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS
-	PDEBUGGER_VA2PA_AND_PA2VA_COMMANDS                      = *DEBUGGER_VA2PA_AND_PA2VA_COMMANDS
-	PDEBUGGER_PAGE_IN_REQUEST                               = *DEBUGGER_PAGE_IN_REQUEST
-	PREVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST           = *REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST
-	PDEBUGGER_DT_COMMAND_OPTIONS                            = *DEBUGGER_DT_COMMAND_OPTIONS
-	PDEBUGGER_PREALLOC_COMMAND                              = *DEBUGGER_PREALLOC_COMMAND
-	PDEBUGGER_PREACTIVATE_COMMAND                           = *DEBUGGER_PREACTIVATE_COMMAND
-	PDEBUGGER_READ_MEMORY                                   = *DEBUGGER_READ_MEMORY
-	PDEBUGGER_FLUSH_LOGGING_BUFFERS                         = *DEBUGGER_FLUSH_LOGGING_BUFFERS
-	PDEBUGGER_DEBUGGER_TEST_QUERY_BUFFER                    = *DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER
-	PDEBUGGER_PERFORM_KERNEL_TESTS                          = *DEBUGGER_PERFORM_KERNEL_TESTS
-	PDEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL        = *DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL
+	_builtin_va_list = *uintptr
+	_predefined_size_t = uint64
+	_predefined_wchar_t = uint16
+	_predefined_ptrdiff_t = int64
+	Wchar_t = uint16
+	Size_t = uint64
+	SIZE_T = uintptr
+	Ptrdiff_t = int64
+	Uintptr_t = uint64
+	Intptr_t = int64
+	Uint8_t = uint8
+	Uint16_t = uint16
+	Uint32_t = uint32
+	Uint64_t = uint64
+	Int8_t = int8
+	Int16_t = int16
+	Int32_t = int32
+	Int64_t = int64
+	Time_t = time.Duration
+	Errno_t = int32
+	_time32_t = int32
+	_time64_t = time.Duration
+	Va_list = *int8
+	PLIST_ENTRY = *LIST_ENTRY
+	BOOL = int32
+	BOOLEAN = bool
+	DWORD = uint32
+	WORD = uint16
+	PVOID = uintptr
+	LPVOID = uintptr
+	HANDLE = uintptr
+	QWORD = uint64
+	UINT64 = uint64
+	PUINT64 = *uint64
+	UINT32 = uint32
+	PUINT32 = *uint32
+	UINT16 = uint16
+	PUINT16 = *uint16
+	UINT8 = uint8
+	PUINT8 = *uint8
+	INT64 = int64
+	PINT64 = *int64
+	INT32 = int32
+	PINT32 = *int32
+	INT16 = int16
+	PINT16 = *int16
+	INT8 = int8
+	PINT8 = *int8
+	ULONG64 = uint64
+	PULONG64 = *uint64
+	DWORD64 = uint64
+	PDWORD64 = *uint64
+	CHAR = int8
+	WCHAR = uint16
+	UCHAR = uint8
+	SHORT = int16
+	USHORT = uint16
+	INT = int32
+	UINT = uint32
+	PUINT = *uint32
+	LONG = int32
+	ULONG = uint32
+	BYTE = uint8
+	PBOOLEAN = *uint8
+	PGUEST_REGS = *GUEST_REGS
+	PGUEST_XMM_REGS = *GUEST_XMM_REGS
+	PGUEST_EXTRA_REGISTERS = *GUEST_EXTRA_REGISTERS
+	PSCRIPT_ENGINE_GENERAL_REGISTERS = *SCRIPT_ENGINE_GENERAL_REGISTERS
+	PCR3_TYPE = *CR3_TYPE
+	PDEBUGGER_REMOTE_PACKET = *DEBUGGER_REMOTE_PACKET
+	PDEBUGGEE_USER_INPUT_PACKET = *DEBUGGEE_USER_INPUT_PACKET
+	PDEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET = *DEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET
+	PDEBUGGER_PAUSE_PACKET_RECEIVED = *DEBUGGER_PAUSE_PACKET_RECEIVED
+	PDEBUGGER_TRIGGERED_EVENT_DETAILS = *DEBUGGER_TRIGGERED_EVENT_DETAILS
+	PDEBUGGEE_KD_PAUSED_PACKET = *DEBUGGEE_KD_PAUSED_PACKET
+	PDEBUGGEE_UD_PAUSED_PACKET = *DEBUGGEE_UD_PAUSED_PACKET
+	PDEBUGGEE_MESSAGE_PACKET = *DEBUGGEE_MESSAGE_PACKET
+	PREGISTER_NOTIFY_BUFFER = *REGISTER_NOTIFY_BUFFER
+	PDIRECT_VMCALL_PARAMETERS = *DIRECT_VMCALL_PARAMETERS
+	PSYSCALL_CALLBACK_CONTEXT_PARAMS = *SYSCALL_CALLBACK_CONTEXT_PARAMS
+	PEPT_HOOKS_CONTEXT = *EPT_HOOKS_CONTEXT
+	PEPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR = *EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR
+	PEPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2 = *EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2
+	PEPT_SINGLE_HOOK_UNHOOKING_DETAILS = *EPT_SINGLE_HOOK_UNHOOKING_DETAILS
+	PVMX_SEGMENT_SELECTOR = *VMX_SEGMENT_SELECTOR
+	PDEBUGGER_MODIFY_EVENTS = *DEBUGGER_MODIFY_EVENTS
+	PDEBUGGER_SHORT_CIRCUITING_EVENT = *DEBUGGER_SHORT_CIRCUITING_EVENT
+	PDEBUGGER_EVENT_OPTIONS = *DEBUGGER_EVENT_OPTIONS
+	PDEBUGGER_GENERAL_EVENT_DETAIL = *DEBUGGER_GENERAL_EVENT_DETAIL
+	PDEBUGGER_GENERAL_ACTION = *DEBUGGER_GENERAL_ACTION
+	PDEBUGGER_EVENT_AND_ACTION_RESULT = *DEBUGGER_EVENT_AND_ACTION_RESULT
+	PPORTABLE_PCI_COMMON_HEADER = *PORTABLE_PCI_COMMON_HEADER
+	PPORTABLE_PCI_DEVICE_HEADER = *PORTABLE_PCI_DEVICE_HEADER
+	PPORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL = *PORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL
+	PPCI_DEV_MINIMAL = *PCI_DEV_MINIMAL
+	PPCI_DEV_MMIOBAR_INFO = *PCI_DEV_MMIOBAR_INFO
+	PPORTABLE_PCI_CONFIG_SPACE_HEADER = *PORTABLE_PCI_CONFIG_SPACE_HEADER
+	PPCI_DEV = *PCI_DEV
+	PDEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS = *DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS
+	PDEBUGGER_VA2PA_AND_PA2VA_COMMANDS = *DEBUGGER_VA2PA_AND_PA2VA_COMMANDS
+	PDEBUGGER_PAGE_IN_REQUEST = *DEBUGGER_PAGE_IN_REQUEST
+	PREVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST = *REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST
+	PDEBUGGER_DT_COMMAND_OPTIONS = *DEBUGGER_DT_COMMAND_OPTIONS
+	PDEBUGGER_PREALLOC_COMMAND = *DEBUGGER_PREALLOC_COMMAND
+	PDEBUGGER_PREACTIVATE_COMMAND = *DEBUGGER_PREACTIVATE_COMMAND
+	PDEBUGGER_READ_MEMORY = *DEBUGGER_READ_MEMORY
+	PDEBUGGER_FLUSH_LOGGING_BUFFERS = *DEBUGGER_FLUSH_LOGGING_BUFFERS
+	PDEBUGGER_DEBUGGER_TEST_QUERY_BUFFER = *DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER
+	PDEBUGGER_PERFORM_KERNEL_TESTS = *DEBUGGER_PERFORM_KERNEL_TESTS
+	PDEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL = *DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL
 	PDEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER = *DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER
-	PDEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER            = *DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER
-	PDEBUGGER_READ_AND_WRITE_ON_MSR                         = *DEBUGGER_READ_AND_WRITE_ON_MSR
-	PDEBUGGER_EDIT_MEMORY                                   = *DEBUGGER_EDIT_MEMORY
-	PDEBUGGER_SEARCH_MEMORY                                 = *DEBUGGER_SEARCH_MEMORY
-	PSYSTEM_CALL_NUMBERS_INFORMATION                        = *SYSTEM_CALL_NUMBERS_INFORMATION
-	PDEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE            = *DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE
-	PDEBUGGER_PREPARE_DEBUGGEE                              = *DEBUGGER_PREPARE_DEBUGGEE
-	PDEBUGGEE_CHANGE_CORE_PACKET                            = *DEBUGGEE_CHANGE_CORE_PACKET
-	PDEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS               = *DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS
-	PDEBUGGEE_PROCESS_LIST_NEEDED_DETAILS                   = *DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
-	PDEBUGGEE_THREAD_LIST_NEEDED_DETAILS                    = *DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
-	PDEBUGGEE_PROCESS_LIST_DETAILS_ENTRY                    = *DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY
-	PDEBUGGEE_THREAD_LIST_DETAILS_ENTRY                     = *DEBUGGEE_THREAD_LIST_DETAILS_ENTRY
-	PDEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS             = *DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS
-	PDEBUGGER_SINGLE_CALLSTACK_FRAME                        = *DEBUGGER_SINGLE_CALLSTACK_FRAME
-	PDEBUGGER_CALLSTACK_REQUEST                             = *DEBUGGER_CALLSTACK_REQUEST
-	PUSERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS     = *USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS
-	PDEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION         = *DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION
-	PDEBUGGER_EVENT_REQUEST_BUFFER                          = *DEBUGGER_EVENT_REQUEST_BUFFER
-	PDEBUGGER_EVENT_REQUEST_CUSTOM_CODE                     = *DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
-	PDEBUGGER_UD_COMMAND_ACTION                             = *DEBUGGER_UD_COMMAND_ACTION
-	PDEBUGGER_UD_COMMAND_PACKET                             = *DEBUGGER_UD_COMMAND_PACKET
-	PDEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET             = *DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET
-	PDEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET              = *DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET
-	PDEBUGGEE_STEP_PACKET                                   = *DEBUGGEE_STEP_PACKET
-	PDEBUGGER_APIC_REQUEST                                  = *DEBUGGER_APIC_REQUEST
-	PLAPIC_PAGE                                             = *LAPIC_PAGE
-	PIO_APIC_ENTRY_PACKETS                                  = *IO_APIC_ENTRY_PACKETS
-	PSMI_OPERATION_PACKETS                                  = *SMI_OPERATION_PACKETS
-	PHYPERTRACE_OPERATION_PACKETS                           = *HYPERTRACE_OPERATION_PACKETS
-	PINTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS             = *INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS
-	PDEBUGGEE_FORMATS_PACKET                                = *DEBUGGEE_FORMATS_PACKET
-	PDEBUGGEE_SYMBOL_REQUEST_PACKET                         = *DEBUGGEE_SYMBOL_REQUEST_PACKET
-	PDEBUGGEE_BP_PACKET                                     = *DEBUGGEE_BP_PACKET
-	PDEBUGGEE_BP_LIST_OR_MODIFY_PACKET                      = *DEBUGGEE_BP_LIST_OR_MODIFY_PACKET
-	PDEBUGGEE_SCRIPT_PACKET                                 = *DEBUGGEE_SCRIPT_PACKET
-	PDEBUGGEE_RESULT_OF_SEARCH_PACKET                       = *DEBUGGEE_RESULT_OF_SEARCH_PACKET
-	PDEBUGGEE_REGISTER_READ_DESCRIPTION                     = *DEBUGGEE_REGISTER_READ_DESCRIPTION
-	PDEBUGGEE_REGISTER_WRITE_DESCRIPTION                    = *DEBUGGEE_REGISTER_WRITE_DESCRIPTION
-	PDEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET               = *DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET
-	PDEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET            = *DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET
-	PMODULE_SYMBOL_DETAIL                                   = *MODULE_SYMBOL_DETAIL
-	PUSERMODE_LOADED_MODULE_SYMBOLS                         = *USERMODE_LOADED_MODULE_SYMBOLS
-	PUSERMODE_LOADED_MODULE_DETAILS                         = *USERMODE_LOADED_MODULE_DETAILS
-	PDEBUGGER_UPDATE_SYMBOL_TABLE                           = *DEBUGGER_UPDATE_SYMBOL_TABLE
-	PDEBUGGEE_SYMBOL_UPDATE_RESULT                          = *DEBUGGEE_SYMBOL_UPDATE_RESULT
-	PHWDBG_PORT_INFORMATION_ITEMS                           = *HWDBG_PORT_INFORMATION_ITEMS
-	PHWDBG_INSTANCE_INFORMATION                             = *HWDBG_INSTANCE_INFORMATION
-	PHWDBG_SCRIPT_BUFFER                                    = *HWDBG_SCRIPT_BUFFER
-	PSYMBOL                                                 = *SYMBOL
-	PHWDBG_SHORT_SYMBOL                                     = *HWDBG_SHORT_SYMBOL
-	PSYMBOL_BUFFER                                          = *SYMBOL_BUFFER
-	PSYMBOL_MAP                                             = *SYMBOL_MAP
-	PACTION_BUFFER                                          = *ACTION_BUFFER
-	SymbolTypeNames                                         = [22]*int8
-	FunctionNames                                           = [103]*int8
-	RegistersNames                                          = [120]*int8
+	PDEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER = *DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER
+	PDEBUGGER_READ_AND_WRITE_ON_MSR = *DEBUGGER_READ_AND_WRITE_ON_MSR
+	PDEBUGGER_EDIT_MEMORY = *DEBUGGER_EDIT_MEMORY
+	PDEBUGGER_SEARCH_MEMORY = *DEBUGGER_SEARCH_MEMORY
+	PSYSTEM_CALL_NUMBERS_INFORMATION = *SYSTEM_CALL_NUMBERS_INFORMATION
+	PDEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE = *DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE
+	PDEBUGGER_PREPARE_DEBUGGEE = *DEBUGGER_PREPARE_DEBUGGEE
+	PDEBUGGEE_CHANGE_CORE_PACKET = *DEBUGGEE_CHANGE_CORE_PACKET
+	PDEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS = *DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS
+	PDEBUGGEE_PROCESS_LIST_NEEDED_DETAILS = *DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
+	PDEBUGGEE_THREAD_LIST_NEEDED_DETAILS = *DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
+	PDEBUGGEE_PROCESS_LIST_DETAILS_ENTRY = *DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY
+	PDEBUGGEE_THREAD_LIST_DETAILS_ENTRY = *DEBUGGEE_THREAD_LIST_DETAILS_ENTRY
+	PDEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS = *DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS
+	PDEBUGGER_SINGLE_CALLSTACK_FRAME = *DEBUGGER_SINGLE_CALLSTACK_FRAME
+	PDEBUGGER_CALLSTACK_REQUEST = *DEBUGGER_CALLSTACK_REQUEST
+	PUSERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS = *USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS
+	PDEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION = *DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION
+	PDEBUGGER_EVENT_REQUEST_BUFFER = *DEBUGGER_EVENT_REQUEST_BUFFER
+	PDEBUGGER_EVENT_REQUEST_CUSTOM_CODE = *DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
+	PDEBUGGER_UD_COMMAND_ACTION = *DEBUGGER_UD_COMMAND_ACTION
+	PDEBUGGER_UD_COMMAND_PACKET = *DEBUGGER_UD_COMMAND_PACKET
+	PDEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET = *DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET
+	PDEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET = *DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET
+	PDEBUGGEE_STEP_PACKET = *DEBUGGEE_STEP_PACKET
+	PDEBUGGER_APIC_REQUEST = *DEBUGGER_APIC_REQUEST
+	PLAPIC_PAGE = *LAPIC_PAGE
+	PIO_APIC_ENTRY_PACKETS = *IO_APIC_ENTRY_PACKETS
+	PSMI_OPERATION_PACKETS = *SMI_OPERATION_PACKETS
+	PHYPERTRACE_OPERATION_PACKETS = *HYPERTRACE_OPERATION_PACKETS
+	PINTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS = *INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS
+	PDEBUGGEE_FORMATS_PACKET = *DEBUGGEE_FORMATS_PACKET
+	PDEBUGGEE_SYMBOL_REQUEST_PACKET = *DEBUGGEE_SYMBOL_REQUEST_PACKET
+	PDEBUGGEE_BP_PACKET = *DEBUGGEE_BP_PACKET
+	PDEBUGGEE_BP_LIST_OR_MODIFY_PACKET = *DEBUGGEE_BP_LIST_OR_MODIFY_PACKET
+	PDEBUGGEE_SCRIPT_PACKET = *DEBUGGEE_SCRIPT_PACKET
+	PDEBUGGEE_RESULT_OF_SEARCH_PACKET = *DEBUGGEE_RESULT_OF_SEARCH_PACKET
+	PDEBUGGEE_REGISTER_READ_DESCRIPTION = *DEBUGGEE_REGISTER_READ_DESCRIPTION
+	PDEBUGGEE_REGISTER_WRITE_DESCRIPTION = *DEBUGGEE_REGISTER_WRITE_DESCRIPTION
+	PDEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET = *DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET
+	PDEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET = *DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET
+	PMODULE_SYMBOL_DETAIL = *MODULE_SYMBOL_DETAIL
+	PUSERMODE_LOADED_MODULE_SYMBOLS = *USERMODE_LOADED_MODULE_SYMBOLS
+	PUSERMODE_LOADED_MODULE_DETAILS = *USERMODE_LOADED_MODULE_DETAILS
+	PDEBUGGER_UPDATE_SYMBOL_TABLE = *DEBUGGER_UPDATE_SYMBOL_TABLE
+	PDEBUGGEE_SYMBOL_UPDATE_RESULT = *DEBUGGEE_SYMBOL_UPDATE_RESULT
+	PHWDBG_PORT_INFORMATION_ITEMS = *HWDBG_PORT_INFORMATION_ITEMS
+	PHWDBG_INSTANCE_INFORMATION = *HWDBG_INSTANCE_INFORMATION
+	PHWDBG_SCRIPT_BUFFER = *HWDBG_SCRIPT_BUFFER
+	PSYMBOL = *SYMBOL
+	PHWDBG_SHORT_SYMBOL = *HWDBG_SHORT_SYMBOL
+	PSYMBOL_BUFFER = *SYMBOL_BUFFER
+	PSYMBOL_MAP = *SYMBOL_MAP
+	PACTION_BUFFER = *ACTION_BUFFER
+	SymbolTypeNames = [22]*int8
+	FunctionNames = [103]*int8
+	RegistersNames = [120]*int8
 )
 
 type SendMessageWithParamCallback func(*int8) int32
@@ -777,11 +777,11 @@ const (
 	ExceptionVectorReserved10
 	ExceptionVectorReserved11
 	ExceptionVectorReserved12
-	ApcInterrupt   EXCEPTION_VECTORS = 31
-	DpcInterrupt   EXCEPTION_VECTORS = 47
+	ApcInterrupt EXCEPTION_VECTORS = 31
+	DpcInterrupt EXCEPTION_VECTORS = 47
 	ClockInterrupt EXCEPTION_VECTORS = 209
-	IpiInterrupt   EXCEPTION_VECTORS = 225
-	PmiInterrupt   EXCEPTION_VECTORS = 254
+	IpiInterrupt EXCEPTION_VECTORS = 225
+	PmiInterrupt EXCEPTION_VECTORS = 254
 )
 
 func (e EXCEPTION_VECTORS) String() string {
@@ -868,10 +868,10 @@ type VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE uint32
 
 const (
 	VmmCallbackTriggeringEventStatusSuccessfulNoInitialized VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 0
-	VmmCallbackTriggeringEventStatusSuccessful              VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 0
-	VmmCallbackTriggeringEventStatusSuccessfulIgnoreEvent   VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 1
-	VmmCallbackTriggeringEventStatusDebuggerNotEnabled      VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 2
-	VmmCallbackTriggeringEventStatusInvalidEventType        VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 3
+	VmmCallbackTriggeringEventStatusSuccessful VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 0
+	VmmCallbackTriggeringEventStatusSuccessfulIgnoreEvent VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 1
+	VmmCallbackTriggeringEventStatusDebuggerNotEnabled VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 2
+	VmmCallbackTriggeringEventStatusInvalidEventType VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE = 3
 )
 
 func (v VMM_CALLBACK_TRIGGERING_EVENT_STATUS_TYPE) String() string {
@@ -1032,9 +1032,9 @@ type DEBUGGER_EVENT_MODE_TYPE uint32
 
 const (
 	DebuggerEventModeTypeUserModeAndKernelMode DEBUGGER_EVENT_MODE_TYPE = 1
-	DebuggerEventModeTypeUserMode              DEBUGGER_EVENT_MODE_TYPE = 3
-	DebuggerEventModeTypeKernelMode            DEBUGGER_EVENT_MODE_TYPE = 0
-	DebuggerEventModeTypeInvalid               DEBUGGER_EVENT_MODE_TYPE = 0xffffffff
+	DebuggerEventModeTypeUserMode DEBUGGER_EVENT_MODE_TYPE = 3
+	DebuggerEventModeTypeKernelMode DEBUGGER_EVENT_MODE_TYPE = 0
+	DebuggerEventModeTypeInvalid DEBUGGER_EVENT_MODE_TYPE = 0xffffffff
 )
 
 func (d DEBUGGER_EVENT_MODE_TYPE) String() string {
@@ -1873,7 +1873,7 @@ type HWDBG_SUCCESS_OR_ERROR_ENUMS uint32
 
 const (
 	HwdbgOperationWasSuccessful HWDBG_SUCCESS_OR_ERROR_ENUMS = 2147483647
-	HwdbgErrorInvalidPacket     HWDBG_SUCCESS_OR_ERROR_ENUMS = 1
+	HwdbgErrorInvalidPacket HWDBG_SUCCESS_OR_ERROR_ENUMS = 1
 )
 
 func (h HWDBG_SUCCESS_OR_ERROR_ENUMS) String() string {
@@ -2283,7 +2283,7 @@ type DEBUGGER_EVENT_ACTION struct {
 // Source: HyperDbgUnified/HyperDbg/hyperdbg/hyperkd/header/debugger/core/Debugger.h:107 -> _DEBUGGER_EVENT
 type DEBUGGER_EVENT struct {
 	Tag                    uint64
-	EventsOfSameTypeList   LIST_ENTRY
+	EventsOfSameTypeList    LIST_ENTRY
 	EventType              VMM_EVENT_TYPE_ENUM
 	Enabled                bool
 	CoreId                 uint32
@@ -2314,8 +2314,8 @@ type GUEST_REGS struct {
 	Rbp uint64
 	Rsi uint64
 	Rdi uint64
-	R8  uint64
-	R9  uint64
+	R8 uint64
+	R9 uint64
 	R10 uint64
 	R11 uint64
 	R12 uint64
@@ -2326,50 +2326,50 @@ type GUEST_REGS struct {
 
 // Source: BasicTypes.h:100 -> XMM_REG
 type XMM_REG struct {
-	XmmLow  uint64
+	XmmLow uint64
 	XmmHigh uint64
 }
 
 // Source: BasicTypes.h:108 -> GUEST_XMM_REGS
 type GUEST_XMM_REGS struct {
-	Xmm0          XMM_REG
-	Xmm1          XMM_REG
-	Xmm2          XMM_REG
-	Xmm3          XMM_REG
-	Xmm4          XMM_REG
-	Xmm5          XMM_REG
-	Xmm6NotSaved  XMM_REG
-	Xmm7NotSaved  XMM_REG
-	Xmm8NotSaved  XMM_REG
-	Xmm9NotSaved  XMM_REG
+	Xmm0 XMM_REG
+	Xmm1 XMM_REG
+	Xmm2 XMM_REG
+	Xmm3 XMM_REG
+	Xmm4 XMM_REG
+	Xmm5 XMM_REG
+	Xmm6NotSaved XMM_REG
+	Xmm7NotSaved XMM_REG
+	Xmm8NotSaved XMM_REG
+	Xmm9NotSaved XMM_REG
 	Xmm10NotSaved XMM_REG
 	Xmm11NotSaved XMM_REG
 	Xmm12NotSaved XMM_REG
 	Xmm13NotSaved XMM_REG
 	Xmm14NotSaved XMM_REG
 	Xmm15NotSaved XMM_REG
-	Mxcsr         uint32
+	Mxcsr uint32
 }
 
 // Source: BasicTypes.h:142 -> GUEST_EXTRA_REGISTERS
 type GUEST_EXTRA_REGISTERS struct {
-	CS     uint16
-	DS     uint16
-	FS     uint16
-	GS     uint16
-	ES     uint16
-	SS     uint16
+	CS uint16
+	DS uint16
+	FS uint16
+	GS uint16
+	ES uint16
+	SS uint16
 	RFLAGS uint64
-	RIP    uint64
+	RIP uint64
 }
 
 // Source: BasicTypes.h:157 -> _SCRIPT_ENGINE_GENERAL_REGISTERS
 type SCRIPT_ENGINE_GENERAL_REGISTERS struct {
-	StackBuffer         *uint64
+	StackBuffer *uint64
 	GlobalVariablesList *uint64
-	StackIndx           uint64
-	StackBaseIndx       uint64
-	ReturnValue         uint64
+	StackIndx uint64
+	StackBaseIndx uint64
+	ReturnValue uint64
 }
 
 // Source: BasicTypes.h:170 -> _CR3_TYPE
@@ -2382,56 +2382,60 @@ func (c *CR3_TYPE) GetPcid() uint64 {
 }
 
 func (c *CR3_TYPE) SetPcid(val uint64) {
-	c.Flags = (c.Flags & ^uint64(0xFFF)) | uint64(uint64(val)&0xFFF)
+	c.Flags = (c.Flags & ^uint64(0xFFF)) | uint64(uint64(val) & 0xFFF)
 }
+
 
 func (c *CR3_TYPE) GetPageFrameNumber() uint64 {
 	return uint64((c.Flags >> 12) & uint64(0xFFFFFFFFF))
 }
 
 func (c *CR3_TYPE) SetPageFrameNumber(val uint64) {
-	c.Flags = (c.Flags & ^uint64(0xFFFFFFFFF<<12)) | (uint64(uint64(val)&0xFFFFFFFFF) << 12)
+	c.Flags = (c.Flags & ^uint64(0xFFFFFFFFF<<12)) | (uint64(uint64(val) & 0xFFFFFFFFF) << 12)
 }
+
 
 func (c *CR3_TYPE) GetReserved1() uint64 {
 	return uint64((c.Flags >> 48) & uint64(0xFFF))
 }
 
 func (c *CR3_TYPE) SetReserved1(val uint64) {
-	c.Flags = (c.Flags & ^uint64(0xFFF<<48)) | (uint64(uint64(val)&0xFFF) << 48)
+	c.Flags = (c.Flags & ^uint64(0xFFF<<48)) | (uint64(uint64(val) & 0xFFF) << 48)
 }
+
 
 func (c *CR3_TYPE) GetReserved2() uint64 {
 	return uint64((c.Flags >> 60) & uint64(0x7))
 }
 
 func (c *CR3_TYPE) SetReserved2(val uint64) {
-	c.Flags = (c.Flags & ^uint64(0x7<<60)) | (uint64(uint64(val)&0x7) << 60)
+	c.Flags = (c.Flags & ^uint64(0x7<<60)) | (uint64(uint64(val) & 0x7) << 60)
 }
+
 
 func (c *CR3_TYPE) GetPcidInvalidate() uint64 {
 	return uint64((c.Flags >> 63) & uint64(0x1))
 }
 
 func (c *CR3_TYPE) SetPcidInvalidate(val uint64) {
-	c.Flags = (c.Flags & ^uint64(0x1<<63)) | (uint64(uint64(val)&0x1) << 63)
+	c.Flags = (c.Flags & ^uint64(0x1<<63)) | (uint64(uint64(val) & 0x1) << 63)
 }
 
 // Source: Connection.h:194 -> _DEBUGGER_REMOTE_PACKET
 type DEBUGGER_REMOTE_PACKET struct {
-	Checksum                   uint8
-	_                          [7]byte
-	Indicator                  uint64
-	TypeOfThePacket            DEBUGGER_REMOTE_PACKET_TYPE
+	Checksum uint8
+	_  [7]byte
+	Indicator uint64
+	TypeOfThePacket DEBUGGER_REMOTE_PACKET_TYPE
 	RequestedActionOfThePacket DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION
 }
 
 // Source: DataTypes.h:139 -> _DEBUGGEE_USER_INPUT_PACKET
 type DEBUGGEE_USER_INPUT_PACKET struct {
-	CommandLen           uint32
+	CommandLen uint32
 	IgnoreFinishedSignal bool
-	_                    [3]byte
-	Result               uint32
+	_  [3]byte
+	Result uint32
 }
 
 // Source: DataTypes.h:155 -> _DEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET
@@ -2446,57 +2450,57 @@ type DEBUGGER_PAUSE_PACKET_RECEIVED struct {
 
 // Source: DataTypes.h:191 -> _DEBUGGER_TRIGGERED_EVENT_DETAILS
 type DEBUGGER_TRIGGERED_EVENT_DETAILS struct {
-	Tag     uint64
+	Tag uint64
 	Context uintptr
-	Stage   VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
-	_       [4]byte
+	Stage VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
+	_  [4]byte
 }
 
 // Source: DataTypes.h:206 -> _DEBUGGEE_KD_PAUSED_PACKET
 type DEBUGGEE_KD_PAUSED_PACKET struct {
-	Rip                    uint64
+	Rip uint64
 	IsProcessorOn32BitMode bool
-	IgnoreDisassembling    bool
-	_                      [2]byte
-	PausingReason          DEBUGGEE_PAUSING_REASON
-	CurrentCore            uint32
-	_                      [4]byte
-	EventTag               uint64
-	EventCallingStage      VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
-	_                      [4]byte
-	Rflags                 uint64
-	InstructionBytesOnRip  [16]uint8
-	ReadInstructionLen     uint16
-	_                      [6]byte
+	IgnoreDisassembling bool
+	_  [2]byte
+	PausingReason DEBUGGEE_PAUSING_REASON
+	CurrentCore uint32
+	_  [4]byte
+	EventTag uint64
+	EventCallingStage VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
+	_  [4]byte
+	Rflags uint64
+	InstructionBytesOnRip [16]uint8
+	ReadInstructionLen uint16
+	_  [6]byte
 }
 
 // Source: DataTypes.h:228 -> _DEBUGGEE_UD_PAUSED_PACKET
 type DEBUGGEE_UD_PAUSED_PACKET struct {
-	Rip                   uint64
+	Rip uint64
 	ProcessDebuggingToken uint64
-	Is32Bit               bool
-	_                     [3]byte
-	PausingReason         DEBUGGEE_PAUSING_REASON
-	ProcessId             uint32
-	ThreadId              uint32
-	Rflags                uint64
-	EventTag              uint64
-	EventCallingStage     VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
+	Is32Bit bool
+	_  [3]byte
+	PausingReason DEBUGGEE_PAUSING_REASON
+	ProcessId uint32
+	ThreadId uint32
+	Rflags uint64
+	EventTag uint64
+	EventCallingStage VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
 	InstructionBytesOnRip [16]uint8
-	ReadInstructionLen    uint16
-	_                     [2]byte
+	ReadInstructionLen uint16
+	_  [2]byte
 }
 
 // Source: DataTypes.h:266 -> _DEBUGGEE_MESSAGE_PACKET
 type DEBUGGEE_MESSAGE_PACKET struct {
 	OperationCode uint32
-	Message       [4096]int8
+	Message [4096]int8
 }
 
 // Source: DataTypes.h:277 -> _REGISTER_NOTIFY_BUFFER
 type REGISTER_NOTIFY_BUFFER struct {
-	Type   NOTIFY_TYPE
-	_      [4]byte
+	Type NOTIFY_TYPE
+	_  [4]byte
 	HEvent uintptr
 }
 
@@ -2517,36 +2521,36 @@ type SYSCALL_CALLBACK_CONTEXT_PARAMS struct {
 
 // Source: DataTypes.h:335 -> _EPT_HOOKS_CONTEXT
 type EPT_HOOKS_CONTEXT struct {
-	HookingTag      uint64
+	HookingTag uint64
 	PhysicalAddress uint64
-	VirtualAddress  uint64
+	VirtualAddress uint64
 }
 
 // Source: DataTypes.h:346 -> _EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR
 type EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR struct {
-	StartAddress    uint64
-	EndAddress      uint64
-	SetHookForRead  bool
+	StartAddress uint64
+	EndAddress uint64
+	SetHookForRead bool
 	SetHookForWrite bool
-	SetHookForExec  bool
-	_               [1]byte
-	MemoryType      DEBUGGER_HOOK_MEMORY_TYPE
-	Tag             uint64
+	SetHookForExec bool
+	_  [1]byte
+	MemoryType DEBUGGER_HOOK_MEMORY_TYPE
+	Tag uint64
 }
 
 // Source: DataTypes.h:362 -> _EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2
 type EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2 struct {
 	TargetAddress uintptr
-	HookFunction  uintptr
+	HookFunction uintptr
 }
 
 // Source: DataTypes.h:373 -> _EPT_SINGLE_HOOK_UNHOOKING_DETAILS
 type EPT_SINGLE_HOOK_UNHOOKING_DETAILS struct {
 	CallerNeedsToRestoreEntryAndInvalidateEpt bool
-	RemoveBreakpointInterception              bool
-	_                                         [6]byte
-	PhysicalAddress                           uintptr
-	OriginalEntry                             uint64
+	RemoveBreakpointInterception bool
+	_  [6]byte
+	PhysicalAddress uintptr
+	OriginalEntry uint64
 }
 
 // Source: DataTypes.h:0 -> VMX_SEGMENT_ACCESS_RIGHTS_TYPE
@@ -2559,97 +2563,107 @@ func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetType() uint32 {
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetType(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0xF)) | uint32(uint32(val)&0xF)
+	v.AsUInt = (v.AsUInt & ^uint32(0xF)) | uint32(uint32(val) & 0xF)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetDescriptorType() uint32 {
 	return uint32((v.AsUInt >> 4) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetDescriptorType(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<4)) | (uint32(uint32(val)&0x1) << 4)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<4)) | (uint32(uint32(val) & 0x1) << 4)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetDescriptorPrivilegeLevel() uint32 {
 	return uint32((v.AsUInt >> 5) & uint32(0x3))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetDescriptorPrivilegeLevel(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x3<<5)) | (uint32(uint32(val)&0x3) << 5)
+	v.AsUInt = (v.AsUInt & ^uint32(0x3<<5)) | (uint32(uint32(val) & 0x3) << 5)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetPresent() uint32 {
 	return uint32((v.AsUInt >> 7) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetPresent(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<7)) | (uint32(uint32(val)&0x1) << 7)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<7)) | (uint32(uint32(val) & 0x1) << 7)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetReserved1() uint32 {
 	return uint32((v.AsUInt >> 8) & uint32(0xF))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetReserved1(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0xF<<8)) | (uint32(uint32(val)&0xF) << 8)
+	v.AsUInt = (v.AsUInt & ^uint32(0xF<<8)) | (uint32(uint32(val) & 0xF) << 8)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetAvailableBit() uint32 {
 	return uint32((v.AsUInt >> 12) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetAvailableBit(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<12)) | (uint32(uint32(val)&0x1) << 12)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<12)) | (uint32(uint32(val) & 0x1) << 12)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetLongMode() uint32 {
 	return uint32((v.AsUInt >> 13) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetLongMode(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<13)) | (uint32(uint32(val)&0x1) << 13)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<13)) | (uint32(uint32(val) & 0x1) << 13)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetDefaultBig() uint32 {
 	return uint32((v.AsUInt >> 14) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetDefaultBig(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<14)) | (uint32(uint32(val)&0x1) << 14)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<14)) | (uint32(uint32(val) & 0x1) << 14)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetGranularity() uint32 {
 	return uint32((v.AsUInt >> 15) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetGranularity(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<15)) | (uint32(uint32(val)&0x1) << 15)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<15)) | (uint32(uint32(val) & 0x1) << 15)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetUnusable() uint32 {
 	return uint32((v.AsUInt >> 16) & uint32(0x1))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetUnusable(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x1<<16)) | (uint32(uint32(val)&0x1) << 16)
+	v.AsUInt = (v.AsUInt & ^uint32(0x1<<16)) | (uint32(uint32(val) & 0x1) << 16)
 }
+
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) GetReserved2() uint32 {
 	return uint32((v.AsUInt >> 17) & uint32(0x7FFF))
 }
 
 func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetReserved2(val uint32) {
-	v.AsUInt = (v.AsUInt & ^uint32(0x7FFF<<17)) | (uint32(uint32(val)&0x7FFF) << 17)
+	v.AsUInt = (v.AsUInt & ^uint32(0x7FFF<<17)) | (uint32(uint32(val) & 0x7FFF) << 17)
 }
 
 // Source: DataTypes.h:451 -> _VMX_SEGMENT_SELECTOR
 type VMX_SEGMENT_SELECTOR struct {
 	Selector uint16
-	_        [2]byte
-	Anon1    VMX_SEGMENT_SELECTOR_Anon1Union
-	Limit    uint32
-	_        [4]byte
-	Base     uint64
+	_  [2]byte
+	Anon1 VMX_SEGMENT_SELECTOR_Anon1Union
+	Limit uint32
+	_  [4]byte
+	Base uint64
 }
 
 // Source: DataTypes.h:0 -> VMX_SEGMENT_SELECTOR_Anon1Union
@@ -2659,18 +2673,18 @@ type VMX_SEGMENT_SELECTOR_Anon1Union struct {
 
 // Source: Events.h:246 -> _DEBUGGER_MODIFY_EVENTS
 type DEBUGGER_MODIFY_EVENTS struct {
-	Tag          uint64
+	Tag uint64
 	KernelStatus uint64
 	TypeOfAction DEBUGGER_MODIFY_EVENTS_TYPE
-	IsEnabled    bool
-	_            [3]byte
+	IsEnabled bool
+	_  [3]byte
 }
 
 // Source: Events.h:260 -> _DEBUGGER_SHORT_CIRCUITING_EVENT
 type DEBUGGER_SHORT_CIRCUITING_EVENT struct {
-	KernelStatus      uint64
+	KernelStatus uint64
 	IsShortCircuiting bool
-	_                 [7]byte
+	_  [7]byte
 }
 
 // Source: Events.h:275 -> _DEBUGGER_EVENT_OPTIONS
@@ -2685,107 +2699,107 @@ type DEBUGGER_EVENT_OPTIONS struct {
 
 // Source: Events.h:354 -> _DEBUGGER_GENERAL_EVENT_DETAIL
 type DEBUGGER_GENERAL_EVENT_DETAIL struct {
-	CommandsEventList     LIST_ENTRY
-	CreationTime          int64
-	CoreId                uint32
-	ProcessId             uint32
-	IsEnabled             bool
+	CommandsEventList LIST_ENTRY
+	CreationTime int64
+	CoreId uint32
+	ProcessId uint32
+	IsEnabled bool
 	EnableShortCircuiting bool
-	_                     [2]byte
-	EventStage            VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
-	HasCustomOutput       bool
-	_                     [7]byte
-	OutputSourceTags      [5]uint64
-	CountOfActions        uint32
-	_                     [4]byte
-	Tag                   uint64
-	EventType             VMM_EVENT_TYPE_ENUM
-	_                     [4]byte
-	Options               DEBUGGER_EVENT_OPTIONS
-	CommandStringBuffer   uintptr
-	ConditionBufferSize   uint32
-	_                     [4]byte
+	_  [2]byte
+	EventStage VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
+	HasCustomOutput bool
+	_  [7]byte
+	OutputSourceTags [5]uint64
+	CountOfActions uint32
+	_  [4]byte
+	Tag uint64
+	EventType VMM_EVENT_TYPE_ENUM
+	_  [4]byte
+	Options DEBUGGER_EVENT_OPTIONS
+	CommandStringBuffer uintptr
+	ConditionBufferSize uint32
+	_  [4]byte
 }
 
 // Source: Events.h:410 -> _DEBUGGER_GENERAL_ACTION
 type DEBUGGER_GENERAL_ACTION struct {
-	EventTag                uint64
-	ActionType              DEBUGGER_EVENT_ACTION_TYPE_ENUM
+	EventTag uint64
+	ActionType DEBUGGER_EVENT_ACTION_TYPE_ENUM
 	ImmediateMessagePassing bool
-	_                       [3]byte
-	PreAllocatedBuffer      uint32
-	CustomCodeBufferSize    uint32
-	ScriptBufferSize        uint32
-	ScriptBufferPointer     uint32
+	_  [3]byte
+	PreAllocatedBuffer uint32
+	CustomCodeBufferSize uint32
+	ScriptBufferSize uint32
+	ScriptBufferPointer uint32
 }
 
 // Source: Events.h:427 -> _DEBUGGER_EVENT_AND_ACTION_RESULT
 type DEBUGGER_EVENT_AND_ACTION_RESULT struct {
 	IsSuccessful bool
-	_            [3]byte
-	Error        uint32
+	_  [3]byte
+	Error uint32
 }
 
 // Source: Pcie.h:49 -> _PORTABLE_PCI_COMMON_HEADER
 type PORTABLE_PCI_COMMON_HEADER struct {
-	VendorId            uint16
-	DeviceId            uint16
-	Command             uint16
-	Status              uint16
-	RevisionId          uint8
-	ClassCode           [3]uint8
-	CacheLineSize       uint8
+	VendorId uint16
+	DeviceId uint16
+	Command uint16
+	Status uint16
+	RevisionId uint8
+	ClassCode [3]uint8
+	CacheLineSize uint8
 	PrimaryLatencyTimer uint8
-	HeaderType          uint8
-	Bist                uint8
+	HeaderType uint8
+	Bist uint8
 }
 
 // Source: Pcie.h:0 -> _PORTABLE_PCI_DEVICE_HEADER
 type PORTABLE_PCI_DEVICE_HEADER_ struct {
-	ConfigSpaceEp        PORTABLE_PCI_EP_HEADER
+	ConfigSpaceEp PORTABLE_PCI_EP_HEADER
 	ConfigSpacePtpBridge PORTABLE_PCI_BRIDGE_HEADER
 }
 
 // Source: Pcie.h:0 -> _PORTABLE_PCI_EP_HEADER
 type PORTABLE_PCI_EP_HEADER struct {
-	Bar             [6]uint32
-	CardBusCISPtr   uint32
-	SubVendorId     uint16
-	SubSystemId     uint16
-	ROMBar          uint32
+	Bar [6]uint32
+	CardBusCISPtr uint32
+	SubVendorId uint16
+	SubSystemId uint16
+	ROMBar uint32
 	CapabilitiesPtr uint8
-	Reserved        [3]uint8
-	Reserved1       uint32
-	InterruptLine   uint8
-	InterruptPin    uint8
-	MinGnt          uint8
-	MaxLat          uint8
+	Reserved [3]uint8
+	Reserved1 uint32
+	InterruptLine uint8
+	InterruptPin uint8
+	MinGnt uint8
+	MaxLat uint8
 }
 
 // Source: Pcie.h:0 -> _PORTABLE_PCI_BRIDGE_HEADER
 type PORTABLE_PCI_BRIDGE_HEADER struct {
-	Bar                       [2]uint32
-	PrimaryBusNumber          uint8
-	SecondaryBusNumber        uint8
-	SubordinateBusNumber      uint8
-	SecondaryLatencyTimer     uint8
-	IoBase                    uint8
-	IoLimit                   uint8
-	SecondaryStatus           uint16
-	MemoryBase                uint16
-	MemoryLimit               uint16
-	PrefetchableMemoryBase    uint16
-	PrefetchableMemoryLimit   uint16
-	PrefetchableBaseUpper32b  uint32
+	Bar [2]uint32
+	PrimaryBusNumber uint8
+	SecondaryBusNumber uint8
+	SubordinateBusNumber uint8
+	SecondaryLatencyTimer uint8
+	IoBase uint8
+	IoLimit uint8
+	SecondaryStatus uint16
+	MemoryBase uint16
+	MemoryLimit uint16
+	PrefetchableMemoryBase uint16
+	PrefetchableMemoryLimit uint16
+	PrefetchableBaseUpper32b uint32
 	PrefetchableLimitUpper32b uint32
-	IoBaseUpper16b            uint16
-	IoLimitUpper16b           uint16
-	CapabilityPtr             uint8
-	Reserved                  [3]uint8
-	ROMBar                    uint32
-	InterruptLine             uint8
-	InterruptPin              uint8
-	BridgeControl             uint16
+	IoBaseUpper16b uint16
+	IoLimitUpper16b uint16
+	CapabilityPtr uint8
+	Reserved [3]uint8
+	ROMBar uint32
+	InterruptLine uint8
+	InterruptPin uint8
+	BridgeControl uint16
 }
 
 // Source: Pcie.h:0 -> _PORTABLE_PCI_DEVICE_HEADER
@@ -2795,15 +2809,15 @@ type PORTABLE_PCI_DEVICE_HEADER struct {
 
 // Source: Pcie.h:118 -> _PORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL
 type PORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL struct {
-	VendorId  uint16
-	DeviceId  uint16
+	VendorId uint16
+	DeviceId uint16
 	ClassCode [3]uint8
 }
 
 // Source: Pcie.h:132 -> _PCI_DEV_MINIMAL
 type PCI_DEV_MINIMAL struct {
-	BusBits     uint8
-	DeviceBits  uint8
+	BusBits uint8
+	DeviceBits uint8
 	ConfigSpace PORTABLE_PCI_CONFIG_SPACE_HEADER_MINIMAL
 }
 
@@ -2812,31 +2826,33 @@ func (p *PCI_DEV_MINIMAL) GetBus() uint8 {
 }
 
 func (p *PCI_DEV_MINIMAL) SetBus(val uint8) {
-	p.BusBits = (p.BusBits & ^uint8(0xFF)) | uint8(uint8(val)&0xFF)
+	p.BusBits = (p.BusBits & ^uint8(0xFF)) | uint8(uint8(val) & 0xFF)
 }
+
 
 func (p *PCI_DEV_MINIMAL) GetDevice() uint8 {
 	return uint8(p.DeviceBits & uint8(0x1F))
 }
 
 func (p *PCI_DEV_MINIMAL) SetDevice(val uint8) {
-	p.DeviceBits = (p.DeviceBits & ^uint8(0x1F)) | uint8(uint8(val)&0x1F)
+	p.DeviceBits = (p.DeviceBits & ^uint8(0x1F)) | uint8(uint8(val) & 0x1F)
 }
+
 
 func (p *PCI_DEV_MINIMAL) GetFunction() uint8 {
 	return uint8((p.DeviceBits >> 5) & uint8(0x7))
 }
 
 func (p *PCI_DEV_MINIMAL) SetFunction(val uint8) {
-	p.DeviceBits = (p.DeviceBits & ^uint8(0x7<<5)) | (uint8(uint8(val)&0x7) << 5)
+	p.DeviceBits = (p.DeviceBits & ^uint8(0x7<<5)) | (uint8(uint8(val) & 0x7) << 5)
 }
 
 // Source: Pcie.h:144 -> _PCI_DEV_MMIOBAR_INFO
 type PCI_DEV_MMIOBAR_INFO struct {
-	Is64Bit      int32
-	IsEnabled    int32
+	Is64Bit int32
+	IsEnabled int32
 	BarOffsetEnd uint64
-	BarSize      uint64
+	BarSize uint64
 }
 
 // Source: Pcie.h:156 -> _PORTABLE_PCI_CONFIG_SPACE_HEADER
@@ -2847,11 +2863,11 @@ type PORTABLE_PCI_CONFIG_SPACE_HEADER struct {
 
 // Source: Pcie.h:166 -> _PCI_DEV
 type PCI_DEV struct {
-	BusBits               uint8
-	ConfigSpace           PORTABLE_PCI_CONFIG_SPACE_HEADER
-	DeviceBits            uint8
+	BusBits uint8
+	ConfigSpace PORTABLE_PCI_CONFIG_SPACE_HEADER
+	DeviceBits uint8
 	ConfigSpaceAdditional [191]uint8
-	MmioBarInfo           [6]PCI_DEV_MMIOBAR_INFO
+	MmioBarInfo [6]PCI_DEV_MMIOBAR_INFO
 }
 
 func (p *PCI_DEV) GetBus() uint8 {
@@ -2859,128 +2875,130 @@ func (p *PCI_DEV) GetBus() uint8 {
 }
 
 func (p *PCI_DEV) SetBus(val uint8) {
-	p.BusBits = (p.BusBits & ^uint8(0xFF)) | uint8(uint8(val)&0xFF)
+	p.BusBits = (p.BusBits & ^uint8(0xFF)) | uint8(uint8(val) & 0xFF)
 }
+
 
 func (p *PCI_DEV) GetDevice() uint8 {
 	return uint8(p.DeviceBits & uint8(0x1F))
 }
 
 func (p *PCI_DEV) SetDevice(val uint8) {
-	p.DeviceBits = (p.DeviceBits & ^uint8(0x1F)) | uint8(uint8(val)&0x1F)
+	p.DeviceBits = (p.DeviceBits & ^uint8(0x1F)) | uint8(uint8(val) & 0x1F)
 }
+
 
 func (p *PCI_DEV) GetFunction() uint8 {
 	return uint8((p.DeviceBits >> 5) & uint8(0x7))
 }
 
 func (p *PCI_DEV) SetFunction(val uint8) {
-	p.DeviceBits = (p.DeviceBits & ^uint8(0x7<<5)) | (uint8(uint8(val)&0x7) << 5)
+	p.DeviceBits = (p.DeviceBits & ^uint8(0x7<<5)) | (uint8(uint8(val) & 0x7) << 5)
 }
 
 // Source: RequestStructures.h:22 -> _DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS
 type DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS struct {
-	VirtualAddress      uint64
-	ProcessId           uint32
-	_                   [4]byte
+	VirtualAddress uint64
+	ProcessId uint32
+	_  [4]byte
 	Pml4eVirtualAddress uint64
-	Pml4eValue          uint64
+	Pml4eValue uint64
 	PdpteVirtualAddress uint64
-	PdpteValue          uint64
-	PdeVirtualAddress   uint64
-	PdeValue            uint64
-	PteVirtualAddress   uint64
-	PteValue            uint64
-	KernelStatus        uint32
-	_                   [4]byte
+	PdpteValue uint64
+	PdeVirtualAddress uint64
+	PdeValue uint64
+	PteVirtualAddress uint64
+	PteValue uint64
+	KernelStatus uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:54 -> _DEBUGGER_VA2PA_AND_PA2VA_COMMANDS
 type DEBUGGER_VA2PA_AND_PA2VA_COMMANDS struct {
-	VirtualAddress     uint64
-	PhysicalAddress    uint64
-	ProcessId          uint32
+	VirtualAddress uint64
+	PhysicalAddress uint64
+	ProcessId uint32
 	IsVirtual2Physical bool
-	_                  [3]byte
-	KernelStatus       uint32
-	_                  [4]byte
+	_  [3]byte
+	KernelStatus uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:73 -> _DEBUGGER_PAGE_IN_REQUEST
 type DEBUGGER_PAGE_IN_REQUEST struct {
 	VirtualAddressFrom uint64
-	VirtualAddressTo   uint64
-	ProcessId          uint32
+	VirtualAddressTo uint64
+	ProcessId uint32
 	PageFaultErrorCode uint32
-	KernelStatus       uint32
-	_                  [4]byte
+	KernelStatus uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:115 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST
 type REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST struct {
-	ProcessId    uint32
-	Size         uint32
-	Mode         REVERSING_MACHINE_RECONSTRUCT_MEMORY_MODE
-	Type         REVERSING_MACHINE_RECONSTRUCT_MEMORY_TYPE
+	ProcessId uint32
+	Size uint32
+	Mode REVERSING_MACHINE_RECONSTRUCT_MEMORY_MODE
+	Type REVERSING_MACHINE_RECONSTRUCT_MEMORY_TYPE
 	KernelStatus uint32
 }
 
 // Source: RequestStructures.h:135 -> _DEBUGGER_DT_COMMAND_OPTIONS
 type DEBUGGER_DT_COMMAND_OPTIONS struct {
-	TypeName             *int8
-	SizeOfTypeName       uint64
-	Address              uint64
-	IsStruct             bool
-	_                    [7]byte
-	BufferAddress        uintptr
-	TargetPid            uint32
-	_                    [4]byte
+	TypeName *int8
+	SizeOfTypeName uint64
+	Address uint64
+	IsStruct bool
+	_  [7]byte
+	BufferAddress uintptr
+	TargetPid uint32
+	_  [4]byte
 	AdditionalParameters *int8
 }
 
 // Source: RequestStructures.h:174 -> _DEBUGGER_PREALLOC_COMMAND
 type DEBUGGER_PREALLOC_COMMAND struct {
-	Type         DEBUGGER_PREALLOC_COMMAND_TYPE
-	Count        uint32
+	Type DEBUGGER_PREALLOC_COMMAND_TYPE
+	Count uint32
 	KernelStatus uint32
 }
 
 // Source: RequestStructures.h:202 -> _DEBUGGER_PREACTIVATE_COMMAND
 type DEBUGGER_PREACTIVATE_COMMAND struct {
-	Type         DEBUGGER_PREACTIVATE_COMMAND_TYPE
+	Type DEBUGGER_PREACTIVATE_COMMAND_TYPE
 	KernelStatus uint32
 }
 
 // Source: RequestStructures.h:266 -> _DEBUGGER_READ_MEMORY
 type DEBUGGER_READ_MEMORY struct {
-	Pid            uint32
-	_              [4]byte
-	Address        uint64
-	Size           uint32
+	Pid uint32
+	_  [4]byte
+	Address uint64
+	Size uint32
 	GetAddressMode bool
-	_              [3]byte
-	AddressMode    DEBUGGER_READ_MEMORY_ADDRESS_MODE
-	MemoryType     DEBUGGER_READ_MEMORY_TYPE
-	ReadingType    DEBUGGER_READ_READING_TYPE
-	ReturnLength   uint32
-	KernelStatus   uint32
-	_              [4]byte
+	_  [3]byte
+	AddressMode DEBUGGER_READ_MEMORY_ADDRESS_MODE
+	MemoryType DEBUGGER_READ_MEMORY_TYPE
+	ReadingType DEBUGGER_READ_READING_TYPE
+	ReturnLength uint32
+	KernelStatus uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:294 -> _DEBUGGER_FLUSH_LOGGING_BUFFERS
 type DEBUGGER_FLUSH_LOGGING_BUFFERS struct {
-	KernelStatus                               uint32
-	CountOfMessagesThatSetAsReadFromVmxRoot    uint32
+	KernelStatus uint32
+	CountOfMessagesThatSetAsReadFromVmxRoot uint32
 	CountOfMessagesThatSetAsReadFromVmxNonRoot uint32
 }
 
 // Source: RequestStructures.h:333 -> _DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER
 type DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER struct {
-	RequestType  DEBUGGER_TEST_QUERY_STATE
-	_            [4]byte
-	Context      uint64
+	RequestType DEBUGGER_TEST_QUERY_STATE
+	_  [4]byte
+	Context uint64
 	KernelStatus uint32
-	_            [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:351 -> _DEBUGGER_PERFORM_KERNEL_TESTS
@@ -2995,231 +3013,231 @@ type DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL struct {
 
 // Source: RequestStructures.h:384 -> _DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER
 type DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER struct {
-	RequestedAction       DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION
-	LengthOfBuffer        uint32
+	RequestedAction DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION
+	LengthOfBuffer uint32
 	PauseDebuggeeWhenSent bool
-	_                     [3]byte
-	KernelResult          uint32
+	_  [3]byte
+	KernelResult uint32
 }
 
 // Source: RequestStructures.h:408 -> _DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER
 type DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER struct {
 	KernelStatus uint32
-	Length       uint32
+	Length uint32
 }
 
 // Source: RequestStructures.h:440 -> _DEBUGGER_READ_AND_WRITE_ON_MSR
 type DEBUGGER_READ_AND_WRITE_ON_MSR struct {
-	Msr        uint64
+	Msr uint64
 	CoreNumber uint32
 	ActionType DEBUGGER_MSR_ACTION_TYPE
-	Value      uint64
+	Value uint64
 }
 
 // Source: RequestStructures.h:482 -> _DEBUGGER_EDIT_MEMORY
 type DEBUGGER_EDIT_MEMORY struct {
-	Result             uint32
-	_                  [4]byte
-	Address            uint64
-	ProcessId          uint32
-	MemoryType         DEBUGGER_EDIT_MEMORY_TYPE
-	ByteSize           DEBUGGER_EDIT_MEMORY_BYTE_SIZE
-	CountOf64Chunks    uint32
+	Result uint32
+	_  [4]byte
+	Address uint64
+	ProcessId uint32
+	MemoryType DEBUGGER_EDIT_MEMORY_TYPE
+	ByteSize DEBUGGER_EDIT_MEMORY_BYTE_SIZE
+	CountOf64Chunks uint32
 	FinalStructureSize uint32
-	_                  [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:527 -> _DEBUGGER_SEARCH_MEMORY
 type DEBUGGER_SEARCH_MEMORY struct {
-	Address            uint64
-	Length             uint64
-	ProcessId          uint32
-	MemoryType         DEBUGGER_SEARCH_MEMORY_TYPE
-	ByteSize           DEBUGGER_SEARCH_MEMORY_BYTE_SIZE
-	CountOf64Chunks    uint32
+	Address uint64
+	Length uint64
+	ProcessId uint32
+	MemoryType DEBUGGER_SEARCH_MEMORY_TYPE
+	ByteSize DEBUGGER_SEARCH_MEMORY_BYTE_SIZE
+	CountOf64Chunks uint32
 	FinalStructureSize uint32
-	_                  [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:550 -> _SYSTEM_CALL_NUMBERS_INFORMATION
 type SYSTEM_CALL_NUMBERS_INFORMATION struct {
-	SysNtQuerySystemInformation   uint32
+	SysNtQuerySystemInformation uint32
 	SysNtQuerySystemInformationEx uint32
-	SysNtSystemDebugControl       uint32
-	SysNtQueryAttributesFile      uint32
-	SysNtOpenDirectoryObject      uint32
-	SysNtQueryDirectoryObject     uint32
-	SysNtQueryInformationProcess  uint32
-	SysNtSetInformationProcess    uint32
-	SysNtQueryInformationThread   uint32
-	SysNtSetInformationThread     uint32
-	SysNtOpenFile                 uint32
-	SysNtOpenKey                  uint32
-	SysNtOpenKeyEx                uint32
-	SysNtQueryValueKey            uint32
-	SysNtEnumerateKey             uint32
+	SysNtSystemDebugControl uint32
+	SysNtQueryAttributesFile uint32
+	SysNtOpenDirectoryObject uint32
+	SysNtQueryDirectoryObject uint32
+	SysNtQueryInformationProcess uint32
+	SysNtSetInformationProcess uint32
+	SysNtQueryInformationThread uint32
+	SysNtSetInformationThread uint32
+	SysNtOpenFile uint32
+	SysNtOpenKey uint32
+	SysNtOpenKeyEx uint32
+	SysNtQueryValueKey uint32
+	SysNtEnumerateKey uint32
 }
 
 // Source: RequestStructures.h:578 -> _DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE
 type DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE struct {
-	IsHide                               bool
+	IsHide bool
 	TrueIfProcessIdAndFalseIfProcessName bool
-	_                                    [2]byte
-	ProcId                               uint32
-	LengthOfProcessName                  uint32
-	SystemCallNumbersInformation         SYSTEM_CALL_NUMBERS_INFORMATION
-	KernelStatus                         uint32
+	_  [2]byte
+	ProcId uint32
+	LengthOfProcessName uint32
+	SystemCallNumbersInformation SYSTEM_CALL_NUMBERS_INFORMATION
+	KernelStatus uint32
 }
 
 // Source: RequestStructures.h:612 -> _DEBUGGER_PREPARE_DEBUGGEE
 type DEBUGGER_PREPARE_DEBUGGEE struct {
-	PortAddress       uint32
-	Baudrate          uint32
+	PortAddress uint32
+	Baudrate uint32
 	KernelBaseAddress uint64
-	Result            uint32
-	OsName            [256]int8
-	_                 [4]byte
+	Result uint32
+	OsName [256]int8
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:629 -> _DEBUGGEE_CHANGE_CORE_PACKET
 type DEBUGGEE_CHANGE_CORE_PACKET struct {
 	NewCore uint32
-	Result  uint32
+	Result uint32
 }
 
 // Source: RequestStructures.h:662 -> _DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS
 type DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS struct {
-	IsStartingNewProcess                      bool
-	_                                         [3]byte
-	ProcessId                                 uint32
-	ThreadId                                  uint32
-	CheckCallbackAtFirstInstruction           bool
-	Is32Bit                                   bool
-	_                                         [2]byte
-	Rip                                       uint64
-	InstructionBytesOnRip                     [16]uint8
-	SizeOfInstruction                         uint32
-	IsPaused                                  bool
-	_                                         [3]byte
-	Action                                    DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS_ACTION_TYPE
+	IsStartingNewProcess bool
+	_  [3]byte
+	ProcessId uint32
+	ThreadId uint32
+	CheckCallbackAtFirstInstruction bool
+	Is32Bit bool
+	_  [2]byte
+	Rip uint64
+	InstructionBytesOnRip [16]uint8
+	SizeOfInstruction uint32
+	IsPaused bool
+	_  [3]byte
+	Action DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS_ACTION_TYPE
 	CountOfActiveDebuggingThreadsAndProcesses uint32
-	Token                                     uint64
-	Result                                    uint64
+	Token uint64
+	Result uint64
 }
 
 // Source: RequestStructures.h:718 -> _DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
 type DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS struct {
-	PsActiveProcessHead      uint64
-	ImageFileNameOffset      uint32
-	UniquePidOffset          uint32
+	PsActiveProcessHead uint64
+	ImageFileNameOffset uint32
+	UniquePidOffset uint32
 	ActiveProcessLinksOffset uint32
-	_                        [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:732 -> _DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
 type DEBUGGEE_THREAD_LIST_NEEDED_DETAILS struct {
-	ThreadListHeadOffset     uint32
-	ThreadListEntryOffset    uint32
-	CidOffset                uint32
-	_                        [4]byte
-	PsActiveProcessHead      uint64
+	ThreadListHeadOffset uint32
+	ThreadListEntryOffset uint32
+	CidOffset uint32
+	_  [4]byte
+	PsActiveProcessHead uint64
 	ActiveProcessLinksOffset uint32
-	_                        [4]byte
-	Process                  uint64
+	_  [4]byte
+	Process uint64
 }
 
 // Source: RequestStructures.h:748 -> _DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY
 type DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY struct {
-	Eprocess      uint64
-	ProcessId     uint32
-	_             [4]byte
-	Cr3           uint64
+	Eprocess uint64
+	ProcessId uint32
+	_  [4]byte
+	Cr3 uint64
 	ImageFileName [16]uint8
 }
 
 // Source: RequestStructures.h:762 -> _DEBUGGEE_THREAD_LIST_DETAILS_ENTRY
 type DEBUGGEE_THREAD_LIST_DETAILS_ENTRY struct {
-	Eprocess      uint64
-	Ethread       uint64
-	ProcessId     uint32
-	ThreadId      uint32
+	Eprocess uint64
+	Ethread uint64
+	ProcessId uint32
+	ThreadId uint32
 	ImageFileName [16]uint8
 }
 
 // Source: RequestStructures.h:776 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS
 type DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS struct {
 	ProcessListNeededDetails DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
-	ThreadListNeededDetails  DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
-	QueryType                DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_TYPES
-	QueryAction              DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_ACTIONS
-	Count                    uint32
-	_                        [4]byte
-	Result                   uint64
+	ThreadListNeededDetails DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
+	QueryType DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_TYPES
+	QueryAction DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_ACTIONS
+	Count uint32
+	_  [4]byte
+	Result uint64
 }
 
 // Source: RequestStructures.h:795 -> _DEBUGGER_SINGLE_CALLSTACK_FRAME
 type DEBUGGER_SINGLE_CALLSTACK_FRAME struct {
-	IsStackAddressValid   bool
-	IsValidAddress        bool
-	IsExecutable          bool
-	_                     [5]byte
-	Value                 uint64
+	IsStackAddressValid bool
+	IsValidAddress bool
+	IsExecutable bool
+	_  [5]byte
+	Value uint64
 	InstructionBytesOnRip [7]uint8
-	_                     [1]byte
+	_  [1]byte
 }
 
 // Source: RequestStructures.h:823 -> _DEBUGGER_CALLSTACK_REQUEST
 type DEBUGGER_CALLSTACK_REQUEST struct {
-	Is32Bit       bool
-	_             [3]byte
-	KernelStatus  uint32
+	Is32Bit bool
+	_  [3]byte
+	KernelStatus uint32
 	DisplayMethod DEBUGGER_CALLSTACK_DISPLAY_METHOD
-	Size          uint32
-	FrameCount    uint32
-	_             [4]byte
-	BaseAddress   uint64
-	BufferSize    uint64
+	Size uint32
+	FrameCount uint32
+	_  [4]byte
+	BaseAddress uint64
+	BufferSize uint64
 }
 
 // Source: RequestStructures.h:844 -> _USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS
 type USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS struct {
-	ProcessId                      uint32
-	ThreadId                       uint32
+	ProcessId uint32
+	ThreadId uint32
 	NumberOfBlockedContextSwitches uint64
-	IsProcess                      bool
-	_                              [7]byte
+	IsProcess bool
+	_  [7]byte
 }
 
 // Source: RequestStructures.h:860 -> _DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION
 type DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION struct {
-	ScriptBuffer                uint64
-	ScriptLength                uint32
-	ScriptPointer               uint32
+	ScriptBuffer uint64
+	ScriptLength uint32
+	ScriptPointer uint32
 	OptionalRequestedBufferSize uint32
-	_                           [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:874 -> _DEBUGGER_EVENT_REQUEST_BUFFER
 type DEBUGGER_EVENT_REQUEST_BUFFER struct {
 	EnabledRequestBuffer bool
-	_                    [3]byte
-	RequestBufferSize    uint32
-	RequstBufferAddress  uint64
+	_  [3]byte
+	RequestBufferSize uint32
+	RequstBufferAddress uint64
 }
 
 // Source: RequestStructures.h:886 -> _DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
 type DEBUGGER_EVENT_REQUEST_CUSTOM_CODE struct {
-	CustomCodeBufferSize        uint32
-	_                           [4]byte
-	CustomCodeBufferAddress     uintptr
+	CustomCodeBufferSize uint32
+	_  [4]byte
+	CustomCodeBufferAddress uintptr
 	OptionalRequestedBufferSize uint32
-	_                           [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:915 -> _DEBUGGER_UD_COMMAND_ACTION
 type DEBUGGER_UD_COMMAND_ACTION struct {
-	ActionType     DEBUGGER_UD_COMMAND_ACTION_TYPE
-	_              [4]byte
+	ActionType DEBUGGER_UD_COMMAND_ACTION_TYPE
+	_  [4]byte
 	OptionalParam1 uint64
 	OptionalParam2 uint64
 	OptionalParam3 uint64
@@ -3228,159 +3246,159 @@ type DEBUGGER_UD_COMMAND_ACTION struct {
 
 // Source: RequestStructures.h:929 -> _DEBUGGER_UD_COMMAND_PACKET
 type DEBUGGER_UD_COMMAND_PACKET struct {
-	UdAction                    DEBUGGER_UD_COMMAND_ACTION
+	UdAction DEBUGGER_UD_COMMAND_ACTION
 	ProcessDebuggingDetailToken uint64
-	TargetThreadId              uint32
-	ApplyToAllPausedThreads     bool
-	WaitForEventCompletion      bool
-	_                           [2]byte
-	Result                      uint32
-	_                           [4]byte
+	TargetThreadId uint32
+	ApplyToAllPausedThreads bool
+	WaitForEventCompletion bool
+	_  [2]byte
+	Result uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:961 -> _DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET
 type DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET struct {
-	ActionType            DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE
-	ProcessId             uint32
-	Process               uint64
-	IsSwitchByClkIntr     bool
-	ProcessName           [16]uint8
-	_                     [7]byte
+	ActionType DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE
+	ProcessId uint32
+	Process uint64
+	IsSwitchByClkIntr bool
+	ProcessName [16]uint8
+	_  [7]byte
 	ProcessListSymDetails DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
-	Result                uint32
-	_                     [4]byte
+	Result uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1000 -> _DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET
 type DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET struct {
-	ActionType            DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE
-	ThreadId              uint32
-	ProcessId             uint32
-	_                     [4]byte
-	Thread                uint64
-	Process               uint64
+	ActionType DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE
+	ThreadId uint32
+	ProcessId uint32
+	_  [4]byte
+	Thread uint64
+	Process uint64
 	CheckByClockInterrupt bool
-	ProcessName           [16]uint8
-	_                     [7]byte
-	ThreadListSymDetails  DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
-	Result                uint32
-	_                     [4]byte
+	ProcessName [16]uint8
+	_  [7]byte
+	ThreadListSymDetails DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
+	Result uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1044 -> _DEBUGGEE_STEP_PACKET
 type DEBUGGEE_STEP_PACKET struct {
-	StepType                  DEBUGGER_REMOTE_STEPPING_REQUEST
+	StepType DEBUGGER_REMOTE_STEPPING_REQUEST
 	IsCurrentInstructionACall bool
-	_                         [3]byte
-	CallLength                uint32
+	_  [3]byte
+	CallLength uint32
 }
 
 // Source: RequestStructures.h:1080 -> _DEBUGGER_APIC_REQUEST
 type DEBUGGER_APIC_REQUEST struct {
-	ApicType      DEBUGGER_APIC_REQUEST_TYPE
+	ApicType DEBUGGER_APIC_REQUEST_TYPE
 	IsUsingX2APIC bool
-	_             [3]byte
-	KernelStatus  uint32
+	_  [3]byte
+	KernelStatus uint32
 }
 
 // Source: RequestStructures.h:1107 -> _LAPIC_PAGE
 type LAPIC_PAGE struct {
-	Reserved000             [16]uint8
-	Reserved010             [16]uint8
-	Id                      uint32
-	Reserved024             [12]uint8
-	Version                 uint32
-	Reserved034             [12]uint8
-	Reserved040             [64]uint8
-	TPR                     uint32
-	Reserved084             [12]uint8
-	ArbitrationPriority     uint32
-	Reserved094             [12]uint8
-	ProcessorPriority       uint32
-	Reserved0A4             [12]uint8
-	EOI                     uint32
-	Reserved0B4             [12]uint8
-	RemoteRead              uint32
-	Reserved0C4             [12]uint8
-	LogicalDestination      uint32
-	Reserved0D4             [12]uint8
-	DestinationFormat       uint32
-	Reserved0E4             [12]uint8
+	Reserved000 [16]uint8
+	Reserved010 [16]uint8
+	Id uint32
+	Reserved024 [12]uint8
+	Version uint32
+	Reserved034 [12]uint8
+	Reserved040 [64]uint8
+	TPR uint32
+	Reserved084 [12]uint8
+	ArbitrationPriority uint32
+	Reserved094 [12]uint8
+	ProcessorPriority uint32
+	Reserved0A4 [12]uint8
+	EOI uint32
+	Reserved0B4 [12]uint8
+	RemoteRead uint32
+	Reserved0C4 [12]uint8
+	LogicalDestination uint32
+	Reserved0D4 [12]uint8
+	DestinationFormat uint32
+	Reserved0E4 [12]uint8
 	SpuriousInterruptVector uint32
-	Reserved0F4             [12]uint8
-	ISR                     [32]uint32
-	TMR                     [32]uint32
-	IRR                     [32]uint32
-	ErrorStatus             uint32
-	Reserved284             [12]uint8
-	Reserved290             [96]uint8
-	LvtCmci                 uint32
-	Reserved2F4             [12]uint8
-	IcrLow                  uint32
-	Reserved304             [12]uint8
-	IcrHigh                 uint32
-	Reserved314             [12]uint8
-	LvtTimer                uint32
-	Reserved324             [12]uint8
-	LvtThermalSensor        uint32
-	Reserved334             [12]uint8
-	LvtPerfMonCounters      uint32
-	Reserved344             [12]uint8
-	LvtLINT0                uint32
-	Reserved354             [12]uint8
-	LvtLINT1                uint32
-	Reserved364             [12]uint8
-	LvtError                uint32
-	Reserved374             [12]uint8
-	InitialCount            uint32
-	Reserved384             [12]uint8
-	CurrentCount            uint32
-	Reserved394             [12]uint8
-	Reserved3A0             [64]uint8
-	DivideConfiguration     uint32
-	Reserved3E4             [12]uint8
-	SelfIpi                 uint32
-	Reserved3F4             [12]uint8
+	Reserved0F4 [12]uint8
+	ISR [32]uint32
+	TMR [32]uint32
+	IRR [32]uint32
+	ErrorStatus uint32
+	Reserved284 [12]uint8
+	Reserved290 [96]uint8
+	LvtCmci uint32
+	Reserved2F4 [12]uint8
+	IcrLow uint32
+	Reserved304 [12]uint8
+	IcrHigh uint32
+	Reserved314 [12]uint8
+	LvtTimer uint32
+	Reserved324 [12]uint8
+	LvtThermalSensor uint32
+	Reserved334 [12]uint8
+	LvtPerfMonCounters uint32
+	Reserved344 [12]uint8
+	LvtLINT0 uint32
+	Reserved354 [12]uint8
+	LvtLINT1 uint32
+	Reserved364 [12]uint8
+	LvtError uint32
+	Reserved374 [12]uint8
+	InitialCount uint32
+	Reserved384 [12]uint8
+	CurrentCount uint32
+	Reserved394 [12]uint8
+	Reserved3A0 [64]uint8
+	DivideConfiguration uint32
+	Reserved3E4 [12]uint8
+	SelfIpi uint32
+	Reserved3F4 [12]uint8
 }
 
 // Source: RequestStructures.h:1213 -> _IO_APIC_ENTRY_PACKETS
 type IO_APIC_ENTRY_PACKETS struct {
 	ApicBasePa uint64
 	ApicBaseVa uint64
-	IoIdReg    uint32
-	IoLl       uint32
+	IoIdReg uint32
+	IoLl uint32
 	IoArbIdReg uint32
-	_          [4]byte
-	LlLhData   [400]uint64
+	_  [4]byte
+	LlLhData [400]uint64
 }
 
 // Source: RequestStructures.h:1249 -> _SMI_OPERATION_PACKETS
 type SMI_OPERATION_PACKETS struct {
 	SmiOperationType SMI_OPERATION_REQUEST_TYPE
-	_                [4]byte
-	SmiCount         uint64
-	KernelStatus     uint32
-	_                [4]byte
+	_  [4]byte
+	SmiCount uint64
+	KernelStatus uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1282 -> _HYPERTRACE_OPERATION_PACKETS
 type HYPERTRACE_OPERATION_PACKETS struct {
 	HyperTraceOperationType HYPERTRACE_OPERATION_REQUEST_TYPE
-	KernelStatus            uint32
+	KernelStatus uint32
 }
 
 // Source: RequestStructures.h:1309 -> _INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS
 type INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS struct {
 	KernelStatus uint32
-	_            [4]byte
-	IdtEntry     [256]uint64
+	_  [4]byte
+	IdtEntry [256]uint64
 }
 
 // Source: RequestStructures.h:1337 -> _DEBUGGEE_FORMATS_PACKET
 type DEBUGGEE_FORMATS_PACKET struct {
-	Value  uint64
+	Value uint64
 	Result uint32
-	_      [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1351 -> _DEBUGGEE_SYMBOL_REQUEST_PACKET
@@ -3390,109 +3408,109 @@ type DEBUGGEE_SYMBOL_REQUEST_PACKET struct {
 
 // Source: RequestStructures.h:1364 -> _DEBUGGEE_BP_PACKET
 type DEBUGGEE_BP_PACKET struct {
-	Address           uint64
-	Pid               uint32
-	Tid               uint32
-	Core              uint32
-	RemoveAfterHit    bool
+	Address uint64
+	Pid uint32
+	Tid uint32
+	Core uint32
+	RemoveAfterHit bool
 	CheckForCallbacks bool
-	_                 [2]byte
-	Result            uint32
-	_                 [4]byte
+	_  [2]byte
+	Result uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1401 -> _DEBUGGEE_BP_LIST_OR_MODIFY_PACKET
 type DEBUGGEE_BP_LIST_OR_MODIFY_PACKET struct {
 	BreakpointId uint64
-	Request      DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST
-	Result       uint32
+	Request DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST
+	Result uint32
 }
 
 // Source: RequestStructures.h:1433 -> _DEBUGGEE_SCRIPT_PACKET
 type DEBUGGEE_SCRIPT_PACKET struct {
-	ScriptBufferSize    uint32
+	ScriptBufferSize uint32
 	ScriptBufferPointer uint32
-	IsFormat            bool
-	_                   [7]byte
-	FormatValue         uint64
-	Result              uint32
-	_                   [4]byte
+	IsFormat bool
+	_  [7]byte
+	FormatValue uint64
+	Result uint32
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1454 -> _DEBUGGEE_RESULT_OF_SEARCH_PACKET
 type DEBUGGEE_RESULT_OF_SEARCH_PACKET struct {
 	CountOfResults uint32
-	Result         uint32
+	Result uint32
 }
 
 // Source: RequestStructures.h:1468 -> _DEBUGGEE_REGISTER_READ_DESCRIPTION
 type DEBUGGEE_REGISTER_READ_DESCRIPTION struct {
-	RegisterId   uint32
-	_            [4]byte
-	Value        uint64
+	RegisterId uint32
+	_  [4]byte
+	Value uint64
 	KernelStatus uint32
-	_            [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1483 -> _DEBUGGEE_REGISTER_WRITE_DESCRIPTION
 type DEBUGGEE_REGISTER_WRITE_DESCRIPTION struct {
-	RegisterId   uint32
-	_            [4]byte
-	Value        uint64
+	RegisterId uint32
+	_  [4]byte
+	Value uint64
 	KernelStatus uint32
-	_            [4]byte
+	_  [4]byte
 }
 
 // Source: RequestStructures.h:1501 -> _DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET
 type DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET struct {
-	KernelStatus      uint32
+	KernelStatus uint32
 	DeviceInfoListNum uint8
-	_                 [1]byte
-	DeviceInfoList    [255]PCI_DEV_MINIMAL
+	_  [1]byte
+	DeviceInfoList [255]PCI_DEV_MINIMAL
 }
 
 // Source: RequestStructures.h:1526 -> _DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET
 type DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET struct {
 	KernelStatus uint32
-	PrintRaw     int32
-	DeviceInfo   PCI_DEV
+	PrintRaw int32
+	DeviceInfo PCI_DEV
 }
 
 // Source: Symbols.h:23 -> _MODULE_SYMBOL_DETAIL
 type MODULE_SYMBOL_DETAIL struct {
-	IsSymbolDetailsFound   bool
-	IsLocalSymbolPath      bool
-	IsSymbolPDBAvaliable   bool
-	IsUserMode             bool
-	Is32Bit                bool
-	_                      [3]byte
-	BaseAddress            uint64
-	FilePath               [260]int8
-	ModuleSymbolPath       [260]int8
+	IsSymbolDetailsFound bool
+	IsLocalSymbolPath bool
+	IsSymbolPDBAvaliable bool
+	IsUserMode bool
+	Is32Bit bool
+	_  [3]byte
+	BaseAddress uint64
+	FilePath [260]int8
+	ModuleSymbolPath [260]int8
 	ModuleSymbolGuidAndAge [60]int8
-	_                      [4]byte
+	_  [4]byte
 }
 
 // Source: Symbols.h:38 -> _USERMODE_LOADED_MODULE_SYMBOLS
 type USERMODE_LOADED_MODULE_SYMBOLS struct {
 	BaseAddress uint64
-	Entrypoint  uint64
-	FilePath    [260]uint16
+	Entrypoint uint64
+	FilePath [260]uint16
 }
 
 // Source: Symbols.h:46 -> _USERMODE_LOADED_MODULE_DETAILS
 type USERMODE_LOADED_MODULE_DETAILS struct {
-	ProcessId        uint32
+	ProcessId uint32
 	OnlyCountModules bool
-	Is32Bit          bool
-	_                [2]byte
-	ModulesCount     uint32
-	Result           uint32
+	Is32Bit bool
+	_  [2]byte
+	ModulesCount uint32
+	Result uint32
 }
 
 // Source: Symbols.h:72 -> _DEBUGGER_UPDATE_SYMBOL_TABLE
 type DEBUGGER_UPDATE_SYMBOL_TABLE struct {
-	TotalSymbols       uint32
+	TotalSymbols uint32
 	CurrentSymbolIndex uint32
 	SymbolDetailPacket MODULE_SYMBOL_DETAIL
 }
@@ -3509,21 +3527,21 @@ type HWDBG_PORT_INFORMATION_ITEMS struct {
 
 // Source: HardwareDebugger.h:115 -> _HWDBG_INSTANCE_INFORMATION
 type HWDBG_INSTANCE_INFORMATION struct {
-	Version                                    uint32
-	MaximumNumberOfStages                      uint32
-	ScriptVariableLength                       uint32
-	NumberOfSupportedLocalAndGlobalVariables   uint32
-	NumberOfSupportedTemporaryVariables        uint32
+	Version uint32
+	MaximumNumberOfStages uint32
+	ScriptVariableLength uint32
+	NumberOfSupportedLocalAndGlobalVariables uint32
+	NumberOfSupportedTemporaryVariables uint32
 	MaximumNumberOfSupportedGetScriptOperators uint32
 	MaximumNumberOfSupportedSetScriptOperators uint32
-	SharedMemorySize                           uint32
-	DebuggerAreaOffset                         uint32
-	DebuggeeAreaOffset                         uint32
-	NumberOfPins                               uint32
-	NumberOfPorts                              uint32
-	ScriptCapabilities                         HWDBG_SCRIPT_CAPABILITIES
-	BramAddrWidth                              uint32
-	BramDataWidth                              uint32
+	SharedMemorySize uint32
+	DebuggerAreaOffset uint32
+	DebuggeeAreaOffset uint32
+	NumberOfPins uint32
+	NumberOfPorts uint32
+	ScriptCapabilities HWDBG_SCRIPT_CAPABILITIES
+	BramAddrWidth uint32
+	BramDataWidth uint32
 }
 
 // Source: HardwareDebugger.h:0 -> _HWDBG_SCRIPT_CAPABILITIES
@@ -3536,207 +3554,232 @@ func (h *HWDBG_SCRIPT_CAPABILITIES) GetAssignLocalGlobalVar() uint64 {
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetAssignLocalGlobalVar(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1)) | uint64(uint64(val)&0x1)
+	h.Value = (h.Value & ^uint64(0x1)) | uint64(uint64(val) & 0x1)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetAssignRegisters() uint64 {
 	return uint64((h.Value >> 1) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetAssignRegisters(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<1)) | (uint64(uint64(val)&0x1) << 1)
+	h.Value = (h.Value & ^uint64(0x1<<1)) | (uint64(uint64(val) & 0x1) << 1)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetAssignPseudoRegisters() uint64 {
 	return uint64((h.Value >> 2) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetAssignPseudoRegisters(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<2)) | (uint64(uint64(val)&0x1) << 2)
+	h.Value = (h.Value & ^uint64(0x1<<2)) | (uint64(uint64(val) & 0x1) << 2)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetConditionalStatementsAndComparisonOperators() uint64 {
 	return uint64((h.Value >> 3) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetConditionalStatementsAndComparisonOperators(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<3)) | (uint64(uint64(val)&0x1) << 3)
+	h.Value = (h.Value & ^uint64(0x1<<3)) | (uint64(uint64(val) & 0x1) << 3)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetStackAssignments() uint64 {
 	return uint64((h.Value >> 4) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetStackAssignments(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<4)) | (uint64(uint64(val)&0x1) << 4)
+	h.Value = (h.Value & ^uint64(0x1<<4)) | (uint64(uint64(val) & 0x1) << 4)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncOr() uint64 {
 	return uint64((h.Value >> 5) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncOr(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<5)) | (uint64(uint64(val)&0x1) << 5)
+	h.Value = (h.Value & ^uint64(0x1<<5)) | (uint64(uint64(val) & 0x1) << 5)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncXor() uint64 {
 	return uint64((h.Value >> 6) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncXor(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<6)) | (uint64(uint64(val)&0x1) << 6)
+	h.Value = (h.Value & ^uint64(0x1<<6)) | (uint64(uint64(val) & 0x1) << 6)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncAnd() uint64 {
 	return uint64((h.Value >> 7) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncAnd(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<7)) | (uint64(uint64(val)&0x1) << 7)
+	h.Value = (h.Value & ^uint64(0x1<<7)) | (uint64(uint64(val) & 0x1) << 7)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncAsr() uint64 {
 	return uint64((h.Value >> 8) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncAsr(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<8)) | (uint64(uint64(val)&0x1) << 8)
+	h.Value = (h.Value & ^uint64(0x1<<8)) | (uint64(uint64(val) & 0x1) << 8)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncAsl() uint64 {
 	return uint64((h.Value >> 9) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncAsl(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<9)) | (uint64(uint64(val)&0x1) << 9)
+	h.Value = (h.Value & ^uint64(0x1<<9)) | (uint64(uint64(val) & 0x1) << 9)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncAdd() uint64 {
 	return uint64((h.Value >> 10) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncAdd(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<10)) | (uint64(uint64(val)&0x1) << 10)
+	h.Value = (h.Value & ^uint64(0x1<<10)) | (uint64(uint64(val) & 0x1) << 10)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncSub() uint64 {
 	return uint64((h.Value >> 11) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncSub(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<11)) | (uint64(uint64(val)&0x1) << 11)
+	h.Value = (h.Value & ^uint64(0x1<<11)) | (uint64(uint64(val) & 0x1) << 11)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncMul() uint64 {
 	return uint64((h.Value >> 12) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncMul(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<12)) | (uint64(uint64(val)&0x1) << 12)
+	h.Value = (h.Value & ^uint64(0x1<<12)) | (uint64(uint64(val) & 0x1) << 12)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncDiv() uint64 {
 	return uint64((h.Value >> 13) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncDiv(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<13)) | (uint64(uint64(val)&0x1) << 13)
+	h.Value = (h.Value & ^uint64(0x1<<13)) | (uint64(uint64(val) & 0x1) << 13)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncMod() uint64 {
 	return uint64((h.Value >> 14) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncMod(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<14)) | (uint64(uint64(val)&0x1) << 14)
+	h.Value = (h.Value & ^uint64(0x1<<14)) | (uint64(uint64(val) & 0x1) << 14)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncGt() uint64 {
 	return uint64((h.Value >> 15) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncGt(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<15)) | (uint64(uint64(val)&0x1) << 15)
+	h.Value = (h.Value & ^uint64(0x1<<15)) | (uint64(uint64(val) & 0x1) << 15)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncLt() uint64 {
 	return uint64((h.Value >> 16) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncLt(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<16)) | (uint64(uint64(val)&0x1) << 16)
+	h.Value = (h.Value & ^uint64(0x1<<16)) | (uint64(uint64(val) & 0x1) << 16)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncEgt() uint64 {
 	return uint64((h.Value >> 17) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncEgt(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<17)) | (uint64(uint64(val)&0x1) << 17)
+	h.Value = (h.Value & ^uint64(0x1<<17)) | (uint64(uint64(val) & 0x1) << 17)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncElt() uint64 {
 	return uint64((h.Value >> 18) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncElt(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<18)) | (uint64(uint64(val)&0x1) << 18)
+	h.Value = (h.Value & ^uint64(0x1<<18)) | (uint64(uint64(val) & 0x1) << 18)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncEqual() uint64 {
 	return uint64((h.Value >> 19) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncEqual(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<19)) | (uint64(uint64(val)&0x1) << 19)
+	h.Value = (h.Value & ^uint64(0x1<<19)) | (uint64(uint64(val) & 0x1) << 19)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncNeq() uint64 {
 	return uint64((h.Value >> 20) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncNeq(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<20)) | (uint64(uint64(val)&0x1) << 20)
+	h.Value = (h.Value & ^uint64(0x1<<20)) | (uint64(uint64(val) & 0x1) << 20)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncJmp() uint64 {
 	return uint64((h.Value >> 21) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncJmp(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<21)) | (uint64(uint64(val)&0x1) << 21)
+	h.Value = (h.Value & ^uint64(0x1<<21)) | (uint64(uint64(val) & 0x1) << 21)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncJz() uint64 {
 	return uint64((h.Value >> 22) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncJz(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<22)) | (uint64(uint64(val)&0x1) << 22)
+	h.Value = (h.Value & ^uint64(0x1<<22)) | (uint64(uint64(val) & 0x1) << 22)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncJnz() uint64 {
 	return uint64((h.Value >> 23) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncJnz(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<23)) | (uint64(uint64(val)&0x1) << 23)
+	h.Value = (h.Value & ^uint64(0x1<<23)) | (uint64(uint64(val) & 0x1) << 23)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncMov() uint64 {
 	return uint64((h.Value >> 24) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncMov(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<24)) | (uint64(uint64(val)&0x1) << 24)
+	h.Value = (h.Value & ^uint64(0x1<<24)) | (uint64(uint64(val) & 0x1) << 24)
 }
+
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) GetFuncPrintf() uint64 {
 	return uint64((h.Value >> 25) & uint64(0x1))
 }
 
 func (h *HWDBG_SCRIPT_CAPABILITIES) SetFuncPrintf(val uint64) {
-	h.Value = (h.Value & ^uint64(0x1<<25)) | (uint64(uint64(val)&0x1) << 25)
+	h.Value = (h.Value & ^uint64(0x1<<25)) | (uint64(uint64(val) & 0x1) << 25)
 }
 
 // Source: HardwareDebugger.h:194 -> _HWDBG_SCRIPT_BUFFER
@@ -3746,22 +3789,22 @@ type HWDBG_SCRIPT_BUFFER struct {
 
 // Source: ScriptEngineCommonDefinitions.h:5 -> SYMBOL
 type SYMBOL struct {
-	Type  uint64
-	Len   uint64
+	Type uint64
+	Len uint64
 	Value uint64
 }
 
 // Source: ScriptEngineCommonDefinitions.h:15 -> HWDBG_SHORT_SYMBOL
 type HWDBG_SHORT_SYMBOL struct {
-	Type  uint64
+	Type uint64
 	Value uint64
 }
 
 // Source: ScriptEngineCommonDefinitions.h:22 -> SYMBOL_BUFFER
 type SYMBOL_BUFFER struct {
-	Head    PSYMBOL
+	Head PSYMBOL
 	Pointer uint32
-	Size    uint32
+	Size uint32
 	Message *int8
 }
 
@@ -3773,33 +3816,33 @@ type SYMBOL_MAP struct {
 
 // Source: ScriptEngineCommonDefinitions.h:35 -> ACTION_BUFFER
 type ACTION_BUFFER struct {
-	Tag                       uint64
-	CurrentAction             uint64
+	Tag uint64
+	CurrentAction uint64
 	ImmediatelySendTheResults int8
-	_                         [7]byte
-	Context                   uint64
-	CallingStage              int8
-	_                         [7]byte
+	_  [7]byte
+	Context uint64
+	CallingStage int8
+	_  [7]byte
 }
 
-func CtlCode(Function uint32) uint32 {
-	return uint32(((FileDeviceUnknown) << 16) | ((FileAnyAccess) << 14) | ((Function) << 2) | (MethodBuffered))
-}
-
-func HIBYTE(W uint32) uint32 {
-	return uint32((uint8)(((uint16)(W) >> 8) & 0xFF))
+func LOBYTE(W uint32) uint32 {
+	return uint32((uint8)(W))
 }
 
 func HIWORD(L uint32) uint32 {
-	return uint32((uint16)(((uint32)(L) >> 16) & 0xFFFF))
+	return uint32((uint16)(((uint32)(L)>>16)&0xFFFF))
 }
 
 func LOWORD(L uint32) uint32 {
 	return uint32((uint16)(L))
 }
 
-func LOBYTE(W uint32) uint32 {
-	return uint32((uint8)(W))
+func CtlCode(Function uint32) uint32 {
+	return uint32(((FileDeviceUnknown)<<16)|((FileAnyAccess)<<14)|((Function)<<2)|(MethodBuffered))
+}
+
+func HIBYTE(W uint32) uint32 {
+	return uint32((uint8)(((uint16)(W)>>8)&0xFF))
 }
 
 // Source: ErrorCodes.h -> Error codes
@@ -3807,102 +3850,102 @@ func LOBYTE(W uint32) uint32 {
 type DebuggerErrorCode uint32
 
 const (
-	DebuggerOperationWasSuccessful                                                        DebuggerErrorCode = 0xFFFFFFFF
-	DebuggerErrorTagNotExists                                                             DebuggerErrorCode = 0xc0000000
-	DebuggerErrorInvalidActionType                                                        DebuggerErrorCode = 0xc0000001
-	DebuggerErrorActionBufferSizeIsZero                                                   DebuggerErrorCode = 0xc0000002
-	DebuggerErrorEventTypeIsInvalid                                                       DebuggerErrorCode = 0xc0000003
-	DebuggerErrorUnableToCreateEvent                                                      DebuggerErrorCode = 0xc0000004
-	DebuggerErrorInvalidAddress                                                           DebuggerErrorCode = 0xc0000005
-	DebuggerErrorInvalidCoreId                                                            DebuggerErrorCode = 0xc0000006
-	DebuggerErrorExceptionIndexExceedFirst32Entries                                       DebuggerErrorCode = 0xc0000007
-	DebuggerErrorInterruptIndexIsNotValid                                                 DebuggerErrorCode = 0xc0000008
-	DebuggerErrorUnableToHideOrUnhideDebugger                                             DebuggerErrorCode = 0xc0000009
-	DebuggerErrorDebuggerAlreadyHide                                                      DebuggerErrorCode = 0xc000000a
-	DebuggerErrorEditMemoryStatusInvalidParameter                                         DebuggerErrorCode = 0xc000000b
-	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnCurrentProcess                      DebuggerErrorCode = 0xc000000c
-	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnOtherProcess                        DebuggerErrorCode = 0xc000000d
-	DebuggerErrorModifyEventsInvalidTag                                                   DebuggerErrorCode = 0xc000000e
-	DebuggerErrorModifyEventsInvalidTypeOfAction                                          DebuggerErrorCode = 0xc000000f
-	DebuggerErrorSteppingInvalidParameter                                                 DebuggerErrorCode = 0xc0000010
-	DebuggerErrorSteppingsEitherThreadNotFoundOrDisabled                                  DebuggerErrorCode = 0xc0000011
-	DebuggerErrorPreparingDebuggeeInvalidBaudrate                                         DebuggerErrorCode = 0xc0000012
-	DebuggerErrorPreparingDebuggeeInvalidSerialPort                                       DebuggerErrorCode = 0xc0000013
-	DebuggerErrorPreparingDebuggeeInvalidCoreInRemoteDebugge                              DebuggerErrorCode = 0xc0000014
-	DebuggerErrorPreparingDebuggeeUnableToSwitchToNewProcess                              DebuggerErrorCode = 0xc0000015
-	DebuggerErrorPreparingDebuggeeToRunScript                                             DebuggerErrorCode = 0xc0000016
-	DebuggerErrorInvalidRegisterNumber                                                    DebuggerErrorCode = 0xc0000017
-	DebuggerErrorMaximumBreakpointWithoutContinue                                         DebuggerErrorCode = 0xc0000018
-	DebuggerErrorBreakpointAlreadyExistsOnTheAddress                                      DebuggerErrorCode = 0xc0000019
-	DebuggerErrorBreakpointIdNotFound                                                     DebuggerErrorCode = 0xc000001a
-	DebuggerErrorBreakpointAlreadyDisabled                                                DebuggerErrorCode = 0xc000001b
-	DebuggerErrorBreakpointAlreadyEnabled                                                 DebuggerErrorCode = 0xc000001c
-	DebuggerErrorMemoryTypeInvalid                                                        DebuggerErrorCode = 0xc000001d
-	DebuggerErrorInvalidProcessId                                                         DebuggerErrorCode = 0xc000001e
-	DebuggerErrorEventIsNotApplied                                                        DebuggerErrorCode = 0xc000001f
-	DebuggerErrorDetailsOrSwitchProcessInvalidParameter                                   DebuggerErrorCode = 0xc0000020
-	DebuggerErrorDetailsOrSwitchThreadInvalidParameter                                    DebuggerErrorCode = 0xc0000021
-	DebuggerErrorMaximumBreakpointForASinglePageIsHit                                     DebuggerErrorCode = 0xc0000022
-	DebuggerErrorPreAllocatedBufferIsEmpty                                                DebuggerErrorCode = 0xc0000023
-	DebuggerErrorEptCouldNotSplitTheLargePageTo4kbPages                                   DebuggerErrorCode = 0xc0000024
-	DebuggerErrorEptFailedToGetPml1EntryOfTargetAddress                                   DebuggerErrorCode = 0xc0000025
-	DebuggerErrorEptMultipleHooksInASinglePage                                            DebuggerErrorCode = 0xc0000026
-	DebuggerErrorCouldNotBuildTheEptHook                                                  DebuggerErrorCode = 0xc0000027
-	DebuggerErrorCouldNotFindAllocationType                                               DebuggerErrorCode = 0xc0000028
-	DebuggerErrorInvalidTestQueryIndex                                                    DebuggerErrorCode = 0xc0000029
-	DebuggerErrorUnableToAttachToTargetUserModeProcess                                    DebuggerErrorCode = 0xc000002a
-	DebuggerErrorUnableToRemoveHooksEntrypointNotReached                                  DebuggerErrorCode = 0xc000002b
-	DebuggerErrorUnableToRemoveHooks                                                      DebuggerErrorCode = 0xc000002c
-	DebuggerErrorFunctionsForInitializingPebAddressesAreNotInitialized                    DebuggerErrorCode = 0xc000002d
-	DebuggerErrorUnableToDetect32BitOr64BitProcess                                        DebuggerErrorCode = 0xc000002e
-	DebuggerErrorUnableToKillTheProcess                                                   DebuggerErrorCode = 0xc000002f
-	DebuggerErrorInvalidThreadDebuggingToken                                              DebuggerErrorCode = 0xc0000030
-	DebuggerErrorUnableToPauseTheProcessThreads                                           DebuggerErrorCode = 0xc0000031
-	DebuggerErrorUnableToAttachToAnAlreadyAttachedProcess                                 DebuggerErrorCode = 0xc0000032
-	DebuggerErrorTheUserDebuggerNotAttachedToTheProcess                                   DebuggerErrorCode = 0xc0000033
-	DebuggerErrorUnableToDetachAsThereArePausedThreads                                    DebuggerErrorCode = 0xc0000034
-	DebuggerErrorUnableToSwitchProcessIdOrThreadIdIsInvalid                               DebuggerErrorCode = 0xc0000035
-	DebuggerErrorUnableToSwitchThereIsNoThreadOnTheProcess                                DebuggerErrorCode = 0xc0000036
-	DebuggerErrorUnableToGetModulesOfTheProcess                                           DebuggerErrorCode = 0xc0000037
-	DebuggerErrorUnableToGetCallstack                                                     DebuggerErrorCode = 0xc0000038
-	DebuggerErrorUnableToQueryCountOfProcessesOrThreads                                   DebuggerErrorCode = 0xc0000039
-	DebuggerErrorUsingShortCircuitingEventWithPostEventModeIsForbiddedn                   DebuggerErrorCode = 0xc000003a
-	DebuggerErrorUnknownTestQueryReceived                                                 DebuggerErrorCode = 0xc000003b
-	DebuggerErrorReadingMemoryInvalidParameter                                            DebuggerErrorCode = 0xc000003c
-	DebuggerErrorTheTrapFlagListIsFull                                                    DebuggerErrorCode = 0xc000003d
-	DebuggerErrorUnableToKillTheProcessDoesNotExists                                      DebuggerErrorCode = 0xc000003e
-	DebuggerErrorModeExecutionIsInvalid                                                   DebuggerErrorCode = 0xc000003f
-	DebuggerErrorProcessIdCannotBeSpecifiedWhileApplyingEventFromVmxRootMode              DebuggerErrorCode = 0xc0000040
-	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForEventAndConditionals         DebuggerErrorCode = 0xc0000041
-	DebuggerErrorInstantEventRegularPreallocatedBufferNotFound                            DebuggerErrorCode = 0xc0000042
-	DebuggerErrorInstantEventBigPreallocatedBufferNotFound                                DebuggerErrorCode = 0xc0000043
-	DebuggerErrorUnableToCreateActionCannotAllocateBuffer                                 DebuggerErrorCode = 0xc0000044
-	DebuggerErrorInstantEventActionRegularPreallocatedBufferNotFound                      DebuggerErrorCode = 0xc0000045
-	DebuggerErrorInstantEventActionBigPreallocatedBufferNotFound                          DebuggerErrorCode = 0xc0000046
-	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForActionBuffer                 DebuggerErrorCode = 0xc0000047
+	DebuggerOperationWasSuccessful DebuggerErrorCode = 0xFFFFFFFF
+	DebuggerErrorTagNotExists DebuggerErrorCode = 0xc0000000
+	DebuggerErrorInvalidActionType DebuggerErrorCode = 0xc0000001
+	DebuggerErrorActionBufferSizeIsZero DebuggerErrorCode = 0xc0000002
+	DebuggerErrorEventTypeIsInvalid DebuggerErrorCode = 0xc0000003
+	DebuggerErrorUnableToCreateEvent DebuggerErrorCode = 0xc0000004
+	DebuggerErrorInvalidAddress DebuggerErrorCode = 0xc0000005
+	DebuggerErrorInvalidCoreId DebuggerErrorCode = 0xc0000006
+	DebuggerErrorExceptionIndexExceedFirst32Entries DebuggerErrorCode = 0xc0000007
+	DebuggerErrorInterruptIndexIsNotValid DebuggerErrorCode = 0xc0000008
+	DebuggerErrorUnableToHideOrUnhideDebugger DebuggerErrorCode = 0xc0000009
+	DebuggerErrorDebuggerAlreadyHide DebuggerErrorCode = 0xc000000a
+	DebuggerErrorEditMemoryStatusInvalidParameter DebuggerErrorCode = 0xc000000b
+	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnCurrentProcess DebuggerErrorCode = 0xc000000c
+	DebuggerErrorEditMemoryStatusInvalidAddressBasedOnOtherProcess DebuggerErrorCode = 0xc000000d
+	DebuggerErrorModifyEventsInvalidTag DebuggerErrorCode = 0xc000000e
+	DebuggerErrorModifyEventsInvalidTypeOfAction DebuggerErrorCode = 0xc000000f
+	DebuggerErrorSteppingInvalidParameter DebuggerErrorCode = 0xc0000010
+	DebuggerErrorSteppingsEitherThreadNotFoundOrDisabled DebuggerErrorCode = 0xc0000011
+	DebuggerErrorPreparingDebuggeeInvalidBaudrate DebuggerErrorCode = 0xc0000012
+	DebuggerErrorPreparingDebuggeeInvalidSerialPort DebuggerErrorCode = 0xc0000013
+	DebuggerErrorPreparingDebuggeeInvalidCoreInRemoteDebugge DebuggerErrorCode = 0xc0000014
+	DebuggerErrorPreparingDebuggeeUnableToSwitchToNewProcess DebuggerErrorCode = 0xc0000015
+	DebuggerErrorPreparingDebuggeeToRunScript DebuggerErrorCode = 0xc0000016
+	DebuggerErrorInvalidRegisterNumber DebuggerErrorCode = 0xc0000017
+	DebuggerErrorMaximumBreakpointWithoutContinue DebuggerErrorCode = 0xc0000018
+	DebuggerErrorBreakpointAlreadyExistsOnTheAddress DebuggerErrorCode = 0xc0000019
+	DebuggerErrorBreakpointIdNotFound DebuggerErrorCode = 0xc000001a
+	DebuggerErrorBreakpointAlreadyDisabled DebuggerErrorCode = 0xc000001b
+	DebuggerErrorBreakpointAlreadyEnabled DebuggerErrorCode = 0xc000001c
+	DebuggerErrorMemoryTypeInvalid DebuggerErrorCode = 0xc000001d
+	DebuggerErrorInvalidProcessId DebuggerErrorCode = 0xc000001e
+	DebuggerErrorEventIsNotApplied DebuggerErrorCode = 0xc000001f
+	DebuggerErrorDetailsOrSwitchProcessInvalidParameter DebuggerErrorCode = 0xc0000020
+	DebuggerErrorDetailsOrSwitchThreadInvalidParameter DebuggerErrorCode = 0xc0000021
+	DebuggerErrorMaximumBreakpointForASinglePageIsHit DebuggerErrorCode = 0xc0000022
+	DebuggerErrorPreAllocatedBufferIsEmpty DebuggerErrorCode = 0xc0000023
+	DebuggerErrorEptCouldNotSplitTheLargePageTo4kbPages DebuggerErrorCode = 0xc0000024
+	DebuggerErrorEptFailedToGetPml1EntryOfTargetAddress DebuggerErrorCode = 0xc0000025
+	DebuggerErrorEptMultipleHooksInASinglePage DebuggerErrorCode = 0xc0000026
+	DebuggerErrorCouldNotBuildTheEptHook DebuggerErrorCode = 0xc0000027
+	DebuggerErrorCouldNotFindAllocationType DebuggerErrorCode = 0xc0000028
+	DebuggerErrorInvalidTestQueryIndex DebuggerErrorCode = 0xc0000029
+	DebuggerErrorUnableToAttachToTargetUserModeProcess DebuggerErrorCode = 0xc000002a
+	DebuggerErrorUnableToRemoveHooksEntrypointNotReached DebuggerErrorCode = 0xc000002b
+	DebuggerErrorUnableToRemoveHooks DebuggerErrorCode = 0xc000002c
+	DebuggerErrorFunctionsForInitializingPebAddressesAreNotInitialized DebuggerErrorCode = 0xc000002d
+	DebuggerErrorUnableToDetect32BitOr64BitProcess DebuggerErrorCode = 0xc000002e
+	DebuggerErrorUnableToKillTheProcess DebuggerErrorCode = 0xc000002f
+	DebuggerErrorInvalidThreadDebuggingToken DebuggerErrorCode = 0xc0000030
+	DebuggerErrorUnableToPauseTheProcessThreads DebuggerErrorCode = 0xc0000031
+	DebuggerErrorUnableToAttachToAnAlreadyAttachedProcess DebuggerErrorCode = 0xc0000032
+	DebuggerErrorTheUserDebuggerNotAttachedToTheProcess DebuggerErrorCode = 0xc0000033
+	DebuggerErrorUnableToDetachAsThereArePausedThreads DebuggerErrorCode = 0xc0000034
+	DebuggerErrorUnableToSwitchProcessIdOrThreadIdIsInvalid DebuggerErrorCode = 0xc0000035
+	DebuggerErrorUnableToSwitchThereIsNoThreadOnTheProcess DebuggerErrorCode = 0xc0000036
+	DebuggerErrorUnableToGetModulesOfTheProcess DebuggerErrorCode = 0xc0000037
+	DebuggerErrorUnableToGetCallstack DebuggerErrorCode = 0xc0000038
+	DebuggerErrorUnableToQueryCountOfProcessesOrThreads DebuggerErrorCode = 0xc0000039
+	DebuggerErrorUsingShortCircuitingEventWithPostEventModeIsForbiddedn DebuggerErrorCode = 0xc000003a
+	DebuggerErrorUnknownTestQueryReceived DebuggerErrorCode = 0xc000003b
+	DebuggerErrorReadingMemoryInvalidParameter DebuggerErrorCode = 0xc000003c
+	DebuggerErrorTheTrapFlagListIsFull DebuggerErrorCode = 0xc000003d
+	DebuggerErrorUnableToKillTheProcessDoesNotExists DebuggerErrorCode = 0xc000003e
+	DebuggerErrorModeExecutionIsInvalid DebuggerErrorCode = 0xc000003f
+	DebuggerErrorProcessIdCannotBeSpecifiedWhileApplyingEventFromVmxRootMode DebuggerErrorCode = 0xc0000040
+	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForEventAndConditionals DebuggerErrorCode = 0xc0000041
+	DebuggerErrorInstantEventRegularPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000042
+	DebuggerErrorInstantEventBigPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000043
+	DebuggerErrorUnableToCreateActionCannotAllocateBuffer DebuggerErrorCode = 0xc0000044
+	DebuggerErrorInstantEventActionRegularPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000045
+	DebuggerErrorInstantEventActionBigPreallocatedBufferNotFound DebuggerErrorCode = 0xc0000046
+	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForActionBuffer DebuggerErrorCode = 0xc0000047
 	DebuggerErrorInstantEventRequestedOptionalBufferIsBiggerThanDebuggersSendReceiveStack DebuggerErrorCode = 0xc0000048
-	DebuggerErrorInstantEventRegularRequestedSafeBufferNotFound                           DebuggerErrorCode = 0xc0000049
-	DebuggerErrorInstantEventBigRequestedSafeBufferNotFound                               DebuggerErrorCode = 0xc000004a
-	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForRequestedSafeBuffer          DebuggerErrorCode = 0xc000004b
-	DebuggerErrorUnableToAllocateRequestedSafeBuffer                                      DebuggerErrorCode = 0xc000004c
-	DebuggerErrorCouldNotFindPreactivationType                                            DebuggerErrorCode = 0xc000004d
-	DebuggerErrorTheModeExecTrapIsNotInitialized                                          DebuggerErrorCode = 0xc000004e
-	DebuggerErrorTheTargetEventIsDisabledButCannotBeClearedPrirityBufferIsFull            DebuggerErrorCode = 0xc000004f
-	DebuggerErrorNotAllCoresAreLockedForApplyingInstantEvent                              DebuggerErrorCode = 0xc0000050
-	DebuggerErrorTargetSwitchingCoreIsNotLocked                                           DebuggerErrorCode = 0xc0000051
-	DebuggerErrorInvalidPhysicalAddress                                                   DebuggerErrorCode = 0xc0000052
-	DebuggerErrorApicActionsError                                                         DebuggerErrorCode = 0xc0000053
-	DebuggerErrorDebuggerAlreadyUnhide                                                    DebuggerErrorCode = 0xc0000054
-	DebuggerErrorDebuggerNotInitialized                                                   DebuggerErrorCode = 0xc0000055
-	DebuggerErrorCannotPutEptHooksOnPhysicalAddressAbove512Gb                             DebuggerErrorCode = 0xc0000056
-	DebuggerErrorInvalidSmiOperationParameters                                            DebuggerErrorCode = 0xc0000057
-	DebuggerErrorUnableToTriggerSmi                                                       DebuggerErrorCode = 0xc0000058
-	DebuggerErrorUnableToApplyCommandToTheTargetThread                                    DebuggerErrorCode = 0xc0000059
-	DebuggerErrorHypertraceNotInitialized                                                 DebuggerErrorCode = 0xc000005a
-	DebuggerErrorInvalidHypertraceOperationType                                           DebuggerErrorCode = 0xc000005b
-	DebuggerErrorLbrAlreadyEnabled                                                        DebuggerErrorCode = 0xc000005c
-	DebuggerErrorLbrAlreadyDisabled                                                       DebuggerErrorCode = 0xc000005d
-	DebuggerErrorLbrNotSupported                                                          DebuggerErrorCode = 0xc000005e
+	DebuggerErrorInstantEventRegularRequestedSafeBufferNotFound DebuggerErrorCode = 0xc0000049
+	DebuggerErrorInstantEventBigRequestedSafeBufferNotFound DebuggerErrorCode = 0xc000004a
+	DebuggerErrorInstantEventPreallocatedBufferIsNotEnoughForRequestedSafeBuffer DebuggerErrorCode = 0xc000004b
+	DebuggerErrorUnableToAllocateRequestedSafeBuffer DebuggerErrorCode = 0xc000004c
+	DebuggerErrorCouldNotFindPreactivationType DebuggerErrorCode = 0xc000004d
+	DebuggerErrorTheModeExecTrapIsNotInitialized DebuggerErrorCode = 0xc000004e
+	DebuggerErrorTheTargetEventIsDisabledButCannotBeClearedPrirityBufferIsFull DebuggerErrorCode = 0xc000004f
+	DebuggerErrorNotAllCoresAreLockedForApplyingInstantEvent DebuggerErrorCode = 0xc0000050
+	DebuggerErrorTargetSwitchingCoreIsNotLocked DebuggerErrorCode = 0xc0000051
+	DebuggerErrorInvalidPhysicalAddress DebuggerErrorCode = 0xc0000052
+	DebuggerErrorApicActionsError DebuggerErrorCode = 0xc0000053
+	DebuggerErrorDebuggerAlreadyUnhide DebuggerErrorCode = 0xc0000054
+	DebuggerErrorDebuggerNotInitialized DebuggerErrorCode = 0xc0000055
+	DebuggerErrorCannotPutEptHooksOnPhysicalAddressAbove512Gb DebuggerErrorCode = 0xc0000056
+	DebuggerErrorInvalidSmiOperationParameters DebuggerErrorCode = 0xc0000057
+	DebuggerErrorUnableToTriggerSmi DebuggerErrorCode = 0xc0000058
+	DebuggerErrorUnableToApplyCommandToTheTargetThread DebuggerErrorCode = 0xc0000059
+	DebuggerErrorHypertraceNotInitialized DebuggerErrorCode = 0xc000005a
+	DebuggerErrorInvalidHypertraceOperationType DebuggerErrorCode = 0xc000005b
+	DebuggerErrorLbrAlreadyEnabled DebuggerErrorCode = 0xc000005c
+	DebuggerErrorLbrAlreadyDisabled DebuggerErrorCode = 0xc000005d
+	DebuggerErrorLbrNotSupported DebuggerErrorCode = 0xc000005e
 )
 
 func (c DebuggerErrorCode) String() string {
@@ -4104,381 +4147,383 @@ func (c DebuggerErrorCode) String() string {
 	}
 }
 
+
 // Source: HyperDbgSdk.h -> Macro constants
 const (
-	PageSize                                              uint32 = 0x1000
-	VersionMajor                                          uint32 = 0
-	VersionMinor                                          uint32 = 18
-	VersionPatch                                          uint32 = 1
-	DefaultInitialDebuggeeToDebuggerOffset                uint32 = 0x200
-	DefaultInitialDebuggerToDebuggeeOffset                uint32 = 0x0
-	BusBitWidth                                           uint32 = 8
-	DeviceBitWidth                                        uint32 = 5
-	FunctionBitWidth                                      uint32 = 3
-	DefaultInitialBramBufferSize                          uint32 = 256
-	FileAnyAccess                                         uint32 = 0
-	DomainMaxNum                                          uint32 = 0
-	BusMaxNum                                             uint32 = 255
-	DeviceMaxNum                                          uint32 = 32
-	FunctionMaxNum                                        uint32 = 8
-	DevMaxNum                                             uint32 = 255
-	CamConfigSpaceLength                                  uint32 = 255
-	SymbolUndefined                                       uint32 = 0
-	SymbolGlobalIdType                                    uint32 = 1
-	SymbolLocalIdType                                     uint32 = 2
-	MethodBuffered                                        uint32 = 0
-	SymbolNumType                                         uint32 = 3
-	SymbolRegisterType                                    uint32 = 4
-	SymbolPseudoRegType                                   uint32 = 5
-	SymbolSemanticRuleType                                uint32 = 6
-	SymbolTempType                                        uint32 = 7
-	SymbolStringType                                      uint32 = 8
-	NullZero                                              uint32 = 0
-	SymbolVariableCountType                               uint32 = 9
-	FileDeviceUnknown                                     uint32 = 0x00000022
-	SymbolInvalid                                         uint32 = 10
-	FALSE                                                 uint32 = 0
-	SymbolWstringType                                     uint32 = 11
-	SymbolFunctionParameterIdType                         uint32 = 12
-	TRUE                                                  uint32 = 1
-	SymbolReturnAddressType                               uint32 = 13
-	SymbolFunctionParameterType                           uint32 = 14
-	Upper56Bits                                           uint64 = 0xffffffffffffff00
-	SymbolStackIndexType                                  uint32 = 15
-	Upper48Bits                                           uint64 = 0xffffffffffff0000
-	Upper32Bits                                           uint64 = 0xffffffff00000000
-	SymbolStackBaseIndexType                              uint32 = 16
-	SymbolReturnValueType                                 uint32 = 17
-	Lower32Bits                                           uint64 = 0x00000000ffffffff
-	Lower16Bits                                           uint64 = 0x000000000000ffff
-	SymbolReferenceLocalIdType                            uint32 = 18
-	SymbolReferenceTempType                               uint32 = 19
-	Lower8Bits                                            uint64 = 0x00000000000000ff
-	SecondLower8Bits                                      uint64 = 0x000000000000ff00
-	SymbolDereferenceLocalIdType                          uint32 = 20
-	Upper48BitsAndLower8Bits                              uint64 = 0xffffffffffff00ff
-	SymbolDereferenceTempType                             uint32 = 21
-	SymbolMemValidCheckMask                               uint32 = (1 << 31)
-	INVALID                                               uint32 = 0x80000000
-	LalrAccept                                            uint32 = 0x7fffffff
-	FuncUndefined                                         uint32 = 0
-	FuncInc                                               uint32 = 1
-	FuncDec                                               uint32 = 2
-	FuncReference                                         uint32 = 3
-	FuncOr                                                uint32 = 4
-	FuncXor                                               uint32 = 5
-	FuncAnd                                               uint32 = 6
-	FuncAsr                                               uint32 = 7
-	FuncAsl                                               uint32 = 8
-	FuncAdd                                               uint32 = 9
-	FuncSub                                               uint32 = 10
-	FuncMul                                               uint32 = 11
-	FuncDiv                                               uint32 = 12
-	FuncMod                                               uint32 = 13
-	FuncGt                                                uint32 = 14
-	FuncLt                                                uint32 = 15
-	FuncEgt                                               uint32 = 16
-	FuncElt                                               uint32 = 17
-	FuncEqual                                             uint32 = 18
-	FuncNeq                                               uint32 = 19
-	FuncJmp                                               uint32 = 20
-	FuncJz                                                uint32 = 21
-	FuncJnz                                               uint32 = 22
-	FuncMov                                               uint32 = 23
-	FuncStartOfDoWhile                                    uint32 = 24
-	FuncStartOfDoWhileCommands                            uint32 = 25
-	FuncEndOfDoWhile                                      uint32 = 26
-	FuncStartOfFor                                        uint32 = 27
-	FuncForIncDec                                         uint32 = 28
-	FuncStartOfForOmmands                                 uint32 = 29
-	FuncEndOfIf                                           uint32 = 30
-	FuncIgnoreLvalue                                      uint32 = 31
-	FuncPush                                              uint32 = 32
-	FuncPop                                               uint32 = 33
-	FuncCall                                              uint32 = 34
-	FuncRet                                               uint32 = 35
-	FuncPrint                                             uint32 = 36
-	FuncFormats                                           uint32 = 37
-	FuncEventEnable                                       uint32 = 38
-	FuncEventDisable                                      uint32 = 39
-	FuncEventClear                                        uint32 = 40
-	FuncTestStatement                                     uint32 = 41
-	FuncSpinlockLock                                      uint32 = 42
-	FuncSpinlockUnlock                                    uint32 = 43
-	FuncEventSc                                           uint32 = 44
-	FuncMicrosleep                                        uint32 = 45
-	FuncPrintf                                            uint32 = 46
-	FuncPause                                             uint32 = 47
-	FuncFlush                                             uint32 = 48
-	FuncEventTraceStep                                    uint32 = 49
-	FuncEventTraceStepIn                                  uint32 = 50
-	FuncEventTraceStepOut                                 uint32 = 51
-	FuncEventTraceInstrumentationStep                     uint32 = 52
-	FuncEventTraceInstrumentationStepIn                   uint32 = 53
-	FuncLbrStart                                          uint32 = 54
-	FuncLbrStop                                           uint32 = 55
-	FuncRdtsc                                             uint32 = 56
-	FuncRdtscp                                            uint32 = 57
-	FuncSpinlockLockCustomWait                            uint32 = 58
-	FuncEventInject                                       uint32 = 59
-	FuncPoi                                               uint32 = 60
-	FuncDb                                                uint32 = 61
-	FuncDd                                                uint32 = 62
-	FuncDw                                                uint32 = 63
-	FuncDq                                                uint32 = 64
-	FuncNeg                                               uint32 = 65
-	MaximumPacketsCapacity                                uint32 = 1000
-	FuncHi                                                uint32 = 66
-	FuncLow                                               uint32 = 67
-	FuncNot                                               uint32 = 68
-	FuncCheckAddress                                      uint32 = 69
-	FuncDisassembleLen                                    uint32 = 70
-	FuncDisassembleLen32                                  uint32 = 71
-	MaximumPacketsCapacityPriority                        uint32 = 50
-	FuncDisassembleLen64                                  uint32 = 72
-	FuncInterlockedIncrement                              uint32 = 73
-	FuncInterlockedDecrement                              uint32 = 74
-	FuncPhysicalToVirtual                                 uint32 = 75
-	FuncVirtualToPhysical                                 uint32 = 76
-	NormalPageSize                                        uint32 = 4096
-	FuncPoiPa                                             uint32 = 77
-	FuncHiPa                                              uint32 = 78
-	FuncLowPa                                             uint32 = 79
-	FuncDbPa                                              uint32 = 80
-	FuncDdPa                                              uint32 = 81
-	FuncDwPa                                              uint32 = 82
-	PacketChunkSize                                       uint32 = NormalPageSize
-	FuncDqPa                                              uint32 = 83
-	FuncEd                                                uint32 = 84
-	FuncEb                                                uint32 = 85
-	FuncEq                                                uint32 = 86
-	FuncInterlockedExchange                               uint32 = 87
-	FuncInterlockedExchangeAdd                            uint32 = 88
-	FuncEbPa                                              uint32 = 89
-	FuncEdPa                                              uint32 = 90
-	FuncEqPa                                              uint32 = 91
-	FuncInterlockedCompareExchange                        uint32 = 92
-	FuncStrlen                                            uint32 = 93
-	FuncStrcmp                                            uint32 = 94
-	FuncMemcmp                                            uint32 = 95
-	FuncStrncmp                                           uint32 = 96
-	MaxSerialPacketSize                                   uint32 = 20 * NormalPageSize
-	FuncWcslen                                            uint32 = 97
-	FuncWcscmp                                            uint32 = 98
-	FuncEventInjectErrorCode                              uint32 = 99
-	FuncMemcpy                                            uint32 = 100
-	FuncMemcpyPa                                          uint32 = 101
-	FuncWcsncmp                                           uint32 = 102
-	DbgPrintLimitation                                    uint32 = 512
-	DebuggerEventTagStartSeed                             uint32 = 0x1000000
-	DebuggerThreadDebuggingTagStartSeed                   uint32 = 0x1000000
-	DebuggerOutputSourceTagStartSeed                      uint32 = 0x1
+	PageSize uint32 = 0x1000
+	VersionMajor uint32 = 0
+	VersionMinor uint32 = 18
+	VersionPatch uint32 = 1
+	DefaultInitialDebuggeeToDebuggerOffset uint32 = 0x200
+	BusBitWidth uint32 = 8
+	DefaultInitialDebuggerToDebuggeeOffset uint32 = 0x0
+	DeviceBitWidth uint32 = 5
+	FunctionBitWidth uint32 = 3
+	FileAnyAccess uint32 = 0
+	DefaultInitialBramBufferSize uint32 = 256
+	DomainMaxNum uint32 = 0
+	BusMaxNum uint32 = 255
+	DeviceMaxNum uint32 = 32
+	FunctionMaxNum uint32 = 8
+	DevMaxNum uint32 = 255
+	CamConfigSpaceLength uint32 = 255
+	SymbolUndefined uint32 = 0
+	SymbolGlobalIdType uint32 = 1
+	SymbolLocalIdType uint32 = 2
+	MethodBuffered uint32 = 0
+	SymbolNumType uint32 = 3
+	SymbolRegisterType uint32 = 4
+	SymbolPseudoRegType uint32 = 5
+	SymbolSemanticRuleType uint32 = 6
+	SymbolTempType uint32 = 7
+	SymbolStringType uint32 = 8
+	NullZero uint32 = 0
+	SymbolVariableCountType uint32 = 9
+	FileDeviceUnknown uint32 = 0x00000022
+	SymbolInvalid uint32 = 10
+	SymbolWstringType uint32 = 11
+	FALSE uint32 = 0
+	TRUE uint32 = 1
+	SymbolFunctionParameterIdType uint32 = 12
+	SymbolReturnAddressType uint32 = 13
+	SymbolFunctionParameterType uint32 = 14
+	Upper56Bits uint64 = 0xffffffffffffff00
+	SymbolStackIndexType uint32 = 15
+	Upper48Bits uint64 = 0xffffffffffff0000
+	Upper32Bits uint64 = 0xffffffff00000000
+	SymbolStackBaseIndexType uint32 = 16
+	SymbolReturnValueType uint32 = 17
+	Lower32Bits uint64 = 0x00000000ffffffff
+	SymbolReferenceLocalIdType uint32 = 18
+	Lower16Bits uint64 = 0x000000000000ffff
+	SymbolReferenceTempType uint32 = 19
+	Lower8Bits uint64 = 0x00000000000000ff
+	SymbolDereferenceLocalIdType uint32 = 20
+	SecondLower8Bits uint64 = 0x000000000000ff00
+	Upper48BitsAndLower8Bits uint64 = 0xffffffffffff00ff
+	SymbolDereferenceTempType uint32 = 21
+	SymbolMemValidCheckMask uint32 = (1<<31)
+	INVALID uint32 = 0x80000000
+	LalrAccept uint32 = 0x7fffffff
+	FuncUndefined uint32 = 0
+	FuncInc uint32 = 1
+	FuncDec uint32 = 2
+	FuncReference uint32 = 3
+	FuncOr uint32 = 4
+	FuncXor uint32 = 5
+	FuncAnd uint32 = 6
+	FuncAsr uint32 = 7
+	FuncAsl uint32 = 8
+	FuncAdd uint32 = 9
+	FuncSub uint32 = 10
+	FuncMul uint32 = 11
+	FuncDiv uint32 = 12
+	FuncMod uint32 = 13
+	FuncGt uint32 = 14
+	FuncLt uint32 = 15
+	FuncEgt uint32 = 16
+	FuncElt uint32 = 17
+	FuncEqual uint32 = 18
+	FuncNeq uint32 = 19
+	FuncJmp uint32 = 20
+	FuncJz uint32 = 21
+	FuncJnz uint32 = 22
+	FuncMov uint32 = 23
+	FuncStartOfDoWhile uint32 = 24
+	FuncStartOfDoWhileCommands uint32 = 25
+	FuncEndOfDoWhile uint32 = 26
+	FuncStartOfFor uint32 = 27
+	FuncForIncDec uint32 = 28
+	FuncStartOfForOmmands uint32 = 29
+	FuncEndOfIf uint32 = 30
+	FuncIgnoreLvalue uint32 = 31
+	FuncPush uint32 = 32
+	FuncPop uint32 = 33
+	FuncCall uint32 = 34
+	FuncRet uint32 = 35
+	FuncPrint uint32 = 36
+	FuncFormats uint32 = 37
+	FuncEventEnable uint32 = 38
+	FuncEventDisable uint32 = 39
+	FuncEventClear uint32 = 40
+	FuncTestStatement uint32 = 41
+	FuncSpinlockLock uint32 = 42
+	FuncSpinlockUnlock uint32 = 43
+	FuncEventSc uint32 = 44
+	FuncMicrosleep uint32 = 45
+	FuncPrintf uint32 = 46
+	FuncPause uint32 = 47
+	FuncFlush uint32 = 48
+	FuncEventTraceStep uint32 = 49
+	FuncEventTraceStepIn uint32 = 50
+	FuncEventTraceStepOut uint32 = 51
+	FuncEventTraceInstrumentationStep uint32 = 52
+	FuncEventTraceInstrumentationStepIn uint32 = 53
+	FuncLbrStart uint32 = 54
+	FuncLbrStop uint32 = 55
+	FuncRdtsc uint32 = 56
+	FuncRdtscp uint32 = 57
+	FuncSpinlockLockCustomWait uint32 = 58
+	FuncEventInject uint32 = 59
+	FuncPoi uint32 = 60
+	FuncDb uint32 = 61
+	FuncDd uint32 = 62
+	FuncDw uint32 = 63
+	FuncDq uint32 = 64
+	FuncNeg uint32 = 65
+	FuncHi uint32 = 66
+	MaximumPacketsCapacity uint32 = 1000
+	FuncLow uint32 = 67
+	FuncNot uint32 = 68
+	FuncCheckAddress uint32 = 69
+	FuncDisassembleLen uint32 = 70
+	FuncDisassembleLen32 uint32 = 71
+	FuncDisassembleLen64 uint32 = 72
+	MaximumPacketsCapacityPriority uint32 = 50
+	FuncInterlockedIncrement uint32 = 73
+	FuncInterlockedDecrement uint32 = 74
+	FuncPhysicalToVirtual uint32 = 75
+	FuncVirtualToPhysical uint32 = 76
+	FuncPoiPa uint32 = 77
+	NormalPageSize uint32 = 4096
+	FuncHiPa uint32 = 78
+	FuncLowPa uint32 = 79
+	FuncDbPa uint32 = 80
+	FuncDdPa uint32 = 81
+	PacketChunkSize uint32 = NormalPageSize
+	FuncDwPa uint32 = 82
+	FuncDqPa uint32 = 83
+	FuncEd uint32 = 84
+	FuncEb uint32 = 85
+	FuncEq uint32 = 86
+	FuncInterlockedExchange uint32 = 87
+	FuncInterlockedExchangeAdd uint32 = 88
+	FuncEbPa uint32 = 89
+	FuncEdPa uint32 = 90
+	FuncEqPa uint32 = 91
+	FuncInterlockedCompareExchange uint32 = 92
+	FuncStrlen uint32 = 93
+	FuncStrcmp uint32 = 94
+	FuncMemcmp uint32 = 95
+	FuncStrncmp uint32 = 96
+	FuncWcslen uint32 = 97
+	MaxSerialPacketSize uint32 = 20*NormalPageSize
+	FuncWcscmp uint32 = 98
+	FuncEventInjectErrorCode uint32 = 99
+	FuncMemcpy uint32 = 100
+	FuncMemcpyPa uint32 = 101
+	FuncWcsncmp uint32 = 102
+	DbgPrintLimitation uint32 = 512
+	DebuggerEventTagStartSeed uint32 = 0x1000000
+	DebuggerThreadDebuggingTagStartSeed uint32 = 0x1000000
+	DebuggerOutputSourceTagStartSeed uint32 = 0x1
 	DebuggerOutputSourceMaximumRemoteSourceForSingleEvent uint32 = 0x5
-	DebuggerScriptEngineMemcpyMovingBufferSize            uint32 = 64
-	MaximumNumberOfInitialPreallocatedEptHooks            uint32 = 5
-	MaximumRegularInstantEvents                           uint32 = 20
-	MaximumBigInstantEvents                               uint32 = 0
-	RegularInstantEventRequestedSafeBuffer                uint32 = PageSize
-	BigInstantEventRequestedSafeBuffer                    uint32 = MaxSerialPacketSize
-	CommunicationBufferSize                               uint32 = PacketChunkSize + 0x100
-	TopLevelDriversVmcallStartingNumber                   uint32 = 0x00000200
-	TopLevelDriversVmcallEndingNumber                     uint32 = TopLevelDriversVmcallStartingNumber + 0x100
-	OperationMandatoryDebuggeeBit                         uint32 = (1 << 31)
-	OperationLogInfoMessage                               uint32 = 1
-	OperationLogWarningMessage                            uint32 = 2
-	OperationLogErrorMessage                              uint32 = 3
-	OperationLogNonImmediateMessage                       uint32 = 4
-	OperationLogWithTag                                   uint32 = 5
-	OperationLogMessageMandatory                          uint32 = 6 | OperationMandatoryDebuggeeBit
-	OperationCommandFromDebuggerCloseAndUnloadVmm         uint32 = 7 | OperationMandatoryDebuggeeBit
-	OperationDebuggeeUserInput                            uint32 = 8 | OperationMandatoryDebuggeeBit
-	OperationDebuggeeRegisterEvent                        uint32 = 9 | OperationMandatoryDebuggeeBit
-	OperationDebuggeeAddActionToEvent                     uint32 = 10 | OperationMandatoryDebuggeeBit
-	OperationDebuggeeClearEvents                          uint32 = 11 | OperationMandatoryDebuggeeBit
-	OperationDebuggeeClearEventsWithoutNotifyingDebugger  uint32 = 12 | OperationMandatoryDebuggeeBit
-	OperationHypervisorDriverIsSuccessfullyLoaded         uint32 = 13 | OperationMandatoryDebuggeeBit
-	OperationHypervisorDriverEndOfIrps                    uint32 = 14 | OperationMandatoryDebuggeeBit
-	OperationCommandFromDebuggerReloadSymbol              uint32 = 15 | OperationMandatoryDebuggeeBit
-	OperationNotificationFromUserDebuggerPause            uint32 = 16 | OperationMandatoryDebuggeeBit
-	MaximumBreakpointsWithoutContinue                     uint32 = 100
-	MaximumNumberOfThreadInformationForTraps              uint32 = 200
-	POOLTAG                                               uint32 = 0x48444247
-	SerialEndOfBufferCharsCount                           uint32 = 0x4
-	SerialEndOfBufferChar1                                uint32 = 0x00
-	SerialEndOfBufferChar2                                uint32 = 0x80
-	SerialEndOfBufferChar3                                uint32 = 0xEE
-	SerialEndOfBufferChar4                                uint32 = 0xFF
-	TcpEndOfBufferCharsCount                              uint32 = 0x4
-	TcpEndOfBufferChar1                                   uint32 = 0x10
-	TcpEndOfBufferChar2                                   uint32 = 0x20
-	TcpEndOfBufferChar3                                   uint32 = 0x33
-	TcpEndOfBufferChar4                                   uint32 = 0x44
-	PseudoRegisterPid                                     uint32 = 0
-	PseudoRegisterTid                                     uint32 = 1
-	PseudoRegisterPname                                   uint32 = 2
-	PseudoRegisterCore                                    uint32 = 3
-	MaximumCharacterForOsName                             uint32 = 256
-	PseudoRegisterProc                                    uint32 = 4
-	PseudoRegisterThread                                  uint32 = 5
-	PseudoRegisterPeb                                     uint32 = 6
-	PseudoRegisterTeb                                     uint32 = 7
-	PseudoRegisterIp                                      uint32 = 8
-	PseudoRegisterBuffer                                  uint32 = 9
-	PseudoRegisterContext                                 uint32 = 10
-	PseudoRegisterEventTag                                uint32 = 11
-	PseudoRegisterEventId                                 uint32 = 12
-	PseudoRegisterEventStage                              uint32 = 13
-	MaximumInstrSize                                      uint32 = 16
-	PseudoRegisterDate                                    uint32 = 14
-	PseudoRegisterTime                                    uint32 = 15
-	MaximumCallInstrSize                                  uint32 = 7
-	MaximumSupportedSymbols                               uint32 = 1000
-	MaximumGuidAndAgeSize                                 uint32 = 60
-	IndicatorOfHyperdbgPacket                             uint64 = 0x4859504552444247
-	MaximumSearchResults                                  uint32 = 0x1000
-	X86FlagsCf                                            uint32 = (1 << 0)
-	X86FlagsPf                                            uint32 = (1 << 2)
-	X86FlagsAf                                            uint32 = (1 << 4)
-	X86FlagsZf                                            uint32 = (1 << 6)
-	X86FlagsSf                                            uint32 = (1 << 7)
-	X86FlagsTf                                            uint32 = (1 << 8)
-	X86FlagsIf                                            uint32 = (1 << 9)
-	X86FlagsDf                                            uint32 = (1 << 10)
-	X86FlagsOf                                            uint32 = (1 << 11)
-	X86FlagsStatusMask                                    uint32 = (0xfff)
-	X86FlagsIoplMask                                      uint32 = (3 << 12)
-	X86FlagsIoplShift                                     uint32 = (12)
-	X86FlagsIoplShift2ndBit                               uint32 = (13)
-	X86FlagsNt                                            uint32 = (1 << 14)
-	X86FlagsRf                                            uint32 = (1 << 16)
-	X86FlagsVm                                            uint32 = (1 << 17)
-	X86FlagsAc                                            uint32 = (1 << 18)
-	X86FlagsVif                                           uint32 = (1 << 19)
-	X86FlagsVip                                           uint32 = (1 << 20)
-	X86FlagsId                                            uint32 = (1 << 21)
-	X86FlagsReservedOnes                                  uint32 = 0x2
-	X86FlagsReserved                                      uint32 = 0xffc0802a
-	X86FlagsReservedBits                                  uint32 = 0xffc38028
-	X86FlagsFixed                                         uint32 = 0x00000002
-	MaxStackBufferCount                                   uint32 = 256
-	MaxExecutionCount                                     uint32 = 1000000
-	MaxVarCount                                           uint32 = 512
-	MaxFunctionNameLength                                 uint32 = 32
-	PassiveLevel                                          uint32 = 0
-	LowLevel                                              uint32 = 0
-	ApcLevel                                              uint32 = 1
-	DispatchLevel                                         uint32 = 2
-	CmciLevel                                             uint32 = 5
-	ClockLevel                                            uint32 = 13
-	IpiLevel                                              uint32 = 14
-	DrsLevel                                              uint32 = 14
-	PowerLevel                                            uint32 = 14
-	ProfileLevel                                          uint32 = 15
-	HighLevel                                             uint32 = 15
-	X86Cr0Pe                                              uint32 = 0x00000001
-	X86Cr0Mp                                              uint32 = 0x00000002
-	X86Cr0Em                                              uint32 = 0x00000004
-	X86Cr0Ts                                              uint32 = 0x00000008
-	X86Cr0Et                                              uint32 = 0x00000010
-	X86Cr0Ne                                              uint32 = 0x00000020
-	X86Cr0Wp                                              uint32 = 0x00010000
-	X86Cr0Am                                              uint32 = 0x00040000
-	X86Cr0Nw                                              uint32 = 0x20000000
-	X86Cr0Cd                                              uint32 = 0x40000000
-	X86Cr0Pg                                              uint32 = 0x80000000
-	X86Cr4Vme                                             uint32 = 0x0001
-	X86Cr4Pvi                                             uint32 = 0x0002
-	X86Cr4Tsd                                             uint32 = 0x0004
-	X86Cr4De                                              uint32 = 0x0008
-	X86Cr4Pse                                             uint32 = 0x0010
-	X86Cr4Pae                                             uint32 = 0x0020
-	X86Cr4Mce                                             uint32 = 0x0040
-	X86Cr4Pge                                             uint32 = 0x0080
-	X86Cr4Pce                                             uint32 = 0x0100
-	X86Cr4Osfxsr                                          uint32 = 0x0200
-	X86Cr4Osxmmexcpt                                      uint32 = 0x0400
-	X86Cr4Vmxe                                            uint32 = 0x2000
-	Kgdt64Null                                            uint32 = (0 * 16)
-	Kgdt64R0Code                                          uint32 = (1 * 16)
-	Kgdt64R0Data                                          uint32 = (1 * 16) + 8
-	Kgdt64R3Cmcode                                        uint32 = (2 * 16)
-	Kgdt64R3Data                                          uint32 = (2 * 16) + 8
-	Kgdt64R3Code                                          uint32 = (3 * 16)
-	Kgdt64SysTss                                          uint32 = (4 * 16)
-	Kgdt64R3Cmteb                                         uint32 = (5 * 16)
-	Kgdt64R0Cmcode                                        uint32 = (6 * 16)
-	Kgdt64Last                                            uint32 = (7 * 16)
-	PcidNone                                              uint32 = 0x000
-	PcidMask                                              uint32 = 0x003
-	CpuidHvVendorAndMaxFunctions                          uint32 = 0x40000000
-	CpuidHvInterface                                      uint32 = 0x40000001
-	CpuidAddrWidth                                        uint32 = 0x80000008
-	CpuidProcessorAndProcessorFeatureIdentifiers          uint32 = 0x00000001
-	ReservedMsrRangeLow                                   uint32 = 0x40000000
-	ReservedMsrRangeHi                                    uint32 = 0x400000F0
-	DebuggerModifyEventsApplyToAllTag                     uint64 = 0xffffffffffffffff
-	DisassemblyMaximumDistanceFromObjectName              uint32 = 0xffff
-	DebuggerReadAndWriteOnMsrApplyAllCores                uint32 = 0xffffffff
-	DebuggerDebuggeeIsRunningNoCore                       uint32 = 0xffffffff
-	DebuggerEventApplyToAllCores                          uint32 = 0xffffffff
-	DebuggerEventApplyToAllProcesses                      uint32 = 0xffffffff
-	DebuggerEventMsrReadOrWriteAllMsrs                    uint32 = 0xffffffff
-	DebuggerEventExceptionsAllFirst32Entries              uint32 = 0xffffffff
-	DebuggerEventSyscallAllSysretOrSyscalls               uint32 = 0xffffffff
-	DebuggerEventAllIoPorts                               uint32 = 0xffffffff
-	DebuggeeBpApplyToAllCores                             uint32 = 0xffffffff
-	DebuggeeBpApplyToAllProcesses                         uint32 = 0xffffffff
-	DebuggeeBpApplyToAllThreads                           uint32 = 0xffffffff
-	DebuggeeShowAllRegisters                              uint32 = 0xffffffff
-	DebuggerRemoteTrackingDefaultCountOfStepping          uint32 = 0xffffffff
-	LapicSize                                             uint32 = 0x400
-	LapicLvtFlagEntryMasked                               uint32 = (1 << 16)
-	LapicLvtDeliveryModeExtInt                            uint32 = (7 << 8)
-	LapicSvrFlagSwEnable                                  uint32 = (1 << 8)
-	MaxNumberOfIoApicEntries                              uint32 = 400
-	MaxNumberOfIdtEntries                                 uint32 = 256
+	DebuggerScriptEngineMemcpyMovingBufferSize uint32 = 64
+	MaximumNumberOfInitialPreallocatedEptHooks uint32 = 5
+	MaximumRegularInstantEvents uint32 = 20
+	MaximumBigInstantEvents uint32 = 0
+	RegularInstantEventRequestedSafeBuffer uint32 = PageSize
+	BigInstantEventRequestedSafeBuffer uint32 = MaxSerialPacketSize
+	CommunicationBufferSize uint32 = PacketChunkSize+0x100
+	TopLevelDriversVmcallStartingNumber uint32 = 0x00000200
+	TopLevelDriversVmcallEndingNumber uint32 = TopLevelDriversVmcallStartingNumber+0x100
+	OperationMandatoryDebuggeeBit uint32 = (1<<31)
+	OperationLogInfoMessage uint32 = 1
+	OperationLogWarningMessage uint32 = 2
+	OperationLogErrorMessage uint32 = 3
+	OperationLogNonImmediateMessage uint32 = 4
+	OperationLogWithTag uint32 = 5
+	OperationLogMessageMandatory uint32 = 6|OperationMandatoryDebuggeeBit
+	OperationCommandFromDebuggerCloseAndUnloadVmm uint32 = 7|OperationMandatoryDebuggeeBit
+	OperationDebuggeeUserInput uint32 = 8|OperationMandatoryDebuggeeBit
+	OperationDebuggeeRegisterEvent uint32 = 9|OperationMandatoryDebuggeeBit
+	OperationDebuggeeAddActionToEvent uint32 = 10|OperationMandatoryDebuggeeBit
+	OperationDebuggeeClearEvents uint32 = 11|OperationMandatoryDebuggeeBit
+	OperationDebuggeeClearEventsWithoutNotifyingDebugger uint32 = 12|OperationMandatoryDebuggeeBit
+	OperationHypervisorDriverIsSuccessfullyLoaded uint32 = 13|OperationMandatoryDebuggeeBit
+	OperationHypervisorDriverEndOfIrps uint32 = 14|OperationMandatoryDebuggeeBit
+	OperationCommandFromDebuggerReloadSymbol uint32 = 15|OperationMandatoryDebuggeeBit
+	OperationNotificationFromUserDebuggerPause uint32 = 16|OperationMandatoryDebuggeeBit
+	MaximumBreakpointsWithoutContinue uint32 = 100
+	MaximumNumberOfThreadInformationForTraps uint32 = 200
+	POOLTAG uint32 = 0x48444247
+	SerialEndOfBufferCharsCount uint32 = 0x4
+	SerialEndOfBufferChar1 uint32 = 0x00
+	SerialEndOfBufferChar2 uint32 = 0x80
+	SerialEndOfBufferChar3 uint32 = 0xEE
+	SerialEndOfBufferChar4 uint32 = 0xFF
+	TcpEndOfBufferCharsCount uint32 = 0x4
+	TcpEndOfBufferChar1 uint32 = 0x10
+	TcpEndOfBufferChar2 uint32 = 0x20
+	TcpEndOfBufferChar3 uint32 = 0x33
+	TcpEndOfBufferChar4 uint32 = 0x44
+	PseudoRegisterPid uint32 = 0
+	PseudoRegisterTid uint32 = 1
+	PseudoRegisterPname uint32 = 2
+	PseudoRegisterCore uint32 = 3
+	PseudoRegisterProc uint32 = 4
+	MaximumCharacterForOsName uint32 = 256
+	PseudoRegisterThread uint32 = 5
+	PseudoRegisterPeb uint32 = 6
+	PseudoRegisterTeb uint32 = 7
+	PseudoRegisterIp uint32 = 8
+	PseudoRegisterBuffer uint32 = 9
+	PseudoRegisterContext uint32 = 10
+	PseudoRegisterEventTag uint32 = 11
+	PseudoRegisterEventId uint32 = 12
+	PseudoRegisterEventStage uint32 = 13
+	MaximumInstrSize uint32 = 16
+	PseudoRegisterDate uint32 = 14
+	PseudoRegisterTime uint32 = 15
+	MaximumCallInstrSize uint32 = 7
+	MaximumSupportedSymbols uint32 = 1000
+	MaximumGuidAndAgeSize uint32 = 60
+	IndicatorOfHyperdbgPacket uint64 = 0x4859504552444247
+	MaximumSearchResults uint32 = 0x1000
+	X86FlagsCf uint32 = (1<<0)
+	X86FlagsPf uint32 = (1<<2)
+	X86FlagsAf uint32 = (1<<4)
+	X86FlagsZf uint32 = (1<<6)
+	X86FlagsSf uint32 = (1<<7)
+	X86FlagsTf uint32 = (1<<8)
+	X86FlagsIf uint32 = (1<<9)
+	X86FlagsDf uint32 = (1<<10)
+	X86FlagsOf uint32 = (1<<11)
+	X86FlagsStatusMask uint32 = (0xfff)
+	X86FlagsIoplMask uint32 = (3<<12)
+	X86FlagsIoplShift uint32 = (12)
+	X86FlagsIoplShift2ndBit uint32 = (13)
+	X86FlagsNt uint32 = (1<<14)
+	X86FlagsRf uint32 = (1<<16)
+	X86FlagsVm uint32 = (1<<17)
+	X86FlagsAc uint32 = (1<<18)
+	X86FlagsVif uint32 = (1<<19)
+	X86FlagsVip uint32 = (1<<20)
+	X86FlagsId uint32 = (1<<21)
+	X86FlagsReservedOnes uint32 = 0x2
+	X86FlagsReserved uint32 = 0xffc0802a
+	X86FlagsReservedBits uint32 = 0xffc38028
+	X86FlagsFixed uint32 = 0x00000002
+	MaxStackBufferCount uint32 = 256
+	MaxExecutionCount uint32 = 1000000
+	MaxVarCount uint32 = 512
+	MaxFunctionNameLength uint32 = 32
+	PassiveLevel uint32 = 0
+	LowLevel uint32 = 0
+	ApcLevel uint32 = 1
+	DispatchLevel uint32 = 2
+	CmciLevel uint32 = 5
+	ClockLevel uint32 = 13
+	IpiLevel uint32 = 14
+	DrsLevel uint32 = 14
+	PowerLevel uint32 = 14
+	ProfileLevel uint32 = 15
+	HighLevel uint32 = 15
+	X86Cr0Pe uint32 = 0x00000001
+	X86Cr0Mp uint32 = 0x00000002
+	X86Cr0Em uint32 = 0x00000004
+	X86Cr0Ts uint32 = 0x00000008
+	X86Cr0Et uint32 = 0x00000010
+	X86Cr0Ne uint32 = 0x00000020
+	X86Cr0Wp uint32 = 0x00010000
+	X86Cr0Am uint32 = 0x00040000
+	X86Cr0Nw uint32 = 0x20000000
+	X86Cr0Cd uint32 = 0x40000000
+	X86Cr0Pg uint32 = 0x80000000
+	X86Cr4Vme uint32 = 0x0001
+	X86Cr4Pvi uint32 = 0x0002
+	X86Cr4Tsd uint32 = 0x0004
+	X86Cr4De uint32 = 0x0008
+	X86Cr4Pse uint32 = 0x0010
+	X86Cr4Pae uint32 = 0x0020
+	X86Cr4Mce uint32 = 0x0040
+	X86Cr4Pge uint32 = 0x0080
+	X86Cr4Pce uint32 = 0x0100
+	X86Cr4Osfxsr uint32 = 0x0200
+	X86Cr4Osxmmexcpt uint32 = 0x0400
+	X86Cr4Vmxe uint32 = 0x2000
+	Kgdt64Null uint32 = (0*16)
+	Kgdt64R0Code uint32 = (1*16)
+	Kgdt64R0Data uint32 = (1*16)+8
+	Kgdt64R3Cmcode uint32 = (2*16)
+	Kgdt64R3Data uint32 = (2*16)+8
+	Kgdt64R3Code uint32 = (3*16)
+	Kgdt64SysTss uint32 = (4*16)
+	Kgdt64R3Cmteb uint32 = (5*16)
+	Kgdt64R0Cmcode uint32 = (6*16)
+	Kgdt64Last uint32 = (7*16)
+	PcidNone uint32 = 0x000
+	PcidMask uint32 = 0x003
+	CpuidHvVendorAndMaxFunctions uint32 = 0x40000000
+	CpuidHvInterface uint32 = 0x40000001
+	CpuidAddrWidth uint32 = 0x80000008
+	CpuidProcessorAndProcessorFeatureIdentifiers uint32 = 0x00000001
+	ReservedMsrRangeLow uint32 = 0x40000000
+	ReservedMsrRangeHi uint32 = 0x400000F0
+	DebuggerModifyEventsApplyToAllTag uint64 = 0xffffffffffffffff
+	DisassemblyMaximumDistanceFromObjectName uint32 = 0xffff
+	DebuggerReadAndWriteOnMsrApplyAllCores uint32 = 0xffffffff
+	DebuggerDebuggeeIsRunningNoCore uint32 = 0xffffffff
+	DebuggerEventApplyToAllCores uint32 = 0xffffffff
+	DebuggerEventApplyToAllProcesses uint32 = 0xffffffff
+	DebuggerEventMsrReadOrWriteAllMsrs uint32 = 0xffffffff
+	DebuggerEventExceptionsAllFirst32Entries uint32 = 0xffffffff
+	DebuggerEventSyscallAllSysretOrSyscalls uint32 = 0xffffffff
+	DebuggerEventAllIoPorts uint32 = 0xffffffff
+	DebuggeeBpApplyToAllCores uint32 = 0xffffffff
+	DebuggeeBpApplyToAllProcesses uint32 = 0xffffffff
+	DebuggeeBpApplyToAllThreads uint32 = 0xffffffff
+	DebuggeeShowAllRegisters uint32 = 0xffffffff
+	DebuggerRemoteTrackingDefaultCountOfStepping uint32 = 0xffffffff
+	LapicSize uint32 = 0x400
+	LapicLvtFlagEntryMasked uint32 = (1<<16)
+	LapicLvtDeliveryModeExtInt uint32 = (7<<8)
+	LapicSvrFlagSwEnable uint32 = (1<<8)
+	MaxNumberOfIoApicEntries uint32 = 400
+	MaxNumberOfIdtEntries uint32 = 256
 )
 
 // Source: HyperDbgSdk.h -> Macro variables
 var (
-	IoctlSendUsermodeMessagesToDebugger                uint32 = CtlCode(0x813)
-	IoctlPcieEndpointEnum                              uint32 = CtlCode(0x821)
-	IoctlPerformActionsOnApic                          uint32 = CtlCode(0x822)
-	IoctlDebuggerRegisterEvent                         uint32 = CtlCode(0x806)
-	IoctlDebuggerVa2paAndPa2vaCommands                 uint32 = CtlCode(0x809)
-	IoctlDebuggerAttachDetachUserModeProcess           uint32 = CtlCode(0x80e)
-	IoctlDebuggerBringPagesIn                          uint32 = CtlCode(0x81f)
-	IoctlPerformKernelSideTests                        uint32 = CtlCode(0x815)
-	IoctlPausePacketReceived                           uint32 = CtlCode(0x811)
-	IoctlReturnIrpPendingPacketsAndDisallowIoctl       uint32 = CtlCode(0x801)
-	IoctlTerminateVmx                                  uint32 = CtlCode(0x802)
-	IoctlDebuggerSearchMemory                          uint32 = CtlCode(0x80b)
-	IoctlSendSignalExecutionInDebuggeeFinished         uint32 = CtlCode(0x812)
-	IoctlQueryCurrentThread                            uint32 = CtlCode(0x81d)
-	IoctlSendUserDebuggerCommands                      uint32 = CtlCode(0x817)
-	IoctlDebuggerEditMemory                            uint32 = CtlCode(0x80a)
-	IoctlGetUserModeModuleDetails                      uint32 = CtlCode(0x819)
-	IoctlDebuggerAddActionToEvent                      uint32 = CtlCode(0x807)
-	IoctlDebuggerReadPageTableEntriesDetails           uint32 = CtlCode(0x805)
-	IoctlRequestRevMachineService                      uint32 = CtlCode(0x81e)
-	IoctlGetDetailOfActiveThreadsAndProcesses          uint32 = CtlCode(0x818)
-	IoctlSendGeneralBufferFromDebuggeeToDebugger       uint32 = CtlCode(0x814)
-	IoctlSetBreakpointUserDebugger                     uint32 = CtlCode(0x825)
-	IoctlPerformHypertraceOperation                    uint32 = CtlCode(0x827)
-	IoctlDebuggerReadMemory                            uint32 = CtlCode(0x803)
-	IoctlPcidevinfoEnum                                uint32 = CtlCode(0x823)
-	IoctlPrepareDebuggee                               uint32 = CtlCode(0x810)
-	IoctlQueryIdtEntry                                 uint32 = CtlCode(0x824)
-	IoctlDebuggerPrint                                 uint32 = CtlCode(0x80f)
-	IoctlPreactivateFunctionality                      uint32 = CtlCode(0x820)
-	IoctlDebuggerFlushLoggingBuffers                   uint32 = CtlCode(0x80d)
-	IoctlDebuggerReadOrWriteMsr                        uint32 = CtlCode(0x804)
-	IoctlPerformSmiOperation                           uint32 = CtlCode(0x826)
-	IoctlQueryCountOfActiveProcessesOrThreads          uint32 = CtlCode(0x81a)
-	IoctlGetListOfThreadsAndProcesses                  uint32 = CtlCode(0x81b)
-	IoctlQueryCurrentProcess                           uint32 = CtlCode(0x81c)
+	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
+	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
+	IoctlQueryCurrentThread uint32 = CtlCode(0x81d)
+	IoctlPausePacketReceived uint32 = CtlCode(0x811)
+	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
+	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
+	IoctlPerformActionsOnApic uint32 = CtlCode(0x822)
+	IoctlPerformSmiOperation uint32 = CtlCode(0x826)
+	IoctlPcidevinfoEnum uint32 = CtlCode(0x823)
+	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
+	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
+	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
 	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
-	IoctlRegisterEvent                                 uint32 = CtlCode(0x800)
-	IoctlReservePreAllocatedPools                      uint32 = CtlCode(0x816)
-	IoctlDebuggerModifyEvents                          uint32 = CtlCode(0x80c)
+	IoctlPreactivateFunctionality uint32 = CtlCode(0x820)
+	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
+	IoctlSendUsermodeMessagesToDebugger uint32 = CtlCode(0x813)
+	IoctlTerminateVmx uint32 = CtlCode(0x802)
+	IoctlGetListOfThreadsAndProcesses uint32 = CtlCode(0x81b)
+	IoctlDebuggerVa2paAndPa2vaCommands uint32 = CtlCode(0x809)
+	IoctlDebuggerModifyEvents uint32 = CtlCode(0x80c)
+	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
+	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
+	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
+	IoctlRegisterEvent uint32 = CtlCode(0x800)
+	IoctlRequestRevMachineService uint32 = CtlCode(0x81e)
+	IoctlDebuggerReadPageTableEntriesDetails uint32 = CtlCode(0x805)
+	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
+	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
+	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
+	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
+	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
+	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
+	IoctlDebuggerBringPagesIn uint32 = CtlCode(0x81f)
+	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
+	IoctlSendUserDebuggerCommands uint32 = CtlCode(0x817)
+	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
+	IoctlDebuggerEditMemory uint32 = CtlCode(0x80a)
+	IoctlSendSignalExecutionInDebuggeeFinished uint32 = CtlCode(0x812)
+	IoctlPerformHypertraceOperation uint32 = CtlCode(0x827)
+	IoctlSendGeneralBufferFromDebuggeeToDebugger uint32 = CtlCode(0x814)
 )
+

@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
-include(${CMAKE_CURRENT_SOURCE_DIR}/ewdk.cmake)
+include(d:/ewdk/ewdk.cmake)
 
 project(HyperDbgUnified C CXX ASM_MASM)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -59,11 +58,11 @@ file(GLOB IncludeOptimizationsSourceFiles "clone/HyperDbg/hyperdbg/include/compo
 file(GLOB IncludeSpinlockSourceFiles "clone/HyperDbg/hyperdbg/include/components/spinlock/code/*.c")
 file(GLOB IncludePlatformSourceFiles "clone/HyperDbg/hyperdbg/include/platform/kernel/code/*.c")
 
-wdk_add_library(zydis_kernel STATIC ${ZydisSourceFiles})
+km_lib(zydis_kernel ${ZydisSourceFiles})
 target_compile_definitions(zydis_kernel PRIVATE ZYAN_NO_LIBC ZYDIS_NO_LIBC)
 target_compile_options(zydis_kernel PRIVATE /Od /Zi /RTC1)
 
-wdk_add_library(Hyperhv STATIC ${HyperhvSourceFiles} ${HyperhvAsmFiles} ${IncludeOptimizationsSourceFiles} ${IncludeSpinlockSourceFiles})
+km_lib(Hyperhv ${HyperhvSourceFiles} ${HyperhvAsmFiles} ${IncludeOptimizationsSourceFiles} ${IncludeSpinlockSourceFiles})
 target_include_directories(Hyperhv PRIVATE
     "clone/HyperDbg/hyperdbg/hyperhv"
     "clone/HyperDbg/hyperdbg/hyperhv/header"
@@ -75,7 +74,7 @@ target_compile_definitions(Hyperhv PRIVATE DHYPERDBG_VMM HYPERDBG_HYPEREVADE HYP
 target_compile_options(Hyperhv PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(Hyperhv PRIVATE "clone/HyperDbg/hyperdbg/hyperhv/pch.h")
 
-wdk_add_library(Hyperlog STATIC ${HyperlogSourceFiles})
+km_lib(Hyperlog ${HyperlogSourceFiles})
 target_include_directories(Hyperlog PRIVATE
     "clone/HyperDbg/hyperdbg/hyperlog"
     "clone/HyperDbg/hyperdbg/hyperlog/header"
@@ -85,13 +84,13 @@ target_compile_definitions(Hyperlog PRIVATE DHYPERDBG_HYPERLOG HYPERDBG_HYPER_LO
 target_compile_options(Hyperlog PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(Hyperlog PRIVATE "clone/HyperDbg/hyperdbg/hyperlog/header/pch.h")
 
-wdk_add_library(Kdserial STATIC ${KdserialSourceFiles})
+km_lib(Kdserial ${KdserialSourceFiles})
 target_include_directories(Kdserial PRIVATE
     "clone/HyperDbg/hyperdbg/kdserial"
 )
 target_compile_options(Kdserial PRIVATE /Od /Zi /RTC1)
 
-wdk_add_library(Hyperevade STATIC ${HyperevadeSourceFiles})
+km_lib(Hyperevade ${HyperevadeSourceFiles})
 target_include_directories(Hyperevade PRIVATE
     "clone/HyperDbg/hyperdbg/hyperevade"
     "clone/HyperDbg/hyperdbg/hyperevade/header"
@@ -101,7 +100,7 @@ target_compile_definitions(Hyperevade PRIVATE DHYPERDBG_HYPEREVADE HYPERDBG_HYPE
 target_compile_options(Hyperevade PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(Hyperevade PRIVATE "clone/HyperDbg/hyperdbg/hyperevade/header/pch.h")
 
-wdk_add_library(Hypertrace STATIC ${HypertraceSourceFiles})
+km_lib(Hypertrace ${HypertraceSourceFiles})
 target_include_directories(Hypertrace PRIVATE
     "clone/HyperDbg/hyperdbg/hypertrace"
     "clone/HyperDbg/hyperdbg/hypertrace/header"
@@ -111,7 +110,7 @@ target_compile_definitions(Hypertrace PRIVATE DHYPERDBG_HYPERTRACE HYPERDBG_HYPE
 target_compile_options(Hypertrace PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(Hypertrace PRIVATE "clone/HyperDbg/hyperdbg/hypertrace/header/pch.h")
 
-wdk_add_library(Platform STATIC ${IncludePlatformSourceFiles})
+km_lib(Platform ${IncludePlatformSourceFiles})
 target_include_directories(Platform PRIVATE
     "clone/HyperDbg/hyperdbg/include/platform/kernel/code"
 )
@@ -119,8 +118,8 @@ target_compile_definitions(Platform PRIVATE NTDDI_VERSION=0x0A000008)
 target_compile_options(Platform PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(Platform PRIVATE "clone/HyperDbg/hyperdbg/include/platform/kernel/code/pch.h")
 
-wdk_add_driver(hyperkd
-    KMDF 1.15
+km_sys(hyperkd
+    1.15
     ${HyperkdSourceFiles}
     ${HyperkdAsmFiles}
     ${IncludeOptimizationsSourceFiles}
@@ -156,13 +155,13 @@ target_link_libraries(hyperkd
 
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
 
-um_library(Zydis STATIC ${ZydisSourceFiles})
+um_lib(Zydis ${ZydisSourceFiles})
 target_compile_options(Zydis PRIVATE /Od /Zi)
 
 file(GLOB_RECURSE PdbexSourceFiles "clone/HyperDbg/hyperdbg/dependencies/pdbex/Source/*.cpp")
 list(FILTER PdbexSourceFiles EXCLUDE REGEX ".*main\\.cpp$")
 
-um_library(Pdbex STATIC ${PdbexSourceFiles})
+um_lib(Pdbex ${PdbexSourceFiles})
 target_include_directories(Pdbex PRIVATE
     "clone/HyperDbg/hyperdbg/dependencies/pdbex/Source"
     "$ENV{VSINSTALLDIR}DIA SDK\\include"
@@ -172,7 +171,7 @@ target_compile_options(Pdbex PRIVATE /Od /Zi /std:c++latest)
 
 file(GLOB SymbolParserSourceFiles "clone/HyperDbg/hyperdbg/symbol-parser/code/*.cpp")
 
-um_library(SymbolParser STATIC ${SymbolParserSourceFiles})
+um_lib(SymbolParser ${SymbolParserSourceFiles})
 target_include_directories(SymbolParser PRIVATE
     "clone/HyperDbg/hyperdbg/symbol-parser"
     "clone/HyperDbg/hyperdbg/symbol-parser/header"
@@ -189,7 +188,7 @@ target_link_libraries(SymbolParser Pdbex)
 file(GLOB ScriptEngineSourceFiles "clone/HyperDbg/hyperdbg/script-engine/code/*.c")
 list(APPEND ScriptEngineSourceFiles "clone/HyperDbg/hyperdbg/script-engine/script_include.c")
 
-um_library(ScriptEngine STATIC ${ScriptEngineSourceFiles})
+um_lib(ScriptEngine ${ScriptEngineSourceFiles})
 target_include_directories(ScriptEngine PRIVATE
     "clone/HyperDbg/hyperdbg/script-engine"
     "clone/HyperDbg/hyperdbg/script-engine/header"
@@ -215,7 +214,7 @@ endforeach()
 
 file(GLOB ScriptEvalCppRenamedFiles "${CMAKE_CURRENT_BINARY_DIR}/script-eval-cpp/*.cpp")
 
-um_library(ScriptEvalUser STATIC ${ScriptEvalCppRenamedFiles})
+um_lib(ScriptEvalUser ${ScriptEvalCppRenamedFiles})
 target_include_directories(ScriptEvalUser PRIVATE
     "clone/HyperDbg/hyperdbg/script-eval"
     "clone/HyperDbg/hyperdbg/include"
@@ -242,7 +241,7 @@ target_compile_definitions(ScriptEvalUser PRIVATE
 target_compile_options(ScriptEvalUser PRIVATE /Od /Zi)
 target_precompile_headers(ScriptEvalUser PRIVATE "clone/HyperDbg/hyperdbg/libhyperdbg/pch.h")
 
-um_library(Libhyperdbg STATIC
+um_lib(Libhyperdbg
     ${LibhyperdbgSourceFiles}
     ${LibhyperdbgAsmFiles}
 )
@@ -284,7 +283,7 @@ target_link_libraries(Libhyperdbg
     ScriptEvalUser
 )
 
-wdk_add_executable(hyperdbg-cli "clone/HyperDbg/hyperdbg/hyperdbg-cli/hyperdbg-cli.cpp")
+um_exe(hyperdbg-cli "clone/HyperDbg/hyperdbg/hyperdbg-cli/hyperdbg-cli.cpp")
 target_include_directories(hyperdbg-cli PRIVATE
     "clone/HyperDbg/hyperdbg/include"
     "clone/HyperDbg/hyperdbg/dependencies"

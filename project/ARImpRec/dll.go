@@ -15,36 +15,36 @@ type Ipmrec struct{}
 var dllBytes []byte
 
 var (
-	dll                                      *windows.LazyDLL
-	proc_malloc                              *windows.LazyProc
-	proc_calloc                              *windows.LazyProc
-	proc_realloc                             *windows.LazyProc
-	proc_free                                *windows.LazyProc
-	proc_exit                                *windows.LazyProc
-	proc_abort                               *windows.LazyProc
-	proc_atexit                              *windows.LazyProc
-	proc_memcpy                              *windows.LazyProc
-	proc_memmove                             *windows.LazyProc
-	proc_strcpy                              *windows.LazyProc
-	proc_strncpy                             *windows.LazyProc
-	proc_strcat                              *windows.LazyProc
-	proc_strlen                              *windows.LazyProc
-	proc_memcmp                              *windows.LazyProc
-	proc_strcmp                              *windows.LazyProc
-	proc_strncmp                             *windows.LazyProc
-	proc_memset                              *windows.LazyProc
-	proc_strchr                              *windows.LazyProc
-	proc_UnpackPdataSection                  *windows.LazyProc
-	proc_GetNameFileOptimized                *windows.LazyProc
-	proc_RebuildSectionsFromArmadillo        *windows.LazyProc
-	proc_TryGetImportedFunction              *windows.LazyProc
-	proc_SearchAndRebuildImportsNoNewSection *windows.LazyProc
-	proc_SearchAndRebuildImportsIATOptimized *windows.LazyProc
-	proc_SearchAndRebuildImports             *windows.LazyProc
-	proc_GetProcNameAndOrdinal               *windows.LazyProc
-	proc_GetProcOrdinal                      *windows.LazyProc
-	proc_GetProcName                         *windows.LazyProc
-	proc_GetAllVAddressesOfImports           *windows.LazyProc
+	dll            *windows.LazyDLL
+	proc_malloc      *windows.LazyProc
+	proc_calloc      *windows.LazyProc
+	proc_realloc      *windows.LazyProc
+	proc_free      *windows.LazyProc
+	proc_exit      *windows.LazyProc
+	proc_abort      *windows.LazyProc
+	proc_atexit      *windows.LazyProc
+	proc_memcpy      *windows.LazyProc
+	proc_memmove      *windows.LazyProc
+	proc_strcpy      *windows.LazyProc
+	proc_strncpy      *windows.LazyProc
+	proc_strcat      *windows.LazyProc
+	proc_strlen      *windows.LazyProc
+	proc_memcmp      *windows.LazyProc
+	proc_strcmp      *windows.LazyProc
+	proc_strncmp      *windows.LazyProc
+	proc_memset      *windows.LazyProc
+	proc_strchr      *windows.LazyProc
+	proc_UnpackPdataSection      *windows.LazyProc
+	proc_GetNameFileOptimized      *windows.LazyProc
+	proc_RebuildSectionsFromArmadillo      *windows.LazyProc
+	proc_TryGetImportedFunction      *windows.LazyProc
+	proc_SearchAndRebuildImportsNoNewSection      *windows.LazyProc
+	proc_SearchAndRebuildImportsIATOptimized      *windows.LazyProc
+	proc_SearchAndRebuildImports      *windows.LazyProc
+	proc_GetProcNameAndOrdinal      *windows.LazyProc
+	proc_GetProcOrdinal      *windows.LazyProc
+	proc_GetProcName      *windows.LazyProc
+	proc_GetAllVAddressesOfImports      *windows.LazyProc
 )
 
 func init() {
@@ -83,7 +83,7 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	os.WriteFile(p, data, 0o644)
+	os.WriteFile(p, data, 0644)
 	return p
 }
 
@@ -228,3 +228,4 @@ func (i *Ipmrec) GetAllVAddressesOfImports(IRProcessId Cardinal, IROEP Cardinal,
 	r1, _, _ := proc_GetAllVAddressesOfImports.Call(uintptr(IRProcessId), uintptr(IROEP), uintptr(unsafe.Pointer(IRVAddressImports)), uintptr(IRNumberOfImports))
 	return int32(r1)
 }
+
