@@ -26,44 +26,45 @@ jobs:
         with:
           go-version: '1.26.1'
 
+      - name: Clone ewdk repository
+        run: |
+          cd $env:GITHUB_WORKSPACE\..
+          git clone https://github.com/ddkwork/ewdk.git
+
+      - name: Install aria2 (via ewdk)
+        working-directory: ..\ewdk
+        run: |
+          $ProgressPreference = 'SilentlyContinue'
+          $aria2Url = "https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0-win-64bit-build1.zip"
+          Invoke-WebRequest -Uri $aria2Url -OutFile "$env:TEMP\aria2.zip" -UseBasicParsing
+          Expand-Archive -Path "$env:TEMP\aria2.zip" -DestinationPath "$env:TEMP\aria2" -Force
+          Get-ChildItem "$env:TEMP\aria2" -Filter "aria2c.exe" -Recurse | Move-Item -Destination "$env:TEMP\aria2c.exe" -Force
+
+      - name: Cache EWDK ISO
+        id: cache-iso
+        uses: actions/cache@v5
+        with:
+          path: C:\Users\runneradmin\AppData\Local\Temp\ewdk.iso
+          key: ewdk-iso-${{ hashFiles('../ewdk/scripts/get_ewdk_url.go') }}
+          restore-keys: |
+            ewdk-iso-
+
+      - name: Download EWDK ISO (via ewdk)
+        if: steps.cache-iso.outputs.cache-hit != 'true'
+        working-directory: ..\ewdk
+        run: |
+          go run scripts/get_ewdk_url.go
+          $ewdkUrl = Get-Content "$env:GITHUB_ENV" | Select-String "EWDK_ISO_URL=" | ForEach-Object { $_.ToString().Replace("EWDK_ISO_URL=", "").Trim() }
+          Write-Host "Downloading EWDK ISO from: $ewdkUrl"
+          & "$env:TEMP\aria2c.exe" -x16 -s16 --file-allocation=none -d "$env:TEMP" -o ewdk.iso $ewdkUrl
+          $fileSize = (Get-Item "$env:TEMP\ewdk.iso").Length
+          Write-Host "ISO downloaded: $([math]::Round($fileSize/1MB, 2)) MB"
+
+      - name: Mount EWDK ISO and set registry environment (via ewdk main.go)
+        working-directory: ..\ewdk
+        run: go run .
+
       # --- Clone steps (temporarily disabled) ---
-      # - name: Clone ewdk repository
-      #   run: |
-      #     cd $env:GITHUB_WORKSPACE\..
-      #     git clone https://github.com/ddkwork/ewdk.git
-      #
-      # - name: Install aria2 (via ewdk)
-      #   working-directory: ..\ewdk
-      #   run: |
-      #     $ProgressPreference = 'SilentlyContinue'
-      #     $aria2Url = "https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0-win-64bit-build1.zip"
-      #     Invoke-WebRequest -Uri $aria2Url -OutFile "$env:TEMP\aria2.zip" -UseBasicParsing
-      #     Expand-Archive -Path "$env:TEMP\aria2.zip" -DestinationPath "$env:TEMP\aria2" -Force
-      #     Get-ChildItem "$env:TEMP\aria2" -Filter "aria2c.exe" -Recurse | Move-Item -Destination "$env:TEMP\aria2c.exe" -Force
-      #
-      # - name: Cache EWDK ISO
-      #   id: cache-iso
-      #   uses: actions/cache@v5
-      #   with:
-      #     path: C:\Users\runneradmin\AppData\Local\Temp\ewdk.iso
-      #     key: ewdk-iso-${{ hashFiles('../ewdk/scripts/get_ewdk_url.go') }}
-      #     restore-keys: |
-      #       ewdk-iso-
-      #
-      # - name: Download EWDK ISO (via ewdk)
-      #   if: steps.cache-iso.outputs.cache-hit != 'true'
-      #   working-directory: ..\ewdk
-      #   run: |
-      #     go run scripts/get_ewdk_url.go
-      #     $ewdkUrl = Get-Content "$env:GITHUB_ENV" | Select-String "EWDK_ISO_URL=" | ForEach-Object { $_.ToString().Replace("EWDK_ISO_URL=", "").Trim() }
-      #     Write-Host "Downloading EWDK ISO from: $ewdkUrl"
-      #     & "$env:TEMP\aria2c.exe" -x16 -s16 --file-allocation=none -d "$env:TEMP" -o ewdk.iso $ewdkUrl
-      #     $fileSize = (Get-Item "$env:TEMP\ewdk.iso").Length
-      #     Write-Host "ISO downloaded: $([math]::Round($fileSize/1MB, 2)) MB"
-      #
-      # - name: Mount EWDK ISO and set registry environment (via ewdk main.go)
-      #   working-directory: ..\ewdk
-      #   run: go run .
       #
       # - name: Clone zydis source (recursive, for zycore dependency)
       #   run: |
