@@ -5,7 +5,6 @@ import (
 	"maps"
 	"os"
 	"path/filepath"
-	"regexp"
 	"runtime"
 	"slices"
 	"sort"
@@ -17,6 +16,297 @@ import (
 	"github.com/ddkwork/golibrary/std/stream"
 	"modernc.org/cc/v4"
 )
+
+var goReservedTypes = map[string]bool{
+	"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true,
+	"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
+	"uintptr": true, "string": true, "bool": true, "byte": true, "rune": true,
+	"float32": true, "float64": true, "complex64": true, "complex128": true,
+	"error": true, "any": true, "comparable": true,
+}
+
+func isWordChar(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_'
+}
+
+func hasWord(s, word string) bool {
+	for {
+		idx := strings.Index(s, word)
+		if idx < 0 {
+			return false
+		}
+		beforeOk := idx == 0 || !isWordChar(rune(s[idx-1]))
+		afterOk := idx+len(word) >= len(s) || !isWordChar(rune(s[idx+len(word)]))
+		if beforeOk && afterOk {
+			return true
+		}
+		s = s[idx+1:]
+	}
+}
+
+func replaceWord(s, old, new string) string {
+	var result strings.Builder
+	i := 0
+	for i < len(s) {
+		idx := strings.Index(s[i:], old)
+		if idx < 0 {
+			result.WriteString(s[i:])
+			break
+		}
+		pos := i + idx
+		beforeOk := pos == 0 || !isWordChar(rune(s[pos-1]))
+		afterPos := pos + len(old)
+		afterOk := afterPos >= len(s) || !isWordChar(rune(s[afterPos]))
+		if beforeOk && afterOk {
+			result.WriteString(s[i:pos])
+			result.WriteString(new)
+			i = afterPos
+		} else {
+			result.WriteString(s[i : pos+1])
+			i = pos + 1
+		}
+	}
+	return result.String()
+}
+
+func extractIdentifiers(s string) []string {
+	var result []string
+	var buf strings.Builder
+	for _, ch := range s {
+		if isWordChar(ch) {
+			buf.WriteRune(ch)
+		} else if buf.Len() > 0 {
+			result = append(result, buf.String())
+			buf.Reset()
+		}
+	}
+	if buf.Len() > 0 {
+		result = append(result, buf.String())
+	}
+	return result
+}
+
+func containsDigit(s string) bool {
+	for _, ch := range s {
+		if ch >= '0' && ch <= '9' {
+			return true
+		}
+	}
+	return false
+}
+
+func isULiteral(s string) bool {
+	for i := 0; i < len(s); i++ {
+		if s[i] == 'u' || s[i] == 'U' {
+			if i+1 < len(s) && (s[i+1] == '"' || s[i+1] == '\'') {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func isLargeHex(s string) bool {
+	s = strings.TrimSpace(s)
+	if !strings.HasPrefix(strings.ToLower(s), "0x") {
+		return false
+	}
+	hexPart := s[2:]
+	count := 0
+	for _, ch := range hexPart {
+		if (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F') {
+			count++
+		} else {
+			break
+		}
+	}
+	return count >= 9
+}
+
+func isCStyleCast(s string) bool {
+	s = strings.TrimSpace(s)
+	if len(s) == 0 || s[0] != '(' {
+		return false
+	}
+	depth := 0
+	typeEnd := -1
+	for i, ch := range s {
+		if ch == '(' {
+			depth++
+		} else if ch == ')' {
+			depth--
+			if depth == 0 {
+				typeEnd = i
+				break
+			}
+		}
+	}
+	if typeEnd < 0 || typeEnd == 1 {
+		return false
+	}
+	typeName := s[1:typeEnd]
+	if len(typeName) == 0 {
+		return false
+	}
+	if typeName[0] < 'A' || typeName[0] > 'Z' {
+		return false
+	}
+	for _, ch := range typeName[1:] {
+		if !isWordChar(ch) {
+			return false
+		}
+	}
+	rest := strings.TrimSpace(s[typeEnd+1:])
+	return len(rest) > 0 && rest[0] == '('
+}
+
+func isCharLiteral(s string) bool {
+	if len(s) < 3 {
+		return false
+	}
+	return s[0] == '\'' && s[len(s)-1] == '\''
+}
+
+func stripNumberSuffix(s string) string {
+	runes := []rune(s)
+	n := len(runes)
+	if n == 0 {
+		return s
+	}
+	lastAlphaIdx := n - 1
+	for lastAlphaIdx >= 0 {
+		ch := runes[lastAlphaIdx]
+		if (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') {
+			lastAlphaIdx--
+		} else {
+			break
+		}
+	}
+	if lastAlphaIdx < n-1 && lastAlphaIdx >= 0 {
+		prev := runes[lastAlphaIdx]
+		if (prev >= '0' && prev <= '9') || (prev >= 'a' && prev <= 'f') || (prev >= 'A' && prev <= 'F') {
+			return string(runes[:lastAlphaIdx+1])
+		}
+	}
+	return s
+}
+
+func parseSizeofType(s string) (typeName string, found bool) {
+	prefix := "sizeof("
+	if !strings.Contains(s, prefix) {
+		return "", false
+	}
+	start := strings.Index(s, prefix)
+	if start < 0 {
+		return "", false
+	}
+	parenStart := start + len(prefix)
+	if parenStart >= len(s) {
+		return "", false
+	}
+	ch := s[parenStart]
+	if !((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_') {
+		return "", false
+	}
+	depth := 1
+	end := -1
+	for i := parenStart; i < len(s); i++ {
+		if s[i] == '(' {
+			depth++
+		} else if s[i] == ')' {
+			depth--
+			if depth == 0 {
+				end = i
+				break
+			}
+		}
+	}
+	if end < 0 {
+		return "", false
+	}
+	typeName = strings.TrimSpace(s[parenStart:end])
+	if len(typeName) == 0 {
+		return "", false
+	}
+	for _, ch := range typeName {
+		if !isWordChar(ch) {
+			return "", false
+		}
+	}
+	return typeName, true
+}
+
+func hasNotParen(s string) bool {
+	for i := 0; i < len(s)-1; i++ {
+		if s[i] == '!' {
+			j := i + 1
+			for j < len(s) && s[j] == ' ' {
+				j++
+			}
+			if j < len(s) && s[j] == '(' {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func hasDoubleNotParen(s string) bool {
+	for i := 0; i < len(s)-2; i++ {
+		if s[i] == '!' && s[i+1] == '!' {
+			j := i + 2
+			for j < len(s) && s[j] == ' ' {
+				j++
+			}
+			if j < len(s) && s[j] == '(' {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+func findLargeNum(s string) (numStr string, found bool) {
+	runes := []rune(s)
+	i := 0
+	for i < len(runes) {
+		if runes[i] >= '0' && runes[i] <= '9' {
+			start := i
+			for i < len(runes) && runes[i] >= '0' && runes[i] <= '9' {
+				i++
+			}
+			beforeOk := start == 0 || !isWordChar(runes[start-1])
+			afterOk := i >= len(runes) || !isWordChar(runes[i])
+			if beforeOk && afterOk && (i-start) >= 10 {
+				return string(runes[start:i]), true
+			}
+		} else {
+			i++
+		}
+	}
+	return "", false
+}
+
+func findShiftAmount(s string) (amount int, found bool) {
+	for i := 0; i < len(s)-2; i++ {
+		if s[i] == '<' && s[i+1] == '<' {
+			j := i + 2
+			for j < len(s) && s[j] == ' ' {
+				j++
+			}
+			numStart := j
+			for j < len(s) && s[j] >= '0' && s[j] <= '9' {
+				j++
+			}
+			if j > numStart {
+				var val int
+				fmt.Sscanf(s[numStart:j], "%d", &val)
+				return val, true
+			}
+		}
+	}
+	return 0, false
+}
 
 func TestFixError(t *testing.T) {
 	stream.Fmt(".")
@@ -870,8 +1160,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			isVar = true
 		}
 
-		identRe := regexp.MustCompile(`[A-Za-z_][A-Za-z0-9_]*`)
-		identsInVal := identRe.FindAllString(goVal, -1)
+		identsInVal := extractIdentifiers(goVal)
 		identsSet := make(map[string]bool, len(identsInVal))
 		for _, id := range identsInVal {
 			identsSet[id] = true
@@ -886,8 +1175,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				}
 			}
 			if goCName, ok := constMacroNames[id]; ok {
-				re := regexp.MustCompile(`\b` + regexp.QuoteMeta(id) + `\b`)
-				goVal = re.ReplaceAllString(goVal, goCName)
+				goVal = replaceWord(goVal, id, goCName)
 			}
 		}
 
@@ -1249,6 +1537,8 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 
 		finalContent := addImports(content.String(), bc.PackageName, result.Imports)
 
+		finalContent = replaceRemainingSizeof(finalContent)
+
 		outputFile := filepath.Join(bc.OutputDir, baseName+".go")
 		err := os.WriteFile(outputFile, []byte(finalContent), 0o644)
 		if err != nil {
@@ -1366,16 +1656,11 @@ func isBoolExpr(body string) bool {
 			return true
 		}
 	}
-	notRe := regexp.MustCompile(`!\s*\(`)
-	return notRe.MatchString(body)
+	return hasNotParen(body)
 }
 
 func convertCBoolExpr(body string) string {
-	doubleNotRe := regexp.MustCompile(`!!\s*\(`)
-	if doubleNotRe.MatchString(body) {
-		body = doubleNotRe.ReplaceAllStringFunc(body, func(match string) string {
-			return "!!("
-		})
+	if hasDoubleNotParen(body) {
 		for {
 			idx := strings.Index(body, "!!(")
 			if idx == -1 {
@@ -1439,7 +1724,7 @@ func convertCBoolExpr(body string) string {
 
 func isTypeAliasMacro(val string) bool {
 	trimmed := strings.TrimSpace(val)
-	if regexp.MustCompile(`\b[0-9]+\b`).MatchString(trimmed) {
+	if containsDigit(trimmed) {
 		return false
 	}
 	if strings.Contains(trimmed, "(") && strings.Contains(trimmed, ")") {
@@ -1516,8 +1801,7 @@ func isValidGoFnMacroBody(body string) bool {
 			return false
 		}
 	}
-	uLiteralRe := regexp.MustCompile(`\bu["']`)
-	if uLiteralRe.MatchString(body) {
+	if isULiteral(body) {
 		return false
 	}
 	if len(body) > 0 && body[0] == ':' {
@@ -1526,16 +1810,14 @@ func isValidGoFnMacroBody(body string) bool {
 	if isSimpleNumber(body) {
 		return false
 	}
-	largeHexRe := regexp.MustCompile(`0x[0-9A-Fa-f]{9,}`)
-	if largeHexRe.MatchString(body) {
+	if isLargeHex(body) {
 		return false
 	}
 	return true
 }
 
 func isCStyleCastMacro(body string) bool {
-	castPattern := regexp.MustCompile(`\([A-Z][A-Za-z0-9_]*\)\s*\(`)
-	return castPattern.MatchString(body)
+	return isCStyleCast(body)
 }
 
 func isSimpleNumber(s string) bool {
@@ -1601,8 +1883,7 @@ func isValidGoMacroValue(val string) bool {
 			return false
 		}
 	}
-	charLiteralRe := regexp.MustCompile(`'[^']'`)
-	if charLiteralRe.MatchString(val) {
+	if isCharLiteral(val) {
 		return false
 	}
 	if strings.Contains(val, "[") && strings.Contains(val, "]") {
@@ -1616,22 +1897,97 @@ func isValidGoMacroValue(val string) bool {
 func cleanCMacroValue(val string) string {
 	result := val
 	result = strings.ReplaceAll(result, "~", "^")
-	re := regexp.MustCompile(`([0-9A-Fa-f])([UuLl]+|[Uu]?[Ii][0-9]+)\b`)
-	result = re.ReplaceAllString(result, "$1")
-	sizeofRe := regexp.MustCompile(`sizeof\(([A-Za-z_]\w*)\)`)
-	result = sizeofRe.ReplaceAllStringFunc(result, func(match string) string {
-		sub := sizeofRe.FindStringSubmatch(match)
-		if len(sub) >= 2 {
-			cType := strings.TrimSpace(sub[1])
-			goType := mapCTypeNameToGoForSizeof(cType)
-			if isGoPrimitiveType(goType) {
-				return fmt.Sprintf("int(unsafe.Sizeof(%s(0)))", goType)
-			}
-			return fmt.Sprintf("int(unsafe.Sizeof(%s{}))", goType)
+	result = stripAllNumberSuffixes(result)
+	for {
+		typeName, found := parseSizeofType(result)
+		if !found {
+			break
 		}
-		return match
-	})
+		goType := mapCTypeNameToGoForSizeof(typeName)
+		var replacement string
+		if isGoPrimitiveType(goType) {
+			replacement = fmt.Sprintf("int(unsafe.Sizeof(%s(0)))", goType)
+		} else {
+			replacement = fmt.Sprintf("int(unsafe.Sizeof(%s{}))", goType)
+		}
+		result = strings.ReplaceAll(result, "sizeof("+typeName+")", replacement)
+	}
 	return result
+}
+
+func replaceRemainingSizeof(content string) string {
+	for {
+		idx := strings.Index(content, "sizeof(")
+		if idx < 0 {
+			break
+		}
+		parenStart := idx + len("sizeof(")
+		if parenStart >= len(content) {
+			break
+		}
+		depth := 1
+		end := -1
+		for i := parenStart; i < len(content); i++ {
+			if content[i] == '(' {
+				depth++
+			} else if content[i] == ')' {
+				depth--
+				if depth == 0 {
+					end = i
+					break
+				}
+			}
+		}
+		if end < 0 {
+			break
+		}
+		typeName := strings.TrimSpace(content[parenStart:end])
+		goType := mapCTypeNameToGoForSizeof(typeName)
+		var replacement string
+		if goType == "" || typeName == "" {
+			replacement = "0"
+		} else if isGoPrimitiveType(goType) {
+			replacement = fmt.Sprintf("int(unsafe.Sizeof(%s(0)))", goType)
+		} else {
+			replacement = fmt.Sprintf("int(unsafe.Sizeof(%s{}))", goType)
+		}
+		oldExpr := content[idx : end+1]
+		content = strings.ReplaceAll(content, oldExpr, replacement)
+	}
+	return content
+}
+
+func stripAllNumberSuffixes(s string) string {
+	runes := []rune(s)
+	var buf strings.Builder
+	i := 0
+	for i < len(runes) {
+		if runes[i] >= '0' && runes[i] <= '9' {
+			start := i
+			for i < len(runes) && ((runes[i] >= '0' && runes[i] <= '9') ||
+				(runes[i] >= 'a' && runes[i] <= 'f') || (runes[i] >= 'A' && runes[i] <= 'F')) {
+				i++
+			}
+			buf.WriteString(string(runes[start:i]))
+			for i < len(runes) {
+				ch := runes[i]
+				if ch == 'U' || ch == 'u' || ch == 'L' || ch == 'l' {
+					i++
+				} else if ch == 'I' || ch == 'i' {
+					i++
+					for i < len(runes) && runes[i] >= '0' && runes[i] <= '9' {
+						i++
+					}
+				} else {
+					break
+				}
+			}
+		} else {
+			buf.WriteRune(runes[i])
+			i++
+		}
+	}
+	return buf.String()
 }
 
 func mapCTypeNameToGoForSizeof(cType string) string {
@@ -1715,8 +2071,7 @@ func resolveMacroValueNames(val string) string {
 		"ZyanStatus":       "uint32",
 	}
 	for cName, goName := range typeReplacements {
-		re := regexp.MustCompile(`\b` + regexp.QuoteMeta(cName) + `\b`)
-		result = re.ReplaceAllString(result, goName)
+		result = replaceWord(result, cName, goName)
 	}
 	return result
 }
@@ -1732,8 +2087,7 @@ func wrapConstRefsForInt(val string) string {
 		"PageSize",
 	}
 	for _, ref := range constRefs {
-		re := regexp.MustCompile(`\b` + regexp.QuoteMeta(ref) + `\b`)
-		result = re.ReplaceAllString(result, "int("+ref+")")
+		result = replaceWord(result, ref, "int("+ref+")")
 	}
 	return result
 }
@@ -1747,8 +2101,7 @@ func determineMacroGoType(val string) string {
 		return "uint32"
 	}
 	if strings.HasPrefix(cleaned, "-") || strings.Contains(cleaned, "(-") {
-		numRe := regexp.MustCompile(`\b(\d{10,})\b`)
-		if numRe.MatchString(cleaned) {
+		if _, found := findLargeNum(cleaned); found {
 			return "int64"
 		}
 		if strings.Contains(cleaned, "<<") || strings.Contains(cleaned, ">>") {
@@ -1756,21 +2109,11 @@ func determineMacroGoType(val string) string {
 		}
 		return "int32"
 	}
-	numRe := regexp.MustCompile(`\b(\d{10,})\b`)
-	if numRe.MatchString(cleaned) {
+	if _, found := findLargeNum(cleaned); found {
 		return "uint64"
 	}
-	shiftRe := regexp.MustCompile(`<<\s*(\d+)`)
-	if matches := shiftRe.FindAllStringSubmatch(cleaned, -1); len(matches) > 0 {
-		for _, m := range matches {
-			if len(m) >= 2 {
-				shiftVal := 0
-				fmt.Sscanf(m[1], "%d", &shiftVal)
-				if shiftVal >= 32 {
-					return "uint64"
-				}
-			}
-		}
+	if shiftVal, found := findShiftAmount(cleaned); found && shiftVal >= 32 {
+		return "uint64"
 	}
 	return "uint32"
 }
@@ -1789,8 +2132,7 @@ func propagateConstTypes(items []macroConstInfo) {
 					if refType == "uint64" || refType == "int64" {
 						continue
 					}
-					re := regexp.MustCompile(`\b` + regexp.QuoteMeta(refName) + `\b`)
-					if re.MatchString(mc.goValue) {
+					if hasWord(mc.goValue, refName) {
 						newType := "uint64"
 						if mc.goType == "int64" {
 							newType = "int64"
@@ -1813,8 +2155,7 @@ func propagateConstTypes(items []macroConstInfo) {
 					if refType != "uint64" && refType != "int64" {
 						continue
 					}
-					re := regexp.MustCompile(`\b` + regexp.QuoteMeta(refName) + `\b`)
-					if re.MatchString(mc.goValue) {
+					if hasWord(mc.goValue, refName) {
 						newType := "uint64"
 						if refType == "int64" {
 							newType = "int64"
@@ -1892,8 +2233,7 @@ func simplifyFnMacro(fn macroConstInfo, varItems []macroConstInfo) (string, stri
 	newBody := fn.goBody
 	for j := range paramCount {
 		if isConst[j] {
-			re := regexp.MustCompile(`\b` + regexp.QuoteMeta(params[j].name) + `\b`)
-			newBody = re.ReplaceAllString(newBody, constVal[j])
+			newBody = replaceWord(newBody, params[j].name, constVal[j])
 		}
 	}
 	newVarItems := make([]macroConstInfo, len(varItems))
@@ -2010,11 +2350,26 @@ func convertCMacroBodyToGo(body string, cParamNames, goParamNames []string) stri
 	result = strings.ReplaceAll(result, "_byteswap_ulong(", "bits.ReverseBytes32(")
 	result = strings.ReplaceAll(result, "_byteswap_uint64(", "bits.ReverseBytes64(")
 	result = strings.ReplaceAll(result, "_byteswap_ushort(", "bits.ReverseBytes16(")
-	result = regexp.MustCompile(`UINT64_C\s*\(`).ReplaceAllString(result, "uint64(")
-	result = regexp.MustCompile(`INT64_C\s*\(`).ReplaceAllString(result, "int64(")
-	result = regexp.MustCompile(`__has_include\s*\([^)]*\)`).ReplaceAllString(result, "0")
-	notRe := regexp.MustCompile(`!\s*\(`)
-	result = notRe.ReplaceAllString(result, "!(")
+	result = strings.ReplaceAll(result, "UINT64_C(", "uint64(")
+	result = strings.ReplaceAll(result, "INT64_C(", "int64(")
+	for {
+		start := strings.Index(result, "__has_include(")
+		if start < 0 {
+			break
+		}
+		end := strings.Index(result[start:], ")")
+		if end < 0 {
+			break
+		}
+		result = result[:start] + "0" + result[start+end+1:]
+	}
+	result = strings.ReplaceAll(result, "! (", "!(")
+	for i := 0; i < len(result)-1; i++ {
+		if result[i] == '!' && i+1 < len(result) && result[i+1] == '(' {
+			result = result[:i] + "!(" + result[i+2:]
+			break
+		}
+	}
 	result = strings.TrimSpace(result)
 	depth := 0
 	for _, ch := range result {
@@ -2051,14 +2406,7 @@ func cTagToGoName(name string) string {
 		name = name[1:]
 	}
 	result := strings.ToUpper(name[:1]) + name[1:]
-	goReserved := map[string]bool{
-		"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true,
-		"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
-		"uintptr": true, "string": true, "bool": true, "byte": true, "rune": true,
-		"float32": true, "float64": true, "complex64": true, "complex128": true,
-		"error": true, "any": true, "comparable": true,
-	}
-	if goReserved[result] {
+	if goReservedTypes[result] {
 		result = result + "_"
 	}
 	return result
