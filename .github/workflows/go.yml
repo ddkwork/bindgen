@@ -132,9 +132,6 @@ jobs:
         run: go test -v -run TestGenerate -count=1 -timeout 300s .
 
       - name: Verify generated code compiles
-        run: go build ./...
-
-      - name: Run go vet
         run: go vet ./...
 
       - name: Test hyperdbg sdk
