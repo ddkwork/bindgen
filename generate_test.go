@@ -1438,19 +1438,18 @@ func convertCBoolExpr(body string) string {
 }
 
 func isTypeAliasMacro(val string) bool {
+	lower := strings.ToLower(strings.TrimSpace(val))
 	typeAliasPatterns := []string{
 		"unsigned", "long", "int", "short", "void",
-		"char", "wchar_t", "const", "intptr_t", "uintptr_t",
+		"char", "wchar_t", "intptr_t", "uintptr_t",
 		"struct", "union", "enum",
 	}
-	lower := strings.ToLower(strings.TrimSpace(val))
 	for _, p := range typeAliasPatterns {
-		re := regexp.MustCompile(`\b` + regexp.QuoteMeta(p) + `\b`)
-		if re.MatchString(lower) {
+		if strings.Contains(lower, p) {
 			return true
 		}
 	}
-	if strings.ContainsAny(val, "[]") {
+	if strings.ContainsAny(val, "[]*") {
 		return true
 	}
 	return false
