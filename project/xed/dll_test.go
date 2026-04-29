@@ -8,19 +8,10 @@ import (
 	"unsafe"
 )
 
-const XED_MAX_INSTRUCTION_BYTES = 15
-
 func newXed(t *testing.T) *Xed {
 	x := &Xed{}
 	t.Cleanup(func() { _ = x })
 	return x
-}
-
-func cstring(s *int8) string {
-	if s == nil {
-		return "<nil>"
-	}
-	return goStringInt8((*[256]int8)(unsafe.Pointer(s))[:])
 }
 
 func TestTablesInit(t *testing.T) {
@@ -149,43 +140,6 @@ func TestFormatIntel(t *testing.T) {
 	}
 }
 
-func goStringInt8(buf []int8) string {
-	for i, b := range buf {
-		if b == 0 {
-			return string((*[256]byte)(unsafe.Pointer(&buf[0]))[:i])
-		}
-	}
-	return string((*[256]byte)(unsafe.Pointer(&buf[0]))[:])
-}
-
-func goString(buf []byte) string {
-	for i, b := range buf {
-		if b == 0 {
-			return string(buf[:i])
-		}
-	}
-	return string(buf)
-}
-
-func xedState(mode Xed_machine_mode_enum_t) Xed_state_t {
-	s := Xed_state_t{}
-	switch mode {
-	case XedMachineModeLegacy16:
-		s.Mmode = mode
-		s.StackAddrWidth = XedAddressWidth16b
-	case XedMachineModeLegacy32:
-		s.Mmode = mode
-		s.StackAddrWidth = XedAddressWidth32b
-	case XedMachineModeLong64:
-		s.Mmode = mode
-		s.StackAddrWidth = XedAddressWidth64b
-	default:
-		s.Mmode = mode
-		s.StackAddrWidth = XedAddressWidth32b
-	}
-	return s
-}
-
 func testEncodeRoundTrip(t *testing.T, x *Xed, inst Xed_encoder_instruction_t, expectBytes int) ([]byte, string) {
 	var encReq Xed_encoder_request_t
 	x.EncoderRequestZeroSetMode(&encReq, &inst.Mode)
@@ -195,7 +149,7 @@ func testEncodeRoundTrip(t *testing.T, x *Xed, inst Xed_encoder_instruction_t, e
 		t.Fatalf("convert_to_encoder_request failed")
 	}
 
-	itext := make([]byte, XED_MAX_INSTRUCTION_BYTES)
+	itext := make([]byte, XedMaxInstructionBytes)
 	ilen := uint32(len(itext))
 	var olen uint32
 
@@ -204,7 +158,7 @@ func testEncodeRoundTrip(t *testing.T, x *Xed, inst Xed_encoder_instruction_t, e
 		t.Fatalf("encode error: %s (%d)", cstring(x.ErrorEnumT2str(err)), err)
 	}
 
-	if olen == 0 || olen > XED_MAX_INSTRUCTION_BYTES {
+	if olen == 0 || olen > XedMaxInstructionBytes {
 		t.Fatalf("bad encoded length: %d", olen)
 	}
 

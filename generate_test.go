@@ -4364,7 +4364,7 @@ func TestDllReceiverName(t *testing.T) {
 }
 
 func TestSizeTTypeMappingInDllOutput(t *testing.T) {
-	dllPath := filepath.Join("project", "patchKeystone", "keystone2", "dll.go")
+	dllPath := filepath.Join("project", "keystone", "dll.go")
 	content, err := os.ReadFile(dllPath)
 	if err != nil {
 		t.Skipf("dll.go not found, skip: %v", err)
