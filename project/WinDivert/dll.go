@@ -15,35 +15,35 @@ type Windivert struct{}
 var dllBytes []byte
 
 var (
-	dll                                   *windows.LazyDLL
-	proc_WinDivertOpen                    *windows.LazyProc
-	proc_WinDivertRecv                    *windows.LazyProc
-	proc_WinDivertRecvEx                  *windows.LazyProc
-	proc_WinDivertSend                    *windows.LazyProc
-	proc_WinDivertSendEx                  *windows.LazyProc
-	proc_WinDivertShutdown                *windows.LazyProc
-	proc_WinDivertClose                   *windows.LazyProc
-	proc_WinDivertSetParam                *windows.LazyProc
-	proc_WinDivertGetParam                *windows.LazyProc
-	proc_WinDivertHelperHashPacket        *windows.LazyProc
-	proc_WinDivertHelperParsePacket       *windows.LazyProc
-	proc_WinDivertHelperParseIPv4Address  *windows.LazyProc
-	proc_WinDivertHelperParseIPv6Address  *windows.LazyProc
-	proc_WinDivertHelperFormatIPv4Address *windows.LazyProc
-	proc_WinDivertHelperFormatIPv6Address *windows.LazyProc
-	proc_WinDivertHelperCalcChecksums     *windows.LazyProc
+	dll            *windows.LazyDLL
+	proc_WinDivertOpen      *windows.LazyProc
+	proc_WinDivertRecv      *windows.LazyProc
+	proc_WinDivertRecvEx      *windows.LazyProc
+	proc_WinDivertSend      *windows.LazyProc
+	proc_WinDivertSendEx      *windows.LazyProc
+	proc_WinDivertShutdown      *windows.LazyProc
+	proc_WinDivertClose      *windows.LazyProc
+	proc_WinDivertSetParam      *windows.LazyProc
+	proc_WinDivertGetParam      *windows.LazyProc
+	proc_WinDivertHelperHashPacket      *windows.LazyProc
+	proc_WinDivertHelperParsePacket      *windows.LazyProc
+	proc_WinDivertHelperParseIPv4Address      *windows.LazyProc
+	proc_WinDivertHelperParseIPv6Address      *windows.LazyProc
+	proc_WinDivertHelperFormatIPv4Address      *windows.LazyProc
+	proc_WinDivertHelperFormatIPv6Address      *windows.LazyProc
+	proc_WinDivertHelperCalcChecksums      *windows.LazyProc
 	proc_WinDivertHelperDecrementTTL      *windows.LazyProc
-	proc_WinDivertHelperCompileFilter     *windows.LazyProc
-	proc_WinDivertHelperEvalFilter        *windows.LazyProc
+	proc_WinDivertHelperCompileFilter      *windows.LazyProc
+	proc_WinDivertHelperEvalFilter      *windows.LazyProc
 	proc_WinDivertHelperFormatFilter      *windows.LazyProc
-	proc_WinDivertHelperNtohs             *windows.LazyProc
-	proc_WinDivertHelperHtons             *windows.LazyProc
-	proc_WinDivertHelperNtohl             *windows.LazyProc
-	proc_WinDivertHelperHtonl             *windows.LazyProc
-	proc_WinDivertHelperNtohll            *windows.LazyProc
-	proc_WinDivertHelperHtonll            *windows.LazyProc
-	proc_WinDivertHelperNtohIPv6Address   *windows.LazyProc
-	proc_WinDivertHelperHtonIPv6Address   *windows.LazyProc
+	proc_WinDivertHelperNtohs      *windows.LazyProc
+	proc_WinDivertHelperHtons      *windows.LazyProc
+	proc_WinDivertHelperNtohl      *windows.LazyProc
+	proc_WinDivertHelperHtonl      *windows.LazyProc
+	proc_WinDivertHelperNtohll      *windows.LazyProc
+	proc_WinDivertHelperHtonll      *windows.LazyProc
+	proc_WinDivertHelperNtohIPv6Address      *windows.LazyProc
+	proc_WinDivertHelperHtonIPv6Address      *windows.LazyProc
 )
 
 func init() {
@@ -81,7 +81,7 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	os.WriteFile(p, data, 0o644)
+	os.WriteFile(p, data, 0644)
 	return p
 }
 
@@ -222,3 +222,4 @@ func (w *Windivert) WinDivertHelperNtohIPv6Address(InAddr *uint32, OutAddr *uint
 func (w *Windivert) WinDivertHelperHtonIPv6Address(InAddr *uint32, OutAddr *uint32) {
 	proc_WinDivertHelperHtonIPv6Address.Call(uintptr(unsafe.Pointer(InAddr)), uintptr(unsafe.Pointer(OutAddr)))
 }
+

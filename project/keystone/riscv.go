@@ -25,3 +25,4 @@ func (k Ks_err_asm_riscv) String() string {
 		return fmt.Sprintf("Ks_err_asm_riscv(0x%X)", uint32(k))
 	}
 }
+

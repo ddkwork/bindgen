@@ -745,16 +745,16 @@ func xedBuildInst(dstate Xed_state_t, iclass Xed_iclass_enum_t, eosz uint32, ops
 		nops = 15
 	}
 	inst.Noperands = uint32(nops)
-	opArray := (*[15]Xed_encoder_instruction_t_Anon1Elem)(unsafe.Pointer(&inst.Operands))
+	opArray := (*[8]Xed_encoder_instruction_t_Anon1Elem)(unsafe.Pointer(&inst.Operands))
 	for i, op := range ops {
 		if i >= nops {
 			break
 		}
 		opArray[i].Type = op.typ
 		if op.typ == XedEncoderOperandTypeMem {
-			*(*Xed_memop_t)(unsafe.Pointer(&opArray[i].Anon1.Data)) = op.mem
+			opArray[i].U.Data = op.mem
 		} else {
-			*(*uint64)(unsafe.Pointer(&opArray[i].Anon1.Data)) = op.u
+			*(*uint64)(unsafe.Pointer(&opArray[i].U.Data)) = op.u
 		}
 		opArray[i].WidthBits = op.widthBits
 	}

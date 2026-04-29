@@ -15,16 +15,16 @@ type Keystone struct{}
 var dllBytes []byte
 
 var (
-	dll                    *windows.LazyDLL
-	proc_ks_version        *windows.LazyProc
-	proc_ks_arch_supported *windows.LazyProc
-	proc_ks_open           *windows.LazyProc
-	proc_ks_close          *windows.LazyProc
-	proc_ks_errno          *windows.LazyProc
-	proc_ks_strerror       *windows.LazyProc
-	proc_ks_option         *windows.LazyProc
-	proc_ks_asm            *windows.LazyProc
-	proc_ks_free           *windows.LazyProc
+	dll            *windows.LazyDLL
+	proc_ks_version      *windows.LazyProc
+	proc_ks_arch_supported      *windows.LazyProc
+	proc_ks_open      *windows.LazyProc
+	proc_ks_close      *windows.LazyProc
+	proc_ks_errno      *windows.LazyProc
+	proc_ks_strerror      *windows.LazyProc
+	proc_ks_option      *windows.LazyProc
+	proc_ks_asm      *windows.LazyProc
+	proc_ks_free      *windows.LazyProc
 )
 
 func init() {
@@ -43,7 +43,7 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	os.WriteFile(p, data, 0o644)
+	os.WriteFile(p, data, 0644)
 	return p
 }
 
@@ -59,17 +59,17 @@ func (k *Keystone) KsArchSupported(Arch Ks_arch) bool {
 
 func (k *Keystone) KsOpen(Arch Ks_arch, Mode int32, Ks **Ks_engine) Ks_err {
 	r1, _, _ := proc_ks_open.Call(uintptr(Arch), uintptr(Mode), uintptr(unsafe.Pointer(Ks)))
-	return Ks_err(r1)
+	return Ks_err(uint32(r1))
 }
 
 func (k *Keystone) KsClose(Ks *Ks_engine) Ks_err {
 	r1, _, _ := proc_ks_close.Call(uintptr(unsafe.Pointer(Ks)))
-	return Ks_err(r1)
+	return Ks_err(uint32(r1))
 }
 
 func (k *Keystone) KsErrno(Ks *Ks_engine) Ks_err {
 	r1, _, _ := proc_ks_errno.Call(uintptr(unsafe.Pointer(Ks)))
-	return Ks_err(r1)
+	return Ks_err(uint32(r1))
 }
 
 func (k *Keystone) KsStrerror(Code Ks_err) *int8 {
@@ -79,7 +79,7 @@ func (k *Keystone) KsStrerror(Code Ks_err) *int8 {
 
 func (k *Keystone) KsOption(Ks *Ks_engine, Type Ks_opt_type, Value uintptr) Ks_err {
 	r1, _, _ := proc_ks_option.Call(uintptr(unsafe.Pointer(Ks)), uintptr(Type), Value)
-	return Ks_err(r1)
+	return Ks_err(uint32(r1))
 }
 
 func (k *Keystone) KsAsm(Ks *Ks_engine, String *int8, Address uint64, Encoding **uint8, Encoding_size *uintptr, Stat_count *uintptr) int32 {
@@ -90,3 +90,4 @@ func (k *Keystone) KsAsm(Ks *Ks_engine, String *int8, Address uint64, Encoding *
 func (k *Keystone) KsFree(P *uint8) {
 	proc_ks_free.Call(uintptr(unsafe.Pointer(P)))
 }
+

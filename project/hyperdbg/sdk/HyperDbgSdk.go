@@ -2660,15 +2660,10 @@ func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetReserved2(val uint32) {
 type VMX_SEGMENT_SELECTOR struct {
 	Selector uint16
 	_  [2]byte
-	Anon1 VMX_SEGMENT_SELECTOR_Anon1Union
+	Attributes VMX_SEGMENT_ACCESS_RIGHTS_TYPE
 	Limit uint32
 	_  [4]byte
 	Base uint64
-}
-
-// Source: DataTypes.h:0 -> VMX_SEGMENT_SELECTOR_Anon1Union
-type VMX_SEGMENT_SELECTOR_Anon1Union struct {
-	Data struct{}
 }
 
 // Source: Events.h:246 -> _DEBUGGER_MODIFY_EVENTS
@@ -3825,24 +3820,8 @@ type ACTION_BUFFER struct {
 	_  [7]byte
 }
 
-func LOBYTE(W uint32) uint32 {
-	return uint32((uint8)(W))
-}
-
-func HIWORD(L uint32) uint32 {
-	return uint32((uint16)(((uint32)(L)>>16)&0xFFFF))
-}
-
-func LOWORD(L uint32) uint32 {
-	return uint32((uint16)(L))
-}
-
 func CtlCode(Function uint32) uint32 {
 	return uint32(((FileDeviceUnknown)<<16)|((FileAnyAccess)<<14)|((Function)<<2)|(MethodBuffered))
-}
-
-func HIBYTE(W uint32) uint32 {
-	return uint32((uint8)(((uint16)(W)>>8)&0xFF))
 }
 
 // Source: ErrorCodes.h -> Error codes
@@ -4155,8 +4134,8 @@ const (
 	VersionMinor uint32 = 18
 	VersionPatch uint32 = 1
 	DefaultInitialDebuggeeToDebuggerOffset uint32 = 0x200
-	BusBitWidth uint32 = 8
 	DefaultInitialDebuggerToDebuggeeOffset uint32 = 0x0
+	BusBitWidth uint32 = 8
 	DeviceBitWidth uint32 = 5
 	FunctionBitWidth uint32 = 3
 	FileAnyAccess uint32 = 0
@@ -4170,8 +4149,8 @@ const (
 	SymbolUndefined uint32 = 0
 	SymbolGlobalIdType uint32 = 1
 	SymbolLocalIdType uint32 = 2
-	MethodBuffered uint32 = 0
 	SymbolNumType uint32 = 3
+	MethodBuffered uint32 = 0
 	SymbolRegisterType uint32 = 4
 	SymbolPseudoRegType uint32 = 5
 	SymbolSemanticRuleType uint32 = 6
@@ -4183,8 +4162,8 @@ const (
 	SymbolInvalid uint32 = 10
 	SymbolWstringType uint32 = 11
 	FALSE uint32 = 0
-	TRUE uint32 = 1
 	SymbolFunctionParameterIdType uint32 = 12
+	TRUE uint32 = 1
 	SymbolReturnAddressType uint32 = 13
 	SymbolFunctionParameterType uint32 = 14
 	Upper56Bits uint64 = 0xffffffffffffff00
@@ -4196,10 +4175,10 @@ const (
 	Lower32Bits uint64 = 0x00000000ffffffff
 	SymbolReferenceLocalIdType uint32 = 18
 	Lower16Bits uint64 = 0x000000000000ffff
-	SymbolReferenceTempType uint32 = 19
 	Lower8Bits uint64 = 0x00000000000000ff
-	SymbolDereferenceLocalIdType uint32 = 20
+	SymbolReferenceTempType uint32 = 19
 	SecondLower8Bits uint64 = 0x000000000000ff00
+	SymbolDereferenceLocalIdType uint32 = 20
 	Upper48BitsAndLower8Bits uint64 = 0xffffffffffff00ff
 	SymbolDereferenceTempType uint32 = 21
 	SymbolMemValidCheckMask uint32 = (1<<31)
@@ -4284,14 +4263,14 @@ const (
 	FuncInterlockedDecrement uint32 = 74
 	FuncPhysicalToVirtual uint32 = 75
 	FuncVirtualToPhysical uint32 = 76
-	FuncPoiPa uint32 = 77
 	NormalPageSize uint32 = 4096
+	FuncPoiPa uint32 = 77
 	FuncHiPa uint32 = 78
 	FuncLowPa uint32 = 79
 	FuncDbPa uint32 = 80
 	FuncDdPa uint32 = 81
-	PacketChunkSize uint32 = NormalPageSize
 	FuncDwPa uint32 = 82
+	PacketChunkSize uint32 = NormalPageSize
 	FuncDqPa uint32 = 83
 	FuncEd uint32 = 84
 	FuncEb uint32 = 85
@@ -4371,8 +4350,8 @@ const (
 	PseudoRegisterContext uint32 = 10
 	PseudoRegisterEventTag uint32 = 11
 	PseudoRegisterEventId uint32 = 12
-	PseudoRegisterEventStage uint32 = 13
 	MaximumInstrSize uint32 = 16
+	PseudoRegisterEventStage uint32 = 13
 	PseudoRegisterDate uint32 = 14
 	PseudoRegisterTime uint32 = 15
 	MaximumCallInstrSize uint32 = 7
@@ -4485,45 +4464,45 @@ const (
 
 // Source: HyperDbgSdk.h -> Macro variables
 var (
-	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
-	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
-	IoctlQueryCurrentThread uint32 = CtlCode(0x81d)
-	IoctlPausePacketReceived uint32 = CtlCode(0x811)
-	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
-	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
-	IoctlPerformActionsOnApic uint32 = CtlCode(0x822)
-	IoctlPerformSmiOperation uint32 = CtlCode(0x826)
 	IoctlPcidevinfoEnum uint32 = CtlCode(0x823)
-	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
-	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
-	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
-	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
 	IoctlPreactivateFunctionality uint32 = CtlCode(0x820)
-	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
-	IoctlSendUsermodeMessagesToDebugger uint32 = CtlCode(0x813)
-	IoctlTerminateVmx uint32 = CtlCode(0x802)
+	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
 	IoctlGetListOfThreadsAndProcesses uint32 = CtlCode(0x81b)
+	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
 	IoctlDebuggerVa2paAndPa2vaCommands uint32 = CtlCode(0x809)
 	IoctlDebuggerModifyEvents uint32 = CtlCode(0x80c)
-	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
-	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
-	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
-	IoctlRegisterEvent uint32 = CtlCode(0x800)
-	IoctlRequestRevMachineService uint32 = CtlCode(0x81e)
-	IoctlDebuggerReadPageTableEntriesDetails uint32 = CtlCode(0x805)
-	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
-	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
-	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
-	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
-	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
-	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
-	IoctlDebuggerBringPagesIn uint32 = CtlCode(0x81f)
-	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
 	IoctlSendUserDebuggerCommands uint32 = CtlCode(0x817)
-	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
-	IoctlDebuggerEditMemory uint32 = CtlCode(0x80a)
-	IoctlSendSignalExecutionInDebuggeeFinished uint32 = CtlCode(0x812)
+	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
+	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
 	IoctlPerformHypertraceOperation uint32 = CtlCode(0x827)
+	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
+	IoctlSendSignalExecutionInDebuggeeFinished uint32 = CtlCode(0x812)
+	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
+	IoctlRequestRevMachineService uint32 = CtlCode(0x81e)
+	IoctlSendUsermodeMessagesToDebugger uint32 = CtlCode(0x813)
+	IoctlTerminateVmx uint32 = CtlCode(0x802)
+	IoctlPerformSmiOperation uint32 = CtlCode(0x826)
+	IoctlDebuggerBringPagesIn uint32 = CtlCode(0x81f)
+	IoctlDebuggerReadPageTableEntriesDetails uint32 = CtlCode(0x805)
+	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
+	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
+	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
+	IoctlQueryCurrentThread uint32 = CtlCode(0x81d)
+	IoctlDebuggerEditMemory uint32 = CtlCode(0x80a)
+	IoctlRegisterEvent uint32 = CtlCode(0x800)
 	IoctlSendGeneralBufferFromDebuggeeToDebugger uint32 = CtlCode(0x814)
+	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
+	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
+	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
+	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
+	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
+	IoctlPausePacketReceived uint32 = CtlCode(0x811)
+	IoctlPerformActionsOnApic uint32 = CtlCode(0x822)
+	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
+	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
+	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
+	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
+	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
+	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
 )
 

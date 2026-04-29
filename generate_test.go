@@ -773,6 +773,19 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		}
 	}
 
+	fnMacroNames := make(map[string]string)
+	constMacroNames := make(map[string]string)
+	for macroName, macro := range ast.Macros {
+		if macro.IsFnLike {
+			fnMacroNames[macroName] = cMacroNameToGoName(macroName)
+		} else if macro.IsConst {
+			goConstName := cMacroNameToGoName(macroName)
+			if goConstName != macroName {
+				constMacroNames[macroName] = goConstName
+			}
+		}
+	}
+
 	for name, m := range ast.Macros {
 		pos := m.Name.Position()
 		sourceFile := filepath.Base(pos.Filename)
@@ -857,24 +870,24 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			isVar = true
 		}
 
-		for fnName, fnMacro := range ast.Macros {
-			if fnMacro.IsFnLike {
-				if strings.Contains(goVal, fnName+"(") || strings.Contains(goVal, fnName+" (") {
+		identRe := regexp.MustCompile(`[A-Za-z_][A-Za-z0-9_]*`)
+		identsInVal := identRe.FindAllString(goVal, -1)
+		identsSet := make(map[string]bool, len(identsInVal))
+		for _, id := range identsInVal {
+			identsSet[id] = true
+		}
+
+		for id := range identsSet {
+			if goFnName, ok := fnMacroNames[id]; ok {
+				if strings.Contains(goVal, id+"(") || strings.Contains(goVal, id+" (") {
 					isVar = true
-					goFnName := cMacroNameToGoName(fnName)
-					goVal = strings.ReplaceAll(goVal, fnName+"(", goFnName+"(")
-					goVal = strings.ReplaceAll(goVal, fnName+" (", goFnName+"(")
+					goVal = strings.ReplaceAll(goVal, id+"(", goFnName+"(")
+					goVal = strings.ReplaceAll(goVal, id+" (", goFnName+"(")
 				}
 			}
-		}
-		for constName, constMacro := range ast.Macros {
-			if constMacro.IsFnLike || !constMacro.IsConst {
-				continue
-			}
-			goConstName := cMacroNameToGoName(constName)
-			if goConstName != constName {
-				re := regexp.MustCompile(`\b` + regexp.QuoteMeta(constName) + `\b`)
-				goVal = re.ReplaceAllString(goVal, goConstName)
+			if goCName, ok := constMacroNames[id]; ok {
+				re := regexp.MustCompile(`\b` + regexp.QuoteMeta(id) + `\b`)
+				goVal = re.ReplaceAllString(goVal, goCName)
 			}
 		}
 
@@ -1137,6 +1150,9 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				continue
 			}
 			if !isValidGoFnMacroBody(mc.value) {
+				continue
+			}
+			if isCStyleCastMacro(mc.goBody) {
 				continue
 			}
 			cleanedBody := cleanCMacroValue(mc.goBody)
@@ -1487,6 +1503,7 @@ func isValidGoFnMacroBody(body string) bool {
 		"uNsigNed", "constZyan", "inline", "(void)",
 		"_byteswap_ulong", "_byteswap_uint64", "_byteswap_ushort",
 		"UINT64_C", "INT64_C", "__has_include", "__has_builtin",
+		"XED_STATIC_CAST", "XED_REINTERPRET_CAST", "XED_CAST",
 	}
 	for _, m := range cMarkers {
 		if strings.Contains(body, m) {
@@ -1508,6 +1525,11 @@ func isValidGoFnMacroBody(body string) bool {
 		return false
 	}
 	return true
+}
+
+func isCStyleCastMacro(body string) bool {
+	castPattern := regexp.MustCompile(`\([A-Z][A-Za-z0-9_]*\)\s*\(`)
+	return castPattern.MatchString(body)
 }
 
 func isSimpleNumber(s string) bool {
@@ -2780,7 +2802,48 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 			tag := uv.Tag()
 			tagStr := string(tag.Src())
 			unionSize := uv.Size()
-			if unionFields := generateUnionFields(uv, unionSize); unionFields != "" {
+			if fieldType != "uint64" {
+				fields = append(fields, fmt.Sprintf("\t%s %s", fieldName, fieldType))
+			} else if tagStr == "" {
+				anonCount++
+				unionGoName := structGoName + "_Anon" + fmt.Sprintf("%d", anonCount) + "Union"
+				if unionFields := generateUnionFields(uv, unionSize); unionFields != "" {
+					for j := 0; j < uv.NumFields(); j++ {
+						if uf := uv.FieldByIndex(j); uf != nil {
+							if usv, ok := uf.Type().(*cc.StructType); ok {
+								nestedTag := usv.Tag()
+								nestedTagStr := string(nestedTag.Src())
+								if nestedTagStr != "" && !hasBitfields(usv) {
+									nestedF, nestedM, _ := generateStructFields(usv, mapCTypeToGo(uf.Type()), isPacked)
+									innerTypes = append(innerTypes, structInfo{
+										goName:  mapCTypeToGo(uf.Type()),
+										cName:   nestedTagStr,
+										fields:  nestedF,
+										methods: nestedM,
+									})
+								}
+							}
+						}
+					}
+					innerTypes = append(innerTypes, structInfo{
+						goName: unionGoName + "_",
+						cName:  tagStr,
+						fields: unionFields,
+					})
+					innerTypes = append(innerTypes, structInfo{
+						goName: unionGoName,
+						cName:  tagStr,
+						fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(uv, unionSize)),
+					})
+				} else {
+					innerTypes = append(innerTypes, structInfo{
+						goName: unionGoName,
+						cName:  unionGoName,
+						fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(uv, unionSize)),
+					})
+				}
+				fields = append(fields, fmt.Sprintf("\t%s %s", fieldName, unionGoName))
+			} else if unionFields := generateUnionFields(uv, unionSize); unionFields != "" {
 				unionGoName := fieldType
 				for j := 0; j < uv.NumFields(); j++ {
 					if uf := uv.FieldByIndex(j); uf != nil {
@@ -2810,7 +2873,7 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 					fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(uv, unionSize)),
 				})
 				fields = append(fields, fmt.Sprintf("\t%s %s", fieldName, unionGoName))
-			} else if tagStr != "" {
+			} else {
 				unionGoName := fieldType
 				innerTypes = append(innerTypes, structInfo{
 					goName: unionGoName,
@@ -2818,16 +2881,6 @@ func generateStructFields(t *cc.StructType, structGoName string, forcePacked boo
 					fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(uv, unionSize)),
 				})
 				fields = append(fields, fmt.Sprintf("\t%s %s", fieldName, unionGoName))
-			} else {
-				anonCount++
-				anonFieldName := fmt.Sprintf("Anon%d", anonCount)
-				anonUnionName := structGoName + "_Anon" + fmt.Sprintf("%d", anonCount) + "Union"
-				innerTypes = append(innerTypes, structInfo{
-					goName: anonUnionName,
-					cName:  anonUnionName,
-					fields: fmt.Sprintf("\t%s\n", unionAlignedFFIType(uv, unionSize)),
-				})
-				fields = append(fields, fmt.Sprintf("\t%s %s", anonFieldName, anonUnionName))
 			}
 		} else if arr, ok := ft.(*cc.ArrayType); ok {
 			elem := arr.Elem()
@@ -3813,14 +3866,14 @@ func generateDllBindingCode(funcs []dllFuncInfo, dllName, pkgName string, funcTy
 			resolvedRet := resolveTypedef(fn.returnType, typedefs)
 			cast := dllReturnTypeCast(resolvedRet)
 			smallIntTypes := map[string]bool{"uintptr": true, "uint32": true, "int32": true, "uint16": true, "int16": true, "uint8": true, "int8": true}
-			if cast != "" && smallIntTypes[cast] {
+			if enums.Has(resolvedRet) || enums.Has(fn.returnType) {
+				sb.WriteString(fmt.Sprintf("\treturn %s(uint32(r1))\n", fn.returnType))
+			} else if cast != "" && smallIntTypes[cast] {
 				sb.WriteString(fmt.Sprintf("\treturn %s(r1)\n", cast))
 			} else if resolvedRet == "unsafe.Pointer" {
 				sb.WriteString("\treturn unsafe.Pointer(r1)\n")
 			} else if after, ok := strings.CutPrefix(resolvedRet, "*"); ok {
 				sb.WriteString(fmt.Sprintf("\treturn (*%s)(unsafe.Pointer(r1))\n", after))
-			} else if enums.Has(resolvedRet) || enums.Has(fn.returnType) {
-				sb.WriteString(fmt.Sprintf("\treturn %s(r1)\n", fn.returnType))
 			} else if fn.returnType != "" && fn.returnType != "void" {
 				sb.WriteString(fmt.Sprintf("\treturn *(*%s)(unsafe.Pointer(&r1))\n", fn.returnType))
 			} else {

@@ -1,38 +1,70 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"os"
-	"strings"
+	"path/filepath"
+
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
-func findClExe() string { return os.Getenv("CC") }
+type ewdkCommonEnv struct {
+	WDKContentRoot               string `json:"WDKContentRoot"`
+	WindowsTargetPlatformVersion string `json:"WindowsTargetPlatformVersion"`
+	VCToolsInstallDir            string `json:"VCToolsInstallDir"`
+	WDKBinRoot                   string `json:"WDKBinRoot"`
+	DiaRoot                      string `json:"DiaRoot"`
+	VSINSTALLDIR                 string `json:"VSINSTALLDIR"`
+	BuildLabSetupRoot            string `json:"BuildLabSetupRoot"`
+	CC                           string `json:"CC"`
+	RC                           string `json:"RC"`
+	MT                           string `json:"MT"`
+	SignTool                     string `json:"SignTool"`
+	NTDDKFile                    string `json:"NTDDKFile"`
+	NinjaDir                     string `json:"NinjaDir"`
+}
+
+type ewdkKMEnv struct {
+	IncludeDirs []string `json:"IncludeDirs"`
+	LibDirs     []string `json:"LibDirs"`
+}
+
+type ewdkUMEnv struct {
+	IncludeDirs []string `json:"IncludeDirs"`
+	LibDirs     []string `json:"LibDirs"`
+}
+
+type ewdkEnvJSON struct {
+	Common ewdkCommonEnv `json:"Common"`
+	KM     ewdkKMEnv     `json:"KM"`
+	UM     ewdkUMEnv     `json:"UM"`
+}
+
+var cachedEwdk *ewdkEnvJSON
+
+func loadEwdkEnv() *ewdkEnvJSON {
+	if cachedEwdk != nil {
+		return cachedEwdk
+	}
+	p := filepath.Join(`d:\ewdk`, "ewdk.env.json")
+	var env ewdkEnvJSON
+	mylog.Check(json.Unmarshal(mylog.Check2(os.ReadFile(p)), &env))
+	cachedEwdk = &env
+	return &env
+}
+
+func findClExe() string {
+	return loadEwdkEnv().Common.CC
+}
 
 func findEWDKIncludePaths() []string {
-	var rawPaths []string
-	for p := range strings.SplitSeq(os.Getenv("INCLUDE"), ";") {
-		if p = strings.TrimSpace(p); p != "" {
-			rawPaths = append(rawPaths, p)
-		}
-	}
-	var clean []string
-	seen := make(map[string]bool)
-	for _, p := range rawPaths {
-		info, err := os.Stat(p)
-		if err != nil || !info.IsDir() || seen[p] {
-			continue
-		}
-		seen[p] = true
-		clean = append(clean, p)
-	}
-	fmt.Printf("msenv: loaded %d include paths from INCLUDE\n", len(clean))
-	return clean
+	return loadEwdkEnv().UM.IncludeDirs
 }
 
 func loadMSVCExtraTypes() string {
 	return `
-#define _MSC_VER 1941
-#define _MSC_FULL_VER 1941341200
+#define _MSC_VER 1944
+#define _MSC_FULL_VER 1944352100
 #define _WIN64 1
 #define _WIN32 1
 #define _M_X64 100
