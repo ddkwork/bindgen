@@ -45,7 +45,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: C:\Users\runneradmin\AppData\Local\Temp\ewdk.iso
-          key: ewdk-iso-${{ hashFiles('../ewdk/scripts/get_ewdk_url.go') }}
+          key: ewdk-iso-28000
           restore-keys: |
             ewdk-iso-
 
