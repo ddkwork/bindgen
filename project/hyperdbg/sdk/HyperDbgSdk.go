@@ -70,8 +70,8 @@ type (
 	PUINT = *uint32
 	LONG = int32
 	ULONG = uint32
-	BYTE = uint8
 	PBOOLEAN = *uint8
+	BYTE = uint8
 	PGUEST_REGS = *GUEST_REGS
 	PGUEST_XMM_REGS = *GUEST_XMM_REGS
 	PGUEST_EXTRA_REGISTERS = *GUEST_EXTRA_REGISTERS
@@ -148,7 +148,8 @@ type (
 	PLAPIC_PAGE = *LAPIC_PAGE
 	PIO_APIC_ENTRY_PACKETS = *IO_APIC_ENTRY_PACKETS
 	PSMI_OPERATION_PACKETS = *SMI_OPERATION_PACKETS
-	PHYPERTRACE_OPERATION_PACKETS = *HYPERTRACE_OPERATION_PACKETS
+	PHYPERTRACE_LBR_OPERATION_PACKETS = *HYPERTRACE_LBR_OPERATION_PACKETS
+	PHYPERTRACE_PT_OPERATION_PACKETS = *HYPERTRACE_PT_OPERATION_PACKETS
 	PINTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS = *INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS
 	PDEBUGGEE_FORMATS_PACKET = *DEBUGGEE_FORMATS_PACKET
 	PDEBUGGEE_SYMBOL_REQUEST_PACKET = *DEBUGGEE_SYMBOL_REQUEST_PACKET
@@ -174,13 +175,13 @@ type (
 	PSYMBOL_MAP = *SYMBOL_MAP
 	PACTION_BUFFER = *ACTION_BUFFER
 	SymbolTypeNames = [22]*int8
-	FunctionNames = [103]*int8
+	FunctionNames = [104]*int8
 	RegistersNames = [120]*int8
 )
 
 type SendMessageWithParamCallback func(*int8) int32
 
-type SendMessageWWithSharedBufferCallback func() int32
+type SendMessageWithSharedBufferCallback func() int32
 
 type SymbolMapCallback func(uint64, *int8, *int8, uint32)
 
@@ -321,7 +322,8 @@ const (
 	DebuggerRemotePacketRequestedActionOnVmxRootQueryPcidevinfo
 	DebuggerRemotePacketRequestedActionOnVmxRootReadIdtEntries
 	DebuggerRemotePacketRequestedActionOnVmxRootPerformSmiOperation
-	DebuggerRemotePacketRequestedActionOnVmxRootPerformHypertraceOperation
+	DebuggerRemotePacketRequestedActionOnVmxRootPerformHypertraceLbrOperation
+	DebuggerRemotePacketRequestedActionOnVmxRootPerformHypertracePtOperation
 	DebuggerRemotePacketRequestedActionNoAction
 	DebuggerRemotePacketRequestedActionDebuggeeStarted
 	DebuggerRemotePacketRequestedActionDebuggeeLoggingMechanism
@@ -356,7 +358,8 @@ const (
 	DebuggerRemotePacketRequestedActionDebuggeeResultOfPcidevinfo
 	DebuggerRemotePacketRequestedActionDebuggeeResultOfQueryIdtEntriesRequests
 	DebuggerRemotePacketRequestedActionDebuggeeResultSmiOperationRequests
-	DebuggerRemotePacketRequestedActionDebuggeeResultHypertraceOperationRequests
+	DebuggerRemotePacketRequestedActionDebuggeeResultHypertraceLbrOperationRequests
+	DebuggerRemotePacketRequestedActionDebuggeeResultHypertracePtOperationRequests
 )
 
 func (d DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION) String() string {
@@ -431,8 +434,10 @@ func (d DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION) String() string {
 		return "Debugger Remote Packet Requested Action On Vmx Root Read Idt Entries"
 	case DebuggerRemotePacketRequestedActionOnVmxRootPerformSmiOperation:
 		return "Debugger Remote Packet Requested Action On Vmx Root Perform Smi Operation"
-	case DebuggerRemotePacketRequestedActionOnVmxRootPerformHypertraceOperation:
-		return "Debugger Remote Packet Requested Action On Vmx Root Perform Hypertrace Operation"
+	case DebuggerRemotePacketRequestedActionOnVmxRootPerformHypertraceLbrOperation:
+		return "Debugger Remote Packet Requested Action On Vmx Root Perform Hypertrace Lbr Operation"
+	case DebuggerRemotePacketRequestedActionOnVmxRootPerformHypertracePtOperation:
+		return "Debugger Remote Packet Requested Action On Vmx Root Perform Hypertrace Pt Operation"
 	case DebuggerRemotePacketRequestedActionNoAction:
 		return "Debugger Remote Packet Requested Action No Action"
 	case DebuggerRemotePacketRequestedActionDebuggeeStarted:
@@ -501,14 +506,16 @@ func (d DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION) String() string {
 		return "Debugger Remote Packet Requested Action Debuggee Result Of Query Idt Entries Requests"
 	case DebuggerRemotePacketRequestedActionDebuggeeResultSmiOperationRequests:
 		return "Debugger Remote Packet Requested Action Debuggee Result Smi Operation Requests"
-	case DebuggerRemotePacketRequestedActionDebuggeeResultHypertraceOperationRequests:
-		return "Debugger Remote Packet Requested Action Debuggee Result Hypertrace Operation Requests"
+	case DebuggerRemotePacketRequestedActionDebuggeeResultHypertraceLbrOperationRequests:
+		return "Debugger Remote Packet Requested Action Debuggee Result Hypertrace Lbr Operation Requests"
+	case DebuggerRemotePacketRequestedActionDebuggeeResultHypertracePtOperationRequests:
+		return "Debugger Remote Packet Requested Action Debuggee Result Hypertrace Pt Operation Requests"
 	default:
 		return fmt.Sprintf("DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION(0x%X)", uint32(d))
 	}
 }
 
-// Source: Connection.h:160 -> _DEBUGGER_REMOTE_PACKET_TYPE
+// Source: Connection.h:162 -> _DEBUGGER_REMOTE_PACKET_TYPE
 type DEBUGGER_REMOTE_PACKET_TYPE uint32
 
 const (
@@ -561,7 +568,7 @@ func (p PAGING_LEVEL) String() string {
 	}
 }
 
-// Source: DataTypes.h:39 -> _POOL_ALLOCATION_INTENTION
+// Source: DataTypes.h:57 -> _POOL_ALLOCATION_INTENTION
 type POOL_ALLOCATION_INTENTION uint32
 
 const (
@@ -610,7 +617,7 @@ func (p POOL_ALLOCATION_INTENTION) String() string {
 	}
 }
 
-// Source: DataTypes.h:68 -> _DEBUG_REGISTER_TYPE
+// Source: DataTypes.h:86 -> _DEBUG_REGISTER_TYPE
 type DEBUG_REGISTER_TYPE uint32
 
 const (
@@ -635,7 +642,7 @@ func (d DEBUG_REGISTER_TYPE) String() string {
 	}
 }
 
-// Source: DataTypes.h:80 -> _VMX_EXECUTION_MODE
+// Source: DataTypes.h:98 -> _VMX_EXECUTION_MODE
 type VMX_EXECUTION_MODE uint32
 
 const (
@@ -654,7 +661,7 @@ func (v VMX_EXECUTION_MODE) String() string {
 	}
 }
 
-// Source: DataTypes.h:90 -> _VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
+// Source: DataTypes.h:108 -> _VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
 type VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE uint32
 
 const (
@@ -679,7 +686,7 @@ func (v VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE) String() string {
 	}
 }
 
-// Source: DataTypes.h:103 -> _DEBUGGER_THREAD_PROCESS_TRACING
+// Source: DataTypes.h:121 -> _DEBUGGER_THREAD_PROCESS_TRACING
 type DEBUGGER_THREAD_PROCESS_TRACING uint32
 
 const (
@@ -704,7 +711,7 @@ func (d DEBUGGER_THREAD_PROCESS_TRACING) String() string {
 	}
 }
 
-// Source: DataTypes.h:252 -> _NOTIFY_TYPE
+// Source: DataTypes.h:270 -> _NOTIFY_TYPE
 type NOTIFY_TYPE uint32
 
 const (
@@ -723,7 +730,7 @@ func (n NOTIFY_TYPE) String() string {
 	}
 }
 
-// Source: DataTypes.h:325 -> _DEBUGGER_HOOK_MEMORY_TYPE
+// Source: DataTypes.h:343 -> _DEBUGGER_HOOK_MEMORY_TYPE
 type DEBUGGER_HOOK_MEMORY_TYPE uint32
 
 const (
@@ -1147,6 +1154,7 @@ const (
 	ProtectedHvResourcesMovToDebugRegisterExiting
 	ProtectedHvResourcesMovControlRegisterExiting
 	ProtectedHvResourcesMovToCr3Exiting
+	ProtectedHvResourcesSaveAndLoadDebugControls
 )
 
 func (p PROTECTED_HV_RESOURCES_TYPE) String() string {
@@ -1163,12 +1171,14 @@ func (p PROTECTED_HV_RESOURCES_TYPE) String() string {
 		return "Protected Hv Resources Mov Control Register Exiting"
 	case ProtectedHvResourcesMovToCr3Exiting:
 		return "Protected Hv Resources Mov To Cr 3 Exiting"
+	case ProtectedHvResourcesSaveAndLoadDebugControls:
+		return "Protected Hv Resources Save And Load Debug Controls"
 	default:
 		return fmt.Sprintf("PROTECTED_HV_RESOURCES_TYPE(0x%X)", uint32(p))
 	}
 }
 
-// Source: RequestStructures.h:90 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_MODE
+// Source: RequestStructures.h:88 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_MODE
 type REVERSING_MACHINE_RECONSTRUCT_MEMORY_MODE uint32
 
 const (
@@ -1190,7 +1200,7 @@ func (r REVERSING_MACHINE_RECONSTRUCT_MEMORY_MODE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:101 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_TYPE
+// Source: RequestStructures.h:99 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_TYPE
 type REVERSING_MACHINE_RECONSTRUCT_MEMORY_TYPE uint32
 
 const (
@@ -1212,7 +1222,7 @@ func (r REVERSING_MACHINE_RECONSTRUCT_MEMORY_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:154 -> _DEBUGGER_PREALLOC_COMMAND_TYPE
+// Source: RequestStructures.h:150 -> _DEBUGGER_PREALLOC_COMMAND_TYPE
 type DEBUGGER_PREALLOC_COMMAND_TYPE uint32
 
 const (
@@ -1249,7 +1259,7 @@ func (d DEBUGGER_PREALLOC_COMMAND_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:189 -> _DEBUGGER_PREACTIVATE_COMMAND_TYPE
+// Source: RequestStructures.h:184 -> _DEBUGGER_PREACTIVATE_COMMAND_TYPE
 type DEBUGGER_PREACTIVATE_COMMAND_TYPE uint32
 
 const (
@@ -1265,7 +1275,7 @@ func (d DEBUGGER_PREACTIVATE_COMMAND_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:218 -> _DEBUGGER_READ_READING_TYPE
+// Source: RequestStructures.h:212 -> _DEBUGGER_READ_READING_TYPE
 type DEBUGGER_READ_READING_TYPE uint32
 
 const (
@@ -1284,7 +1294,7 @@ func (d DEBUGGER_READ_READING_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:228 -> _DEBUGGER_READ_MEMORY_TYPE
+// Source: RequestStructures.h:222 -> _DEBUGGER_READ_MEMORY_TYPE
 type DEBUGGER_READ_MEMORY_TYPE uint32
 
 const (
@@ -1303,7 +1313,7 @@ func (d DEBUGGER_READ_MEMORY_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:238 -> _DEBUGGER_READ_MEMORY_ADDRESS_MODE
+// Source: RequestStructures.h:232 -> _DEBUGGER_READ_MEMORY_ADDRESS_MODE
 type DEBUGGER_READ_MEMORY_ADDRESS_MODE uint32
 
 const (
@@ -1322,7 +1332,7 @@ func (d DEBUGGER_READ_MEMORY_ADDRESS_MODE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:250 -> _DEBUGGER_SHOW_MEMORY_STYLE
+// Source: RequestStructures.h:244 -> _DEBUGGER_SHOW_MEMORY_STYLE
 type DEBUGGER_SHOW_MEMORY_STYLE uint32
 
 const (
@@ -1359,7 +1369,7 @@ func (d DEBUGGER_SHOW_MEMORY_STYLE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:312 -> _DEBUGGER_TEST_QUERY_STATE
+// Source: RequestStructures.h:304 -> _DEBUGGER_TEST_QUERY_STATE
 type DEBUGGER_TEST_QUERY_STATE uint32
 
 const (
@@ -1408,7 +1418,7 @@ func (d DEBUGGER_TEST_QUERY_STATE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:430 -> _DEBUGGER_MSR_ACTION_TYPE
+// Source: RequestStructures.h:417 -> _DEBUGGER_MSR_ACTION_TYPE
 type DEBUGGER_MSR_ACTION_TYPE uint32
 
 const (
@@ -1427,7 +1437,7 @@ func (d DEBUGGER_MSR_ACTION_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:461 -> _DEBUGGER_EDIT_MEMORY_TYPE
+// Source: RequestStructures.h:447 -> _DEBUGGER_EDIT_MEMORY_TYPE
 type DEBUGGER_EDIT_MEMORY_TYPE uint32
 
 const (
@@ -1446,7 +1456,7 @@ func (d DEBUGGER_EDIT_MEMORY_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:471 -> _DEBUGGER_EDIT_MEMORY_BYTE_SIZE
+// Source: RequestStructures.h:457 -> _DEBUGGER_EDIT_MEMORY_BYTE_SIZE
 type DEBUGGER_EDIT_MEMORY_BYTE_SIZE uint32
 
 const (
@@ -1468,7 +1478,7 @@ func (d DEBUGGER_EDIT_MEMORY_BYTE_SIZE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:503 -> _DEBUGGER_SEARCH_MEMORY_TYPE
+// Source: RequestStructures.h:488 -> _DEBUGGER_SEARCH_MEMORY_TYPE
 type DEBUGGER_SEARCH_MEMORY_TYPE uint32
 
 const (
@@ -1490,7 +1500,7 @@ func (d DEBUGGER_SEARCH_MEMORY_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:515 -> _DEBUGGER_SEARCH_MEMORY_BYTE_SIZE
+// Source: RequestStructures.h:500 -> _DEBUGGER_SEARCH_MEMORY_BYTE_SIZE
 type DEBUGGER_SEARCH_MEMORY_BYTE_SIZE uint32
 
 const (
@@ -1512,7 +1522,7 @@ func (d DEBUGGER_SEARCH_MEMORY_BYTE_SIZE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:645 -> _DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS_ACTION_TYPE
+// Source: RequestStructures.h:627 -> _DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS_ACTION_TYPE
 type DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS_ACTION_TYPE uint32
 
 const (
@@ -1549,7 +1559,7 @@ func (d DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS_ACTION_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:690 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_TYPES
+// Source: RequestStructures.h:672 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_TYPES
 type DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_TYPES uint32
 
 const (
@@ -1580,7 +1590,7 @@ func (d DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_TYPES) String() string {
 	}
 }
 
-// Source: RequestStructures.h:705 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_ACTIONS
+// Source: RequestStructures.h:687 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_ACTIONS
 type DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_ACTIONS uint32
 
 const (
@@ -1602,7 +1612,7 @@ func (d DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS_ACTIONS) String() string {
 	}
 }
 
-// Source: RequestStructures.h:812 -> _DEBUGGER_CALLSTACK_DISPLAY_METHOD
+// Source: RequestStructures.h:793 -> _DEBUGGER_CALLSTACK_DISPLAY_METHOD
 type DEBUGGER_CALLSTACK_DISPLAY_METHOD uint32
 
 const (
@@ -1621,7 +1631,7 @@ func (d DEBUGGER_CALLSTACK_DISPLAY_METHOD) String() string {
 	}
 }
 
-// Source: RequestStructures.h:901 -> _DEBUGGER_UD_COMMAND_ACTION_TYPE
+// Source: RequestStructures.h:880 -> _DEBUGGER_UD_COMMAND_ACTION_TYPE
 type DEBUGGER_UD_COMMAND_ACTION_TYPE uint32
 
 const (
@@ -1649,7 +1659,7 @@ func (d DEBUGGER_UD_COMMAND_ACTION_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:947 -> _DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE
+// Source: RequestStructures.h:925 -> _DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE
 type DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE uint32
 
 const (
@@ -1671,7 +1681,7 @@ func (d DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:987 -> _DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE
+// Source: RequestStructures.h:964 -> _DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE
 type DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE uint32
 
 const (
@@ -1693,7 +1703,7 @@ func (d DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:1028 -> _DEBUGGER_REMOTE_STEPPING_REQUEST
+// Source: RequestStructures.h:1004 -> _DEBUGGER_REMOTE_STEPPING_REQUEST
 type DEBUGGER_REMOTE_STEPPING_REQUEST uint32
 
 const (
@@ -1724,7 +1734,7 @@ func (d DEBUGGER_REMOTE_STEPPING_REQUEST) String() string {
 	}
 }
 
-// Source: RequestStructures.h:1069 -> _DEBUGGER_APIC_REQUEST_TYPE
+// Source: RequestStructures.h:1045 -> _DEBUGGER_APIC_REQUEST_TYPE
 type DEBUGGER_APIC_REQUEST_TYPE uint32
 
 const (
@@ -1743,7 +1753,7 @@ func (d DEBUGGER_APIC_REQUEST_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:1238 -> _SMI_OPERATION_REQUEST_TYPE
+// Source: RequestStructures.h:1212 -> _SMI_OPERATION_REQUEST_TYPE
 type SMI_OPERATION_REQUEST_TYPE uint32
 
 const (
@@ -1762,26 +1772,63 @@ func (s SMI_OPERATION_REQUEST_TYPE) String() string {
 	}
 }
 
-// Source: RequestStructures.h:1271 -> _HYPERTRACE_OPERATION_REQUEST_TYPE
-type HYPERTRACE_OPERATION_REQUEST_TYPE uint32
+// Source: RequestStructures.h:1244 -> _HYPERTRACE_LBR_OPERATION_REQUEST_TYPE
+type HYPERTRACE_LBR_OPERATION_REQUEST_TYPE uint32
 
 const (
-	HypertraceLbrOperationRequestTypeEnable HYPERTRACE_OPERATION_REQUEST_TYPE = iota
+	HypertraceLbrOperationRequestTypeEnable HYPERTRACE_LBR_OPERATION_REQUEST_TYPE = iota
 	HypertraceLbrOperationRequestTypeDisable
+	HypertraceLbrOperationRequestTypeSave
+	HypertraceLbrOperationRequestTypeDump
+	HypertraceLbrOperationRequestTypeFlush
+	HypertraceLbrOperationRequestTypeFilter
 )
 
-func (h HYPERTRACE_OPERATION_REQUEST_TYPE) String() string {
+func (h HYPERTRACE_LBR_OPERATION_REQUEST_TYPE) String() string {
 	switch h {
 	case HypertraceLbrOperationRequestTypeEnable:
 		return "Hypertrace Lbr Operation Request Type Enable"
 	case HypertraceLbrOperationRequestTypeDisable:
 		return "Hypertrace Lbr Operation Request Type Disable"
+	case HypertraceLbrOperationRequestTypeSave:
+		return "Hypertrace Lbr Operation Request Type Save"
+	case HypertraceLbrOperationRequestTypeDump:
+		return "Hypertrace Lbr Operation Request Type Dump"
+	case HypertraceLbrOperationRequestTypeFlush:
+		return "Hypertrace Lbr Operation Request Type Flush"
+	case HypertraceLbrOperationRequestTypeFilter:
+		return "Hypertrace Lbr Operation Request Type Filter"
 	default:
-		return fmt.Sprintf("HYPERTRACE_OPERATION_REQUEST_TYPE(0x%X)", uint32(h))
+		return fmt.Sprintf("HYPERTRACE_LBR_OPERATION_REQUEST_TYPE(0x%X)", uint32(h))
 	}
 }
 
-// Source: RequestStructures.h:1387 -> _DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST
+// Source: RequestStructures.h:1280 -> _HYPERTRACE_PT_OPERATION_REQUEST_TYPE
+type HYPERTRACE_PT_OPERATION_REQUEST_TYPE uint32
+
+const (
+	HypertracePtOperationRequestTypeEnable HYPERTRACE_PT_OPERATION_REQUEST_TYPE = iota
+	HypertracePtOperationRequestTypeDisable
+	HypertracePtOperationRequestTypeSave
+	HypertracePtOperationRequestTypeDump
+)
+
+func (h HYPERTRACE_PT_OPERATION_REQUEST_TYPE) String() string {
+	switch h {
+	case HypertracePtOperationRequestTypeEnable:
+		return "Hypertrace Pt Operation Request Type Enable"
+	case HypertracePtOperationRequestTypeDisable:
+		return "Hypertrace Pt Operation Request Type Disable"
+	case HypertracePtOperationRequestTypeSave:
+		return "Hypertrace Pt Operation Request Type Save"
+	case HypertracePtOperationRequestTypeDump:
+		return "Hypertrace Pt Operation Request Type Dump"
+	default:
+		return fmt.Sprintf("HYPERTRACE_PT_OPERATION_REQUEST_TYPE(0x%X)", uint32(h))
+	}
+}
+
+// Source: RequestStructures.h:1394 -> _DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST
 type DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST uint32
 
 const (
@@ -1806,7 +1853,7 @@ func (d DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST) String() string {
 	}
 }
 
-// Source: RequestStructures.h:1416 -> _DEBUGGER_CONDITIONAL_JUMP_STATUS
+// Source: RequestStructures.h:1422 -> _DEBUGGER_CONDITIONAL_JUMP_STATUS
 type DEBUGGER_CONDITIONAL_JUMP_STATUS uint32
 
 const (
@@ -1888,7 +1935,7 @@ func (h HWDBG_SUCCESS_OR_ERROR_ENUMS) String() string {
 	}
 }
 
-// Source: ScriptEngineCommonDefinitions.h:307 -> REGS_ENUM
+// Source: ScriptEngineCommonDefinitions.h:309 -> REGS_ENUM
 type REGS_ENUM uint32
 
 const (
@@ -2305,7 +2352,7 @@ type LIST_ENTRY struct {
 	Blink *LIST_ENTRY
 }
 
-// Source: BasicTypes.h:70 -> GUEST_REGS
+// Source: BasicTypes.h:117 -> GUEST_REGS
 type GUEST_REGS struct {
 	Rax uint64
 	Rcx uint64
@@ -2325,13 +2372,13 @@ type GUEST_REGS struct {
 	R15 uint64
 }
 
-// Source: BasicTypes.h:100 -> XMM_REG
+// Source: BasicTypes.h:147 -> XMM_REG
 type XMM_REG struct {
 	XmmLow uint64
 	XmmHigh uint64
 }
 
-// Source: BasicTypes.h:108 -> GUEST_XMM_REGS
+// Source: BasicTypes.h:155 -> GUEST_XMM_REGS
 type GUEST_XMM_REGS struct {
 	Xmm0 XMM_REG
 	Xmm1 XMM_REG
@@ -2352,7 +2399,7 @@ type GUEST_XMM_REGS struct {
 	Mxcsr uint32
 }
 
-// Source: BasicTypes.h:142 -> GUEST_EXTRA_REGISTERS
+// Source: BasicTypes.h:189 -> GUEST_EXTRA_REGISTERS
 type GUEST_EXTRA_REGISTERS struct {
 	CS uint16
 	DS uint16
@@ -2364,7 +2411,7 @@ type GUEST_EXTRA_REGISTERS struct {
 	RIP uint64
 }
 
-// Source: BasicTypes.h:157 -> _SCRIPT_ENGINE_GENERAL_REGISTERS
+// Source: BasicTypes.h:204 -> _SCRIPT_ENGINE_GENERAL_REGISTERS
 type SCRIPT_ENGINE_GENERAL_REGISTERS struct {
 	StackBuffer *uint64
 	GlobalVariablesList *uint64
@@ -2373,7 +2420,7 @@ type SCRIPT_ENGINE_GENERAL_REGISTERS struct {
 	ReturnValue uint64
 }
 
-// Source: BasicTypes.h:170 -> _CR3_TYPE
+// Source: BasicTypes.h:217 -> _CR3_TYPE
 type CR3_TYPE struct {
 	Flags uint64
 }
@@ -2422,7 +2469,7 @@ func (c *CR3_TYPE) SetPcidInvalidate(val uint64) {
 	c.Flags = (c.Flags & ^uint64(0x1<<63)) | (uint64(uint64(val) & 0x1) << 63)
 }
 
-// Source: Connection.h:194 -> _DEBUGGER_REMOTE_PACKET
+// Source: Connection.h:196 -> _DEBUGGER_REMOTE_PACKET
 type DEBUGGER_REMOTE_PACKET struct {
 	Checksum uint8
 	_  [7]byte
@@ -2431,7 +2478,7 @@ type DEBUGGER_REMOTE_PACKET struct {
 	RequestedActionOfThePacket DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION
 }
 
-// Source: DataTypes.h:139 -> _DEBUGGEE_USER_INPUT_PACKET
+// Source: DataTypes.h:157 -> _DEBUGGEE_USER_INPUT_PACKET
 type DEBUGGEE_USER_INPUT_PACKET struct {
 	CommandLen uint32
 	IgnoreFinishedSignal bool
@@ -2439,17 +2486,17 @@ type DEBUGGEE_USER_INPUT_PACKET struct {
 	Result uint32
 }
 
-// Source: DataTypes.h:155 -> _DEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET
+// Source: DataTypes.h:173 -> _DEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET
 type DEBUGGEE_EVENT_AND_ACTION_HEADER_FOR_REMOTE_PACKET struct {
 	Length uint32
 }
 
-// Source: DataTypes.h:177 -> _DEBUGGER_PAUSE_PACKET_RECEIVED
+// Source: DataTypes.h:195 -> _DEBUGGER_PAUSE_PACKET_RECEIVED
 type DEBUGGER_PAUSE_PACKET_RECEIVED struct {
 	Result uint32
 }
 
-// Source: DataTypes.h:191 -> _DEBUGGER_TRIGGERED_EVENT_DETAILS
+// Source: DataTypes.h:209 -> _DEBUGGER_TRIGGERED_EVENT_DETAILS
 type DEBUGGER_TRIGGERED_EVENT_DETAILS struct {
 	Tag uint64
 	Context uintptr
@@ -2457,7 +2504,7 @@ type DEBUGGER_TRIGGERED_EVENT_DETAILS struct {
 	_  [4]byte
 }
 
-// Source: DataTypes.h:206 -> _DEBUGGEE_KD_PAUSED_PACKET
+// Source: DataTypes.h:224 -> _DEBUGGEE_KD_PAUSED_PACKET
 type DEBUGGEE_KD_PAUSED_PACKET struct {
 	Rip uint64
 	IsProcessorOn32BitMode bool
@@ -2475,7 +2522,7 @@ type DEBUGGEE_KD_PAUSED_PACKET struct {
 	_  [6]byte
 }
 
-// Source: DataTypes.h:228 -> _DEBUGGEE_UD_PAUSED_PACKET
+// Source: DataTypes.h:246 -> _DEBUGGEE_UD_PAUSED_PACKET
 type DEBUGGEE_UD_PAUSED_PACKET struct {
 	Rip uint64
 	ProcessDebuggingToken uint64
@@ -2492,27 +2539,27 @@ type DEBUGGEE_UD_PAUSED_PACKET struct {
 	_  [2]byte
 }
 
-// Source: DataTypes.h:266 -> _DEBUGGEE_MESSAGE_PACKET
+// Source: DataTypes.h:284 -> _DEBUGGEE_MESSAGE_PACKET
 type DEBUGGEE_MESSAGE_PACKET struct {
 	OperationCode uint32
 	Message [4096]int8
 }
 
-// Source: DataTypes.h:277 -> _REGISTER_NOTIFY_BUFFER
+// Source: DataTypes.h:295 -> _REGISTER_NOTIFY_BUFFER
 type REGISTER_NOTIFY_BUFFER struct {
 	Type NOTIFY_TYPE
 	_  [4]byte
 	HEvent uintptr
 }
 
-// Source: DataTypes.h:292 -> _DIRECT_VMCALL_PARAMETERS
+// Source: DataTypes.h:310 -> _DIRECT_VMCALL_PARAMETERS
 type DIRECT_VMCALL_PARAMETERS struct {
 	OptionalParam1 uint64
 	OptionalParam2 uint64
 	OptionalParam3 uint64
 }
 
-// Source: DataTypes.h:308 -> _SYSCALL_CALLBACK_CONTEXT_PARAMS
+// Source: DataTypes.h:326 -> _SYSCALL_CALLBACK_CONTEXT_PARAMS
 type SYSCALL_CALLBACK_CONTEXT_PARAMS struct {
 	OptionalParam1 uint64
 	OptionalParam2 uint64
@@ -2520,14 +2567,14 @@ type SYSCALL_CALLBACK_CONTEXT_PARAMS struct {
 	OptionalParam4 uint64
 }
 
-// Source: DataTypes.h:335 -> _EPT_HOOKS_CONTEXT
+// Source: DataTypes.h:353 -> _EPT_HOOKS_CONTEXT
 type EPT_HOOKS_CONTEXT struct {
 	HookingTag uint64
 	PhysicalAddress uint64
 	VirtualAddress uint64
 }
 
-// Source: DataTypes.h:346 -> _EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR
+// Source: DataTypes.h:364 -> _EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR
 type EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR struct {
 	StartAddress uint64
 	EndAddress uint64
@@ -2539,13 +2586,13 @@ type EPT_HOOKS_ADDRESS_DETAILS_FOR_MEMORY_MONITOR struct {
 	Tag uint64
 }
 
-// Source: DataTypes.h:362 -> _EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2
+// Source: DataTypes.h:380 -> _EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2
 type EPT_HOOKS_ADDRESS_DETAILS_FOR_EPTHOOK2 struct {
 	TargetAddress uintptr
 	HookFunction uintptr
 }
 
-// Source: DataTypes.h:373 -> _EPT_SINGLE_HOOK_UNHOOKING_DETAILS
+// Source: DataTypes.h:391 -> _EPT_SINGLE_HOOK_UNHOOKING_DETAILS
 type EPT_SINGLE_HOOK_UNHOOKING_DETAILS struct {
 	CallerNeedsToRestoreEntryAndInvalidateEpt bool
 	RemoveBreakpointInterception bool
@@ -2657,7 +2704,7 @@ func (v *VMX_SEGMENT_ACCESS_RIGHTS_TYPE) SetReserved2(val uint32) {
 	v.AsUInt = (v.AsUInt & ^uint32(0x7FFF<<17)) | (uint32(uint32(val) & 0x7FFF) << 17)
 }
 
-// Source: DataTypes.h:451 -> _VMX_SEGMENT_SELECTOR
+// Source: DataTypes.h:469 -> _VMX_SEGMENT_SELECTOR
 type VMX_SEGMENT_SELECTOR struct {
 	Selector uint16
 	_  [2]byte
@@ -2693,10 +2740,9 @@ type DEBUGGER_EVENT_OPTIONS struct {
 	OptionalParam6 uint64
 }
 
-// Source: Events.h:354 -> _DEBUGGER_GENERAL_EVENT_DETAIL
+// Source: Events.h:356 -> _DEBUGGER_GENERAL_EVENT_DETAIL
 type DEBUGGER_GENERAL_EVENT_DETAIL struct {
 	CommandsEventList LIST_ENTRY
-	CreationTime int64
 	CoreId uint32
 	ProcessId uint32
 	IsEnabled bool
@@ -2909,7 +2955,7 @@ type DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:54 -> _DEBUGGER_VA2PA_AND_PA2VA_COMMANDS
+// Source: RequestStructures.h:53 -> _DEBUGGER_VA2PA_AND_PA2VA_COMMANDS
 type DEBUGGER_VA2PA_AND_PA2VA_COMMANDS struct {
 	VirtualAddress uint64
 	PhysicalAddress uint64
@@ -2920,7 +2966,7 @@ type DEBUGGER_VA2PA_AND_PA2VA_COMMANDS struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:73 -> _DEBUGGER_PAGE_IN_REQUEST
+// Source: RequestStructures.h:72 -> _DEBUGGER_PAGE_IN_REQUEST
 type DEBUGGER_PAGE_IN_REQUEST struct {
 	VirtualAddressFrom uint64
 	VirtualAddressTo uint64
@@ -2930,7 +2976,7 @@ type DEBUGGER_PAGE_IN_REQUEST struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:115 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST
+// Source: RequestStructures.h:113 -> _REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST
 type REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST struct {
 	ProcessId uint32
 	Size uint32
@@ -2939,7 +2985,7 @@ type REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST struct {
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:135 -> _DEBUGGER_DT_COMMAND_OPTIONS
+// Source: RequestStructures.h:132 -> _DEBUGGER_DT_COMMAND_OPTIONS
 type DEBUGGER_DT_COMMAND_OPTIONS struct {
 	TypeName *int8
 	SizeOfTypeName uint64
@@ -2952,20 +2998,20 @@ type DEBUGGER_DT_COMMAND_OPTIONS struct {
 	AdditionalParameters *int8
 }
 
-// Source: RequestStructures.h:174 -> _DEBUGGER_PREALLOC_COMMAND
+// Source: RequestStructures.h:170 -> _DEBUGGER_PREALLOC_COMMAND
 type DEBUGGER_PREALLOC_COMMAND struct {
 	Type DEBUGGER_PREALLOC_COMMAND_TYPE
 	Count uint32
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:202 -> _DEBUGGER_PREACTIVATE_COMMAND
+// Source: RequestStructures.h:197 -> _DEBUGGER_PREACTIVATE_COMMAND
 type DEBUGGER_PREACTIVATE_COMMAND struct {
 	Type DEBUGGER_PREACTIVATE_COMMAND_TYPE
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:266 -> _DEBUGGER_READ_MEMORY
+// Source: RequestStructures.h:260 -> _DEBUGGER_READ_MEMORY
 type DEBUGGER_READ_MEMORY struct {
 	Pid uint32
 	_  [4]byte
@@ -2981,14 +3027,14 @@ type DEBUGGER_READ_MEMORY struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:294 -> _DEBUGGER_FLUSH_LOGGING_BUFFERS
+// Source: RequestStructures.h:287 -> _DEBUGGER_FLUSH_LOGGING_BUFFERS
 type DEBUGGER_FLUSH_LOGGING_BUFFERS struct {
 	KernelStatus uint32
 	CountOfMessagesThatSetAsReadFromVmxRoot uint32
 	CountOfMessagesThatSetAsReadFromVmxNonRoot uint32
 }
 
-// Source: RequestStructures.h:333 -> _DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER
+// Source: RequestStructures.h:325 -> _DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER
 type DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER struct {
 	RequestType DEBUGGER_TEST_QUERY_STATE
 	_  [4]byte
@@ -2997,17 +3043,17 @@ type DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:351 -> _DEBUGGER_PERFORM_KERNEL_TESTS
+// Source: RequestStructures.h:342 -> _DEBUGGER_PERFORM_KERNEL_TESTS
 type DEBUGGER_PERFORM_KERNEL_TESTS struct {
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:367 -> _DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL
+// Source: RequestStructures.h:357 -> _DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL
 type DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL struct {
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:384 -> _DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER
+// Source: RequestStructures.h:373 -> _DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER
 type DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER struct {
 	RequestedAction DEBUGGER_REMOTE_PACKET_REQUESTED_ACTION
 	LengthOfBuffer uint32
@@ -3016,13 +3062,13 @@ type DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER struct {
 	KernelResult uint32
 }
 
-// Source: RequestStructures.h:408 -> _DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER
+// Source: RequestStructures.h:396 -> _DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER
 type DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER struct {
 	KernelStatus uint32
 	Length uint32
 }
 
-// Source: RequestStructures.h:440 -> _DEBUGGER_READ_AND_WRITE_ON_MSR
+// Source: RequestStructures.h:427 -> _DEBUGGER_READ_AND_WRITE_ON_MSR
 type DEBUGGER_READ_AND_WRITE_ON_MSR struct {
 	Msr uint64
 	CoreNumber uint32
@@ -3030,7 +3076,7 @@ type DEBUGGER_READ_AND_WRITE_ON_MSR struct {
 	Value uint64
 }
 
-// Source: RequestStructures.h:482 -> _DEBUGGER_EDIT_MEMORY
+// Source: RequestStructures.h:468 -> _DEBUGGER_EDIT_MEMORY
 type DEBUGGER_EDIT_MEMORY struct {
 	Result uint32
 	_  [4]byte
@@ -3043,7 +3089,7 @@ type DEBUGGER_EDIT_MEMORY struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:527 -> _DEBUGGER_SEARCH_MEMORY
+// Source: RequestStructures.h:512 -> _DEBUGGER_SEARCH_MEMORY
 type DEBUGGER_SEARCH_MEMORY struct {
 	Address uint64
 	Length uint64
@@ -3055,7 +3101,7 @@ type DEBUGGER_SEARCH_MEMORY struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:550 -> _SYSTEM_CALL_NUMBERS_INFORMATION
+// Source: RequestStructures.h:534 -> _SYSTEM_CALL_NUMBERS_INFORMATION
 type SYSTEM_CALL_NUMBERS_INFORMATION struct {
 	SysNtQuerySystemInformation uint32
 	SysNtQuerySystemInformationEx uint32
@@ -3074,7 +3120,7 @@ type SYSTEM_CALL_NUMBERS_INFORMATION struct {
 	SysNtEnumerateKey uint32
 }
 
-// Source: RequestStructures.h:578 -> _DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE
+// Source: RequestStructures.h:562 -> _DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE
 type DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE struct {
 	IsHide bool
 	TrueIfProcessIdAndFalseIfProcessName bool
@@ -3085,7 +3131,7 @@ type DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE struct {
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:612 -> _DEBUGGER_PREPARE_DEBUGGEE
+// Source: RequestStructures.h:595 -> _DEBUGGER_PREPARE_DEBUGGEE
 type DEBUGGER_PREPARE_DEBUGGEE struct {
 	PortAddress uint32
 	Baudrate uint32
@@ -3095,13 +3141,13 @@ type DEBUGGER_PREPARE_DEBUGGEE struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:629 -> _DEBUGGEE_CHANGE_CORE_PACKET
+// Source: RequestStructures.h:611 -> _DEBUGGEE_CHANGE_CORE_PACKET
 type DEBUGGEE_CHANGE_CORE_PACKET struct {
 	NewCore uint32
 	Result uint32
 }
 
-// Source: RequestStructures.h:662 -> _DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS
+// Source: RequestStructures.h:644 -> _DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS
 type DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS struct {
 	IsStartingNewProcess bool
 	_  [3]byte
@@ -3121,7 +3167,7 @@ type DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS struct {
 	Result uint64
 }
 
-// Source: RequestStructures.h:718 -> _DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
+// Source: RequestStructures.h:700 -> _DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
 type DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS struct {
 	PsActiveProcessHead uint64
 	ImageFileNameOffset uint32
@@ -3130,7 +3176,7 @@ type DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:732 -> _DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
+// Source: RequestStructures.h:714 -> _DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
 type DEBUGGEE_THREAD_LIST_NEEDED_DETAILS struct {
 	ThreadListHeadOffset uint32
 	ThreadListEntryOffset uint32
@@ -3142,7 +3188,7 @@ type DEBUGGEE_THREAD_LIST_NEEDED_DETAILS struct {
 	Process uint64
 }
 
-// Source: RequestStructures.h:748 -> _DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY
+// Source: RequestStructures.h:730 -> _DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY
 type DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY struct {
 	Eprocess uint64
 	ProcessId uint32
@@ -3151,7 +3197,7 @@ type DEBUGGEE_PROCESS_LIST_DETAILS_ENTRY struct {
 	ImageFileName [16]uint8
 }
 
-// Source: RequestStructures.h:762 -> _DEBUGGEE_THREAD_LIST_DETAILS_ENTRY
+// Source: RequestStructures.h:744 -> _DEBUGGEE_THREAD_LIST_DETAILS_ENTRY
 type DEBUGGEE_THREAD_LIST_DETAILS_ENTRY struct {
 	Eprocess uint64
 	Ethread uint64
@@ -3160,7 +3206,7 @@ type DEBUGGEE_THREAD_LIST_DETAILS_ENTRY struct {
 	ImageFileName [16]uint8
 }
 
-// Source: RequestStructures.h:776 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS
+// Source: RequestStructures.h:758 -> _DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS
 type DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS struct {
 	ProcessListNeededDetails DEBUGGEE_PROCESS_LIST_NEEDED_DETAILS
 	ThreadListNeededDetails DEBUGGEE_THREAD_LIST_NEEDED_DETAILS
@@ -3171,7 +3217,7 @@ type DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS struct {
 	Result uint64
 }
 
-// Source: RequestStructures.h:795 -> _DEBUGGER_SINGLE_CALLSTACK_FRAME
+// Source: RequestStructures.h:776 -> _DEBUGGER_SINGLE_CALLSTACK_FRAME
 type DEBUGGER_SINGLE_CALLSTACK_FRAME struct {
 	IsStackAddressValid bool
 	IsValidAddress bool
@@ -3182,7 +3228,7 @@ type DEBUGGER_SINGLE_CALLSTACK_FRAME struct {
 	_  [1]byte
 }
 
-// Source: RequestStructures.h:823 -> _DEBUGGER_CALLSTACK_REQUEST
+// Source: RequestStructures.h:804 -> _DEBUGGER_CALLSTACK_REQUEST
 type DEBUGGER_CALLSTACK_REQUEST struct {
 	Is32Bit bool
 	_  [3]byte
@@ -3195,7 +3241,7 @@ type DEBUGGER_CALLSTACK_REQUEST struct {
 	BufferSize uint64
 }
 
-// Source: RequestStructures.h:844 -> _USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS
+// Source: RequestStructures.h:825 -> _USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS
 type USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS struct {
 	ProcessId uint32
 	ThreadId uint32
@@ -3204,7 +3250,7 @@ type USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS struct {
 	_  [7]byte
 }
 
-// Source: RequestStructures.h:860 -> _DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION
+// Source: RequestStructures.h:840 -> _DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION
 type DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION struct {
 	ScriptBuffer uint64
 	ScriptLength uint32
@@ -3213,7 +3259,7 @@ type DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:874 -> _DEBUGGER_EVENT_REQUEST_BUFFER
+// Source: RequestStructures.h:854 -> _DEBUGGER_EVENT_REQUEST_BUFFER
 type DEBUGGER_EVENT_REQUEST_BUFFER struct {
 	EnabledRequestBuffer bool
 	_  [3]byte
@@ -3221,7 +3267,7 @@ type DEBUGGER_EVENT_REQUEST_BUFFER struct {
 	RequstBufferAddress uint64
 }
 
-// Source: RequestStructures.h:886 -> _DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
+// Source: RequestStructures.h:866 -> _DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
 type DEBUGGER_EVENT_REQUEST_CUSTOM_CODE struct {
 	CustomCodeBufferSize uint32
 	_  [4]byte
@@ -3230,7 +3276,7 @@ type DEBUGGER_EVENT_REQUEST_CUSTOM_CODE struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:915 -> _DEBUGGER_UD_COMMAND_ACTION
+// Source: RequestStructures.h:894 -> _DEBUGGER_UD_COMMAND_ACTION
 type DEBUGGER_UD_COMMAND_ACTION struct {
 	ActionType DEBUGGER_UD_COMMAND_ACTION_TYPE
 	_  [4]byte
@@ -3240,7 +3286,7 @@ type DEBUGGER_UD_COMMAND_ACTION struct {
 	OptionalParam4 uint64
 }
 
-// Source: RequestStructures.h:929 -> _DEBUGGER_UD_COMMAND_PACKET
+// Source: RequestStructures.h:908 -> _DEBUGGER_UD_COMMAND_PACKET
 type DEBUGGER_UD_COMMAND_PACKET struct {
 	UdAction DEBUGGER_UD_COMMAND_ACTION
 	ProcessDebuggingDetailToken uint64
@@ -3252,7 +3298,7 @@ type DEBUGGER_UD_COMMAND_PACKET struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:961 -> _DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET
+// Source: RequestStructures.h:939 -> _DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET
 type DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET struct {
 	ActionType DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_TYPE
 	ProcessId uint32
@@ -3265,7 +3311,7 @@ type DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1000 -> _DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET
+// Source: RequestStructures.h:977 -> _DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET
 type DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET struct {
 	ActionType DEBUGGEE_DETAILS_AND_SWITCH_THREAD_TYPE
 	ThreadId uint32
@@ -3281,7 +3327,7 @@ type DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1044 -> _DEBUGGEE_STEP_PACKET
+// Source: RequestStructures.h:1020 -> _DEBUGGEE_STEP_PACKET
 type DEBUGGEE_STEP_PACKET struct {
 	StepType DEBUGGER_REMOTE_STEPPING_REQUEST
 	IsCurrentInstructionACall bool
@@ -3289,7 +3335,7 @@ type DEBUGGEE_STEP_PACKET struct {
 	CallLength uint32
 }
 
-// Source: RequestStructures.h:1080 -> _DEBUGGER_APIC_REQUEST
+// Source: RequestStructures.h:1056 -> _DEBUGGER_APIC_REQUEST
 type DEBUGGER_APIC_REQUEST struct {
 	ApicType DEBUGGER_APIC_REQUEST_TYPE
 	IsUsingX2APIC bool
@@ -3297,7 +3343,7 @@ type DEBUGGER_APIC_REQUEST struct {
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:1107 -> _LAPIC_PAGE
+// Source: RequestStructures.h:1083 -> _LAPIC_PAGE
 type LAPIC_PAGE struct {
 	Reserved000 [16]uint8
 	Reserved010 [16]uint8
@@ -3357,7 +3403,7 @@ type LAPIC_PAGE struct {
 	Reserved3F4 [12]uint8
 }
 
-// Source: RequestStructures.h:1213 -> _IO_APIC_ENTRY_PACKETS
+// Source: RequestStructures.h:1188 -> _IO_APIC_ENTRY_PACKETS
 type IO_APIC_ENTRY_PACKETS struct {
 	ApicBasePa uint64
 	ApicBaseVa uint64
@@ -3368,7 +3414,7 @@ type IO_APIC_ENTRY_PACKETS struct {
 	LlLhData [400]uint64
 }
 
-// Source: RequestStructures.h:1249 -> _SMI_OPERATION_PACKETS
+// Source: RequestStructures.h:1223 -> _SMI_OPERATION_PACKETS
 type SMI_OPERATION_PACKETS struct {
 	SmiOperationType SMI_OPERATION_REQUEST_TYPE
 	_  [4]byte
@@ -3377,32 +3423,39 @@ type SMI_OPERATION_PACKETS struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1282 -> _HYPERTRACE_OPERATION_PACKETS
-type HYPERTRACE_OPERATION_PACKETS struct {
-	HyperTraceOperationType HYPERTRACE_OPERATION_REQUEST_TYPE
+// Source: RequestStructures.h:1259 -> _HYPERTRACE_LBR_OPERATION_PACKETS
+type HYPERTRACE_LBR_OPERATION_PACKETS struct {
+	LbrOperationType HYPERTRACE_LBR_OPERATION_REQUEST_TYPE
+	LbrFilterOptions uint32
 	KernelStatus uint32
 }
 
-// Source: RequestStructures.h:1309 -> _INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS
+// Source: RequestStructures.h:1293 -> _HYPERTRACE_PT_OPERATION_PACKETS
+type HYPERTRACE_PT_OPERATION_PACKETS struct {
+	PtOperationType HYPERTRACE_PT_OPERATION_REQUEST_TYPE
+	KernelStatus uint32
+}
+
+// Source: RequestStructures.h:1319 -> _INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS
 type INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS struct {
 	KernelStatus uint32
 	_  [4]byte
 	IdtEntry [256]uint64
 }
 
-// Source: RequestStructures.h:1337 -> _DEBUGGEE_FORMATS_PACKET
+// Source: RequestStructures.h:1346 -> _DEBUGGEE_FORMATS_PACKET
 type DEBUGGEE_FORMATS_PACKET struct {
 	Value uint64
 	Result uint32
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1351 -> _DEBUGGEE_SYMBOL_REQUEST_PACKET
+// Source: RequestStructures.h:1359 -> _DEBUGGEE_SYMBOL_REQUEST_PACKET
 type DEBUGGEE_SYMBOL_REQUEST_PACKET struct {
 	ProcessId uint32
 }
 
-// Source: RequestStructures.h:1364 -> _DEBUGGEE_BP_PACKET
+// Source: RequestStructures.h:1371 -> _DEBUGGEE_BP_PACKET
 type DEBUGGEE_BP_PACKET struct {
 	Address uint64
 	Pid uint32
@@ -3415,14 +3468,14 @@ type DEBUGGEE_BP_PACKET struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1401 -> _DEBUGGEE_BP_LIST_OR_MODIFY_PACKET
+// Source: RequestStructures.h:1408 -> _DEBUGGEE_BP_LIST_OR_MODIFY_PACKET
 type DEBUGGEE_BP_LIST_OR_MODIFY_PACKET struct {
 	BreakpointId uint64
 	Request DEBUGGEE_BREAKPOINT_MODIFICATION_REQUEST
 	Result uint32
 }
 
-// Source: RequestStructures.h:1433 -> _DEBUGGEE_SCRIPT_PACKET
+// Source: RequestStructures.h:1438 -> _DEBUGGEE_SCRIPT_PACKET
 type DEBUGGEE_SCRIPT_PACKET struct {
 	ScriptBufferSize uint32
 	ScriptBufferPointer uint32
@@ -3433,13 +3486,13 @@ type DEBUGGEE_SCRIPT_PACKET struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1454 -> _DEBUGGEE_RESULT_OF_SEARCH_PACKET
+// Source: RequestStructures.h:1458 -> _DEBUGGEE_RESULT_OF_SEARCH_PACKET
 type DEBUGGEE_RESULT_OF_SEARCH_PACKET struct {
 	CountOfResults uint32
 	Result uint32
 }
 
-// Source: RequestStructures.h:1468 -> _DEBUGGEE_REGISTER_READ_DESCRIPTION
+// Source: RequestStructures.h:1471 -> _DEBUGGEE_REGISTER_READ_DESCRIPTION
 type DEBUGGEE_REGISTER_READ_DESCRIPTION struct {
 	RegisterId uint32
 	_  [4]byte
@@ -3448,7 +3501,7 @@ type DEBUGGEE_REGISTER_READ_DESCRIPTION struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1483 -> _DEBUGGEE_REGISTER_WRITE_DESCRIPTION
+// Source: RequestStructures.h:1485 -> _DEBUGGEE_REGISTER_WRITE_DESCRIPTION
 type DEBUGGEE_REGISTER_WRITE_DESCRIPTION struct {
 	RegisterId uint32
 	_  [4]byte
@@ -3457,7 +3510,7 @@ type DEBUGGEE_REGISTER_WRITE_DESCRIPTION struct {
 	_  [4]byte
 }
 
-// Source: RequestStructures.h:1501 -> _DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET
+// Source: RequestStructures.h:1502 -> _DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET
 type DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET struct {
 	KernelStatus uint32
 	DeviceInfoListNum uint8
@@ -3926,6 +3979,10 @@ const (
 	DebuggerErrorLbrAlreadyEnabled DebuggerErrorCode = 0xc000005c
 	DebuggerErrorLbrAlreadyDisabled DebuggerErrorCode = 0xc000005d
 	DebuggerErrorLbrNotSupported DebuggerErrorCode = 0xc000005e
+	DebuggerErrorDebugctlNotSupportedOnVmcs DebuggerErrorCode = 0xc000005f
+	DebuggerErrorPtAlreadyEnabled DebuggerErrorCode = 0xc0000060
+	DebuggerErrorPtAlreadyDisabled DebuggerErrorCode = 0xc0000061
+	DebuggerErrorPtNotSupported DebuggerErrorCode = 0xc0000062
 )
 
 func (c DebuggerErrorCode) String() string {
@@ -4122,6 +4179,14 @@ func (c DebuggerErrorCode) String() string {
 		return "Lbr Already Disabled"
 	case DebuggerErrorLbrNotSupported:
 		return "Lbr Not Supported"
+	case DebuggerErrorDebugctlNotSupportedOnVmcs:
+		return "Debugctl Not Supported On Vmcs"
+	case DebuggerErrorPtAlreadyEnabled:
+		return "Pt Already Enabled"
+	case DebuggerErrorPtAlreadyDisabled:
+		return "Pt Already Disabled"
+	case DebuggerErrorPtNotSupported:
+		return "Pt Not Supported"
 	default:
 		return fmt.Sprintf("DebuggerErrorCode(0x%X)", uint32(c))
 	}
@@ -4132,15 +4197,26 @@ func (c DebuggerErrorCode) String() string {
 const (
 	PageSize uint32 = 0x1000
 	VersionMajor uint32 = 0
-	VersionMinor uint32 = 18
-	VersionPatch uint32 = 1
+	VersionMinor uint32 = 19
+	MsrLegacyLbrSelect uint32 = 0x000001C8
+	VersionPatch uint32 = 0
 	DefaultInitialDebuggeeToDebuggerOffset uint32 = 0x200
-	BusBitWidth uint32 = 8
+	LbrKernelBit uint32 = 0
 	DefaultInitialDebuggerToDebuggeeOffset uint32 = 0x0
+	BusBitWidth uint32 = 8
+	LbrUserBit uint32 = 1
 	DeviceBitWidth uint32 = 5
+	LbrJccBit uint32 = 2
 	FunctionBitWidth uint32 = 3
-	DefaultInitialBramBufferSize uint32 = 256
+	LbrRelCallBit uint32 = 3
+	LbrIndCallBit uint32 = 4
+	LbrReturnBit uint32 = 5
+	LbrIndJmpBit uint32 = 6
+	LbrRelJmpBit uint32 = 7
 	FileAnyAccess uint32 = 0
+	LbrFarBit uint32 = 8
+	DefaultInitialBramBufferSize uint32 = 256
+	LbrCallStackBit uint32 = 9
 	DomainMaxNum uint32 = 0
 	BusMaxNum uint32 = 255
 	DeviceMaxNum uint32 = 32
@@ -4148,51 +4224,62 @@ const (
 	DevMaxNum uint32 = 255
 	SymbolUndefined uint32 = 0
 	CamConfigSpaceLength uint32 = 255
+	LbrKernel uint32 = (1<<LbrKernelBit)
 	SymbolGlobalIdType uint32 = 1
 	SymbolLocalIdType uint32 = 2
-	SymbolNumType uint32 = 3
+	LbrUser uint32 = (1<<LbrUserBit)
+	LbrJcc uint32 = (1<<LbrJccBit)
 	MethodBuffered uint32 = 0
+	SymbolNumType uint32 = 3
 	SymbolRegisterType uint32 = 4
+	LbrRelCall uint32 = (1<<LbrRelCallBit)
+	LbrIndCall uint32 = (1<<LbrIndCallBit)
 	SymbolPseudoRegType uint32 = 5
+	LbrReturn uint32 = (1<<LbrReturnBit)
 	SymbolSemanticRuleType uint32 = 6
+	LbrIndJmp uint32 = (1<<LbrIndJmpBit)
 	SymbolTempType uint32 = 7
+	LbrRelJmp uint32 = (1<<LbrRelJmpBit)
 	SymbolStringType uint32 = 8
-	NullZero uint32 = 0
 	SymbolVariableCountType uint32 = 9
+	LbrFar uint32 = (1<<LbrFarBit)
 	FileDeviceUnknown uint32 = 0x00000022
 	SymbolInvalid uint32 = 10
-	FALSE uint32 = 0
+	LbrCallStack uint32 = (1<<LbrCallStackBit)
 	SymbolWstringType uint32 = 11
 	SymbolFunctionParameterIdType uint32 = 12
-	TRUE uint32 = 1
 	SymbolReturnAddressType uint32 = 13
-	Upper56Bits uint64 = 0xffffffffffffff00
 	SymbolFunctionParameterType uint32 = 14
-	Upper48Bits uint64 = 0xffffffffffff0000
 	SymbolStackIndexType uint32 = 15
 	SymbolStackBaseIndexType uint32 = 16
-	Upper32Bits uint64 = 0xffffffff00000000
-	Lower32Bits uint64 = 0x00000000ffffffff
+	MaximumLbrCapacity uint32 = 0x20
 	SymbolReturnValueType uint32 = 17
-	Lower16Bits uint64 = 0x000000000000ffff
 	SymbolReferenceLocalIdType uint32 = 18
-	Lower8Bits uint64 = 0x00000000000000ff
 	SymbolReferenceTempType uint32 = 19
 	SymbolDereferenceLocalIdType uint32 = 20
-	SecondLower8Bits uint64 = 0x000000000000ff00
 	SymbolDereferenceTempType uint32 = 21
-	Upper48BitsAndLower8Bits uint64 = 0xffffffffffff00ff
 	SymbolMemValidCheckMask uint32 = (1<<31)
 	INVALID uint32 = 0x80000000
+	NullZero uint32 = 0
 	LalrAccept uint32 = 0x7fffffff
+	FALSE uint32 = 0
+	TRUE uint32 = 1
 	FuncUndefined uint32 = 0
+	Upper56Bits uint64 = 0xffffffffffffff00
 	FuncInc uint32 = 1
 	FuncDec uint32 = 2
+	Upper48Bits uint64 = 0xffffffffffff0000
 	FuncReference uint32 = 3
+	Upper32Bits uint64 = 0xffffffff00000000
 	FuncOr uint32 = 4
+	Lower32Bits uint64 = 0x00000000ffffffff
+	Lower16Bits uint64 = 0x000000000000ffff
 	FuncXor uint32 = 5
+	Lower8Bits uint64 = 0x00000000000000ff
 	FuncAnd uint32 = 6
 	FuncAsr uint32 = 7
+	SecondLower8Bits uint64 = 0x000000000000ff00
+	Upper48BitsAndLower8Bits uint64 = 0xffffffffffff00ff
 	FuncAsl uint32 = 8
 	FuncAdd uint32 = 9
 	FuncSub uint32 = 10
@@ -4234,65 +4321,66 @@ const (
 	FuncPrintf uint32 = 46
 	FuncPause uint32 = 47
 	FuncFlush uint32 = 48
-	FuncEventTraceStep uint32 = 49
-	FuncEventTraceStepIn uint32 = 50
-	FuncEventTraceStepOut uint32 = 51
-	FuncEventTraceInstrumentationStep uint32 = 52
-	FuncEventTraceInstrumentationStepIn uint32 = 53
-	FuncLbrStart uint32 = 54
-	FuncLbrStop uint32 = 55
-	FuncRdtsc uint32 = 56
-	FuncRdtscp uint32 = 57
-	FuncSpinlockLockCustomWait uint32 = 58
-	FuncEventInject uint32 = 59
-	FuncPoi uint32 = 60
-	FuncDb uint32 = 61
-	FuncDd uint32 = 62
-	FuncDw uint32 = 63
-	FuncDq uint32 = 64
-	FuncNeg uint32 = 65
-	FuncHi uint32 = 66
+	FuncLbrFlush uint32 = 49
+	FuncEventTraceStep uint32 = 50
+	FuncEventTraceStepIn uint32 = 51
+	FuncEventTraceStepOut uint32 = 52
+	FuncEventTraceInstrumentationStep uint32 = 53
+	FuncEventTraceInstrumentationStepIn uint32 = 54
+	FuncRdtsc uint32 = 55
+	FuncRdtscp uint32 = 56
+	FuncLbrSave uint32 = 57
+	FuncLbrDump uint32 = 58
+	FuncSpinlockLockCustomWait uint32 = 59
+	FuncEventInject uint32 = 60
+	FuncPoi uint32 = 61
+	FuncDb uint32 = 62
+	FuncDd uint32 = 63
+	FuncDw uint32 = 64
+	FuncDq uint32 = 65
+	FuncNeg uint32 = 66
 	MaximumPacketsCapacity uint32 = 1000
-	FuncLow uint32 = 67
-	FuncNot uint32 = 68
-	FuncCheckAddress uint32 = 69
-	FuncDisassembleLen uint32 = 70
-	FuncDisassembleLen32 uint32 = 71
-	FuncDisassembleLen64 uint32 = 72
+	FuncHi uint32 = 67
+	FuncLow uint32 = 68
+	FuncNot uint32 = 69
+	FuncCheckAddress uint32 = 70
+	FuncDisassembleLen uint32 = 71
 	MaximumPacketsCapacityPriority uint32 = 50
-	FuncInterlockedIncrement uint32 = 73
-	FuncInterlockedDecrement uint32 = 74
-	FuncPhysicalToVirtual uint32 = 75
-	FuncVirtualToPhysical uint32 = 76
+	FuncDisassembleLen32 uint32 = 72
+	FuncDisassembleLen64 uint32 = 73
+	FuncInterlockedIncrement uint32 = 74
+	FuncInterlockedDecrement uint32 = 75
+	FuncPhysicalToVirtual uint32 = 76
+	FuncVirtualToPhysical uint32 = 77
 	NormalPageSize uint32 = 4096
-	FuncPoiPa uint32 = 77
-	FuncHiPa uint32 = 78
-	FuncLowPa uint32 = 79
-	FuncDbPa uint32 = 80
-	FuncDdPa uint32 = 81
-	FuncDwPa uint32 = 82
+	FuncPoiPa uint32 = 78
+	FuncHiPa uint32 = 79
+	FuncLowPa uint32 = 80
+	FuncDbPa uint32 = 81
+	FuncDdPa uint32 = 82
 	PacketChunkSize uint32 = NormalPageSize
-	FuncDqPa uint32 = 83
-	FuncEd uint32 = 84
-	FuncEb uint32 = 85
-	FuncEq uint32 = 86
-	FuncInterlockedExchange uint32 = 87
-	FuncInterlockedExchangeAdd uint32 = 88
-	FuncEbPa uint32 = 89
-	FuncEdPa uint32 = 90
-	FuncEqPa uint32 = 91
-	FuncInterlockedCompareExchange uint32 = 92
-	FuncStrlen uint32 = 93
-	FuncStrcmp uint32 = 94
-	FuncMemcmp uint32 = 95
-	FuncStrncmp uint32 = 96
+	FuncDwPa uint32 = 83
+	FuncDqPa uint32 = 84
+	FuncEd uint32 = 85
+	FuncEb uint32 = 86
+	FuncEq uint32 = 87
+	FuncInterlockedExchange uint32 = 88
+	FuncInterlockedExchangeAdd uint32 = 89
+	FuncEbPa uint32 = 90
+	FuncEdPa uint32 = 91
+	FuncEqPa uint32 = 92
+	FuncInterlockedCompareExchange uint32 = 93
+	FuncStrlen uint32 = 94
+	FuncStrcmp uint32 = 95
+	FuncMemcmp uint32 = 96
 	MaxSerialPacketSize uint32 = 20*NormalPageSize
-	FuncWcslen uint32 = 97
-	FuncWcscmp uint32 = 98
-	FuncEventInjectErrorCode uint32 = 99
-	FuncMemcpy uint32 = 100
-	FuncMemcpyPa uint32 = 101
-	FuncWcsncmp uint32 = 102
+	FuncStrncmp uint32 = 97
+	FuncWcslen uint32 = 98
+	FuncWcscmp uint32 = 99
+	FuncEventInjectErrorCode uint32 = 100
+	FuncMemcpy uint32 = 101
+	FuncMemcpyPa uint32 = 102
+	FuncWcsncmp uint32 = 103
 	DbgPrintLimitation uint32 = 512
 	DebuggerEventTagStartSeed uint32 = 0x1000000
 	DebuggerThreadDebuggingTagStartSeed uint32 = 0x1000000
@@ -4340,8 +4428,8 @@ const (
 	PseudoRegisterPid uint32 = 0
 	PseudoRegisterTid uint32 = 1
 	PseudoRegisterPname uint32 = 2
-	PseudoRegisterCore uint32 = 3
 	MaximumCharacterForOsName uint32 = 256
+	PseudoRegisterCore uint32 = 3
 	PseudoRegisterProc uint32 = 4
 	PseudoRegisterThread uint32 = 5
 	PseudoRegisterPeb uint32 = 6
@@ -4350,9 +4438,9 @@ const (
 	PseudoRegisterBuffer uint32 = 9
 	PseudoRegisterContext uint32 = 10
 	PseudoRegisterEventTag uint32 = 11
+	MaximumInstrSize uint32 = 16
 	PseudoRegisterEventId uint32 = 12
 	PseudoRegisterEventStage uint32 = 13
-	MaximumInstrSize uint32 = 16
 	PseudoRegisterDate uint32 = 14
 	PseudoRegisterTime uint32 = 15
 	MaximumCallInstrSize uint32 = 7
@@ -4399,29 +4487,29 @@ const (
 	PowerLevel uint32 = 14
 	ProfileLevel uint32 = 15
 	HighLevel uint32 = 15
-	X86Cr0Pe uint32 = 0x00000001
-	X86Cr0Mp uint32 = 0x00000002
-	X86Cr0Em uint32 = 0x00000004
-	X86Cr0Ts uint32 = 0x00000008
-	X86Cr0Et uint32 = 0x00000010
-	X86Cr0Ne uint32 = 0x00000020
-	X86Cr0Wp uint32 = 0x00010000
-	X86Cr0Am uint32 = 0x00040000
-	X86Cr0Nw uint32 = 0x20000000
-	X86Cr0Cd uint32 = 0x40000000
-	X86Cr0Pg uint32 = 0x80000000
-	X86Cr4Vme uint32 = 0x0001
-	X86Cr4Pvi uint32 = 0x0002
-	X86Cr4Tsd uint32 = 0x0004
-	X86Cr4De uint32 = 0x0008
-	X86Cr4Pse uint32 = 0x0010
-	X86Cr4Pae uint32 = 0x0020
-	X86Cr4Mce uint32 = 0x0040
-	X86Cr4Pge uint32 = 0x0080
-	X86Cr4Pce uint32 = 0x0100
-	X86Cr4Osfxsr uint32 = 0x0200
-	X86Cr4Osxmmexcpt uint32 = 0x0400
-	X86Cr4Vmxe uint32 = 0x2000
+	RegCr0Pe uint32 = 0x00000001
+	RegCr0Mp uint32 = 0x00000002
+	RegCr0Em uint32 = 0x00000004
+	RegCr0Ts uint32 = 0x00000008
+	RegCr0Et uint32 = 0x00000010
+	RegCr0Ne uint32 = 0x00000020
+	RegCr0Wp uint32 = 0x00010000
+	RegCr0Am uint32 = 0x00040000
+	RegCr0Nw uint32 = 0x20000000
+	RegCr0Cd uint32 = 0x40000000
+	RegCr0Pg uint32 = 0x80000000
+	RegCr4Vme uint32 = 0x0001
+	RegCr4Pvi uint32 = 0x0002
+	RegCr4Tsd uint32 = 0x0004
+	RegCr4De uint32 = 0x0008
+	RegCr4Pse uint32 = 0x0010
+	RegCr4Pae uint32 = 0x0020
+	RegCr4Mce uint32 = 0x0040
+	RegCr4Pge uint32 = 0x0080
+	RegCr4Pce uint32 = 0x0100
+	RegCr4Osfxsr uint32 = 0x0200
+	RegCr4Osxmmexcpt uint32 = 0x0400
+	RegCr4Vmxe uint32 = 0x2000
 	Kgdt64Null uint32 = (0*16)
 	Kgdt64R0Code uint32 = (1*16)
 	Kgdt64R0Data uint32 = (1*16)+8
@@ -4465,88 +4553,90 @@ const (
 
 // Source: HyperDbgSdk.h -> Macro variables
 var (
-	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
-	SizeofDebuggeeDetailsAndSwitchProcessPacket int = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET{}))
-	SizeofDebuggerEditMemory int = int(unsafe.Sizeof(DEBUGGER_EDIT_MEMORY{}))
-	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
-	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
-	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
-	IoctlTerminateVmx uint32 = CtlCode(0x802)
-	SizeofDebuggerTestQueryBuffer int = int(unsafe.Sizeof(DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER{}))
-	SizeofHypertraceOperationPackets int = int(unsafe.Sizeof(HYPERTRACE_OPERATION_PACKETS{}))
-	SizeofDebuggerSendUsermodeMessagesToDebugger int = int(unsafe.Sizeof(DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER{}))
-	SizeSymbolWithoutLen int = int(unsafe.Sizeof(uint64(0)))*2
-	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
-	SizeofDebuggerDtCommandOptions int = int(unsafe.Sizeof(DEBUGGER_DT_COMMAND_OPTIONS{}))
-	SizeofDebuggerSendCommandExecutionFinishedSignal int = int(unsafe.Sizeof(DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL{}))
-	SizeofDebuggeePcitreeRequestResponsePacket int = int(unsafe.Sizeof(DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET{}))
-	IoctlDebuggerReadPageTableEntriesDetails uint32 = CtlCode(0x805)
-	SizeofDebuggerPerformKernelTests int = int(unsafe.Sizeof(DEBUGGER_PERFORM_KERNEL_TESTS{}))
-	SizeofDebuggerPreactivateCommand int = int(unsafe.Sizeof(DEBUGGER_PREACTIVATE_COMMAND{}))
-	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
-	IoctlDebuggerBringPagesIn uint32 = CtlCode(0x81f)
-	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
-	SizeofDebuggerPageInRequest int = int(unsafe.Sizeof(DEBUGGER_PAGE_IN_REQUEST{}))
-	RegularInstantEventConditionalBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT{}))+100
-	IoctlDebuggerModifyEvents uint32 = CtlCode(0x80c)
-	SizeofDebuggerPausePacketReceived int = int(unsafe.Sizeof(DEBUGGER_PAUSE_PACKET_RECEIVED{}))
-	SizeofDebuggerFlushLoggingBuffers int = int(unsafe.Sizeof(DEBUGGER_FLUSH_LOGGING_BUFFERS{}))
-	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
-	RegularInstantEventActionBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{}))+(int(PageSize)*2)
-	IoctlSendGeneralBufferFromDebuggeeToDebugger uint32 = CtlCode(0x814)
-	IoctlGetListOfThreadsAndProcesses uint32 = CtlCode(0x81b)
-	SizeofDebuggerModifyEvents int = int(unsafe.Sizeof(DEBUGGER_MODIFY_EVENTS{}))
-	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
 	IoctlDebuggerEditMemory uint32 = CtlCode(0x80a)
-	SizeofDebuggerVa2paAndPa2vaCommands int = int(unsafe.Sizeof(DEBUGGER_VA2PA_AND_PA2VA_COMMANDS{}))
-	SizeofDebuggerPrepareDebuggee int = int(unsafe.Sizeof(DEBUGGER_PREPARE_DEBUGGEE{}))
-	LogBufferSizePriority int = int(MaximumPacketsCapacityPriority)*(int(PacketChunkSize)+int(unsafe.Sizeof(BUFFER_HEADER{})))
-	SizeofDebuggerHideAndTransparentDebuggerMode int = int(unsafe.Sizeof(DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE{}))
-	IoctlPcidevinfoEnum uint32 = CtlCode(0x823)
-	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
-	SizeofDebuggeeSendGeneralPacketFromDebuggeeToDebugger int = int(unsafe.Sizeof(DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER{}))
-	SizeofDebuggerReadMemory int = int(unsafe.Sizeof(DEBUGGER_READ_MEMORY{}))
-	BigInstantEventConditionalBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT{}))+int(PageSize)
-	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
-	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
-	IoctlPausePacketReceived uint32 = CtlCode(0x811)
-	LogBufferSize int = int(MaximumPacketsCapacity)*(int(PacketChunkSize)+int(unsafe.Sizeof(BUFFER_HEADER{})))
-	SizeofDebuggerAttachDetachUserModeProcess int = int(unsafe.Sizeof(DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS{}))
-	SizeofDebuggerSearchMemory int = int(unsafe.Sizeof(DEBUGGER_SEARCH_MEMORY{}))
-	UsermodeBufferSize int = int(unsafe.Sizeof(uint32(0)))+int(PacketChunkSize)+1
-	SizeofUsermodeDebuggingThreadOrProcessStateDetails int = int(unsafe.Sizeof(USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS{}))
-	IoctlPerformActionsOnApic uint32 = CtlCode(0x822)
-	IoctlSendSignalExecutionInDebuggeeFinished uint32 = CtlCode(0x812)
-	IoctlPerformSmiOperation uint32 = CtlCode(0x826)
-	SizeofDebuggeeDetailsAndSwitchThreadPacket int = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET{}))
-	SizeofDebuggerApicRequest int = int(unsafe.Sizeof(DEBUGGER_APIC_REQUEST{}))
-	IoctlRegisterEvent uint32 = CtlCode(0x800)
-	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
-	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
-	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
-	SizeofDebuggeeBpPacket int = int(unsafe.Sizeof(DEBUGGEE_BP_PACKET{}))
-	IoctlSendUserDebuggerCommands uint32 = CtlCode(0x817)
-	IoctlRequestRevMachineService uint32 = CtlCode(0x81e)
-	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
-	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
-	SizeofDebuggerQueryActiveProcessesOrThreads int = int(unsafe.Sizeof(DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS{}))
-	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
-	SizeofDebuggerPreallocCommand int = int(unsafe.Sizeof(DEBUGGER_PREALLOC_COMMAND{}))
-	SizeofSmiOperationPackets int = int(unsafe.Sizeof(SMI_OPERATION_PACKETS{}))
-	SizeofDebuggeePcidevinfoRequestResponsePacket int = int(unsafe.Sizeof(DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET{}))
-	SizeofDebuggerCallstackRequest int = int(unsafe.Sizeof(DEBUGGER_CALLSTACK_REQUEST{}))
-	IoctlDebuggerVa2paAndPa2vaCommands uint32 = CtlCode(0x809)
-	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
-	SizeofRegisterEvent int = int(unsafe.Sizeof(REGISTER_NOTIFY_BUFFER{}))
-	SizeofDebuggerReadPageTableEntriesDetails int = int(unsafe.Sizeof(DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS{}))
+	IoctlDebuggerHideAndUnhideToTransparentTheDebugger uint32 = CtlCode(0x808)
+	SizeofDebuggeePcitreeRequestResponsePacket int = int(unsafe.Sizeof(DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET{}))
 	SizeofInterruptDescriptorTableEntriesPackets int = int(unsafe.Sizeof(INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS{}))
-	IoctlPreactivateFunctionality uint32 = CtlCode(0x820)
+	IoctlDebuggerReadMemory uint32 = CtlCode(0x803)
+	IoctlSendGeneralBufferFromDebuggeeToDebugger uint32 = CtlCode(0x814)
+	IoctlPerformActionsOnApic uint32 = CtlCode(0x822)
+	SizeofRegisterEvent int = int(unsafe.Sizeof(REGISTER_NOTIFY_BUFFER{}))
+	IoctlDebuggerBringPagesIn uint32 = CtlCode(0x81f)
+	IoctlRegisterEvent uint32 = CtlCode(0x800)
+	IoctlQueryCurrentProcess uint32 = CtlCode(0x81c)
 	BigInstantEventActionBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{}))+int(MaxSerialPacketSize)
-	IoctlPerformHypertraceOperation uint32 = CtlCode(0x827)
-	SizeofReversingMachineReconstructMemoryRequest int = int(unsafe.Sizeof(REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST{}))
+	IoctlDebuggerModifyEvents uint32 = CtlCode(0x80c)
 	IoctlSendUsermodeMessagesToDebugger uint32 = CtlCode(0x813)
-	SizeofDebuggerReadAndWriteOnMsr int = int(unsafe.Sizeof(DEBUGGER_READ_AND_WRITE_ON_MSR{}))
-	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
+	SizeofDebuggerVa2paAndPa2vaCommands int = int(unsafe.Sizeof(DEBUGGER_VA2PA_AND_PA2VA_COMMANDS{}))
+	SizeofDebuggerAttachDetachUserModeProcess int = int(unsafe.Sizeof(DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS{}))
+	SizeofDebuggerQueryActiveProcessesOrThreads int = int(unsafe.Sizeof(DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS{}))
+	IoctlPerformHypertracePtOperation uint32 = CtlCode(0x828)
 	IoctlQueryCurrentThread uint32 = CtlCode(0x81d)
+	SizeofDebuggerDtCommandOptions int = int(unsafe.Sizeof(DEBUGGER_DT_COMMAND_OPTIONS{}))
+	IoctlDebuggerAddActionToEvent uint32 = CtlCode(0x807)
+	SizeofDebuggeeSendGeneralPacketFromDebuggeeToDebugger int = int(unsafe.Sizeof(DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER{}))
+	SizeofDebuggerPerformKernelTests int = int(unsafe.Sizeof(DEBUGGER_PERFORM_KERNEL_TESTS{}))
+	SizeSymbolWithoutLen int = int(unsafe.Sizeof(uint64(0)))*2
+	SizeofDebuggerApicRequest int = int(unsafe.Sizeof(DEBUGGER_APIC_REQUEST{}))
+	SizeofDebuggerPreallocCommand int = int(unsafe.Sizeof(DEBUGGER_PREALLOC_COMMAND{}))
+	SizeofDebuggerReadMemory int = int(unsafe.Sizeof(DEBUGGER_READ_MEMORY{}))
+	SizeofDebuggerPrepareDebuggee int = int(unsafe.Sizeof(DEBUGGER_PREPARE_DEBUGGEE{}))
+	SizeofDebuggerSearchMemory int = int(unsafe.Sizeof(DEBUGGER_SEARCH_MEMORY{}))
+	SizeofSmiOperationPackets int = int(unsafe.Sizeof(SMI_OPERATION_PACKETS{}))
+	SizeofHypertraceLbrOperationPackets int = int(unsafe.Sizeof(HYPERTRACE_LBR_OPERATION_PACKETS{}))
+	IoctlPausePacketReceived uint32 = CtlCode(0x811)
+	SizeofDebuggerFlushLoggingBuffers int = int(unsafe.Sizeof(DEBUGGER_FLUSH_LOGGING_BUFFERS{}))
+	SizeofUsermodeDebuggingThreadOrProcessStateDetails int = int(unsafe.Sizeof(USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS{}))
+	IoctlSendSignalExecutionInDebuggeeFinished uint32 = CtlCode(0x812)
+	IoctlGetUserModeModuleDetails uint32 = CtlCode(0x819)
+	IoctlGetDetailOfActiveThreadsAndProcesses uint32 = CtlCode(0x818)
+	IoctlPcidevinfoEnum uint32 = CtlCode(0x823)
+	SizeofDebuggerModifyEvents int = int(unsafe.Sizeof(DEBUGGER_MODIFY_EVENTS{}))
+	SizeofDebuggerEditMemory int = int(unsafe.Sizeof(DEBUGGER_EDIT_MEMORY{}))
+	IoctlDebuggerReadPageTableEntriesDetails uint32 = CtlCode(0x805)
+	BigInstantEventConditionalBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT{}))+int(PageSize)
+	SizeofDebuggerPreactivateCommand int = int(unsafe.Sizeof(DEBUGGER_PREACTIVATE_COMMAND{}))
+	LogBufferSize int = int(MaximumPacketsCapacity)*(int(PacketChunkSize)+int(unsafe.Sizeof(BUFFER_HEADER{})))
+	IoctlTerminateVmx uint32 = CtlCode(0x802)
+	IoctlPrepareDebuggee uint32 = CtlCode(0x810)
+	SizeofDebuggeeDetailsAndSwitchThreadPacket int = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET{}))
+	IoctlGetListOfThreadsAndProcesses uint32 = CtlCode(0x81b)
+	IoctlDebuggerPrint uint32 = CtlCode(0x80f)
+	SizeofDebuggerSendCommandExecutionFinishedSignal int = int(unsafe.Sizeof(DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL{}))
+	UsermodeBufferSize int = int(unsafe.Sizeof(uint32(0)))+int(PacketChunkSize)+1
+	SizeofReversingMachineReconstructMemoryRequest int = int(unsafe.Sizeof(REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST{}))
+	RegularInstantEventActionBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{}))+(int(PageSize)*2)
+	IoctlDebuggerFlushLoggingBuffers uint32 = CtlCode(0x80d)
+	IoctlQueryIdtEntry uint32 = CtlCode(0x824)
+	SizeofDebuggerReadPageTableEntriesDetails int = int(unsafe.Sizeof(DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS{}))
+	IoctlDebuggerAttachDetachUserModeProcess uint32 = CtlCode(0x80e)
+	IoctlReturnIrpPendingPacketsAndDisallowIoctl uint32 = CtlCode(0x801)
+	IoctlSendUserDebuggerCommands uint32 = CtlCode(0x817)
+	IoctlPerformSmiOperation uint32 = CtlCode(0x826)
+	SizeofDebuggerPageInRequest int = int(unsafe.Sizeof(DEBUGGER_PAGE_IN_REQUEST{}))
+	IoctlReservePreAllocatedPools uint32 = CtlCode(0x816)
+	IoctlPerformHypertraceLbrOperation uint32 = CtlCode(0x827)
+	IoctlDebuggerVa2paAndPa2vaCommands uint32 = CtlCode(0x809)
+	IoctlQueryCountOfActiveProcessesOrThreads uint32 = CtlCode(0x81a)
+	SizeofDebuggerHideAndTransparentDebuggerMode int = int(unsafe.Sizeof(DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE{}))
+	SizeofDebuggeeDetailsAndSwitchProcessPacket int = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET{}))
+	SizeofDebuggeePcidevinfoRequestResponsePacket int = int(unsafe.Sizeof(DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET{}))
+	SizeofHypertracePtOperationPackets int = int(unsafe.Sizeof(HYPERTRACE_PT_OPERATION_PACKETS{}))
+	LogBufferSizePriority int = int(MaximumPacketsCapacityPriority)*(int(PacketChunkSize)+int(unsafe.Sizeof(BUFFER_HEADER{})))
+	IoctlDebuggerSearchMemory uint32 = CtlCode(0x80b)
+	SizeofDebuggerSendUsermodeMessagesToDebugger int = int(unsafe.Sizeof(DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER{}))
+	IoctlPreactivateFunctionality uint32 = CtlCode(0x820)
+	IoctlPcieEndpointEnum uint32 = CtlCode(0x821)
+	SizeofDebuggeeBpPacket int = int(unsafe.Sizeof(DEBUGGEE_BP_PACKET{}))
+	IoctlDebuggerRegisterEvent uint32 = CtlCode(0x806)
+	IoctlRequestRevMachineService uint32 = CtlCode(0x81e)
+	RegularInstantEventConditionalBuffer int = int(unsafe.Sizeof(DEBUGGER_EVENT{}))+100
+	SizeofDebuggerCallstackRequest int = int(unsafe.Sizeof(DEBUGGER_CALLSTACK_REQUEST{}))
+	IoctlSetBreakpointUserDebugger uint32 = CtlCode(0x825)
+	SizeofDebuggerTestQueryBuffer int = int(unsafe.Sizeof(DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER{}))
+	SizeofDebuggerReadAndWriteOnMsr int = int(unsafe.Sizeof(DEBUGGER_READ_AND_WRITE_ON_MSR{}))
+	IoctlDebuggerReadOrWriteMsr uint32 = CtlCode(0x804)
+	IoctlPerformKernelSideTests uint32 = CtlCode(0x815)
+	SizeofDebuggerPausePacketReceived int = int(unsafe.Sizeof(DEBUGGER_PAUSE_PACKET_RECEIVED{}))
 )
 
