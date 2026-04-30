@@ -8,3 +8,4 @@ clone/
 build_debug/
 build/
 /init.cmd
+/cmds.cmd

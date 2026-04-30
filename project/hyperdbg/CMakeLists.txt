@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
-include(d:/ewdk/ewdk.cmake)
+include("C:/Program Files/CMake/bin/ewdk.cmake")
 
 project(HyperDbgUnified C CXX ASM_MASM)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)

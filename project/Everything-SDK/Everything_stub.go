@@ -2,7 +2,7 @@ package everything
 
 // Source: Everything_stub.h:21 -> _FILETIME
 type FILETIME struct {
-	DwLowDateTime uint32
+	DwLowDateTime  uint32
 	DwHighDateTime uint32
 }
 
@@ -15,4 +15,3 @@ type LARGE_INTEGER struct {
 const (
 	IncWindows uint32 = 1
 )
-

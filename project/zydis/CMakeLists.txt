@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-include(d:/ewdk/ewdk.cmake)
+include("C:/Program Files/CMake/bin/ewdk.cmake")
 
 project(zydis C)
 

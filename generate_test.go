@@ -426,6 +426,7 @@ func Generate(t *testing.T, configs []BindgenConfig) {
 
 	for _, bc := range configs {
 		processBindgenConfig(t, cfg, bc)
+		stream.FmtDir(bc.OutputDir)
 	}
 
 	fmt.Println("\n✅ All binding generations completed!")

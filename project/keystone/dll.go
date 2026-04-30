@@ -15,16 +15,16 @@ type Keystone struct{}
 var dllBytes []byte
 
 var (
-	dll            *windows.LazyDLL
-	proc_ks_version      *windows.LazyProc
-	proc_ks_arch_supported      *windows.LazyProc
-	proc_ks_open      *windows.LazyProc
-	proc_ks_close      *windows.LazyProc
-	proc_ks_errno      *windows.LazyProc
-	proc_ks_strerror      *windows.LazyProc
-	proc_ks_option      *windows.LazyProc
-	proc_ks_asm      *windows.LazyProc
-	proc_ks_free      *windows.LazyProc
+	dll                    *windows.LazyDLL
+	proc_ks_version        *windows.LazyProc
+	proc_ks_arch_supported *windows.LazyProc
+	proc_ks_open           *windows.LazyProc
+	proc_ks_close          *windows.LazyProc
+	proc_ks_errno          *windows.LazyProc
+	proc_ks_strerror       *windows.LazyProc
+	proc_ks_option         *windows.LazyProc
+	proc_ks_asm            *windows.LazyProc
+	proc_ks_free           *windows.LazyProc
 )
 
 func init() {
@@ -43,7 +43,7 @@ func init() {
 func saveEmbeddedDLL(data []byte, name string) string {
 	tmpDir := os.TempDir()
 	p := filepath.Join(tmpDir, name)
-	os.WriteFile(p, data, 0644)
+	os.WriteFile(p, data, 0o644)
 	return p
 }
 
@@ -90,4 +90,3 @@ func (k *Keystone) KsAsm(Ks *Ks_engine, String *int8, Address uint64, Encoding *
 func (k *Keystone) KsFree(P *uint8) {
 	proc_ks_free.Call(uintptr(unsafe.Pointer(P)))
 }
-

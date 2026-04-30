@@ -25,4 +25,3 @@ func (k Ks_err_asm_ppc) String() string {
 		return fmt.Sprintf("Ks_err_asm_ppc(0x%X)", uint32(k))
 	}
 }
-

@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"os"
-	"path/filepath"
 
+	"github.com/ddkwork/golibrary/cmake"
 	"github.com/ddkwork/golibrary/std/mylog"
 )
 
@@ -46,9 +46,8 @@ func loadEwdkEnv() *ewdkEnvJSON {
 	if cachedEwdk != nil {
 		return cachedEwdk
 	}
-	p := filepath.Join(`d:\ewdk`, "ewdk.env.json")
 	var env ewdkEnvJSON
-	mylog.Check(json.Unmarshal(mylog.Check2(os.ReadFile(p)), &env))
+	mylog.Check(json.Unmarshal(mylog.Check2(os.ReadFile(cmake.EwdkEnvFile)), &env))
 	cachedEwdk = &env
 	return &env
 }
