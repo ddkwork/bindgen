@@ -566,6 +566,28 @@ void abort(void);
 		}})
 	})
 
+	t.Run("glfw", func(t *testing.T) {
+		Generate(t, []BindgenConfig{{
+			HeadersDir:     "project/glfw/clone/glfw/include",
+			OutputDir:      "project/glfw",
+			PackageName:    "glfw",
+			RecurseHeaders: true,
+			HeaderOrder: []string{
+				"GLFW/glfw3.h",
+			},
+			SingleFile: true,
+			BindDll:    true,
+			DllName:    "glfw3.dll",
+			Predefined: `
+#define GLFW_INCLUDE_NONE
+#define GLFW_DLL
+`,
+			DllFuncFilter: func(name string) bool {
+				return strings.HasPrefix(name, "glfw")
+			},
+		}})
+	})
+
 	// {
 	// 	Name:        "header",
 	// 	HeadersDir:  filepath.Join("..", "..", "HyperDbgUnified", "HyperDbg", "hyperdbg", "libhyperdbg", "header"),
@@ -614,7 +636,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 	cfg.SysIncludePaths = append(cfg.SysIncludePaths, bc.HeadersDir)
 	for _, dir := range bc.ExtraIncludeDirs {
 		cfg.IncludePaths = append(cfg.IncludePaths, dir)
-		cfg.SysIncludePaths = append(cfg.SysIncludePaths, dir)
+		cfg.SysIncludePaths = append([]string{dir}, cfg.SysIncludePaths...)
 	}
 
 	headerMap := make(map[string]string)

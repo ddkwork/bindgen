@@ -285,8 +285,11 @@ func loadMSVCExtraTypes() string {
 #define true 1
 #define _VCRT_COMPILER_PREPROCESSOR 1
 #define _STDINT
+#define _STDINT_H_
 #define _INC_ASSERT
 #define _STDDEF
+#define _STDDEF_H_
+#define _INC_STDDEF
 #define _STDLIB
 #define _STRING
 #define _Check_return_

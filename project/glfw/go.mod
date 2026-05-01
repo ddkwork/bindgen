@@ -1,4 +1,4 @@
-module github.com/ddkwork/zydis
+module github.com/ddkwork/glfw
 
 go 1.26.1
 
