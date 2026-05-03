@@ -1323,7 +1323,9 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		}
 		for _, td := range funcTypes {
 			goType := td.goType
-			if !strings.Contains(goType, ") ") {
+			if idx := strings.LastIndex(goType, ") "); idx >= 0 {
+				goType = goType[:idx+1] + " uintptr"
+			} else {
 				goType = strings.TrimSuffix(goType, ")") + ") uintptr"
 			}
 			content.WriteString(fmt.Sprintf("type %s %s\n\n", td.goName, goType))
@@ -4374,13 +4376,13 @@ func dllParamToSyscall(p dllFuncParam, funcTypeNames map[string]bool, typedefs *
 		return "uintptr(" + p.goName + ")"
 	default:
 		if strings.HasPrefix(resolvedType, "func(") || funcTypeNames[p.goType] {
-			return "windows.NewCallback(" + p.goName + ")"
+			return "func() uintptr { if " + p.goName + " == nil { println(\"Callback is nil\"); return 0 }; return windows.NewCallback(" + p.goName + ") }()"
 		}
 		if td, ok := typedefs.Get(resolvedType); ok && td.isFunc {
-			return "windows.NewCallback(" + p.goName + ")"
+			return "func() uintptr { if " + p.goName + " == nil { println(\"Callback is nil\"); return 0 }; return windows.NewCallback(" + p.goName + ") }()"
 		}
 		if td, ok := typedefs.Get(p.goType); ok && td.isFunc {
-			return "windows.NewCallback(" + p.goName + ")"
+			return "func() uintptr { if " + p.goName + " == nil { println(\"Callback is nil\"); return 0 }; return windows.NewCallback(" + p.goName + ") }()"
 		}
 		if strings.HasPrefix(p.goType, "*") || p.isPointer {
 			return "uintptr(unsafe.Pointer(" + p.goName + "))"

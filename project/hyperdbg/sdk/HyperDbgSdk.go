@@ -179,9 +179,9 @@ type (
 	RegistersNames                                          = [120]*int8
 )
 
-type SendMessageWithParamCallback func(*int8) int32
+type SendMessageWithParamCallback func(*int8) uintptr
 
-type SendMessageWithSharedBufferCallback func() int32
+type SendMessageWithSharedBufferCallback func() uintptr
 
 type SymbolMapCallback func(uint64, *int8, *int8, uint32) uintptr
 

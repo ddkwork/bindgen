@@ -9,7 +9,7 @@ type (
 	Ks_engine = Ks_struct
 )
 
-type Ks_sym_resolver func(*int8, *uint64) bool
+type Ks_sym_resolver func(*int8, *uint64) uintptr
 
 // Source: keystone.h:57 -> ks_arch
 type Ks_arch uint32

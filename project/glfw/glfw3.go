@@ -93,9 +93,9 @@ type GLFWglproc func() uintptr
 
 type GLFWvkproc func() uintptr
 
-type GLFWallocatefun func(uintptr, unsafe.Pointer) unsafe.Pointer
+type GLFWallocatefun func(uintptr, unsafe.Pointer) uintptr
 
-type GLFWreallocatefun func(unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
+type GLFWreallocatefun func(unsafe.Pointer, uintptr, unsafe.Pointer) uintptr
 
 type GLFWdeallocatefun func(unsafe.Pointer, unsafe.Pointer) uintptr
 

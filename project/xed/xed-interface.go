@@ -119,11 +119,11 @@ type Xed_user_abort_function_t func(*int8, *int8, int32, unsafe.Pointer) uintptr
 
 type Xed_operand_extractor_fn_t func(*Xed_decoded_inst_s) uintptr
 
-type Xed_disassembly_callback_fn_t func(Xed_uint64_t, *int8, Xed_uint32_t, *Xed_uint64_t, unsafe.Pointer) int32
+type Xed_disassembly_callback_fn_t func(Xed_uint64_t, *int8, Xed_uint32_t, *Xed_uint64_t, unsafe.Pointer) uintptr
 
-type Xed_register_callback_fn_t func(Xed_reg_enum_t, unsafe.Pointer, *Xed_bool_t) Xed_uint64_t
+type Xed_register_callback_fn_t func(Xed_reg_enum_t, unsafe.Pointer, *Xed_bool_t) uintptr
 
-type Xed_segment_base_callback_fn_t func(Xed_reg_enum_t, unsafe.Pointer, *Xed_bool_t) Xed_uint64_t
+type Xed_segment_base_callback_fn_t func(Xed_reg_enum_t, unsafe.Pointer, *Xed_bool_t) uintptr
 
 // Source: xed-operand-enum.h:0 -> xed_operand_enum_t
 type Xed_operand_enum_t uint32
