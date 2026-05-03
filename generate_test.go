@@ -1322,7 +1322,11 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			content.WriteString(")\n\n")
 		}
 		for _, td := range funcTypes {
-			content.WriteString(fmt.Sprintf("type %s %s\n\n", td.goName, td.goType))
+			goType := td.goType
+			if !strings.Contains(goType, ") ") {
+				goType = strings.TrimSuffix(goType, ")") + ") uintptr"
+			}
+			content.WriteString(fmt.Sprintf("type %s %s\n\n", td.goName, goType))
 		}
 
 		for _, ei := range result.Enums.Range() {
@@ -1482,7 +1486,18 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 				constItems = append(constItems, mc)
 			}
 		}
-		slices.SortFunc(constItems, func(a, b macroConstInfo) int { return a.lineNo - b.lineNo })
+		slices.SortStableFunc(constItems, func(a, b macroConstInfo) int {
+			if a.source != b.source {
+				return strings.Compare(a.source, b.source)
+			}
+			return a.lineNo - b.lineNo
+		})
+		slices.SortStableFunc(varItems, func(a, b macroConstInfo) int {
+			if a.source != b.source {
+				return strings.Compare(a.source, b.source)
+			}
+			return a.lineNo - b.lineNo
+		})
 
 		for _, mc := range result.FnMacros.Range() {
 			if !sourceMatch(mc.source) {

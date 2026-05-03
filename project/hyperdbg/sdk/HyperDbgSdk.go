@@ -2497,7 +2497,6 @@ type DEBUGGER_TRIGGERED_EVENT_DETAILS struct {
 	Tag     uint64
 	Context uintptr
 	Stage   VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
-	_       [4]byte
 }
 
 // Source: DataTypes.h:224 -> _DEBUGGEE_KD_PAUSED_PACKET
@@ -2544,7 +2543,6 @@ type DEBUGGEE_MESSAGE_PACKET struct {
 // Source: DataTypes.h:295 -> _REGISTER_NOTIFY_BUFFER
 type REGISTER_NOTIFY_BUFFER struct {
 	Type   NOTIFY_TYPE
-	_      [4]byte
 	HEvent uintptr
 }
 
@@ -2746,7 +2744,6 @@ type DEBUGGER_GENERAL_EVENT_DETAIL struct {
 	Options               DEBUGGER_EVENT_OPTIONS
 	CommandStringBuffer   uintptr
 	ConditionBufferSize   uint32
-	_                     [4]byte
 }
 
 // Source: Events.h:410 -> _DEBUGGER_GENERAL_ACTION
@@ -2970,13 +2967,13 @@ type REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST struct {
 // Source: RequestStructures.h:132 -> _DEBUGGER_DT_COMMAND_OPTIONS
 type DEBUGGER_DT_COMMAND_OPTIONS struct {
 	TypeName             *int8
+	_                    [4]byte
 	SizeOfTypeName       uint64
 	Address              uint64
 	IsStruct             bool
-	_                    [7]byte
+	_                    [3]byte
 	BufferAddress        uintptr
 	TargetPid            uint32
-	_                    [4]byte
 	AdditionalParameters *int8
 }
 
@@ -3252,10 +3249,8 @@ type DEBUGGER_EVENT_REQUEST_BUFFER struct {
 // Source: RequestStructures.h:866 -> _DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
 type DEBUGGER_EVENT_REQUEST_CUSTOM_CODE struct {
 	CustomCodeBufferSize        uint32
-	_                           [4]byte
 	CustomCodeBufferAddress     uintptr
 	OptionalRequestedBufferSize uint32
-	_                           [4]byte
 }
 
 // Source: RequestStructures.h:894 -> _DEBUGGER_UD_COMMAND_ACTION
@@ -3817,6 +3812,7 @@ type SYMBOL_BUFFER struct {
 // Source: ScriptEngineCommonDefinitions.h:29 -> SYMBOL_MAP
 type SYMBOL_MAP struct {
 	Name *int8
+	_    [4]byte
 	Type uint64
 }
 
@@ -4151,192 +4147,26 @@ func (c DebuggerErrorCode) String() string {
 
 // Source: HyperDbgSdk.h -> Macro constants
 const (
+	NullZero                                              uint32 = 0
+	FALSE                                                 uint32 = 0
+	TRUE                                                  uint32 = 1
+	Upper56Bits                                           uint64 = 0xffffffffffffff00
+	Upper48Bits                                           uint64 = 0xffffffffffff0000
+	Upper32Bits                                           uint64 = 0xffffffff00000000
+	Lower32Bits                                           uint64 = 0x00000000ffffffff
+	Lower16Bits                                           uint64 = 0x000000000000ffff
+	Lower8Bits                                            uint64 = 0x00000000000000ff
+	SecondLower8Bits                                      uint64 = 0x000000000000ff00
+	Upper48BitsAndLower8Bits                              uint64 = 0xffffffffffff00ff
 	PageSize                                              uint32 = 0x1000
 	VersionMajor                                          uint32 = 0
 	VersionMinor                                          uint32 = 19
 	VersionPatch                                          uint32 = 0
-	MsrLegacyLbrSelect                                    uint32 = 0x000001C8
-	DefaultInitialDebuggeeToDebuggerOffset                uint32 = 0x200
-	LbrKernelBit                                          uint32 = 0
-	DefaultInitialDebuggerToDebuggeeOffset                uint32 = 0x0
-	LbrUserBit                                            uint32 = 1
-	BusBitWidth                                           uint32 = 8
-	LbrJccBit                                             uint32 = 2
-	DeviceBitWidth                                        uint32 = 5
-	FunctionBitWidth                                      uint32 = 3
-	LbrRelCallBit                                         uint32 = 3
-	LbrIndCallBit                                         uint32 = 4
-	LbrReturnBit                                          uint32 = 5
-	LbrIndJmpBit                                          uint32 = 6
-	LbrRelJmpBit                                          uint32 = 7
-	DefaultInitialBramBufferSize                          uint32 = 256
-	FileAnyAccess                                         uint32 = 0
-	LbrFarBit                                             uint32 = 8
-	LbrCallStackBit                                       uint32 = 9
-	DomainMaxNum                                          uint32 = 0
-	BusMaxNum                                             uint32 = 255
-	DeviceMaxNum                                          uint32 = 32
-	FunctionMaxNum                                        uint32 = 8
-	DevMaxNum                                             uint32 = 255
-	SymbolUndefined                                       uint32 = 0
-	CamConfigSpaceLength                                  uint32 = 255
-	SymbolGlobalIdType                                    uint32 = 1
-	LbrKernel                                             uint32 = (1 << LbrKernelBit)
-	LbrUser                                               uint32 = (1 << LbrUserBit)
-	SymbolLocalIdType                                     uint32 = 2
-	LbrJcc                                                uint32 = (1 << LbrJccBit)
-	MethodBuffered                                        uint32 = 0
-	SymbolNumType                                         uint32 = 3
-	LbrRelCall                                            uint32 = (1 << LbrRelCallBit)
-	SymbolRegisterType                                    uint32 = 4
-	SymbolPseudoRegType                                   uint32 = 5
-	LbrIndCall                                            uint32 = (1 << LbrIndCallBit)
-	SymbolSemanticRuleType                                uint32 = 6
-	LbrReturn                                             uint32 = (1 << LbrReturnBit)
-	LbrIndJmp                                             uint32 = (1 << LbrIndJmpBit)
-	SymbolTempType                                        uint32 = 7
-	SymbolStringType                                      uint32 = 8
-	LbrRelJmp                                             uint32 = (1 << LbrRelJmpBit)
-	LbrFar                                                uint32 = (1 << LbrFarBit)
-	SymbolVariableCountType                               uint32 = 9
-	FileDeviceUnknown                                     uint32 = 0x00000022
-	SymbolInvalid                                         uint32 = 10
-	LbrCallStack                                          uint32 = (1 << LbrCallStackBit)
-	SymbolWstringType                                     uint32 = 11
-	SymbolFunctionParameterIdType                         uint32 = 12
-	SymbolReturnAddressType                               uint32 = 13
-	SymbolFunctionParameterType                           uint32 = 14
-	SymbolStackIndexType                                  uint32 = 15
-	MaximumLbrCapacity                                    uint32 = 0x20
-	SymbolStackBaseIndexType                              uint32 = 16
-	SymbolReturnValueType                                 uint32 = 17
-	SymbolReferenceLocalIdType                            uint32 = 18
-	SymbolReferenceTempType                               uint32 = 19
-	SymbolDereferenceLocalIdType                          uint32 = 20
-	SymbolDereferenceTempType                             uint32 = 21
-	SymbolMemValidCheckMask                               uint32 = (1 << 31)
-	NullZero                                              uint32 = 0
-	INVALID                                               uint32 = 0x80000000
-	LalrAccept                                            uint32 = 0x7fffffff
-	FALSE                                                 uint32 = 0
-	TRUE                                                  uint32 = 1
-	FuncUndefined                                         uint32 = 0
-	Upper56Bits                                           uint64 = 0xffffffffffffff00
-	FuncInc                                               uint32 = 1
-	FuncDec                                               uint32 = 2
-	Upper48Bits                                           uint64 = 0xffffffffffff0000
-	Upper32Bits                                           uint64 = 0xffffffff00000000
-	FuncReference                                         uint32 = 3
-	Lower32Bits                                           uint64 = 0x00000000ffffffff
-	FuncOr                                                uint32 = 4
-	Lower16Bits                                           uint64 = 0x000000000000ffff
-	FuncXor                                               uint32 = 5
-	Lower8Bits                                            uint64 = 0x00000000000000ff
-	FuncAnd                                               uint32 = 6
-	FuncAsr                                               uint32 = 7
-	SecondLower8Bits                                      uint64 = 0x000000000000ff00
-	Upper48BitsAndLower8Bits                              uint64 = 0xffffffffffff00ff
-	FuncAsl                                               uint32 = 8
-	FuncAdd                                               uint32 = 9
-	FuncSub                                               uint32 = 10
-	FuncMul                                               uint32 = 11
-	FuncDiv                                               uint32 = 12
-	FuncMod                                               uint32 = 13
-	FuncGt                                                uint32 = 14
-	FuncLt                                                uint32 = 15
-	FuncEgt                                               uint32 = 16
-	FuncElt                                               uint32 = 17
-	FuncEqual                                             uint32 = 18
-	FuncNeq                                               uint32 = 19
-	FuncJmp                                               uint32 = 20
-	FuncJz                                                uint32 = 21
-	FuncJnz                                               uint32 = 22
-	FuncMov                                               uint32 = 23
-	FuncStartOfDoWhile                                    uint32 = 24
-	FuncStartOfDoWhileCommands                            uint32 = 25
-	FuncEndOfDoWhile                                      uint32 = 26
-	FuncStartOfFor                                        uint32 = 27
-	FuncForIncDec                                         uint32 = 28
-	FuncStartOfForOmmands                                 uint32 = 29
-	FuncEndOfIf                                           uint32 = 30
-	FuncIgnoreLvalue                                      uint32 = 31
-	FuncPush                                              uint32 = 32
-	FuncPop                                               uint32 = 33
-	FuncCall                                              uint32 = 34
-	FuncRet                                               uint32 = 35
-	FuncPrint                                             uint32 = 36
-	FuncFormats                                           uint32 = 37
-	FuncEventEnable                                       uint32 = 38
-	FuncEventDisable                                      uint32 = 39
-	FuncEventClear                                        uint32 = 40
-	FuncTestStatement                                     uint32 = 41
-	FuncSpinlockLock                                      uint32 = 42
-	FuncSpinlockUnlock                                    uint32 = 43
-	FuncEventSc                                           uint32 = 44
-	FuncMicrosleep                                        uint32 = 45
-	FuncPrintf                                            uint32 = 46
-	FuncPause                                             uint32 = 47
-	FuncFlush                                             uint32 = 48
-	FuncLbrFlush                                          uint32 = 49
-	FuncEventTraceStep                                    uint32 = 50
-	FuncEventTraceStepIn                                  uint32 = 51
-	FuncEventTraceStepOut                                 uint32 = 52
-	FuncEventTraceInstrumentationStep                     uint32 = 53
-	FuncEventTraceInstrumentationStepIn                   uint32 = 54
-	FuncRdtsc                                             uint32 = 55
-	FuncRdtscp                                            uint32 = 56
-	FuncLbrSave                                           uint32 = 57
-	FuncLbrDump                                           uint32 = 58
-	FuncSpinlockLockCustomWait                            uint32 = 59
-	FuncEventInject                                       uint32 = 60
-	FuncPoi                                               uint32 = 61
-	FuncDb                                                uint32 = 62
-	FuncDd                                                uint32 = 63
-	FuncDw                                                uint32 = 64
-	FuncDq                                                uint32 = 65
-	FuncNeg                                               uint32 = 66
 	MaximumPacketsCapacity                                uint32 = 1000
-	FuncHi                                                uint32 = 67
-	FuncLow                                               uint32 = 68
-	FuncNot                                               uint32 = 69
-	FuncCheckAddress                                      uint32 = 70
-	FuncDisassembleLen                                    uint32 = 71
 	MaximumPacketsCapacityPriority                        uint32 = 50
-	FuncDisassembleLen32                                  uint32 = 72
-	FuncDisassembleLen64                                  uint32 = 73
-	FuncInterlockedIncrement                              uint32 = 74
-	FuncInterlockedDecrement                              uint32 = 75
-	FuncPhysicalToVirtual                                 uint32 = 76
 	NormalPageSize                                        uint32 = 4096
-	FuncVirtualToPhysical                                 uint32 = 77
-	FuncPoiPa                                             uint32 = 78
-	FuncHiPa                                              uint32 = 79
-	FuncLowPa                                             uint32 = 80
-	FuncDbPa                                              uint32 = 81
 	PacketChunkSize                                       uint32 = NormalPageSize
-	FuncDdPa                                              uint32 = 82
-	FuncDwPa                                              uint32 = 83
-	FuncDqPa                                              uint32 = 84
-	FuncEd                                                uint32 = 85
-	FuncEb                                                uint32 = 86
-	FuncEq                                                uint32 = 87
-	FuncInterlockedExchange                               uint32 = 88
-	FuncInterlockedExchangeAdd                            uint32 = 89
-	FuncEbPa                                              uint32 = 90
-	FuncEdPa                                              uint32 = 91
-	FuncEqPa                                              uint32 = 92
-	FuncInterlockedCompareExchange                        uint32 = 93
-	FuncStrlen                                            uint32 = 94
-	FuncStrcmp                                            uint32 = 95
-	FuncMemcmp                                            uint32 = 96
-	FuncStrncmp                                           uint32 = 97
 	MaxSerialPacketSize                                   uint32 = 20 * NormalPageSize
-	FuncWcslen                                            uint32 = 98
-	FuncWcscmp                                            uint32 = 99
-	FuncEventInjectErrorCode                              uint32 = 100
-	FuncMemcpy                                            uint32 = 101
-	FuncMemcpyPa                                          uint32 = 102
-	FuncWcsncmp                                           uint32 = 103
 	DbgPrintLimitation                                    uint32 = 512
 	DebuggerEventTagStartSeed                             uint32 = 0x1000000
 	DebuggerThreadDebuggingTagStartSeed                   uint32 = 0x1000000
@@ -4381,24 +4211,8 @@ const (
 	TcpEndOfBufferChar2                                   uint32 = 0x20
 	TcpEndOfBufferChar3                                   uint32 = 0x33
 	TcpEndOfBufferChar4                                   uint32 = 0x44
-	PseudoRegisterPid                                     uint32 = 0
-	PseudoRegisterTid                                     uint32 = 1
-	PseudoRegisterPname                                   uint32 = 2
 	MaximumCharacterForOsName                             uint32 = 256
-	PseudoRegisterCore                                    uint32 = 3
-	PseudoRegisterProc                                    uint32 = 4
-	PseudoRegisterThread                                  uint32 = 5
-	PseudoRegisterPeb                                     uint32 = 6
-	PseudoRegisterTeb                                     uint32 = 7
-	PseudoRegisterIp                                      uint32 = 8
-	PseudoRegisterBuffer                                  uint32 = 9
-	PseudoRegisterContext                                 uint32 = 10
 	MaximumInstrSize                                      uint32 = 16
-	PseudoRegisterEventTag                                uint32 = 11
-	PseudoRegisterEventId                                 uint32 = 12
-	PseudoRegisterEventStage                              uint32 = 13
-	PseudoRegisterDate                                    uint32 = 14
-	PseudoRegisterTime                                    uint32 = 15
 	MaximumCallInstrSize                                  uint32 = 7
 	MaximumSupportedSymbols                               uint32 = 1000
 	MaximumGuidAndAgeSize                                 uint32 = 60
@@ -4498,6 +4312,43 @@ const (
 	DebuggeeBpApplyToAllProcesses                         uint32 = 0xffffffff
 	DebuggeeBpApplyToAllThreads                           uint32 = 0xffffffff
 	DebuggeeShowAllRegisters                              uint32 = 0xffffffff
+	DefaultInitialDebuggeeToDebuggerOffset                uint32 = 0x200
+	DefaultInitialDebuggerToDebuggeeOffset                uint32 = 0x0
+	DefaultInitialBramBufferSize                          uint32 = 256
+	FileAnyAccess                                         uint32 = 0
+	MethodBuffered                                        uint32 = 0
+	FileDeviceUnknown                                     uint32 = 0x00000022
+	MsrLegacyLbrSelect                                    uint32 = 0x000001C8
+	LbrKernelBit                                          uint32 = 0
+	LbrUserBit                                            uint32 = 1
+	LbrJccBit                                             uint32 = 2
+	LbrRelCallBit                                         uint32 = 3
+	LbrIndCallBit                                         uint32 = 4
+	LbrReturnBit                                          uint32 = 5
+	LbrIndJmpBit                                          uint32 = 6
+	LbrRelJmpBit                                          uint32 = 7
+	LbrFarBit                                             uint32 = 8
+	LbrCallStackBit                                       uint32 = 9
+	LbrKernel                                             uint32 = (1 << LbrKernelBit)
+	LbrUser                                               uint32 = (1 << LbrUserBit)
+	LbrJcc                                                uint32 = (1 << LbrJccBit)
+	LbrRelCall                                            uint32 = (1 << LbrRelCallBit)
+	LbrIndCall                                            uint32 = (1 << LbrIndCallBit)
+	LbrReturn                                             uint32 = (1 << LbrReturnBit)
+	LbrIndJmp                                             uint32 = (1 << LbrIndJmpBit)
+	LbrRelJmp                                             uint32 = (1 << LbrRelJmpBit)
+	LbrFar                                                uint32 = (1 << LbrFarBit)
+	LbrCallStack                                          uint32 = (1 << LbrCallStackBit)
+	MaximumLbrCapacity                                    uint32 = 0x20
+	BusBitWidth                                           uint32 = 8
+	DeviceBitWidth                                        uint32 = 5
+	FunctionBitWidth                                      uint32 = 3
+	DomainMaxNum                                          uint32 = 0
+	BusMaxNum                                             uint32 = 255
+	DeviceMaxNum                                          uint32 = 32
+	FunctionMaxNum                                        uint32 = 8
+	DevMaxNum                                             uint32 = 255
+	CamConfigSpaceLength                                  uint32 = 255
 	DebuggerRemoteTrackingDefaultCountOfStepping          uint32 = 0xffffffff
 	LapicSize                                             uint32 = 0x400
 	LapicLvtFlagEntryMasked                               uint32 = (1 << 16)
@@ -4505,93 +4356,238 @@ const (
 	LapicSvrFlagSwEnable                                  uint32 = (1 << 8)
 	MaxNumberOfIoApicEntries                              uint32 = 400
 	MaxNumberOfIdtEntries                                 uint32 = 256
+	SymbolUndefined                                       uint32 = 0
+	SymbolGlobalIdType                                    uint32 = 1
+	SymbolLocalIdType                                     uint32 = 2
+	SymbolNumType                                         uint32 = 3
+	SymbolRegisterType                                    uint32 = 4
+	SymbolPseudoRegType                                   uint32 = 5
+	SymbolSemanticRuleType                                uint32 = 6
+	SymbolTempType                                        uint32 = 7
+	SymbolStringType                                      uint32 = 8
+	SymbolVariableCountType                               uint32 = 9
+	SymbolInvalid                                         uint32 = 10
+	SymbolWstringType                                     uint32 = 11
+	SymbolFunctionParameterIdType                         uint32 = 12
+	SymbolReturnAddressType                               uint32 = 13
+	SymbolFunctionParameterType                           uint32 = 14
+	SymbolStackIndexType                                  uint32 = 15
+	SymbolStackBaseIndexType                              uint32 = 16
+	SymbolReturnValueType                                 uint32 = 17
+	SymbolReferenceLocalIdType                            uint32 = 18
+	SymbolReferenceTempType                               uint32 = 19
+	SymbolDereferenceLocalIdType                          uint32 = 20
+	SymbolDereferenceTempType                             uint32 = 21
+	SymbolMemValidCheckMask                               uint32 = (1 << 31)
+	INVALID                                               uint32 = 0x80000000
+	LalrAccept                                            uint32 = 0x7fffffff
+	FuncUndefined                                         uint32 = 0
+	FuncInc                                               uint32 = 1
+	FuncDec                                               uint32 = 2
+	FuncReference                                         uint32 = 3
+	FuncOr                                                uint32 = 4
+	FuncXor                                               uint32 = 5
+	FuncAnd                                               uint32 = 6
+	FuncAsr                                               uint32 = 7
+	FuncAsl                                               uint32 = 8
+	FuncAdd                                               uint32 = 9
+	FuncSub                                               uint32 = 10
+	FuncMul                                               uint32 = 11
+	FuncDiv                                               uint32 = 12
+	FuncMod                                               uint32 = 13
+	FuncGt                                                uint32 = 14
+	FuncLt                                                uint32 = 15
+	FuncEgt                                               uint32 = 16
+	FuncElt                                               uint32 = 17
+	FuncEqual                                             uint32 = 18
+	FuncNeq                                               uint32 = 19
+	FuncJmp                                               uint32 = 20
+	FuncJz                                                uint32 = 21
+	FuncJnz                                               uint32 = 22
+	FuncMov                                               uint32 = 23
+	FuncStartOfDoWhile                                    uint32 = 24
+	FuncStartOfDoWhileCommands                            uint32 = 25
+	FuncEndOfDoWhile                                      uint32 = 26
+	FuncStartOfFor                                        uint32 = 27
+	FuncForIncDec                                         uint32 = 28
+	FuncStartOfForOmmands                                 uint32 = 29
+	FuncEndOfIf                                           uint32 = 30
+	FuncIgnoreLvalue                                      uint32 = 31
+	FuncPush                                              uint32 = 32
+	FuncPop                                               uint32 = 33
+	FuncCall                                              uint32 = 34
+	FuncRet                                               uint32 = 35
+	FuncPrint                                             uint32 = 36
+	FuncFormats                                           uint32 = 37
+	FuncEventEnable                                       uint32 = 38
+	FuncEventDisable                                      uint32 = 39
+	FuncEventClear                                        uint32 = 40
+	FuncTestStatement                                     uint32 = 41
+	FuncSpinlockLock                                      uint32 = 42
+	FuncSpinlockUnlock                                    uint32 = 43
+	FuncEventSc                                           uint32 = 44
+	FuncMicrosleep                                        uint32 = 45
+	FuncPrintf                                            uint32 = 46
+	FuncPause                                             uint32 = 47
+	FuncFlush                                             uint32 = 48
+	FuncLbrFlush                                          uint32 = 49
+	FuncEventTraceStep                                    uint32 = 50
+	FuncEventTraceStepIn                                  uint32 = 51
+	FuncEventTraceStepOut                                 uint32 = 52
+	FuncEventTraceInstrumentationStep                     uint32 = 53
+	FuncEventTraceInstrumentationStepIn                   uint32 = 54
+	FuncRdtsc                                             uint32 = 55
+	FuncRdtscp                                            uint32 = 56
+	FuncLbrSave                                           uint32 = 57
+	FuncLbrDump                                           uint32 = 58
+	FuncSpinlockLockCustomWait                            uint32 = 59
+	FuncEventInject                                       uint32 = 60
+	FuncPoi                                               uint32 = 61
+	FuncDb                                                uint32 = 62
+	FuncDd                                                uint32 = 63
+	FuncDw                                                uint32 = 64
+	FuncDq                                                uint32 = 65
+	FuncNeg                                               uint32 = 66
+	FuncHi                                                uint32 = 67
+	FuncLow                                               uint32 = 68
+	FuncNot                                               uint32 = 69
+	FuncCheckAddress                                      uint32 = 70
+	FuncDisassembleLen                                    uint32 = 71
+	FuncDisassembleLen32                                  uint32 = 72
+	FuncDisassembleLen64                                  uint32 = 73
+	FuncInterlockedIncrement                              uint32 = 74
+	FuncInterlockedDecrement                              uint32 = 75
+	FuncPhysicalToVirtual                                 uint32 = 76
+	FuncVirtualToPhysical                                 uint32 = 77
+	FuncPoiPa                                             uint32 = 78
+	FuncHiPa                                              uint32 = 79
+	FuncLowPa                                             uint32 = 80
+	FuncDbPa                                              uint32 = 81
+	FuncDdPa                                              uint32 = 82
+	FuncDwPa                                              uint32 = 83
+	FuncDqPa                                              uint32 = 84
+	FuncEd                                                uint32 = 85
+	FuncEb                                                uint32 = 86
+	FuncEq                                                uint32 = 87
+	FuncInterlockedExchange                               uint32 = 88
+	FuncInterlockedExchangeAdd                            uint32 = 89
+	FuncEbPa                                              uint32 = 90
+	FuncEdPa                                              uint32 = 91
+	FuncEqPa                                              uint32 = 92
+	FuncInterlockedCompareExchange                        uint32 = 93
+	FuncStrlen                                            uint32 = 94
+	FuncStrcmp                                            uint32 = 95
+	FuncMemcmp                                            uint32 = 96
+	FuncStrncmp                                           uint32 = 97
+	FuncWcslen                                            uint32 = 98
+	FuncWcscmp                                            uint32 = 99
+	FuncEventInjectErrorCode                              uint32 = 100
+	FuncMemcpy                                            uint32 = 101
+	FuncMemcpyPa                                          uint32 = 102
+	FuncWcsncmp                                           uint32 = 103
+	PseudoRegisterPid                                     uint32 = 0
+	PseudoRegisterTid                                     uint32 = 1
+	PseudoRegisterPname                                   uint32 = 2
+	PseudoRegisterCore                                    uint32 = 3
+	PseudoRegisterProc                                    uint32 = 4
+	PseudoRegisterThread                                  uint32 = 5
+	PseudoRegisterPeb                                     uint32 = 6
+	PseudoRegisterTeb                                     uint32 = 7
+	PseudoRegisterIp                                      uint32 = 8
+	PseudoRegisterBuffer                                  uint32 = 9
+	PseudoRegisterContext                                 uint32 = 10
+	PseudoRegisterEventTag                                uint32 = 11
+	PseudoRegisterEventId                                 uint32 = 12
+	PseudoRegisterEventStage                              uint32 = 13
+	PseudoRegisterDate                                    uint32 = 14
+	PseudoRegisterTime                                    uint32 = 15
 )
 
 // Source: HyperDbgSdk.h -> Macro variables
 var (
-	IoctlDebuggerBringPagesIn                             uint32 = CtlCode(0x81f)
-	IoctlRequestRevMachineService                         uint32 = CtlCode(0x81e)
-	IoctlDebuggerReadOrWriteMsr                           uint32 = CtlCode(0x804)
-	SizeofDebuggerQueryActiveProcessesOrThreads           int    = int(unsafe.Sizeof(DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS{}))
-	IoctlDebuggerModifyEvents                             uint32 = CtlCode(0x80c)
-	IoctlGetListOfThreadsAndProcesses                     uint32 = CtlCode(0x81b)
-	SizeofDebuggeeSendGeneralPacketFromDebuggeeToDebugger int    = int(unsafe.Sizeof(DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER{}))
-	IoctlDebuggerSearchMemory                             uint32 = CtlCode(0x80b)
-	IoctlReservePreAllocatedPools                         uint32 = CtlCode(0x816)
-	IoctlReturnIrpPendingPacketsAndDisallowIoctl          uint32 = CtlCode(0x801)
-	IoctlPerformSmiOperation                              uint32 = CtlCode(0x826)
-	SizeofDebuggerPreactivateCommand                      int    = int(unsafe.Sizeof(DEBUGGER_PREACTIVATE_COMMAND{}))
-	IoctlDebuggerFlushLoggingBuffers                      uint32 = CtlCode(0x80d)
-	SizeofDebuggerAttachDetachUserModeProcess             int    = int(unsafe.Sizeof(DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS{}))
-	BigInstantEventActionBuffer                           int    = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{})) + int(MaxSerialPacketSize)
-	IoctlDebuggerReadMemory                               uint32 = CtlCode(0x803)
-	IoctlPreactivateFunctionality                         uint32 = CtlCode(0x820)
-	SizeofDebuggeePcitreeRequestResponsePacket            int    = int(unsafe.Sizeof(DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET{}))
-	IoctlPrepareDebuggee                                  uint32 = CtlCode(0x810)
-	SizeofRegisterEvent                                   int    = int(unsafe.Sizeof(REGISTER_NOTIFY_BUFFER{}))
 	UsermodeBufferSize                                    int    = int(unsafe.Sizeof(uint32(0))) + int(PacketChunkSize) + 1
-	SizeofDebuggerCallstackRequest                        int    = int(unsafe.Sizeof(DEBUGGER_CALLSTACK_REQUEST{}))
-	IoctlSendSignalExecutionInDebuggeeFinished            uint32 = CtlCode(0x812)
-	SizeofDebuggerHideAndTransparentDebuggerMode          int    = int(unsafe.Sizeof(DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE{}))
-	SizeofDebuggerTestQueryBuffer                         int    = int(unsafe.Sizeof(DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER{}))
-	SizeofDebuggerDtCommandOptions                        int    = int(unsafe.Sizeof(DEBUGGER_DT_COMMAND_OPTIONS{}))
-	IoctlQueryCurrentProcess                              uint32 = CtlCode(0x81c)
 	LogBufferSize                                         int    = int(MaximumPacketsCapacity) * (int(PacketChunkSize) + int(unsafe.Sizeof(BUFFER_HEADER{})))
-	IoctlPerformHypertracePtOperation                     uint32 = CtlCode(0x828)
-	IoctlPcieEndpointEnum                                 uint32 = CtlCode(0x821)
-	SizeofDebuggerReadMemory                              int    = int(unsafe.Sizeof(DEBUGGER_READ_MEMORY{}))
-	IoctlTerminateVmx                                     uint32 = CtlCode(0x802)
-	SizeofDebuggeeDetailsAndSwitchProcessPacket           int    = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET{}))
-	RegularInstantEventConditionalBuffer                  int    = int(unsafe.Sizeof(DEBUGGER_EVENT{})) + 100
-	IoctlDebuggerVa2paAndPa2vaCommands                    uint32 = CtlCode(0x809)
-	SizeofHypertracePtOperationPackets                    int    = int(unsafe.Sizeof(HYPERTRACE_PT_OPERATION_PACKETS{}))
-	IoctlDebuggerAttachDetachUserModeProcess              uint32 = CtlCode(0x80e)
-	IoctlGetUserModeModuleDetails                         uint32 = CtlCode(0x819)
-	SizeofDebuggerSendUsermodeMessagesToDebugger          int    = int(unsafe.Sizeof(DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER{}))
-	IoctlQueryCurrentThread                               uint32 = CtlCode(0x81d)
-	IoctlPerformHypertraceLbrOperation                    uint32 = CtlCode(0x827)
-	SizeofReversingMachineReconstructMemoryRequest        int    = int(unsafe.Sizeof(REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST{}))
-	SizeofDebuggeeBpPacket                                int    = int(unsafe.Sizeof(DEBUGGEE_BP_PACKET{}))
-	SizeofDebuggerReadAndWriteOnMsr                       int    = int(unsafe.Sizeof(DEBUGGER_READ_AND_WRITE_ON_MSR{}))
-	RegularInstantEventActionBuffer                       int    = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{})) + (int(PageSize) * 2)
-	IoctlDebuggerReadPageTableEntriesDetails              uint32 = CtlCode(0x805)
-	IoctlDebuggerEditMemory                               uint32 = CtlCode(0x80a)
-	SizeofDebuggerPageInRequest                           int    = int(unsafe.Sizeof(DEBUGGER_PAGE_IN_REQUEST{}))
-	IoctlRegisterEvent                                    uint32 = CtlCode(0x800)
-	IoctlPerformKernelSideTests                           uint32 = CtlCode(0x815)
-	SizeofDebuggerModifyEvents                            int    = int(unsafe.Sizeof(DEBUGGER_MODIFY_EVENTS{}))
-	SizeofUsermodeDebuggingThreadOrProcessStateDetails    int    = int(unsafe.Sizeof(USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS{}))
-	SizeofDebuggerPerformKernelTests                      int    = int(unsafe.Sizeof(DEBUGGER_PERFORM_KERNEL_TESTS{}))
-	SizeSymbolWithoutLen                                  int    = int(unsafe.Sizeof(uint64(0))) * 2
-	SizeofDebuggerFlushLoggingBuffers                     int    = int(unsafe.Sizeof(DEBUGGER_FLUSH_LOGGING_BUFFERS{}))
-	IoctlQueryCountOfActiveProcessesOrThreads             uint32 = CtlCode(0x81a)
-	IoctlPcidevinfoEnum                                   uint32 = CtlCode(0x823)
-	SizeofDebuggerSearchMemory                            int    = int(unsafe.Sizeof(DEBUGGER_SEARCH_MEMORY{}))
-	IoctlDebuggerPrint                                    uint32 = CtlCode(0x80f)
-	IoctlSendUsermodeMessagesToDebugger                   uint32 = CtlCode(0x813)
-	IoctlDebuggerAddActionToEvent                         uint32 = CtlCode(0x807)
-	IoctlDebuggerRegisterEvent                            uint32 = CtlCode(0x806)
-	SizeofDebuggerSendCommandExecutionFinishedSignal      int    = int(unsafe.Sizeof(DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL{}))
-	IoctlPausePacketReceived                              uint32 = CtlCode(0x811)
-	IoctlSendGeneralBufferFromDebuggeeToDebugger          uint32 = CtlCode(0x814)
-	SizeofHypertraceLbrOperationPackets                   int    = int(unsafe.Sizeof(HYPERTRACE_LBR_OPERATION_PACKETS{}))
-	SizeofDebuggerPrepareDebuggee                         int    = int(unsafe.Sizeof(DEBUGGER_PREPARE_DEBUGGEE{}))
-	IoctlSendUserDebuggerCommands                         uint32 = CtlCode(0x817)
-	SizeofDebuggerPausePacketReceived                     int    = int(unsafe.Sizeof(DEBUGGER_PAUSE_PACKET_RECEIVED{}))
-	SizeofInterruptDescriptorTableEntriesPackets          int    = int(unsafe.Sizeof(INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS{}))
-	BigInstantEventConditionalBuffer                      int    = int(unsafe.Sizeof(DEBUGGER_EVENT{})) + int(PageSize)
-	IoctlSetBreakpointUserDebugger                        uint32 = CtlCode(0x825)
-	SizeofDebuggeeDetailsAndSwitchThreadPacket            int    = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET{}))
-	SizeofSmiOperationPackets                             int    = int(unsafe.Sizeof(SMI_OPERATION_PACKETS{}))
-	IoctlPerformActionsOnApic                             uint32 = CtlCode(0x822)
-	SizeofDebuggerVa2paAndPa2vaCommands                   int    = int(unsafe.Sizeof(DEBUGGER_VA2PA_AND_PA2VA_COMMANDS{}))
-	IoctlDebuggerHideAndUnhideToTransparentTheDebugger    uint32 = CtlCode(0x808)
-	SizeofDebuggerPreallocCommand                         int    = int(unsafe.Sizeof(DEBUGGER_PREALLOC_COMMAND{}))
-	SizeofDebuggerReadPageTableEntriesDetails             int    = int(unsafe.Sizeof(DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS{}))
-	SizeofDebuggerApicRequest                             int    = int(unsafe.Sizeof(DEBUGGER_APIC_REQUEST{}))
-	IoctlQueryIdtEntry                                    uint32 = CtlCode(0x824)
-	SizeofDebuggeePcidevinfoRequestResponsePacket         int    = int(unsafe.Sizeof(DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET{}))
 	LogBufferSizePriority                                 int    = int(MaximumPacketsCapacityPriority) * (int(PacketChunkSize) + int(unsafe.Sizeof(BUFFER_HEADER{})))
+	RegularInstantEventConditionalBuffer                  int    = int(unsafe.Sizeof(DEBUGGER_EVENT{})) + 100
+	BigInstantEventConditionalBuffer                      int    = int(unsafe.Sizeof(DEBUGGER_EVENT{})) + int(PageSize)
+	RegularInstantEventActionBuffer                       int    = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{})) + (int(PageSize) * 2)
+	BigInstantEventActionBuffer                           int    = int(unsafe.Sizeof(DEBUGGER_EVENT_ACTION{})) + int(MaxSerialPacketSize)
+	SizeofDebuggerPausePacketReceived                     int    = int(unsafe.Sizeof(DEBUGGER_PAUSE_PACKET_RECEIVED{}))
+	SizeofDebuggerModifyEvents                            int    = int(unsafe.Sizeof(DEBUGGER_MODIFY_EVENTS{}))
+	SizeofRegisterEvent                                   int    = int(unsafe.Sizeof(REGISTER_NOTIFY_BUFFER{}))
+	IoctlRegisterEvent                                    uint32 = CtlCode(0x800)
+	IoctlReturnIrpPendingPacketsAndDisallowIoctl          uint32 = CtlCode(0x801)
+	IoctlTerminateVmx                                     uint32 = CtlCode(0x802)
+	IoctlDebuggerReadMemory                               uint32 = CtlCode(0x803)
+	IoctlDebuggerReadOrWriteMsr                           uint32 = CtlCode(0x804)
+	IoctlDebuggerReadPageTableEntriesDetails              uint32 = CtlCode(0x805)
+	IoctlDebuggerRegisterEvent                            uint32 = CtlCode(0x806)
+	IoctlDebuggerAddActionToEvent                         uint32 = CtlCode(0x807)
+	IoctlDebuggerHideAndUnhideToTransparentTheDebugger    uint32 = CtlCode(0x808)
+	IoctlDebuggerVa2paAndPa2vaCommands                    uint32 = CtlCode(0x809)
+	IoctlDebuggerEditMemory                               uint32 = CtlCode(0x80a)
+	IoctlDebuggerSearchMemory                             uint32 = CtlCode(0x80b)
+	IoctlDebuggerModifyEvents                             uint32 = CtlCode(0x80c)
+	IoctlDebuggerFlushLoggingBuffers                      uint32 = CtlCode(0x80d)
+	IoctlDebuggerAttachDetachUserModeProcess              uint32 = CtlCode(0x80e)
+	IoctlDebuggerPrint                                    uint32 = CtlCode(0x80f)
+	IoctlPrepareDebuggee                                  uint32 = CtlCode(0x810)
+	IoctlPausePacketReceived                              uint32 = CtlCode(0x811)
+	IoctlSendSignalExecutionInDebuggeeFinished            uint32 = CtlCode(0x812)
+	IoctlSendUsermodeMessagesToDebugger                   uint32 = CtlCode(0x813)
+	IoctlSendGeneralBufferFromDebuggeeToDebugger          uint32 = CtlCode(0x814)
+	IoctlPerformKernelSideTests                           uint32 = CtlCode(0x815)
+	IoctlReservePreAllocatedPools                         uint32 = CtlCode(0x816)
+	IoctlSendUserDebuggerCommands                         uint32 = CtlCode(0x817)
 	IoctlGetDetailOfActiveThreadsAndProcesses             uint32 = CtlCode(0x818)
+	IoctlGetUserModeModuleDetails                         uint32 = CtlCode(0x819)
+	IoctlQueryCountOfActiveProcessesOrThreads             uint32 = CtlCode(0x81a)
+	IoctlGetListOfThreadsAndProcesses                     uint32 = CtlCode(0x81b)
+	IoctlQueryCurrentProcess                              uint32 = CtlCode(0x81c)
+	IoctlQueryCurrentThread                               uint32 = CtlCode(0x81d)
+	IoctlRequestRevMachineService                         uint32 = CtlCode(0x81e)
+	IoctlDebuggerBringPagesIn                             uint32 = CtlCode(0x81f)
+	IoctlPreactivateFunctionality                         uint32 = CtlCode(0x820)
+	IoctlPcieEndpointEnum                                 uint32 = CtlCode(0x821)
+	IoctlPerformActionsOnApic                             uint32 = CtlCode(0x822)
+	IoctlPcidevinfoEnum                                   uint32 = CtlCode(0x823)
+	IoctlQueryIdtEntry                                    uint32 = CtlCode(0x824)
+	IoctlSetBreakpointUserDebugger                        uint32 = CtlCode(0x825)
+	IoctlPerformSmiOperation                              uint32 = CtlCode(0x826)
+	IoctlPerformHypertraceLbrOperation                    uint32 = CtlCode(0x827)
+	IoctlPerformHypertracePtOperation                     uint32 = CtlCode(0x828)
+	SizeofDebuggerReadPageTableEntriesDetails             int    = int(unsafe.Sizeof(DEBUGGER_READ_PAGE_TABLE_ENTRIES_DETAILS{}))
+	SizeofDebuggerVa2paAndPa2vaCommands                   int    = int(unsafe.Sizeof(DEBUGGER_VA2PA_AND_PA2VA_COMMANDS{}))
+	SizeofDebuggerPageInRequest                           int    = int(unsafe.Sizeof(DEBUGGER_PAGE_IN_REQUEST{}))
+	SizeofReversingMachineReconstructMemoryRequest        int    = int(unsafe.Sizeof(REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST{}))
+	SizeofDebuggerDtCommandOptions                        int    = int(unsafe.Sizeof(DEBUGGER_DT_COMMAND_OPTIONS{}))
+	SizeofDebuggerPreallocCommand                         int    = int(unsafe.Sizeof(DEBUGGER_PREALLOC_COMMAND{}))
+	SizeofDebuggerPreactivateCommand                      int    = int(unsafe.Sizeof(DEBUGGER_PREACTIVATE_COMMAND{}))
+	SizeofDebuggerReadMemory                              int    = int(unsafe.Sizeof(DEBUGGER_READ_MEMORY{}))
+	SizeofDebuggerFlushLoggingBuffers                     int    = int(unsafe.Sizeof(DEBUGGER_FLUSH_LOGGING_BUFFERS{}))
+	SizeofDebuggerTestQueryBuffer                         int    = int(unsafe.Sizeof(DEBUGGER_DEBUGGER_TEST_QUERY_BUFFER{}))
+	SizeofDebuggerPerformKernelTests                      int    = int(unsafe.Sizeof(DEBUGGER_PERFORM_KERNEL_TESTS{}))
+	SizeofDebuggerSendCommandExecutionFinishedSignal      int    = int(unsafe.Sizeof(DEBUGGER_SEND_COMMAND_EXECUTION_FINISHED_SIGNAL{}))
+	SizeofDebuggeeSendGeneralPacketFromDebuggeeToDebugger int    = int(unsafe.Sizeof(DEBUGGEE_SEND_GENERAL_PACKET_FROM_DEBUGGEE_TO_DEBUGGER{}))
+	SizeofDebuggerSendUsermodeMessagesToDebugger          int    = int(unsafe.Sizeof(DEBUGGER_SEND_USERMODE_MESSAGES_TO_DEBUGGER{}))
+	SizeofDebuggerReadAndWriteOnMsr                       int    = int(unsafe.Sizeof(DEBUGGER_READ_AND_WRITE_ON_MSR{}))
 	SizeofDebuggerEditMemory                              int    = int(unsafe.Sizeof(DEBUGGER_EDIT_MEMORY{}))
+	SizeofDebuggerSearchMemory                            int    = int(unsafe.Sizeof(DEBUGGER_SEARCH_MEMORY{}))
+	SizeofDebuggerHideAndTransparentDebuggerMode          int    = int(unsafe.Sizeof(DEBUGGER_HIDE_AND_TRANSPARENT_DEBUGGER_MODE{}))
+	SizeofDebuggerPrepareDebuggee                         int    = int(unsafe.Sizeof(DEBUGGER_PREPARE_DEBUGGEE{}))
+	SizeofDebuggerAttachDetachUserModeProcess             int    = int(unsafe.Sizeof(DEBUGGER_ATTACH_DETACH_USER_MODE_PROCESS{}))
+	SizeofDebuggerQueryActiveProcessesOrThreads           int    = int(unsafe.Sizeof(DEBUGGER_QUERY_ACTIVE_PROCESSES_OR_THREADS{}))
+	SizeofDebuggerCallstackRequest                        int    = int(unsafe.Sizeof(DEBUGGER_CALLSTACK_REQUEST{}))
+	SizeofUsermodeDebuggingThreadOrProcessStateDetails    int    = int(unsafe.Sizeof(USERMODE_DEBUGGING_THREAD_OR_PROCESS_STATE_DETAILS{}))
+	SizeofDebuggeeDetailsAndSwitchProcessPacket           int    = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_PROCESS_PACKET{}))
+	SizeofDebuggeeDetailsAndSwitchThreadPacket            int    = int(unsafe.Sizeof(DEBUGGEE_DETAILS_AND_SWITCH_THREAD_PACKET{}))
+	SizeofDebuggerApicRequest                             int    = int(unsafe.Sizeof(DEBUGGER_APIC_REQUEST{}))
+	SizeofSmiOperationPackets                             int    = int(unsafe.Sizeof(SMI_OPERATION_PACKETS{}))
+	SizeofHypertraceLbrOperationPackets                   int    = int(unsafe.Sizeof(HYPERTRACE_LBR_OPERATION_PACKETS{}))
+	SizeofHypertracePtOperationPackets                    int    = int(unsafe.Sizeof(HYPERTRACE_PT_OPERATION_PACKETS{}))
+	SizeofInterruptDescriptorTableEntriesPackets          int    = int(unsafe.Sizeof(INTERRUPT_DESCRIPTOR_TABLE_ENTRIES_PACKETS{}))
+	SizeofDebuggeeBpPacket                                int    = int(unsafe.Sizeof(DEBUGGEE_BP_PACKET{}))
+	SizeofDebuggeePcitreeRequestResponsePacket            int    = int(unsafe.Sizeof(DEBUGGEE_PCITREE_REQUEST_RESPONSE_PACKET{}))
+	SizeofDebuggeePcidevinfoRequestResponsePacket         int    = int(unsafe.Sizeof(DEBUGGEE_PCIDEVINFO_REQUEST_RESPONSE_PACKET{}))
+	SizeSymbolWithoutLen                                  int    = int(unsafe.Sizeof(uint64(0))) * 2
 )

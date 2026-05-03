@@ -89,55 +89,55 @@ type (
 	Uintmax_t             = uint64
 )
 
-type GLFWglproc func()
+type GLFWglproc func() uintptr
 
-type GLFWvkproc func()
+type GLFWvkproc func() uintptr
 
 type GLFWallocatefun func(uintptr, unsafe.Pointer) unsafe.Pointer
 
 type GLFWreallocatefun func(unsafe.Pointer, uintptr, unsafe.Pointer) unsafe.Pointer
 
-type GLFWdeallocatefun func(unsafe.Pointer, unsafe.Pointer)
+type GLFWdeallocatefun func(unsafe.Pointer, unsafe.Pointer) uintptr
 
-type GLFWerrorfun func(int32, *int8)
+type GLFWerrorfun func(int32, *int8) uintptr
 
-type GLFWwindowposfun func(*GLFWwindow, int32, int32)
+type GLFWwindowposfun func(*GLFWwindow, int32, int32) uintptr
 
-type GLFWwindowsizefun func(*GLFWwindow, int32, int32)
+type GLFWwindowsizefun func(*GLFWwindow, int32, int32) uintptr
 
-type GLFWwindowclosefun func(*GLFWwindow)
+type GLFWwindowclosefun func(*GLFWwindow) uintptr
 
-type GLFWwindowrefreshfun func(*GLFWwindow)
+type GLFWwindowrefreshfun func(*GLFWwindow) uintptr
 
-type GLFWwindowfocusfun func(*GLFWwindow, int32)
+type GLFWwindowfocusfun func(*GLFWwindow, int32) uintptr
 
-type GLFWwindowiconifyfun func(*GLFWwindow, int32)
+type GLFWwindowiconifyfun func(*GLFWwindow, int32) uintptr
 
-type GLFWwindowmaximizefun func(*GLFWwindow, int32)
+type GLFWwindowmaximizefun func(*GLFWwindow, int32) uintptr
 
-type GLFWframebuffersizefun func(*GLFWwindow, int32, int32)
+type GLFWframebuffersizefun func(*GLFWwindow, int32, int32) uintptr
 
-type GLFWwindowcontentscalefun func(*GLFWwindow, float32, float32)
+type GLFWwindowcontentscalefun func(*GLFWwindow, float32, float32) uintptr
 
-type GLFWmousebuttonfun func(*GLFWwindow, int32, int32, int32)
+type GLFWmousebuttonfun func(*GLFWwindow, int32, int32, int32) uintptr
 
-type GLFWcursorposfun func(*GLFWwindow, float64, float64)
+type GLFWcursorposfun func(*GLFWwindow, float64, float64) uintptr
 
-type GLFWcursorenterfun func(*GLFWwindow, int32)
+type GLFWcursorenterfun func(*GLFWwindow, int32) uintptr
 
-type GLFWscrollfun func(*GLFWwindow, float64, float64)
+type GLFWscrollfun func(*GLFWwindow, float64, float64) uintptr
 
-type GLFWkeyfun func(*GLFWwindow, int32, int32, int32, int32)
+type GLFWkeyfun func(*GLFWwindow, int32, int32, int32, int32) uintptr
 
-type GLFWcharfun func(*GLFWwindow, uint32)
+type GLFWcharfun func(*GLFWwindow, uint32) uintptr
 
-type GLFWcharmodsfun func(*GLFWwindow, uint32, int32)
+type GLFWcharmodsfun func(*GLFWwindow, uint32, int32) uintptr
 
-type GLFWdropfun func(*GLFWwindow, int32, **int8)
+type GLFWdropfun func(*GLFWwindow, int32, **int8) uintptr
 
-type GLFWmonitorfun func(*GLFWmonitor, int32)
+type GLFWmonitorfun func(*GLFWmonitor, int32) uintptr
 
-type GLFWjoystickfun func(int32, int32)
+type GLFWjoystickfun func(int32, int32) uintptr
 
 // Source: unknown.h:21 -> _LIST_ENTRY
 type LIST_ENTRY struct {
@@ -170,6 +170,7 @@ type GLFWgammaramp struct {
 	Green *uint16
 	Blue  *uint16
 	Size  uint32
+	_     [4]byte
 }
 
 // Source: GLFW/glfw3.h:2094 -> GLFWimage

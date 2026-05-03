@@ -94,8 +94,9 @@ func TestGlfwPlatformSupported(t *testing.T) {
 func TestGlfwErrorCallback(t *testing.T) {
 	g := newGlfw(t)
 
-	cb := func(code int32, desc *int8) {
+	cb := func(code int32, desc *int8) uintptr {
 		t.Logf("GLFW error %d: %s", code, byteslice.PtrToString(desc))
+		return 0
 	}
 	g.SetErrorCallback(cb)
 
