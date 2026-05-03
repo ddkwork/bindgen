@@ -427,7 +427,7 @@ func Generate(t *testing.T, configs []BindgenConfig) {
 	for _, c := range configs {
 		processBindgenConfig(t, cfg, c)
 		stream.FmtDir(c.OutputDir)
-		//stream.RunCommandWithDir(c.OutputDir, "go mod tidy")
+		// stream.RunCommandWithDir(c.OutputDir, "go mod tidy")
 
 		if strings.Contains(c.OutputDir, "ARImpRec") {
 			oldArch := os.Getenv("GOARCH")

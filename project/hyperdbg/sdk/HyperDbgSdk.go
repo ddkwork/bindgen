@@ -183,7 +183,7 @@ type SendMessageWithParamCallback func(*int8) int32
 
 type SendMessageWithSharedBufferCallback func() int32
 
-type SymbolMapCallback func(uint64, *int8, *int8, uint32)
+type SymbolMapCallback func(uint64, *int8, *int8, uint32) uintptr
 
 // Source: Constants.h:584 -> _SEGMENT_REGISTERS
 type SEGMENT_REGISTERS uint32
@@ -2497,6 +2497,7 @@ type DEBUGGER_TRIGGERED_EVENT_DETAILS struct {
 	Tag     uint64
 	Context uintptr
 	Stage   VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE
+	_       [4]byte
 }
 
 // Source: DataTypes.h:224 -> _DEBUGGEE_KD_PAUSED_PACKET
@@ -2543,6 +2544,7 @@ type DEBUGGEE_MESSAGE_PACKET struct {
 // Source: DataTypes.h:295 -> _REGISTER_NOTIFY_BUFFER
 type REGISTER_NOTIFY_BUFFER struct {
 	Type   NOTIFY_TYPE
+	_      [4]byte
 	HEvent uintptr
 }
 
@@ -2744,6 +2746,7 @@ type DEBUGGER_GENERAL_EVENT_DETAIL struct {
 	Options               DEBUGGER_EVENT_OPTIONS
 	CommandStringBuffer   uintptr
 	ConditionBufferSize   uint32
+	_                     [4]byte
 }
 
 // Source: Events.h:410 -> _DEBUGGER_GENERAL_ACTION
@@ -2967,13 +2970,13 @@ type REVERSING_MACHINE_RECONSTRUCT_MEMORY_REQUEST struct {
 // Source: RequestStructures.h:132 -> _DEBUGGER_DT_COMMAND_OPTIONS
 type DEBUGGER_DT_COMMAND_OPTIONS struct {
 	TypeName             *int8
-	_                    [4]byte
 	SizeOfTypeName       uint64
 	Address              uint64
 	IsStruct             bool
-	_                    [3]byte
+	_                    [7]byte
 	BufferAddress        uintptr
 	TargetPid            uint32
+	_                    [4]byte
 	AdditionalParameters *int8
 }
 
@@ -3249,8 +3252,10 @@ type DEBUGGER_EVENT_REQUEST_BUFFER struct {
 // Source: RequestStructures.h:866 -> _DEBUGGER_EVENT_REQUEST_CUSTOM_CODE
 type DEBUGGER_EVENT_REQUEST_CUSTOM_CODE struct {
 	CustomCodeBufferSize        uint32
+	_                           [4]byte
 	CustomCodeBufferAddress     uintptr
 	OptionalRequestedBufferSize uint32
+	_                           [4]byte
 }
 
 // Source: RequestStructures.h:894 -> _DEBUGGER_UD_COMMAND_ACTION
@@ -3812,7 +3817,6 @@ type SYMBOL_BUFFER struct {
 // Source: ScriptEngineCommonDefinitions.h:29 -> SYMBOL_MAP
 type SYMBOL_MAP struct {
 	Name *int8
-	_    [4]byte
 	Type uint64
 }
 

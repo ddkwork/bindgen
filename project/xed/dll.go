@@ -811,7 +811,7 @@ func (x *Xed) InternalAssert(S *int8, File *int8, Line int32) {
 }
 
 func (x *Xed) RegisterAbortFunction(Fn Xed_user_abort_function_t, Other unsafe.Pointer) {
-	proc_xed_register_abort_function.Call(uintptr(*(*unsafe.Pointer)(unsafe.Pointer(&Fn))), uintptr(Other))
+	proc_xed_register_abort_function.Call(windows.NewCallback(Fn), uintptr(Other))
 }
 
 func (x *Xed) Itoa(Buf *int8, F Xed_uint64_t, Buflen int32) int32 {
@@ -2217,7 +2217,7 @@ func (x *Xed) DecodedInstDumpXedFormat(P *Xed_decoded_inst_t, Buf *int8, Buflen 
 }
 
 func (x *Xed) FormatContext(Syntax Xed_syntax_enum_t, Xedd *Xed_decoded_inst_t, Out_buffer *int8, Buffer_len int32, Runtime_instruction_address Xed_uint64_t, Context unsafe.Pointer, Symbolic_callback Xed_disassembly_callback_fn_t) Xed_bool_t {
-	r1, _, _ := proc_xed_format_context.Call(uintptr(Syntax), uintptr(unsafe.Pointer(Xedd)), uintptr(unsafe.Pointer(Out_buffer)), uintptr(Buffer_len), *(*uintptr)(unsafe.Pointer(&Runtime_instruction_address)), uintptr(Context), uintptr(*(*unsafe.Pointer)(unsafe.Pointer(&Symbolic_callback))))
+	r1, _, _ := proc_xed_format_context.Call(uintptr(Syntax), uintptr(unsafe.Pointer(Xedd)), uintptr(unsafe.Pointer(Out_buffer)), uintptr(Buffer_len), *(*uintptr)(unsafe.Pointer(&Runtime_instruction_address)), uintptr(Context), windows.NewCallback(Symbolic_callback))
 	return uint32(r1)
 }
 
@@ -2483,7 +2483,7 @@ func (x *Xed) NorepMap(Iclass Xed_iclass_enum_t) Xed_iclass_enum_t {
 }
 
 func (x *Xed) AgenRegisterCallback(Register_fn Xed_register_callback_fn_t, Segment_fn Xed_segment_base_callback_fn_t) {
-	proc_xed_agen_register_callback.Call(uintptr(*(*unsafe.Pointer)(unsafe.Pointer(&Register_fn))), uintptr(*(*unsafe.Pointer)(unsafe.Pointer(&Segment_fn))))
+	proc_xed_agen_register_callback.Call(windows.NewCallback(Register_fn), windows.NewCallback(Segment_fn))
 }
 
 func (x *Xed) Agen(Xedd *Xed_decoded_inst_t, Memop_index uint32, Context unsafe.Pointer, Out_address *Xed_uint64_t) Xed_error_enum_t {
