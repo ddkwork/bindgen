@@ -6,6 +6,8 @@ import (
 	"strings"
 	"testing"
 	"unsafe"
+
+	"github.com/ddkwork/golibrary/byteslice"
 )
 
 func newXed(t *testing.T) *Xed {
@@ -37,7 +39,7 @@ func TestDecodeNop(t *testing.T) {
 
 	iclass := x.OperandValuesGetIclass(&xedd)
 	if iclass != XedIclassNop {
-		t.Errorf("expected NOP iclass, got %s", cstring(x.IclassEnumT2str(iclass)))
+		t.Errorf("expected NOP iclass, got %s", byteslice.PtrToString(x.IclassEnumT2str(iclass)))
 	}
 	length := xedd.DecodedLength
 	if length != 1 {
@@ -63,7 +65,7 @@ func TestDecodeMovRegImm64(t *testing.T) {
 
 	iclass := x.OperandValuesGetIclass(&xedd)
 	if iclass != XedIclassMov {
-		t.Errorf("expected MOV iclass, got %s", cstring(x.IclassEnumT2str(iclass)))
+		t.Errorf("expected MOV iclass, got %s", byteslice.PtrToString(x.IclassEnumT2str(iclass)))
 	}
 	length := xedd.DecodedLength
 	if length != 10 {
@@ -94,7 +96,7 @@ func TestDecodeAddRegMem32(t *testing.T) {
 
 	iclass := x.OperandValuesGetIclass(&xedd)
 	if iclass != XedIclassAdd {
-		t.Errorf("expected ADD iclass, got %s", cstring(x.IclassEnumT2str(iclass)))
+		t.Errorf("expected ADD iclass, got %s", byteslice.PtrToString(x.IclassEnumT2str(iclass)))
 	}
 }
 
@@ -132,7 +134,7 @@ func TestFormatIntel(t *testing.T) {
 				t.Fatal("format_context returned false")
 			}
 
-			result := goStringInt8(buf)
+			result := byteslice.ToString(buf)
 			if !strings.Contains(strings.ToUpper(result), tc.expectSub) {
 				t.Errorf("expected output containing %q, got %q", tc.expectSub, result)
 			}
@@ -155,7 +157,7 @@ func testEncodeRoundTrip(t *testing.T, x *Xed, inst Xed_encoder_instruction_t, e
 
 	err := x.Encode(&encReq, &itext[0], ilen, &olen)
 	if err != XedErrorNone {
-		t.Fatalf("encode error: %s (%d)", cstring(x.ErrorEnumT2str(err)), err)
+		t.Fatalf("encode error: %s (%d)", byteslice.PtrToString(x.ErrorEnumT2str(err)), err)
 	}
 
 	if olen == 0 || olen > XedMaxInstructionBytes {
@@ -168,14 +170,14 @@ func testEncodeRoundTrip(t *testing.T, x *Xed, inst Xed_encoder_instruction_t, e
 	x.DecodedInstZeroSetMode(&xedd, &inst.Mode)
 	decErr := x.Decode(&xedd, &result[0], olen)
 	if decErr != XedErrorNone {
-		t.Fatalf("round-trip decode error: %s (%d)", cstring(x.ErrorEnumT2str(decErr)), decErr)
+		t.Fatalf("round-trip decode error: %s (%d)", byteslice.PtrToString(x.ErrorEnumT2str(decErr)), decErr)
 	}
 
 	buf := make([]int8, 256)
 	fmtOk := x.FormatContext(XedSyntaxIntel, &xedd, &buf[0], int32(len(buf)), 0, unsafe.Pointer(uintptr(0)), Xed_disassembly_callback_fn_t(nil))
 	disasm := ""
 	if fmtOk != 0 {
-		disasm = goStringInt8(buf)
+		disasm = byteslice.ToString(buf)
 	} else {
 		disasm = "<format error>"
 	}
@@ -325,7 +327,7 @@ func TestVersion(t *testing.T) {
 	if ver == nil {
 		t.Fatal("get_version returned nil")
 	}
-	s := goString((*[256]byte)(unsafe.Pointer(ver))[:])
+	s := byteslice.ToString((*[256]int8)(unsafe.Pointer(ver))[:])
 	t.Logf("XED version: %s", s)
 	if len(s) == 0 {
 		t.Error("version string is empty")
@@ -357,7 +359,7 @@ func TestRegisterNames(t *testing.T) {
 			if s == nil {
 				t.Fatalf("reg_enum_t2str(%d) returned nil", tc.reg)
 			}
-			name := cstring(s)
+			name := byteslice.PtrToString(s)
 			if name != tc.want {
 				t.Errorf("got %q want %q", name, tc.want)
 			}

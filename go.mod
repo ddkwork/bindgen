@@ -1,9 +1,9 @@
 module github.com/ddkwork/bindgen
 
-go 1.26.1
+go 1.26.2
 
 require (
-	github.com/ddkwork/golibrary v0.2.2
+	github.com/ddkwork/golibrary v0.2.3
 	modernc.org/cc/v4 v4.28.1
 )
 

@@ -170,7 +170,6 @@ type GLFWgammaramp struct {
 	Green *uint16
 	Blue  *uint16
 	Size  uint32
-	_     [4]byte
 }
 
 // Source: GLFW/glfw3.h:2094 -> GLFWimage
@@ -529,5 +528,5 @@ const (
 	GlfwPlatformX11               uint32 = 0x00060004
 	GlfwPlatformNull              uint32 = 0x00060005
 	GlfwDontCare                  int32  = -1
-	GLAPIENTRY                    uint32 = 0
+	GLAPIENTRY                    uint32 = APIENTRY
 )

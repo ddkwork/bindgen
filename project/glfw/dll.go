@@ -300,8 +300,8 @@ func (g *Glfw) GetError(Description **int8) int32 {
 	return int32(r1)
 }
 
-func (g *Glfw) SetErrorCallback(cbfn uintptr) GLFWerrorfun {
-	r1, _, _ := proc_glfwSetErrorCallback.Call(cbfn)
+func (g *Glfw) SetErrorCallback(Callback GLFWerrorfun) GLFWerrorfun {
+	r1, _, _ := proc_glfwSetErrorCallback.Call(uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWerrorfun)(unsafe.Pointer(&r1))
 }
 
@@ -355,8 +355,8 @@ func (g *Glfw) GetMonitorUserPointer(Monitor *GLFWmonitor) unsafe.Pointer {
 	return unsafe.Pointer(r1)
 }
 
-func (g *Glfw) SetMonitorCallback(cbfn uintptr) GLFWmonitorfun {
-	r1, _, _ := proc_glfwSetMonitorCallback.Call(cbfn)
+func (g *Glfw) SetMonitorCallback(Callback GLFWmonitorfun) GLFWmonitorfun {
+	r1, _, _ := proc_glfwSetMonitorCallback.Call(uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWmonitorfun)(unsafe.Pointer(&r1))
 }
 
@@ -526,48 +526,48 @@ func (g *Glfw) GetWindowUserPointer(Window *GLFWwindow) unsafe.Pointer {
 	return unsafe.Pointer(r1)
 }
 
-func (g *Glfw) SetWindowPosCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowposfun {
-	r1, _, _ := proc_glfwSetWindowPosCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowPosCallback(Window *GLFWwindow, Callback GLFWwindowposfun) GLFWwindowposfun {
+	r1, _, _ := proc_glfwSetWindowPosCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowposfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowSizeCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowsizefun {
-	r1, _, _ := proc_glfwSetWindowSizeCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowSizeCallback(Window *GLFWwindow, Callback GLFWwindowsizefun) GLFWwindowsizefun {
+	r1, _, _ := proc_glfwSetWindowSizeCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowsizefun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowCloseCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowclosefun {
-	r1, _, _ := proc_glfwSetWindowCloseCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowCloseCallback(Window *GLFWwindow, Callback GLFWwindowclosefun) GLFWwindowclosefun {
+	r1, _, _ := proc_glfwSetWindowCloseCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowclosefun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowRefreshCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowrefreshfun {
-	r1, _, _ := proc_glfwSetWindowRefreshCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowRefreshCallback(Window *GLFWwindow, Callback GLFWwindowrefreshfun) GLFWwindowrefreshfun {
+	r1, _, _ := proc_glfwSetWindowRefreshCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowrefreshfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowFocusCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowfocusfun {
-	r1, _, _ := proc_glfwSetWindowFocusCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowFocusCallback(Window *GLFWwindow, Callback GLFWwindowfocusfun) GLFWwindowfocusfun {
+	r1, _, _ := proc_glfwSetWindowFocusCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowfocusfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowIconifyCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowiconifyfun {
-	r1, _, _ := proc_glfwSetWindowIconifyCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowIconifyCallback(Window *GLFWwindow, Callback GLFWwindowiconifyfun) GLFWwindowiconifyfun {
+	r1, _, _ := proc_glfwSetWindowIconifyCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowiconifyfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowMaximizeCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowmaximizefun {
-	r1, _, _ := proc_glfwSetWindowMaximizeCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowMaximizeCallback(Window *GLFWwindow, Callback GLFWwindowmaximizefun) GLFWwindowmaximizefun {
+	r1, _, _ := proc_glfwSetWindowMaximizeCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowmaximizefun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetFramebufferSizeCallback(Window *GLFWwindow, cbfn uintptr) GLFWframebuffersizefun {
-	r1, _, _ := proc_glfwSetFramebufferSizeCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetFramebufferSizeCallback(Window *GLFWwindow, Callback GLFWframebuffersizefun) GLFWframebuffersizefun {
+	r1, _, _ := proc_glfwSetFramebufferSizeCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWframebuffersizefun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetWindowContentScaleCallback(Window *GLFWwindow, cbfn uintptr) GLFWwindowcontentscalefun {
-	r1, _, _ := proc_glfwSetWindowContentScaleCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetWindowContentScaleCallback(Window *GLFWwindow, Callback GLFWwindowcontentscalefun) GLFWwindowcontentscalefun {
+	r1, _, _ := proc_glfwSetWindowContentScaleCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWwindowcontentscalefun)(unsafe.Pointer(&r1))
 }
 
@@ -647,43 +647,43 @@ func (g *Glfw) SetCursor(Window *GLFWwindow, Cursor *GLFWcursor) {
 	proc_glfwSetCursor.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Cursor)))
 }
 
-func (g *Glfw) SetKeyCallback(Window *GLFWwindow, cbfn uintptr) GLFWkeyfun {
-	r1, _, _ := proc_glfwSetKeyCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetKeyCallback(Window *GLFWwindow, Callback GLFWkeyfun) GLFWkeyfun {
+	r1, _, _ := proc_glfwSetKeyCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWkeyfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetCharCallback(Window *GLFWwindow, cbfn uintptr) GLFWcharfun {
-	r1, _, _ := proc_glfwSetCharCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetCharCallback(Window *GLFWwindow, Callback GLFWcharfun) GLFWcharfun {
+	r1, _, _ := proc_glfwSetCharCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWcharfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetCharModsCallback(Window *GLFWwindow, cbfn uintptr) GLFWcharmodsfun {
-	r1, _, _ := proc_glfwSetCharModsCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetCharModsCallback(Window *GLFWwindow, Callback GLFWcharmodsfun) GLFWcharmodsfun {
+	r1, _, _ := proc_glfwSetCharModsCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWcharmodsfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetMouseButtonCallback(Window *GLFWwindow, cbfn uintptr) GLFWmousebuttonfun {
-	r1, _, _ := proc_glfwSetMouseButtonCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetMouseButtonCallback(Window *GLFWwindow, Callback GLFWmousebuttonfun) GLFWmousebuttonfun {
+	r1, _, _ := proc_glfwSetMouseButtonCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWmousebuttonfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetCursorPosCallback(Window *GLFWwindow, cbfn uintptr) GLFWcursorposfun {
-	r1, _, _ := proc_glfwSetCursorPosCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetCursorPosCallback(Window *GLFWwindow, Callback GLFWcursorposfun) GLFWcursorposfun {
+	r1, _, _ := proc_glfwSetCursorPosCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWcursorposfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetCursorEnterCallback(Window *GLFWwindow, cbfn uintptr) GLFWcursorenterfun {
-	r1, _, _ := proc_glfwSetCursorEnterCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetCursorEnterCallback(Window *GLFWwindow, Callback GLFWcursorenterfun) GLFWcursorenterfun {
+	r1, _, _ := proc_glfwSetCursorEnterCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWcursorenterfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetScrollCallback(Window *GLFWwindow, cbfn uintptr) GLFWscrollfun {
-	r1, _, _ := proc_glfwSetScrollCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetScrollCallback(Window *GLFWwindow, Callback GLFWscrollfun) GLFWscrollfun {
+	r1, _, _ := proc_glfwSetScrollCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWscrollfun)(unsafe.Pointer(&r1))
 }
 
-func (g *Glfw) SetDropCallback(Window *GLFWwindow, cbfn uintptr) GLFWdropfun {
-	r1, _, _ := proc_glfwSetDropCallback.Call(uintptr(unsafe.Pointer(Window)), cbfn)
+func (g *Glfw) SetDropCallback(Window *GLFWwindow, Callback GLFWdropfun) GLFWdropfun {
+	r1, _, _ := proc_glfwSetDropCallback.Call(uintptr(unsafe.Pointer(Window)), uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWdropfun)(unsafe.Pointer(&r1))
 }
 
@@ -731,8 +731,8 @@ func (g *Glfw) JoystickIsGamepad(Jid int32) int32 {
 	return int32(r1)
 }
 
-func (g *Glfw) SetJoystickCallback(cbfn uintptr) GLFWjoystickfun {
-	r1, _, _ := proc_glfwSetJoystickCallback.Call(cbfn)
+func (g *Glfw) SetJoystickCallback(Callback GLFWjoystickfun) GLFWjoystickfun {
+	r1, _, _ := proc_glfwSetJoystickCallback.Call(uintptr(unsafe.Pointer(Callback)))
 	return *(*GLFWjoystickfun)(unsafe.Pointer(&r1))
 }
 

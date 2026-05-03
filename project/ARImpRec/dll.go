@@ -174,57 +174,57 @@ func (i *Ipmrec) Strchr(S *int8, C int32) *int8 {
 	return (*int8)(unsafe.Pointer(r1))
 }
 
-func (i *Ipmrec) UnpackPdataSection(MSNameOfProtected *PChar, MSNameOfDumped *PChar, MSWarning *PChar) Integer {
+func (i *Ipmrec) UnpackPdataSection(MSNameOfProtected *int8, MSNameOfDumped *int8, MSWarning *int8) int32 {
 	r1, _, _ := proc_UnpackPdataSection.Call(uintptr(unsafe.Pointer(MSNameOfProtected)), uintptr(unsafe.Pointer(MSNameOfDumped)), uintptr(unsafe.Pointer(MSWarning)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) GetNameFileOptimized(MSFileNameOrig *PChar, MSFileNameOptimized *PChar) Integer {
+func (i *Ipmrec) GetNameFileOptimized(MSFileNameOrig *int8, MSFileNameOptimized *int8) int32 {
 	r1, _, _ := proc_GetNameFileOptimized.Call(uintptr(unsafe.Pointer(MSFileNameOrig)), uintptr(unsafe.Pointer(MSFileNameOptimized)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) RebuildSectionsFromArmadillo(MSNameOfProtected *PChar, MSNameOfDumped *PChar, MSWarning *PChar) Integer {
+func (i *Ipmrec) RebuildSectionsFromArmadillo(MSNameOfProtected *int8, MSNameOfDumped *int8, MSWarning *int8) int32 {
 	r1, _, _ := proc_RebuildSectionsFromArmadillo.Call(uintptr(unsafe.Pointer(MSNameOfProtected)), uintptr(unsafe.Pointer(MSNameOfDumped)), uintptr(unsafe.Pointer(MSWarning)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) TryGetImportedFunction(IRProcessId Cardinal, IRVAddress Cardinal, IROrdinal *PCardinal, IRHint *PCardinal, IRFunctionName *PChar, IRModule *PChar) Integer {
+func (i *Ipmrec) TryGetImportedFunction(IRProcessId uint32, IRVAddress uint32, IROrdinal **uint32, IRHint **uint32, IRFunctionName *int8, IRModule *int8) int32 {
 	r1, _, _ := proc_TryGetImportedFunction.Call(uintptr(IRProcessId), uintptr(IRVAddress), uintptr(unsafe.Pointer(IROrdinal)), uintptr(unsafe.Pointer(IRHint)), uintptr(unsafe.Pointer(IRFunctionName)), uintptr(unsafe.Pointer(IRModule)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) SearchAndRebuildImportsNoNewSection(IRProcessId Cardinal, IRNameOfDumped *PChar, IROEP Cardinal, IRSaveOEPToFile IRSaveOEPToFile, IRIATRVA *PCardinal, IRIATSize *PCardinal, IRWarning *PChar) Integer {
+func (i *Ipmrec) SearchAndRebuildImportsNoNewSection(IRProcessId uint32, IRNameOfDumped *int8, IROEP uint32, IRSaveOEPToFile uint32, IRIATRVA **uint32, IRIATSize **uint32, IRWarning *int8) int32 {
 	r1, _, _ := proc_SearchAndRebuildImportsNoNewSection.Call(uintptr(IRProcessId), uintptr(unsafe.Pointer(IRNameOfDumped)), uintptr(IROEP), uintptr(IRSaveOEPToFile), uintptr(unsafe.Pointer(IRIATRVA)), uintptr(unsafe.Pointer(IRIATSize)), uintptr(unsafe.Pointer(IRWarning)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) SearchAndRebuildImportsIATOptimized(IRProcessId Cardinal, IRNameOfDumped *PChar, IROEP Cardinal, IRSaveOEPToFile IRSaveOEPToFile, IRIATRVA *PCardinal, IRIATSize *PCardinal, IRWarning *PChar) Integer {
+func (i *Ipmrec) SearchAndRebuildImportsIATOptimized(IRProcessId uint32, IRNameOfDumped *int8, IROEP uint32, IRSaveOEPToFile uint32, IRIATRVA **uint32, IRIATSize **uint32, IRWarning *int8) int32 {
 	r1, _, _ := proc_SearchAndRebuildImportsIATOptimized.Call(uintptr(IRProcessId), uintptr(unsafe.Pointer(IRNameOfDumped)), uintptr(IROEP), uintptr(IRSaveOEPToFile), uintptr(unsafe.Pointer(IRIATRVA)), uintptr(unsafe.Pointer(IRIATSize)), uintptr(unsafe.Pointer(IRWarning)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) SearchAndRebuildImports(IRProcessId Cardinal, IRNameOfDumped *PChar, IROEP Cardinal, IRSaveOEPToFile IRSaveOEPToFile, IRIATRVA *PCardinal, IRIATSize *PCardinal, IRWarning *PChar) Integer {
+func (i *Ipmrec) SearchAndRebuildImports(IRProcessId uint32, IRNameOfDumped *int8, IROEP uint32, IRSaveOEPToFile uint32, IRIATRVA **uint32, IRIATSize **uint32, IRWarning *int8) int32 {
 	r1, _, _ := proc_SearchAndRebuildImports.Call(uintptr(IRProcessId), uintptr(unsafe.Pointer(IRNameOfDumped)), uintptr(IROEP), uintptr(IRSaveOEPToFile), uintptr(unsafe.Pointer(IRIATRVA)), uintptr(unsafe.Pointer(IRIATSize)), uintptr(unsafe.Pointer(IRWarning)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) GetProcNameAndOrdinal(IRHModule HMODULE, IRAddress Cardinal, IROrdinal *PCardinal, IRHint *PCardinal, IRProcName *PChar) Integer {
-	r1, _, _ := proc_GetProcNameAndOrdinal.Call(uintptr(unsafe.Pointer(IRHModule)), uintptr(IRAddress), uintptr(unsafe.Pointer(IROrdinal)), uintptr(unsafe.Pointer(IRHint)), uintptr(unsafe.Pointer(IRProcName)))
+func (i *Ipmrec) GetProcNameAndOrdinal(IRHModule uintptr, IRAddress uint32, IROrdinal **uint32, IRHint **uint32, IRProcName *int8) int32 {
+	r1, _, _ := proc_GetProcNameAndOrdinal.Call(IRHModule, uintptr(IRAddress), uintptr(unsafe.Pointer(IROrdinal)), uintptr(unsafe.Pointer(IRHint)), uintptr(unsafe.Pointer(IRProcName)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) GetProcOrdinal(IRHModule HMODULE, IRAddress Cardinal) Cardinal {
-	r1, _, _ := proc_GetProcOrdinal.Call(uintptr(unsafe.Pointer(IRHModule)), uintptr(IRAddress))
+func (i *Ipmrec) GetProcOrdinal(IRHModule uintptr, IRAddress uint32) uint32 {
+	r1, _, _ := proc_GetProcOrdinal.Call(IRHModule, uintptr(IRAddress))
 	return uint32(r1)
 }
 
-func (i *Ipmrec) GetProcName(IRHModule HMODULE, IRAddress Cardinal, IRHint *PCardinal, IRProcName *PChar) Integer {
-	r1, _, _ := proc_GetProcName.Call(uintptr(unsafe.Pointer(IRHModule)), uintptr(IRAddress), uintptr(unsafe.Pointer(IRHint)), uintptr(unsafe.Pointer(IRProcName)))
+func (i *Ipmrec) GetProcName(IRHModule uintptr, IRAddress uint32, IRHint **uint32, IRProcName *int8) int32 {
+	r1, _, _ := proc_GetProcName.Call(IRHModule, uintptr(IRAddress), uintptr(unsafe.Pointer(IRHint)), uintptr(unsafe.Pointer(IRProcName)))
 	return int32(r1)
 }
 
-func (i *Ipmrec) GetAllVAddressesOfImports(IRProcessId Cardinal, IROEP Cardinal, IRVAddressImports *PCardinal, IRNumberOfImports Integer) Integer {
+func (i *Ipmrec) GetAllVAddressesOfImports(IRProcessId uint32, IROEP uint32, IRVAddressImports **uint32, IRNumberOfImports int32) int32 {
 	r1, _, _ := proc_GetAllVAddressesOfImports.Call(uintptr(IRProcessId), uintptr(IROEP), uintptr(unsafe.Pointer(IRVAddressImports)), uintptr(IRNumberOfImports))
 	return int32(r1)
 }

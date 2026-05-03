@@ -2,32 +2,13 @@ package keystone
 
 import (
 	"testing"
-	"unsafe"
+
+	"github.com/ddkwork/golibrary/byteslice"
 )
 
 func newKeystone(t *testing.T) *Keystone {
 	t.Helper()
 	return &Keystone{}
-}
-
-func goString(p *int8) string {
-	if p == nil {
-		return "<nil>"
-	}
-	var b []byte
-	for i := 0; ; i++ {
-		c := unsafe.Slice((*byte)(unsafe.Pointer(p)), i+1)[i]
-		if c == 0 {
-			break
-		}
-		b = append(b, c)
-	}
-	return string(b)
-}
-
-func cString(s string) (*int8, []byte) {
-	b := append([]byte(s), 0)
-	return (*int8)(unsafe.Pointer(&b[0])), b
 }
 
 func TestKsVersion(t *testing.T) {
@@ -71,12 +52,12 @@ func TestKsOpenClose_X86_32(t *testing.T) {
 	var ks *Ks_engine
 	err := k.KsOpen(KsArchX86, int32(KsMode32), &ks)
 	if err != KsErrOk {
-		t.Fatalf("KsOpen(X86, Mode32) failed: %d (%s)", err, goString(k.KsStrerror(err)))
+		t.Fatalf("KsOpen(X86, Mode32) failed: %d (%s)", err, byteslice.PtrToString(k.KsStrerror(err)))
 	}
 	defer func() {
 		err := k.KsClose(ks)
 		if err != KsErrOk {
-			t.Errorf("KsClose failed: %d (%s)", err, goString(k.KsStrerror(err)))
+			t.Errorf("KsClose failed: %d (%s)", err, byteslice.PtrToString(k.KsStrerror(err)))
 		}
 	}()
 	if ks == nil {
@@ -89,11 +70,11 @@ func TestKsOpenClose_X86_64(t *testing.T) {
 	var ks *Ks_engine
 	err := k.KsOpen(KsArchX86, int32(KsMode64), &ks)
 	if err != KsErrOk {
-		t.Fatalf("KsOpen(X86, Mode64) failed: %d (%s)", err, goString(k.KsStrerror(err)))
+		t.Fatalf("KsOpen(X86, Mode64) failed: %d (%s)", err, byteslice.PtrToString(k.KsStrerror(err)))
 	}
 	defer func() {
 		if closeErr := k.KsClose(ks); closeErr != KsErrOk {
-			t.Errorf("KsClose failed: %d (%s)", closeErr, goString(k.KsStrerror(closeErr)))
+			t.Errorf("KsClose failed: %d (%s)", closeErr, byteslice.PtrToString(k.KsStrerror(closeErr)))
 		}
 	}()
 	if ks == nil {
@@ -122,12 +103,11 @@ func TestKsAsm_X86_32(t *testing.T) {
 	var encoding *uint8
 	var encSize uintptr
 	var statCount uintptr
-	str, pin := cString("inc eax\ncall 0x1000\nmov ecx, edx")
+	str := byteslice.PtrFromString[int8]("inc eax\ncall 0x1000\nmov ecx, edx")
 	result := k.KsAsm(ks, str, 0x0, &encoding, &encSize, &statCount)
-	_ = pin
 	t.Logf("KsAsm result=%d errno=%d", result, k.KsErrno(ks))
 	if result != 0 {
-		t.Fatalf("KsAsm failed: %d (%s)", result, goString(k.KsStrerror(Ks_err(result))))
+		t.Fatalf("KsAsm failed: %d (%s)", result, byteslice.PtrToString(k.KsStrerror(Ks_err(result))))
 	}
 	if encoding == nil {
 		t.Fatal("encoding is nil")
@@ -150,11 +130,10 @@ func TestKsAsm_X86_64(t *testing.T) {
 	var encoding *uint8
 	var encSize uintptr
 	var statCount uintptr
-	str, pin := cString("mov rax, 0x123456789ABCDEF0\nret")
+	str := byteslice.PtrFromString[int8]("mov rax, 0x123456789ABCDEF0\nret")
 	result := k.KsAsm(ks, str, 0x400000, &encoding, &encSize, &statCount)
-	_ = pin
 	if result != 0 {
-		t.Fatalf("KsAsm failed: %d (%s)", result, goString(k.KsStrerror(Ks_err(result))))
+		t.Fatalf("KsAsm failed: %d (%s)", result, byteslice.PtrToString(k.KsStrerror(Ks_err(result))))
 	}
 	if encSize == 0 {
 		t.Fatal("encSize is 0")
@@ -174,11 +153,10 @@ func TestKsAsm_Arm64(t *testing.T) {
 	var encoding *uint8
 	var encSize uintptr
 	var statCount uintptr
-	str, pin := cString("mov x0, #42\nret")
+	str := byteslice.PtrFromString[int8]("mov x0, #42\nret")
 	result := k.KsAsm(ks, str, 0, &encoding, &encSize, &statCount)
-	_ = pin
 	if result != 0 {
-		t.Fatalf("KsAsm failed: %d (%s)", result, goString(k.KsStrerror(Ks_err(result))))
+		t.Fatalf("KsAsm failed: %d (%s)", result, byteslice.PtrToString(k.KsStrerror(Ks_err(result))))
 	}
 	t.Logf("arm64 assembled %d bytes", encSize)
 	k.KsFree(encoding)
@@ -203,7 +181,7 @@ func TestKsStrerror(t *testing.T) {
 			if msg == nil {
 				t.Fatal("KsStrerror returned nil")
 			}
-			s := goString(msg)
+			s := byteslice.PtrToString(msg)
 			if len(s) > 0 && tt.code != KsErrOk {
 				t.Logf("strerror(%d) = %q", tt.code, s)
 			}
@@ -222,7 +200,7 @@ func TestKsErrno(t *testing.T) {
 
 	errno := k.KsErrno(ks)
 	if errno != KsErrOk {
-		t.Logf("errno after open: %d (%s)", errno, goString(k.KsStrerror(errno)))
+		t.Logf("errno after open: %d (%s)", errno, byteslice.PtrToString(k.KsStrerror(errno)))
 	}
 }
 
@@ -237,7 +215,7 @@ func TestKsOption_Syntax(t *testing.T) {
 	syntaxValue := uintptr(1)
 	err := k.KsOption(ks, KsOptSyntax, syntaxValue)
 	if err != KsErrOk {
-		t.Logf("option may not be supported: %d (%s)", err, goString(k.KsStrerror(err)))
+		t.Logf("option may not be supported: %d (%s)", err, byteslice.PtrToString(k.KsStrerror(err)))
 	}
 }
 
@@ -252,7 +230,7 @@ func TestFullLifecycle_X86(t *testing.T) {
 
 	var ks *Ks_engine
 	if err := k.KsOpen(KsArchX86, int32(KsMode32), &ks); err != KsErrOk {
-		t.Fatalf("open: %d (%s)", err, goString(k.KsStrerror(err)))
+		t.Fatalf("open: %d (%s)", err, byteslice.PtrToString(k.KsStrerror(err)))
 	}
 
 	if errno := k.KsErrno(ks); errno != KsErrOk {
@@ -261,10 +239,9 @@ func TestFullLifecycle_X86(t *testing.T) {
 
 	var encoding *uint8
 	var encSize, statCount uintptr
-	str, pin := cString("nop\npush ebp\npop ebp")
-	_ = pin
+	str := byteslice.PtrFromString[int8]("nop\npush ebp\npop ebp")
 	if asmResult := k.KsAsm(ks, str, 0, &encoding, &encSize, &statCount); asmResult != 0 {
-		t.Fatalf("asm: %d (%s)", asmResult, goString(k.KsStrerror(Ks_err(asmResult))))
+		t.Fatalf("asm: %d (%s)", asmResult, byteslice.PtrToString(k.KsStrerror(Ks_err(asmResult))))
 	}
 	if encSize == 0 {
 		t.Fatal("expected non-zero encoding size")
@@ -272,6 +249,6 @@ func TestFullLifecycle_X86(t *testing.T) {
 	k.KsFree(encoding)
 
 	if closeErr := k.KsClose(ks); closeErr != KsErrOk {
-		t.Errorf("close: %d (%s)", closeErr, goString(k.KsStrerror(closeErr)))
+		t.Errorf("close: %d (%s)", closeErr, byteslice.PtrToString(k.KsStrerror(closeErr)))
 	}
 }

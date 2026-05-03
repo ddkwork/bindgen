@@ -424,9 +424,19 @@ func Generate(t *testing.T, configs []BindgenConfig) {
 	fmt.Printf("Predefined: %d bytes\n", len(cfg.Predefined))
 	fmt.Printf("IncludePaths: %v\n", cfg.IncludePaths)
 
-	for _, bc := range configs {
-		processBindgenConfig(t, cfg, bc)
-		stream.FmtDir(bc.OutputDir)
+	for _, c := range configs {
+		processBindgenConfig(t, cfg, c)
+		stream.FmtDir(c.OutputDir)
+		//stream.RunCommandWithDir(c.OutputDir, "go mod tidy")
+
+		if strings.Contains(c.OutputDir, "ARImpRec") {
+			oldArch := os.Getenv("GOARCH")
+			os.Setenv("GOARCH", "386")
+			stream.RunCommandWithDir(c.OutputDir, "go", "test", "-v", ".")
+			os.Setenv("GOARCH", oldArch)
+			continue
+		}
+		stream.RunCommandWithDir(c.OutputDir, "go test -v .")
 	}
 
 	fmt.Println("\n✅ All binding generations completed!")
@@ -719,7 +729,7 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 	if modPath == "" {
 		modPath = "github.com/ddkwork/" + bc.PackageName
 	}
-	modContent := fmt.Sprintf("module %s\n\ngo 1.26.1\n", modPath)
+	modContent := fmt.Sprintf("module %s\n\ngo 1.26.2\n", modPath)
 	if err := os.WriteFile(filepath.Join(bc.OutputDir, "go.mod"), []byte(modContent), 0o644); err != nil {
 		fmt.Fprintf(os.Stderr, "Error writing go.mod: %v\n", err)
 	}
@@ -1260,8 +1270,15 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 		var aliasTypes []typedefInfo
 		var funcTypes []typedefInfo
 		var skipStructNames map[string]bool
+		skipBasicTypedefs := map[string]bool{
+			"Cardinal": true, "Integer": true, "PChar": true,
+			"PCardinal": true, "HMODULE": true, "IRSaveOEPToFile": true,
+		}
 		for _, td := range result.Typedefs.Range() {
 			if !sourceMatch(td.source) {
+				continue
+			}
+			if skipBasicTypedefs[td.goName] {
 				continue
 			}
 			if result.Enums.Has(td.goName) {
@@ -2055,6 +2072,14 @@ func mapCTypeNameToGoForSizeof(cType string) string {
 		return "rune"
 	case "SIZE_T", "HANDLE", "PVOID", "LPVOID":
 		return "uintptr"
+	case "Cardinal":
+		return "uint32"
+	case "Integer":
+		return "int32"
+	case "HMODULE":
+		return "uintptr"
+	case "IRSaveOEPToFile":
+		return "uint32"
 	default:
 		return cTagToGoName(cType)
 	}
@@ -3763,6 +3788,14 @@ func mapCTypeToGoForPointer(t cc.Type) string {
 			return "uint16"
 		case "PVOID", "LPVOID", "HANDLE", "SIZE_T":
 			return "uintptr"
+		case "Cardinal":
+			return "uint32"
+		case "Integer":
+			return "int32"
+		case "HMODULE":
+			return "uintptr"
+		case "IRSaveOEPToFile":
+			return "uint32"
 		}
 		return cTagToGoName(tdName)
 	}
@@ -3932,6 +3965,20 @@ func mapCTypeToGo(t cc.Type) string {
 			return "uint32"
 		case "Xed_bool_t":
 			return "int32"
+		case "Cardinal":
+			return "uint32"
+		case "Integer":
+			return "int32"
+		case "PChar":
+			return "*int8"
+		case "PCardinal":
+			return "*uint32"
+		case "HMODULE":
+			return "uintptr"
+		case "IRSaveOEPToFile":
+			return "uint32"
+		case "PHMODULE":
+			return "*uintptr"
 		}
 		return cTagToGoName(tdName)
 	}

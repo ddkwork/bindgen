@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"unsafe"
+
+	"github.com/ddkwork/golibrary/byteslice"
 )
 
 type Assembler struct {
@@ -21,31 +23,6 @@ func NewAssembler(x *Xed) *Assembler {
 	a.buildRegMap()
 	a.buildBrdispTable()
 	return a
-}
-
-func cstring(s *int8) string {
-	if s == nil {
-		return "<nil>"
-	}
-	return goStringInt8((*[256]int8)(unsafe.Pointer(s))[:])
-}
-
-func goStringInt8(buf []int8) string {
-	for i, b := range buf {
-		if b == 0 {
-			return string((*[256]byte)(unsafe.Pointer(&buf[0]))[:i])
-		}
-	}
-	return string((*[256]byte)(unsafe.Pointer(&buf[0]))[:])
-}
-
-func goString(buf []byte) string {
-	for i, b := range buf {
-		if b == 0 {
-			return string(buf[:i])
-		}
-	}
-	return string(buf)
 }
 
 func xedState(mode Xed_machine_mode_enum_t) Xed_state_t {
@@ -73,7 +50,7 @@ func (a *Assembler) buildIclassMap() {
 	for i := Xed_iclass_enum_t(1); i < last; i++ {
 		s := a.x.IclassEnumT2str(i)
 		if s != nil {
-			name := strings.ToUpper(cstring(s))
+			name := strings.ToUpper(byteslice.PtrToString(s))
 			a.iclassMap[name] = i
 		}
 	}
@@ -85,7 +62,7 @@ func (a *Assembler) buildRegMap() {
 	for i := Xed_reg_enum_t(1); i < 366; i++ {
 		s := a.x.RegEnumT2str(i)
 		if s != nil {
-			name := strings.ToUpper(cstring(s))
+			name := strings.ToUpper(byteslice.PtrToString(s))
 			a.regMap[name] = i
 			a.regSet[name] = true
 		}
@@ -100,7 +77,7 @@ func (a *Assembler) buildBrdispTable() {
 		if s == nil {
 			continue
 		}
-		name := strings.ToUpper(cstring(s))
+		name := strings.ToUpper(byteslice.PtrToString(s))
 		if isRelbrIclass(name) {
 			a.brdispTable[ic] = XedEncoderOperandTypeRelBrdisp
 		} else if isAbsbrIclass(name) {
@@ -671,7 +648,7 @@ func encodeInstruction(x *Xed, inst Xed_encoder_instruction_t) ([]byte, error) {
 	var olen uint32
 	err := x.Encode(&encReq, &itext[0], ilen, &olen)
 	if err != XedErrorNone {
-		return nil, fmt.Errorf("encode error: %s (%d)", cstring(x.ErrorEnumT2str(err)), err)
+		return nil, fmt.Errorf("encode error: %s (%d)", byteslice.PtrToString(x.ErrorEnumT2str(err)), err)
 	}
 	if olen == 0 || olen > XedMaxInstructionBytes {
 		return nil, fmt.Errorf("bad encoded length: %d", olen)
@@ -711,14 +688,14 @@ func (a *Assembler) Disassemble(bytes []byte, mode int) (string, error) {
 	a.x.DecodedInstZeroSetMode(&xedd, &dstate)
 	err := a.x.Decode(&xedd, &bytes[0], uint32(len(bytes)))
 	if err != XedErrorNone {
-		return "", fmt.Errorf("decode error: %s (%d)", cstring(a.x.ErrorEnumT2str(err)), err)
+		return "", fmt.Errorf("decode error: %s (%d)", byteslice.PtrToString(a.x.ErrorEnumT2str(err)), err)
 	}
 	buf := make([]int8, 256)
 	fmtOk := a.x.FormatContext(XedSyntaxIntel, &xedd, &buf[0], int32(len(buf)), 0, unsafe.Pointer(uintptr(0)), Xed_disassembly_callback_fn_t(nil))
 	if fmtOk == 0 {
 		return "", fmt.Errorf("format error")
 	}
-	return goStringInt8(buf), nil
+	return byteslice.ToString(buf), nil
 }
 
 type encOp struct {

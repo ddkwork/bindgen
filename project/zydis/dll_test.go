@@ -5,16 +5,11 @@ import (
 	"strings"
 	"testing"
 	"unsafe"
+
+	"github.com/ddkwork/golibrary/byteslice"
 )
 
-func cstr(s *int8) string {
-	if s == nil {
-		return ""
-	}
-	return unsafe.String((*byte)(unsafe.Pointer(s)), 64)
-}
-
-func TestGetVersion(t *testing.T) {
+func TestZydisVersion(t *testing.T) {
 	z := &Zydis{}
 	ver := z.GetVersion()
 	major := uint16((ver & 0xFFFF000000000000) >> 48)
@@ -501,7 +496,7 @@ func TestExample_RewriteCode(t *testing.T) {
 
 			var fmtBuf [256]int8
 			z.FormatterFormatInstruction(&fmt_, &instr, &operands[0], instr.OperandCountVisible, &fmtBuf[0], uintptr(len(fmtBuf)), 0, nil)
-			t.Logf("Original: %s", goStringFromCArray(fmtBuf[:]))
+			t.Logf("Original: %s", byteslice.ToString(fmtBuf[:]))
 
 			var encReq ZydisEncoderRequest_
 			status = z.EncoderDecodedInstructionToEncoderRequest(&instr, &operands[0], instr.OperandCountVisible, &encReq)
@@ -548,7 +543,7 @@ func TestExample_RewriteCode(t *testing.T) {
 
 			var newFmtBuf [256]int8
 			z.FormatterFormatInstruction(&fmt_, &newInstr, &newOps[0], newInstr.OperandCountVisible, &newFmtBuf[0], uintptr(len(newFmtBuf)), 0, nil)
-			t.Logf("New:      %s", goStringFromCArray(newFmtBuf[:]))
+			t.Logf("New:      %s", byteslice.ToString(newFmtBuf[:]))
 
 			if tc.wantSub && newInstr.Mnemonic != ZydisMnemonicSub {
 				t.Errorf("expected sub, got %v", newInstr.Mnemonic)
@@ -595,7 +590,7 @@ func TestExample_Formatter01_SymbolResolver(t *testing.T) {
 
 		var fmtBuf [256]int8
 		z.FormatterFormatInstruction(&fmt_, &instr, &operands[0], instr.OperandCountVisible, &fmtBuf[0], uintptr(len(fmtBuf)), runtimeAddr, nil)
-		text := goStringFromCArray(fmtBuf[:])
+		text := byteslice.ToString(fmtBuf[:])
 		t.Logf("%016X  %s", runtimeAddr, text)
 
 		offset += int(instr.Length)
@@ -662,7 +657,7 @@ func TestExample_Formatter03_Tokenizer(t *testing.T) {
 
 		var valStr string
 		if tValue != nil {
-			valStr = goStringFromCArray(unsafe.Slice((*int8)(unsafe.Pointer(tValue)), 64))
+			valStr = byteslice.ToString(unsafe.Slice((*int8)(unsafe.Pointer(tValue)), 64))
 		}
 		t.Logf("ZYDIS_TOKEN_%-17s (%02X): \"%s\"", typeName, tType, valStr)
 
@@ -682,15 +677,4 @@ func TestExample_Formatter03_Tokenizer(t *testing.T) {
 	if tokenCount == 0 {
 		t.Error("no tokens produced")
 	}
-}
-
-func goStringFromCArray(buf []int8) string {
-	end := 0
-	for i, c := range buf {
-		if c == 0 {
-			end = i
-			break
-		}
-	}
-	return unsafe.String((*byte)(unsafe.Pointer(&buf[0])), end)
 }

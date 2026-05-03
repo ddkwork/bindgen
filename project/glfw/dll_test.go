@@ -6,6 +6,8 @@ import (
 	"testing"
 	"time"
 	"unsafe"
+
+	"github.com/ddkwork/golibrary/byteslice"
 )
 
 var testGlfw *Glfw
@@ -15,7 +17,7 @@ func TestMain(m *testing.M) {
 	if g.Init() == 0 {
 		var desc *int8
 		g.GetError(&desc)
-		panic("glfwInit failed: " + goString(desc))
+		panic("glfwInit failed: " + byteslice.PtrToString(desc))
 	}
 	testGlfw = g
 	exitCode := m.Run()
@@ -28,36 +30,16 @@ func newGlfw(t *testing.T) *Glfw {
 	return testGlfw
 }
 
-func goString(p *int8) string {
-	if p == nil {
-		return "<nil>"
-	}
-	var b []byte
-	for i := 0; ; i++ {
-		c := unsafe.Slice((*byte)(unsafe.Pointer(p)), i+1)[i]
-		if c == 0 {
-			break
-		}
-		b = append(b, c)
-	}
-	return string(b)
-}
-
-func cString(s string) (*int8, []byte) {
-	b := append([]byte(s), 0)
-	return (*int8)(unsafe.Pointer(&b[0])), b
-}
-
 func newWindow(t *testing.T, g *Glfw, width int32, height int32, title string) *GLFWwindow {
 	t.Helper()
 	g.DefaultWindowHints()
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-	ct, _ := cString(title)
+	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8](title); return &b[0], b }()
 	w := g.CreateWindow(width, height, ct, nil, nil)
 	if w == nil {
 		var desc *int8
 		g.GetError(&desc)
-		t.Fatalf("glfwCreateWindow failed: %s", goString(desc))
+		t.Fatalf("glfwCreateWindow failed: %s", byteslice.PtrToString(desc))
 	}
 	return w
 }
@@ -83,7 +65,7 @@ func TestGlfwGetVersion(t *testing.T) {
 func TestGlfwGetVersionString(t *testing.T) {
 	g := newGlfw(t)
 
-	str := goString(g.GetVersionString())
+	str := byteslice.PtrToString(g.GetVersionString())
 	t.Logf("GLFW version string: %s", str)
 	if str == "<nil>" || str == "" || len(str) < 10 {
 		t.Fatal("version string invalid")
@@ -114,7 +96,7 @@ func TestGlfwErrorCallback(t *testing.T) {
 	g := newGlfw(t)
 
 	cb := func(code int32, desc *int8) uintptr {
-		t.Logf("GLFW error %d: %s", code, goString(desc))
+		t.Logf("GLFW error %d: %s", code, byteslice.PtrToString(desc))
 		return 0
 	}
 	g.SetErrorCallback(syscall.NewCallback(cb))
@@ -152,7 +134,7 @@ func TestGlfwGetPrimaryMonitor(t *testing.T) {
 	g.GetMonitorPhysicalSize(monitor, &pw, &ph)
 	t.Logf("physical: %dx%d mm", pw, ph)
 
-	name := goString(g.GetMonitorName(monitor))
+	name := byteslice.PtrToString(g.GetMonitorName(monitor))
 	t.Logf("name: %s", name)
 }
 
@@ -226,7 +208,7 @@ func TestGlfwCreateWindowBasic(t *testing.T) {
 	w := newWindow(t, g, 640, 480, "Test Window")
 	defer g.DestroyWindow(w)
 
-	title := goString(g.GetWindowTitle(w))
+	title := byteslice.PtrToString(g.GetWindowTitle(w))
 	if title != "Test Window" {
 		t.Fatalf("title: got %q want %q", title, "Test Window")
 	}
@@ -237,7 +219,7 @@ func TestGlfwCreateWindowHidden(t *testing.T) {
 
 	g.DefaultWindowHints()
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-	ct, _ := cString("Hidden")
+	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("Hidden"); return &b[0], b }()
 	w := g.CreateWindow(320, 240, ct, nil, nil)
 	if w == nil {
 		t.Fatal("create hidden window failed")
@@ -256,9 +238,9 @@ func TestGlfwSetWindowTitle(t *testing.T) {
 	w := newWindow(t, g, 200, 200, "Old Title")
 	defer g.DestroyWindow(w)
 
-	newTitle, _ := cString("New Title")
+	newTitle, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("New Title"); return &b[0], b }()
 	g.SetWindowTitle(w, newTitle)
-	title := goString(g.GetWindowTitle(w))
+	title := byteslice.PtrToString(g.GetWindowTitle(w))
 	if title != "New Title" {
 		t.Fatalf("got %q want %q", title, "New Title")
 	}
@@ -403,7 +385,7 @@ func TestGlfwWindowHintVisibleOffscreen(t *testing.T) {
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
 	g.WindowHint(int32(GlfwResizable), int32(GlfwTrue))
 	g.WindowHint(int32(GlfwDecorated), int32(GlfwTrue))
-	ct, _ := cString("Offscreen")
+	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("Offscreen"); return &b[0], b }()
 	w := g.CreateWindow(640, 480, ct, nil, nil)
 	if w == nil {
 		t.Fatal("offscreen window creation failed")
@@ -426,7 +408,7 @@ func TestGlfwWindowHintContextVersion(t *testing.T) {
 	g.WindowHint(int32(GlfwContextVersionMinor), 3)
 	g.WindowHint(int32(GlfwOpenglProfile), int32(GlfwOpenglCoreProfile))
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-	ct, _ := cString("GL Context")
+	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("GL Context"); return &b[0], b }()
 	w := g.CreateWindow(640, 480, ct, nil, nil)
 	if w == nil {
 		t.Fatal("OpenGL context window creation failed")
@@ -585,10 +567,10 @@ func TestGlfwGetCursorPos(t *testing.T) {
 func TestGlfwKeyName(t *testing.T) {
 	g := newGlfw(t)
 
-	name := goString(g.GetKeyName(int32(GlfwKeyA), -1))
+	name := byteslice.PtrToString(g.GetKeyName(int32(GlfwKeyA), -1))
 	t.Logf("name of KEY_A: %q", name)
 
-	escName := goString(g.GetKeyName(int32(GlfwKeyEscape), -1))
+	escName := byteslice.PtrToString(g.GetKeyName(int32(GlfwKeyEscape), -1))
 	t.Logf("name of KEY_ESCAPE: %q", escName)
 }
 
@@ -636,10 +618,13 @@ func TestGlfwClipboard(t *testing.T) {
 	w := newWindow(t, g, 640, 480, "Clipboard")
 	defer g.DestroyWindow(w)
 
-	testStr, _ := cString("Hello from GLFW Go bindings!")
+	testStr, _ := func() (*int8, []byte) {
+		b := byteslice.FromString[int8]("Hello from GLFW Go bindings!")
+		return &b[0], b
+	}()
 	g.SetClipboardString(w, testStr)
 
-	retrieved := goString(g.GetClipboardString(w))
+	retrieved := byteslice.PtrToString(g.GetClipboardString(w))
 	t.Logf("clipboard: %q", retrieved)
 	if retrieved != "Hello from GLFW Go bindings!" {
 		t.Fatalf("clipboard: got %q want expected string", retrieved)
@@ -722,8 +707,8 @@ func TestGlfwJoystickPresentAll(t *testing.T) {
 	for jid := uint32(GlfwJoystick1); jid <= GlfwJoystick16; jid++ {
 		present := g.JoystickPresent(int32(jid)) != 0
 		if present {
-			name := goString(g.GetJoystickName(int32(jid)))
-			guid := goString(g.GetJoystickGUID(int32(jid)))
+			name := byteslice.PtrToString(g.GetJoystickName(int32(jid)))
+			guid := byteslice.PtrToString(g.GetJoystickGUID(int32(jid)))
 			t.Logf("joystick %d: name=%s guid=%s", jid, name, guid)
 		}
 	}
@@ -767,7 +752,7 @@ func TestGlfwGamepad(t *testing.T) {
 		if isGP == 0 {
 			continue
 		}
-		name := goString(g.GetGamepadName(int32(jid)))
+		name := byteslice.PtrToString(g.GetGamepadName(int32(jid)))
 		t.Logf("gamepad %d: %s", jid, name)
 
 		var state GLFWgamepadstate
@@ -797,7 +782,7 @@ func TestGlfwJoystickUserPointer(t *testing.T) {
 func TestGlfwExtensionSupported(t *testing.T) {
 	g := newGlfw(t)
 
-	extName, _ := cString("VK_KHR_surface")
+	extName, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("VK_KHR_surface"); return &b[0], b }()
 	supported := g.ExtensionSupported(extName) != 0
 	t.Logf("VK_KHR_surface supported: %v", supported)
 }
@@ -810,7 +795,7 @@ func TestGlfwGetRequiredInstanceExtensions(t *testing.T) {
 	t.Logf("%d required instance extensions:", count)
 	if exts != nil {
 		for i := 0; i < int(count); i++ {
-			t.Logf("  [%d] %s", i, goString(unsafe.Slice(exts, count)[i]))
+			t.Logf("  [%d] %s", i, byteslice.PtrToString(unsafe.Slice(exts, count)[i]))
 		}
 	}
 }
@@ -828,7 +813,7 @@ func TestGlfwInitHint(t *testing.T) {
 func TestGlfwGetProcAddress(t *testing.T) {
 	g := newGlfw(t)
 
-	funcName, _ := cString("glClear")
+	funcName, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("glClear"); return &b[0], b }()
 	proc := g.GetProcAddress(funcName)
 	if proc == nil {
 		t.Log("glClear proc NULL (expected without GL context)")
@@ -861,14 +846,14 @@ func TestGlfwMultipleWindows(t *testing.T) {
 	var windows [2]*GLFWwindow
 	colors := []string{"Red", "Green"}
 	for i := range windows {
-		ct, _ := cString(colors[i])
+		ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8](colors[i]); return &b[0], b }()
 		windows[i] = g.CreateWindow(200, 200, ct, nil, nil)
 		if windows[i] == nil {
 			t.Fatalf("window %d creation failed", i)
 		}
 		defer g.DestroyWindow(windows[i])
 
-		title := goString(g.GetWindowTitle(windows[i]))
+		title := byteslice.PtrToString(g.GetWindowTitle(windows[i]))
 		t.Logf("window[%d] title: %s", i, title)
 	}
 
