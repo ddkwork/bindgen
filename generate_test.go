@@ -1171,6 +1171,17 @@ func processBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) {
 			continue
 		}
 
+		skipMacros := map[string]bool{
+			"APIENTRY": true, "GLAPIENTRY": true, "GLAPI": true,
+			"__stdcall": true, "__cdecl": true, "__fastcall": true,
+			"CALLBACK": true, "WINAPI": true,
+			"WINGDIAPI": true, "GLFWAPI": true,
+			"GLFW_EXPOSE_NATIVE_": true,
+		}
+		if skipMacros[name] {
+			continue
+		}
+
 		replList := m.ReplacementList()
 		if len(replList) == 0 {
 			continue
@@ -4348,7 +4359,13 @@ func dllParamToSyscall(p dllFuncParam, funcTypeNames map[string]bool, typedefs *
 		return "uintptr(" + p.goName + ")"
 	default:
 		if strings.HasPrefix(resolvedType, "func(") || funcTypeNames[p.goType] {
-			return "uintptr(*(*unsafe.Pointer)(unsafe.Pointer(&" + p.goName + ")))"
+			return "windows.NewCallback(" + p.goName + ")"
+		}
+		if td, ok := typedefs.Get(resolvedType); ok && td.isFunc {
+			return "windows.NewCallback(" + p.goName + ")"
+		}
+		if td, ok := typedefs.Get(p.goType); ok && td.isFunc {
+			return "windows.NewCallback(" + p.goName + ")"
 		}
 		if strings.HasPrefix(p.goType, "*") || p.isPointer {
 			return "uintptr(unsafe.Pointer(" + p.goName + "))"

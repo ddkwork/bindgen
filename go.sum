@@ -1,5 +1,5 @@
-github.com/ddkwork/golibrary v0.2.3 h1:WXQpZxxXBB3ZYuTfdo/I0v03cKZS4vhGzwjdgcuCk0g=
-github.com/ddkwork/golibrary v0.2.3/go.mod h1:NK7Mcs/mFic7qI1XVcKFmXxal/+N8U/ymZfgJ5pLCH4=
+github.com/ddkwork/golibrary v0.2.4 h1:KUehBusRc5rT3+hBGEDt3VGjXcJMfcoj0t3PApNGqa8=
+github.com/ddkwork/golibrary v0.2.4/go.mod h1:NK7Mcs/mFic7qI1XVcKFmXxal/+N8U/ymZfgJ5pLCH4=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=

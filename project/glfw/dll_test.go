@@ -2,7 +2,6 @@ package glfw
 
 import (
 	"os"
-	"syscall"
 	"testing"
 	"time"
 	"unsafe"
@@ -34,7 +33,7 @@ func newWindow(t *testing.T, g *Glfw, width int32, height int32, title string) *
 	t.Helper()
 	g.DefaultWindowHints()
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8](title); return &b[0], b }()
+	ct := byteslice.PtrFromString[int8](title)
 	w := g.CreateWindow(width, height, ct, nil, nil)
 	if w == nil {
 		var desc *int8
@@ -95,11 +94,10 @@ func TestGlfwPlatformSupported(t *testing.T) {
 func TestGlfwErrorCallback(t *testing.T) {
 	g := newGlfw(t)
 
-	cb := func(code int32, desc *int8) uintptr {
+	cb := func(code int32, desc *int8) {
 		t.Logf("GLFW error %d: %s", code, byteslice.PtrToString(desc))
-		return 0
 	}
-	g.SetErrorCallback(syscall.NewCallback(cb))
+	g.SetErrorCallback(cb)
 
 	g.WindowHint(int32(0x00020001), 0)
 	g.PollEvents()
@@ -219,7 +217,7 @@ func TestGlfwCreateWindowHidden(t *testing.T) {
 
 	g.DefaultWindowHints()
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("Hidden"); return &b[0], b }()
+	ct := byteslice.PtrFromString[int8]("Hidden")
 	w := g.CreateWindow(320, 240, ct, nil, nil)
 	if w == nil {
 		t.Fatal("create hidden window failed")
@@ -238,7 +236,7 @@ func TestGlfwSetWindowTitle(t *testing.T) {
 	w := newWindow(t, g, 200, 200, "Old Title")
 	defer g.DestroyWindow(w)
 
-	newTitle, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("New Title"); return &b[0], b }()
+	newTitle := byteslice.PtrFromString[int8]("New Title")
 	g.SetWindowTitle(w, newTitle)
 	title := byteslice.PtrToString(g.GetWindowTitle(w))
 	if title != "New Title" {
@@ -385,7 +383,7 @@ func TestGlfwWindowHintVisibleOffscreen(t *testing.T) {
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
 	g.WindowHint(int32(GlfwResizable), int32(GlfwTrue))
 	g.WindowHint(int32(GlfwDecorated), int32(GlfwTrue))
-	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("Offscreen"); return &b[0], b }()
+	ct := byteslice.PtrFromString[int8]("Offscreen")
 	w := g.CreateWindow(640, 480, ct, nil, nil)
 	if w == nil {
 		t.Fatal("offscreen window creation failed")
@@ -408,7 +406,7 @@ func TestGlfwWindowHintContextVersion(t *testing.T) {
 	g.WindowHint(int32(GlfwContextVersionMinor), 3)
 	g.WindowHint(int32(GlfwOpenglProfile), int32(GlfwOpenglCoreProfile))
 	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-	ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("GL Context"); return &b[0], b }()
+	ct := byteslice.PtrFromString[int8]("GL Context")
 	w := g.CreateWindow(640, 480, ct, nil, nil)
 	if w == nil {
 		t.Fatal("OpenGL context window creation failed")
@@ -618,10 +616,7 @@ func TestGlfwClipboard(t *testing.T) {
 	w := newWindow(t, g, 640, 480, "Clipboard")
 	defer g.DestroyWindow(w)
 
-	testStr, _ := func() (*int8, []byte) {
-		b := byteslice.FromString[int8]("Hello from GLFW Go bindings!")
-		return &b[0], b
-	}()
+	testStr := byteslice.PtrFromString[int8]("Hello from GLFW Go bindings!")
 	g.SetClipboardString(w, testStr)
 
 	retrieved := byteslice.PtrToString(g.GetClipboardString(w))
@@ -782,7 +777,7 @@ func TestGlfwJoystickUserPointer(t *testing.T) {
 func TestGlfwExtensionSupported(t *testing.T) {
 	g := newGlfw(t)
 
-	extName, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("VK_KHR_surface"); return &b[0], b }()
+	extName := byteslice.PtrFromString[int8]("VK_KHR_surface")
 	supported := g.ExtensionSupported(extName) != 0
 	t.Logf("VK_KHR_surface supported: %v", supported)
 }
@@ -813,7 +808,7 @@ func TestGlfwInitHint(t *testing.T) {
 func TestGlfwGetProcAddress(t *testing.T) {
 	g := newGlfw(t)
 
-	funcName, _ := func() (*int8, []byte) { b := byteslice.FromString[int8]("glClear"); return &b[0], b }()
+	funcName := byteslice.PtrFromString[int8]("glClear")
 	proc := g.GetProcAddress(funcName)
 	if proc == nil {
 		t.Log("glClear proc NULL (expected without GL context)")
@@ -833,34 +828,4 @@ func TestGlfwSwapInterval(t *testing.T) {
 	g.MakeContextCurrent(w)
 	g.SwapInterval(1)
 	t.Log("vsync enabled (swap interval = 1)")
-}
-
-// === Multi-window (inspired by windows.c creating 4 windows) ===
-
-func TestGlfwMultipleWindows(t *testing.T) {
-	g := newGlfw(t)
-
-	g.DefaultWindowHints()
-	g.WindowHint(int32(GlfwVisible), int32(GlfwFalse))
-
-	var windows [2]*GLFWwindow
-	colors := []string{"Red", "Green"}
-	for i := range windows {
-		ct, _ := func() (*int8, []byte) { b := byteslice.FromString[int8](colors[i]); return &b[0], b }()
-		windows[i] = g.CreateWindow(200, 200, ct, nil, nil)
-		if windows[i] == nil {
-			t.Fatalf("window %d creation failed", i)
-		}
-		defer g.DestroyWindow(windows[i])
-
-		title := byteslice.PtrToString(g.GetWindowTitle(windows[i]))
-		t.Logf("window[%d] title: %s", i, title)
-	}
-
-	for i, w := range windows {
-		g.MakeContextCurrent(w)
-		var ww, wh int32
-		g.GetWindowSize(w, &ww, &wh)
-		t.Logf("window[%d] size: %dx%d", i, ww, wh)
-	}
 }

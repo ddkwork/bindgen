@@ -528,5 +528,4 @@ const (
 	GlfwPlatformX11               uint32 = 0x00060004
 	GlfwPlatformNull              uint32 = 0x00060005
 	GlfwDontCare                  int32  = -1
-	GLAPIENTRY                    uint32 = APIENTRY
 )
