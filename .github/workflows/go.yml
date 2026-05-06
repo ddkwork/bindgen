@@ -15,7 +15,7 @@ jobs:
   build-and-test:
     name: Build & Test
     runs-on: windows-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     steps:
       - name: Checkout repository
@@ -64,66 +64,54 @@ jobs:
         working-directory: ..\ewdk
         run: go run .
 
-      # --- Clone steps (temporarily disabled) ---
-      #
-      # - name: Clone zydis source (recursive, for zycore dependency)
-      #   run: |
-      #     New-Item -ItemType Directory -Path "project\zydis\clone" -Force | Out-Null
-      #     cd project\zydis\clone
-      #     git clone --recursive https://github.com/zyantific/zydis.git
-      #
-      # - name: Clone keystone source
-      #   run: |
-      #     New-Item -ItemType Directory -Path "project\keystone\clone" -Force | Out-Null
-      #     cd project\keystone\clone
-      #     git clone --recursive https://github.com/keystone-engine/keystone.git
-      #
-      # - name: Clone xed source
-      #   run: |
-      #     New-Item -ItemType Directory -Path "project\xed\clone" -Force | Out-Null
-      #     cd project\xed\clone
-      #     git clone --recursive https://github.com/intel/xed.git
-      #     git clone https://github.com/intel/mbuild.git
-      #
-      # - name: Clone hyperdbg source
-      #   run: |
-      #     New-Item -ItemType Directory -Path "project\hyperdbg\clone" -Force | Out-Null
-      #     cd project\hyperdbg\clone
-      #     git clone --recursive https://github.com/ddkwork/HyperDbg.git
+      - name: Clone zydis source (recursive, for zycore dependency)
+        run: |
+          New-Item -ItemType Directory -Path "project\zydis\clone" -Force | Out-Null
+          cd project\zydis\clone
+          git clone --recursive https://github.com/zyantific/zydis.git
 
-      # --- Build steps (temporarily disabled) ---
-      # - name: Build zydis (via build.cmd)
-      #   shell: cmd
-      #   run: |
-      #     cd project\zydis
-      #     build.cmd
-      #
-      # - name: Build keystone (via build.bat)
-      #   shell: cmd
-      #   run: |
-      #     cd project\keystone
-      #     build.bat
-      #
-      # - name: Build xed (via mbuild --shared)
-      #   run: |
-      #     cd project\xed\clone
-      #     pip install mbuild
-      #     cd xed
-      #     python mfile.py --shared --msvs-version 17 install
-      #     $kitDir = Get-ChildItem kits -Directory | Select-Object -First 1
-      #     if ($kitDir) {
-      #       $dll = Get-ChildItem "$($kitDir.FullName)/bin" -Filter "*.dll" -ErrorAction SilentlyContinue | Select-Object -First 1
-      #       if ($dll) {
-      #         Copy-Item $dll.FullName "../../xed.dll"
-      #         Write-Host "Copied xed.dll from kit"
-      #       }
-      #     }
-      #
-      # - name: Build hyperdbg (via build.bat)
-      #   shell: cmd
-      #   run: |
-      #     cd project\hyperdbg
-      #     build.bat
+      - name: Clone keystone source
+        run: |
+          New-Item -ItemType Directory -Path "project\keystone\clone" -Force | Out-Null
+          cd project\keystone\clone
+          git clone --recursive https://github.com/keystone-engine/keystone.git
+
+      - name: Clone xed source
+        run: |
+          New-Item -ItemType Directory -Path "project\xed\clone" -Force | Out-Null
+          cd project\xed\clone
+          git clone --recursive https://github.com/intel/xed.git
+          git clone https://github.com/intel/mbuild.git
+
+      - name: Clone hyperdbg source
+        run: |
+          New-Item -ItemType Directory -Path "project\hyperdbg\clone" -Force | Out-Null
+          cd project\hyperdbg\clone
+          git clone --recursive https://github.com/ddkwork/HyperDbg.git
+
+      - name: Clone WinDivert source
+        run: |
+          New-Item -ItemType Directory -Path "project\WinDivert\clone" -Force | Out-Null
+          cd project\WinDivert\clone
+          git clone --recursive https://github.com/basil00/Divert.git
+
+      - name: Clone Everything-SDK source
+        run: |
+          New-Item -ItemType Directory -Path "project\Everything-SDK\clone" -Force | Out-Null
+          cd project\Everything-SDK\clone
+          git clone https://github.com/voidtools/Everything-SDK.git
+
+      - name: Clone ARImpRec source
+        run: |
+          New-Item -ItemType Directory -Path "project\ARImpRec\clone" -Force | Out-Null
+          cd project\ARImpRec\clone
+          git clone https://github.com/neitsa/ARImpRec.git
+
+      - name: Clone glfw source
+        run: |
+          New-Item -ItemType Directory -Path "project\glfw\clone" -Force | Out-Null
+          cd project\glfw\clone
+          git clone --recursive https://github.com/glfw/glfw.git
 
       - name: Install Go dependencies
         run: go mod tidy
@@ -155,6 +143,30 @@ jobs:
       - name: Test ARImpRec
         run: |
           cd project/ARImpRec
+          go mod tidy
+          go build ./...
+
+      - name: Test keystone
+        run: |
+          cd project/keystone
+          go mod tidy
+          go build ./...
+
+      - name: Test xed
+        run: |
+          cd project/xed
+          go mod tidy
+          go build ./...
+
+      - name: Test zydis
+        run: |
+          cd project/zydis
+          go mod tidy
+          go build ./...
+
+      - name: Test glfw
+        run: |
+          cd project/glfw
           go mod tidy
           go build ./...
 
