@@ -1,0 +1,199 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  genbindings:
+    runs-on: ubuntu-24.04
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Cache clang ASTs
+      uses: actions/cache@v4
+      with:
+        path: cmd/genbindings/cachedir
+        key: linux64-clang-cache
+        
+    - name: Run unit tests for cmd tasks
+      run: make test-cmd
+
+    - name: Rebuild binding source (C/H only)
+      run: make genbindings
+    
+    - name: Upload generated bindings
+      uses: actions/upload-artifact@v4
+      with:
+        name: generated-bindings
+        path: |
+          qt6/**/*.cpp
+          qt6/**/*.h
+          qt-restricted-extras/**/*.cpp
+          qt-restricted-extras/**/*.h
+          libmiqt/*.h
+
+  build_windows:
+    needs: genbindings
+    runs-on: ubuntu-24.04
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Download generated bindings
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-bindings
+        path: .
+
+    - name: Build miqt-docker
+      run: make cmd/miqt-docker/miqt-docker
+
+    - name: Build Windows DLL (Qt6.8)
+      run: |
+        cmd/miqt-docker/miqt-docker win64-cross-go1.23-qt6.8-dynamic /bin/bash -c '
+          cd qt6 &&
+          mkdir -p build &&
+          cd build &&
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON \
+            -DCMAKE_INSTALL_PREFIX=../output \
+            -DGCC_EXECUTABLE=x86_64-w64-mingw32-g++ \
+            -DCMAKE_SYSTEM_NAME=Windows \
+            -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
+            -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ &&
+          make -j$(nproc) &&
+          make install
+        '
+
+    - name: Package Windows build
+      run: |
+        cd qt6/output
+        zip -r ../../miqt-windows-x64.zip .
+
+    - name: Upload Windows artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: miqt-windows-x64
+        path: miqt-windows-x64.zip
+
+  build_linux:
+    needs: genbindings
+    runs-on: ubuntu-24.04
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Download generated bindings
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-bindings
+        path: .
+
+    - name: Build miqt-docker
+      run: make cmd/miqt-docker/miqt-docker
+
+    - name: Build Linux shared library (Qt6.8)
+      run: |
+        cmd/miqt-docker/miqt-docker linux64-go1.23-qt6.8-dynamic /bin/bash -c '
+          cd qt6 &&
+          mkdir -p build &&
+          cd build &&
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON \
+            -DCMAKE_INSTALL_PREFIX=../output &&
+          make -j$(nproc) &&
+          make install
+        '
+
+    - name: Package Linux build
+      run: |
+        cd qt6/output
+        tar -czvf ../../miqt-linux-x64.tar.gz .
+
+    - name: Upload Linux artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: miqt-linux-x64
+        path: miqt-linux-x64.tar.gz
+
+  build_android:
+    needs: genbindings
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Download generated bindings
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-bindings
+        path: .
+
+    - name: Clean up runner disk space
+      run: |
+        df -h
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+        sudo docker image prune --all --force
+        sudo docker builder prune -a
+        df -h
+
+    - name: Build miqt-docker
+      run: make cmd/miqt-docker/miqt-docker
+
+    - name: Build Android shared library (Qt6.6)
+      run: |
+        cd qt6
+        ../../cmd/miqt-docker/miqt-docker android-armv8a-go1.23-qt6.6-dynamic /bin/bash -c '
+          mkdir -p build &&
+          cd build &&
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON \
+            -DCMAKE_INSTALL_PREFIX=../output \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-29 \
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake &&
+          make -j$(nproc) &&
+          make install
+        '
+
+    - name: Package Android build
+      run: |
+        cd qt6/output
+        zip -r ../../miqt-android-arm64.zip .
+
+    - name: Upload Android artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: miqt-android-arm64
+        path: miqt-android-arm64.zip
+
+  release:
+    needs: [build_windows, build_linux, build_android]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          artifacts/miqt-windows-x64/miqt-windows-x64.zip
+          artifacts/miqt-linux-x64/miqt-linux-x64.tar.gz
+          artifacts/miqt-android-arm64/miqt-android-arm64.zip
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.tk }}

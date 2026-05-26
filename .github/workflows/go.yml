@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.26.2'
+
+      - name: Test c2go package
+        run: |
+          go test ./c2go/ -v -timeout 60s
+
+      - name: Test cc package
+        run: |
+          go test ./cc/ -v -timeout 60s
+
+      - name: Verify build
+        run: go build ./...
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Create archive
+        run: zip -r bindgen-${{ github.ref_name }}.zip . -x '.git/**'
+
+      - uses: softprops/action-gh-release@v3
+        with:
+          files: bindgen-${{ github.ref_name }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
