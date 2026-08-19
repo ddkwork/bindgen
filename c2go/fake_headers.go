@@ -24,6 +24,11 @@ func NewFakeHeaderFS() *FakeHeaderFS {
 		"string.h":     stringH(),
 		"stdbool.h":    stdboolH(),
 		"windows.h":    windowsH(),
+		"errno.h":      errnoH(),
+		"inttypes.h":   inttypesH(),
+		"limits.h":     limitsH(),
+		"math.h":       mathH(),
+		"stdarg.h":     stdargH(),
 	}}
 }
 
@@ -505,6 +510,279 @@ typedef union _ULARGE_INTEGER {
 #define WINAPI
 #define APIENTRY
 #define FAR
+
+#endif
+`
+}
+
+func errnoH() string {
+	return `
+#ifndef _INC_ERRNO
+#define _INC_ERRNO
+
+#define EPERM 1
+#define ENOENT 2
+#define ESRCH 3
+#define EINTR 4
+#define EIO 5
+#define ENXIO 6
+#define E2BIG 7
+#define ENOEXEC 8
+#define EBADF 9
+#define ECHILD 10
+#define EAGAIN 11
+#define ENOMEM 12
+#define EACCES 13
+#define EFAULT 14
+#define EBUSY 16
+#define EEXIST 17
+#define EXDEV 18
+#define ENODEV 19
+#define ENOTDIR 20
+#define EISDIR 21
+#define EINVAL 22
+#define ENFILE 23
+#define EMFILE 24
+#define ENOTTY 25
+#define EFBIG 27
+#define ENOSPC 28
+#define ESPIPE 29
+#define EROFS 30
+#define EMLINK 31
+#define EPIPE 32
+#define EDOM 33
+#define ERANGE 34
+#define EDEADLK 36
+#define ENAMETOOLONG 38
+#define ENOLCK 39
+#define ENOSYS 40
+#define ENOTEMPTY 41
+
+extern int errno;
+
+#endif
+`
+}
+
+func inttypesH() string {
+	return `
+#ifndef _INC_INTTYPES
+#define _INC_INTTYPES
+
+#include <stdint.h>
+
+typedef long long intmax_t;
+typedef unsigned long long uintmax_t;
+
+#define PRId8 "d"
+#define PRId16 "d"
+#define PRId32 "d"
+#define PRId64 "lld"
+#define PRIi8 "i"
+#define PRIi16 "i"
+#define PRIi32 "i"
+#define PRIi64 "lli"
+#define PRIu8 "u"
+#define PRIu16 "u"
+#define PRIu32 "u"
+#define PRIu64 "llu"
+#define PRIx8 "x"
+#define PRIx16 "x"
+#define PRIx32 "x"
+#define PRIx64 "llx"
+#define PRIX8 "X"
+#define PRIX16 "X"
+#define PRIX32 "X"
+#define PRIX64 "llX"
+#define PRIdLEAST8 "d"
+#define PRIdLEAST16 "d"
+#define PRIdLEAST32 "d"
+#define PRIdLEAST64 "lld"
+#define PRIiLEAST8 "i"
+#define PRIiLEAST16 "i"
+#define PRIiLEAST32 "i"
+#define PRIiLEAST64 "lli"
+#define PRIuLEAST8 "u"
+#define PRIuLEAST16 "u"
+#define PRIuLEAST32 "u"
+#define PRIuLEAST64 "llu"
+#define PRIdFAST8 "d"
+#define PRIdFAST16 "d"
+#define PRIdFAST32 "d"
+#define PRIdFAST64 "lld"
+#define PRIiFAST8 "i"
+#define PRIiFAST16 "i"
+#define PRIiFAST32 "i"
+#define PRIiFAST64 "lli"
+#define PRIuFAST8 "u"
+#define PRIuFAST16 "u"
+#define PRIuFAST32 "u"
+#define PRIuFAST64 "llu"
+#define PRIuMAX "llu"
+#define PRIdMAX "lld"
+#define PRIiMAX "lli"
+
+#define SCNd8 "d"
+#define SCNd16 "d"
+#define SCNd32 "d"
+#define SCNd64 "lld"
+#define SCNu8 "u"
+#define SCNu16 "u"
+#define SCNu32 "u"
+#define SCNu64 "llu"
+
+typedef struct {
+    intmax_t quot;
+    intmax_t rem;
+} imaxdiv_t;
+
+intmax_t imaxabs(intmax_t j);
+imaxdiv_t imaxdiv(intmax_t numer, intmax_t denom);
+intmax_t strtoimax(const char* nptr, char** endptr, int base);
+uintmax_t strtoumax(const char* nptr, char** endptr, int base);
+
+#endif
+`
+}
+
+func limitsH() string {
+	return `
+#ifndef _INC_LIMITS
+#define _INC_LIMITS
+
+#define CHAR_BIT 8
+#define SCHAR_MIN (-128)
+#define SCHAR_MAX 127
+#define UCHAR_MAX 255
+#define CHAR_MIN SCHAR_MIN
+#define CHAR_MAX SCHAR_MAX
+#define SHRT_MIN (-32768)
+#define SHRT_MAX 32767
+#define USHRT_MAX 65535
+#define INT_MIN (-2147483647 - 1)
+#define INT_MAX 2147483647
+#define UINT_MAX 0xffffffffU
+#define LONG_MIN (-2147483647L - 1)
+#define LONG_MAX 2147483647L
+#define ULONG_MAX 0xffffffffUL
+#define LLONG_MAX 9223372036854775807LL
+#define LLONG_MIN (-9223372036854775807LL - 1)
+#define ULLONG_MAX 0xffffffffffffffffULL
+
+#define MB_LEN_MAX 5
+
+#define I8_MIN (-127i8 - 1)
+#define I8_MAX 127i8
+#define UI8_MAX 0xffui8
+
+#define I16_MIN (-32767i16 - 1)
+#define I16_MAX 32767i16
+#define UI16_MAX 0xffffui16
+
+#define I32_MIN (-2147483647i32 - 1)
+#define I32_MAX 2147483647i32
+#define UI32_MAX 0xffffffffui32
+
+#define I64_MIN (-9223372036854775807i64 - 1)
+#define I64_MAX 9223372036854775807i64
+#define UI64_MAX 0xffffffffffffffffui64
+
+#endif
+`
+}
+
+func mathH() string {
+	return `
+#ifndef _INC_MATH
+#define _INC_MATH
+
+#define M_PI 3.14159265358979323846
+#define M_PI_2 1.57079632679489661923
+#define M_PI_4 0.78539816339744830962
+#define M_1_PI 0.31830988618379067154
+#define M_2_PI 0.63661977236758134308
+#define M_E 2.7182818284590452354
+#define M_LOG2E 1.4426950408889634074
+#define M_LOG10E 0.43429448190325182765
+#define M_LN2 0.69314718055994530942
+#define M_LN10 2.30258509299404568402
+#define M_SQRT2 1.41421356237309504880
+#define M_SQRT1_2 0.70710678118654752440
+
+#define INFINITY ((double)(1.0 / 0.0))
+#define NAN ((double)(0.0 / 0.0))
+#define HUGE_VAL INFINITY
+
+double sin(double x);
+double cos(double x);
+double tan(double x);
+double asin(double x);
+double acos(double x);
+double atan(double x);
+double atan2(double y, double x);
+double sinh(double x);
+double cosh(double x);
+double tanh(double x);
+double exp(double x);
+double log(double x);
+double log10(double x);
+double log2(double x);
+double pow(double x, double y);
+double sqrt(double x);
+double ceil(double x);
+double floor(double x);
+double fabs(double x);
+double fmod(double x, double y);
+double ldexp(double x, int exp);
+double frexp(double x, int* exp);
+double modf(double x, double* iptr);
+double round(double x);
+double trunc(double x);
+double rint(double x);
+double nearbyint(double x);
+double remainder(double x, double y);
+double copysign(double x, double y);
+double nan(const char* tagp);
+int isnan(double x);
+int isinf(double x);
+int isfinite(double x);
+int fpclassify(double x);
+int signbit(double x);
+int isnormal(double x);
+
+float sinf(float x);
+float cosf(float x);
+float tanf(float x);
+float sqrtf(float x);
+float fabsf(float x);
+float floorf(float x);
+float ceilf(float x);
+float roundf(float x);
+float powf(float x, float y);
+float expf(float x);
+float logf(float x);
+float log10f(float x);
+float log2f(float x);
+float fmodf(float x, float y);
+float copysignf(float x, float y);
+int isnanf(float x);
+int isinff(float x);
+
+#endif
+`
+}
+
+func stdargH() string {
+	return `
+#ifndef _INC_STDARG
+#define _INC_STDARG
+
+typedef __builtin_va_list va_list;
+
+#define va_start(ap, param) __builtin_va_start(ap, param)
+#define va_end(ap)          __builtin_va_end(ap)
+#define va_arg(ap, type)    __builtin_va_arg(ap, type)
+#define va_copy(dest, src)  __builtin_va_copy(dest, src)
 
 #endif
 `

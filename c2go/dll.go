@@ -354,9 +354,6 @@ func init() {
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		panic(err)
 	}
-	if err := windows.SetDllDirectory(dir); err != nil {
-		panic(err)
-	}
 	sha := sha256.Sum256(dllBytes)
 	dllName := fmt.Sprintf("%s-%s.dll", "` + strings.TrimSuffix(dllName, ".dll") + `", base64.RawURLEncoding.EncodeToString(sha[:]))
 	filePath := filepath.Join(dir, dllName)
@@ -365,7 +362,11 @@ func init() {
 			panic(err)
 		}
 	}
-	dll = windows.NewLazyDLL(dllName)
+	// 用绝对路径加载，避免依赖进程级的 SetDllDirectory 全局状态。
+	// SetDllDirectory 是进程级单值，多个包同时调用会互相覆盖，
+	// 导致后续 LoadLibrary 找不到本包的 DLL 而 panic。
+	// 绝对路径让 LoadLibraryW 直接定位文件，不依赖搜索路径。
+	dll = windows.NewLazyDLL(filePath)
 }
 
 func getProc(name string) *windows.LazyProc {

@@ -244,6 +244,10 @@ func ProcessBindgenConfig(t *testing.T, cfg *cc.Config, bc BindgenConfig) bool {
 		lineNo                                int
 	}
 	for _, ps := range []prebuiltStruct{
+		// LIST_ENTRY is defined in <predefined> (msenv.go) and skipped by the
+		// "<predefined>" filter below. Inject it here so structs that reference
+		// it (DEBUGGER_EVENT_ACTION, DEBUGGER_EVENT, ...) compile correctly.
+		{"LIST_ENTRY", "_LIST_ENTRY", "<predefined>", "winnt.h", "\tFlink *LIST_ENTRY\n\tBlink *LIST_ENTRY\n", 0},
 		{"BUFFER_HEADER", "_BUFFER_HEADER", "Constants.h", "HyperDbgUnified/HyperDbg/hyperdbg/hyperlog/header/Logging.h", "\tOperationNumber uint32\n\tBufferLength    uint32\n\tValid           bool\n", 57},
 		{"DEBUGGER_EVENT_ACTION", "_DEBUGGER_EVENT_ACTION", "Constants.h", "HyperDbgUnified/HyperDbg/hyperdbg/hyperkd/header/debugger/core/Debugger.h", "\tTag                       uint64\n\tActionOrderCode           uint32\n\tActionsList               LIST_ENTRY\n\tActionType                DEBUGGER_EVENT_ACTION_TYPE_ENUM\n\tImmediatelySendTheResults bool\n\tScriptConfiguration       DEBUGGER_EVENT_ACTION_RUN_SCRIPT_CONFIGURATION\n\tRequestedBuffer           DEBUGGER_EVENT_REQUEST_BUFFER\n\tCustomCodeBufferSize      uint32\n\tCustomCodeBufferAddress   uintptr\n", 79},
 		{"DEBUGGER_EVENT", "_DEBUGGER_EVENT", "Constants.h", "HyperDbgUnified/HyperDbg/hyperdbg/hyperkd/header/debugger/core/Debugger.h", "\tTag                    uint64\n\tEventsOfSameTypeList    LIST_ENTRY\n\tEventType              VMM_EVENT_TYPE_ENUM\n\tEnabled                bool\n\tCoreId                 uint32\n\tProcessId              uint32\n\tActionsListHead        LIST_ENTRY\n\tCountOfActions         uint32\n\tEnableShortCircuiting  bool\n\tEventMode              VMM_CALLBACK_EVENT_CALLING_STAGE_TYPE\n\tInitOptions            DEBUGGER_EVENT_OPTIONS\n\tOptions                DEBUGGER_EVENT_OPTIONS\n\tConditionsBufferSize   uint32\n\tConditionBufferAddress uintptr\n", 107},
